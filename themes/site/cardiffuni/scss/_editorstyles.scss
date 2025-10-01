@@ -1,0 +1,111 @@
+@use "_allvariables" as *;
+
+/**
+ * Licensed to The Apereo Foundation under one or more contributor license
+ * agreements. See the NOTICE file distributed with this work for
+ * additional information regarding copyright ownership.
+
+ * The Apereo Foundation licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at:
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*--- EDITOR STYLES */
+.ck.ck-editor__main>.ck-editor__editable {
+  background: $bodybackgroundcolor;
+}
+.ck.ck-editor__main>.ck-editor__editable>* {
+  color: $darkestcolor !important;
+}
+
+.ck-content .text-big {
+  font-size: 1.4em;
+}
+
+.ck-content .text-small {
+  font-size: 0.85em;
+}
+
+.ck-content .text-tiny {
+  font-size: 0.7em;
+}
+
+.ck-content .text-huge {
+  font-size: 1.8em;
+}
+
+.ck-content code {
+  background-color: hsla(0, 0%, 78%, 0.3);
+  padding: .15em;
+  border-radius: 2px;
+}
+
+.ck-content blockquote {
+  overflow: hidden;
+  padding-right: 1.5em;
+  padding-left: 1.5em;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  border-left: solid 5px hsl(0, 0%, 80%);
+}
+
+.ck-content[dir="rtl"] blockquote {
+  border-left: 0;
+  border-right: solid 5px hsl(0, 0%, 80%);
+}
+
+.ck-content .marker-yellow {
+  background-color: var(--ck-highlight-marker-yellow);
+}
+
+.ck-content .marker-green {
+  background-color: var(--ck-highlight-marker-green);
+}
+
+.ck-content .marker-pink {
+  background-color: var(--ck-highlight-marker-pink);
+}
+
+.ck-content .marker-blue {
+  background-color: var(--ck-highlight-marker-blue);
+}
+
+.ck-content .pen-red {
+  color: var(--ck-highlight-pen-red);
+  background-color: transparent;
+}
+
+.ck-content .pen-green {
+  color: var(--ck-highlight-pen-green);
+  background-color: transparent;
+}
+
+.ck-content pre {
+  padding: 1em;
+  color: #353535;
+  background: hsla(0, 0%, 78%, 0.3);
+  border: 1px solid hsl(0, 0%, 77%);
+  border-radius: 2px;
+  text-align: left;
+  direction: ltr;
+  tab-size: 4;
+  white-space: pre-wrap;
+  font-style: normal;
+  min-width: 200px;
+}
+
+.ck-content pre code {
+  background: unset;
+  padding: 0;
+  border-radius: 0;
+}

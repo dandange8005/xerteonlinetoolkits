@@ -1,0 +1,88 @@
+@use "sass:color";
+
+//*define color pallette - Cardiff University Official Brand Colors*/
+// Primary Colors (from Cardiff University Style Guide)
+$cu-primary-red: #E4251B;     // Official Cardiff Red (PMS 485 C)
+$cu-white: #FFFFFF;
+$cu-black: #121212;
+
+// Greys (10% increments from black)
+$cu-gray-10: #F2F2F2;
+$cu-gray-20: #E5E5E5;
+$cu-gray-30: #CCCCCC;
+$cu-gray-40: #B3B3B3;
+$cu-gray-50: #999999;
+$cu-gray-60: #808080;
+$cu-gray-70: #666666;
+$cu-gray-80: #4C4C4C;
+$cu-gray-90: #333333;
+
+// Accent Colors (use sparingly, requires Design team permission)
+$cu-forest-green: #07873E;
+$cu-cadet: #5EB99B;
+$cu-stone: #C9C2BA;
+$cu-light-blue: #1E90FF;
+$cu-royal-blue: #4A42FF;
+$cu-midnight-blue: #273573;
+$cu-midnight-purple: #26192C;
+$cu-orange: #E9761E;
+$cu-yellow: #FFB300;
+$cu-yellow-green: #85C041;
+$cu-indigo: #570185;
+$cu-dark-violet: #D401C5;
+
+// Theme mapping to existing variables
+$darkestcolor: $cu-gray-90;
+$lightestcolor: $cu-gray-10;
+$brightcolor: $cu-primary-red;
+$contrastcolor: $cu-black;
+$whiteorlightest: $cu-white;
+$blackordarkest: $cu-black;
+$mainhovercolor: color.scale($cu-primary-red, $lightness: -20%);  // Darker red for hover
+$hintcolor: $cu-primary-red;
+$alertcolor: $cu-primary-red;
+$linkcolor: $cu-primary-red;
+$panelcolor: $cu-gray-70;
+$accent1: $cu-forest-green;
+$accent2: $cu-light-blue;
+$accent3: $cu-orange;
+
+//*set background colors*/
+$bodybackgroundcolor: $lightestcolor;
+$defaultpagebackground: $lightestcolor;
+
+//*set font family - Optimized for readability*/
+// Note: Using Inter for accessibility/readability rather than Cardiff brand fonts (Marr Sans/Darby)
+$mainfonts: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$headingfonts: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$secondaryfonts: Georgia, "Times New Roman", Times, serif;  // Serif fallback for quotes/emphasis
+
+// Font sizes (following Cardiff University digital guidelines)
+$font-size-base: 18px;        // Base body copy (digital)
+$font-size-small: 16px;       // Small text
+$font-size-heading-sm: 24px;  // Small heading
+$font-size-heading-md: 30px;  // Medium heading
+$font-size-heading-lg: 36px;  // Large heading
+$font-size-heading-xl: 48px;  // Extra large heading
+
+// Line heights
+$line-height-tight: 1.2;      // For headings
+$line-height-normal: 1.5;     // For body text
+$line-height-loose: 1.8;      // For readable body text
+
+//*define font colors to match the background colors*/
+$mainfontcolour: $darkestcolor;
+$fontcolorfordarkestcolor: $whiteorlightest;
+$fontcolorforlightestcolor: $darkestcolor;
+$fontcolorfobrightcolor: $whiteorlightest;
+$fontcolorforcontrastcolor: $whiteorlightest;
+$fontcolorformainhovercolor: $whiteorlightest;
+
+//*define rounded corner and other sizes*/
+$largeroundedcorners: 6vmin;
+$mediumroundedcorners: 2vmin;
+$smallroundedcorners: 1vmin;
+$imageroundedcorners: 2vmin;
+$contentmargin: 2%;
+$interfaceboxshadow: 3px 3px 5px grey;
+$defaultpagepadding: 2%;
