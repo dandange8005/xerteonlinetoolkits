@@ -51,11 +51,12 @@ $accent3: $cu-orange;
 $bodybackgroundcolor: $lightestcolor;
 $defaultpagebackground: $lightestcolor;
 
-//*set font family - Optimized for readability*/
-// Note: Using Inter for accessibility/readability rather than Cardiff brand fonts (Marr Sans/Darby)
-$mainfonts: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-$headingfonts: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-$secondaryfonts: Georgia, "Times New Roman", Times, serif;  // Serif fallback for quotes/emphasis
+//*set font family - Cardiff University Brand Fonts with fallbacks*/
+// Cardiff brand fonts listed first, with Inter as fallback for readability/accessibility
+// If brand fonts become available, they will be used automatically
+$mainfonts: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$headingfonts: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$secondaryfonts: "Darby Serif", Georgia, "Times New Roman", Times, serif;  // Serif for quotes/emphasis
 
 // Font sizes (following Cardiff University digital guidelines)
 $font-size-base: 18px;        // Base body copy (digital)
