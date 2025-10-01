@@ -64,7 +64,9 @@ $blackordarkest: t.$token-color-primary-black;
 $mainhovercolor: t.$token-btn-primary-hover;    // Hover state for primary color
 $hintcolor: t.$token-color-primary-red;
 $alertcolor: t.$token-color-primary-red;
-$linkcolor: t.$token-text-link;
+$linkcolor: #045bc6;                            // Custom link color (blue)
+$linkhovercolor: #033a8a;                       // Link hover state (darker blue)
+$linkvisitedcolor: #551A8B;                     // Link visited state (purple)
 $panelcolor: t.$token-color-gray-70;
 
 // Accent colors (customize for theme variants)
