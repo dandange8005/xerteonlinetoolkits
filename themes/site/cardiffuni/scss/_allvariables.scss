@@ -50,33 +50,35 @@ $cu-dark-violet: t.$token-color-accent-dark-violet;
 
 // =============================================================================
 // XERTE THEME VARIABLE MAPPING
-// Map tokens to Xerte's expected variable names
+// Map tokens to semantic variable names
 // CUSTOMIZE THESE for theme variants
 // =============================================================================
 
-// Primary theme colors
-$darkestcolor: t.$token-text-primary;           // Main text color
-$lightestcolor: t.$token-bg-secondary;          // Light background
-$brightcolor: t.$token-color-primary-red;       // Primary brand color (red)
-$contrastcolor: t.$token-bg-dark;               // Dark contrast (black)
-$whiteorlightest: t.$token-color-primary-white;
-$blackordarkest: t.$token-color-primary-black;
-$mainhovercolor: t.$token-btn-primary-hover;    // Hover state for primary color
-$hintcolor: t.$token-color-primary-red;
-$alertcolor: t.$token-color-primary-red;
-$linkcolor: #045bc6;                            // Custom link color (blue)
-$linkhovercolor: #033a8a;                       // Link hover state (darker blue)
-$linkvisitedcolor: #551A8B;                     // Link visited state (purple)
-$panelcolor: t.$token-color-gray-70;
+// Text colors
+$color-text-primary: t.$token-text-primary;
+$color-text-inverse: t.$token-text-inverted;
+$color-text-hint: t.$token-color-primary-red;
+$color-text-alert: t.$token-color-primary-red;
+
+// Brand colors
+$color-brand-primary: t.$token-color-primary-red;
+$color-brand-primary-hover: t.$token-btn-primary-hover;
+$color-brand-secondary: t.$token-bg-dark;
+
+// Link colors
+$color-link-default: #045bc6;
+$color-link-hover: #033a8a;
+$color-link-visited: #551A8B;
 
 // Accent colors (customize for theme variants)
-$accent1: t.$token-color-accent-forest-green;
-$accent2: t.$token-color-accent-light-blue;
-$accent3: t.$token-color-accent-orange;
+$color-accent-green: t.$token-color-accent-forest-green;
+$color-accent-blue: t.$token-color-accent-light-blue;
+$color-accent-orange: t.$token-color-accent-orange;
 
 // Background colors
-$bodybackgroundcolor: t.$token-bg-secondary;
-$defaultpagebackground: t.$token-bg-primary;
+$color-bg-body: t.$token-bg-secondary;
+$color-bg-page: t.$token-bg-primary;
+$color-bg-panel: t.$token-color-gray-70;
 
 // =============================================================================
 // TYPOGRAPHY MAPPING
@@ -87,23 +89,23 @@ $mainfonts: t.$token-font-primary-body;
 $headingfonts: t.$token-font-primary-heading;
 $secondaryfonts: t.$token-font-secondary;
 
-// Font sizes
-$font-size-xs: t.$token-font-size-xs;
-$font-size-sm: t.$token-font-size-sm;
-$font-size-base: t.$token-font-size-base;
-$font-size-md: t.$token-font-size-md;
-$font-size-lg: t.$token-font-size-lg;
-$font-size-xl: t.$token-font-size-xl;
-$font-size-2xl: t.$token-font-size-2xl;
-$font-size-3xl: t.$token-font-size-3xl;
-$font-size-4xl: t.$token-font-size-4xl;
+// Font sizes - Fluid (responsive, scales with viewport)
+// Based on Cardiff University 18px digital body text standard
+$font-size-xs: clamp(0.75rem, 0.70rem + 0.25vw, 0.875rem);    // 12px - 14px
+$font-size-sm: clamp(0.875rem, 0.80rem + 0.375vw, 1rem);      // 14px - 16px
+$font-size-base: clamp(1rem, 0.90rem + 0.5vw, 1.125rem);      // 16px - 18px (Cardiff standard)
+$font-size-md: clamp(1.125rem, 1.00rem + 0.625vw, 1.313rem);  // 18px - 21px
+$font-size-lg: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);      // 20px - 24px
+$font-size-xl: clamp(1.5rem, 1.30rem + 1vw, 1.875rem);        // 24px - 30px
+$font-size-2xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);  // 30px - 36px
+$font-size-3xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);       // 36px - 48px
+$font-size-4xl: clamp(3rem, 2.50rem + 2.5vw, 4rem);           // 48px - 64px
 
 // Font sizes - specific use cases
-$font-size-small: t.$token-font-size-sm;
-$font-size-heading-sm: t.$token-font-size-lg;
-$font-size-heading-md: t.$token-font-size-xl;
-$font-size-heading-lg: t.$token-font-size-2xl;
-$font-size-heading-xl: t.$token-font-size-3xl;
+$font-size-heading-sm: $font-size-lg;
+$font-size-heading-md: $font-size-xl;
+$font-size-heading-lg: $font-size-2xl;
+$font-size-heading-xl: $font-size-3xl;
 
 // Line heights
 $line-height-tight: t.$token-line-height-tight;
@@ -111,21 +113,19 @@ $line-height-normal: t.$token-line-height-base;
 $line-height-loose: t.$token-line-height-loose;
 
 // Font weights
+$font-weight-light: t.$token-font-weight-light;
 $font-weight-regular: t.$token-font-weight-regular;
 $font-weight-medium: t.$token-font-weight-medium;
 $font-weight-bold: t.$token-font-weight-bold;
 
 // =============================================================================
-// FONT COLOR MAPPING
-// Text colors for different backgrounds
+// TEXT COLOR ON BACKGROUNDS
+// Text colors for different background colors
 // =============================================================================
 
-$mainfontcolour: t.$token-text-primary;
-$fontcolorfordarkestcolor: t.$token-text-inverted;
-$fontcolorforlightestcolor: t.$token-text-primary;
-$fontcolorfobrightcolor: t.$token-text-inverted;
-$fontcolorforcontrastcolor: t.$token-text-inverted;
-$fontcolorformainhovercolor: t.$token-text-inverted;
+$color-text-on-light: t.$token-text-primary;
+$color-text-on-dark: t.$token-text-inverted;
+$color-text-on-brand: t.$token-text-inverted;
 
 // =============================================================================
 // SPACING MAPPING
@@ -140,9 +140,9 @@ $spacing-2xl: t.$token-spacing-2xl;
 $spacing-3xl: t.$token-spacing-3xl;
 $spacing-4xl: t.$token-spacing-4xl;
 
-// Legacy spacing variables (convert to use tokens)
-$contentmargin: 2%;
-$defaultpagepadding: t.$token-spacing-lg;
+// Page layout spacing
+$spacing-content-margin: 2%;
+$spacing-page-padding: t.$token-spacing-lg;
 
 // =============================================================================
 // BORDER MAPPING
@@ -156,16 +156,18 @@ $radius-lg: t.$token-radius-lg;
 $radius-xl: t.$token-radius-xl;
 $radius-pill: t.$token-radius-pill;
 
-// Legacy rounded corner variables
-$largeroundedcorners: t.$token-radius-lg;
-$mediumroundedcorners: t.$token-radius-md;
-$smallroundedcorners: t.$token-radius-sm;
-$imageroundedcorners: t.$token-radius-md;
+// Specific element radius
+$radius-image: t.$token-radius-md;
 
 // Border width
 $border-width-sm: t.$token-border-width-sm;
 $border-width-md: t.$token-border-width-md;
 $border-width-lg: t.$token-border-width-lg;
+
+// Border colors
+$border-color-default: $cu-gray-30;
+$border-color-light: $cu-gray-20;
+$border-color-dark: $cu-gray-40;
 
 // =============================================================================
 // SHADOW MAPPING
@@ -176,8 +178,8 @@ $shadow-sm: t.$token-shadow-sm;
 $shadow-md: t.$token-shadow-md;
 $shadow-lg: t.$token-shadow-lg;
 
-// Legacy shadow variable
-$interfaceboxshadow: t.$token-shadow-md;
+// Interface shadow
+$shadow-interface: t.$token-shadow-md;
 
 // =============================================================================
 // BUTTON COLOR MAPPING

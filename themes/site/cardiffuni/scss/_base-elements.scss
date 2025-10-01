@@ -1,0 +1,313 @@
+@use "_allvariables" as *;
+
+/**
+ * Base Element Styles
+ *
+ * Default styling for HTML elements
+ * Uses Cardiff University design tokens and theme variables
+ */
+
+// =============================================================================
+// TYPOGRAPHY - Headings
+// =============================================================================
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $headingfonts;
+    font-weight: $font-weight-bold;
+}
+
+h1 {
+    font-size: $font-size-3xl;
+    line-height: $line-height-tight;
+}
+
+h2 {
+    font-size: $font-size-2xl;
+    line-height: $line-height-tight;
+}
+
+h3 {
+    font-size: $font-size-xl;
+    line-height: $line-height-tight;
+}
+
+h4 {
+    font-size: $font-size-lg;
+    line-height: $line-height-normal;
+}
+
+h5 {
+    font-size: $font-size-base;
+    line-height: $line-height-normal;
+}
+
+h6 {
+    font-size: $font-size-sm;
+    line-height: $line-height-normal;
+}
+
+// =============================================================================
+// SECTION HEADINGS
+// =============================================================================
+
+.page-header {
+    margin-top: 0;
+}
+
+// Section Title
+h2.sectionTitle {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-light;
+    margin-bottom: $spacing-md;
+    color: $color-brand-primary;
+    margin-top: $spacing-xl;
+
+    // Remove extra margin of p in heading
+    p {
+        margin-bottom: 0 !important;
+    }
+}
+
+// Content Title
+h3.contentTitle {
+    font-size: $font-size-xl;
+}
+
+// =============================================================================
+// SECTION SPACING
+// =============================================================================
+
+section {
+    margin-bottom: $spacing-3xl;
+
+    // Section items spacing
+    > *:where(:not(:last-child)) {
+        margin-bottom: $spacing-lg;
+    }
+
+    // Section headings
+    h3,
+    h4 {
+        color: $cu-gray-70;
+        margin-bottom: $spacing-md;
+    }
+
+    h3 {
+        margin-top: $spacing-2xl;
+    }
+
+    h4 {
+        margin-top: $spacing-xl;
+    }
+
+    p:not(:last-child) {
+        margin-bottom: $spacing-md;
+    }
+}
+
+.footer h3 {
+    margin-bottom: $spacing-md;
+}
+
+// =============================================================================
+// LISTS
+// =============================================================================
+
+section,
+.footer {
+    ul,
+    ol {
+        padding: 0;
+        margin-left: $spacing-xl;
+        display: grid;
+        gap: $spacing-sm;
+    }
+
+    li {
+        line-height: $line-height-normal;
+    }
+
+    ul li,
+    ol li {
+        padding-left: $spacing-sm;
+    }
+
+    li ul {
+        margin-top: $spacing-md;
+    }
+}
+
+// =============================================================================
+// IMAGES
+// =============================================================================
+
+img.pull-right {
+    margin: 0 0 1em 1em;
+}
+
+img.pull-left {
+    margin: 0 1em 1em 0;
+}
+
+// Figure with caption
+figure {
+    max-width: max-content;
+}
+
+figcaption {
+    background: $cu-gray-20;
+    color: $cu-gray-80;
+    font-size: $font-size-sm;
+    padding: $spacing-xs;
+    caption-side: bottom;
+}
+
+// =============================================================================
+// TABLES
+// =============================================================================
+
+table {
+    background: $cu-white;
+    box-shadow: $shadow-sm;
+    font-size: $font-size-sm;
+}
+
+table caption {
+    text-align: left;
+    color: $cu-gray-60;
+    padding-block: $spacing-xs;
+}
+
+table,
+table tr,
+table td {
+    border: none;
+}
+
+thead th {
+    background: $cu-midnight-blue;
+    color: $cu-white;
+    font-weight: $font-weight-bold;
+}
+
+table tr td:not(:first-of-type) {
+    border-left: 1px solid $border-color-default;
+}
+
+thead th:not(:first-of-type) {
+    border-left: 1px solid $cu-white;
+}
+
+table tr:nth-child(even) {
+    background: $cu-gray-10;
+}
+
+// =============================================================================
+// BLOCKQUOTE
+// =============================================================================
+
+blockquote::before,
+blockquote::after {
+    content: none;
+}
+
+blockquote .quote::before {
+    content: open-quote;
+}
+
+blockquote .quote::after {
+    content: close-quote;
+}
+
+blockquote {
+    display: grid;
+    gap: $spacing-md;
+    font-family: $mainfonts;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-normal;
+    font-size: $font-size-base;
+    margin: $spacing-xl 0;
+    background: none;
+    border: none;
+    margin-left: 0;
+    padding: $spacing-md $spacing-xl;
+    border-left: 5px solid $cu-gray-60;
+    max-inline-size: 70ch;
+}
+
+blockquote p {
+    font-weight: $font-weight-regular;
+    line-height: $line-height-normal;
+    font-size: $font-size-base;
+}
+
+cite {
+    font-style: italic;
+}
+
+.source {
+    font-size: $font-size-sm;
+    color: $cu-gray-40;
+    text-align: right;
+}
+
+// =============================================================================
+// MEDIA / IFRAMES
+// =============================================================================
+
+.video-720 {
+    max-height: 405px;
+    max-width: 720px;
+}
+
+.iframe-container {
+    height: 0;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 56.32%;
+    box-shadow: $shadow-md;
+    margin-bottom: $spacing-lg;
+
+    iframe {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border: 0;
+    }
+
+    &--xerte,
+    &--h5p {
+        border: 4px solid $border-color-default;
+    }
+
+    &--xerte {
+        padding-bottom: 75%;
+    }
+
+    &__caption {
+        background: $cu-gray-10;
+        color: $color-text-primary;
+        font-style: italic;
+        font-size: $font-size-sm;
+        padding: $spacing-xs;
+        margin-top: 0;
+    }
+}
+
+// =============================================================================
+// HORIZONTAL RULE
+// =============================================================================
+
+hr {
+    background-color: $border-color-default;
+    border: 0;
+    height: $border-width-md;
+    margin-block: $spacing-3xl;
+}

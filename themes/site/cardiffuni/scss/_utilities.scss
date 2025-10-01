@@ -1,0 +1,131 @@
+@use "_allvariables" as *;
+
+/**
+ * Utility Classes
+ *
+ * Reusable utility classes for common styling patterns
+ * Uses Cardiff University design tokens
+ */
+
+// =============================================================================
+// LIST UTILITIES
+// =============================================================================
+
+// Remove list styling
+.list-none {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+// Icon list
+.list-icon {
+    list-style: none;
+    margin-left: 0;
+
+    li span {
+        margin-right: 10px;
+        color: $color-brand-primary;
+        font-size: 20px;
+    }
+}
+
+// Counter list with styled numbers
+.list-counter {
+    counter-reset: orderedlist;
+    list-style-type: none;
+    margin-left: $spacing-sm;
+
+    li {
+        position: relative;
+        padding-left: $spacing-2xl;
+    }
+
+    li::before {
+        counter-increment: orderedlist;
+        content: counter(orderedlist);
+        width: $spacing-xl;
+        height: $spacing-xl;
+        background: $cu-gray-20;
+        color: $cu-gray-70;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: $radius-pill;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+// =============================================================================
+// IMAGE UTILITIES
+// =============================================================================
+
+// Inline image
+.image-inline {
+    display: inline-block;
+}
+
+// Full width image
+.image-full {
+    width: 100%;
+    height: auto;
+}
+
+// Rounded corners
+.image-round {
+    border-radius: $radius-md;
+}
+
+// Screenshot styling
+.image-screenshots,
+.screenshots {
+    border: 1px solid $border-color-default;
+    margin: 2rem auto;
+    clear: both;
+    border-radius: $radius-md;
+    box-shadow: $shadow-md;
+}
+
+// =============================================================================
+// LINK UTILITIES (Xerte-specific)
+// =============================================================================
+
+// Update link style for Xerte sections
+section a:not(.accordion-toggle, .top-round, .carousel-control, .glossary) {
+    text-decoration: none;
+}
+
+section a:hover:not(.accordion-toggle, .top-round, .carousel-control, .glossary, .btn, .button) {
+    text-decoration: underline;
+    text-underline-position: under;
+    color: $color-link-default;
+}
+
+// =============================================================================
+// SPACING UTILITIES
+// =============================================================================
+
+// Margin utilities
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: $spacing-xs; }
+.mt-2 { margin-top: $spacing-sm; }
+.mt-3 { margin-top: $spacing-md; }
+.mt-4 { margin-top: $spacing-lg; }
+.mt-5 { margin-top: $spacing-xl; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: $spacing-xs; }
+.mb-2 { margin-bottom: $spacing-sm; }
+.mb-3 { margin-bottom: $spacing-md; }
+.mb-4 { margin-bottom: $spacing-lg; }
+.mb-5 { margin-bottom: $spacing-xl; }
+
+// Padding utilities
+.p-0 { padding: 0; }
+.p-1 { padding: $spacing-xs; }
+.p-2 { padding: $spacing-sm; }
+.p-3 { padding: $spacing-md; }
+.p-4 { padding: $spacing-lg; }
+.p-5 { padding: $spacing-xl; }

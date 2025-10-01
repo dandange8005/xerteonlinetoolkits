@@ -22,118 +22,6 @@
  */
 /*start here and set the default values for all the variables*/
 /**
- * Licensed to The Apereo Foundation under one or more contributor license
- * agreements. See the NOTICE file distributed with this work for
- * additional information regarding copyright ownership.
-
- * The Apereo Foundation licenses this file to you under the Apache License,
- * Version 2.0 (the "License"); you may not use this file except in
- * compliance with the License. You may obtain a copy of the License at:
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-/*--- EDITOR STYLES */
-.ck.ck-editor__main > .ck-editor__editable {
-  background: #F2F2F2;
-}
-
-.ck.ck-editor__main > .ck-editor__editable > * {
-  color: #121212 !important;
-}
-
-.ck-content .text-big {
-  font-size: 1.4em;
-}
-
-.ck-content .text-small {
-  font-size: 0.85em;
-}
-
-.ck-content .text-tiny {
-  font-size: 0.7em;
-}
-
-.ck-content .text-huge {
-  font-size: 1.8em;
-}
-
-.ck-content code {
-  background-color: hsla(0, 0%, 78%, 0.3);
-  padding: 0.15em;
-  border-radius: 2px;
-}
-
-.ck-content blockquote {
-  overflow: hidden;
-  padding-right: 1.5em;
-  padding-left: 1.5em;
-  margin-left: 0;
-  margin-right: 0;
-  font-style: italic;
-  border-left: solid 5px hsl(0, 0%, 80%);
-}
-
-.ck-content[dir=rtl] blockquote {
-  border-left: 0;
-  border-right: solid 5px hsl(0, 0%, 80%);
-}
-
-.ck-content .marker-yellow {
-  background-color: var(--ck-highlight-marker-yellow);
-}
-
-.ck-content .marker-green {
-  background-color: var(--ck-highlight-marker-green);
-}
-
-.ck-content .marker-pink {
-  background-color: var(--ck-highlight-marker-pink);
-}
-
-.ck-content .marker-blue {
-  background-color: var(--ck-highlight-marker-blue);
-}
-
-.ck-content .pen-red {
-  color: var(--ck-highlight-pen-red);
-  background-color: transparent;
-}
-
-.ck-content .pen-green {
-  color: var(--ck-highlight-pen-green);
-  background-color: transparent;
-}
-
-.ck-content pre {
-  padding: 1em;
-  color: #353535;
-  background: hsla(0, 0%, 78%, 0.3);
-  border: 1px solid hsl(0, 0%, 77%);
-  border-radius: 2px;
-  text-align: left;
-  direction: ltr;
-  -moz-tab-size: 4;
-    -o-tab-size: 4;
-       tab-size: 4;
-  white-space: pre-wrap;
-  font-style: normal;
-  min-width: 200px;
-}
-
-.ck-content pre code {
-  background: unset;
-  padding: 0;
-  border-radius: 0;
-}
-
-/**
  * Theme Enhancements
  *
  * Modern CSS improvements that complement Bootstrap's base styles
@@ -171,6 +59,426 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 /**
+ * Base Element Styles
+ *
+ * Default styling for HTML elements
+ * Uses Cardiff University design tokens and theme variables
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 1.9rem + 1.75vw, 3rem);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+  line-height: 1.2;
+}
+
+h4 {
+  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  line-height: 1.5;
+}
+
+h5 {
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  line-height: 1.5;
+}
+
+h6 {
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  line-height: 1.5;
+}
+
+.page-header {
+  margin-top: 0;
+}
+
+h2.sectionTitle {
+  font-size: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
+  font-weight: 300;
+  margin-bottom: 16px;
+  color: #E4251B;
+  margin-top: 32px;
+}
+h2.sectionTitle p {
+  margin-bottom: 0 !important;
+}
+
+h3.contentTitle {
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+}
+
+section {
+  margin-bottom: 64px;
+}
+section > *:where(:not(:last-child)) {
+  margin-bottom: 24px;
+}
+section h3,
+section h4 {
+  color: #666666;
+  margin-bottom: 16px;
+}
+section h3 {
+  margin-top: 48px;
+}
+section h4 {
+  margin-top: 32px;
+}
+section p:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.footer h3 {
+  margin-bottom: 16px;
+}
+
+section ul,
+section ol,
+.footer ul,
+.footer ol {
+  padding: 0;
+  margin-left: 32px;
+  display: grid;
+  gap: 8px;
+}
+section li,
+.footer li {
+  line-height: 1.5;
+}
+section ul li,
+section ol li,
+.footer ul li,
+.footer ol li {
+  padding-left: 8px;
+}
+section li ul,
+.footer li ul {
+  margin-top: 16px;
+}
+
+img.pull-right {
+  margin: 0 0 1em 1em;
+}
+
+img.pull-left {
+  margin: 0 1em 1em 0;
+}
+
+figure {
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+
+figcaption {
+  background: #E5E5E5;
+  color: #4C4C4C;
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  padding: 4px;
+  caption-side: bottom;
+}
+
+table {
+  background: #FFFFFF;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+}
+
+table caption {
+  text-align: left;
+  color: #808080;
+  padding-block: 4px;
+}
+
+table,
+table tr,
+table td {
+  border: none;
+}
+
+thead th {
+  background: #273573;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+table tr td:not(:first-of-type) {
+  border-left: 1px solid #CCCCCC;
+}
+
+thead th:not(:first-of-type) {
+  border-left: 1px solid #FFFFFF;
+}
+
+table tr:nth-child(even) {
+  background: #F2F2F2;
+}
+
+blockquote::before,
+blockquote::after {
+  content: none;
+}
+
+blockquote .quote::before {
+  content: open-quote;
+}
+
+blockquote .quote::after {
+  content: close-quote;
+}
+
+blockquote {
+  display: grid;
+  gap: 16px;
+  font-family: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  margin: 32px 0;
+  background: none;
+  border: none;
+  margin-left: 0;
+  padding: 16px 32px;
+  border-left: 5px solid #808080;
+  max-inline-size: 70ch;
+}
+
+blockquote p {
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+}
+
+cite {
+  font-style: italic;
+}
+
+.source {
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  color: #B3B3B3;
+  text-align: right;
+}
+
+.video-720 {
+  max-height: 405px;
+  max-width: 720px;
+}
+
+.iframe-container {
+  height: 0;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 56.32%;
+  -webkit-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px;
+}
+.iframe-container iframe {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 0;
+}
+.iframe-container--xerte, .iframe-container--h5p {
+  border: 4px solid #CCCCCC;
+}
+.iframe-container--xerte {
+  padding-bottom: 75%;
+}
+.iframe-container__caption {
+  background: #F2F2F2;
+  color: #121212;
+  font-style: italic;
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  padding: 4px;
+  margin-top: 0;
+}
+
+hr {
+  background-color: #CCCCCC;
+  border: 0;
+  height: 2px;
+  margin-block: 64px;
+}
+
+/**
+ * Utility Classes
+ *
+ * Reusable utility classes for common styling patterns
+ * Uses Cardiff University design tokens
+ */
+.list-none {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-icon {
+  list-style: none;
+  margin-left: 0;
+}
+.list-icon li span {
+  margin-right: 10px;
+  color: #E4251B;
+  font-size: 20px;
+}
+
+.list-counter {
+  counter-reset: orderedlist;
+  list-style-type: none;
+  margin-left: 8px;
+}
+.list-counter li {
+  position: relative;
+  padding-left: 48px;
+}
+.list-counter li::before {
+  counter-increment: orderedlist;
+  content: counter(orderedlist);
+  width: 32px;
+  height: 32px;
+  background: #E5E5E5;
+  color: #666666;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 999px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.image-inline {
+  display: inline-block;
+}
+
+.image-full {
+  width: 100%;
+  height: auto;
+}
+
+.image-round {
+  border-radius: 4px;
+}
+
+.image-screenshots,
+.screenshots {
+  border: 1px solid #CCCCCC;
+  margin: 2rem auto;
+  clear: both;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+section a:not(.accordion-toggle, .top-round, .carousel-control, .glossary) {
+  text-decoration: none;
+}
+
+section a:hover:not(.accordion-toggle, .top-round, .carousel-control, .glossary, .btn, .button) {
+  text-decoration: underline;
+  text-underline-position: under;
+  color: #045bc6;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mt-1 {
+  margin-top: 4px;
+}
+
+.mt-2 {
+  margin-top: 8px;
+}
+
+.mt-3 {
+  margin-top: 16px;
+}
+
+.mt-4 {
+  margin-top: 24px;
+}
+
+.mt-5 {
+  margin-top: 32px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-1 {
+  margin-bottom: 4px;
+}
+
+.mb-2 {
+  margin-bottom: 8px;
+}
+
+.mb-3 {
+  margin-bottom: 16px;
+}
+
+.mb-4 {
+  margin-bottom: 24px;
+}
+
+.mb-5 {
+  margin-bottom: 32px;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.p-1 {
+  padding: 4px;
+}
+
+.p-2 {
+  padding: 8px;
+}
+
+.p-3 {
+  padding: 16px;
+}
+
+.p-4 {
+  padding: 24px;
+}
+
+.p-5 {
+  padding: 32px;
+}
+
+/**
  * Licensed to The Apereo Foundation under one or more contributor license
  * agreements. See the NOTICE file distributed with this work for
  * additional information regarding copyright ownership.
@@ -190,9 +498,9 @@ h1, h2, h3, h4, h5, h6 {
  */
 body {
   font-family: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
   color: #121212;
-  background-color: #F2F2F2;
+  background-color: #f9fafb;
   line-height: 1.5;
 }
 
@@ -236,7 +544,7 @@ a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
   background-image: linear-gradient(to bottom, #121212, #121212);
   background-repeat: repeat-x;
   border-color: #121212;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="$contrastcolor", endColorstr="$contrastcolor", GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="$color-brand-secondary", endColorstr="$color-brand-secondary", GradientType=0);
 }
 
 .navbar-inverse .brand, .navbar-inverse .nav > li > a {
@@ -297,7 +605,7 @@ a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
 }
 
 .bs-docs-sidenav > li > a:hover {
-  background-color: #F2F2F2;
+  background-color: #f9fafb;
 }
 
 .bs-docs-sidenav a:hover .icon-chevron-right {

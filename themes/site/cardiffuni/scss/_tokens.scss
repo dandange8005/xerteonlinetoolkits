@@ -19,6 +19,7 @@
 $token-color-primary-red: #E4251B;      // PMS 485 C, RGB: 228/37/27, CMYK: 10/98/100/0
 $token-color-primary-white: #FFFFFF;    // Bright White
 $token-color-primary-black: #121212;    // RGB: 18/18/18
+$token-color-light: #f9fafb;          // Off-white for backgrounds
 
 // Base Colors - Grayscale (10% increments)
 $token-color-gray-10: #F2F2F2;
@@ -47,7 +48,7 @@ $token-color-accent-dark-violet: #D401C5;
 
 // Theme Colors - Background
 $token-bg-primary: $token-color-primary-white;
-$token-bg-secondary: $token-color-gray-10;
+$token-bg-secondary: $token-color-light;
 $token-bg-tertiary: $token-color-primary-red;
 $token-bg-accent: $token-color-accent-royal-blue;
 $token-bg-dark: $token-color-primary-black;
@@ -92,6 +93,7 @@ $token-font-primary-body: "Marr Sans Regular", "Franklin Gothic Book", "Franklin
 $token-font-secondary: "Darby Serif", Georgia, "Times New Roman", Times, serif;
 
 // Font Weights
+$token-font-weight-light: 300;
 $token-font-weight-regular: 400;
 $token-font-weight-medium: 500;
 $token-font-weight-bold: 700;

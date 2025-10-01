@@ -1,7 +1,7 @@
 @use "scss/_allvariables" as *; /*start here and set the default values for all the variables*/
-@use "scss/editorstyles";
-// @use "scss/_webkitCustoms";
 @use "scss/enhancements";
+@use "scss/base-elements";
+@use "scss/utilities";
 
 
 /* Import Google Fonts */
@@ -30,79 +30,79 @@
 body {
   font-family: $mainfonts;
   font-size: $font-size-base;
-  color: $darkestcolor;
-  background-color: $lightestcolor;
+  color: $color-text-primary;
+  background-color: $color-bg-body;
   line-height: $line-height-normal;
 }
 /*--Heading and other text changes---------------------------------------*/
 h1, h2.sectionTitle {
-  color: $brightcolor;
+  color: $color-brand-primary;
 }
 h2, h3, h4, h5, h6 {
-  color: $darkestcolor;
+  color: $color-text-primary;
 }
 // Content links only (exclude navigation elements)
 a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a) {
-  color: $linkcolor;
+  color: $color-link-default;
 }
 
 a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):visited {
-  color: $linkvisitedcolor;
+  color: $color-link-visited;
 }
 
 a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
-  color: $linkhovercolor;
+  color: $color-link-hover;
   text-decoration: none !important;
 }
 
 /* --JUMBOTRON-------------------------------------------------------------------- */
 .jumbotron {
-  color: $whiteorlightest;
-  background: $brightcolor; /* Old browsers */
-  background-color: $brightcolor;
-  background-image: linear-gradient(135deg, $brightcolor 0%, $mainhovercolor 100%);
+  color: $cu-white;
+  background: $color-brand-primary; /* Old browsers */
+  background-color: $color-brand-primary;
+  background-image: linear-gradient(135deg, $color-brand-primary 0%, $color-brand-primary-hover 100%);
 }
 
 .jumbotron h1 {
-  color: $whiteorlightest;
+  color: $cu-white;
 }
 //* --NAVBAR-------------------------------------------------------------- */
 .navbar-inverse .navbar-inner {
-  background-color: $contrastcolor;
-  background-image: -moz-linear-gradient(top, $contrastcolor, $contrastcolor);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($contrastcolor), to($contrastcolor));
-  background-image: -webkit-linear-gradient(top, $contrastcolor, $contrastcolor);
-  background-image: -o-linear-gradient(top, $contrastcolor, $contrastcolor);
-  background-image: linear-gradient(to bottom, $contrastcolor, $contrastcolor);
+  background-color: $color-brand-secondary;
+  background-image: -moz-linear-gradient(top, $color-brand-secondary, $color-brand-secondary);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($color-brand-secondary), to($color-brand-secondary));
+  background-image: -webkit-linear-gradient(top, $color-brand-secondary, $color-brand-secondary);
+  background-image: -o-linear-gradient(top, $color-brand-secondary, $color-brand-secondary);
+  background-image: linear-gradient(to bottom, $color-brand-secondary, $color-brand-secondary);
   background-repeat: repeat-x;
-  border-color: $contrastcolor;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$contrastcolor', endColorstr='$contrastcolor', GradientType=0);
+  border-color: $color-brand-secondary;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-brand-secondary', endColorstr='$color-brand-secondary', GradientType=0);
 }
 
 .navbar-inverse .brand, .navbar-inverse .nav > li > a {
-  color: $whiteorlightest;
+  color: $cu-white;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 
 }
 .navbar-inverse .nav-collapse .nav > li > a, .navbar-inverse .nav-collapse .dropdown-menu a {
-  color: $whiteorlightest;
+  color: $cu-white;
 }
 
 .navbar-inverse .brand, .navbar-inverse .nav > li > a:hover{
-  color: $whiteorlightest;
-  background-color: $brightcolor;
+  color: $cu-white;
+  background-color: $color-brand-primary;
 }
 .navbar-inverse .nav-collapse .nav > li > a:hover, .navbar-inverse .nav-collapse .dropdown-menu a:hover {
-  color: $whiteorlightest;
-  background-color: $brightcolor;
+  color: $cu-white;
+  background-color: $color-brand-primary;
 }
 
 .nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
-  background-color: $brightcolor;
+  background-color: $color-brand-primary;
 }
 .navbar .nav > li.activePage > a,
 .navbar .nav > li.activePage > a:hover, .navbar .nav > li.activePage > a:hover {
-  background-color: $brightcolor;
+  background-color: $color-brand-primary;
   text-decoration: none;
 }
 
@@ -115,8 +115,8 @@ a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
   text-shadow: none;
 }
 .bs-docs-sidenav > li > a {
-  // border: 1px solid $brightcolor;
-  color: $darkestcolor
+  // border: 1px solid $color-brand-primary;
+  color: $color-text-primary
 }
 .bs-docs-sidenav > li:first-child > a {
   border-radius: $radius-md $radius-md 0 0;
@@ -131,8 +131,8 @@ a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
   box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
 }
 .bs-docs-sidenav > li > a:hover {
-  background-color: $lightestcolor;
-  // color: $whiteorlightest;
+  background-color: $color-bg-body;
+  // color: $cu-white;
 }
 .bs-docs-sidenav a:hover .icon-chevron-right {
   opacity: .5;
@@ -144,8 +144,8 @@ a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
 
 .accordion-heading a {
   border-bottom: 0;
-  background: $brightcolor;
-  color: $fontcolorfobrightcolor;
+  background: $color-brand-primary;
+  color: $color-text-on-brand;
 }
 .accordion-group {
   margin-bottom: 2px;
@@ -153,88 +153,88 @@ a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
 }
 
 .table-striped tbody > tr:nth-child(odd) > td, .table-striped tbody > tr:nth-child(odd) > th {
-  background-color: $accent1;
-  color: $darkestcolor;
+  background-color: $color-accent-green;
+  color: $color-text-primary;
 }
 
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
-  color: $fontcolorforcontrastcolor;
+  color: $color-text-on-dark;
   cursor: default;
-  background-color: $brightcolor;
-  border: 1px solid $brightcolor;
+  background-color: $color-brand-primary;
+  border: 1px solid $color-brand-primary;
   border-bottom-color: transparent;
 }
 
 /* --PANELS-------------------------------------------------------------- */
 .panel {
-  background-color: $brightcolor;
-  border: 1px solid $brightcolor;
+  background-color: $color-brand-primary;
+  border: 1px solid $color-brand-primary;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  color: $whiteorlightest;
+  color: $cu-white;
 }
 /* Echo out a label for the example */
 .panel:after {
   font-size: 12px;
   font-weight: bold;
-  background-color: $brightcolor;
-  border: 1px solid $brightcolor;
-  color: $whiteorlightest;
+  background-color: $color-brand-primary;
+  border: 1px solid $color-brand-primary;
+  color: $cu-white;
   -webkit-border-radius: 4px 0 4px 0;
   -moz-border-radius: 4px 0 4px 0;
   border-radius: 4px 0 4px 0;
 }
 
 .well {
-  background-color: $accent1;
-  border: 1px solid $accent1;
-  color: $darkestcolor;
+  background-color: $color-accent-green;
+  border: 1px solid $color-accent-green;
+  color: $color-text-primary;
 }
 
 /* --FOOTER-------------------------------------------------------------- */
 .footer {
-  border-top: 1px solid $whiteorlightest;
-  background-color: $contrastcolor;
-  background-image: linear-gradient(3deg, $contrastcolor 0%, $contrastcolor 100%);
+  border-top: 1px solid $cu-white;
+  background-color: $color-brand-secondary;
+  background-image: linear-gradient(3deg, $color-brand-secondary 0%, $color-brand-secondary 100%);
 }
 .footer p {
-  color: $whiteorlightest;
+  color: $cu-white;
 }
 
 .footer a {
-  color: $whiteorlightest;
+  color: $cu-white;
 }
 
 .alertMsg {
-  color: $alertcolor;
+  color: $color-text-alert;
 }
 
 /* --GLOSSARY-------------------------------------------------------------- */
 
 a.glossary:link, a.glossary:visited, a.glossary:hover, a.glossary:active {
-  color: $darkestcolor;
+  color: $color-text-primary;
 }
 
 .glossaryTip {
-  background-color: $brightcolor;
-  color: $whiteorlightest;
+  background-color: $color-brand-primary;
+  color: $cu-white;
 }
 
 .nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus {
-  color: $whiteorlightest;
-  background-color: $brightcolor;
+  color: $cu-white;
+  background-color: $color-brand-primary;
 }
 
 //*round back to top button*/
 .top-round {
-  color: $whiteorlightest;
-  background: $brightcolor;
+  color: $cu-white;
+  background: $color-brand-primary;
 }
 .top-round:hover,
 .top-round:focus {
-  background: $mainhovercolor;
-  color: $whiteorlightest;
+  background: $color-brand-primary-hover;
+  color: $cu-white;
 }
 
 /*alternating section changes for this theme*/
