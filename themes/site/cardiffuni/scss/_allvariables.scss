@@ -90,16 +90,16 @@ $headingfonts: t.$token-font-primary-heading;
 $secondaryfonts: t.$token-font-secondary;
 
 // Font sizes - Fluid (responsive, scales with viewport)
-// Based on Cardiff University 18px digital body text standard
-$font-size-xs: clamp(0.75rem, 0.70rem + 0.25vw, 0.875rem);    // 12px - 14px
-$font-size-sm: clamp(0.875rem, 0.80rem + 0.375vw, 1rem);      // 14px - 16px
-$font-size-base: clamp(1rem, 0.90rem + 0.5vw, 1.125rem);      // 16px - 18px (Cardiff standard)
-$font-size-md: clamp(1.125rem, 1.00rem + 0.625vw, 1.313rem);  // 18px - 21px
-$font-size-lg: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);      // 20px - 24px
-$font-size-xl: clamp(1.5rem, 1.30rem + 1vw, 1.875rem);        // 24px - 30px
-$font-size-2xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);  // 30px - 36px
-$font-size-3xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);       // 36px - 48px
-$font-size-4xl: clamp(3rem, 2.50rem + 2.5vw, 4rem);           // 48px - 64px
+// Base font scales from 14px (small screens) to 16px (large screens)
+$font-size-xs: clamp(0.75rem, 0.70rem + 0.25vw, 0.8125rem);   // 12px - 13px
+$font-size-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem); // 13px - 14px
+$font-size-base: clamp(0.875rem, 0.80rem + 0.375vw, 1rem);    // 14px - 16px
+$font-size-md: clamp(1rem, 0.90rem + 0.5vw, 1.125rem);        // 16px - 18px
+$font-size-lg: clamp(1.125rem, 1.00rem + 0.625vw, 1.25rem);   // 18px - 20px
+$font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);      // 20px - 24px
+$font-size-2xl: clamp(1.5rem, 1.30rem + 1vw, 1.875rem);       // 24px - 30px
+$font-size-3xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);  // 30px - 36px
+$font-size-4xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);       // 36px - 48px
 
 // Font sizes - specific use cases
 $font-size-heading-sm: $font-size-lg;

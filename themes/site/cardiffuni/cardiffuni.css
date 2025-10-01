@@ -75,32 +75,32 @@ h6 {
 }
 
 h1 {
-  font-size: clamp(2.25rem, 1.9rem + 1.75vw, 3rem);
-  line-height: 1.2;
-}
-
-h2 {
   font-size: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
   line-height: 1.2;
 }
 
-h3 {
+h2 {
   font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
   line-height: 1.2;
 }
 
-h4 {
+h3 {
   font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  line-height: 1.2;
+}
+
+h4 {
+  font-size: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
   line-height: 1.5;
 }
 
 h5 {
-  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
   line-height: 1.5;
 }
 
 h6 {
-  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
   line-height: 1.5;
 }
 
@@ -109,7 +109,7 @@ h6 {
 }
 
 h2.sectionTitle {
-  font-size: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
   font-weight: 300;
   margin-bottom: 16px;
   color: #E4251B;
@@ -120,7 +120,7 @@ h2.sectionTitle p {
 }
 
 h3.contentTitle {
-  font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
 }
 
 section {
@@ -189,7 +189,7 @@ figure {
 figcaption {
   background: #E5E5E5;
   color: #4C4C4C;
-  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
   padding: 4px;
   caption-side: bottom;
 }
@@ -198,7 +198,7 @@ table {
   background: #FFFFFF;
   -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
           box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
 }
 
 table caption {
@@ -250,7 +250,7 @@ blockquote {
   font-family: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-weight: 400;
   line-height: 1.5;
-  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
   margin: 32px 0;
   background: none;
   border: none;
@@ -263,7 +263,7 @@ blockquote {
 blockquote p {
   font-weight: 400;
   line-height: 1.5;
-  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
 }
 
 cite {
@@ -271,7 +271,7 @@ cite {
 }
 
 .source {
-  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
   color: #B3B3B3;
   text-align: right;
 }
@@ -308,7 +308,7 @@ cite {
   background: #F2F2F2;
   color: #121212;
   font-style: italic;
-  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
   padding: 4px;
   margin-top: 0;
 }
@@ -394,16 +394,6 @@ hr {
   border-radius: 4px;
   -webkit-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-section a:not(.accordion-toggle, .top-round, .carousel-control, .glossary) {
-  text-decoration: none;
-}
-
-section a:hover:not(.accordion-toggle, .top-round, .carousel-control, .glossary, .btn, .button) {
-  text-decoration: underline;
-  text-underline-position: under;
-  color: #045bc6;
 }
 
 .mt-0 {
@@ -498,7 +488,7 @@ section a:hover:not(.accordion-toggle, .top-round, .carousel-control, .glossary,
  */
 body {
   font-family: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
   color: #121212;
   background-color: #f9fafb;
   line-height: 1.5;

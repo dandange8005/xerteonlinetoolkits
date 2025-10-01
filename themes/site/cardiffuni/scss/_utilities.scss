@@ -92,16 +92,16 @@
 // LINK UTILITIES (Xerte-specific)
 // =============================================================================
 
-// Update link style for Xerte sections
-section a:not(.accordion-toggle, .top-round, .carousel-control, .glossary) {
-    text-decoration: none;
-}
+// // Update link style for Xerte sections
+// section a:not(.accordion-toggle, .top-round, .carousel-control, .glossary) {
+//     text-decoration: none;
+// }
 
-section a:hover:not(.accordion-toggle, .top-round, .carousel-control, .glossary, .btn, .button) {
-    text-decoration: underline;
-    text-underline-position: under;
-    color: $color-link-default;
-}
+// section a:hover:not(.accordion-toggle, .top-round, .carousel-control, .glossary, .btn, .button) {
+//     text-decoration: underline;
+//     text-underline-position: under;
+//     color: $color-link-default;
+// }
 
 // =============================================================================
 // SPACING UTILITIES
