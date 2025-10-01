@@ -1,6 +1,26 @@
-/*start here and set the default values for all the variables*/
 /* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+/**
+ * Cardiff University Design Tokens
+ * Generated from Cardiff University Style Guide
+ *
+ * These tokens represent the official Cardiff University brand guidelines
+ * and should be used as the single source of truth for all design values.
+ *
+ * DO NOT EDIT THESE VALUES - they are the official Cardiff brand.
+ * To customize, override in _allvariables.scss
+ */
+/**
+ * Cardiff University Theme Variables
+ *
+ * This file maps design tokens to Xerte theme variables.
+ *
+ * TO CREATE A NEW THEME VARIANT:
+ * 1. Copy this file to a new theme folder
+ * 2. Change the token mappings below (e.g., use different accent colors)
+ * 3. The component styles will automatically use your new colors
+ */
+/*start here and set the default values for all the variables*/
 /**
  * Licensed to The Apereo Foundation under one or more contributor license
  * agreements. See the NOTICE file distributed with this work for
@@ -25,7 +45,7 @@
 }
 
 .ck.ck-editor__main > .ck-editor__editable > * {
-  color: #333333 !important;
+  color: #121212 !important;
 }
 
 .ck-content .text-big {
@@ -152,8 +172,8 @@
  */
 body {
   font-family: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  color: #333333;
+  font-size: 16px;
+  color: #121212;
   background-color: #F2F2F2;
   line-height: 1.5;
 }
@@ -164,7 +184,7 @@ h1, h2.sectionTitle {
 }
 
 h2, h3, h4, h5, h6 {
-  color: #333333;
+  color: #121212;
 }
 
 a {
@@ -172,7 +192,7 @@ a {
 }
 
 a:hover {
-  color: rgb(182.4, 29.6, 21.6);
+  color: #C00E0E;
 }
 
 /* --JUMBOTRON-------------------------------------------------------------------- */
@@ -180,7 +200,7 @@ a:hover {
   color: #FFFFFF;
   background: #E4251B; /* Old browsers */
   background-color: #E4251B;
-  background-image: linear-gradient(135deg, #E4251B 0%, rgb(182.4, 29.6, 21.6) 100%);
+  background-image: linear-gradient(135deg, #E4251B 0%, #C00E0E 100%);
 }
 
 .jumbotron h1 {
@@ -289,7 +309,7 @@ a:hover {
 
 .table-striped tbody > tr:nth-child(odd) > td, .table-striped tbody > tr:nth-child(odd) > th {
   background-color: #07873E;
-  color: #333333;
+  color: #121212;
 }
 
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
@@ -321,7 +341,7 @@ a:hover {
 .well {
   background-color: #07873E;
   border: 1px solid #07873E;
-  color: #333333;
+  color: #121212;
 }
 
 /* --FOOTER-------------------------------------------------------------- */
@@ -345,7 +365,7 @@ a:hover {
 
 /* --GLOSSARY-------------------------------------------------------------- */
 a.glossary:link, a.glossary:visited, a.glossary:hover, a.glossary:active {
-  color: #333333;
+  color: #121212;
 }
 
 .glossaryTip {
@@ -365,7 +385,7 @@ a.glossary:link, a.glossary:visited, a.glossary:hover, a.glossary:active {
 
 .top-round:hover,
 .top-round:focus {
-  background: rgb(182.4, 29.6, 21.6);
+  background: #C00E0E;
   color: #FFFFFF;
 }
 
