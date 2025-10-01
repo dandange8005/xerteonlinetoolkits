@@ -134,24 +134,42 @@
 }
 
 /**
- * Licensed to The Apereo Foundation under one or more contributor license
- * agreements. See the NOTICE file distributed with this work for
- * additional information regarding copyright ownership.
-
- * The Apereo Foundation licenses this file to you under the Apache License,
- * Version 2.0 (the "License"); you may not use this file except in
- * compliance with the License. You may obtain a copy of the License at:
+ * Theme Enhancements
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Modern CSS improvements that complement Bootstrap's base styles
+ * without conflicting with existing Xerte/Bootstrap resets
  */
-/* No custom scrollbar styles - using browser defaults */
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    -webkit-transition-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 /**
  * Licensed to The Apereo Foundation under one or more contributor license
  * agreements. See the NOTICE file distributed with this work for
@@ -187,12 +205,17 @@ h2, h3, h4, h5, h6 {
   color: #121212;
 }
 
-a {
+a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a) {
   color: #045bc6;
 }
 
-a:hover {
+a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):visited {
+  color: #551A8B;
+}
+
+a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
   color: #033a8a;
+  text-decoration: none !important;
 }
 
 /* --JUMBOTRON-------------------------------------------------------------------- */
@@ -247,8 +270,8 @@ a:hover {
 
 /* --TABLE OF CONTENTS-------------------------------------------------------------- */
 .bs-docs-sidenav {
-  background-color: #F2F2F2;
-  border-radius: 6px;
+  background-color: #FFFFFF;
+  border-radius: 4px;
 }
 
 .nav-list > li > a, .nav-list .nav-header {
@@ -256,15 +279,15 @@ a:hover {
 }
 
 .bs-docs-sidenav > li > a {
-  border: 1px solid #E4251B;
+  color: #121212;
 }
 
 .bs-docs-sidenav > li:first-child > a {
-  border-radius: 6px 6px 0 0;
+  border-radius: 4px 4px 0 0;
 }
 
 .bs-docs-sidenav > li:last-child > a {
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 0 4px 4px;
 }
 
 .bs-docs-sidenav > .active > a {
@@ -274,17 +297,7 @@ a:hover {
 }
 
 .bs-docs-sidenav > li > a:hover {
-  background-color: #E4251B;
-  color: #FFFFFF;
-}
-
-.bs-docs-sidenav a:hover .icon-chevron-right {
-  opacity: 0.5;
-}
-
-.bs-docs-sidenav .active .icon-chevron-right,
-.bs-docs-sidenav .active a:hover .icon-chevron-right {
-  opacity: 1;
+  background-color: #F2F2F2;
 }
 
 .bs-docs-sidenav a:hover .icon-chevron-right {

@@ -1,0 +1,54 @@
+/**
+ * Theme Enhancements
+ *
+ * Modern CSS improvements that complement Bootstrap's base styles
+ * without conflicting with existing Xerte/Bootstrap resets
+ */
+
+// =============================================================================
+// FONT SMOOTHING - Improves text rendering on MacOS/iOS
+// =============================================================================
+
+body {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+// =============================================================================
+// TEXT WRAPPING - Modern CSS for better typography
+// =============================================================================
+
+// Better line breaks for paragraphs (prevents orphans/widows)
+p {
+    text-wrap: pretty;
+}
+
+// Balance heading text across lines
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+
+// =============================================================================
+// SMOOTH SCROLLING (if user hasn't set reduced motion preference)
+// =============================================================================
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+// =============================================================================
+// REDUCED MOTION SUPPORT (respect user accessibility preferences)
+// =============================================================================
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

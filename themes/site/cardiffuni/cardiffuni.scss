@@ -1,6 +1,7 @@
 @use "scss/_allvariables" as *; /*start here and set the default values for all the variables*/
 @use "scss/editorstyles";
-@use "scss/_webkitCustoms";
+// @use "scss/_webkitCustoms";
+@use "scss/enhancements";
 
 
 /* Import Google Fonts */
@@ -40,14 +41,18 @@ h1, h2.sectionTitle {
 h2, h3, h4, h5, h6 {
   color: $darkestcolor;
 }
-a {
+// Content links only (exclude navigation elements)
+a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a) {
   color: $linkcolor;
 }
-a:visited {
+
+a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):visited {
   color: $linkvisitedcolor;
 }
-a:hover {
+
+a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
   color: $linkhovercolor;
+  text-decoration: none !important;
 }
 
 /* --JUMBOTRON-------------------------------------------------------------------- */
@@ -103,27 +108,21 @@ a:hover {
 
 /* --TABLE OF CONTENTS-------------------------------------------------------------- */
 .bs-docs-sidenav {
-  background-color: $lightestcolor;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-
+  background-color: $cu-white;
+  border-radius: $radius-md;
 }
 .nav-list > li > a, .nav-list .nav-header {
   text-shadow: none;
 }
 .bs-docs-sidenav > li > a {
-  border: 1px solid $brightcolor;
+  // border: 1px solid $brightcolor;
+  color: $darkestcolor
 }
 .bs-docs-sidenav > li:first-child > a {
-  -webkit-border-radius: 6px 6px 0 0;
-  -moz-border-radius: 6px 6px 0 0;
-  border-radius: 6px 6px 0 0;
+  border-radius: $radius-md $radius-md 0 0;
 }
 .bs-docs-sidenav > li:last-child > a {
-  -webkit-border-radius: 0 0 6px 6px;
-  -moz-border-radius: 0 0 6px 6px;
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 0 $radius-md $radius-md;
 }
 .bs-docs-sidenav > .active > a {
   text-shadow: 0 1px 0 rgba(0,0,0,.15);
@@ -132,15 +131,8 @@ a:hover {
   box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
 }
 .bs-docs-sidenav > li > a:hover {
-  background-color: $brightcolor;
-  color: $whiteorlightest;
-}
-.bs-docs-sidenav a:hover .icon-chevron-right {
-  opacity: .5;
-}
-.bs-docs-sidenav .active .icon-chevron-right,
-.bs-docs-sidenav .active a:hover .icon-chevron-right {
-  opacity: 1;
+  background-color: $lightestcolor;
+  // color: $whiteorlightest;
 }
 .bs-docs-sidenav a:hover .icon-chevron-right {
   opacity: .5;
