@@ -75,7 +75,7 @@
 
 // Rounded corners
 .image-round {
-    border-radius: $radius-md;
+    border-radius: $radius-image;
 }
 
 // Screenshot styling
@@ -84,7 +84,7 @@
     border: 1px solid $border-color-default;
     margin: 2rem auto;
     clear: both;
-    border-radius: $radius-md;
+    border-radius: $radius-image;
     box-shadow: $shadow-md;
 }
 

@@ -469,6 +469,260 @@ hr {
 }
 
 /**
+ * Layout Styles
+ *
+ * Styles for structural layout components:
+ * - Header & Jumbotron
+ * - Main Navigation
+ * - Side Navigation
+ * - Footer
+ * Uses Cardiff University design tokens
+ */
+.jumbotron {
+  background: #333333;
+  background-image: linear-gradient(135deg, #4C4C4C 0%, #333333 100%);
+  padding: 24px 48px;
+  background-size: cover;
+  color: #FFFFFF;
+  position: relative;
+  isolation: isolate;
+}
+.jumbotron::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+#overview.logoL .logoL {
+  margin-top: 0;
+}
+
+.logo.logoL.themeLogo {
+  max-width: 90px;
+  width: 100%;
+  height: auto;
+}
+
+#overview.logoL .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 16px;
+}
+
+.titles {
+  padding: 0;
+}
+
+#pageTitle {
+  font-family: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #FFFFFF;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  font-size: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
+  font-weight: 700;
+  margin-top: 0;
+}
+
+#pageSubTitle {
+  font-weight: 400;
+  color: #FFFFFF;
+  padding-top: 4px;
+  font-size: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+
+.navbar {
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+}
+
+.navbar-inverse .navbar-inner {
+  font-size: 1rem;
+  font-weight: 500;
+  background: #E5E5E5;
+  background-color: #E5E5E5;
+  background-image: none;
+  background-repeat: repeat-x;
+  border-color: #E5E5E5;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 0;
+}
+
+.navbar-inverse .nav-collapse .nav > li > a,
+.navbar-inverse .nav-collapse .dropdown-menu a,
+.navbar-inverse .brand,
+.navbar-inverse .nav > li > a {
+  color: #4C4C4C;
+  text-shadow: none;
+  border-radius: 0;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+.navbar-inverse .nav-collapse .nav > li > a:hover,
+.navbar-inverse .nav-collapse .nav > li > a:focus,
+.navbar-inverse .nav-collapse .dropdown-menu a:hover,
+.navbar-inverse .nav-collapse .dropdown-menu a:focus,
+.navbar-inverse .brand:hover,
+.navbar-inverse .nav > li > a:hover {
+  background-color: #FFFFFF;
+  color: #E4251B;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.navbar .nav > li.activePage > a,
+.navbar .nav > li.activePage > a:hover {
+  background-color: #FFFFFF;
+  text-decoration: none;
+  color: #E4251B;
+  -webkit-box-shadow: inset 0 -2px 0 0 #E4251B;
+          box-shadow: inset 0 -2px 0 0 #E4251B;
+}
+
+.nav-list > .active > a,
+.nav-list > .active > a:hover,
+.nav-list > .active > a:focus {
+  background: #E4251B;
+  background-color: #E4251B;
+}
+
+.nav-list > li > a {
+  color: #121212;
+  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
+  text-shadow: none;
+}
+
+.nav-list .nav-header {
+  text-shadow: none;
+}
+
+.bs-docs-sidenav {
+  background-color: #FFFFFF;
+  border-radius: 4px;
+}
+.bs-docs-sidenav > li > a {
+  color: #121212;
+}
+.bs-docs-sidenav > li:first-child > a {
+  border-radius: 4px 4px 0 0;
+}
+.bs-docs-sidenav > li:last-child > a {
+  border-radius: 0 0 4px 4px;
+}
+.bs-docs-sidenav > .active > a {
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+.bs-docs-sidenav > li > a:hover {
+  background-color: #f9fafb;
+}
+.bs-docs-sidenav a:hover .icon-chevron-right {
+  opacity: 0.5;
+}
+.bs-docs-sidenav .active .icon-chevron-right,
+.bs-docs-sidenav .active a:hover .icon-chevron-right {
+  opacity: 1;
+}
+
+.footer {
+  padding-block: 32px;
+  position: relative;
+  background-color: transparent !important;
+  border: 0;
+  border-top: 1px solid #FFFFFF;
+  color: #FFFFFF;
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  left: calc(-50vw + 50%);
+  z-index: -1;
+  top: 0;
+  background-color: #121212;
+  background-image: linear-gradient(3deg, #121212 0%, #121212 100%);
+}
+.footer p {
+  margin-bottom: 0;
+  text-align: center;
+  color: #FFFFFF;
+}
+.footer a {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+.footer a:hover, .footer a:focus {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.footer-logo {
+  max-width: 250px;
+  height: auto;
+  margin: auto;
+}
+
+#feedback_button {
+  -webkit-writing-mode: vertical-lr;
+      -ms-writing-mode: tb-lr;
+          writing-mode: vertical-lr;
+  background: #E4251B;
+  color: #FFFFFF;
+  padding-inline: 16px;
+  padding-block: 4px;
+  -webkit-padding-after: 8px;
+          padding-block-end: 8px;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  right: 0;
+  top: 62%;
+  z-index: 1000;
+  -webkit-transform: translateX(10px);
+          transform: translateX(10px);
+  border-radius: 2px;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 300ms ease-in-out;
+  transition: -webkit-transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+  -webkit-box-shadow: -2px 9px 20px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: -2px 9px 20px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+}
+#feedback_button:hover {
+  -webkit-transform: translateX(2px);
+          transform: translateX(2px);
+}
+#feedback_button i {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-margin-end: 4px;
+          margin-inline-end: 4px;
+}
+#feedback_button a:hover {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+/**
  * Licensed to The Apereo Foundation under one or more contributor license
  * agreements. See the NOTICE file distributed with this work for
  * additional information regarding copyright ownership.
@@ -514,97 +768,6 @@ a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):visited {
 a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
   color: #033a8a;
   text-decoration: none !important;
-}
-
-/* --JUMBOTRON-------------------------------------------------------------------- */
-.jumbotron {
-  color: #FFFFFF;
-  background: #E4251B; /* Old browsers */
-  background-color: #E4251B;
-  background-image: linear-gradient(135deg, #E4251B 0%, #C00E0E 100%);
-}
-
-.jumbotron h1 {
-  color: #FFFFFF;
-}
-
-.navbar-inverse .navbar-inner {
-  background-color: #121212;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#121212), to(#121212));
-  background-image: linear-gradient(to bottom, #121212, #121212);
-  background-repeat: repeat-x;
-  border-color: #121212;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="$color-brand-secondary", endColorstr="$color-brand-secondary", GradientType=0);
-}
-
-.navbar-inverse .brand, .navbar-inverse .nav > li > a {
-  color: #FFFFFF;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-}
-
-.navbar-inverse .nav-collapse .nav > li > a, .navbar-inverse .nav-collapse .dropdown-menu a {
-  color: #FFFFFF;
-}
-
-.navbar-inverse .brand, .navbar-inverse .nav > li > a:hover {
-  color: #FFFFFF;
-  background-color: #E4251B;
-}
-
-.navbar-inverse .nav-collapse .nav > li > a:hover, .navbar-inverse .nav-collapse .dropdown-menu a:hover {
-  color: #FFFFFF;
-  background-color: #E4251B;
-}
-
-.nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
-  background-color: #E4251B;
-}
-
-.navbar .nav > li.activePage > a,
-.navbar .nav > li.activePage > a:hover, .navbar .nav > li.activePage > a:hover {
-  background-color: #E4251B;
-  text-decoration: none;
-}
-
-/* --TABLE OF CONTENTS-------------------------------------------------------------- */
-.bs-docs-sidenav {
-  background-color: #FFFFFF;
-  border-radius: 4px;
-}
-
-.nav-list > li > a, .nav-list .nav-header {
-  text-shadow: none;
-}
-
-.bs-docs-sidenav > li > a {
-  color: #121212;
-}
-
-.bs-docs-sidenav > li:first-child > a {
-  border-radius: 4px 4px 0 0;
-}
-
-.bs-docs-sidenav > li:last-child > a {
-  border-radius: 0 0 4px 4px;
-}
-
-.bs-docs-sidenav > .active > a {
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
-  -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
-  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
-}
-
-.bs-docs-sidenav > li > a:hover {
-  background-color: #f9fafb;
-}
-
-.bs-docs-sidenav a:hover .icon-chevron-right {
-  opacity: 0.5;
-}
-
-.bs-docs-sidenav .active .icon-chevron-right,
-.bs-docs-sidenav .active a:hover .icon-chevron-right {
-  opacity: 1;
 }
 
 .accordion-heading a {
@@ -653,21 +816,6 @@ a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
   background-color: #07873E;
   border: 1px solid #07873E;
   color: #121212;
-}
-
-/* --FOOTER-------------------------------------------------------------- */
-.footer {
-  border-top: 1px solid #FFFFFF;
-  background-color: #121212;
-  background-image: linear-gradient(3deg, #121212 0%, #121212 100%);
-}
-
-.footer p {
-  color: #FFFFFF;
-}
-
-.footer a {
-  color: #FFFFFF;
 }
 
 .alertMsg {
