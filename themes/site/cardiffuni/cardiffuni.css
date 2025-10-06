@@ -1,3 +1,18 @@
+/**
+ * Cardiff University Theme - Main Entry Point
+ *
+ * This file orchestrates the theme by importing modular SCSS components.
+ * Each module serves a specific purpose:
+ *
+ * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
+ * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
+ * 3. base-elements        - Cardiff University branded element styles
+ * 4. bootstrap-components - Bootstrap component overrides
+ * 5. xerte-components     - Xerte Online Toolkits specific components
+ * 6. utilities            - Helper classes and utility functions
+ * 7. layouts              - Page layout and structural components
+ */
+/* Import modular SCSS components - @use must come before @import */
 /* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 /**
@@ -20,12 +35,19 @@
  * 2. Change the token mappings below (e.g., use different accent colors)
  * 3. The component styles will automatically use your new colors
  */
-/*start here and set the default values for all the variables*/
 /**
  * Theme Enhancements
  *
- * Modern CSS improvements that complement Bootstrap's base styles
- * without conflicting with existing Xerte/Bootstrap resets
+ * PURPOSE: Theme-agnostic modern CSS improvements and accessibility features
+ *
+ * This module provides behavioral enhancements that work with any theme:
+ * - Font rendering improvements (anti-aliasing, smoothing)
+ * - Modern text wrapping for better typography
+ * - Accessibility support (reduced motion preferences)
+ * - Progressive enhancements that don't conflict with Bootstrap
+ *
+ * NOTE: This file is portable and can be reused across different themes
+ * without modification. It contains NO Cardiff University specific styling.
  */
 body {
   -moz-osx-font-smoothing: grayscale;
@@ -59,11 +81,57 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 /**
+ * Cardiff University Theme - Main Entry Point
+ *
+ * This file orchestrates the theme by importing modular SCSS components.
+ * Each module serves a specific purpose:
+ *
+ * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
+ * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
+ * 3. base-elements        - Cardiff University branded element styles
+ * 4. bootstrap-components - Bootstrap component overrides
+ * 5. xerte-components     - Xerte Online Toolkits specific components
+ * 6. utilities            - Helper classes and utility functions
+ * 7. layouts              - Page layout and structural components
+ */
+/* Import modular SCSS components - @use must come before @import */
+/**
  * Base Element Styles
  *
- * Default styling for HTML elements
- * Uses Cardiff University design tokens and theme variables
+ * PURPOSE: Cardiff University branded styling for HTML elements
+ *
+ * This module defines the visual appearance of core HTML elements following
+ * a logical document structure hierarchy:
+ *
+ * 1. Document-level elements (body, links)
+ * 2. Typography (headings, paragraphs, blockquotes)
+ * 3. Lists
+ * 4. Tables
+ * 5. Media (images, figures, iframes)
+ * 6. Structural elements (sections, horizontal rules)
+ *
+ * NOTE: This file is Cardiff University specific. When updating brand
+ * guidelines or creating new themes, this is the primary file to modify.
  */
+body {
+  font-family: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  color: #121212;
+  background-color: #f9fafb;
+  line-height: 1.5;
+}
+
+a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a) {
+  color: #045bc6;
+}
+a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):visited {
+  color: #551A8B;
+}
+a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
+  color: #033a8a;
+  text-decoration: none !important;
+}
+
 h1,
 h2,
 h3,
@@ -123,29 +191,44 @@ h3.contentTitle {
   font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
 }
 
-section {
-  margin-bottom: 64px;
+blockquote {
+  display: grid;
+  gap: 16px;
+  font-family: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  margin: 32px 0;
+  margin-left: 0;
+  padding: 16px 32px;
+  background: none;
+  border: none;
+  border-left: 5px solid #808080;
+  max-inline-size: 70ch;
 }
-section > *:where(:not(:last-child)) {
-  margin-bottom: 24px;
+blockquote::before, blockquote::after {
+  content: none;
 }
-section h3,
-section h4 {
-  color: #666666;
-  margin-bottom: 16px;
+blockquote .quote::before {
+  content: open-quote;
 }
-section h3 {
-  margin-top: 48px;
+blockquote .quote::after {
+  content: close-quote;
 }
-section h4 {
-  margin-top: 32px;
-}
-section p:not(:last-child) {
-  margin-bottom: 16px;
+blockquote p {
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
 }
 
-.footer h3 {
-  margin-bottom: 16px;
+cite {
+  font-style: italic;
+}
+
+.source {
+  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
+  color: #B3B3B3;
+  text-align: right;
 }
 
 section ul,
@@ -172,10 +255,41 @@ section li ul,
   margin-top: 16px;
 }
 
+table {
+  background: #FFFFFF;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
+  border: none;
+}
+table caption {
+  text-align: left;
+  color: #808080;
+  padding-block: 4px;
+}
+table tr,
+table td {
+  border: none;
+}
+table tr:nth-child(even) {
+  background: #F2F2F2;
+}
+table tr td:not(:first-of-type) {
+  border-left: 1px solid #CCCCCC;
+}
+
+thead th {
+  background: #273573;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+thead th:not(:first-of-type) {
+  border-left: 1px solid #FFFFFF;
+}
+
 img.pull-right {
   margin: 0 0 1em 1em;
 }
-
 img.pull-left {
   margin: 0 1em 1em 0;
 }
@@ -192,88 +306,6 @@ figcaption {
   font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
   padding: 4px;
   caption-side: bottom;
-}
-
-table {
-  background: #FFFFFF;
-  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
-}
-
-table caption {
-  text-align: left;
-  color: #808080;
-  padding-block: 4px;
-}
-
-table,
-table tr,
-table td {
-  border: none;
-}
-
-thead th {
-  background: #273573;
-  color: #FFFFFF;
-  font-weight: 700;
-}
-
-table tr td:not(:first-of-type) {
-  border-left: 1px solid #CCCCCC;
-}
-
-thead th:not(:first-of-type) {
-  border-left: 1px solid #FFFFFF;
-}
-
-table tr:nth-child(even) {
-  background: #F2F2F2;
-}
-
-blockquote::before,
-blockquote::after {
-  content: none;
-}
-
-blockquote .quote::before {
-  content: open-quote;
-}
-
-blockquote .quote::after {
-  content: close-quote;
-}
-
-blockquote {
-  display: grid;
-  gap: 16px;
-  font-family: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
-  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-  margin: 32px 0;
-  background: none;
-  border: none;
-  margin-left: 0;
-  padding: 16px 32px;
-  border-left: 5px solid #808080;
-  max-inline-size: 70ch;
-}
-
-blockquote p {
-  font-weight: 400;
-  line-height: 1.5;
-  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-}
-
-cite {
-  font-style: italic;
-}
-
-.source {
-  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
-  color: #B3B3B3;
-  text-align: right;
 }
 
 .video-720 {
@@ -313,6 +345,31 @@ cite {
   margin-top: 0;
 }
 
+section {
+  margin-bottom: 64px;
+}
+section > *:where(:not(:last-child)) {
+  margin-bottom: 24px;
+}
+section h3,
+section h4 {
+  color: #666666;
+  margin-bottom: 16px;
+}
+section h3 {
+  margin-top: 48px;
+}
+section h4 {
+  margin-top: 32px;
+}
+section p:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.footer h3 {
+  margin-bottom: 16px;
+}
+
 hr {
   background-color: #CCCCCC;
   border: 0;
@@ -320,6 +377,158 @@ hr {
   margin-block: 64px;
 }
 
+/**
+ * Cardiff University Theme - Main Entry Point
+ *
+ * This file orchestrates the theme by importing modular SCSS components.
+ * Each module serves a specific purpose:
+ *
+ * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
+ * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
+ * 3. base-elements        - Cardiff University branded element styles
+ * 4. bootstrap-components - Bootstrap component overrides
+ * 5. xerte-components     - Xerte Online Toolkits specific components
+ * 6. utilities            - Helper classes and utility functions
+ * 7. layouts              - Page layout and structural components
+ */
+/* Import modular SCSS components - @use must come before @import */
+/**
+ * Bootstrap Component Overrides
+ *
+ * PURPOSE: Cardiff University branded overrides for Bootstrap components
+ *
+ * This module customizes Bootstrap UI components with Cardiff University branding:
+ * - Navigation components (tabs, pills, accordions)
+ * - Content containers (panels, wells)
+ * - Tables (striped table styling)
+ *
+ * NOTE: These styles override Bootstrap's default component styling.
+ * Only Bootstrap-specific component classes should be added here.
+ */
+.accordion-heading a {
+  border-bottom: 0;
+  background: #E4251B;
+  color: #FFFFFF;
+}
+
+.accordion-group {
+  margin-bottom: 2px;
+  border: none;
+}
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+  background-color: #07873E;
+  color: #121212;
+}
+
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover,
+.nav-tabs > .active > a:focus {
+  color: #FFFFFF;
+  cursor: default;
+  background-color: #E4251B;
+  border: 1px solid #E4251B;
+  border-bottom-color: transparent;
+}
+
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover,
+.nav-pills > .active > a:focus {
+  color: #FFFFFF;
+  background-color: #E4251B;
+}
+
+.panel {
+  background-color: #E4251B;
+  border: 1px solid #E4251B;
+  border-radius: 4px;
+  color: #FFFFFF;
+}
+
+.panel:after {
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #E4251B;
+  border: 1px solid #E4251B;
+  color: #FFFFFF;
+  border-radius: 4px 0 4px 0;
+}
+
+.well {
+  background-color: #07873E;
+  border: 1px solid #07873E;
+  color: #121212;
+}
+
+/**
+ * Cardiff University Theme - Main Entry Point
+ *
+ * This file orchestrates the theme by importing modular SCSS components.
+ * Each module serves a specific purpose:
+ *
+ * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
+ * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
+ * 3. base-elements        - Cardiff University branded element styles
+ * 4. bootstrap-components - Bootstrap component overrides
+ * 5. xerte-components     - Xerte Online Toolkits specific components
+ * 6. utilities            - Helper classes and utility functions
+ * 7. layouts              - Page layout and structural components
+ */
+/* Import modular SCSS components - @use must come before @import */
+/**
+ * Xerte-Specific Components
+ *
+ * PURPOSE: Cardiff University branded styling for Xerte Online Toolkits components
+ *
+ * This module contains styling for components that are unique to Xerte:
+ * - Alert messages
+ * - Glossary tooltips and links
+ * - Back-to-top navigation button
+ *
+ * NOTE: These components are NOT part of Bootstrap or standard HTML elements.
+ * They are specific to the Xerte Online Toolkits platform.
+ */
+.alertMsg {
+  color: #E4251B;
+}
+
+a.glossary:link,
+a.glossary:visited,
+a.glossary:hover,
+a.glossary:active {
+  color: #121212;
+}
+
+.glossaryTip {
+  background-color: #E4251B;
+  color: #FFFFFF;
+}
+
+.top-round {
+  color: #FFFFFF;
+  background: #E4251B;
+}
+.top-round:hover, .top-round:focus {
+  background: #C00E0E;
+  color: #FFFFFF;
+}
+
+/**
+ * Cardiff University Theme - Main Entry Point
+ *
+ * This file orchestrates the theme by importing modular SCSS components.
+ * Each module serves a specific purpose:
+ *
+ * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
+ * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
+ * 3. base-elements        - Cardiff University branded element styles
+ * 4. bootstrap-components - Bootstrap component overrides
+ * 5. xerte-components     - Xerte Online Toolkits specific components
+ * 6. utilities            - Helper classes and utility functions
+ * 7. layouts              - Page layout and structural components
+ */
+/* Import modular SCSS components - @use must come before @import */
 /**
  * Utility Classes
  *
@@ -469,6 +678,21 @@ hr {
 }
 
 /**
+ * Cardiff University Theme - Main Entry Point
+ *
+ * This file orchestrates the theme by importing modular SCSS components.
+ * Each module serves a specific purpose:
+ *
+ * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
+ * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
+ * 3. base-elements        - Cardiff University branded element styles
+ * 4. bootstrap-components - Bootstrap component overrides
+ * 5. xerte-components     - Xerte Online Toolkits specific components
+ * 6. utilities            - Helper classes and utility functions
+ * 7. layouts              - Page layout and structural components
+ */
+/* Import modular SCSS components - @use must come before @import */
+/**
  * Layout Styles
  *
  * Styles for structural layout components:
@@ -546,7 +770,7 @@ hr {
 }
 
 .navbar-inverse .navbar-inner {
-  font-size: 1rem;
+  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
   font-weight: 500;
   background: #E5E5E5;
   background-color: #E5E5E5;
@@ -588,6 +812,10 @@ hr {
   color: #E4251B;
   -webkit-box-shadow: inset 0 -2px 0 0 #E4251B;
           box-shadow: inset 0 -2px 0 0 #E4251B;
+}
+
+.navbar.navbar-fixed-top {
+  margin-bottom: 0;
 }
 
 .nav-list > .active > a,
@@ -639,21 +867,9 @@ hr {
 .footer {
   padding-block: 32px;
   position: relative;
-  background-color: transparent !important;
+  background-color: #4C4C4C;
   border: 0;
-  border-top: 1px solid #FFFFFF;
   color: #FFFFFF;
-}
-.footer::before {
-  content: "";
-  position: absolute;
-  width: 100vw;
-  height: 100%;
-  left: calc(-50vw + 50%);
-  z-index: -1;
-  top: 0;
-  background-color: #121212;
-  background-image: linear-gradient(3deg, #121212 0%, #121212 100%);
 }
 .footer p {
   margin-bottom: 0;
@@ -722,133 +938,6 @@ hr {
   color: #FFFFFF;
 }
 
-/**
- * Licensed to The Apereo Foundation under one or more contributor license
- * agreements. See the NOTICE file distributed with this work for
- * additional information regarding copyright ownership.
-
- * The Apereo Foundation licenses this file to you under the Apache License,
- * Version 2.0 (the "License"); you may not use this file except in
- * compliance with the License. You may obtain a copy of the License at:
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-body {
-  font-family: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-  color: #121212;
-  background-color: #f9fafb;
-  line-height: 1.5;
-}
-
-/*--Heading and other text changes---------------------------------------*/
-h1, h2.sectionTitle {
-  color: #E4251B;
-}
-
-h2, h3, h4, h5, h6 {
-  color: #121212;
-}
-
-a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a) {
-  color: #045bc6;
-}
-
-a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):visited {
-  color: #551A8B;
-}
-
-a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
-  color: #033a8a;
-  text-decoration: none !important;
-}
-
-.accordion-heading a {
-  border-bottom: 0;
-  background: #E4251B;
-  color: #FFFFFF;
-}
-
-.accordion-group {
-  margin-bottom: 2px;
-  border: none;
-}
-
-.table-striped tbody > tr:nth-child(odd) > td, .table-striped tbody > tr:nth-child(odd) > th {
-  background-color: #07873E;
-  color: #121212;
-}
-
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
-  color: #FFFFFF;
-  cursor: default;
-  background-color: #E4251B;
-  border: 1px solid #E4251B;
-  border-bottom-color: transparent;
-}
-
-/* --PANELS-------------------------------------------------------------- */
-.panel {
-  background-color: #E4251B;
-  border: 1px solid #E4251B;
-  border-radius: 4px;
-  color: #FFFFFF;
-}
-
-/* Echo out a label for the example */
-.panel:after {
-  font-size: 12px;
-  font-weight: bold;
-  background-color: #E4251B;
-  border: 1px solid #E4251B;
-  color: #FFFFFF;
-  border-radius: 4px 0 4px 0;
-}
-
-.well {
-  background-color: #07873E;
-  border: 1px solid #07873E;
-  color: #121212;
-}
-
-.alertMsg {
-  color: #E4251B;
-}
-
-/* --GLOSSARY-------------------------------------------------------------- */
-a.glossary:link, a.glossary:visited, a.glossary:hover, a.glossary:active {
-  color: #121212;
-}
-
-.glossaryTip {
-  background-color: #E4251B;
-  color: #FFFFFF;
-}
-
-.nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus {
-  color: #FFFFFF;
-  background-color: #E4251B;
-}
-
-.top-round {
-  color: #FFFFFF;
-  background: #E4251B;
-}
-
-.top-round:hover,
-.top-round:focus {
-  background: #C00E0E;
-  color: #FFFFFF;
-}
-
-/*alternating section changes for this theme*/
 .evenSection {
   background: #ffffff;
 }

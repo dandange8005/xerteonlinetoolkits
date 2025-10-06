@@ -1,8 +1,16 @@
 /**
  * Theme Enhancements
  *
- * Modern CSS improvements that complement Bootstrap's base styles
- * without conflicting with existing Xerte/Bootstrap resets
+ * PURPOSE: Theme-agnostic modern CSS improvements and accessibility features
+ *
+ * This module provides behavioral enhancements that work with any theme:
+ * - Font rendering improvements (anti-aliasing, smoothing)
+ * - Modern text wrapping for better typography
+ * - Accessibility support (reduced motion preferences)
+ * - Progressive enhancements that don't conflict with Bootstrap
+ *
+ * NOTE: This file is portable and can be reused across different themes
+ * without modification. It contains NO Cardiff University specific styling.
  */
 
 // =============================================================================
@@ -12,6 +20,7 @@
 body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+    // overflow-x: hidden; // Prevent horizontal scrollbar from viewport-width elements
 }
 
 // =============================================================================

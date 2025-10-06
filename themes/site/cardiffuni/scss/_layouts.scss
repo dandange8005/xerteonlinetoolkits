@@ -87,7 +87,7 @@
 }
 
 .navbar-inverse .navbar-inner {
-  font-size: 1rem;
+  font-size: $font-size-sm;
   font-weight: $font-weight-medium;
   background: $cu-gray-20;
   background-color: $cu-gray-20;
@@ -97,6 +97,8 @@
   box-shadow: none;
   border: 0;
 }
+
+// Navbar collapse (for mobile)
 
 .navbar-inverse .nav-collapse .nav > li > a,
 .navbar-inverse .nav-collapse .dropdown-menu a,
@@ -120,13 +122,19 @@
   box-sizing: border-box;
 }
 
-// Active page styling
+// Active nav item styling
 .navbar .nav > li.activePage > a,
 .navbar .nav > li.activePage > a:hover {
   background-color: $cu-white;
   text-decoration: none;
   color: $color-brand-primary;
   box-shadow: inset 0 -2px 0 0 $color-brand-primary;
+}
+
+// Navbar on top
+
+.navbar.navbar-fixed-top {
+  margin-bottom: 0;
 }
 
 // =============================================================================
@@ -195,22 +203,21 @@
 .footer {
   padding-block: $spacing-xl;
   position: relative;
-  background-color: transparent !important;
+  background-color: $cu-gray-80;
   border: 0;
-  border-top: 1px solid $cu-white;
   color: $cu-white;
 
-  &::before {
-    content: "";
-    position: absolute;
-    width: 100vw;
-    height: 100%;
-    left: calc(-50vw + 50%);
-    z-index: -1;
-    top: 0;
-    background-color: $color-brand-secondary;
-    background-image: linear-gradient(3deg, $color-brand-secondary 0%, $color-brand-secondary 100%);
-  }
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   width: 100vw;
+  //   height: 100%;
+  //   left: calc(-50vw + 50%);
+  //   z-index: -1;
+  //   top: 0;
+  //   background-color: $color-brand-secondary;
+  //   background-image: linear-gradient(3deg, $color-brand-secondary 0%, $color-brand-secondary 100%);
+  // }
 
   p {
     margin-bottom: 0;
@@ -274,4 +281,16 @@
     text-decoration: none;
     color: $cu-white;
   }
+}
+
+// =============================================================================
+// ALTERNATING SECTION BACKGROUNDS
+// =============================================================================
+
+.evenSection {
+    background: #ffffff;
+}
+
+.oddSection {
+    background: #f9f9f9;
 }

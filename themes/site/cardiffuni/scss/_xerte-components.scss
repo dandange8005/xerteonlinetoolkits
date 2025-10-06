@@ -1,0 +1,54 @@
+@use "_allvariables" as *;
+
+/**
+ * Xerte-Specific Components
+ *
+ * PURPOSE: Cardiff University branded styling for Xerte Online Toolkits components
+ *
+ * This module contains styling for components that are unique to Xerte:
+ * - Alert messages
+ * - Glossary tooltips and links
+ * - Back-to-top navigation button
+ *
+ * NOTE: These components are NOT part of Bootstrap or standard HTML elements.
+ * They are specific to the Xerte Online Toolkits platform.
+ */
+
+// =============================================================================
+// ALERT MESSAGES
+// =============================================================================
+
+.alertMsg {
+    color: $color-text-alert;
+}
+
+// =============================================================================
+// GLOSSARY COMPONENTS
+// =============================================================================
+
+a.glossary:link,
+a.glossary:visited,
+a.glossary:hover,
+a.glossary:active {
+    color: $color-text-primary;
+}
+
+.glossaryTip {
+    background-color: $color-brand-primary;
+    color: $cu-white;
+}
+
+// =============================================================================
+// BACK TO TOP BUTTON
+// =============================================================================
+
+.top-round {
+    color: $cu-white;
+    background: $color-brand-primary;
+
+    &:hover,
+    &:focus {
+        background: $color-brand-primary-hover;
+        color: $cu-white;
+    }
+}

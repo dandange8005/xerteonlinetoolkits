@@ -1,147 +1,28 @@
-@use "scss/_allvariables" as *; /*start here and set the default values for all the variables*/
-@use "scss/enhancements";
-@use "scss/base-elements";
-@use "scss/utilities";
-@use "scss/layouts";
+/**
+ * Cardiff University Theme - Main Entry Point
+ *
+ * This file orchestrates the theme by importing modular SCSS components.
+ * Each module serves a specific purpose:
+ *
+ * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
+ * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
+ * 3. base-elements        - Cardiff University branded element styles
+ * 4. bootstrap-components - Bootstrap component overrides
+ * 5. xerte-components     - Xerte Online Toolkits specific components
+ * 6. utilities            - Helper classes and utility functions
+ * 7. layouts              - Page layout and structural components
+ */
 
+/* Import modular SCSS components - @use must come before @import */
+@use "scss/_allvariables" as *;   // Design tokens and variables
+@use "scss/enhancements";          // Modern CSS enhancements (portable)
+@use "scss/base-elements";         // Cardiff University branded elements
+@use "scss/bootstrap-components";  // Bootstrap component overrides
+@use "scss/xerte-components";      // Xerte-specific components
+@use "scss/utilities";             // Utility classes
+@use "scss/layouts";               // Layout components
 
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/**
- * Licensed to The Apereo Foundation under one or more contributor license
- * agreements. See the NOTICE file distributed with this work for
- * additional information regarding copyright ownership.
 
- * The Apereo Foundation licenses this file to you under the Apache License,
- * Version 2.0 (the "License"); you may not use this file except in
- * compliance with the License. You may obtain a copy of the License at:
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-//* --BODY------------------------------------------------*/
-body {
-  font-family: $mainfonts;
-  font-size: $font-size-base;
-  color: $color-text-primary;
-  background-color: $color-bg-body;
-  line-height: $line-height-normal;
-}
-/*--Heading and other text changes---------------------------------------*/
-h1, h2.sectionTitle {
-  color: $color-brand-primary;
-}
-h2, h3, h4, h5, h6 {
-  color: $color-text-primary;
-}
-// Content links only (exclude navigation elements)
-a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a) {
-  color: $color-link-default;
-}
-
-a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):visited {
-  color: $color-link-visited;
-}
-
-a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
-  color: $color-link-hover;
-  text-decoration: none !important;
-}
-
-.accordion-heading a {
-  border-bottom: 0;
-  background: $color-brand-primary;
-  color: $color-text-on-brand;
-}
-.accordion-group {
-  margin-bottom: 2px;
-  border: none;
-}
-
-.table-striped tbody > tr:nth-child(odd) > td, .table-striped tbody > tr:nth-child(odd) > th {
-  background-color: $color-accent-green;
-  color: $color-text-primary;
-}
-
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
-  color: $color-text-on-dark;
-  cursor: default;
-  background-color: $color-brand-primary;
-  border: 1px solid $color-brand-primary;
-  border-bottom-color: transparent;
-}
-
-/* --PANELS-------------------------------------------------------------- */
-.panel {
-  background-color: $color-brand-primary;
-  border: 1px solid $color-brand-primary;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  color: $cu-white;
-}
-/* Echo out a label for the example */
-.panel:after {
-  font-size: 12px;
-  font-weight: bold;
-  background-color: $color-brand-primary;
-  border: 1px solid $color-brand-primary;
-  color: $cu-white;
-  -webkit-border-radius: 4px 0 4px 0;
-  -moz-border-radius: 4px 0 4px 0;
-  border-radius: 4px 0 4px 0;
-}
-
-.well {
-  background-color: $color-accent-green;
-  border: 1px solid $color-accent-green;
-  color: $color-text-primary;
-}
-
-
-.alertMsg {
-  color: $color-text-alert;
-}
-
-/* --GLOSSARY-------------------------------------------------------------- */
-
-a.glossary:link, a.glossary:visited, a.glossary:hover, a.glossary:active {
-  color: $color-text-primary;
-}
-
-.glossaryTip {
-  background-color: $color-brand-primary;
-  color: $cu-white;
-}
-
-.nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus {
-  color: $cu-white;
-  background-color: $color-brand-primary;
-}
-
-//*round back to top button*/
-.top-round {
-  color: $cu-white;
-  background: $color-brand-primary;
-}
-.top-round:hover,
-.top-round:focus {
-  background: $color-brand-primary-hover;
-  color: $cu-white;
-}
-
-/*alternating section changes for this theme*/
-.evenSection {
-  background: #ffffff;
-}
-.oddSection {
-  background: #f9f9f9;
-}

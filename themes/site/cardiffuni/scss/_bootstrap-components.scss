@@ -1,0 +1,96 @@
+@use "_allvariables" as *;
+
+/**
+ * Bootstrap Component Overrides
+ *
+ * PURPOSE: Cardiff University branded overrides for Bootstrap components
+ *
+ * This module customizes Bootstrap UI components with Cardiff University branding:
+ * - Navigation components (tabs, pills, accordions)
+ * - Content containers (panels, wells)
+ * - Tables (striped table styling)
+ *
+ * NOTE: These styles override Bootstrap's default component styling.
+ * Only Bootstrap-specific component classes should be added here.
+ */
+
+// =============================================================================
+// ACCORDIONS
+// =============================================================================
+
+.accordion-heading a {
+    border-bottom: 0;
+    background: $color-brand-primary;
+    color: $color-text-on-brand;
+}
+
+.accordion-group {
+    margin-bottom: 2px;
+    border: none;
+}
+
+// =============================================================================
+// TABLES
+// =============================================================================
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+    background-color: $color-accent-green;
+    color: $color-text-primary;
+}
+
+// =============================================================================
+// NAVIGATION TABS
+// =============================================================================
+
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover,
+.nav-tabs > .active > a:focus {
+    color: $color-text-on-dark;
+    cursor: default;
+    background-color: $color-brand-primary;
+    border: 1px solid $color-brand-primary;
+    border-bottom-color: transparent;
+}
+
+// =============================================================================
+// NAVIGATION PILLS
+// =============================================================================
+
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover,
+.nav-pills > .active > a:focus {
+    color: $cu-white;
+    background-color: $color-brand-primary;
+}
+
+// =============================================================================
+// PANELS
+// =============================================================================
+
+.panel {
+    background-color: $color-brand-primary;
+    border: 1px solid $color-brand-primary;
+    border-radius: 4px;
+    color: $cu-white;
+}
+
+// Echo out a label for the example
+.panel:after {
+    font-size: 12px;
+    font-weight: bold;
+    background-color: $color-brand-primary;
+    border: 1px solid $color-brand-primary;
+    color: $cu-white;
+    border-radius: 4px 0 4px 0;
+}
+
+// =============================================================================
+// WELLS
+// =============================================================================
+
+.well {
+    background-color: $color-accent-green;
+    border: 1px solid $color-accent-green;
+    color: $color-text-primary;
+}
