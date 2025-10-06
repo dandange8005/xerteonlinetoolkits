@@ -140,6 +140,25 @@
   --z-index-sticky: 100;
   --z-index-modal: 400;
   --z-index-overlay: 300;
+  --color-brand-primary-lighter: color-mix(in srgb, var(--color-brand-primary) 30%, white);
+  --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 15%, white);
+  --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 15%, black);
+  --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 30%, black);
+  --color-brand-secondary-lighter: color-mix(in srgb, var(--color-brand-secondary) 30%, white);
+  --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
+  --color-brand-secondary-dark: color-mix(in srgb, var(--color-brand-secondary) 15%, black);
+  --color-brand-secondary-darker: color-mix(in srgb, var(--color-brand-secondary) 30%, black);
+  --color-accent-green-light: color-mix(in srgb, var(--color-accent-green) 20%, white);
+  --color-accent-green-dark: color-mix(in srgb, var(--color-accent-green) 20%, black);
+  --color-accent-blue-light: color-mix(in srgb, var(--color-accent-blue) 20%, white);
+  --color-accent-blue-dark: color-mix(in srgb, var(--color-accent-blue) 20%, black);
+  --color-accent-orange-light: color-mix(in srgb, var(--color-accent-orange) 20%, white);
+  --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 20%, black);
+  --color-bg-subtle: color-mix(in srgb, var(--color-bg-body) 50%, white);
+  --color-bg-muted: color-mix(in srgb, var(--color-bg-body) 50%, var(--cu-gray-20));
+  --color-bg-elevated: var(--cu-white);
+  --color-text-subtle: color-mix(in srgb, var(--color-text-primary) 60%, var(--cu-gray-50));
+  --color-text-muted: color-mix(in srgb, var(--color-text-primary) 40%, var(--cu-gray-40));
 }
 
 /**

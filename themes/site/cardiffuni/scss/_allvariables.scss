@@ -198,4 +198,75 @@
     --z-index-sticky: 100;
     --z-index-modal: 400;
     --z-index-overlay: 300;
+
+    // =========================================================================
+    // COLOR SCALES (Auto-generated from semantic colors)
+    // These automatically update when base colors change
+    // =========================================================================
+
+    // Primary Brand Scale
+    --color-brand-primary-lighter: color-mix(in srgb, var(--color-brand-primary) 30%, white);
+    --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 15%, white);
+    --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 15%, black);
+    --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 30%, black);
+
+    // Secondary Brand Scale
+    --color-brand-secondary-lighter: color-mix(in srgb, var(--color-brand-secondary) 30%, white);
+    --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
+    --color-brand-secondary-dark: color-mix(in srgb, var(--color-brand-secondary) 15%, black);
+    --color-brand-secondary-darker: color-mix(in srgb, var(--color-brand-secondary) 30%, black);
+
+    // Accent Color Scales
+    --color-accent-green-light: color-mix(in srgb, var(--color-accent-green) 20%, white);
+    --color-accent-green-dark: color-mix(in srgb, var(--color-accent-green) 20%, black);
+
+    --color-accent-blue-light: color-mix(in srgb, var(--color-accent-blue) 20%, white);
+    --color-accent-blue-dark: color-mix(in srgb, var(--color-accent-blue) 20%, black);
+
+    --color-accent-orange-light: color-mix(in srgb, var(--color-accent-orange) 20%, white);
+    --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 20%, black);
+
+    // Background Scale
+    --color-bg-subtle: color-mix(in srgb, var(--color-bg-body) 50%, white);
+    --color-bg-muted: color-mix(in srgb, var(--color-bg-body) 50%, var(--cu-gray-20));
+    --color-bg-elevated: var(--cu-white);
+
+    // Text Scale (for reduced contrast needs)
+    --color-text-subtle: color-mix(in srgb, var(--color-text-primary) 60%, var(--cu-gray-50));
+    --color-text-muted: color-mix(in srgb, var(--color-text-primary) 40%, var(--cu-gray-40));
 }
+
+// =============================================================================
+// THEME VARIANTS
+// Alternative themes for different projects or contexts
+// =============================================================================
+
+// Example: Dark Mode Theme
+// Uncomment and customize as needed
+// [data-theme="dark"] {
+//     --color-brand-primary: #FF6B5B;
+//     --color-bg-body: #1a1a1a;
+//     --color-bg-page: #121212;
+//     --color-text-primary: #ffffff;
+//     --color-text-inverse: #121212;
+//     --cu-gray-10: #2a2a2a;
+//     --cu-gray-20: #3a3a3a;
+//     --cu-gray-90: #e0e0e0;
+//     --cu-gray-80: #d0d0d0;
+// }
+
+// Example: Alternative University Theme
+// [data-theme="project-blue"] {
+//     --color-brand-primary: #0066CC;
+//     --color-brand-secondary: #00A86B;
+//     --color-accent-green: #2E7D32;
+// }
+
+// Example: High Contrast Theme (Accessibility)
+// [data-theme="high-contrast"] {
+//     --color-bg-body: #000000;
+//     --color-bg-page: #000000;
+//     --color-text-primary: #FFFFFF;
+//     --color-brand-primary: #FFFF00;
+//     --border-width-md: 3px;
+// }

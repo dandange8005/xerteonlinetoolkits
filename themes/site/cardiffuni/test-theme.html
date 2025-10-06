@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardiff University Theme - CSS Variables Test</title>
+    <link rel="stylesheet" href="cardiffuni.css">
+    <style>
+        /* Test page specific styles */
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-xl);
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            margin: var(--spacing-sm);
+            position: relative;
+        }
+
+        .color-swatch span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: var(--spacing-xs);
+            font-size: var(--font-size-xs);
+            text-align: center;
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .spacing-demo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .spacing-box {
+            background: var(--color-brand-primary);
+            color: var(--cu-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-bold);
+        }
+
+        .theme-controls {
+            position: fixed;
+            top: var(--spacing-lg);
+            right: var(--spacing-lg);
+            background: var(--cu-white);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+        }
+
+        .theme-button {
+            display: block;
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            margin-bottom: var(--spacing-xs);
+            background: var(--color-brand-primary);
+            color: var(--cu-white);
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            transition: background var(--animation-fast) var(--animation-easing);
+        }
+
+        .theme-button:hover {
+            background: var(--color-brand-primary-dark);
+        }
+
+        .typography-sample {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .card {
+            background: var(--cu-white);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-sm);
+            font-weight: var(--font-weight-medium);
+            border: none;
+            cursor: pointer;
+            transition: all var(--animation-fast) var(--animation-easing);
+        }
+
+        .btn-primary {
+            background: var(--color-brand-primary);
+            color: var(--cu-white);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-brand-primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--color-brand-secondary);
+            color: var(--cu-white);
+        }
+
+        .alert {
+            padding: var(--spacing-md);
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--spacing-md);
+            border-left: 4px solid;
+        }
+
+        .alert-success {
+            background: var(--color-accent-green-light);
+            border-color: var(--color-accent-green);
+            color: var(--color-accent-green-dark);
+        }
+
+        .alert-info {
+            background: var(--color-accent-blue-light);
+            border-color: var(--color-accent-blue);
+            color: var(--color-accent-blue-dark);
+        }
+
+        .alert-warning {
+            background: var(--color-accent-orange-light);
+            border-color: var(--color-accent-orange);
+            color: var(--color-accent-orange-dark);
+        }
+
+        .variable-customizer {
+            background: var(--cu-gray-10);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .color-picker-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .color-picker-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .color-picker-item label {
+            flex: 1;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .color-picker-item input[type="color"] {
+            width: 60px;
+            height: 40px;
+            border: 2px solid var(--border-color-default);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Controls -->
+    <div class="theme-controls">
+        <h3 style="margin-top: 0; font-size: var(--font-size-md);">Theme Switcher</h3>
+        <button class="theme-button" onclick="setTheme('')">Default</button>
+        <button class="theme-button" onclick="setTheme('dark')">Dark Mode</button>
+        <button class="theme-button" onclick="setTheme('project-blue')">Project Blue</button>
+        <button class="theme-button" onclick="setTheme('high-contrast')">High Contrast</button>
+    </div>
+
+    <div class="test-container">
+        <h1>Cardiff University Theme Test Page</h1>
+        <p style="font-size: var(--font-size-lg); color: var(--color-text-subtle);">
+            This page demonstrates all CSS custom properties in action. Use the theme switcher in the top-right corner or customize colors below.
+        </p>
+
+        <!-- Live Color Customizer -->
+        <section class="variable-customizer">
+            <h2>Live Color Customizer</h2>
+            <p style="font-size: var(--font-size-sm); color: var(--color-text-subtle);">
+                Change colors in real-time and see the entire page update automatically
+            </p>
+            <div class="color-picker-group">
+                <div class="color-picker-item">
+                    <label for="primary-color">Primary Brand:</label>
+                    <input type="color" id="primary-color" value="#E4251B"
+                           onchange="updateColor('--color-brand-primary', this.value)">
+                </div>
+                <div class="color-picker-item">
+                    <label for="secondary-color">Secondary Brand:</label>
+                    <input type="color" id="secondary-color" value="#121212"
+                           onchange="updateColor('--color-brand-secondary', this.value)">
+                </div>
+                <div class="color-picker-item">
+                    <label for="accent-green">Accent Green:</label>
+                    <input type="color" id="accent-green" value="#07873E"
+                           onchange="updateColor('--color-accent-green', this.value)">
+                </div>
+                <div class="color-picker-item">
+                    <label for="accent-blue">Accent Blue:</label>
+                    <input type="color" id="accent-blue" value="#1E90FF"
+                           onchange="updateColor('--color-accent-blue', this.value)">
+                </div>
+                <div class="color-picker-item">
+                    <label for="bg-color">Background:</label>
+                    <input type="color" id="bg-color" value="#f9fafb"
+                           onchange="updateColor('--color-bg-body', this.value)">
+                </div>
+                <div class="color-picker-item">
+                    <label for="text-color">Text Primary:</label>
+                    <input type="color" id="text-color" value="#121212"
+                           onchange="updateColor('--color-text-primary', this.value)">
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="resetColors()">Reset to Default</button>
+        </section>
+
+        <!-- Typography -->
+        <section>
+            <h2>Typography Scale</h2>
+            <div class="typography-sample">
+                <h1>Heading 1 - The quick brown fox</h1>
+                <h2>Heading 2 - The quick brown fox</h2>
+                <h3>Heading 3 - The quick brown fox</h3>
+                <h4>Heading 4 - The quick brown fox</h4>
+                <h5>Heading 5 - The quick brown fox</h5>
+                <h6>Heading 6 - The quick brown fox</h6>
+                <p>Body text - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p><a href="#">This is a link</a> | <a href="#" style="color: var(--color-link-visited)">Visited link</a></p>
+            </div>
+        </section>
+
+        <!-- Colors -->
+        <section>
+            <h2>Cardiff University Brand Colors</h2>
+            <div class="color-grid">
+                <div class="color-swatch" style="background: var(--cu-primary-red)"><span>Primary Red</span></div>
+                <div class="color-swatch" style="background: var(--cu-forest-green)"><span>Forest Green</span></div>
+                <div class="color-swatch" style="background: var(--cu-cadet)"><span>Cadet</span></div>
+                <div class="color-swatch" style="background: var(--cu-stone)"><span>Stone</span></div>
+                <div class="color-swatch" style="background: var(--cu-light-blue)"><span>Light Blue</span></div>
+                <div class="color-swatch" style="background: var(--cu-royal-blue)"><span>Royal Blue</span></div>
+                <div class="color-swatch" style="background: var(--cu-midnight-blue)"><span>Midnight Blue</span></div>
+                <div class="color-swatch" style="background: var(--cu-orange)"><span>Orange</span></div>
+            </div>
+
+            <h3>Grayscale</h3>
+            <div class="color-grid">
+                <div class="color-swatch" style="background: var(--cu-gray-10)"><span>Gray 10</span></div>
+                <div class="color-swatch" style="background: var(--cu-gray-20)"><span>Gray 20</span></div>
+                <div class="color-swatch" style="background: var(--cu-gray-30)"><span>Gray 30</span></div>
+                <div class="color-swatch" style="background: var(--cu-gray-40)"><span>Gray 40</span></div>
+                <div class="color-swatch" style="background: var(--cu-gray-50)"><span>Gray 50</span></div>
+                <div class="color-swatch" style="background: var(--cu-gray-60)"><span>Gray 60</span></div>
+                <div class="color-swatch" style="background: var(--cu-gray-70)"><span>Gray 70</span></div>
+                <div class="color-swatch" style="background: var(--cu-gray-80)"><span>Gray 80</span></div>
+                <div class="color-swatch" style="background: var(--cu-gray-90)"><span>Gray 90</span></div>
+            </div>
+
+            <h3>Auto-Generated Color Scales</h3>
+            <h4>Primary Brand Scale</h4>
+            <div class="color-grid">
+                <div class="color-swatch" style="background: var(--color-brand-primary-lighter)"><span>Lighter</span></div>
+                <div class="color-swatch" style="background: var(--color-brand-primary-light)"><span>Light</span></div>
+                <div class="color-swatch" style="background: var(--color-brand-primary)"><span>Base</span></div>
+                <div class="color-swatch" style="background: var(--color-brand-primary-dark)"><span>Dark</span></div>
+                <div class="color-swatch" style="background: var(--color-brand-primary-darker)"><span>Darker</span></div>
+            </div>
+
+            <h4>Accent Colors with Auto-Scales</h4>
+            <div class="color-grid">
+                <div class="color-swatch" style="background: var(--color-accent-green-light)"><span>Green Light</span></div>
+                <div class="color-swatch" style="background: var(--color-accent-green)"><span>Green Base</span></div>
+                <div class="color-swatch" style="background: var(--color-accent-green-dark)"><span>Green Dark</span></div>
+                <div class="color-swatch" style="background: var(--color-accent-blue-light)"><span>Blue Light</span></div>
+                <div class="color-swatch" style="background: var(--color-accent-blue)"><span>Blue Base</span></div>
+                <div class="color-swatch" style="background: var(--color-accent-blue-dark)"><span>Blue Dark</span></div>
+            </div>
+        </section>
+
+        <!-- Spacing -->
+        <section>
+            <h2>Spacing Scale</h2>
+            <div class="spacing-demo">
+                <span style="width: 100px; font-size: var(--font-size-sm);">xs (4px):</span>
+                <div class="spacing-box" style="width: var(--spacing-xs); height: var(--spacing-xs)"></div>
+            </div>
+            <div class="spacing-demo">
+                <span style="width: 100px; font-size: var(--font-size-sm);">sm (8px):</span>
+                <div class="spacing-box" style="width: var(--spacing-sm); height: var(--spacing-sm)"></div>
+            </div>
+            <div class="spacing-demo">
+                <span style="width: 100px; font-size: var(--font-size-sm);">md (16px):</span>
+                <div class="spacing-box" style="width: var(--spacing-md); height: var(--spacing-md)"></div>
+            </div>
+            <div class="spacing-demo">
+                <span style="width: 100px; font-size: var(--font-size-sm);">lg (24px):</span>
+                <div class="spacing-box" style="width: var(--spacing-lg); height: var(--spacing-lg)"></div>
+            </div>
+            <div class="spacing-demo">
+                <span style="width: 100px; font-size: var(--font-size-sm);">xl (32px):</span>
+                <div class="spacing-box" style="width: var(--spacing-xl); height: var(--spacing-xl)"></div>
+            </div>
+            <div class="spacing-demo">
+                <span style="width: 100px; font-size: var(--font-size-sm);">2xl (48px):</span>
+                <div class="spacing-box" style="width: var(--spacing-2xl); height: var(--spacing-2xl)"></div>
+            </div>
+        </section>
+
+        <!-- Components -->
+        <section>
+            <h2>UI Components</h2>
+
+            <div class="component-grid">
+                <div class="card">
+                    <h3>Buttons</h3>
+                    <button class="btn btn-primary">Primary Button</button>
+                    <button class="btn btn-secondary">Secondary Button</button>
+                </div>
+
+                <div class="card">
+                    <h3>Alerts</h3>
+                    <div class="alert alert-success">Success message using auto-generated green-light scale</div>
+                    <div class="alert alert-info">Info message using auto-generated blue-light scale</div>
+                    <div class="alert alert-warning">Warning message using auto-generated orange-light scale</div>
+                </div>
+
+                <div class="card">
+                    <h3>Lists</h3>
+                    <ul>
+                        <li>List item one</li>
+                        <li>List item two</li>
+                        <li>List item three</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Blockquote</h3>
+                    <blockquote>
+                        <p class="quote">This is a blockquote demonstrating the Cardiff University theme styling with proper spacing and borders.</p>
+                        <cite>— Citation Source</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Table -->
+        <section>
+            <h2>Table</h2>
+            <table>
+                <caption>Sample Data Table</caption>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Smith</td>
+                        <td>Computer Science</td>
+                        <td>Cardiff</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Doe</td>
+                        <td>Engineering</td>
+                        <td>Newport</td>
+                    </tr>
+                    <tr>
+                        <td>Bob Johnson</td>
+                        <td>Mathematics</td>
+                        <td>Swansea</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Shadow Samples -->
+        <section>
+            <h2>Shadow Scale</h2>
+            <div class="component-grid">
+                <div style="padding: var(--spacing-lg); background: var(--cu-white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                    <strong>Shadow SM</strong><br>
+                    Subtle elevation
+                </div>
+                <div style="padding: var(--spacing-lg); background: var(--cu-white); border-radius: var(--radius-md); box-shadow: var(--shadow-md);">
+                    <strong>Shadow MD</strong><br>
+                    Medium elevation
+                </div>
+                <div style="padding: var(--spacing-lg); background: var(--cu-white); border-radius: var(--radius-md); box-shadow: var(--shadow-lg);">
+                    <strong>Shadow LG</strong><br>
+                    High elevation
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Theme switcher
+        function setTheme(themeName) {
+            document.body.setAttribute('data-theme', themeName);
+        }
+
+        // Live color updater
+        function updateColor(variable, value) {
+            document.documentElement.style.setProperty(variable, value);
+        }
+
+        // Reset colors
+        function resetColors() {
+            const defaults = {
+                '--color-brand-primary': '#E4251B',
+                '--color-brand-secondary': '#121212',
+                '--color-accent-green': '#07873E',
+                '--color-accent-blue': '#1E90FF',
+                '--color-bg-body': '#f9fafb',
+                '--color-text-primary': '#121212'
+            };
+
+            Object.entries(defaults).forEach(([variable, value]) => {
+                document.documentElement.style.setProperty(variable, value);
+            });
+
+            // Reset color pickers
+            document.getElementById('primary-color').value = '#E4251B';
+            document.getElementById('secondary-color').value = '#121212';
+            document.getElementById('accent-green').value = '#07873E';
+            document.getElementById('accent-blue').value = '#1E90FF';
+            document.getElementById('bg-color').value = '#f9fafb';
+            document.getElementById('text-color').value = '#121212';
+        }
+
+        // Add example theme variants
+        const style = document.createElement('style');
+        style.textContent = `
+            [data-theme="dark"] {
+                --color-bg-body: #1a1a1a;
+                --color-bg-page: #121212;
+                --color-text-primary: #ffffff;
+                --color-text-inverse: #121212;
+                --color-brand-primary: #FF6B5B;
+                --cu-gray-10: #2a2a2a;
+                --cu-gray-20: #3a3a3a;
+                --cu-white: #ffffff;
+            }
+
+            [data-theme="project-blue"] {
+                --color-brand-primary: #0066CC;
+                --color-brand-secondary: #00A86B;
+                --color-accent-green: #2E7D32;
+            }
+
+            [data-theme="high-contrast"] {
+                --color-bg-body: #000000;
+                --color-bg-page: #000000;
+                --color-text-primary: #FFFFFF;
+                --color-brand-primary: #FFFF00;
+                --color-link-default: #00FFFF;
+                --border-width-md: 3px;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
