@@ -1,5 +1,3 @@
-@use "_allvariables" as *;
-
 /**
  * Xerte-Specific Components
  *
@@ -19,7 +17,7 @@
 // =============================================================================
 
 .alertMsg {
-    color: $color-text-alert;
+    color: var(--color-text-alert);
 }
 
 // =============================================================================
@@ -30,12 +28,12 @@ a.glossary:link,
 a.glossary:visited,
 a.glossary:hover,
 a.glossary:active {
-    color: $color-text-primary;
+    color: var(--color-text-primary);
 }
 
 .glossaryTip {
-    background-color: $color-brand-primary;
-    color: $cu-white;
+    background-color: var(--color-brand-primary);
+    color: var(--cu-white);
 }
 
 // =============================================================================
@@ -43,12 +41,12 @@ a.glossary:active {
 // =============================================================================
 
 .top-round {
-    color: $cu-white;
-    background: $color-brand-primary;
+    color: var(--cu-white);
+    background: var(--color-brand-primary);
 
     &:hover,
     &:focus {
-        background: $color-brand-primary-hover;
-        color: $cu-white;
+        background: var(--color-brand-primary-hover);
+        color: var(--cu-white);
     }
 }

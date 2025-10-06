@@ -1,5 +1,3 @@
-@use "_allvariables" as *;
-
 /**
  * Base Element Styles
  *
@@ -25,23 +23,23 @@
 
 // Body
 body {
-    font-family: $mainfonts;
-    font-size: $font-size-base;
-    color: $color-text-primary;
-    background-color: $color-bg-body;
-    line-height: $line-height-normal;
+    font-family: var(--font-primary-body);
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-body);
+    line-height: var(--line-height-normal);
 }
 
 // Links (content links only, excludes navigation)
 a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a) {
-    color: $color-link-default;
+    color: var(--color-link-default);
 
     &:visited {
-        color: $color-link-visited;
+        color: var(--color-link-visited);
     }
 
     &:hover {
-        color: $color-link-hover;
+        color: var(--color-link-hover);
         text-decoration: none !important;
     }
 }
@@ -57,39 +55,39 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: $headingfonts;
-    font-weight: $font-weight-bold;
+    font-family: var(--font-primary-heading);
+    font-weight: var(--font-weight-bold);
 }
 
 // Heading Hierarchy
 h1 {
-    font-size: $font-size-3xl;
-    line-height: $line-height-tight;
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-height-tight);
 }
 
 h2 {
-    font-size: $font-size-2xl;
-    line-height: $line-height-tight;
+    font-size: var(--font-size-2xl);
+    line-height: var(--line-height-tight);
 }
 
 h3 {
-    font-size: $font-size-xl;
-    line-height: $line-height-tight;
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-tight);
 }
 
 h4 {
-    font-size: $font-size-lg;
-    line-height: $line-height-normal;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-normal);
 }
 
 h5 {
-    font-size: $font-size-base;
-    line-height: $line-height-normal;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
 }
 
 h6 {
-    font-size: $font-size-sm;
-    line-height: $line-height-normal;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
 }
 
 // Special Heading Classes
@@ -98,11 +96,11 @@ h6 {
 }
 
 h2.sectionTitle {
-    font-size: $font-size-2xl;
-    font-weight: $font-weight-light;
-    margin-bottom: $spacing-md;
-    color: $color-brand-primary;
-    margin-top: $spacing-xl;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-light);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-brand-primary);
+    margin-top: var(--spacing-xl);
 
     p {
         margin-bottom: 0 !important;
@@ -110,23 +108,23 @@ h2.sectionTitle {
 }
 
 h3.contentTitle {
-    font-size: $font-size-xl;
+    font-size: var(--font-size-xl);
 }
 
 // Blockquotes & Citations
 blockquote {
     display: grid;
-    gap: $spacing-md;
-    font-family: $mainfonts;
-    font-weight: $font-weight-regular;
-    line-height: $line-height-normal;
-    font-size: $font-size-base;
-    margin: $spacing-xl 0;
+    gap: var(--spacing-md);
+    font-family: var(--font-primary-body);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    font-size: var(--font-size-base);
+    margin: var(--spacing-xl) 0;
     margin-left: 0;
-    padding: $spacing-md $spacing-xl;
+    padding: var(--spacing-md) var(--spacing-xl);
     background: none;
     border: none;
-    border-left: 5px solid $cu-gray-60;
+    border-left: 5px solid var(--cu-gray-60);
     max-inline-size: 70ch;
 
     &::before,
@@ -143,9 +141,9 @@ blockquote {
     }
 
     p {
-        font-weight: $font-weight-regular;
-        line-height: $line-height-normal;
-        font-size: $font-size-base;
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-normal);
+        font-size: var(--font-size-base);
     }
 }
 
@@ -154,8 +152,8 @@ cite {
 }
 
 .source {
-    font-size: $font-size-sm;
-    color: $cu-gray-40;
+    font-size: var(--font-size-sm);
+    color: var(--cu-gray-40);
     text-align: right;
 }
 
@@ -168,22 +166,22 @@ section,
     ul,
     ol {
         padding: 0;
-        margin-left: $spacing-xl;
+        margin-left: var(--spacing-xl);
         display: grid;
-        gap: $spacing-sm;
+        gap: var(--spacing-sm);
     }
 
     li {
-        line-height: $line-height-normal;
+        line-height: var(--line-height-normal);
     }
 
     ul li,
     ol li {
-        padding-left: $spacing-sm;
+        padding-left: var(--spacing-sm);
     }
 
     li ul {
-        margin-top: $spacing-md;
+        margin-top: var(--spacing-md);
     }
 }
 
@@ -192,15 +190,15 @@ section,
 // =============================================================================
 
 table {
-    background: $cu-white;
-    box-shadow: $shadow-sm;
-    font-size: $font-size-sm;
+    background: var(--cu-white);
+    box-shadow: var(--shadow-sm);
+    font-size: var(--font-size-sm);
     border: none;
 
     caption {
         text-align: left;
-        color: $cu-gray-60;
-        padding-block: $spacing-xs;
+        color: var(--cu-gray-60);
+        padding-block: var(--spacing-xs);
     }
 
     tr,
@@ -209,21 +207,21 @@ table {
     }
 
     tr:nth-child(even) {
-        background: $cu-gray-10;
+        background: var(--cu-gray-10);
     }
 
     tr td:not(:first-of-type) {
-        border-left: 1px solid $border-color-default;
+        border-left: 1px solid var(--border-color-default);
     }
 }
 
 thead th {
-    background: $cu-midnight-blue;
-    color: $cu-white;
-    font-weight: $font-weight-bold;
+    background: var(--cu-midnight-blue);
+    color: var(--cu-white);
+    font-weight: var(--font-weight-bold);
 
     &:not(:first-of-type) {
-        border-left: 1px solid $cu-white;
+        border-left: 1px solid var(--cu-white);
     }
 }
 
@@ -248,10 +246,10 @@ figure {
 }
 
 figcaption {
-    background: $cu-gray-20;
-    color: $cu-gray-80;
-    font-size: $font-size-sm;
-    padding: $spacing-xs;
+    background: var(--cu-gray-20);
+    color: var(--cu-gray-80);
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs);
     caption-side: bottom;
 }
 
@@ -266,8 +264,8 @@ figcaption {
     position: relative;
     overflow: hidden;
     padding-bottom: 56.32%;
-    box-shadow: $shadow-md;
-    margin-bottom: $spacing-lg;
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--spacing-lg);
 
     iframe {
         top: 0;
@@ -280,7 +278,7 @@ figcaption {
 
     &--xerte,
     &--h5p {
-        border: 4px solid $border-color-default;
+        border: 4px solid var(--border-color-default);
     }
 
     &--xerte {
@@ -288,11 +286,11 @@ figcaption {
     }
 
     &__caption {
-        background: $cu-gray-10;
-        color: $color-text-primary;
+        background: var(--cu-gray-10);
+        color: var(--color-text-primary);
         font-style: italic;
-        font-size: $font-size-sm;
-        padding: $spacing-xs;
+        font-size: var(--font-size-sm);
+        padding: var(--spacing-xs);
         margin-top: 0;
     }
 }
@@ -303,39 +301,39 @@ figcaption {
 
 // Sections
 section {
-    margin-bottom: $spacing-3xl;
+    margin-bottom: var(--spacing-3xl);
 
     > *:where(:not(:last-child)) {
-        margin-bottom: $spacing-lg;
+        margin-bottom: var(--spacing-lg);
     }
 
     h3,
     h4 {
-        color: $cu-gray-70;
-        margin-bottom: $spacing-md;
+        color: var(--cu-gray-70);
+        margin-bottom: var(--spacing-md);
     }
 
     h3 {
-        margin-top: $spacing-2xl;
+        margin-top: var(--spacing-2xl);
     }
 
     h4 {
-        margin-top: $spacing-xl;
+        margin-top: var(--spacing-xl);
     }
 
     p:not(:last-child) {
-        margin-bottom: $spacing-md;
+        margin-bottom: var(--spacing-md);
     }
 }
 
 .footer h3 {
-    margin-bottom: $spacing-md;
+    margin-bottom: var(--spacing-md);
 }
 
 // Horizontal Rule
 hr {
-    background-color: $border-color-default;
+    background-color: var(--border-color-default);
     border: 0;
-    height: $border-width-md;
-    margin-block: $spacing-3xl;
+    height: var(--border-width-md);
+    margin-block: var(--spacing-3xl);
 }

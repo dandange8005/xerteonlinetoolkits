@@ -16,25 +16,132 @@
 /* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 /**
- * Cardiff University Design Tokens
- * Generated from Cardiff University Style Guide
- *
- * These tokens represent the official Cardiff University brand guidelines
- * and should be used as the single source of truth for all design values.
- *
- * DO NOT EDIT THESE VALUES - they are the official Cardiff brand.
- * To customize, override in _allvariables.scss
- */
-/**
  * Cardiff University Theme Variables
  *
- * This file maps design tokens to Xerte theme variables.
+ * This file defines CSS custom properties for runtime customization.
+ * No intermediate SCSS variables - just pure CSS custom properties.
  *
- * TO CREATE A NEW THEME VARIANT:
- * 1. Copy this file to a new theme folder
- * 2. Change the token mappings below (e.g., use different accent colors)
- * 3. The component styles will automatically use your new colors
+ * ARCHITECTURE:
+ * - CSS custom properties defined in :root
+ * - Components use var() to reference these properties
+ * - Users can override at runtime without recompiling
+ *
+ * TO CUSTOMIZE:
+ * Override CSS variables in your HTML or with JavaScript:
+ * <style>
+ *   :root {
+ *     --color-brand-primary: #your-color;
+ *     --spacing-lg: 32px;
+ *   }
+ * </style>
  */
+:root {
+  --cu-primary-red: #E4251B;
+  --cu-white: #FFFFFF;
+  --cu-black: #121212;
+  --cu-gray-10: #F2F2F2;
+  --cu-gray-20: #E5E5E5;
+  --cu-gray-30: #CCCCCC;
+  --cu-gray-40: #B3B3B3;
+  --cu-gray-50: #999999;
+  --cu-gray-60: #808080;
+  --cu-gray-70: #666666;
+  --cu-gray-80: #4C4C4C;
+  --cu-gray-90: #333333;
+  --cu-forest-green: #07873E;
+  --cu-cadet: #5EB99B;
+  --cu-stone: #C9C2BA;
+  --cu-light-blue: #1E90FF;
+  --cu-royal-blue: #4A42FF;
+  --cu-midnight-blue: #273573;
+  --cu-midnight-purple: #26192C;
+  --cu-orange: #E9761E;
+  --cu-yellow: #FFB300;
+  --cu-yellow-green: #85C041;
+  --cu-indigo: #570185;
+  --cu-dark-violet: #D401C5;
+  --color-text-primary: var(--cu-black);
+  --color-text-inverse: var(--cu-white);
+  --color-text-hint: var(--cu-primary-red);
+  --color-text-alert: var(--cu-primary-red);
+  --color-text-on-light: var(--cu-black);
+  --color-text-on-dark: var(--cu-white);
+  --color-text-on-brand: var(--cu-white);
+  --color-brand-primary: var(--cu-primary-red);
+  --color-brand-primary-hover: #C00E0E;
+  --color-brand-secondary: var(--cu-black);
+  --color-link-default: #045bc6;
+  --color-link-hover: #033a8a;
+  --color-link-visited: #551A8B;
+  --color-accent-green: var(--cu-forest-green);
+  --color-accent-blue: var(--cu-light-blue);
+  --color-accent-orange: var(--cu-orange);
+  --color-bg-body: #f9fafb;
+  --color-bg-page: var(--cu-white);
+  --color-bg-panel: var(--cu-gray-70);
+  --font-primary-body: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-primary-heading: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-secondary: "Darby Serif", Georgia, "Times New Roman", Times, serif;
+  --font-size-xs: clamp(0.75rem, 0.70rem + 0.25vw, 0.8125rem);
+  --font-size-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
+  --font-size-base: clamp(0.875rem, 0.80rem + 0.375vw, 1rem);
+  --font-size-md: clamp(1rem, 0.90rem + 0.5vw, 1.125rem);
+  --font-size-lg: clamp(1.125rem, 1.00rem + 0.625vw, 1.25rem);
+  --font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);
+  --font-size-2xl: clamp(1.5rem, 1.30rem + 1vw, 1.875rem);
+  --font-size-3xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);
+  --font-size-4xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-loose: 1.75;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 80px;
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-pill: 999px;
+  --border-width-sm: 1px;
+  --border-width-md: 2px;
+  --border-width-lg: 4px;
+  --border-color-default: var(--cu-gray-30);
+  --border-color-light: var(--cu-gray-20);
+  --border-color-dark: var(--cu-gray-40);
+  --shadow-none: none;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --btn-primary-bg: var(--cu-primary-red);
+  --btn-primary-text: var(--cu-white);
+  --btn-primary-hover: #C00E0E;
+  --btn-primary-disabled: #F8A8A5;
+  --btn-secondary-bg: var(--cu-white);
+  --btn-secondary-text: var(--cu-primary-red);
+  --btn-secondary-border: var(--cu-primary-red);
+  --btn-secondary-hover: #FFF4F4;
+  --animation-fast: 150ms;
+  --animation-medium: 300ms;
+  --animation-slow: 500ms;
+  --animation-easing: ease-in-out;
+  --animation-easing-in: ease-in;
+  --animation-easing-out: ease-out;
+  --z-index-dropdown: 200;
+  --z-index-sticky: 100;
+  --z-index-modal: 400;
+  --z-index-overlay: 300;
+}
+
 /**
  * Theme Enhancements
  *
@@ -81,21 +188,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 /**
- * Cardiff University Theme - Main Entry Point
- *
- * This file orchestrates the theme by importing modular SCSS components.
- * Each module serves a specific purpose:
- *
- * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
- * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
- * 3. base-elements        - Cardiff University branded element styles
- * 4. bootstrap-components - Bootstrap component overrides
- * 5. xerte-components     - Xerte Online Toolkits specific components
- * 6. utilities            - Helper classes and utility functions
- * 7. layouts              - Page layout and structural components
- */
-/* Import modular SCSS components - @use must come before @import */
-/**
  * Base Element Styles
  *
  * PURPOSE: Cardiff University branded styling for HTML elements
@@ -114,21 +206,21 @@ h1, h2, h3, h4, h5, h6 {
  * guidelines or creating new themes, this is the primary file to modify.
  */
 body {
-  font-family: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-  color: #121212;
-  background-color: #f9fafb;
-  line-height: 1.5;
+  font-family: var(--font-primary-body);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-body);
+  line-height: var(--line-height-normal);
 }
 
 a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a) {
-  color: #045bc6;
+  color: var(--color-link-default);
 }
 a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):visited {
-  color: #551A8B;
+  color: var(--color-link-visited);
 }
 a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
-  color: #033a8a;
+  color: var(--color-link-hover);
   text-decoration: none !important;
 }
 
@@ -138,38 +230,38 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: var(--font-primary-heading);
+  font-weight: var(--font-weight-bold);
 }
 
 h1 {
-  font-size: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
-  line-height: 1.2;
+  font-size: var(--font-size-3xl);
+  line-height: var(--line-height-tight);
 }
 
 h2 {
-  font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
-  line-height: 1.2;
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-tight);
 }
 
 h3 {
-  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
-  line-height: 1.2;
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-tight);
 }
 
 h4 {
-  font-size: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
-  line-height: 1.5;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-normal);
 }
 
 h5 {
-  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-  line-height: 1.5;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
 }
 
 h6 {
-  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
-  line-height: 1.5;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
 }
 
 .page-header {
@@ -177,33 +269,33 @@ h6 {
 }
 
 h2.sectionTitle {
-  font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
-  font-weight: 300;
-  margin-bottom: 16px;
-  color: #E4251B;
-  margin-top: 32px;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-light);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-brand-primary);
+  margin-top: var(--spacing-xl);
 }
 h2.sectionTitle p {
   margin-bottom: 0 !important;
 }
 
 h3.contentTitle {
-  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  font-size: var(--font-size-xl);
 }
 
 blockquote {
   display: grid;
-  gap: 16px;
-  font-family: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
-  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-  margin: 32px 0;
+  gap: var(--spacing-md);
+  font-family: var(--font-primary-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  font-size: var(--font-size-base);
+  margin: var(--spacing-xl) 0;
   margin-left: 0;
-  padding: 16px 32px;
+  padding: var(--spacing-md) var(--spacing-xl);
   background: none;
   border: none;
-  border-left: 5px solid #808080;
+  border-left: 5px solid var(--cu-gray-60);
   max-inline-size: 70ch;
 }
 blockquote::before, blockquote::after {
@@ -216,9 +308,9 @@ blockquote .quote::after {
   content: close-quote;
 }
 blockquote p {
-  font-weight: 400;
-  line-height: 1.5;
-  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  font-size: var(--font-size-base);
 }
 
 cite {
@@ -226,8 +318,8 @@ cite {
 }
 
 .source {
-  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
-  color: #B3B3B3;
+  font-size: var(--font-size-sm);
+  color: var(--cu-gray-40);
   text-align: right;
 }
 
@@ -236,55 +328,55 @@ section ol,
 .footer ul,
 .footer ol {
   padding: 0;
-  margin-left: 32px;
+  margin-left: var(--spacing-xl);
   display: grid;
-  gap: 8px;
+  gap: var(--spacing-sm);
 }
 section li,
 .footer li {
-  line-height: 1.5;
+  line-height: var(--line-height-normal);
 }
 section ul li,
 section ol li,
 .footer ul li,
 .footer ol li {
-  padding-left: 8px;
+  padding-left: var(--spacing-sm);
 }
 section li ul,
 .footer li ul {
-  margin-top: 16px;
+  margin-top: var(--spacing-md);
 }
 
 table {
-  background: #FFFFFF;
-  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
+  background: var(--cu-white);
+  -webkit-box-shadow: var(--shadow-sm);
+          box-shadow: var(--shadow-sm);
+  font-size: var(--font-size-sm);
   border: none;
 }
 table caption {
   text-align: left;
-  color: #808080;
-  padding-block: 4px;
+  color: var(--cu-gray-60);
+  padding-block: var(--spacing-xs);
 }
 table tr,
 table td {
   border: none;
 }
 table tr:nth-child(even) {
-  background: #F2F2F2;
+  background: var(--cu-gray-10);
 }
 table tr td:not(:first-of-type) {
-  border-left: 1px solid #CCCCCC;
+  border-left: 1px solid var(--border-color-default);
 }
 
 thead th {
-  background: #273573;
-  color: #FFFFFF;
-  font-weight: 700;
+  background: var(--cu-midnight-blue);
+  color: var(--cu-white);
+  font-weight: var(--font-weight-bold);
 }
 thead th:not(:first-of-type) {
-  border-left: 1px solid #FFFFFF;
+  border-left: 1px solid var(--cu-white);
 }
 
 img.pull-right {
@@ -301,10 +393,10 @@ figure {
 }
 
 figcaption {
-  background: #E5E5E5;
-  color: #4C4C4C;
-  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
-  padding: 4px;
+  background: var(--cu-gray-20);
+  color: var(--cu-gray-80);
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs);
   caption-side: bottom;
 }
 
@@ -318,9 +410,9 @@ figcaption {
   position: relative;
   overflow: hidden;
   padding-bottom: 56.32%;
-  -webkit-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  margin-bottom: 24px;
+  -webkit-box-shadow: var(--shadow-md);
+          box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-lg);
 }
 .iframe-container iframe {
   top: 0;
@@ -331,67 +423,52 @@ figcaption {
   border: 0;
 }
 .iframe-container--xerte, .iframe-container--h5p {
-  border: 4px solid #CCCCCC;
+  border: 4px solid var(--border-color-default);
 }
 .iframe-container--xerte {
   padding-bottom: 75%;
 }
 .iframe-container__caption {
-  background: #F2F2F2;
-  color: #121212;
+  background: var(--cu-gray-10);
+  color: var(--color-text-primary);
   font-style: italic;
-  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
-  padding: 4px;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs);
   margin-top: 0;
 }
 
 section {
-  margin-bottom: 64px;
+  margin-bottom: var(--spacing-3xl);
 }
 section > *:where(:not(:last-child)) {
-  margin-bottom: 24px;
+  margin-bottom: var(--spacing-lg);
 }
 section h3,
 section h4 {
-  color: #666666;
-  margin-bottom: 16px;
+  color: var(--cu-gray-70);
+  margin-bottom: var(--spacing-md);
 }
 section h3 {
-  margin-top: 48px;
+  margin-top: var(--spacing-2xl);
 }
 section h4 {
-  margin-top: 32px;
+  margin-top: var(--spacing-xl);
 }
 section p:not(:last-child) {
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-md);
 }
 
 .footer h3 {
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-md);
 }
 
 hr {
-  background-color: #CCCCCC;
+  background-color: var(--border-color-default);
   border: 0;
-  height: 2px;
-  margin-block: 64px;
+  height: var(--border-width-md);
+  margin-block: var(--spacing-3xl);
 }
 
-/**
- * Cardiff University Theme - Main Entry Point
- *
- * This file orchestrates the theme by importing modular SCSS components.
- * Each module serves a specific purpose:
- *
- * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
- * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
- * 3. base-elements        - Cardiff University branded element styles
- * 4. bootstrap-components - Bootstrap component overrides
- * 5. xerte-components     - Xerte Online Toolkits specific components
- * 6. utilities            - Helper classes and utility functions
- * 7. layouts              - Page layout and structural components
- */
-/* Import modular SCSS components - @use must come before @import */
 /**
  * Bootstrap Component Overrides
  *
@@ -407,8 +484,8 @@ hr {
  */
 .accordion-heading a {
   border-bottom: 0;
-  background: #E4251B;
-  color: #FFFFFF;
+  background: var(--color-brand-primary);
+  color: var(--color-text-on-brand);
 }
 
 .accordion-group {
@@ -418,64 +495,49 @@ hr {
 
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th {
-  background-color: #07873E;
-  color: #121212;
+  background-color: var(--color-accent-green);
+  color: var(--color-text-primary);
 }
 
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover,
 .nav-tabs > .active > a:focus {
-  color: #FFFFFF;
+  color: var(--color-text-on-dark);
   cursor: default;
-  background-color: #E4251B;
-  border: 1px solid #E4251B;
+  background-color: var(--color-brand-primary);
+  border: 1px solid var(--color-brand-primary);
   border-bottom-color: transparent;
 }
 
 .nav-pills > .active > a,
 .nav-pills > .active > a:hover,
 .nav-pills > .active > a:focus {
-  color: #FFFFFF;
-  background-color: #E4251B;
+  color: var(--cu-white);
+  background-color: var(--color-brand-primary);
 }
 
 .panel {
-  background-color: #E4251B;
-  border: 1px solid #E4251B;
+  background-color: var(--color-brand-primary);
+  border: 1px solid var(--color-brand-primary);
   border-radius: 4px;
-  color: #FFFFFF;
+  color: var(--cu-white);
 }
 
 .panel:after {
   font-size: 12px;
   font-weight: bold;
-  background-color: #E4251B;
-  border: 1px solid #E4251B;
-  color: #FFFFFF;
+  background-color: var(--color-brand-primary);
+  border: 1px solid var(--color-brand-primary);
+  color: var(--cu-white);
   border-radius: 4px 0 4px 0;
 }
 
 .well {
-  background-color: #07873E;
-  border: 1px solid #07873E;
-  color: #121212;
+  background-color: var(--color-accent-green);
+  border: 1px solid var(--color-accent-green);
+  color: var(--color-text-primary);
 }
 
-/**
- * Cardiff University Theme - Main Entry Point
- *
- * This file orchestrates the theme by importing modular SCSS components.
- * Each module serves a specific purpose:
- *
- * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
- * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
- * 3. base-elements        - Cardiff University branded element styles
- * 4. bootstrap-components - Bootstrap component overrides
- * 5. xerte-components     - Xerte Online Toolkits specific components
- * 6. utilities            - Helper classes and utility functions
- * 7. layouts              - Page layout and structural components
- */
-/* Import modular SCSS components - @use must come before @import */
 /**
  * Xerte-Specific Components
  *
@@ -490,45 +552,30 @@ hr {
  * They are specific to the Xerte Online Toolkits platform.
  */
 .alertMsg {
-  color: #E4251B;
+  color: var(--color-text-alert);
 }
 
 a.glossary:link,
 a.glossary:visited,
 a.glossary:hover,
 a.glossary:active {
-  color: #121212;
+  color: var(--color-text-primary);
 }
 
 .glossaryTip {
-  background-color: #E4251B;
-  color: #FFFFFF;
+  background-color: var(--color-brand-primary);
+  color: var(--cu-white);
 }
 
 .top-round {
-  color: #FFFFFF;
-  background: #E4251B;
+  color: var(--cu-white);
+  background: var(--color-brand-primary);
 }
 .top-round:hover, .top-round:focus {
-  background: #C00E0E;
-  color: #FFFFFF;
+  background: var(--color-brand-primary-hover);
+  color: var(--cu-white);
 }
 
-/**
- * Cardiff University Theme - Main Entry Point
- *
- * This file orchestrates the theme by importing modular SCSS components.
- * Each module serves a specific purpose:
- *
- * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
- * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
- * 3. base-elements        - Cardiff University branded element styles
- * 4. bootstrap-components - Bootstrap component overrides
- * 5. xerte-components     - Xerte Online Toolkits specific components
- * 6. utilities            - Helper classes and utility functions
- * 7. layouts              - Page layout and structural components
- */
-/* Import modular SCSS components - @use must come before @import */
 /**
  * Utility Classes
  *
@@ -547,26 +594,26 @@ a.glossary:active {
 }
 .list-icon li span {
   margin-right: 10px;
-  color: #E4251B;
+  color: var(--color-brand-primary);
   font-size: 20px;
 }
 
 .list-counter {
   counter-reset: orderedlist;
   list-style-type: none;
-  margin-left: 8px;
+  margin-left: var(--spacing-sm);
 }
 .list-counter li {
   position: relative;
-  padding-left: 48px;
+  padding-left: var(--spacing-2xl);
 }
 .list-counter li::before {
   counter-increment: orderedlist;
   content: counter(orderedlist);
-  width: 32px;
-  height: 32px;
-  background: #E5E5E5;
-  color: #666666;
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+  background: var(--cu-gray-20);
+  color: var(--cu-gray-70);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -576,7 +623,7 @@ a.glossary:active {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   position: absolute;
   left: 0;
   top: 0;
@@ -592,17 +639,17 @@ a.glossary:active {
 }
 
 .image-round {
-  border-radius: 4px;
+  border-radius: var(--radius-image);
 }
 
 .image-screenshots,
 .screenshots {
-  border: 1px solid #CCCCCC;
+  border: 1px solid var(--border-color-default);
   margin: 2rem auto;
   clear: both;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-image);
+  -webkit-box-shadow: var(--shadow-md);
+          box-shadow: var(--shadow-md);
 }
 
 .mt-0 {
@@ -610,23 +657,23 @@ a.glossary:active {
 }
 
 .mt-1 {
-  margin-top: 4px;
+  margin-top: var(--spacing-xs);
 }
 
 .mt-2 {
-  margin-top: 8px;
+  margin-top: var(--spacing-sm);
 }
 
 .mt-3 {
-  margin-top: 16px;
+  margin-top: var(--spacing-md);
 }
 
 .mt-4 {
-  margin-top: 24px;
+  margin-top: var(--spacing-lg);
 }
 
 .mt-5 {
-  margin-top: 32px;
+  margin-top: var(--spacing-xl);
 }
 
 .mb-0 {
@@ -634,23 +681,23 @@ a.glossary:active {
 }
 
 .mb-1 {
-  margin-bottom: 4px;
+  margin-bottom: var(--spacing-xs);
 }
 
 .mb-2 {
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-sm);
 }
 
 .mb-3 {
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-md);
 }
 
 .mb-4 {
-  margin-bottom: 24px;
+  margin-bottom: var(--spacing-lg);
 }
 
 .mb-5 {
-  margin-bottom: 32px;
+  margin-bottom: var(--spacing-xl);
 }
 
 .p-0 {
@@ -658,40 +705,25 @@ a.glossary:active {
 }
 
 .p-1 {
-  padding: 4px;
+  padding: var(--spacing-xs);
 }
 
 .p-2 {
-  padding: 8px;
+  padding: var(--spacing-sm);
 }
 
 .p-3 {
-  padding: 16px;
+  padding: var(--spacing-md);
 }
 
 .p-4 {
-  padding: 24px;
+  padding: var(--spacing-lg);
 }
 
 .p-5 {
-  padding: 32px;
+  padding: var(--spacing-xl);
 }
 
-/**
- * Cardiff University Theme - Main Entry Point
- *
- * This file orchestrates the theme by importing modular SCSS components.
- * Each module serves a specific purpose:
- *
- * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
- * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
- * 3. base-elements        - Cardiff University branded element styles
- * 4. bootstrap-components - Bootstrap component overrides
- * 5. xerte-components     - Xerte Online Toolkits specific components
- * 6. utilities            - Helper classes and utility functions
- * 7. layouts              - Page layout and structural components
- */
-/* Import modular SCSS components - @use must come before @import */
 /**
  * Layout Styles
  *
@@ -703,11 +735,11 @@ a.glossary:active {
  * Uses Cardiff University design tokens
  */
 .jumbotron {
-  background: #333333;
-  background-image: linear-gradient(135deg, #4C4C4C 0%, #333333 100%);
-  padding: 24px 48px;
+  background: var(--cu-gray-90);
+  background-image: linear-gradient(135deg, var(--cu-gray-80) 0%, var(--cu-gray-90) 100%);
+  padding: var(--spacing-lg) var(--spacing-2xl);
   background-size: cover;
-  color: #FFFFFF;
+  color: var(--cu-white);
   position: relative;
   isolation: isolate;
 }
@@ -736,7 +768,7 @@ a.glossary:active {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 16px;
+  gap: var(--spacing-md);
 }
 
 .titles {
@@ -744,39 +776,39 @@ a.glossary:active {
 }
 
 #pageTitle {
-  font-family: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  color: #FFFFFF;
-  line-height: 1.2;
+  font-family: var(--font-primary-heading);
+  color: var(--color-text-inverse);
+  line-height: var(--line-height-tight);
   letter-spacing: 1px;
-  margin-bottom: 16px;
-  font-size: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
-  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
   margin-top: 0;
 }
 
 #pageSubTitle {
-  font-weight: 400;
-  color: #FFFFFF;
-  padding-top: 4px;
-  font-size: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
-  line-height: 1.2;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-inverse);
+  padding-top: var(--spacing-xs);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-tight);
   margin-bottom: 0;
 }
 
 .navbar {
-  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  margin-bottom: 16px;
+  -webkit-box-shadow: var(--shadow-sm);
+          box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-md);
 }
 
 .navbar-inverse .navbar-inner {
-  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
-  font-weight: 500;
-  background: #E5E5E5;
-  background-color: #E5E5E5;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  background: var(--cu-gray-20);
+  background-color: var(--cu-gray-20);
   background-image: none;
   background-repeat: repeat-x;
-  border-color: #E5E5E5;
+  border-color: var(--cu-gray-20);
   -webkit-box-shadow: none;
           box-shadow: none;
   border: 0;
@@ -786,7 +818,7 @@ a.glossary:active {
 .navbar-inverse .nav-collapse .dropdown-menu a,
 .navbar-inverse .brand,
 .navbar-inverse .nav > li > a {
-  color: #4C4C4C;
+  color: var(--cu-gray-80);
   text-shadow: none;
   border-radius: 0;
   -webkit-transition: 0.25s ease-in-out;
@@ -799,19 +831,19 @@ a.glossary:active {
 .navbar-inverse .nav-collapse .dropdown-menu a:focus,
 .navbar-inverse .brand:hover,
 .navbar-inverse .nav > li > a:hover {
-  background-color: #FFFFFF;
-  color: #E4251B;
+  background-color: var(--cu-white);
+  color: var(--color-brand-primary);
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
 .navbar .nav > li.activePage > a,
 .navbar .nav > li.activePage > a:hover {
-  background-color: #FFFFFF;
+  background-color: var(--cu-white);
   text-decoration: none;
-  color: #E4251B;
-  -webkit-box-shadow: inset 0 -2px 0 0 #E4251B;
-          box-shadow: inset 0 -2px 0 0 #E4251B;
+  color: var(--color-brand-primary);
+  -webkit-box-shadow: inset 0 -2px 0 0 var(--color-brand-primary);
+          box-shadow: inset 0 -2px 0 0 var(--color-brand-primary);
 }
 
 .navbar.navbar-fixed-top {
@@ -821,13 +853,13 @@ a.glossary:active {
 .nav-list > .active > a,
 .nav-list > .active > a:hover,
 .nav-list > .active > a:focus {
-  background: #E4251B;
-  background-color: #E4251B;
+  background: var(--color-brand-primary);
+  background-color: var(--color-brand-primary);
 }
 
 .nav-list > li > a {
-  color: #121212;
-  font-size: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
   text-shadow: none;
 }
 
@@ -836,17 +868,17 @@ a.glossary:active {
 }
 
 .bs-docs-sidenav {
-  background-color: #FFFFFF;
-  border-radius: 4px;
+  background-color: var(--cu-white);
+  border-radius: var(--radius-md);
 }
 .bs-docs-sidenav > li > a {
-  color: #121212;
+  color: var(--color-text-primary);
 }
 .bs-docs-sidenav > li:first-child > a {
-  border-radius: 4px 4px 0 0;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 .bs-docs-sidenav > li:last-child > a {
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
 }
 .bs-docs-sidenav > .active > a {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
@@ -854,7 +886,7 @@ a.glossary:active {
   box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
 }
 .bs-docs-sidenav > li > a:hover {
-  background-color: #f9fafb;
+  background-color: var(--color-bg-body);
 }
 .bs-docs-sidenav a:hover .icon-chevron-right {
   opacity: 0.5;
@@ -865,24 +897,24 @@ a.glossary:active {
 }
 
 .footer {
-  padding-block: 32px;
+  padding-block: var(--spacing-xl);
   position: relative;
-  background-color: #4C4C4C;
+  background-color: var(--cu-gray-80);
   border: 0;
-  color: #FFFFFF;
+  color: var(--cu-white);
 }
 .footer p {
   margin-bottom: 0;
   text-align: center;
-  color: #FFFFFF;
+  color: var(--cu-white);
 }
 .footer a {
-  color: #FFFFFF;
+  color: var(--cu-white);
   text-decoration: underline;
 }
 .footer a:hover, .footer a:focus {
   text-decoration: none;
-  color: #FFFFFF;
+  color: var(--cu-white);
 }
 
 .footer-logo {
@@ -895,8 +927,8 @@ a.glossary:active {
   -webkit-writing-mode: vertical-lr;
       -ms-writing-mode: tb-lr;
           writing-mode: vertical-lr;
-  background: #E4251B;
-  color: #FFFFFF;
+  background: var(--color-brand-primary);
+  color: var(--cu-white);
   padding-inline: 16px;
   padding-block: 4px;
   -webkit-padding-after: 8px;
@@ -913,7 +945,7 @@ a.glossary:active {
   z-index: 1000;
   -webkit-transform: translateX(10px);
           transform: translateX(10px);
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   -webkit-transition: -webkit-transform 300ms ease-in-out;
   transition: -webkit-transform 300ms ease-in-out;
@@ -921,7 +953,7 @@ a.glossary:active {
   transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
   -webkit-box-shadow: -2px 9px 20px 4px rgba(0, 0, 0, 0.1);
           box-shadow: -2px 9px 20px 4px rgba(0, 0, 0, 0.1);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 #feedback_button:hover {
   -webkit-transform: translateX(2px);
@@ -930,12 +962,12 @@ a.glossary:active {
 #feedback_button i {
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
-  -webkit-margin-end: 4px;
-          margin-inline-end: 4px;
+  -webkit-margin-end: var(--spacing-xs);
+          margin-inline-end: var(--spacing-xs);
 }
 #feedback_button a:hover {
   text-decoration: none;
-  color: #FFFFFF;
+  color: var(--cu-white);
 }
 
 .evenSection {

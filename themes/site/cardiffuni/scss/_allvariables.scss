@@ -1,228 +1,201 @@
-@use "sass:color";
-@use "tokens" as t;
-
 /**
  * Cardiff University Theme Variables
  *
- * This file maps design tokens to Xerte theme variables.
+ * This file defines CSS custom properties for runtime customization.
+ * No intermediate SCSS variables - just pure CSS custom properties.
  *
- * TO CREATE A NEW THEME VARIANT:
- * 1. Copy this file to a new theme folder
- * 2. Change the token mappings below (e.g., use different accent colors)
- * 3. The component styles will automatically use your new colors
+ * ARCHITECTURE:
+ * - CSS custom properties defined in :root
+ * - Components use var() to reference these properties
+ * - Users can override at runtime without recompiling
+ *
+ * TO CUSTOMIZE:
+ * Override CSS variables in your HTML or with JavaScript:
+ * <style>
+ *   :root {
+ *     --color-brand-primary: #your-color;
+ *     --spacing-lg: 32px;
+ *   }
+ * </style>
  */
 
-// =============================================================================
-// COLOR MAPPING
-// Theme-specific color assignments from design tokens
-// =============================================================================
+:root {
+    // =========================================================================
+    // CARDIFF UNIVERSITY BRAND COLORS
+    // Institution-specific colors (cu- prefix)
+    // =========================================================================
 
-// Cardiff University Official Brand Colors (mapped from tokens)
-// These are available for reference or theme variants
-$cu-primary-red: t.$token-color-primary-red;
-$cu-white: t.$token-color-primary-white;
-$cu-black: t.$token-color-primary-black;
+    // Primary Colors
+    --cu-primary-red: #E4251B;
+    --cu-white: #FFFFFF;
+    --cu-black: #121212;
 
-// Greys
-$cu-gray-10: t.$token-color-gray-10;
-$cu-gray-20: t.$token-color-gray-20;
-$cu-gray-30: t.$token-color-gray-30;
-$cu-gray-40: t.$token-color-gray-40;
-$cu-gray-50: t.$token-color-gray-50;
-$cu-gray-60: t.$token-color-gray-60;
-$cu-gray-70: t.$token-color-gray-70;
-$cu-gray-80: t.$token-color-gray-80;
-$cu-gray-90: t.$token-color-gray-90;
+    // Grayscale
+    --cu-gray-10: #F2F2F2;
+    --cu-gray-20: #E5E5E5;
+    --cu-gray-30: #CCCCCC;
+    --cu-gray-40: #B3B3B3;
+    --cu-gray-50: #999999;
+    --cu-gray-60: #808080;
+    --cu-gray-70: #666666;
+    --cu-gray-80: #4C4C4C;
+    --cu-gray-90: #333333;
 
-// Accent Colors
-$cu-forest-green: t.$token-color-accent-forest-green;
-$cu-cadet: t.$token-color-accent-cadet;
-$cu-stone: t.$token-color-accent-stone;
-$cu-light-blue: t.$token-color-accent-light-blue;
-$cu-royal-blue: t.$token-color-accent-royal-blue;
-$cu-midnight-blue: t.$token-color-accent-midnight-blue;
-$cu-midnight-purple: t.$token-color-accent-midnight-purple;
-$cu-orange: t.$token-color-accent-orange;
-$cu-yellow: t.$token-color-accent-yellow;
-$cu-yellow-green: t.$token-color-accent-yellow-green;
-$cu-indigo: t.$token-color-accent-indigo;
-$cu-dark-violet: t.$token-color-accent-dark-violet;
+    // Accent Colors
+    --cu-forest-green: #07873E;
+    --cu-cadet: #5EB99B;
+    --cu-stone: #C9C2BA;
+    --cu-light-blue: #1E90FF;
+    --cu-royal-blue: #4A42FF;
+    --cu-midnight-blue: #273573;
+    --cu-midnight-purple: #26192C;
+    --cu-orange: #E9761E;
+    --cu-yellow: #FFB300;
+    --cu-yellow-green: #85C041;
+    --cu-indigo: #570185;
+    --cu-dark-violet: #D401C5;
 
-// =============================================================================
-// XERTE THEME VARIABLE MAPPING
-// Map tokens to semantic variable names
-// CUSTOMIZE THESE for theme variants
-// =============================================================================
+    // =========================================================================
+    // SEMANTIC DESIGN TOKENS
+    // Generic tokens that can be reused across themes
+    // =========================================================================
 
-// Text colors
-$color-text-primary: t.$token-text-primary;
-$color-text-inverse: t.$token-text-inverted;
-$color-text-hint: t.$token-color-primary-red;
-$color-text-alert: t.$token-color-primary-red;
+    // Text Colors
+    --color-text-primary: var(--cu-black);
+    --color-text-inverse: var(--cu-white);
+    --color-text-hint: var(--cu-primary-red);
+    --color-text-alert: var(--cu-primary-red);
+    --color-text-on-light: var(--cu-black);
+    --color-text-on-dark: var(--cu-white);
+    --color-text-on-brand: var(--cu-white);
 
-// Brand colors
-$color-brand-primary: t.$token-color-primary-red;
-$color-brand-primary-hover: t.$token-btn-primary-hover;
-$color-brand-secondary: t.$token-bg-dark;
+    // Brand Colors
+    --color-brand-primary: var(--cu-primary-red);
+    --color-brand-primary-hover: #C00E0E;
+    --color-brand-secondary: var(--cu-black);
 
-// Link colors
-$color-link-default: #045bc6;
-$color-link-hover: #033a8a;
-$color-link-visited: #551A8B;
+    // Link Colors
+    --color-link-default: #045bc6;
+    --color-link-hover: #033a8a;
+    --color-link-visited: #551A8B;
 
-// Accent colors (customize for theme variants)
-$color-accent-green: t.$token-color-accent-forest-green;
-$color-accent-blue: t.$token-color-accent-light-blue;
-$color-accent-orange: t.$token-color-accent-orange;
+    // Accent Colors
+    --color-accent-green: var(--cu-forest-green);
+    --color-accent-blue: var(--cu-light-blue);
+    --color-accent-orange: var(--cu-orange);
 
-// Background colors
-$color-bg-body: t.$token-bg-secondary;
-$color-bg-page: t.$token-bg-primary;
-$color-bg-panel: t.$token-color-gray-70;
+    // Background Colors
+    --color-bg-body: #f9fafb;
+    --color-bg-page: var(--cu-white);
+    --color-bg-panel: var(--cu-gray-70);
 
-// =============================================================================
-// TYPOGRAPHY MAPPING
-// =============================================================================
+    // =========================================================================
+    // TYPOGRAPHY
+    // =========================================================================
 
-// Font families (with Cardiff brand fonts + Inter fallback)
-$mainfonts: t.$token-font-primary-body;
-$headingfonts: t.$token-font-primary-heading;
-$secondaryfonts: t.$token-font-secondary;
+    // Font Families
+    --font-primary-body: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-primary-heading: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-secondary: "Darby Serif", Georgia, "Times New Roman", Times, serif;
 
-// Font sizes - Fluid (responsive, scales with viewport)
-// Base font scales from 14px (small screens) to 16px (large screens)
-$font-size-xs: clamp(0.75rem, 0.70rem + 0.25vw, 0.8125rem);   // 12px - 13px
-$font-size-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem); // 13px - 14px
-$font-size-base: clamp(0.875rem, 0.80rem + 0.375vw, 1rem);    // 14px - 16px
-$font-size-md: clamp(1rem, 0.90rem + 0.5vw, 1.125rem);        // 16px - 18px
-$font-size-lg: clamp(1.125rem, 1.00rem + 0.625vw, 1.25rem);   // 18px - 20px
-$font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);      // 20px - 24px
-$font-size-2xl: clamp(1.5rem, 1.30rem + 1vw, 1.875rem);       // 24px - 30px
-$font-size-3xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);  // 30px - 36px
-$font-size-4xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);       // 36px - 48px
+    // Font Sizes (fluid/responsive)
+    --font-size-xs: clamp(0.75rem, 0.70rem + 0.25vw, 0.8125rem);
+    --font-size-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
+    --font-size-base: clamp(0.875rem, 0.80rem + 0.375vw, 1rem);
+    --font-size-md: clamp(1rem, 0.90rem + 0.5vw, 1.125rem);
+    --font-size-lg: clamp(1.125rem, 1.00rem + 0.625vw, 1.25rem);
+    --font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);
+    --font-size-2xl: clamp(1.5rem, 1.30rem + 1vw, 1.875rem);
+    --font-size-3xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);
+    --font-size-4xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);
 
-// Font sizes - specific use cases
-$font-size-heading-sm: $font-size-lg;
-$font-size-heading-md: $font-size-xl;
-$font-size-heading-lg: $font-size-2xl;
-$font-size-heading-xl: $font-size-3xl;
+    // Line Heights
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-loose: 1.75;
 
-// Line heights
-$line-height-tight: t.$token-line-height-tight;
-$line-height-normal: t.$token-line-height-base;
-$line-height-loose: t.$token-line-height-loose;
+    // Font Weights
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
 
-// Font weights
-$font-weight-light: t.$token-font-weight-light;
-$font-weight-regular: t.$token-font-weight-regular;
-$font-weight-medium: t.$token-font-weight-medium;
-$font-weight-bold: t.$token-font-weight-bold;
+    // =========================================================================
+    // SPACING
+    // =========================================================================
 
-// =============================================================================
-// TEXT COLOR ON BACKGROUNDS
-// Text colors for different background colors
-// =============================================================================
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+    --spacing-3xl: 64px;
+    --spacing-4xl: 80px;
 
-$color-text-on-light: t.$token-text-primary;
-$color-text-on-dark: t.$token-text-inverted;
-$color-text-on-brand: t.$token-text-inverted;
+    // =========================================================================
+    // BORDERS
+    // =========================================================================
 
-// =============================================================================
-// SPACING MAPPING
-// =============================================================================
+    // Border Radius
+    --radius-none: 0;
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+    --radius-pill: 999px;
 
-$spacing-xs: t.$token-spacing-xs;
-$spacing-sm: t.$token-spacing-sm;
-$spacing-md: t.$token-spacing-md;
-$spacing-lg: t.$token-spacing-lg;
-$spacing-xl: t.$token-spacing-xl;
-$spacing-2xl: t.$token-spacing-2xl;
-$spacing-3xl: t.$token-spacing-3xl;
-$spacing-4xl: t.$token-spacing-4xl;
+    // Border Width
+    --border-width-sm: 1px;
+    --border-width-md: 2px;
+    --border-width-lg: 4px;
 
-// Page layout spacing
-$spacing-content-margin: 2%;
-$spacing-page-padding: t.$token-spacing-lg;
+    // Border Colors
+    --border-color-default: var(--cu-gray-30);
+    --border-color-light: var(--cu-gray-20);
+    --border-color-dark: var(--cu-gray-40);
 
-// =============================================================================
-// BORDER MAPPING
-// =============================================================================
+    // =========================================================================
+    // SHADOWS
+    // =========================================================================
 
-// Border radius
-$radius-none: t.$token-radius-none;
-$radius-sm: t.$token-radius-sm;
-$radius-md: t.$token-radius-md;
-$radius-lg: t.$token-radius-lg;
-$radius-xl: t.$token-radius-xl;
-$radius-pill: t.$token-radius-pill;
+    --shadow-none: none;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
-// Specific element radius
-$radius-image: t.$token-radius-md;
+    // =========================================================================
+    // BUTTONS
+    // =========================================================================
 
-// Border width
-$border-width-sm: t.$token-border-width-sm;
-$border-width-md: t.$token-border-width-md;
-$border-width-lg: t.$token-border-width-lg;
+    --btn-primary-bg: var(--cu-primary-red);
+    --btn-primary-text: var(--cu-white);
+    --btn-primary-hover: #C00E0E;
+    --btn-primary-disabled: #F8A8A5;
 
-// Border colors
-$border-color-default: $cu-gray-30;
-$border-color-light: $cu-gray-20;
-$border-color-dark: $cu-gray-40;
+    --btn-secondary-bg: var(--cu-white);
+    --btn-secondary-text: var(--cu-primary-red);
+    --btn-secondary-border: var(--cu-primary-red);
+    --btn-secondary-hover: #FFF4F4;
 
-// =============================================================================
-// SHADOW MAPPING
-// =============================================================================
+    // =========================================================================
+    // ANIMATION
+    // =========================================================================
 
-$shadow-none: t.$token-shadow-none;
-$shadow-sm: t.$token-shadow-sm;
-$shadow-md: t.$token-shadow-md;
-$shadow-lg: t.$token-shadow-lg;
+    --animation-fast: 150ms;
+    --animation-medium: 300ms;
+    --animation-slow: 500ms;
 
-// Interface shadow
-$shadow-interface: t.$token-shadow-md;
+    --animation-easing: ease-in-out;
+    --animation-easing-in: ease-in;
+    --animation-easing-out: ease-out;
 
-// =============================================================================
-// BUTTON COLOR MAPPING
-// =============================================================================
+    // =========================================================================
+    // Z-INDEX
+    // =========================================================================
 
-$btn-primary-bg: t.$token-btn-primary-bg;
-$btn-primary-text: t.$token-btn-primary-text;
-$btn-primary-hover: t.$token-btn-primary-hover;
-$btn-primary-disabled: t.$token-btn-primary-disabled;
-
-$btn-secondary-bg: t.$token-btn-secondary-bg;
-$btn-secondary-text: t.$token-btn-secondary-text;
-$btn-secondary-border: t.$token-btn-secondary-border;
-$btn-secondary-hover: t.$token-btn-secondary-hover;
-
-// =============================================================================
-// BREAKPOINT MAPPING
-// =============================================================================
-
-$breakpoint-xs: t.$token-breakpoint-xs;
-$breakpoint-sm: t.$token-breakpoint-sm;
-$breakpoint-md: t.$token-breakpoint-md;
-$breakpoint-lg: t.$token-breakpoint-lg;
-$breakpoint-xl: t.$token-breakpoint-xl;
-$breakpoint-2xl: t.$token-breakpoint-2xl;
-
-// =============================================================================
-// ANIMATION MAPPING
-// =============================================================================
-
-$animation-fast: t.$token-animation-fast;
-$animation-medium: t.$token-animation-medium;
-$animation-slow: t.$token-animation-slow;
-
-$animation-easing: t.$token-animation-easing-default;
-$animation-easing-in: t.$token-animation-easing-in;
-$animation-easing-out: t.$token-animation-easing-out;
-
-// =============================================================================
-// Z-INDEX MAPPING
-// =============================================================================
-
-$z-index-dropdown: t.$token-z-index-dropdown;
-$z-index-sticky: t.$token-z-index-sticky;
-$z-index-modal: t.$token-z-index-modal;
-$z-index-overlay: t.$token-z-index-overlay;
+    --z-index-dropdown: 200;
+    --z-index-sticky: 100;
+    --z-index-modal: 400;
+    --z-index-overlay: 300;
+}
