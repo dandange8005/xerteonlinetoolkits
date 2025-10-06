@@ -4,31 +4,362 @@
  * PURPOSE: Cardiff University branded overrides for Bootstrap components
  *
  * This module customizes Bootstrap UI components with Cardiff University branding:
- * - Navigation components (tabs, pills, accordions)
+ * - Navigation components (tabs, pills, accordions, carousels)
  * - Content containers (panels, wells)
  * - Tables (striped table styling)
+ * - Typography (lead text)
  *
  * NOTE: These styles override Bootstrap's default component styling.
  * Only Bootstrap-specific component classes should be added here.
  */
 
 // =============================================================================
-// ACCORDIONS
+// NAVIGATION TABS
+// Modern tabbed navigation with underline active state
 // =============================================================================
 
-.accordion-heading a {
-    border-bottom: 0;
-    background: var(--color-brand-primary);
-    color: var(--color-text-on-brand);
+// Tab container
+ul.nav-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0;
+    padding-inline: 0;
+    list-style: none;
+    border-bottom: 1px solid var(--cu-gray-30);
+    background: transparent;
+}
+
+// Individual tab items
+.nav-tabs > li {
+    margin-bottom: 0;
+}
+
+// Tab links - default state
+.nav-tabs > li > a {
+    display: block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    color: var(--cu-gray-60);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    margin-bottom: -1px;
+    transition: all var(--animation-fast) var(--animation-easing);
+}
+
+// Tab links - hover state
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+    color: var(--color-text-primary);
+    background-color: transparent;
+    border-bottom-color: var(--cu-gray-40);
+    text-decoration: none;
+}
+
+// Tab links - active state (modern underline style)
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover,
+.nav-tabs > .active > a:focus {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-medium);
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid var(--color-brand-secondary);
+    cursor: default;
+    outline: none; // Remove focus outline
+    box-shadow: none; // Remove any focus box-shadow
+}
+
+// Tab content container
+.nav-tabs + .tab-content {
+    background: var(--cu-white);
+    padding: var(--spacing-md);
+    border: none;
+}
+
+// Tab pane content
+.tab-pane {
+    padding-inline: 0;
+}
+
+.tab-pane > *:where(:not(:last-child)) {
+    margin-bottom: var(--spacing-lg);
+}
+
+// =============================================================================
+// NAVIGATION PILLS
+// Modern pill-style navigation buttons
+// =============================================================================
+
+ul.nav-pills {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    padding-inline: 0;
+    list-style: none;
+}
+
+// Pill links - default state
+.nav-pills > li > a {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    color: var(--color-brand-secondary);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
+    text-decoration: none;
+    background-color: transparent;
+    border: 1px solid var(--color-brand-secondary);
+    border-radius: var(--radius-md);
+    transition: all var(--animation-fast) var(--animation-easing);
+}
+
+// Pill links - hover and focus (non-active)
+.nav-pills > li:not(.active) > a:hover,
+.nav-pills > li:not(.active) > a:focus {
+    color: var(--cu-white);
+    background-color: var(--color-brand-secondary);
+    border-color: var(--color-brand-secondary);
+    text-decoration: none;
+}
+
+// Pill links - active state
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover,
+.nav-pills > .active > a:focus {
+    color: var(--cu-white);
+    background-color: var(--color-brand-secondary);
+    border-color: var(--color-brand-secondary);
+    cursor: default;
+    outline: none;
+    box-shadow: none;
+}
+
+// =============================================================================
+// ACCORDIONS
+// Collapsible content sections with toggle controls
+// =============================================================================
+
+// // Accordion container spacing
+// .navigator.accordion {
+//     margin-block: var(--spacing-xl);
+// }
+
+// // Accordion group - individual accordion item
+// .accordion-group {
+//     margin-bottom: var(--spacing-xs);
+//     border: none;
+//     background-color: var(--cu-gray-10);
+//     border-radius: var(--radius-md);
+// }
+
+// // Accordion heading link
+// .accordion-heading a,
+// a.accordion-toggle {
+//     display: flex;
+//     align-items: center;
+//     // justify-content: space-between;
+//     // padding: var(--spacing-md) var(--spacing-lg);
+//     // background: var(--cu-gray-10);
+//     // color: var(--color-link-default);
+//     font-weight: var(--font-weight-medium);
+//     // border-bottom: 0;
+//     // border-radius: var(--radius-md);
+//     // position: relative;
+//     // text-decoration: none;
+// }
+
+// // Accordion hover and focus states
+// a.accordion-toggle:hover,
+// a.accordion-toggle:focus {
+//     background-color: var(--cu-gray-20);
+//     text-decoration: none;
+// }
+
+// // Accordion toggle icon - collapsed state (right-pointing chevron)
+// a.accordion-toggle.collapsed::after {
+//     font-family: "Font Awesome 5 Free";
+//     font-weight: 900;
+//     content: "\f054"; // chevron-right
+//     display: inline-block;
+//     font-style: normal;
+//     font-variant: normal;
+//     text-rendering: auto;
+//     -webkit-font-smoothing: antialiased;
+//     font-size: var(--font-size-lg);
+//     color: var(--color-link-default);
+//     margin-left: auto;
+//     flex-shrink: 0;
+//     position:absolute;
+//     right: var(--spacing-lg);
+// }
+
+// // Accordion toggle icon - expanded state (down-pointing chevron)
+// a.accordion-toggle:not(.collapsed)::after {
+//     font-family: "Font Awesome 5 Free";
+//     font-weight: 900;
+//     content: "\f078"; // chevron-down
+//     display: inline-block;
+//     font-style: normal;
+//     font-variant: normal;
+//     text-rendering: auto;
+//     -webkit-font-smoothing: antialiased;
+//     font-size: var(--font-size-lg);
+//     color: var(--color-link-default);
+//     margin-left: auto;
+//     flex-shrink: 0;
+// }
+
+
+/* Accordions */
+.navigator.accordion {
+    margin-block: var(--spacing-xl);
 }
 
 .accordion-group {
-    margin-bottom: 2px;
-    border: none;
+    overflow: clip;
+}   
+
+
+.accordion-heading .accordion-toggle {
+    display: flex;
+    align-items: center;
+    padding-right: 2rem;
+    position: relative;
+}
+
+// Accordion heading link
+
+.accordion-heading a,
+a.accordion-toggle {
+    // justify-content: space-between;
+    // padding: var(--spacing-md) var(--spacing-lg);
+    // background: var(--cu-gray-10);
+    // color: var(--color-link-default);
+    font-weight: var(--font-weight-medium);
+    // border-bottom: 0;
+    // border-radius: var(--radius-md);
+    // position: relative;
+    // text-decoration: none;
+}
+
+// Accordion hover and focus states
+a.accordion-toggle:hover,
+a.accordion-toggle:focus {
+    background-color: var(--cu-gray-10);
+    text-decoration: none;
+}
+
+// Accordion toggle icon with smooth rotation transition
+a.accordion-toggle::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f054"; // chevron-right
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    right: 0.75rem;
+    vertical-align: middle;
+    position: absolute;
+    transition: transform var(--animation-medium) var(--animation-easing);
+    transform: rotate(0deg) !important; // Default: points right (collapsed)
+}
+
+// Expanded state - rotate chevron 90 degrees to point down
+a.accordion-toggle[aria-expanded="true"]::after {
+    transform: rotate(90deg) !important; // Points down when expanded
+}
+
+// Accordion inner content spacing
+.accordion-inner {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--cu-white);
+}
+
+//add space to content elements within accordion
+.accordion-inner > *:where(:not(:last-child)) {
+    margin-bottom: var(--spacing-lg);
+}
+
+// =============================================================================
+// CAROUSEL
+// Image/content slider with navigation controls
+// =============================================================================
+
+// Carousel navigation controls (prev/next buttons)
+.carousel-control {
+    background-color: var(--cu-gray-90);
+    font-size: var(--font-size-lg);
+    font-weight: 900;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 0;
+}
+
+// Carousel indicators (dot navigation)
+.carousel-indicators {
+    display: block;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    top: auto;
+    right: auto;
+}
+
+// =============================================================================
+// PANELS
+// Content container boxes with optional headers
+// =============================================================================
+
+.panel {
+    background-color: var(--color-brand-primary);
+    border: 1px solid var(--color-brand-primary);
+    border-radius: var(--radius-md);
+    color: var(--cu-white);
+    padding-left: 2rem;
+    padding-top: var(--spacing-lg);
+
+    // Remove extra spacing from first and last children
+    > *:first-child {
+        margin-top: 0;
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// Panel label/badge (appears in corner)
+.panel::after {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    background-color: var(--cu-gray-10);
+    border: 1px solid var(--color-brand-primary);
+    color: var(--cu-white);
+    border-radius: var(--radius-md) 0 var(--radius-md) 0;
+    padding-inline: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+// =============================================================================
+// WELLS
+// Subtle inset container for highlighting content
+// =============================================================================
+
+.well {
+    background-color: var(--color-accent-green);
+    border: 1px solid var(--color-accent-green);
+    color: var(--color-text-primary);
 }
 
 // =============================================================================
 // TABLES
+// Striped table rows for better readability
 // =============================================================================
 
 .table-striped tbody > tr:nth-child(odd) > td,
@@ -38,57 +369,13 @@
 }
 
 // =============================================================================
-// NAVIGATION TABS
+// LEAD TEXT
+// Introductory paragraph styling with larger font
 // =============================================================================
 
-.nav-tabs > .active > a,
-.nav-tabs > .active > a:hover,
-.nav-tabs > .active > a:focus {
-    color: var(--color-text-on-dark);
-    cursor: default;
-    background-color: var(--color-brand-primary);
-    border: 1px solid var(--color-brand-primary);
-    border-bottom-color: transparent;
-}
-
-// =============================================================================
-// NAVIGATION PILLS
-// =============================================================================
-
-.nav-pills > .active > a,
-.nav-pills > .active > a:hover,
-.nav-pills > .active > a:focus {
-    color: var(--cu-white);
-    background-color: var(--color-brand-primary);
-}
-
-// =============================================================================
-// PANELS
-// =============================================================================
-
-.panel {
-    background-color: var(--color-brand-primary);
-    border: 1px solid var(--color-brand-primary);
-    border-radius: 4px;
-    color: var(--cu-white);
-}
-
-// Echo out a label for the example
-.panel:after {
-    font-size: 12px;
-    font-weight: bold;
-    background-color: var(--color-brand-primary);
-    border: 1px solid var(--color-brand-primary);
-    color: var(--cu-white);
-    border-radius: 4px 0 4px 0;
-}
-
-// =============================================================================
-// WELLS
-// =============================================================================
-
-.well {
-    background-color: var(--color-accent-green);
-    border: 1px solid var(--color-accent-green);
-    color: var(--color-text-primary);
+.lead {
+    font-size: var(--font-size-xl);
+    color: var(--cu-gray-60);
+    line-height: var(--line-height-tight);
+    font-weight: var(--font-weight-light);
 }

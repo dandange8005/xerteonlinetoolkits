@@ -390,7 +390,7 @@ table tr td:not(:first-of-type) {
 }
 
 thead th {
-  background: var(--cu-midnight-blue);
+  background: var(--cu-gray-80);
   color: var(--cu-white);
   font-weight: var(--font-weight-bold);
 }
@@ -494,22 +494,242 @@ hr {
  * PURPOSE: Cardiff University branded overrides for Bootstrap components
  *
  * This module customizes Bootstrap UI components with Cardiff University branding:
- * - Navigation components (tabs, pills, accordions)
+ * - Navigation components (tabs, pills, accordions, carousels)
  * - Content containers (panels, wells)
  * - Tables (striped table styling)
+ * - Typography (lead text)
  *
  * NOTE: These styles override Bootstrap's default component styling.
  * Only Bootstrap-specific component classes should be added here.
  */
-.accordion-heading a {
-  border-bottom: 0;
-  background: var(--color-brand-primary);
-  color: var(--color-text-on-brand);
+ul.nav-tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0;
+  margin-bottom: 0;
+  padding-inline: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--cu-gray-30);
+  background: transparent;
+}
+
+.nav-tabs > li {
+  margin-bottom: 0;
+}
+
+.nav-tabs > li > a {
+  display: block;
+  padding: var(--spacing-md) var(--spacing-lg);
+  color: var(--cu-gray-60);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  margin-bottom: -1px;
+  -webkit-transition: all var(--animation-fast) var(--animation-easing);
+  transition: all var(--animation-fast) var(--animation-easing);
+}
+
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+  color: var(--color-text-primary);
+  background-color: transparent;
+  border-bottom-color: var(--cu-gray-40);
+  text-decoration: none;
+}
+
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover,
+.nav-tabs > .active > a:focus {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid var(--color-brand-secondary);
+  cursor: default;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.nav-tabs + .tab-content {
+  background: var(--cu-white);
+  padding: var(--spacing-md);
+  border: none;
+}
+
+.tab-pane {
+  padding-inline: 0;
+}
+
+.tab-pane > *:where(:not(:last-child)) {
+  margin-bottom: var(--spacing-lg);
+}
+
+ul.nav-pills {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  padding-inline: 0;
+  list-style: none;
+}
+
+.nav-pills > li > a {
+  display: block;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  color: var(--color-brand-secondary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid var(--color-brand-secondary);
+  border-radius: var(--radius-md);
+  -webkit-transition: all var(--animation-fast) var(--animation-easing);
+  transition: all var(--animation-fast) var(--animation-easing);
+}
+
+.nav-pills > li:not(.active) > a:hover,
+.nav-pills > li:not(.active) > a:focus {
+  color: var(--cu-white);
+  background-color: var(--color-brand-secondary);
+  border-color: var(--color-brand-secondary);
+  text-decoration: none;
+}
+
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover,
+.nav-pills > .active > a:focus {
+  color: var(--cu-white);
+  background-color: var(--color-brand-secondary);
+  border-color: var(--color-brand-secondary);
+  cursor: default;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+/* Accordions */
+.navigator.accordion {
+  margin-block: var(--spacing-xl);
 }
 
 .accordion-group {
-  margin-bottom: 2px;
-  border: none;
+  overflow: clip;
+}
+
+.accordion-heading .accordion-toggle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-right: 2rem;
+  position: relative;
+}
+
+.accordion-heading a,
+a.accordion-toggle {
+  font-weight: var(--font-weight-medium);
+}
+
+a.accordion-toggle:hover,
+a.accordion-toggle:focus {
+  background-color: var(--cu-gray-10);
+  text-decoration: none;
+}
+
+a.accordion-toggle::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f054";
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  right: 0.75rem;
+  vertical-align: middle;
+  position: absolute;
+  -webkit-transition: -webkit-transform var(--animation-medium) var(--animation-easing);
+  transition: -webkit-transform var(--animation-medium) var(--animation-easing);
+  transition: transform var(--animation-medium) var(--animation-easing);
+  transition: transform var(--animation-medium) var(--animation-easing), -webkit-transform var(--animation-medium) var(--animation-easing);
+  -webkit-transform: rotate(0deg) !important;
+          transform: rotate(0deg) !important;
+}
+
+a.accordion-toggle[aria-expanded=true]::after {
+  -webkit-transform: rotate(90deg) !important;
+          transform: rotate(90deg) !important;
+}
+
+.accordion-inner {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--cu-white);
+}
+
+.accordion-inner > *:where(:not(:last-child)) {
+  margin-bottom: var(--spacing-lg);
+}
+
+.carousel-control {
+  background-color: var(--cu-gray-90);
+  font-size: var(--font-size-lg);
+  font-weight: 900;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  margin-top: 0;
+}
+
+.carousel-indicators {
+  display: block;
+  bottom: 1rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: auto;
+  right: auto;
+}
+
+.panel {
+  background-color: var(--color-brand-primary);
+  border: 1px solid var(--color-brand-primary);
+  border-radius: var(--radius-md);
+  color: var(--cu-white);
+  padding-left: 2rem;
+  padding-top: var(--spacing-lg);
+}
+.panel > *:first-child {
+  margin-top: 0;
+}
+.panel > *:last-child {
+  margin-bottom: 0;
+}
+
+.panel::after {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  background-color: var(--cu-gray-10);
+  border: 1px solid var(--color-brand-primary);
+  color: var(--cu-white);
+  border-radius: var(--radius-md) 0 var(--radius-md) 0;
+  padding-inline: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.well {
+  background-color: var(--color-accent-green);
+  border: 1px solid var(--color-accent-green);
+  color: var(--color-text-primary);
 }
 
 .table-striped tbody > tr:nth-child(odd) > td,
@@ -518,43 +738,11 @@ hr {
   color: var(--color-text-primary);
 }
 
-.nav-tabs > .active > a,
-.nav-tabs > .active > a:hover,
-.nav-tabs > .active > a:focus {
-  color: var(--color-text-on-dark);
-  cursor: default;
-  background-color: var(--color-brand-primary);
-  border: 1px solid var(--color-brand-primary);
-  border-bottom-color: transparent;
-}
-
-.nav-pills > .active > a,
-.nav-pills > .active > a:hover,
-.nav-pills > .active > a:focus {
-  color: var(--cu-white);
-  background-color: var(--color-brand-primary);
-}
-
-.panel {
-  background-color: var(--color-brand-primary);
-  border: 1px solid var(--color-brand-primary);
-  border-radius: 4px;
-  color: var(--cu-white);
-}
-
-.panel:after {
-  font-size: 12px;
-  font-weight: bold;
-  background-color: var(--color-brand-primary);
-  border: 1px solid var(--color-brand-primary);
-  color: var(--cu-white);
-  border-radius: 4px 0 4px 0;
-}
-
-.well {
-  background-color: var(--color-accent-green);
-  border: 1px solid var(--color-accent-green);
-  color: var(--color-text-primary);
+.lead {
+  font-size: var(--font-size-xl);
+  color: var(--cu-gray-60);
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-light);
 }
 
 /**
