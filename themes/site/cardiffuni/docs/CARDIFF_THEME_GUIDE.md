@@ -1,5 +1,7 @@
 # Cardiff University Theme Development Guide
 
+**Last Updated:** October 6, 2025
+
 This guide explains how to work with the Cardiff University theme for Xerte Online Toolkits (Bootstrap/Site templates).
 
 ## Table of Contents
