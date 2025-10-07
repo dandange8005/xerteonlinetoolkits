@@ -87,6 +87,8 @@ CKEDITOR.stylesSet.add( 'default', [
     { name: 'Speech Bubble 5', element: 'div', wrap:true, attributes: { 'class': 'speech-bubble5'} },
     { name: 'Speech Bubble 6', element: 'div', wrap:true, attributes: { 'class': 'speech-bubble6'} },
 
+	{ name: 'Cardiff Test Style', element: 'div', wrap:true, attributes: { 'class': 'cardiff-test-style'} },
+
 	{ name: 'Marker',			element: 'span', attributes: { 'class': 'marker' } },
 
 	{ name: 'Big',				element: 'big' },

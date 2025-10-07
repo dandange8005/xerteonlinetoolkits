@@ -21,6 +21,7 @@
 @use "scss/xerte-components";      // Xerte-specific components
 @use "scss/utilities";             // Utility classes
 @use "scss/layouts";               // Layout components
+@use "scss/editorstyles";          // CKEditor custom styles
 
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');

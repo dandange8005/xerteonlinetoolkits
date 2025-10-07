@@ -1183,4 +1183,14 @@ a.glossary:active {
 
 .oddSection {
   background: #f9f9f9;
+}
+
+/* Cardiff Test Style - CKEditor custom style */
+.cardiff-test-style {
+  padding: var(--spacing-md, 1rem);
+  background: var(--cu-primary-red, #E4251B);
+  color: var(--cu-white, #FFFFFF);
+  border-left: 4px solid var(--cu-forest-green, #07873E);
+  border-radius: var(--radius-sm, 4px);
+  margin: var(--spacing-md, 1rem) 0;
 }/*# sourceMappingURL=cardiffuni.css.map */
