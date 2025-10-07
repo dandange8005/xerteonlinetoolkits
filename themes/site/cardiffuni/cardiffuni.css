@@ -464,7 +464,6 @@ section > *:where(:not(:last-child)) {
 }
 section h3,
 section h4 {
-  color: var(--cu-gray-70);
   margin-bottom: var(--spacing-md);
 }
 section h3 {
@@ -520,7 +519,7 @@ ul.nav-tabs {
 
 .nav-tabs > li > a {
   display: block;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-lg);
   color: var(--cu-gray-60);
   font-weight: var(--font-weight-medium);
   font-size: var(--font-size-base);
