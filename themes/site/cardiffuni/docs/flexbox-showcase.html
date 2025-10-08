@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Utilities Showcase - Cardiff University Theme</title>
+    <link rel="stylesheet" href="../cardiffuni.css">
+    <style>
+        /* Demo-specific styles */
+        body {
+            font-family: var(--font-primary-body);
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background: var(--color-bg-body);
+            margin: 0;
+            padding: 0;
+        }
+
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl);
+        }
+
+        .demo-section {
+            background: white;
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .demo-section h2 {
+            color: var(--color-brand-primary);
+            margin-top: 0;
+            border-bottom: 2px solid var(--cu-gray-20);
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .demo-section h3 {
+            color: var(--cu-gray-80);
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Visual demo boxes */
+        .demo-box {
+            background: linear-gradient(135deg, var(--cu-light-blue) 0%, var(--cu-royal-blue) 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .demo-box-alt {
+            background: linear-gradient(135deg, var(--cu-forest-green) 0%, var(--cu-cadet) 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .demo-box-accent {
+            background: linear-gradient(135deg, var(--cu-orange) 0%, var(--cu-yellow) 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .code-block {
+            background: var(--cu-gray-90);
+            color: var(--cu-gray-20);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: var(--spacing-md) 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--cu-primary-red) 0%, var(--cu-black) 100%);
+            color: white;
+            padding: var(--spacing-3xl) var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .page-header p {
+            margin: var(--spacing-sm) 0 0;
+            opacity: 0.9;
+        }
+
+        .breakpoint-indicator {
+            position: fixed;
+            bottom: var(--spacing-md);
+            right: var(--spacing-md);
+            background: var(--cu-black);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        @media (min-width: 806px) {
+            .breakpoint-indicator::before {
+                content: '≥806px (Desktop)';
+            }
+        }
+
+        @media (max-width: 805px) {
+            .breakpoint-indicator::before {
+                content: '<806px (Mobile)';
+            }
+        }
+
+        .demo-highlight {
+            border: 2px dashed var(--cu-primary-red);
+            padding: var(--spacing-xs);
+        }
+
+        .nav-demo {
+            background: var(--cu-gray-90);
+            color: white;
+            padding: var(--spacing-md);
+            border-radius: 4px;
+        }
+
+        .nav-demo a {
+            color: white;
+            text-decoration: none;
+            padding: var(--spacing-sm);
+        }
+
+        .nav-demo a:hover {
+            color: var(--cu-yellow);
+        }
+
+        .card-demo {
+            border: 1px solid var(--cu-gray-20);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .card-demo img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: var(--cu-gray-20);
+        }
+
+        .card-demo-content {
+            padding: var(--spacing-md);
+        }
+
+        .icon-demo {
+            width: 40px;
+            height: 40px;
+            background: var(--cu-primary-red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .toc {
+            background: var(--cu-gray-10);
+            padding: var(--spacing-lg);
+            border-radius: 4px;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc li {
+            margin: var(--spacing-xs) 0;
+        }
+
+        .toc a {
+            color: var(--color-link-default);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>Flexbox Utilities Showcase</h1>
+        <p>Cardiff University Theme - Enhanced Flexbox System</p>
+    </div>
+
+    <div class="demo-container">
+        <!-- Info Notice -->
+        <div style="background: linear-gradient(135deg, var(--cu-light-blue), var(--cu-royal-blue)); color: white; padding: var(--spacing-xl); border-radius: 8px; margin-bottom: var(--spacing-2xl);">
+            <h2 style="margin-top: 0; color: white;">💡 Recommended Approach</h2>
+            <p><strong>Use flex-basis utilities</strong> (`.flex-300`, `.flex-400`, etc.) for most layouts:</p>
+            <ul>
+                <li>✅ <strong>Simpler</strong> - No responsive classes or calc() needed</li>
+                <li>✅ <strong>Gap-friendly</strong> - Works perfectly with any gap size</li>
+                <li>✅ <strong>Auto-responsive</strong> - Automatically wraps when needed</li>
+                <li>✅ <strong>Flexible</strong> - Items grow to fill available space</li>
+            </ul>
+            <p style="margin-bottom: 0;"><strong>Use percentage utilities</strong> (`.w-md-50`, `.w-md-33`) only when you need exact percentage splits <strong>with gap-md (16px)</strong>.</p>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2>Quick Navigation</h2>
+            <ul>
+                <li><a href="#basic-layouts">Basic Layouts</a></li>
+                <li><a href="#responsive">Responsive Layouts</a></li>
+                <li><a href="#alignment">Alignment & Justification</a></li>
+                <li><a href="#gaps">Gap Spacing</a></li>
+                <li><a href="#real-world">Real-World Examples</a></li>
+                <li><a href="#legacy">Legacy System Comparison</a></li>
+            </ul>
+        </div>
+
+        <!-- Basic Layouts -->
+        <div class="demo-section" id="basic-layouts">
+            <h2>1. Basic Layouts</h2>
+            <p><strong>💡 Tip:</strong> For most use cases, use the <strong>flex-basis approach</strong> (simpler and gap-friendly!)</p>
+
+            <h3>Two Columns - Flex-Basis Approach (Recommended)</h3>
+            <div class="code-block">&lt;div class="flex flex-wrap gap-lg"&gt;
+    &lt;div class="flex-300"&gt;Column 1&lt;/div&gt;
+    &lt;div class="flex-300"&gt;Column 2&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flex flex-wrap gap-lg">
+                <div class="flex-300">
+                    <div class="demo-box">Column 1 (min 300px)</div>
+                </div>
+                <div class="flex-300">
+                    <div class="demo-box-alt">Column 2 (min 300px)</div>
+                </div>
+            </div>
+            <p style="background: var(--cu-gray-10); padding: var(--spacing-sm); border-radius: 4px; margin-top: var(--spacing-sm);">
+                ✅ <strong>Simpler!</strong> No responsive classes needed, automatically adapts, gap-friendly
+            </p>
+
+            <h3>Two Equal Columns - Percentage Approach</h3>
+            <div class="code-block">&lt;div class="flex flex-wrap gap-md"&gt;
+    &lt;div class="w-full w-md-50"&gt;Column 1&lt;/div&gt;
+    &lt;div class="w-full w-md-50"&gt;Column 2&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flex flex-wrap gap-md">
+                <div class="w-full w-md-50">
+                    <div class="demo-box">Column 1 (50%)</div>
+                </div>
+                <div class="w-full w-md-50">
+                    <div class="demo-box-alt">Column 2 (50%)</div>
+                </div>
+            </div>
+            <p style="background: var(--cu-yellow); padding: var(--spacing-sm); border-radius: 4px; margin-top: var(--spacing-sm); color: var(--cu-black);">
+                ⚠️ Use when you need exact 50/50 split. Only works with <strong>gap-md</strong> (other gap sizes may wrap)
+            </p>
+
+            <h3>Three Equal Columns</h3>
+            <div class="code-block">&lt;div class="flex flex-wrap gap-md"&gt;
+    &lt;div class="w-full w-md-33"&gt;Column 1&lt;/div&gt;
+    &lt;div class="w-full w-md-33"&gt;Column 2&lt;/div&gt;
+    &lt;div class="w-full w-md-33"&gt;Column 3&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flex flex-wrap gap-md">
+                <div class="w-full w-md-33">
+                    <div class="demo-box">Column 1</div>
+                </div>
+                <div class="w-full w-md-33">
+                    <div class="demo-box-alt">Column 2</div>
+                </div>
+                <div class="w-full w-md-33">
+                    <div class="demo-box-accent">Column 3</div>
+                </div>
+            </div>
+
+            <h3>Four Equal Columns</h3>
+            <div class="code-block">&lt;div class="flex flex-wrap gap-sm"&gt;
+    &lt;div class="w-full w-md-25"&gt;...&lt;/div&gt;
+    &lt;div class="w-full w-md-25"&gt;...&lt;/div&gt;
+    &lt;div class="w-full w-md-25"&gt;...&lt;/div&gt;
+    &lt;div class="w-full w-md-25"&gt;...&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flex flex-wrap gap-sm">
+                <div class="w-full w-md-25">
+                    <div class="demo-box">1</div>
+                </div>
+                <div class="w-full w-md-25">
+                    <div class="demo-box-alt">2</div>
+                </div>
+                <div class="w-full w-md-25">
+                    <div class="demo-box-accent">3</div>
+                </div>
+                <div class="w-full w-md-25">
+                    <div class="demo-box">4</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Responsive Layouts -->
+        <div class="demo-section" id="responsive">
+            <h2>2. Responsive Layouts</h2>
+            <p><strong>Tip:</strong> Resize your browser to see these layouts adapt at 806px!</p>
+
+            <h3>Sidebar Layout (30/70 Split)</h3>
+            <div class="code-block">&lt;div class="flex flex-wrap gap-lg"&gt;
+    &lt;aside class="w-full w-md-30"&gt;Sidebar&lt;/aside&gt;
+    &lt;main class="w-full w-md-70"&gt;Main Content&lt;/main&gt;
+&lt;/div&gt;</div>
+            <div class="flex flex-wrap gap-lg">
+                <aside class="w-full w-md-30">
+                    <div class="demo-box">Sidebar (30%)</div>
+                </div>
+                <main class="w-full w-md-70">
+                    <div class="demo-box-alt">Main Content (70%)</div>
+                </main>
+            </div>
+
+            <h3>Asymmetric Layout (40/60)</h3>
+            <div class="code-block">&lt;div class="flex flex-wrap gap-md"&gt;
+    &lt;div class="w-full w-md-40"&gt;40%&lt;/div&gt;
+    &lt;div class="w-full w-md-60"&gt;60%&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flex flex-wrap gap-md">
+                <div class="w-full w-md-40">
+                    <div class="demo-box-accent">40%</div>
+                </div>
+                <div class="w-full w-md-60">
+                    <div class="demo-box">60%</div>
+                </div>
+            </div>
+
+            <h3>Mixed Widths - Flex-Basis (Recommended)</h3>
+            <div class="code-block">&lt;div class="flex flex-wrap gap-md"&gt;
+    &lt;div class="flex-200"&gt;Smaller&lt;/div&gt;
+    &lt;div class="flex-400"&gt;Larger&lt;/div&gt;
+    &lt;div class="flex-300"&gt;Medium&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flex flex-wrap gap-md">
+                <div class="flex-200">
+                    <div class="demo-box">Smaller (min 200px)</div>
+                </div>
+                <div class="flex-400">
+                    <div class="demo-box-alt">Larger (min 400px)</div>
+                </div>
+                <div class="flex-300">
+                    <div class="demo-box-accent">Medium (min 300px)</div>
+                </div>
+            </div>
+            <p style="background: var(--cu-gray-10); padding: var(--spacing-sm); border-radius: 4px; margin-top: var(--spacing-sm);">
+                ✅ <strong>Best for mixed widths!</strong> Flex-basis handles different sizes better than percentages.
+            </p>
+        </div>
+
+        <!-- Alignment & Justification -->
+        <div class="demo-section" id="alignment">
+            <h2>3. Alignment & Justification</h2>
+
+            <h3>Horizontal Alignment (justify-*)</h3>
+            <div class="code-block">&lt;div class="flex justify-start gap-sm"&gt;...&lt;/div&gt;
+&lt;div class="flex justify-center gap-sm"&gt;...&lt;/div&gt;
+&lt;div class="flex justify-end gap-sm"&gt;...&lt;/div&gt;
+&lt;div class="flex justify-between gap-sm"&gt;...&lt;/div&gt;</div>
+
+            <p><strong>justify-start</strong></p>
+            <div class="flex justify-start gap-sm mb-3">
+                <div class="demo-box" style="width: 100px;">A</div>
+                <div class="demo-box-alt" style="width: 100px;">B</div>
+                <div class="demo-box-accent" style="width: 100px;">C</div>
+            </div>
+
+            <p><strong>justify-center</strong></p>
+            <div class="flex justify-center gap-sm mb-3">
+                <div class="demo-box" style="width: 100px;">A</div>
+                <div class="demo-box-alt" style="width: 100px;">B</div>
+                <div class="demo-box-accent" style="width: 100px;">C</div>
+            </div>
+
+            <p><strong>justify-end</strong></p>
+            <div class="flex justify-end gap-sm mb-3">
+                <div class="demo-box" style="width: 100px;">A</div>
+                <div class="demo-box-alt" style="width: 100px;">B</div>
+                <div class="demo-box-accent" style="width: 100px;">C</div>
+            </div>
+
+            <p><strong>justify-between</strong></p>
+            <div class="flex justify-between gap-sm mb-3">
+                <div class="demo-box" style="width: 100px;">A</div>
+                <div class="demo-box-alt" style="width: 100px;">B</div>
+                <div class="demo-box-accent" style="width: 100px;">C</div>
+            </div>
+
+            <h3>Vertical Alignment (items-*)</h3>
+            <div class="code-block">&lt;div class="flex items-start"&gt;...&lt;/div&gt;
+&lt;div class="flex items-center"&gt;...&lt;/div&gt;
+&lt;div class="flex items-end"&gt;...&lt;/div&gt;</div>
+
+            <p><strong>items-start</strong></p>
+            <div class="flex items-start gap-sm mb-3" style="height: 120px; background: var(--cu-gray-10); padding: var(--spacing-sm);">
+                <div class="demo-box" style="height: 40px; width: 100px;">Short</div>
+                <div class="demo-box-alt" style="height: 80px; width: 100px;">Medium</div>
+                <div class="demo-box-accent" style="height: 60px; width: 100px;">Tall</div>
+            </div>
+
+            <p><strong>items-center</strong></p>
+            <div class="flex items-center gap-sm mb-3" style="height: 120px; background: var(--cu-gray-10); padding: var(--spacing-sm);">
+                <div class="demo-box" style="height: 40px; width: 100px;">Short</div>
+                <div class="demo-box-alt" style="height: 80px; width: 100px;">Medium</div>
+                <div class="demo-box-accent" style="height: 60px; width: 100px;">Tall</div>
+            </div>
+
+            <p><strong>items-end</strong></p>
+            <div class="flex items-end gap-sm mb-3" style="height: 120px; background: var(--cu-gray-10); padding: var(--spacing-sm);">
+                <div class="demo-box" style="height: 40px; width: 100px;">Short</div>
+                <div class="demo-box-alt" style="height: 80px; width: 100px;">Medium</div>
+                <div class="demo-box-accent" style="height: 60px; width: 100px;">Tall</div>
+            </div>
+
+            <h3>Center Both Ways</h3>
+            <div class="code-block">&lt;div class="flex items-center justify-center" style="height: 200px;"&gt;
+    &lt;div&gt;Perfectly Centered&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flex items-center justify-center" style="height: 200px; background: var(--cu-gray-10);">
+                <div class="demo-box" style="width: 200px;">Perfectly Centered</div>
+            </div>
+        </div>
+
+        <!-- Gap Spacing -->
+        <div class="demo-section" id="gaps">
+            <h2>4. Gap Spacing</h2>
+            <p>Control spacing between flex items using gap utilities.</p>
+
+            <h3>gap-xs (4px)</h3>
+            <div class="flex flex-wrap gap-xs">
+                <div class="demo-box" style="width: 80px;">A</div>
+                <div class="demo-box-alt" style="width: 80px;">B</div>
+                <div class="demo-box-accent" style="width: 80px;">C</div>
+            </div>
+
+            <h3>gap-sm (8px)</h3>
+            <div class="flex flex-wrap gap-sm">
+                <div class="demo-box" style="width: 80px;">A</div>
+                <div class="demo-box-alt" style="width: 80px;">B</div>
+                <div class="demo-box-accent" style="width: 80px;">C</div>
+            </div>
+
+            <h3>gap-md (16px) - Default</h3>
+            <div class="flex flex-wrap gap-md">
+                <div class="demo-box" style="width: 80px;">A</div>
+                <div class="demo-box-alt" style="width: 80px;">B</div>
+                <div class="demo-box-accent" style="width: 80px;">C</div>
+            </div>
+
+            <h3>gap-lg (24px)</h3>
+            <div class="flex flex-wrap gap-lg">
+                <div class="demo-box" style="width: 80px;">A</div>
+                <div class="demo-box-alt" style="width: 80px;">B</div>
+                <div class="demo-box-accent" style="width: 80px;">C</div>
+            </div>
+
+            <h3>gap-xl (32px)</h3>
+            <div class="flex flex-wrap gap-xl">
+                <div class="demo-box" style="width: 80px;">A</div>
+                <div class="demo-box-alt" style="width: 80px;">B</div>
+                <div class="demo-box-accent" style="width: 80px;">C</div>
+            </div>
+
+            <h3>gap-2xl (48px)</h3>
+            <div class="flex flex-wrap gap-2xl">
+                <div class="demo-box" style="width: 80px;">A</div>
+                <div class="demo-box-alt" style="width: 80px;">B</div>
+                <div class="demo-box-accent" style="width: 80px;">C</div>
+            </div>
+        </div>
+
+        <!-- Real-World Examples -->
+        <div class="demo-section" id="real-world">
+            <h2>5. Real-World Examples</h2>
+
+            <h3>Navigation Bar</h3>
+            <div class="code-block">&lt;nav class="flex items-center justify-between gap-md nav-demo"&gt;
+    &lt;a href="/"&gt;Logo&lt;/a&gt;
+    &lt;div class="flex gap-md"&gt;
+        &lt;a href="/about"&gt;About&lt;/a&gt;
+        &lt;a href="/contact"&gt;Contact&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;</div>
+            <nav class="flex items-center justify-between gap-md nav-demo">
+                <a href="#" style="font-weight: bold; font-size: 1.2em;">Cardiff Uni</a>
+                <div class="flex gap-md">
+                    <a href="#">About</a>
+                    <a href="#">Services</a>
+                    <a href="#">Research</a>
+                    <a href="#">Contact</a>
+                </div>
+            </nav>
+
+            <h3>Card Grid - Flex-Basis (Recommended!)</h3>
+            <div class="code-block">&lt;div class="flex flex-wrap gap-lg"&gt;
+    &lt;div class="flex-300"&gt;
+        &lt;div class="card-demo"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="flex-300"&gt;...&lt;/div&gt;
+    &lt;div class="flex-300"&gt;...&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flex flex-wrap gap-lg">
+                <div class="flex-300">
+                    <div class="card-demo">
+                        <img src="" alt="Card image">
+                        <div class="card-demo-content">
+                            <h4 style="margin-top: 0;">Card Title 1</h4>
+                            <p>Auto-flowing card with min 300px width. Grows to fill space!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-300">
+                    <div class="card-demo">
+                        <img src="" alt="Card image">
+                        <div class="card-demo-content">
+                            <h4 style="margin-top: 0;">Card Title 2</h4>
+                            <p>No need for responsive classes or breakpoint calculations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-300">
+                    <div class="card-demo">
+                        <img src="" alt="Card image">
+                        <div class="card-demo-content">
+                            <h4 style="margin-top: 0;">Card Title 3</h4>
+                            <p>Perfect for card grids, product listings, team members!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p style="background: var(--cu-forest-green); color: white; padding: var(--spacing-sm); border-radius: 4px; margin-top: var(--spacing-sm);">
+                ✅ <strong>Best for grids!</strong> Cards automatically wrap and grow. Try resizing your browser!
+            </p>
+
+            <h3>Mixed Card Sizes - Flex-Basis</h3>
+            <div class="code-block">&lt;div class="flex flex-wrap gap-md"&gt;
+    &lt;div class="flex-200"&gt;Small Card&lt;/div&gt;
+    &lt;div class="flex-400"&gt;Featured Card&lt;/div&gt;
+    &lt;div class="flex-200"&gt;Small Card&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flex flex-wrap gap-md">
+                <div class="flex-200">
+                    <div class="card-demo">
+                        <div class="card-demo-content">
+                            <h4 style="margin-top: 0;">Small</h4>
+                            <p>Min 200px</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-400">
+                    <div class="card-demo">
+                        <div class="card-demo-content">
+                            <h4 style="margin-top: 0;">Featured (Larger)</h4>
+                            <p>Min 400px - gets more space!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-200">
+                    <div class="card-demo">
+                        <div class="card-demo-content">
+                            <h4 style="margin-top: 0;">Small</h4>
+                            <p>Min 200px</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Feature List with Icons</h3>
+            <div class="code-block">&lt;div class="flex flex-col gap-md"&gt;
+    &lt;div class="flex gap-sm items-center"&gt;
+        &lt;span class="icon-demo flex-none"&gt;✓&lt;/span&gt;
+        &lt;p class="flex-1"&gt;Feature description&lt;/p&gt;
+    &lt;/div&gt;
+    ...
+&lt;/div&gt;</div>
+            <div class="flex flex-col gap-md">
+                <div class="flex gap-sm items-center">
+                    <span class="icon-demo flex-none">✓</span>
+                    <p class="flex-1" style="margin: 0;">Modern responsive design with mobile-first approach</p>
+                </div>
+                <div class="flex gap-sm items-center">
+                    <span class="icon-demo flex-none">✓</span>
+                    <p class="flex-1" style="margin: 0;">Cardiff University brand colors and design tokens</p>
+                </div>
+                <div class="flex gap-sm items-center">
+                    <span class="icon-demo flex-none">✓</span>
+                    <p class="flex-1" style="margin: 0;">Flexible utility classes for any layout scenario</p>
+                </div>
+                <div class="flex gap-sm items-center">
+                    <span class="icon-demo flex-none">✓</span>
+                    <p class="flex-1" style="margin: 0;">Backward compatible with legacy flexContainer system</p>
+                </div>
+            </div>
+
+            <h3>Hero Section</h3>
+            <div class="code-block">&lt;div class="flex flex-wrap items-center gap-2xl"&gt;
+    &lt;div class="w-full w-md-50"&gt;
+        &lt;h2&gt;Welcome&lt;/h2&gt;
+        &lt;p&gt;Description...&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="w-full w-md-50"&gt;
+        &lt;img src="hero.jpg"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flex flex-wrap items-center gap-2xl" style="background: var(--cu-gray-10); padding: var(--spacing-xl); border-radius: 4px;">
+                <div class="w-full w-md-50">
+                    <h2 style="margin-top: 0; color: var(--cu-primary-red);">Welcome to Cardiff University</h2>
+                    <p>Experience world-class education in the heart of Wales. Our innovative programs and cutting-edge research opportunities prepare you for success.</p>
+                    <button style="background: var(--cu-primary-red); color: white; border: none; padding: var(--spacing-sm) var(--spacing-lg); border-radius: 4px; font-size: 1rem; cursor: pointer;">Learn More</button>
+                </div>
+                <div class="w-full w-md-50">
+                    <div style="background: var(--cu-gray-30); height: 300px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--cu-gray-60);">
+                        [Hero Image]
+                    </div>
+                </div>
+            </div>
+
+            <h3>Stats Display</h3>
+            <div class="code-block">&lt;div class="flex flex-wrap gap-md"&gt;
+    &lt;div class="w-full w-md-25"&gt;Stat 1&lt;/div&gt;
+    &lt;div class="w-full w-md-25"&gt;Stat 2&lt;/div&gt;
+    &lt;div class="w-full w-md-25"&gt;Stat 3&lt;/div&gt;
+    &lt;div class="w-full w-md-25"&gt;Stat 4&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flex flex-wrap gap-md">
+                <div class="w-full w-md-25">
+                    <div style="text-align: center; padding: var(--spacing-lg); background: var(--cu-gray-10); border-radius: 4px;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--cu-primary-red);">30k+</div>
+                        <div style="color: var(--cu-gray-70);">Students</div>
+                    </div>
+                </div>
+                <div class="w-full w-md-25">
+                    <div style="text-align: center; padding: var(--spacing-lg); background: var(--cu-gray-10); border-radius: 4px;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--cu-forest-green);">150+</div>
+                        <div style="color: var(--cu-gray-70);">Courses</div>
+                    </div>
+                </div>
+                <div class="w-full w-md-25">
+                    <div style="text-align: center; padding: var(--spacing-lg); background: var(--cu-gray-10); border-radius: 4px;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--cu-light-blue);">95%</div>
+                        <div style="color: var(--cu-gray-70);">Satisfaction</div>
+                    </div>
+                </div>
+                <div class="w-full w-md-25">
+                    <div style="text-align: center; padding: var(--spacing-lg); background: var(--cu-gray-10); border-radius: 4px;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--cu-orange);">Top 10</div>
+                        <div style="color: var(--cu-gray-70);">UK Ranking</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legacy System Comparison -->
+        <div class="demo-section" id="legacy">
+            <h2>6. Legacy System Comparison</h2>
+            <p>Both systems work! The legacy <code>.flexContainer</code> system is still supported.</p>
+
+            <h3>Legacy System (.flexContainer)</h3>
+            <div class="code-block">&lt;div class="flexContainer"&gt;
+    &lt;div class="flexItem c50"&gt;Column 1&lt;/div&gt;
+    &lt;div class="flexItem c50"&gt;Column 2&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flexContainer">
+                <div class="flexItem c50">
+                    <div class="demo-box">Legacy Column 1</div>
+                </div>
+                <div class="flexItem c50">
+                    <div class="demo-box-alt">Legacy Column 2</div>
+                </div>
+            </div>
+
+            <h3>Modern System (.flex)</h3>
+            <div class="code-block">&lt;div class="flex flex-wrap gap-md"&gt;
+    &lt;div class="w-full w-md-50"&gt;Column 1&lt;/div&gt;
+    &lt;div class="w-full w-md-50"&gt;Column 2&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="flex flex-wrap gap-md">
+                <div class="w-full w-md-50">
+                    <div class="demo-box">Modern Column 1</div>
+                </div>
+                <div class="w-full w-md-50">
+                    <div class="demo-box-alt">Modern Column 2</div>
+                </div>
+            </div>
+
+            <p style="background: var(--cu-yellow-green); color: white; padding: var(--spacing-md); border-radius: 4px; margin-top: var(--spacing-xl);">
+                <strong>✓ Both systems produce the same visual result!</strong><br>
+                Use the modern system for new development, but your existing code will continue to work.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; padding: var(--spacing-2xl); color: var(--cu-gray-60); border-top: 1px solid var(--cu-gray-20);">
+            <p>Cardiff University Theme - Flexbox Utilities Showcase</p>
+            <p style="font-size: 0.9rem;">Resize your browser to see responsive layouts in action (breakpoint: 806px)</p>
+        </div>
+    </div>
+
+    <!-- Breakpoint Indicator -->
+    <div class="breakpoint-indicator"></div>
+</body>
+</html>
