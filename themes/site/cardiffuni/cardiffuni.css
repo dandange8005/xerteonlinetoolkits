@@ -678,24 +678,126 @@ a.accordion-toggle[aria-expanded=true]::after {
   margin-bottom: var(--spacing-lg);
 }
 
+:root {
+  --carousel-control-size: 2.5rem;
+  --carousel-control-icon-size: 1.25rem;
+  --carousel-control-bg: var(--cu-gray-80);
+  --carousel-control-bg-hover: rgba(0, 0, 0, 0.6);
+  --carousel-control-icon-color: var(--cu-gray-70);
+  --carousel-control-icon-color-hover: var(--cu-gray-90);
+  --carousel-indicator-width: 2rem;
+  --carousel-indicator-height: 3px;
+  --carousel-indicator-color: rgba(255, 255, 255, 0.5);
+  --carousel-indicator-color-active: var(--cu-white);
+  --carousel-indicator-color-hover: rgba(255, 255, 255, 0.8);
+}
+
 .carousel-control {
-  background-color: var(--cu-gray-90);
-  font-size: var(--font-size-lg);
-  font-weight: 900;
+  width: var(--carousel-control-size);
+  height: var(--carousel-control-size);
+  background-color: var(--carousel-control-bg);
+  backdrop-filter: blur(8px);
+  font-size: var(--carousel-control-icon-size) !important;
+  border-radius: 50%;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   margin-top: 0;
+  opacity: 0.8;
+  -webkit-transition: all var(--animation-fast) var(--animation-easing);
+  transition: all var(--animation-fast) var(--animation-easing);
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: none !important;
+}
+
+.carousel-control:hover,
+.carousel-control:focus {
+  opacity: 1;
+  background-color: var(--carousel-control-bg-hover);
+  -webkit-transform: translateY(-50%) scale(1.05);
+          transform: translateY(-50%) scale(1.05);
+  -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-control.left {
+  left: 1rem;
+}
+
+.carousel-control.right {
+  right: 1rem;
 }
 
 .carousel-indicators {
-  display: block;
-  bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.5rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  bottom: 1.5rem;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   top: auto;
   right: auto;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.carousel-indicators li {
+  width: var(--carousel-indicator-width);
+  height: var(--carousel-indicator-height);
+  background-color: var(--carousel-indicator-color);
+  border: none;
+  border-radius: 2px;
+  margin: 0;
+  text-indent: -999px;
+  -webkit-transition: all var(--animation-fast) var(--animation-easing);
+  transition: all var(--animation-fast) var(--animation-easing);
+  cursor: pointer;
+}
+
+.carousel-indicators .active {
+  background-color: var(--carousel-indicator-color-active);
+  opacity: 1;
+}
+
+.carousel-indicators li:hover {
+  background-color: var(--carousel-indicator-color-hover);
+}
+
+.carousel figcaption {
+  position: absolute;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  bottom: 32px;
+  padding: 8px;
+}
+
+.carousel .img-polaroid {
+  padding: 0;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  position: relative;
 }
 
 .panel {

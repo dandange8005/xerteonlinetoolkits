@@ -290,24 +290,135 @@ a.accordion-toggle[aria-expanded="true"]::after {
 // Image/content slider with navigation controls
 // =============================================================================
 
+:root {
+    // Carousel control buttons
+    --carousel-control-size: 2.5rem;
+    --carousel-control-icon-size: 1.25rem;
+    --carousel-control-bg: var(--cu-gray-80);
+    --carousel-control-bg-hover: rgba(0, 0, 0, 0.6);
+    --carousel-control-icon-color: var(--cu-gray-70);
+    --carousel-control-icon-color-hover: var(--cu-gray-90);
+
+    // Carousel indicators
+    --carousel-indicator-width: 2rem;
+    --carousel-indicator-height: 3px;
+    --carousel-indicator-color: rgba(255, 255, 255, 0.5);
+    --carousel-indicator-color-active: var(--cu-white);
+    --carousel-indicator-color-hover: rgba(255, 255, 255, 0.8);
+}
+
 // Carousel navigation controls (prev/next buttons)
 .carousel-control {
-    background-color: var(--cu-gray-90);
-    font-size: var(--font-size-lg);
-    font-weight: 900;
+    width: var(--carousel-control-size);
+    height: var(--carousel-control-size);
+    background-color: var(--carousel-control-bg);
+    backdrop-filter: blur(8px);
+    font-size: var(--carousel-control-icon-size)!important;
+    border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
     margin-top: 0;
+    opacity: 0.8;
+    transition: all var(--animation-fast) var(--animation-easing);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Override Bootstrap background image
+    background-image: none !important;
+
+    // // Icon styling
+    // .glyphicon,
+    // .icon-prev,
+    // .icon-next {
+    //     color: var(--carousel-control-icon-color);
+    //     font-size: var(--carousel-control-icon-size);
+    //     line-height: 1;
+    // }
 }
 
-// Carousel indicators (dot navigation)
+// Carousel control hover state
+.carousel-control:hover,
+.carousel-control:focus {
+    opacity: 1;
+    background-color: var(--carousel-control-bg-hover);
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    // .glyphicon,
+    // .icon-prev,
+    // .icon-next {
+    //     color: var(--carousel-control-icon-color-hover);
+    // }
+}
+
+// Position adjustments for left/right controls
+.carousel-control.left {
+    left: 1rem;
+}
+
+.carousel-control.right {
+    right: 1rem;
+}
+
+// Carousel indicators (simple line style)
 .carousel-indicators {
-    display: block;
-    bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     top: auto;
     right: auto;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+// Individual indicator lines
+.carousel-indicators li {
+    width: var(--carousel-indicator-width);
+    height: var(--carousel-indicator-height);
+    background-color: var(--carousel-indicator-color);
+    border: none;
+    border-radius: 2px;
+    margin: 0;
+    text-indent: -999px;
+    transition: all var(--animation-fast) var(--animation-easing);
+    cursor: pointer;
+}
+
+// Active indicator state
+.carousel-indicators .active {
+    background-color: var(--carousel-indicator-color-active);
+    opacity: 1;
+}
+
+// Indicator hover state
+.carousel-indicators li:hover {
+    background-color: var(--carousel-indicator-color-hover);
+}
+
+// Carousel caption styling
+.carousel figcaption {
+    position: absolute;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 32px;
+    padding: 8px;
+}
+
+// image in carousel without border or shadow
+.carousel .img-polaroid {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    position: relative;
 }
 
 // =============================================================================
