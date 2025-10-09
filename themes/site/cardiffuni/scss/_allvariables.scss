@@ -200,6 +200,17 @@
     --z-index-overlay: 300;
 
     // =========================================================================
+    // ASPECT RATIOS
+    // Common aspect ratios for embedded content (videos, iframes)
+    // =========================================================================
+
+    --ratio-widescreen: 16 / 9;      // Standard video (YouTube, Vimeo)
+    --ratio-standard: 4 / 3;         // Traditional TV, Xerte content
+    --ratio-ultrawide: 21 / 9;       // Cinematic widescreen
+    --ratio-square: 1 / 1;           // Square content
+    --ratio-portrait: 9 / 16;        // Vertical video (TikTok, Stories)
+
+    // =========================================================================
     // COLOR SCALES (Auto-generated from semantic colors)
     // These automatically update when base colors change
     // =========================================================================

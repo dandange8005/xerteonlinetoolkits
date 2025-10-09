@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe Container Aspect Ratio Demo - Cardiff University</title>
+    <link rel="stylesheet" href="cardiffuni.css">
+    <style>
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .demo-section {
+            margin-bottom: 4rem;
+        }
+
+        .demo-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .demo-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .demo-item h3 {
+            margin-top: 0;
+            color: var(--cu-primary-red);
+        }
+
+        .demo-item code {
+            display: block;
+            background: var(--cu-gray-10);
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            overflow-x: auto;
+        }
+
+        .placeholder-content {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .demo-grid--two-col {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Iframe Container Aspect Ratio Demo</h1>
+    <p class="lead">Modern responsive iframe containers using CSS aspect-ratio property with Cardiff University styling.</p>
+
+    <!-- Widescreen Demo -->
+    <section class="demo-section">
+        <h2>Widescreen (16:9) - Default</h2>
+        <p>The most common aspect ratio for modern video content (YouTube, Vimeo, etc.)</p>
+
+        <div class="demo-item">
+            <h3>Default Container</h3>
+            <code>&lt;div class="iframe-container"&gt;</code>
+
+            <div class="iframe-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/qdJ81nE4P3k?si=h6OrLOw_8UPfDusd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="demo-item">
+            <h3>Explicit Widescreen</h3>
+            <code>&lt;div class="iframe-container iframe-container--widescreen"&gt;</code>
+
+            <div class="iframe-container iframe-container--widescreen">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/qdJ81nE4P3k?si=h6OrLOw_8UPfDusd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Multiple Aspect Ratios -->
+    <section class="demo-section">
+        <h2>Different Aspect Ratios</h2>
+
+        <div class="demo-grid demo-grid--two-col">
+            <!-- Standard 4:3 -->
+            <div class="demo-item">
+                <h3>Standard (4:3)</h3>
+                <code>&lt;div class="iframe-container iframe-container--standard"&gt;</code>
+                <p>Traditional TV format, Xerte content</p>
+
+                <div class="iframe-container iframe-container--standard">
+                    <div class="placeholder-content">4:3 Standard</div>
+                </div>
+            </div>
+
+            <!-- Ultrawide 21:9 -->
+            <div class="demo-item">
+                <h3>Ultrawide (21:9)</h3>
+                <code>&lt;div class="iframe-container iframe-container--ultrawide"&gt;</code>
+                <p>Cinematic widescreen format</p>
+
+                <div class="iframe-container iframe-container--ultrawide">
+                    <div class="placeholder-content">21:9 Ultrawide</div>
+                </div>
+            </div>
+
+            <!-- Square 1:1 -->
+            <div class="demo-item">
+                <h3>Square (1:1)</h3>
+                <code>&lt;div class="iframe-container iframe-container--square"&gt;</code>
+                <p>Square content format</p>
+
+                <div class="iframe-container iframe-container--square">
+                    <div class="placeholder-content">1:1 Square</div>
+                </div>
+            </div>
+
+            <!-- Portrait 9:16 -->
+            <div class="demo-item">
+                <h3>Portrait (9:16)</h3>
+                <code>&lt;div class="iframe-container iframe-container--portrait"&gt;</code>
+                <p>Vertical video (TikTok, Instagram Stories)</p>
+
+                <div class="iframe-container iframe-container--portrait">
+                    <div class="placeholder-content">9:16 Portrait</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Cases -->
+    <section class="demo-section">
+        <h2>Special Cases</h2>
+
+        <div class="demo-grid">
+            <!-- Xerte Container -->
+            <div class="demo-item">
+                <h3>Xerte Container</h3>
+                <code>&lt;div class="iframe-container iframe-container--xerte"&gt;</code>
+                <p>Xerte-specific styling with 4:3 aspect ratio and border</p>
+
+                <div class="iframe-container iframe-container--xerte">
+                    <div class="placeholder-content">Xerte Content (4:3)</div>
+                </div>
+            </div>
+
+            <!-- H5P Container -->
+            <div class="demo-item">
+                <h3>H5P Container</h3>
+                <code>&lt;div class="iframe-container iframe-container--h5p"&gt;</code>
+                <p>H5P-specific styling with 16:9 aspect ratio and border</p>
+
+                <div class="iframe-container iframe-container--h5p">
+                    <div class="placeholder-content">H5P Content (16:9)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- With Captions -->
+    <section class="demo-section">
+        <h2>With Captions</h2>
+
+        <div class="demo-item">
+            <h3>Container with Caption</h3>
+            <code>&lt;div class="iframe-container"&gt;<br>
+    &lt;iframe src="..."&gt;&lt;/iframe&gt;<br>
+&lt;/div&gt;<br>
+&lt;p class="iframe-container__caption"&gt;Caption text&lt;/p&gt;</code>
+
+            <div class="iframe-container">
+                <div class="placeholder-content">Video Content</div>
+            </div>
+            <p class="iframe-container__caption">
+                This is a caption for the embedded video content explaining what the viewer is watching.
+            </p>
+        </div>
+    </section>
+
+    <!-- Custom Override Demo -->
+    <section class="demo-section">
+        <h2>Custom Aspect Ratio Override</h2>
+        <p>You can override aspect ratios using inline CSS custom properties:</p>
+
+        <div class="demo-item">
+            <h3>Custom 2:1 Ratio</h3>
+            <code>&lt;div class="iframe-container" style="aspect-ratio: 2 / 1;"&gt;</code>
+
+            <div class="iframe-container" style="aspect-ratio: 2 / 1;">
+                <div class="placeholder-content">Custom 2:1 Ratio</div>
+            </div>
+        </div>
+
+        <div class="demo-item">
+            <h3>Using CSS Variable Override</h3>
+            <code>&lt;div class="iframe-container" style="aspect-ratio: var(--ratio-custom);"&gt;</code>
+            <p>Define --ratio-custom in your stylesheet or inline style.</p>
+
+            <div class="iframe-container" style="--ratio-custom: 3 / 2; aspect-ratio: var(--ratio-custom);">
+                <div class="placeholder-content">Custom 3:2 Ratio</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Browser Support Note -->
+    <section class="demo-section">
+        <h2>Browser Support</h2>
+        <div class="demo-item">
+            <p><strong>Modern Browser Support:</strong></p>
+            <ul>
+                <li>Chrome 88+ (January 2021)</li>
+                <li>Firefox 89+ (June 2021)</li>
+                <li>Safari 15+ (September 2021)</li>
+                <li>Edge 88+ (January 2021)</li>
+            </ul>
+            <p>The <code>aspect-ratio</code> property is well-supported in all modern browsers. For legacy browser support, consider adding a fallback using padding-bottom technique.</p>
+        </div>
+    </section>
+</body>
+</html>

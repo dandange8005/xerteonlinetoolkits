@@ -260,29 +260,51 @@ figcaption {
 }
 
 .iframe-container {
-    height: 0;
     position: relative;
+    width: 100%;
+    aspect-ratio: var(--ratio-widescreen); // Default widescreen video ratio
     overflow: hidden;
-    padding-bottom: 56.32%;
     box-shadow: var(--shadow-md);
     margin-bottom: var(--spacing-lg);
 
     iframe {
+        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        position: absolute;
         border: 0;
     }
 
+    // Common aspect ratio variants
+    &--widescreen {
+        aspect-ratio: var(--ratio-widescreen); // Standard video (YouTube, Vimeo)
+    }
+
+    &--standard {
+        aspect-ratio: var(--ratio-standard); // Traditional TV/older content
+    }
+
+    &--ultrawide {
+        aspect-ratio: var(--ratio-ultrawide); // Cinematic widescreen
+    }
+
+    &--square {
+        aspect-ratio: var(--ratio-square); // Square content
+    }
+
+    &--portrait {
+        aspect-ratio: var(--ratio-portrait); // Vertical/portrait video
+    }
+
+    // Xerte and H5P specific styling
     &--xerte,
     &--h5p {
         border: 4px solid var(--border-color-default);
     }
 
     &--xerte {
-        padding-bottom: 75%;
+        aspect-ratio: var(--ratio-standard); // Xerte default aspect ratio
     }
 
     &__caption {
