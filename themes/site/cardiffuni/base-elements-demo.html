@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base Elements Style Guide - Cardiff University</title>
+    <link rel="stylesheet" href="cardiffuni.css">
+    <style>
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .style-guide-section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .style-guide-section > h2:first-child {
+            margin-top: 0;
+            color: var(--cu-primary-red);
+            border-bottom: 2px solid var(--cu-gray-20);
+            padding-bottom: 1rem;
+        }
+
+        .demo-block {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-radius: 4px;
+        }
+
+        .demo-block-title {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-bold);
+            color: var(--cu-gray-70);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .inline-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .code-label {
+            font-family: monospace;
+            background: var(--cu-gray-20);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.875rem;
+            color: var(--cu-gray-70);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        /* Demo-specific styles to showcase image alignment */
+        .text-with-image {
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="page-header">Cardiff University Base Elements Style Guide</h1>
+    <p class="lead" style="font-size: var(--font-size-lg); color: var(--cu-gray-70);">
+        A comprehensive showcase of all base HTML element styles used in the Cardiff University theme.
+    </p>
+
+    <!-- Typography Section -->
+    <section class="style-guide-section">
+        <h2>Typography</h2>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Headings Hierarchy</div>
+            <h1>Heading 1 - Main Page Title</h1>
+            <h2>Heading 2 - Section Title</h2>
+            <h3>Heading 3 - Subsection Title</h3>
+            <h4>Heading 4 - Content Group</h4>
+            <h5>Heading 5 - Minor Heading</h5>
+            <h6>Heading 6 - Smallest Heading</h6>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Special Heading Classes</div>
+            <h2 class="sectionTitle">Section Title with .sectionTitle class</h2>
+            <h3 class="contentTitle">Content Title with .contentTitle class</h3>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Paragraphs & Body Text</div>
+            <p>This is a standard paragraph demonstrating the default body text styling. Cardiff University uses the Marr Sans Regular font family for body copy, ensuring excellent readability across all devices and screen sizes.</p>
+            <p>Multiple paragraphs maintain consistent spacing and line height for optimal reading experience. The text color, line height, and font size are all carefully calibrated to meet accessibility standards while reflecting Cardiff University's brand guidelines.</p>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Links</div>
+            <p>
+                This paragraph contains a <a href="#default">default link</a> that demonstrates the link styling.
+                Links use Cardiff University's brand colors and include <a href="#visited">visited state styling</a>.
+                Hover over <a href="#hover">this link</a> to see the hover effect.
+            </p>
+        </div>
+    </section>
+
+    <!-- Inline Elements Section -->
+    <section class="style-guide-section">
+        <h2>Inline Text Elements</h2>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Common Inline Elements</div>
+            <div class="inline-demo">
+                <div><code class="code-label">&lt;strong&gt;</code> <strong>Bold/Strong text</strong></div>
+                <div><code class="code-label">&lt;em&gt;</code> <em>Emphasized/Italic text</em></div>
+                <div><code class="code-label">&lt;mark&gt;</code> <mark>Highlighted text</mark></div>
+                <div><code class="code-label">&lt;small&gt;</code> <small>Small text</small></div>
+                <div><code class="code-label">&lt;del&gt;</code> <del>Deleted text</del></div>
+                <div><code class="code-label">&lt;ins&gt;</code> <ins>Inserted text</ins></div>
+                <div><code class="code-label">&lt;sub&gt;</code> H<sub>2</sub>O (Subscript)</div>
+                <div><code class="code-label">&lt;sup&gt;</code> E=mc<sup>2</sup> (Superscript)</div>
+                <div><code class="code-label">&lt;code&gt;</code> <code>inline code</code></div>
+                <div><code class="code-label">&lt;kbd&gt;</code> Press <kbd>Ctrl</kbd> + <kbd>C</kbd></div>
+                <div><code class="code-label">&lt;abbr&gt;</code> <abbr title="HyperText Markup Language">HTML</abbr></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blockquotes Section -->
+    <section class="style-guide-section">
+        <h2>Blockquotes & Citations</h2>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Standard Blockquote</div>
+            <blockquote>
+                <p class="quote">Education is the most powerful weapon which you can use to change the world. It is through education that we can build a better future for all people, regardless of their background or circumstances.</p>
+                <cite>Nelson Mandela</cite>
+            </blockquote>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Blockquote with Source</div>
+            <blockquote>
+                <p class="quote">The function of education is to teach one to think intensively and to think critically. Intelligence plus character - that is the goal of true education.</p>
+                <p class="source">— Martin Luther King Jr., The Purpose of Education, 1947</p>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Lists Section -->
+    <section class="style-guide-section">
+        <h2>Lists</h2>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Unordered List</div>
+            <ul>
+                <li>First item in the unordered list</li>
+                <li>Second item demonstrating consistent spacing</li>
+                <li>Third item with a nested list:
+                    <ul>
+                        <li>Nested item one</li>
+                        <li>Nested item two</li>
+                        <li>Nested item three</li>
+                    </ul>
+                </li>
+                <li>Fourth item after nested list</li>
+                <li>Fifth and final item</li>
+            </ul>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Ordered List</div>
+            <ol>
+                <li>First step in the process</li>
+                <li>Second step following the first</li>
+                <li>Third step with nested steps:
+                    <ol>
+                        <li>Sub-step 3.1</li>
+                        <li>Sub-step 3.2</li>
+                        <li>Sub-step 3.3</li>
+                    </ol>
+                </li>
+                <li>Fourth step continuing the sequence</li>
+                <li>Final step completing the process</li>
+            </ol>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Description List</div>
+            <dl>
+                <dt>Term 1</dt>
+                <dd>Definition for term 1 explaining its meaning and context.</dd>
+
+                <dt>Term 2</dt>
+                <dd>Definition for term 2 with detailed explanation.</dd>
+
+                <dt>Term 3</dt>
+                <dd>Definition for term 3 demonstrating description list styling.</dd>
+            </dl>
+        </div>
+    </section>
+
+    <!-- Tables Section -->
+    <section class="style-guide-section">
+        <h2>Tables</h2>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Standard Table with Caption</div>
+            <table>
+                <caption>Student Enrollment by Programme - Academic Year 2024/25</caption>
+                <thead>
+                    <tr>
+                        <th>Programme</th>
+                        <th>Undergraduate</th>
+                        <th>Postgraduate</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Computer Science</td>
+                        <td>1,234</td>
+                        <td>456</td>
+                        <td>1,690</td>
+                    </tr>
+                    <tr>
+                        <td>Engineering</td>
+                        <td>2,105</td>
+                        <td>678</td>
+                        <td>2,783</td>
+                    </tr>
+                    <tr>
+                        <td>Business</td>
+                        <td>1,876</td>
+                        <td>892</td>
+                        <td>2,768</td>
+                    </tr>
+                    <tr>
+                        <td>Medicine</td>
+                        <td>987</td>
+                        <td>234</td>
+                        <td>1,221</td>
+                    </tr>
+                    <tr>
+                        <td>Arts & Humanities</td>
+                        <td>1,543</td>
+                        <td>321</td>
+                        <td>1,864</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Simple Table</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Smith</td>
+                        <td>smithj@cardiff.ac.uk</td>
+                        <td>Computing</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Doe</td>
+                        <td>doej@cardiff.ac.uk</td>
+                        <td>Engineering</td>
+                    </tr>
+                    <tr>
+                        <td>Bob Wilson</td>
+                        <td>wilsonb@cardiff.ac.uk</td>
+                        <td>Business</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Images & Figures Section -->
+    <section class="style-guide-section">
+        <h2>Images & Figures</h2>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Figure with Caption</div>
+            <figure>
+                <img src="https://placehold.co/800x400/E4251B/FFFFFF?text=Cardiff+University+Main+Building" alt="Cardiff University Main Building" style="max-width: 100%; height: auto;">
+                <figcaption>Cardiff University Main Building on Cathays Park</figcaption>
+            </figure>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Image with Pull-Right Class</div>
+            <div class="text-with-image">
+                <img src="https://placehold.co/300x200/5EB99B/FFFFFF?text=Pull+Right" alt="Pull right example" class="pull-right" style="max-width: 300px; height: auto;">
+                <p>This paragraph demonstrates text flowing around an image that is floated to the right using the <code>pull-right</code> class. The image has appropriate margins to ensure proper spacing between the text and the image. This is useful for creating magazine-style layouts where images are integrated into the text content.</p>
+                <p>Additional paragraphs continue to wrap around the floated image, creating a natural and professional layout. This technique is commonly used in articles, blog posts, and educational content where visual elements need to be integrated seamlessly with text.</p>
+            </div>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Image with Pull-Left Class</div>
+            <div class="text-with-image">
+                <img src="https://placehold.co/300x200/4A42FF/FFFFFF?text=Pull+Left" alt="Pull left example" class="pull-left" style="max-width: 300px; height: auto;">
+                <p>This paragraph demonstrates text flowing around an image that is floated to the left using the <code>pull-left</code> class. Similar to the pull-right example, the image has proper margins to maintain good spacing and readability.</p>
+                <p>The text continues to flow naturally around the floated image, creating an attractive and functional layout that enhances the reading experience while showcasing relevant visual content.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Rules Section -->
+    <section class="style-guide-section">
+        <h2>Horizontal Rules</h2>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Standard Horizontal Rule</div>
+            <p>Content above the horizontal rule.</p>
+            <hr>
+            <p>Content below the horizontal rule. The HR element is used to create a thematic break between sections of content.</p>
+        </div>
+    </section>
+
+    <!-- Structural Elements Section -->
+    <section class="style-guide-section">
+        <h2>Structural Elements & Spacing</h2>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Section Element (This entire page uses section elements)</div>
+            <p>The <code>&lt;section&gt;</code> element provides consistent spacing and structure to content. Each section has:</p>
+            <ul>
+                <li>Bottom margin of <code>var(--spacing-3xl)</code></li>
+                <li>Automatic spacing between child elements</li>
+                <li>Consistent heading margins</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Code Blocks Section -->
+    <section class="style-guide-section">
+        <h2>Code & Preformatted Text</h2>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Preformatted Code Block</div>
+            <pre><code>function calculateTotal(items) {
+    let total = 0;
+    for (let item of items) {
+        total += item.price * item.quantity;
+    }
+    return total;
+}</code></pre>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Inline Code</div>
+            <p>Use the <code>array.map()</code> method to transform array elements. For example: <code>const doubled = numbers.map(n => n * 2)</code></p>
+        </div>
+    </section>
+
+    <!-- Additional Elements Section -->
+    <section class="style-guide-section">
+        <h2>Additional HTML Elements</h2>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Address Element</div>
+            <address>
+                Cardiff University<br>
+                Cardiff CF10 3AT<br>
+                United Kingdom<br>
+                Tel: +44 (0)29 2087 4000
+            </address>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Details & Summary</div>
+            <details>
+                <summary>Click to expand additional information</summary>
+                <p>This is additional content that is hidden by default and revealed when the user clicks the summary. The details element is useful for creating expandable sections without JavaScript.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Special Classes Section -->
+    <section class="style-guide-section">
+        <h2>Special Classes & Components</h2>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Page Header Class</div>
+            <h1 class="page-header">Page Header with Zero Top Margin</h1>
+            <p>The <code>.page-header</code> class removes top margin from headings used as page titles.</p>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Video Container (.video-720)</div>
+            <div class="video-720" style="background: var(--cu-gray-20); display: flex; align-items: center; justify-content: center; min-height: 200px;">
+                <p style="margin: 0; color: var(--cu-gray-60);">720p Video Container (max-width: 720px, max-height: 405px)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Utility Classes Section -->
+    <section class="style-guide-section">
+        <h2>Utility Classes</h2>
+
+        <div class="demo-block">
+            <div class="demo-block-title">List Utilities</div>
+
+            <h4>List None</h4>
+            <code class="code-label">.list-none</code>
+            <ul class="list-none">
+                <li>Item with no bullets or styling</li>
+                <li>Second item</li>
+                <li>Third item</li>
+            </ul>
+
+            <h4 style="margin-top: 2rem;">Icon List</h4>
+            <code class="code-label">.list-icon</code>
+            <ul class="list-icon">
+                <li><span>✓</span>Completed task with icon</li>
+                <li><span>✓</span>Another completed task</li>
+                <li><span>✓</span>Final task</li>
+            </ul>
+
+            <h4 style="margin-top: 2rem;">Counter List</h4>
+            <code class="code-label">.list-counter</code>
+            <ul class="list-counter">
+                <li>First step with styled number badge</li>
+                <li>Second step in the process</li>
+                <li>Third and final step</li>
+            </ul>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Spacing Utilities</div>
+
+            <h4>Margin Top Classes</h4>
+            <div style="background: var(--cu-gray-20); padding: 1rem;">
+                <div style="background: white; padding: 0.5rem;">.mt-0 (no margin)</div>
+                <div class="mt-1" style="background: white; padding: 0.5rem;">.mt-1 (4px)</div>
+                <div class="mt-2" style="background: white; padding: 0.5rem;">.mt-2 (8px)</div>
+                <div class="mt-3" style="background: white; padding: 0.5rem;">.mt-3 (16px)</div>
+                <div class="mt-4" style="background: white; padding: 0.5rem;">.mt-4 (24px)</div>
+                <div class="mt-5" style="background: white; padding: 0.5rem;">.mt-5 (32px)</div>
+            </div>
+
+            <h4 style="margin-top: 2rem;">Padding Classes</h4>
+            <div style="background: var(--cu-gray-20); padding: 1rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+                <div class="p-0" style="background: white;">.p-0</div>
+                <div class="p-1" style="background: white;">.p-1</div>
+                <div class="p-2" style="background: white;">.p-2</div>
+                <div class="p-3" style="background: white;">.p-3</div>
+                <div class="p-4" style="background: white;">.p-4</div>
+                <div class="p-5" style="background: white;">.p-5</div>
+            </div>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Flexbox Utilities - Basic Layout</div>
+
+            <h4>Two Column Layout</h4>
+            <code class="code-label">.flex .flex-wrap</code>
+            <div class="flex flex-wrap">
+                <div class="w-md-50" style="background: var(--cu-gray-20); padding: 1rem;">
+                    <h5 style="margin-top: 0;">Column 1</h5>
+                    <p>This is a 50% width column on desktop, full width on mobile.</p>
+                </div>
+                <div class="w-md-50" style="background: var(--cu-gray-20); padding: 1rem;">
+                    <h5 style="margin-top: 0;">Column 2</h5>
+                    <p>Automatically accounts for gap spacing between columns.</p>
+                </div>
+            </div>
+
+            <h4 style="margin-top: 2rem;">Three Column Layout</h4>
+            <code class="code-label">.flex .flex-wrap (with .w-md-33)</code>
+            <div class="flex flex-wrap">
+                <div class="w-md-33" style="background: var(--cu-light-blue); color: white; padding: 1rem;">
+                    <strong>Column 1</strong>
+                </div>
+                <div class="w-md-33" style="background: var(--cu-royal-blue); color: white; padding: 1rem;">
+                    <strong>Column 2</strong>
+                </div>
+                <div class="w-md-33" style="background: var(--cu-midnight-blue); color: white; padding: 1rem;">
+                    <strong>Column 3</strong>
+                </div>
+            </div>
+
+            <h4 style="margin-top: 2rem;">Four Column Layout</h4>
+            <code class="code-label">.flex .flex-wrap (with .w-md-25)</code>
+            <div class="flex flex-wrap">
+                <div class="w-md-25" style="background: var(--cu-cadet); padding: 1rem; text-align: center;">25%</div>
+                <div class="w-md-25" style="background: var(--cu-forest-green); color: white; padding: 1rem; text-align: center;">25%</div>
+                <div class="w-md-25" style="background: var(--cu-cadet); padding: 1rem; text-align: center;">25%</div>
+                <div class="w-md-25" style="background: var(--cu-forest-green); color: white; padding: 1rem; text-align: center;">25%</div>
+            </div>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Flexbox Utilities - Alignment</div>
+
+            <h4>Justify Content</h4>
+            <code class="code-label">.flex .justify-between</code>
+            <div class="flex justify-between" style="background: var(--cu-gray-20); padding: 1rem;">
+                <div style="background: white; padding: 0.5rem;">Item 1</div>
+                <div style="background: white; padding: 0.5rem;">Item 2</div>
+                <div style="background: white; padding: 0.5rem;">Item 3</div>
+            </div>
+
+            <h4 style="margin-top: 1rem;">Justify Center</h4>
+            <code class="code-label">.flex .justify-center</code>
+            <div class="flex justify-center" style="background: var(--cu-gray-20); padding: 1rem;">
+                <div style="background: white; padding: 0.5rem;">Centered Item</div>
+            </div>
+
+            <h4 style="margin-top: 1rem;">Align Items Center</h4>
+            <code class="code-label">.flex .items-center</code>
+            <div class="flex items-center" style="background: var(--cu-gray-20); padding: 1rem; min-height: 100px;">
+                <div style="background: white; padding: 0.5rem;">Vertically centered</div>
+                <div style="background: white; padding: 1rem;">Different height</div>
+                <div style="background: white; padding: 0.5rem;">Still aligned</div>
+            </div>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Flexbox Utilities - Gap Sizes</div>
+
+            <h4>Gap Small</h4>
+            <code class="code-label">.flex .gap-sm</code>
+            <div class="flex gap-sm">
+                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
+            </div>
+
+            <h4 style="margin-top: 1rem;">Gap Large</h4>
+            <code class="code-label">.flex .gap-lg</code>
+            <div class="flex gap-lg">
+                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
+            </div>
+
+            <h4 style="margin-top: 1rem;">Gap Extra Large</h4>
+            <code class="code-label">.flex .gap-xl</code>
+            <div class="flex gap-xl">
+                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
+            </div>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Flexbox Utilities - Flex Item Sizing</div>
+
+            <h4>Flex Basis Utilities</h4>
+            <code class="code-label">.flex with .flex-200, .flex-300, .flex-400</code>
+            <div class="flex flex-wrap">
+                <div class="flex-200" style="background: var(--cu-orange); color: white; padding: 1rem; text-align: center;">
+                    .flex-200<br>(min 200px)
+                </div>
+                <div class="flex-300" style="background: var(--cu-yellow); padding: 1rem; text-align: center;">
+                    .flex-300<br>(min 300px)
+                </div>
+                <div class="flex-400" style="background: var(--cu-yellow-green); padding: 1rem; text-align: center;">
+                    .flex-400<br>(min 400px)
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Image Utilities</div>
+
+            <h4>Full Width Image</h4>
+            <code class="code-label">.image-full</code>
+            <img src="https://placehold.co/1200x300/E4251B/FFFFFF?text=Full+Width+Image" alt="Full width" class="image-full">
+
+            <h4 style="margin-top: 2rem;">Screenshot Style</h4>
+            <code class="code-label">.image-screenshots</code>
+            <img src="https://placehold.co/800x400/5EB99B/FFFFFF?text=Screenshot+with+Border+and+Shadow" alt="Screenshot" class="image-screenshots" style="max-width: 100%;">
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Practical Example: Card Layout</div>
+            <p>Combining flexbox utilities to create a responsive card grid:</p>
+            <code class="code-label">.flex .flex-wrap .gap-lg</code>
+
+            <div class="flex flex-wrap gap-lg mt-3">
+                <div class="w-md-33" style="background: white; border: 1px solid var(--cu-gray-30); border-radius: 8px; padding: 1.5rem;">
+                    <h4 style="margin-top: 0; color: var(--cu-primary-red);">Feature 1</h4>
+                    <p>Responsive card that stacks on mobile and displays in a grid on desktop.</p>
+                </div>
+                <div class="w-md-33" style="background: white; border: 1px solid var(--cu-gray-30); border-radius: 8px; padding: 1.5rem;">
+                    <h4 style="margin-top: 0; color: var(--cu-primary-red);">Feature 2</h4>
+                    <p>Automatically handles gap spacing between items for perfect alignment.</p>
+                </div>
+                <div class="w-md-33" style="background: white; border: 1px solid var(--cu-gray-30); border-radius: 8px; padding: 1.5rem;">
+                    <h4 style="margin-top: 0; color: var(--cu-primary-red);">Feature 3</h4>
+                    <p>Uses Cardiff University design tokens for consistent styling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--cu-gray-20); color: var(--cu-gray-60); text-align: center;">
+        <p>Cardiff University Base Elements & Utilities Style Guide</p>
+    </footer>
+</body>
+</html>

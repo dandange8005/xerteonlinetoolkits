@@ -36,16 +36,16 @@
 
     li {
         position: relative;
-        padding-left: var(--spacing-2xl);
+        padding-left: var(--spacing-xl);
     }
 
     li::before {
         counter-increment: orderedlist;
         content: counter(orderedlist);
-        width: var(--spacing-xl);
-        height: var(--spacing-xl);
-        background: var(--cu-gray-20);
-        color: var(--cu-gray-70);
+        width: var(--spacing-lg);
+        height: var(--spacing-lg);
+        background: var(--color-brand-primary);
+        color: var(--color-text-on-brand);
         display: flex;
         justify-content: center;
         align-items: center;
