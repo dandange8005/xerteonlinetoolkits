@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardiff University Theme - Component Showcase</title>
+    <link rel="stylesheet" href="cardiffuni.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Showcase Page Specific Styles */
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+
+        .page-header {
+            background: var(--color-brand-primary);
+            color: var(--cu-white);
+            padding: 3rem 2rem;
+            margin: -2rem -2rem 3rem;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .page-header h1 {
+            margin: 0 0 1rem;
+            font-size: 2.5rem;
+        }
+
+        .page-header p {
+            margin: 0;
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .component-section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .component-section h2 {
+            color: var(--color-brand-primary);
+            border-bottom: 3px solid var(--color-brand-secondary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .component-section h3 {
+            color: var(--color-brand-secondary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .example {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            background: #fafafa;
+        }
+
+        .example-label {
+            font-weight: 700;
+            color: var(--cu-gray-70);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .code-label {
+            font-family: monospace;
+            background: var(--cu-gray-90);
+            color: var(--cu-white);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Grid layouts for examples */
+        .example-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .example-grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .example-grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Table of contents */
+        .toc {
+            background: var(--cu-gray-10);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            font-size: 1.25rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            column-count: 2;
+            column-gap: 2rem;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            color: var(--color-link-default);
+            text-decoration: none;
+            padding: 0.25rem 0;
+            display: inline-block;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .toc ul {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Component Showcase</h1>
+        <p>Cardiff University Xerte Theme - Custom Component Library</p>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="toc">
+        <h2>Components on this page</h2>
+        <ul>
+            <li><a href="#boxes">Box Component</a></li>
+            <li><a href="#buttons">Button Component</a></li>
+            <li><a href="#callouts">Callout Component</a></li>
+            <li><a href="#cards">Card Component</a></li>
+            <li><a href="#details">Details Component</a></li>
+            <li><a href="#dosdonts">Do's & Don'ts Component</a></li>
+            <li><a href="#links">Link Components</a></li>
+            <li><a href="#quotes">Quote Component</a></li>
+        </ul>
+    </div>
+
+    <!-- BOX COMPONENT -->
+    <section id="boxes" class="component-section">
+        <h2>Box Component</h2>
+        <p>Simple container component with padding, borders, and shadows. Perfect for highlighting content or creating visual groupings.</p>
+
+        <h3>Basic Box</h3>
+        <div class="example">
+            <span class="example-label">Example: .box</span>
+            <div class="box">
+                <p>This is a basic box component. It provides a clean container with padding, a border, and subtle shadow to make content stand out.</p>
+            </div>
+        </div>
+
+        <h3>Box with Icon</h3>
+        <div class="example">
+            <span class="example-label">Example: .box.box-icon</span>
+            <div class="box box-icon">
+                <i class="fas fa-lightbulb" style="color: var(--color-brand-secondary); font-size: 2rem;"></i>
+                <div>
+                    <h4 class="box__title">Box with Icon</h4>
+                    <p>Use flexbox layout to combine an icon with content. Great for tips, notes, or feature highlights.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Box with Utility Classes</h3>
+        <div class="example-grid example-grid-2">
+            <div class="box" style="background: var(--color-brand-primary); color: var(--cu-white); border-color: var(--color-brand-primary);">
+                <h4 class="box__title" style="color: var(--cu-white);">Primary Brand Box</h4>
+                <p style="margin: 0;">Combine with utility classes to create custom color variants.</p>
+            </div>
+            <div class="box" style="background: var(--color-accent-green); border-color: var(--color-accent-green);">
+                <h4 class="box__title">Accent Color Box</h4>
+                <p style="margin: 0;">Use theme colors to create emphasis and visual hierarchy.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUTTON COMPONENT -->
+    <section id="buttons" class="component-section">
+        <h2>Button Component</h2>
+        <p>Custom button styles for links and button elements with multiple variants.</p>
+
+        <h3>Button Variants</h3>
+        <div class="example">
+            <span class="example-label">Standard Buttons</span>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <a href="#" class="button">Default Button</a>
+                <button class="button">Button Element</button>
+                <a href="#" class="button button--outline">Outline Button</a>
+                <a href="#" class="button button--small">Small Button</a>
+            </div>
+        </div>
+
+        <h3>Button with Icons</h3>
+        <div class="example">
+            <span class="example-label">Buttons with Font Awesome Icons</span>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="#" class="button">
+                    <i class="fas fa-download"></i>
+                    Download
+                </a>
+                <a href="#" class="button button--outline">
+                    <i class="fas fa-arrow-right"></i>
+                    Next Step
+                </a>
+                <button class="button">
+                    <i class="fas fa-save"></i>
+                    Save Changes
+                </button>
+            </div>
+        </div>
+
+        <h3>Block Button</h3>
+        <div class="example">
+            <span class="example-label">Example: .button.button--block</span>
+            <a href="#" class="button button--block">Full Width Button</a>
+        </div>
+
+        <h3>Mini Round Button</h3>
+        <div class="example">
+            <span class="example-label">Example: .btn-mini (Back to top button)</span>
+            <button class="btn-mini" aria-label="Back to top">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- CALLOUT COMPONENT -->
+    <section id="callouts" class="component-section">
+        <h2>Callout Component</h2>
+        <p>Alert/notice boxes with semantic color variants for different message types.</p>
+
+        <h3>Callout Variants</h3>
+        <div class="example">
+            <span class="example-label">All Callout Types</span>
+
+            <div class="callout">
+                <h4>Default Callout</h4>
+                <p>This is a neutral callout for general information or notes.</p>
+            </div>
+
+            <div class="callout info">
+                <h4>Information</h4>
+                <p>Use info callouts to provide helpful information or context to users.</p>
+            </div>
+
+            <div class="callout success">
+                <h4>Success Message</h4>
+                <p>Perfect for confirmation messages, completed tasks, or positive feedback.</p>
+            </div>
+
+            <div class="callout warning">
+                <h4>Warning Notice</h4>
+                <p>Highlight cautions, important notices, or things that need attention.</p>
+            </div>
+
+            <div class="callout danger">
+                <h4>Error or Danger</h4>
+                <p>Use for errors, critical warnings, or actions that cannot be undone.</p>
+            </div>
+        </div>
+
+        <h3>Callout with Custom Emoji</h3>
+        <div class="example">
+            <span class="example-label">Example: Custom emoji via emoji-data attribute</span>
+            <div class="callout" emoji-data="🎯">
+                <h4>Custom Icon Callout</h4>
+                <p>You can override the default emoji by adding an <code>emoji-data</code> attribute to the callout element.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARD COMPONENT -->
+    <section id="cards" class="component-section">
+        <h2>Card Component</h2>
+        <p>Content cards with images, headings, and descriptions. Perfect for showcasing content, resources, or navigation.</p>
+
+        <h3>Basic Cards</h3>
+        <div class="example">
+            <span class="example-label">Standard Card Layout</span>
+            <div class="example-grid example-grid-3">
+                <div class="card">
+                    <div class="card__image">
+                        <img src="https://via.placeholder.com/400x225/2C5697/FFFFFF?text=Card+Image" alt="Placeholder">
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__heading">Card Title</h3>
+                        <p class="card__description">A brief description of the card content goes here.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__image">
+                        <img src="https://via.placeholder.com/400x225/9B6A97/FFFFFF?text=Card+Two" alt="Placeholder">
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__heading">Another Card</h3>
+                        <p class="card__description">Cards work well in grid layouts for consistent presentation.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__image">
+                        <img src="https://via.placeholder.com/400x225/7AB87A/FFFFFF?text=Card+Three" alt="Placeholder">
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__heading">Third Card</h3>
+                        <p class="card__description">Use cards to create organized, scannable content layouts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Clickable Cards</h3>
+        <div class="example">
+            <span class="example-label">Example: .card.card--clickable (hover for effect)</span>
+            <div class="example-grid example-grid-2">
+                <div class="card card--clickable">
+                    <div class="card__image">
+                        <img src="https://via.placeholder.com/400x225/2C5697/FFFFFF?text=Clickable+Card" alt="Placeholder">
+                    </div>
+                    <div class="card__content">
+                        <h3><a href="#" class="card__link">Interactive Card</a></h3>
+                        <p class="card__description">Hover over this card to see the interactive effects. The entire card is clickable.</p>
+                    </div>
+                </div>
+
+                <div class="card card--clickable">
+                    <div class="card__content">
+                        <h3><a href="#" class="card__link">Card without Image</a></h3>
+                        <p class="card__metadata">Metadata or date can go here</p>
+                        <p class="card__description">Cards work without images too. Perfect for text-heavy content or list items.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAILS COMPONENT -->
+    <section id="details" class="component-section">
+        <h2>Details Component</h2>
+        <p>Native HTML <code>&lt;details&gt;</code> disclosure widget with custom styling. Great for FAQs, expandable content, or progressive disclosure.</p>
+
+        <h3>Details Examples</h3>
+        <div class="example">
+            <span class="example-label">Expandable Content Blocks</span>
+
+            <details class="details">
+                <summary class="details__summary">What is the Details component?</summary>
+                <div class="details__text">
+                    <p>The Details component is a native HTML5 element that provides a disclosure widget for showing and hiding content. It's perfect for FAQs, expandable sections, and any content that doesn't need to be visible all the time.</p>
+                    <p>Click the triangle or text to expand/collapse the content.</p>
+                </div>
+            </details>
+
+            <details class="details">
+                <summary class="details__summary">How do I use it?</summary>
+                <div class="details__text">
+                    <p>Simply wrap your content in a <code>&lt;details&gt;</code> element with the class <code>.details</code>. Use <code>&lt;summary&gt;</code> with class <code>.details__summary</code> for the clickable heading, and wrap the hidden content in a div with class <code>.details__text</code>.</p>
+                </div>
+            </details>
+
+            <details class="details">
+                <summary class="details__summary">What are the benefits?</summary>
+                <div class="details__text">
+                    <ul>
+                        <li>Native browser support (no JavaScript required)</li>
+                        <li>Accessible by default</li>
+                        <li>Keyboard navigable</li>
+                        <li>Works without CSS</li>
+                        <li>Perfect for progressive disclosure patterns</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="details" open>
+                <summary class="details__summary">This one is open by default</summary>
+                <div class="details__text">
+                    <p>Add the <code>open</code> attribute to the <code>&lt;details&gt;</code> element to have it expanded by default.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- DO'S AND DON'TS COMPONENT -->
+    <section id="dosdonts" class="component-section">
+        <h2>Do's and Don'ts Component</h2>
+        <p>Visual lists showing best practices versus things to avoid. Excellent for guidelines, tutorials, or documentation.</p>
+
+        <h3>Examples</h3>
+        <div class="example">
+            <span class="example-label">Best Practices Lists</span>
+            <div class="example-grid example-grid-2">
+                <div class="do-dont-list">
+                    <h3 class="do-dont-list__label">Do</h3>
+                    <ul class="list--tick">
+                        <li>
+                            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#7ab87a"/>
+                                <path d="M7 12L10.5 15.5L17 9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Use semantic HTML elements
+                        </li>
+                        <li>
+                            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#7ab87a"/>
+                                <path d="M7 12L10.5 15.5L17 9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Write descriptive alt text for images
+                        </li>
+                        <li>
+                            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#7ab87a"/>
+                                <path d="M7 12L10.5 15.5L17 9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Test with keyboard navigation
+                        </li>
+                        <li>
+                            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#7ab87a"/>
+                                <path d="M7 12L10.5 15.5L17 9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Ensure sufficient color contrast
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="do-dont-list">
+                    <h3 class="do-dont-list__label">Don't</h3>
+                    <ul class="list--cross">
+                        <li>
+                            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#dc3545"/>
+                                <path d="M8 8L16 16M8 16L16 8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Use divs for everything
+                        </li>
+                        <li>
+                            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#dc3545"/>
+                                <path d="M8 8L16 16M8 16L16 8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Leave alt text empty or generic
+                        </li>
+                        <li>
+                            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#dc3545"/>
+                                <path d="M8 8L16 16M8 16L16 8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Rely solely on mouse interaction
+                        </li>
+                        <li>
+                            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#dc3545"/>
+                                <path d="M8 8L16 16M8 16L16 8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Use color alone to convey meaning
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LINK COMPONENTS -->
+    <section id="links" class="component-section">
+        <h2>Link Components</h2>
+        <p>Specialized link styles with icons for different purposes.</p>
+
+        <h3>Action Links</h3>
+        <div class="example">
+            <span class="example-label">Example: .link-action</span>
+            <p><a href="#" class="link-action">Take action on this item</a></p>
+            <p><a href="#" class="link-action">Download resources</a></p>
+            <p><a href="#" class="link-action">Start learning now</a></p>
+        </div>
+
+        <h3>External Links</h3>
+        <div class="example">
+            <span class="example-label">Example: .link-external</span>
+            <p>Visit the <a href="#" class="link-external">Cardiff University website</a> for more information.</p>
+            <p>Check out <a href="#" class="link-external">our documentation</a> to learn more.</p>
+        </div>
+
+        <h3>Link Assets (File Downloads)</h3>
+        <div class="example">
+            <span class="example-label">Example: .link-asset</span>
+            <div style="display: grid; gap: 1rem;">
+                <a href="#" class="link-asset">
+                    <i class="fas fa-file-pdf link-asset__icon"></i>
+                    <div>
+                        <div class="link-asset__name">Course Syllabus 2024</div>
+                        <div class="link-asset__label">PDF, 2.5 MB</div>
+                    </div>
+                </a>
+
+                <a href="#" class="link-asset">
+                    <i class="fas fa-file-word link-asset__icon"></i>
+                    <div>
+                        <div class="link-asset__name">Assignment Template</div>
+                        <div class="link-asset__label">DOCX, 856 KB</div>
+                    </div>
+                </a>
+
+                <a href="#" class="link-asset">
+                    <i class="fas fa-file-archive link-asset__icon" style="color: #ffc107;"></i>
+                    <div>
+                        <div class="link-asset__name">Resource Pack</div>
+                        <div class="link-asset__label">ZIP, 15.3 MB</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUOTE COMPONENT -->
+    <section id="quotes" class="component-section">
+        <h2>Quote Component</h2>
+        <p>Styled blockquotes with optional author images for testimonials, citations, or featured quotes.</p>
+
+        <h3>Basic Quote</h3>
+        <div class="example">
+            <span class="example-label">Example: .quote</span>
+            <blockquote class="quote">
+                <p>Education is the most powerful weapon which you can use to change the world.</p>
+                <p class="quote-author">— Nelson Mandela</p>
+            </blockquote>
+        </div>
+
+        <h3>Quote with Author Image</h3>
+        <div class="example">
+            <span class="example-label">Example: .quote.with-image</span>
+            <blockquote class="quote with-image">
+                <img src="https://via.placeholder.com/100/2C5697/FFFFFF?text=Author" alt="Author" class="quote-image">
+                <p>The beautiful thing about learning is that no one can take it away from you.</p>
+                <p class="quote-author">— B.B. King</p>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; color: var(--cu-gray-60); margin-top: 3rem; border-top: 1px solid var(--cu-gray-20);">
+        <p>Cardiff University Theme Component Showcase</p>
+        <p style="font-size: 0.875rem;">For usage documentation, see <code>docs/Components.md</code></p>
+    </footer>
+
+</body>
+</html>
