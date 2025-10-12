@@ -1,0 +1,150 @@
+/**
+ * Button Component
+ *
+ * PURPOSE: Custom button styles for links and button elements
+ *
+ * USAGE:
+ * - Standard button:
+ *   <a href="#" class="button">Click me</a>
+ *   <button class="button">Submit</button>
+ *
+ * - Button variants:
+ *   <a href="#" class="button button--outline">Outline</a>
+ *   <a href="#" class="button button--small">Small</a>
+ *   <a href="#" class="button button--block">Full Width</a>
+ *
+ * - Mini round button (back to top):
+ *   <button class="btn-mini"><i class="fas fa-arrow-up"></i></button>
+ *
+ * VARIANTS:
+ * - .button           - Base button style
+ * - .button--outline  - Outlined button (hollow)
+ * - .button--small    - Smaller button size
+ * - .button--block    - Full-width button
+ * - .btn-mini         - Small circular button (e.g., back to top)
+ */
+
+// =============================================================================
+// BUTTON COMPONENT
+// Styled buttons for links and button elements
+// =============================================================================
+
+// Reset styles for links and button elements
+a.button {
+    text-decoration: none;
+}
+
+button.button {
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    padding: 0;
+    cursor: pointer;
+
+    @media screen and (-ms-high-contrast: active) {
+        border: 2px solid currentColor;
+    }
+}
+
+// Base button styles
+a.button,
+button.button {
+    // Layout
+    display: inline-flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+    justify-content: center;
+    align-self: start;
+
+    // Visual
+    background-color: var(--color-brand-secondary);
+    color: var(--cu-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+
+    // Size
+    padding: 0.25em 0.75em;
+    min-width: 10ch;
+    min-height: 44px;
+
+    // Text
+    text-align: center;
+    line-height: 1.2;
+    transition: all var(--animation-fast) var(--animation-easing);
+
+    // Hover and active states
+    &:hover,
+    &:active {
+        background-color: var(--color-brand-secondary-hover);
+    }
+
+    // Focus state
+    &:focus {
+        outline-style: solid;
+        outline-color: transparent;
+        box-shadow: 0 0 0 4px var(--color-brand-secondary-hover);
+    }
+
+    // Outline variant
+    &--outline {
+        background-color: #ffffff;
+        color: var(--color-brand-secondary);
+        border: 2px solid currentColor;
+
+        &:hover {
+            background-color: var(--color-brand-secondary);
+            color: #ffffff;
+            border-color: var(--color-brand-secondary);
+        }
+    }
+
+    // Small variant
+    &--small {
+        font-size: var(--font-size-sm);
+    }
+
+    // Full-width block variant
+    &--block {
+        width: 100%;
+    }
+}
+
+// =============================================================================
+// MINI ROUND BUTTON
+// Small circular button (e.g., back to top button)
+// =============================================================================
+
+.btn-mini {
+    font-size: var(--font-size-sm);
+    color: var(--cu-white);
+    background: var(--color-brand-secondary);
+    text-shadow: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    margin-bottom: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.4, -1.5, 0.27, 1.55) !important;
+    transform: scale(0.9);
+    z-index: 2;
+    margin-right: 5px;
+    margin-bottom: 5px;
+
+    &:hover,
+    &:focus {
+        background: var(--color-brand-secondary-hover);
+        color: var(--cu-white);
+        transform: scale(1);
+    }
+
+    &:active {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        transform: scale(0.9);
+    }
+}

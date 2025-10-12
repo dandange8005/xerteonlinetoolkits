@@ -1,0 +1,98 @@
+/**
+ * Callout Component
+ *
+ * PURPOSE: Alert/notice box with icon and color variants for different message types
+ *
+ * USAGE:
+ * - Basic callout:
+ *   <div class="callout">Default callout message</div>
+ *
+ * - Callout with custom emoji:
+ *   <div class="callout" emoji-data="🎯">Message with custom icon</div>
+ *
+ * - Callout with variants:
+ *   <div class="callout warning">Warning message</div>
+ *   <div class="callout success">Success message</div>
+ *   <div class="callout danger">Error message</div>
+ *   <div class="callout info">Information message</div>
+ *
+ * VARIANTS:
+ * - .callout         - Base callout style (neutral gray)
+ * - .callout.warning - Yellow warning style with ⚠️ icon
+ * - .callout.success - Green success style with ✅ icon
+ * - .callout.danger  - Red error style with ⛔ icon
+ * - .callout.info    - Blue info style with ℹ️ icon
+ */
+
+// =============================================================================
+// CALLOUT COMPONENT
+// Alert/notice box with icon and semantic color variants
+// =============================================================================
+
+.callout {
+    background: var(--cu-gray-10);
+    padding: var(--spacing-lg);
+    padding-left: var(--spacing-3xl);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    position: relative;
+
+    // Emoji icon using custom attribute or variant-specific emoji
+    &::before {
+        content: attr(emoji-data);
+        font-family: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji,
+                     "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+        position: absolute;
+        top: var(--spacing-lg);
+        left: var(--spacing-md);
+        font-size: var(--font-size-2xl);
+    }
+
+    // Callout heading
+    h4 {
+        font-size: var(--font-size-base);
+        margin-top: 0;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    // Warning variant (yellow)
+    &.warning {
+        background-color: #fffbea;
+        border: 1px solid #f7e07d;
+
+        &::before {
+            content: '⚠️';
+        }
+    }
+
+    // Success variant (green)
+    &.success {
+        background-color: var(--color-accent-green);
+        border: 1px solid #7ab87a;
+
+        &::before {
+            content: '✅';
+        }
+    }
+
+    // Danger variant (red)
+    &.danger {
+        background-color: #fee;
+        border: 1px solid #fbb;
+
+        &::before {
+            content: '⛔️';
+        }
+    }
+
+    // Info variant (blue)
+    &.info {
+        background-color: #e6f4ff;
+        border: 1px solid #91caff;
+
+        &::before {
+            content: 'ℹ️';
+        }
+    }
+}

@@ -9,8 +9,9 @@
  * 3. base-elements        - Cardiff University branded element styles
  * 4. bootstrap-components - Bootstrap component overrides
  * 5. xerte-components     - Xerte Online Toolkits specific components
- * 6. utilities            - Helper classes and utility functions
- * 7. layouts              - Page layout and structural components
+ * 6. custom-components    - Custom Cardiff University components
+ * 7. utilities            - Helper classes and utility functions
+ * 8. layouts              - Page layout and structural components
  */
 
 /* Import modular SCSS components - @use must come before @import */
@@ -19,6 +20,7 @@
 @use "scss/base-elements";         // Cardiff University branded elements
 @use "scss/bootstrap-components";  // Bootstrap component overrides
 @use "scss/xerte-components";      // Xerte-specific components
+@use "scss/custom-components";     // Custom Cardiff University components
 @use "scss/utilities";             // Utility classes
 @use "scss/layouts";               // Layout components
 @use "scss/editorstyles";          // CKEditor custom styles

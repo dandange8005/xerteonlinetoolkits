@@ -1,0 +1,127 @@
+/**
+ * Card Component
+ *
+ * PURPOSE: Content card container with image, heading, and description
+ *
+ * USAGE:
+ * - Basic card:
+ *   <div class="card">
+ *     <div class="card__image"><img src="..." alt="..."></div>
+ *     <div class="card__content">
+ *       <h3 class="card__heading">Title</h3>
+ *       <p class="card__description">Description</p>
+ *     </div>
+ *   </div>
+ *
+ * - Clickable card:
+ *   <div class="card card--clickable">
+ *     <div class="card__content">
+ *       <h3><a href="#" class="card__link">Title</a></h3>
+ *     </div>
+ *   </div>
+ *
+ * VARIANTS:
+ * - .card            - Base card style
+ * - .card--clickable - Adds hover effects and arrow icon
+ *
+ * ELEMENTS:
+ * - .card__image       - Image container
+ * - .card__content     - Content wrapper
+ * - .card__heading     - Card title
+ * - .card__metadata    - Optional metadata
+ * - .card__description - Card description text
+ * - .card__link        - Clickable link (makes entire card clickable)
+ */
+
+// =============================================================================
+// CARD COMPONENT
+// Content card with image, heading, and description
+// =============================================================================
+
+.card {
+    background-color: var(--cu-white);
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--radius-md);
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    // Card content wrapper
+    &__content {
+        padding: var(--spacing-lg);
+
+        > :first-child {
+            margin-top: 0;
+        }
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // Card sub-elements spacing
+    &__heading,
+    &__metadata,
+    &__description {
+        margin-bottom: var(--spacing-md);
+    }
+
+    // Card link (makes entire card clickable)
+    &__link {
+        position: initial;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+        }
+    }
+
+    // Card image container
+    &__image {
+        overflow: hidden;
+
+        img {
+            transition: all var(--animation-medium) var(--animation-easing);
+            aspect-ratio: var(--ratio-widescreen);
+            object-fit: cover;
+            width: 100%;
+        }
+    }
+
+    // Clickable card variant with hover effects
+    &--clickable {
+        border-bottom-width: 3px;
+        padding-bottom: var(--spacing-sm);
+        transition: all var(--animation-medium) var(--animation-easing);
+
+        &:hover {
+            box-shadow: var(--shadow-lg);
+
+            img {
+                transform: scale(1.05);
+            }
+
+            &::after {
+                transform: translateX(5px);
+            }
+        }
+
+        // Arrow icon for clickable cards
+        &::after {
+            position: absolute;
+            right: var(--spacing-md);
+            bottom: var(--spacing-sm);
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f061"; // fa-arrow-right
+            color: var(--color-link-default);
+            transition: all var(--animation-medium) var(--animation-easing);
+        }
+    }
+}

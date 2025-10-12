@@ -1,0 +1,36 @@
+/**
+ * Project Information Component
+ *
+ * PURPOSE: Display project metadata in a flex layout
+ *
+ * USAGE:
+ * <div id="project-info">
+ *   <span>Version 1.0</span>
+ *   <span>Last updated: 2024</span>
+ *   <span>License: MIT</span>
+ * </div>
+ *
+ * FEATURES:
+ * - Flexbox layout with space-around distribution
+ * - Smaller text size for metadata display
+ * - Removes pseudo-elements from Bootstrap/other frameworks
+ */
+
+// =============================================================================
+// PROJECT INFORMATION COMPONENT
+// Metadata display for project details
+// =============================================================================
+
+#project-info {
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+    margin-block: var(--spacing-3xl);
+    color: var(--cu-gray-60);
+
+    // Remove pseudo-elements (Bootstrap cleanup)
+    &::before,
+    &::after {
+        content: none;
+    }
+}

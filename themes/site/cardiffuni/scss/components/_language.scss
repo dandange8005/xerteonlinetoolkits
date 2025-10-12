@@ -1,0 +1,59 @@
+/**
+ * Language Toggle Component
+ *
+ * PURPOSE: Language switcher button positioned in the header
+ *
+ * USAGE:
+ * <a href="#" id="language-toggle">
+ *   <i class="fas fa-globe"></i>
+ *   <span class="language-toggle-text">English</span>
+ * </a>
+ *
+ * FEATURES:
+ * - Positioned absolutely in top-right of header
+ * - Icon + text (text hidden on small screens for space)
+ * - Responsive: hides text label on screens < 980px
+ */
+
+// =============================================================================
+// LANGUAGE TOGGLE COMPONENT
+// Header-positioned language switcher
+// =============================================================================
+
+#language-toggle {
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    font-weight: var(--font-weight-bold);
+    color: var(--cu-white);
+    display: flex;
+    align-items: center;
+
+    // Globe icon
+    i {
+        margin-right: 6px;
+        font-size: var(--font-size-lg);
+        vertical-align: middle;
+    }
+
+    // Hover and focus states
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        color: var(--cu-gray-30);
+    }
+}
+
+// Hide language text on small screens (sr-only pattern)
+@media (max-width: 980px) {
+    .language-toggle-text {
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }
+}
