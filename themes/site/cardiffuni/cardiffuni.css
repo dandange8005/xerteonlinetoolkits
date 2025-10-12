@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Cardiff University Theme - Main Entry Point
  *
@@ -9,8 +10,9 @@
  * 3. base-elements        - Cardiff University branded element styles
  * 4. bootstrap-components - Bootstrap component overrides
  * 5. xerte-components     - Xerte Online Toolkits specific components
- * 6. utilities            - Helper classes and utility functions
- * 7. layouts              - Page layout and structural components
+ * 6. custom-components    - Custom Cardiff University components
+ * 7. utilities            - Helper classes and utility functions
+ * 8. layouts              - Page layout and structural components
  */
 /* Import modular SCSS components - @use must come before @import */
 /* Import Google Fonts */
@@ -1035,6 +1037,831 @@ a.glossary:active {
 .top-round:hover, .top-round:focus {
   background: var(--color-brand-primary-hover);
   color: var(--cu-white);
+}
+
+/**
+ * Custom Components
+ *
+ * PURPOSE: Forward all custom component modules for Cardiff University theme
+ *
+ * This file imports all custom-built components from the components/ folder.
+ * Components are organized into logical categories:
+ *
+ * CONTENT COMPONENTS:
+ * - Boxes       - Simple container component with borders and shadows
+ * - Cards       - Content cards with images and metadata
+ * - Callout     - Alert/notice boxes with semantic color variants
+ * - Quotes      - Styled blockquotes with optional imagery
+ *
+ * INTERACTIVE COMPONENTS:
+ * - Buttons     - Button styles for links and button elements
+ * - Details     - Native <details> disclosure widget styling
+ * - Language    - Language switcher toggle
+ *
+ * LIST COMPONENTS:
+ * - Dos & Don'ts - Visual lists showing best practices
+ *
+ * UTILITY COMPONENTS:
+ * - Links       - Specialized link styles (action, external, asset)
+ * - Project Info - Project metadata display
+ *
+ * NOTE: These components use Cardiff University design tokens defined in _allvariables.scss
+ */
+/**
+ * Box Component
+ *
+ * PURPOSE: Simple container component with padding, borders, and shadows
+ *
+ * USAGE:
+ * - Basic box: <div class="box">Content</div>
+ * - Box with icon: <div class="box box-icon"><i class="fas fa-icon"></i><div>Content</div></div>
+ * - Combine with utility classes for colors: box bg-accent text-white
+ *
+ * VARIANTS:
+ * - .box         - Base box style
+ * - .box-icon    - Flexbox layout for icon + content
+ * - .box__title  - Optional title element within box
+ */
+.box {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color-default);
+  padding: var(--spacing-lg);
+  -webkit-box-shadow: var(--shadow-sm);
+          box-shadow: var(--shadow-sm);
+}
+.box.box-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--spacing-md);
+}
+.box.box-icon > i,
+.box.box-icon > span.fas {
+  line-height: inherit;
+}
+.box > *:last-child {
+  margin-bottom: 0;
+}
+.box .svg-icon {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  width: var(--spacing-2xl);
+  height: var(--spacing-2xl);
+}
+
+.box__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+}
+
+/**
+ * Card Component
+ *
+ * PURPOSE: Content card container with image, heading, and description
+ *
+ * USAGE:
+ * - Basic card:
+ *   <div class="card">
+ *     <div class="card__image"><img src="..." alt="..."></div>
+ *     <div class="card__content">
+ *       <h3 class="card__heading">Title</h3>
+ *       <p class="card__description">Description</p>
+ *     </div>
+ *   </div>
+ *
+ * - Clickable card:
+ *   <div class="card card--clickable">
+ *     <div class="card__content">
+ *       <h3><a href="#" class="card__link">Title</a></h3>
+ *     </div>
+ *   </div>
+ *
+ * VARIANTS:
+ * - .card            - Base card style
+ * - .card--clickable - Adds hover effects and arrow icon
+ *
+ * ELEMENTS:
+ * - .card__image       - Image container
+ * - .card__content     - Content wrapper
+ * - .card__heading     - Card title
+ * - .card__metadata    - Optional metadata
+ * - .card__description - Card description text
+ * - .card__link        - Clickable link (makes entire card clickable)
+ */
+.card {
+  background-color: var(--cu-white);
+  border: 1px solid var(--border-color-default);
+  border-radius: var(--radius-md);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.card__content {
+  padding: var(--spacing-lg);
+}
+.card__content > :first-child {
+  margin-top: 0;
+}
+.card__content > :last-child {
+  margin-bottom: 0;
+}
+.card__heading, .card__metadata, .card__description {
+  margin-bottom: var(--spacing-md);
+}
+.card__link {
+  position: initial;
+}
+.card__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.card__image {
+  overflow: hidden;
+}
+.card__image img {
+  -webkit-transition: all var(--animation-medium) var(--animation-easing);
+  transition: all var(--animation-medium) var(--animation-easing);
+  aspect-ratio: var(--ratio-widescreen);
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+.card--clickable {
+  border-bottom-width: 3px;
+  padding-bottom: var(--spacing-sm);
+  -webkit-transition: all var(--animation-medium) var(--animation-easing);
+  transition: all var(--animation-medium) var(--animation-easing);
+}
+.card--clickable:hover {
+  -webkit-box-shadow: var(--shadow-lg);
+          box-shadow: var(--shadow-lg);
+}
+.card--clickable:hover img {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+.card--clickable:hover::after {
+  -webkit-transform: translateX(5px);
+          transform: translateX(5px);
+}
+.card--clickable::after {
+  position: absolute;
+  right: var(--spacing-md);
+  bottom: var(--spacing-sm);
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f061";
+  color: var(--color-link-default);
+  -webkit-transition: all var(--animation-medium) var(--animation-easing);
+  transition: all var(--animation-medium) var(--animation-easing);
+}
+
+/**
+ * Callout Component
+ *
+ * PURPOSE: Alert/notice box with icon and color variants for different message types
+ *
+ * USAGE:
+ * - Basic callout:
+ *   <div class="callout">Default callout message</div>
+ *
+ * - Callout with custom emoji:
+ *   <div class="callout" emoji-data="🎯">Message with custom icon</div>
+ *
+ * - Callout with variants:
+ *   <div class="callout warning">Warning message</div>
+ *   <div class="callout success">Success message</div>
+ *   <div class="callout danger">Error message</div>
+ *   <div class="callout info">Information message</div>
+ *
+ * VARIANTS:
+ * - .callout         - Base callout style (neutral gray)
+ * - .callout.warning - Yellow warning style with ⚠️ icon
+ * - .callout.success - Green success style with ✅ icon
+ * - .callout.danger  - Red error style with ⛔ icon
+ * - .callout.info    - Blue info style with ℹ️ icon
+ */
+.callout {
+  background: var(--cu-gray-10);
+  padding: var(--spacing-lg);
+  padding-left: var(--spacing-3xl);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  position: relative;
+}
+.callout::before {
+  content: attr(emoji-data);
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+  position: absolute;
+  top: var(--spacing-lg);
+  left: var(--spacing-md);
+  font-size: var(--font-size-2xl);
+}
+.callout h4 {
+  font-size: var(--font-size-base);
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+}
+.callout.warning {
+  background-color: #fffbea;
+  border: 1px solid #f7e07d;
+}
+.callout.warning::before {
+  content: "⚠️";
+}
+.callout.success {
+  background-color: var(--color-accent-green);
+  border: 1px solid #7ab87a;
+}
+.callout.success::before {
+  content: "✅";
+}
+.callout.danger {
+  background-color: #fee;
+  border: 1px solid #fbb;
+}
+.callout.danger::before {
+  content: "⛔️";
+}
+.callout.info {
+  background-color: #e6f4ff;
+  border: 1px solid #91caff;
+}
+.callout.info::before {
+  content: "ℹ️";
+}
+
+/**
+ * Quote Component
+ *
+ * PURPOSE: Advanced quotation block styles with optional images
+ *
+ * USAGE:
+ * - Basic quote:
+ *   <blockquote class="quote">
+ *     <p>Quote text here</p>
+ *     <p class="quote-author">— Author Name</p>
+ *   </blockquote>
+ *
+ * - Quote with image:
+ *   <blockquote class="quote with-image">
+ *     <img src="..." alt="Author" class="quote-image">
+ *     <p>Quote text here</p>
+ *     <p class="quote-author">— Author Name</p>
+ *   </blockquote>
+ *
+ * VARIANTS:
+ * - .quote          - Base quote style
+ * - .quote.with-image - Quote with author image
+ *
+ * ELEMENTS:
+ * - .quote-image    - Circular author image
+ * - .quote-author   - Author name/attribution
+ *
+ * NOTE: This component is still under development
+ */
+.quote {
+  border-left: 5px solid var(--color-brand-primary);
+  padding: var(--spacing-md);
+  margin: 0 0 var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-family: var(--font-primary-body);
+}
+.quote::before, .quote::after {
+  font-family: Georgia, serif;
+  color: var(--cu-gray-40);
+}
+.quote.with-image {
+  padding-left: 150px;
+}
+
+.quote-image {
+  border-radius: 50%;
+  max-width: 100px;
+  float: left;
+  margin-left: -130px;
+}
+
+.quote-author {
+  margin-top: var(--spacing-md);
+  margin-bottom: 0;
+  font-weight: var(--font-weight-bold);
+}
+
+/**
+ * Button Component
+ *
+ * PURPOSE: Custom button styles for links and button elements
+ *
+ * USAGE:
+ * - Standard button:
+ *   <a href="#" class="button">Click me</a>
+ *   <button class="button">Submit</button>
+ *
+ * - Button variants:
+ *   <a href="#" class="button button--outline">Outline</a>
+ *   <a href="#" class="button button--small">Small</a>
+ *   <a href="#" class="button button--block">Full Width</a>
+ *
+ * - Mini round button (back to top):
+ *   <button class="btn-mini"><i class="fas fa-arrow-up"></i></button>
+ *
+ * VARIANTS:
+ * - .button           - Base button style
+ * - .button--outline  - Outlined button (hollow)
+ * - .button--small    - Smaller button size
+ * - .button--block    - Full-width button
+ * - .btn-mini         - Small circular button (e.g., back to top)
+ */
+a.button {
+  text-decoration: none;
+}
+
+button.button {
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
+}
+@media screen and (-ms-high-contrast: active) {
+  button.button {
+    border: 2px solid currentColor;
+  }
+}
+
+a.button,
+button.button {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  gap: var(--spacing-sm);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-item-align: start;
+      align-self: start;
+  background-color: var(--color-brand-secondary);
+  color: var(--cu-white);
+  border-radius: var(--radius-md);
+  -webkit-box-shadow: var(--shadow-sm);
+          box-shadow: var(--shadow-sm);
+  padding: 0.25em 0.75em;
+  min-width: 10ch;
+  min-height: 44px;
+  text-align: center;
+  line-height: 1.2;
+  -webkit-transition: all var(--animation-fast) var(--animation-easing);
+  transition: all var(--animation-fast) var(--animation-easing);
+}
+a.button:hover, a.button:active,
+button.button:hover,
+button.button:active {
+  background-color: var(--color-brand-secondary-hover);
+}
+a.button:focus,
+button.button:focus {
+  outline-style: solid;
+  outline-color: transparent;
+  -webkit-box-shadow: 0 0 0 4px var(--color-brand-secondary-hover);
+          box-shadow: 0 0 0 4px var(--color-brand-secondary-hover);
+}
+a.button--outline,
+button.button--outline {
+  background-color: #ffffff;
+  color: var(--color-brand-secondary);
+  border: 2px solid currentColor;
+}
+a.button--outline:hover,
+button.button--outline:hover {
+  background-color: var(--color-brand-secondary);
+  color: #ffffff;
+  border-color: var(--color-brand-secondary);
+}
+a.button--small,
+button.button--small {
+  font-size: var(--font-size-sm);
+}
+a.button--block,
+button.button--block {
+  width: 100%;
+}
+
+.btn-mini {
+  font-size: var(--font-size-sm);
+  color: var(--cu-white);
+  background: var(--color-brand-secondary);
+  text-shadow: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  margin-bottom: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: all 0.3s cubic-bezier(0.4, -1.5, 0.27, 1.55) !important;
+  transition: all 0.3s cubic-bezier(0.4, -1.5, 0.27, 1.55) !important;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  z-index: 2;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+.btn-mini:hover, .btn-mini:focus {
+  background: var(--color-brand-secondary-hover);
+  color: var(--cu-white);
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.btn-mini:active {
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+/**
+ * Details Component
+ *
+ * PURPOSE: Native HTML <details> disclosure widget styling (accordion-like)
+ *
+ * USAGE:
+ * <details class="details">
+ *   <summary class="details__summary">Click to expand</summary>
+ *   <div class="details__text">
+ *     <p>Hidden content that expands when clicked</p>
+ *   </div>
+ * </details>
+ *
+ * ELEMENTS:
+ * - .details          - Container element
+ * - .details__summary - Clickable heading/toggle
+ * - .details__text    - Expanded content area
+ *
+ * FEATURES:
+ * - Animated triangle indicator (points right when closed, down when open)
+ * - Focus states for accessibility
+ * - Border on expanded content
+ */
+.details {
+  display: block;
+}
+.details__summary {
+  color: var(--color-link-default);
+  cursor: pointer;
+  display: inline-block;
+  padding-left: var(--spacing-xl);
+  position: relative;
+  text-decoration: underline;
+}
+.details__summary::-webkit-details-marker {
+  display: none;
+}
+.details__summary::before {
+  bottom: 0;
+  content: "";
+  left: 0;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  border-width: 7px 0 7px 12.124px;
+  border-left-color: inherit;
+}
+.details__summary:hover {
+  text-decoration: none;
+}
+.details__summary:focus {
+  background-color: var(--color-accent-gold);
+  -webkit-box-shadow: 0 -2px var(--color-accent-gold), 0 4px var(--cu-gray-90);
+          box-shadow: 0 -2px var(--color-accent-gold), 0 4px var(--cu-gray-90);
+  color: var(--cu-gray-90);
+  outline: 4px solid transparent;
+  text-decoration: none;
+}
+.details[open] > .details__summary::before {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+  border-width: 12.124px 7px 0 7px;
+  border-top-color: inherit;
+}
+.details__text {
+  border-left: 4px solid var(--border-color-default);
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-md);
+  padding-left: var(--spacing-lg);
+}
+.details__text > *:where(:not(:first-child)) {
+  margin-top: var(--spacing-md);
+}
+
+/**
+ * Language Toggle Component
+ *
+ * PURPOSE: Language switcher button positioned in the header
+ *
+ * USAGE:
+ * <a href="#" id="language-toggle">
+ *   <i class="fas fa-globe"></i>
+ *   <span class="language-toggle-text">English</span>
+ * </a>
+ *
+ * FEATURES:
+ * - Positioned absolutely in top-right of header
+ * - Icon + text (text hidden on small screens for space)
+ * - Responsive: hides text label on screens < 980px
+ */
+#language-toggle {
+  position: absolute;
+  top: 28px;
+  right: 24px;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  font-weight: var(--font-weight-bold);
+  color: var(--cu-white);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#language-toggle i {
+  margin-right: 6px;
+  font-size: var(--font-size-lg);
+  vertical-align: middle;
+}
+#language-toggle:hover, #language-toggle:focus {
+  text-decoration: none;
+  color: var(--cu-gray-30);
+}
+
+@media (max-width: 980px) {
+  .language-toggle-text {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+}
+/**
+ * Do's and Don'ts List Component
+ *
+ * PURPOSE: Visual list showing recommended and not-recommended actions
+ *
+ * USAGE:
+ * <div class="do-dont-list">
+ *   <h3 class="do-dont-list__label">Do</h3>
+ *   <ul class="list--tick">
+ *     <li><svg class="icon">...</svg>Use semantic HTML</li>
+ *     <li><svg class="icon">...</svg>Test accessibility</li>
+ *   </ul>
+ * </div>
+ *
+ * <div class="do-dont-list">
+ *   <h3 class="do-dont-list__label">Don't</h3>
+ *   <ul class="list--cross">
+ *     <li><svg class="icon">...</svg>Use divs for everything</li>
+ *   </ul>
+ * </div>
+ *
+ * ELEMENTS:
+ * - .do-dont-list        - Container box
+ * - .do-dont-list__label - Colored label (Do/Don't)
+ * - .list--tick          - List with checkmark icons
+ * - .list--cross         - List with cross/X icons
+ */
+.do-dont-list {
+  margin: var(--spacing-3xl) 0;
+  padding: var(--spacing-xl);
+  color: var(--color-text-primary);
+  border: 1px solid var(--border-color-default);
+  padding-top: 0 !important;
+}
+.do-dont-list .icon {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  height: var(--spacing-2xl);
+  width: var(--spacing-2xl);
+}
+.do-dont-list > *:first-child {
+  margin-top: 0;
+}
+
+.do-dont-list__label {
+  font-size: var(--font-size-base);
+  line-height: 1.4;
+  background-color: var(--color-brand-secondary);
+  color: var(--cu-white);
+  display: inline-block;
+  margin: 0 0 var(--spacing-sm) calc(var(--spacing-xl) * -1);
+  padding: var(--spacing-sm) var(--spacing-2xl);
+  position: relative;
+  top: calc(var(--spacing-lg) * -1);
+}
+
+.list--tick,
+.list--cross {
+  list-style: none;
+  margin: 0;
+  padding-left: var(--spacing-2xl);
+  position: relative;
+}
+.list--tick svg,
+.list--cross svg {
+  left: -4px;
+  margin-top: -5px;
+  position: absolute;
+}
+
+/**
+ * Link Components
+ *
+ * PURPOSE: Specialized link styles with icons and visual treatments
+ *
+ * USAGE:
+ * - Action link (with arrow icon):
+ *   <a href="#" class="link-action">Take action</a>
+ *
+ * - External link (with external icon):
+ *   <a href="https://..." class="link-external">External site</a>
+ *
+ * - Link asset (for file downloads):
+ *   <a href="file.pdf" class="link-asset">
+ *     <i class="fas fa-file-pdf link-asset__icon"></i>
+ *     <div>
+ *       <div class="link-asset__name">Document Title</div>
+ *       <div class="link-asset__label">PDF, 2.5 MB</div>
+ *     </div>
+ *   </a>
+ *
+ * COMPONENTS:
+ * - .link-action      - Link with arrow icon (calls to action)
+ * - .link-external    - Link with external icon
+ * - .link-asset       - Styled file download link with metadata
+ *
+ * EXAMPLE: https://codepen.io/dandange8005/pen/bGKyrop
+ */
+a.link-action {
+  display: inline-block;
+}
+a.link-action::before {
+  content: "\f0a9";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: var(--spacing-sm);
+  color: var(--color-accent-green);
+  font-size: var(--font-size-lg);
+}
+a.link-action:hover::after, a.link-action:focus::after {
+  content: none;
+}
+a.link-action:hover::before, a.link-action:focus::before {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.action-link::before {
+  content: "\f0a9";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: var(--spacing-sm);
+  color: var(--color-accent-green);
+  font-size: var(--font-size-lg);
+}
+
+a.action-link:hover::after,
+a.action-link:focus::after {
+  content: none;
+}
+
+.action-link:hover::before,
+.action-link:focus::before {
+  text-decoration: none;
+  display: inline-block;
+}
+
+a.link-external {
+  display: inline-block;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: var(--spacing-xs);
+}
+a.link-external::after {
+  content: "\f35d";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 10px;
+  margin-left: 4px;
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+  display: inline-block;
+}
+a.link-external:hover::after {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.link-asset {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: var(--cu-gray-10);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  color: unset;
+}
+.link-asset:hover {
+  color: var(--color-link-default);
+  text-decoration: none;
+  outline: 1.5px solid var(--color-link-default);
+}
+.link-asset__icon {
+  font-size: var(--font-size-lg);
+  margin-right: var(--spacing-md);
+}
+.link-asset__icon.fa-file-pdf {
+  color: #dc3545;
+}
+.link-asset__icon.fa-file-word {
+  color: #2b579a;
+}
+.link-asset__name {
+  font-weight: var(--font-weight-bold);
+}
+.link-asset__label {
+  color: var(--cu-gray-60);
+}
+
+/**
+ * Project Information Component
+ *
+ * PURPOSE: Display project metadata in a flex layout
+ *
+ * USAGE:
+ * <div id="project-info">
+ *   <span>Version 1.0</span>
+ *   <span>Last updated: 2024</span>
+ *   <span>License: MIT</span>
+ * </div>
+ *
+ * FEATURES:
+ * - Flexbox layout with space-around distribution
+ * - Smaller text size for metadata display
+ * - Removes pseudo-elements from Bootstrap/other frameworks
+ */
+#project-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  font-size: 14px;
+  margin-block: var(--spacing-3xl);
+  color: var(--cu-gray-60);
+}
+#project-info::before, #project-info::after {
+  content: none;
 }
 
 /**
