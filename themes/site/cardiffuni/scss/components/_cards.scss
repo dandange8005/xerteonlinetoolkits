@@ -77,16 +77,21 @@
         }
     }
 
-    // Card image container
+    // Card image container (can be wrapper div or img element itself)
     &__image {
         overflow: hidden;
+        width: 100%;
+        aspect-ratio: var(--ratio-widescreen);
+        object-fit: cover;
+        transition: transform var(--animation-medium) var(--animation-easing);
 
-        img {
-            transition: all var(--animation-medium) var(--animation-easing);
-            aspect-ratio: var(--ratio-widescreen);
-            object-fit: cover;
-            width: 100%;
-        }
+        // // If card__image is a wrapper div with img inside
+        // img {
+        //     width: 100%;
+        //     aspect-ratio: var(--ratio-widescreen);
+        //     object-fit: cover;
+        //     transition: transform var(--animation-medium) var(--animation-easing);
+        // }
     }
 
     // Clickable card variant with hover effects
@@ -98,7 +103,13 @@
         &:hover {
             box-shadow: var(--shadow-lg);
 
-            img {
+            // Target img when card__image is a wrapper
+            // .card__image img {
+            //     transform: scale(1.05);
+            // }
+
+            // Target img when card__image IS the img element
+            .card__image {
                 transform: scale(1.05);
             }
 
@@ -117,7 +128,7 @@
             font-variant: normal;
             text-rendering: auto;
             -webkit-font-smoothing: antialiased;
-            font-family: "Font Awesome 5 Free";
+            font-family: "Font Awesome 6 Free";
             font-weight: 900;
             content: "\f061"; // fa-arrow-right
             color: var(--color-link-default);

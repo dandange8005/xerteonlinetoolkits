@@ -956,12 +956,8 @@ a.accordion-toggle[aria-expanded=true]::after {
 }
 
 .panel {
-  background-color: var(--color-brand-primary);
-  border: 1px solid var(--color-brand-primary);
-  border-radius: var(--radius-md);
-  color: var(--cu-white);
   padding-left: 2rem;
-  padding-top: var(--spacing-lg);
+  padding-top: var(--spacing-2xl);
 }
 .panel > *:first-child {
   margin-top: 0;
@@ -972,11 +968,6 @@ a.accordion-toggle[aria-expanded=true]::after {
 
 .panel::after {
   font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-  background-color: var(--cu-gray-10);
-  border: 1px solid var(--color-brand-primary);
-  color: var(--cu-white);
-  border-radius: var(--radius-md) 0 var(--radius-md) 0;
   padding-inline: var(--spacing-sm);
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -1088,6 +1079,7 @@ a.glossary:active {
   padding: var(--spacing-lg);
   -webkit-box-shadow: var(--shadow-sm);
           box-shadow: var(--shadow-sm);
+  background-color: var(--color-bg-elevated);
 }
 .box.box-icon {
   display: -webkit-box;
@@ -1181,14 +1173,14 @@ a.glossary:active {
 }
 .card__image {
   overflow: hidden;
-}
-.card__image img {
-  -webkit-transition: all var(--animation-medium) var(--animation-easing);
-  transition: all var(--animation-medium) var(--animation-easing);
+  width: 100%;
   aspect-ratio: var(--ratio-widescreen);
   -o-object-fit: cover;
      object-fit: cover;
-  width: 100%;
+  -webkit-transition: -webkit-transform var(--animation-medium) var(--animation-easing);
+  transition: -webkit-transform var(--animation-medium) var(--animation-easing);
+  transition: transform var(--animation-medium) var(--animation-easing);
+  transition: transform var(--animation-medium) var(--animation-easing), -webkit-transform var(--animation-medium) var(--animation-easing);
 }
 .card--clickable {
   border-bottom-width: 3px;
@@ -1200,7 +1192,7 @@ a.glossary:active {
   -webkit-box-shadow: var(--shadow-lg);
           box-shadow: var(--shadow-lg);
 }
-.card--clickable:hover img {
+.card--clickable:hover .card__image {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
@@ -1217,7 +1209,7 @@ a.glossary:active {
   font-variant: normal;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 6 Free";
   font-weight: 900;
   content: "\f061";
   color: var(--color-link-default);
@@ -1252,8 +1244,8 @@ a.glossary:active {
  */
 .callout {
   background: var(--cu-gray-10);
-  padding: var(--spacing-lg);
-  padding-left: var(--spacing-3xl);
+  padding: var(--spacing-md);
+  padding-left: var(--spacing-2xl);
   border-radius: var(--radius-md);
   font-size: var(--font-size-base);
   color: var(--color-text-primary);
@@ -1263,39 +1255,23 @@ a.glossary:active {
   content: attr(emoji-data);
   font-family: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
   position: absolute;
-  top: var(--spacing-lg);
+  top: var(--spacing-md);
   left: var(--spacing-md);
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-lg);
 }
 .callout h4 {
   font-size: var(--font-size-base);
   margin-top: 0;
   margin-bottom: var(--spacing-sm);
 }
-.callout.warning {
-  background-color: #fffbea;
-  border: 1px solid #f7e07d;
-}
 .callout.warning::before {
   content: "⚠️";
-}
-.callout.success {
-  background-color: var(--color-accent-green);
-  border: 1px solid #7ab87a;
 }
 .callout.success::before {
   content: "✅";
 }
-.callout.danger {
-  background-color: #fee;
-  border: 1px solid #fbb;
-}
 .callout.danger::before {
   content: "⛔️";
-}
-.callout.info {
-  background-color: #e6f4ff;
-  border: 1px solid #91caff;
 }
 .callout.info::before {
   content: "ℹ️";
@@ -1330,13 +1306,6 @@ a.glossary:active {
  *
  * NOTE: This component is still under development
  */
-.quote {
-  border-left: 5px solid var(--color-brand-primary);
-  padding: var(--spacing-md);
-  margin: 0 0 var(--spacing-lg);
-  font-size: var(--font-size-base);
-  font-family: var(--font-primary-body);
-}
 .quote::before, .quote::after {
   font-family: Georgia, serif;
   color: var(--cu-gray-40);
@@ -1346,7 +1315,8 @@ a.glossary:active {
 }
 
 .quote-image {
-  border-radius: 50%;
+  border-radius: var(--radius-pill);
+  aspect-ratio: var(--ratio-square);
   max-width: 100px;
   float: left;
   margin-left: -130px;
@@ -1900,7 +1870,7 @@ a.link-external:hover::after {
   content: counter(orderedlist);
   width: var(--spacing-lg);
   height: var(--spacing-lg);
-  background: var(--color-brand-primary);
+  background: var(--cu-gray-80);
   color: var(--color-text-on-brand);
   display: -webkit-box;
   display: -ms-flexbox;
