@@ -75,6 +75,7 @@ Templates are located in `modules/{module_type}/parent_templates/` and define di
 - **Popcorn.js** for multimedia timeline interactions
 - **jQuery** and various JavaScript libraries
 - **SAML2** authentication support via OneLogin library
+- **Bootstrap 2.3.0** for the site template (located in `modules/site/parent_templates/site/common/`)
 
 ## Development Notes
 - The codebase follows a modular architecture where functionality is separated into modules
