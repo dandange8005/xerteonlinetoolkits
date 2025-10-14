@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardiff University Button Component Examples</title>
+  <link rel="stylesheet" href="cardiff-button.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      padding: 40px;
+      background-color: #f5f5f5;
+      line-height: 1.6;
+    }
+    .section {
+      background: white;
+      padding: 30px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #121212;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #121212;
+      margin-bottom: 20px;
+      margin-top: 0;
+      font-size: 24px;
+    }
+    h3 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+    .button-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .label {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 8px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .demo-group {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cardiff University Design System</h1>
+  <p>Button Component Library</p>
+
+  <!-- Primary Red Buttons -->
+  <div class="section">
+    <h2>Primary Red Buttons</h2>
+
+    <div class="demo-group">
+      <div class="label">Mobile Size - Text Only</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--primary-red cu-btn--mobile">Button</button>
+        <button class="cu-btn cu-btn--primary-red cu-btn--mobile" disabled>Disabled</button>
+      </div>
+    </div>
+
+    <div class="demo-group">
+      <div class="label">Mobile Size - With Icons</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--primary-red cu-btn--mobile cu-btn--icon-right">
+          Button
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--primary-red cu-btn--mobile cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          Button
+        </button>
+        <button class="cu-btn cu-btn--primary-red cu-btn--mobile cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-search"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="demo-group">
+      <div class="label">Desktop Size - Text Only</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--primary-red cu-btn--desktop">Button</button>
+        <button class="cu-btn cu-btn--primary-red cu-btn--desktop" disabled>Disabled</button>
+      </div>
+    </div>
+
+    <div class="demo-group">
+      <div class="label">Desktop Size - With Icons</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--primary-red cu-btn--desktop cu-btn--icon-right">
+          Button
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--primary-red cu-btn--desktop cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          Button
+        </button>
+        <button class="cu-btn cu-btn--primary-red cu-btn--desktop cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-search"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Black Buttons -->
+  <div class="section">
+    <h2>Primary Black Buttons</h2>
+
+    <div class="demo-group">
+      <div class="label">Mobile Size</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--primary-black cu-btn--mobile">Button</button>
+        <button class="cu-btn cu-btn--primary-black cu-btn--mobile cu-btn--icon-right">
+          Button
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--primary-black cu-btn--mobile cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          Button
+        </button>
+        <button class="cu-btn cu-btn--primary-black cu-btn--mobile cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-download"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--primary-black cu-btn--mobile" disabled>Disabled</button>
+      </div>
+    </div>
+
+    <div class="demo-group">
+      <div class="label">Desktop Size</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--primary-black cu-btn--desktop">Button</button>
+        <button class="cu-btn cu-btn--primary-black cu-btn--desktop cu-btn--icon-right">
+          Button
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--primary-black cu-btn--desktop cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          Button
+        </button>
+        <button class="cu-btn cu-btn--primary-black cu-btn--desktop cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-download"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--primary-black cu-btn--desktop" disabled>Disabled</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success/Green Buttons -->
+  <div class="section">
+    <h2>Success (Green) Buttons</h2>
+
+    <div class="demo-group">
+      <div class="label">Mobile Size</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--success cu-btn--mobile">Button</button>
+        <button class="cu-btn cu-btn--success cu-btn--mobile cu-btn--icon-right">
+          Button
+          <span class="cu-btn__icon">
+            <i class="fas fa-check"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--success cu-btn--mobile cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-check"></i>
+          </span>
+          Button
+        </button>
+        <button class="cu-btn cu-btn--success cu-btn--mobile cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-check"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--success cu-btn--mobile" disabled>Disabled</button>
+      </div>
+    </div>
+
+    <div class="demo-group">
+      <div class="label">Desktop Size</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--success cu-btn--desktop">Button</button>
+        <button class="cu-btn cu-btn--success cu-btn--desktop cu-btn--icon-right">
+          Button
+          <span class="cu-btn__icon">
+            <i class="fas fa-check"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--success cu-btn--desktop cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-check"></i>
+          </span>
+          Button
+        </button>
+        <button class="cu-btn cu-btn--success cu-btn--desktop cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-check"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--success cu-btn--desktop" disabled>Disabled</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reverse Buttons -->
+  <div class="section">
+    <h2>Reverse (Light) Buttons</h2>
+
+    <div class="demo-group">
+      <div class="label">Mobile Size</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--reverse cu-btn--mobile">Button</button>
+        <button class="cu-btn cu-btn--reverse cu-btn--mobile cu-btn--icon-right">
+          Button
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--reverse cu-btn--mobile cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          Button
+        </button>
+        <button class="cu-btn cu-btn--reverse cu-btn--mobile cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--reverse cu-btn--mobile" disabled>Disabled</button>
+      </div>
+    </div>
+
+    <div class="demo-group">
+      <div class="label">Desktop Size</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--reverse cu-btn--desktop">Button</button>
+        <button class="cu-btn cu-btn--reverse cu-btn--desktop cu-btn--icon-right">
+          Button
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--reverse cu-btn--desktop cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          Button
+        </button>
+        <button class="cu-btn cu-btn--reverse cu-btn--desktop cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--reverse cu-btn--desktop" disabled>Disabled</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Responsive Buttons -->
+  <div class="section">
+    <h2>🌟 Responsive Buttons (Mobile → Desktop at 768px)</h2>
+    <p style="color: #666; margin-bottom: 20px;">
+      These buttons automatically adapt from mobile size (default) to desktop size when the screen width is 768px or larger.
+      <strong>Try resizing your browser window to see them change!</strong>
+    </p>
+
+    <div class="demo-group">
+      <div class="label">Responsive - All Colors</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--primary-red cu-btn--responsive">Primary Red</button>
+        <button class="cu-btn cu-btn--primary-black cu-btn--responsive">Primary Black</button>
+        <button class="cu-btn cu-btn--success cu-btn--responsive">Success</button>
+        <button class="cu-btn cu-btn--reverse cu-btn--responsive">Reverse</button>
+      </div>
+    </div>
+
+    <div class="demo-group">
+      <div class="label">Responsive - With Icons</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--primary-red cu-btn--responsive cu-btn--icon-right">
+          Next
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--primary-black cu-btn--responsive cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          Back
+        </button>
+        <button class="cu-btn cu-btn--success cu-btn--responsive cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-check"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--primary-red cu-btn--responsive" disabled>Disabled</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Outline Buttons (NEW!) -->
+  <div class="section">
+    <h2>✨ Outline Buttons</h2>
+    <p style="color: #666; margin-bottom: 20px;">
+      Outline buttons have a transparent background with a colored border. Perfect for secondary actions.
+    </p>
+
+    <div class="demo-group">
+      <div class="label">Outline - Primary Red</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--outline cu-btn--primary-red cu-btn--mobile">Button</button>
+        <button class="cu-btn cu-btn--outline cu-btn--primary-red cu-btn--mobile cu-btn--icon-right">
+          Button
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--primary-red cu-btn--mobile cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          Button
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--primary-red cu-btn--mobile cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-search"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--primary-red cu-btn--mobile" disabled>Disabled</button>
+      </div>
+    </div>
+
+    <div class="demo-group">
+      <div class="label">Outline - Primary Black</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--outline cu-btn--primary-black cu-btn--mobile">Button</button>
+        <button class="cu-btn cu-btn--outline cu-btn--primary-black cu-btn--mobile cu-btn--icon-right">
+          Button
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--primary-black cu-btn--mobile cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          Button
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--primary-black cu-btn--mobile cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-download"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--primary-black cu-btn--mobile" disabled>Disabled</button>
+      </div>
+    </div>
+
+    <div class="demo-group">
+      <div class="label">Outline - Success (Green)</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--outline cu-btn--success cu-btn--mobile">Button</button>
+        <button class="cu-btn cu-btn--outline cu-btn--success cu-btn--mobile cu-btn--icon-right">
+          Button
+          <span class="cu-btn__icon">
+            <i class="fas fa-check"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--success cu-btn--mobile cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-check"></i>
+          </span>
+          Button
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--success cu-btn--mobile cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-check"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--success cu-btn--mobile" disabled>Disabled</button>
+      </div>
+    </div>
+
+    <div class="demo-group">
+      <div class="label">Outline - Reverse (Light on Dark)</div>
+      <div class="button-row" style="background: #121212; padding: 20px; border-radius: 4px; margin: -10px; margin-bottom: 10px;">
+        <button class="cu-btn cu-btn--outline cu-btn--reverse cu-btn--mobile">Button</button>
+        <button class="cu-btn cu-btn--outline cu-btn--reverse cu-btn--mobile cu-btn--icon-right">
+          Button
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--reverse cu-btn--mobile cu-btn--icon-left">
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          Button
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--reverse cu-btn--mobile cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--reverse cu-btn--mobile" disabled>Disabled</button>
+      </div>
+    </div>
+
+    <div class="demo-group">
+      <div class="label">Outline - Desktop Size</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--outline cu-btn--primary-red cu-btn--desktop">Desktop Button</button>
+        <button class="cu-btn cu-btn--outline cu-btn--primary-black cu-btn--desktop">Desktop Button</button>
+        <button class="cu-btn cu-btn--outline cu-btn--success cu-btn--desktop">Desktop Button</button>
+      </div>
+    </div>
+
+    <div class="demo-group">
+      <div class="label">Outline - Responsive</div>
+      <div class="button-row">
+        <button class="cu-btn cu-btn--outline cu-btn--primary-red cu-btn--responsive">Responsive</button>
+        <button class="cu-btn cu-btn--outline cu-btn--primary-black cu-btn--responsive cu-btn--icon-right">
+          Responsive
+          <span class="cu-btn__icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </button>
+        <button class="cu-btn cu-btn--outline cu-btn--success cu-btn--responsive cu-btn--icon-only">
+          <span class="cu-btn__icon">
+            <i class="fas fa-check"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Usage Examples -->
+  <div class="section">
+    <h2>Usage Examples</h2>
+    <h3>Basic Button</h3>
+    <pre><code>&lt;button class="cu-btn cu-btn--primary-red cu-btn--mobile"&gt;Button&lt;/button&gt;</code></pre>
+
+    <h3>Button with Right Icon</h3>
+    <pre><code>&lt;button class="cu-btn cu-btn--primary-red cu-btn--mobile cu-btn--icon-right"&gt;
+  Button
+  &lt;span class="cu-btn__icon"&gt;
+    &lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;
+  &lt;/span&gt;
+&lt;/button&gt;</code></pre>
+
+    <h3>Icon-Only Button</h3>
+    <pre><code>&lt;button class="cu-btn cu-btn--primary-red cu-btn--mobile cu-btn--icon-only"&gt;
+  &lt;span class="cu-btn__icon"&gt;
+    &lt;i class="fas fa-search"&gt;&lt;/i&gt;
+  &lt;/span&gt;
+&lt;/button&gt;</code></pre>
+
+    <h3>Responsive Button</h3>
+    <pre><code>&lt;button class="cu-btn cu-btn--primary-red cu-btn--responsive"&gt;Button&lt;/button&gt;</code></pre>
+    <p style="color: #666; font-size: 14px;">Automatically switches from mobile to desktop size at 768px breakpoint.</p>
+
+    <h3>Outline Button (NEW!)</h3>
+    <pre><code>&lt;button class="cu-btn cu-btn--outline cu-btn--primary-red cu-btn--mobile"&gt;Button&lt;/button&gt;</code></pre>
+    <p style="color: #666; font-size: 14px;">Transparent background with colored border - perfect for secondary actions.</p>
+
+    <h3>Available Modifiers</h3>
+    <ul>
+      <li><strong>Variant:</strong> <code>cu-btn--outline</code> (optional - use for outline style buttons)</li>
+      <li><strong>Color:</strong> <code>cu-btn--primary-red</code>, <code>cu-btn--primary-black</code>, <code>cu-btn--success</code>, <code>cu-btn--reverse</code></li>
+      <li><strong>Size:</strong> <code>cu-btn--mobile</code>, <code>cu-btn--desktop</code>, <code>cu-btn--responsive</code> (auto-adapts at 768px)</li>
+      <li><strong>Icon:</strong> <code>cu-btn--icon-left</code>, <code>cu-btn--icon-right</code>, <code>cu-btn--icon-only</code></li>
+      <li><strong>State:</strong> Add <code>disabled</code> attribute for disabled state</li>
+    </ul>
+
+    <h3>Button Combinations</h3>
+    <ul>
+      <li><strong>Filled Button:</strong> <code>cu-btn cu-btn--primary-red cu-btn--mobile</code></li>
+      <li><strong>Outline Button:</strong> <code>cu-btn cu-btn--outline cu-btn--primary-red cu-btn--mobile</code></li>
+      <li><strong>Responsive Outline:</strong> <code>cu-btn cu-btn--outline cu-btn--success cu-btn--responsive</code></li>
+      <li><strong>Icon Button:</strong> <code>cu-btn cu-btn--outline cu-btn--primary-black cu-btn--desktop cu-btn--icon-only</code></li>
+    </ul>
+  </div>
+</body>
+</html>
