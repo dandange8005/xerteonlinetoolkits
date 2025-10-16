@@ -30,8 +30,8 @@ body {
     line-height: var(--line-height-normal);
 }
 
-// Links (content links only, excludes navigation)
-a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a) {
+// Links (general styling - navigation and components override as needed)
+a:not(.button) {
     color: var(--color-link-default);
 
     &:visited {

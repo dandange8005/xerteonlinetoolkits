@@ -403,3 +403,336 @@ $breakpoint-md: 806px;
     .c70 { width: 70%; }
     .c80 { width: 80%; }
 }
+
+// =============================================================================
+// TEXT COLOR UTILITIES
+// =============================================================================
+
+// Base text colors
+.text-primary {
+    color: var(--color-text-primary) !important;
+}
+
+.text-inverse {
+    color: var(--color-text-inverse) !important;
+}
+
+.text-hint {
+    color: var(--color-text-hint) !important;
+}
+
+.text-alert {
+    color: var(--color-text-alert) !important;
+}
+
+.text-on-light {
+    color: var(--color-text-on-light) !important;
+}
+
+.text-on-dark {
+    color: var(--color-text-on-dark) !important;
+}
+
+.text-on-brand {
+    color: var(--color-text-on-brand) !important;
+}
+
+.text-subtle {
+    color: var(--color-text-subtle) !important;
+}
+
+.text-muted {
+    color: var(--color-text-muted) !important;
+}
+
+// Cardiff University brand colors
+.text-cu-red {
+    color: var(--cu-primary-red) !important;
+}
+
+.text-cu-white {
+    color: var(--cu-white) !important;
+}
+
+.text-cu-black {
+    color: var(--cu-black) !important;
+}
+
+// Brand colors
+.text-brand-primary {
+    color: var(--color-brand-primary) !important;
+}
+
+.text-brand-secondary {
+    color: var(--color-brand-secondary) !important;
+}
+
+// Accent colors
+.text-accent-green {
+    color: var(--color-accent-green) !important;
+}
+
+.text-accent-blue {
+    color: var(--color-accent-blue) !important;
+}
+
+.text-accent-orange {
+    color: var(--color-accent-orange) !important;
+}
+
+// Cardiff University extended palette
+.text-cu-forest-green {
+    color: var(--cu-forest-green) !important;
+}
+
+.text-cu-cadet {
+    color: var(--cu-cadet) !important;
+}
+
+.text-cu-stone {
+    color: var(--cu-stone) !important;
+}
+
+.text-cu-light-blue {
+    color: var(--cu-light-blue) !important;
+}
+
+.text-cu-royal-blue {
+    color: var(--cu-royal-blue) !important;
+}
+
+.text-cu-midnight-blue {
+    color: var(--cu-midnight-blue) !important;
+}
+
+.text-cu-midnight-purple {
+    color: var(--cu-midnight-purple) !important;
+}
+
+.text-cu-orange {
+    color: var(--cu-orange) !important;
+}
+
+.text-cu-yellow {
+    color: var(--cu-yellow) !important;
+}
+
+.text-cu-yellow-green {
+    color: var(--cu-yellow-green) !important;
+}
+
+.text-cu-indigo {
+    color: var(--cu-indigo) !important;
+}
+
+.text-cu-dark-violet {
+    color: var(--cu-dark-violet) !important;
+}
+
+// Grayscale
+.text-gray-10 {
+    color: var(--cu-gray-10) !important;
+}
+
+.text-gray-20 {
+    color: var(--cu-gray-20) !important;
+}
+
+.text-gray-30 {
+    color: var(--cu-gray-30) !important;
+}
+
+.text-gray-40 {
+    color: var(--cu-gray-40) !important;
+}
+
+.text-gray-50 {
+    color: var(--cu-gray-50) !important;
+}
+
+.text-gray-60 {
+    color: var(--cu-gray-60) !important;
+}
+
+.text-gray-70 {
+    color: var(--cu-gray-70) !important;
+}
+
+.text-gray-80 {
+    color: var(--cu-gray-80) !important;
+}
+
+.text-gray-90 {
+    color: var(--cu-gray-90) !important;
+}
+
+// Link colors
+.text-link {
+    color: var(--color-link-default) !important;
+}
+
+.text-link-hover {
+    color: var(--color-link-hover) !important;
+}
+
+.text-link-visited {
+    color: var(--color-link-visited) !important;
+}
+
+// =============================================================================
+// BACKGROUND COLOR UTILITIES
+// =============================================================================
+
+// Base backgrounds
+.bg-body {
+    background-color: var(--color-bg-body) !important;
+}
+
+.bg-page {
+    background-color: var(--color-bg-page) !important;
+}
+
+.bg-panel {
+    background-color: var(--color-bg-panel) !important;
+}
+
+.bg-subtle {
+    background-color: var(--color-bg-subtle) !important;
+}
+
+.bg-muted {
+    background-color: var(--color-bg-muted) !important;
+}
+
+.bg-elevated {
+    background-color: var(--color-bg-elevated) !important;
+}
+
+// Cardiff University brand colors
+.bg-cu-red {
+    background-color: var(--cu-primary-red) !important;
+}
+
+.bg-cu-white {
+    background-color: var(--cu-white) !important;
+}
+
+.bg-cu-black {
+    background-color: var(--cu-black) !important;
+}
+
+// Brand colors
+.bg-primary {
+    background-color: var(--color-brand-primary) !important;
+}
+
+.bg-secondary {
+    background-color: var(--color-brand-secondary) !important;
+}
+
+// Accent colors
+.bg-cu-green {
+    background-color: var(--color-accent-green) !important;
+}
+
+
+.bg-cu-blue {
+    background-color: var(--color-accent-blue) !important;
+}
+
+
+.bg-cu-orange {
+    background-color: var(--color-accent-orange) !important;
+}
+
+
+// Cardiff University extended palette
+.bg-cu-forest-green {
+    background-color: var(--cu-forest-green) !important;
+}
+
+.bg-cu-cadet {
+    background-color: var(--cu-cadet) !important;
+}
+
+.bg-cu-stone {
+    background-color: var(--cu-stone) !important;
+}
+
+.bg-cu-light-blue {
+    background-color: var(--cu-light-blue) !important;
+}
+
+.bg-cu-royal-blue {
+    background-color: var(--cu-royal-blue) !important;
+}
+
+.bg-cu-midnight-blue {
+    background-color: var(--cu-midnight-blue) !important;
+}
+
+.bg-cu-midnight-purple {
+    background-color: var(--cu-midnight-purple) !important;
+}
+
+.bg-cu-orange {
+    background-color: var(--cu-orange) !important;
+}
+
+.bg-cu-yellow {
+    background-color: var(--cu-yellow) !important;
+}
+
+.bg-cu-yellow-green {
+    background-color: var(--cu-yellow-green) !important;
+}
+
+.bg-cu-indigo {
+    background-color: var(--cu-indigo) !important;
+}
+
+.bg-cu-dark-violet {
+    background-color: var(--cu-dark-violet) !important;
+}
+
+// Grayscale
+.bg-gray-10 {
+    background-color: var(--cu-gray-10) !important;
+}
+
+.bg-gray-20 {
+    background-color: var(--cu-gray-20) !important;
+}
+
+.bg-gray-30 {
+    background-color: var(--cu-gray-30) !important;
+}
+
+.bg-gray-40 {
+    background-color: var(--cu-gray-40) !important;
+}
+
+.bg-gray-50 {
+    background-color: var(--cu-gray-50) !important;
+}
+
+.bg-gray-60 {
+    background-color: var(--cu-gray-60) !important;
+}
+
+.bg-gray-70 {
+    background-color: var(--cu-gray-70) !important;
+}
+
+.bg-gray-80 {
+    background-color: var(--cu-gray-80) !important;
+}
+
+.bg-gray-90 {
+    background-color: var(--cu-gray-90) !important;
+}
+
+// Transparent
+.bg-transparent {
+    background-color: transparent !important;
+}

@@ -124,14 +124,6 @@
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --btn-primary-bg: var(--cu-primary-red);
-  --btn-primary-text: var(--cu-white);
-  --btn-primary-hover: #C00E0E;
-  --btn-primary-disabled: #F8A8A5;
-  --btn-secondary-bg: var(--cu-white);
-  --btn-secondary-text: var(--cu-primary-red);
-  --btn-secondary-border: var(--cu-primary-red);
-  --btn-secondary-hover: #FFF4F4;
   --animation-fast: 150ms;
   --animation-medium: 300ms;
   --animation-slow: 500ms;
@@ -285,13 +277,13 @@ body {
   line-height: var(--line-height-normal);
 }
 
-a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a) {
+a:not(.button) {
   color: var(--color-link-default);
 }
-a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):visited {
+a:not(.button):visited {
   color: var(--color-link-visited);
 }
-a:not(.navbar a):not(.nav a):not(.bs-docs-sidenav a):not(.nav-list a):hover {
+a:not(.button):hover {
   color: var(--color-link-hover);
   text-decoration: none !important;
 }
@@ -1329,97 +1321,373 @@ a.glossary:active {
 }
 
 /**
- * Button Component
+ * Button Component - Cardiff University Design System
  *
- * PURPOSE: Custom button styles for links and button elements
+ * PURPOSE: Comprehensive button system with multiple variants and states
  *
  * USAGE:
- * - Standard button:
- *   <a href="#" class="button">Click me</a>
- *   <button class="button">Submit</button>
+ * - Filled buttons:
+ *   <button class="button button-primary">Primary</button>
+ *   <button class="button button-secondary">Secondary</button>
+ *   <button class="button button-success">Success</button>
+ *   <button class="button button-reverse">Reverse</button>
  *
- * - Button variants:
+ * - Outline buttons:
+ *   <button class="button button-primary-outline">Primary Outline</button>
+ *   <button class="button button-secondary-outline">Secondary Outline</button>
+ *   <button class="button button-success-outline">Success Outline</button>
+ *   <button class="button button-reverse-outline">Reverse Outline</button>
+ *
+ * - With icons:
+ *   <button class="button button-primary button-icon-right">
+ *     Next <span class="button__icon"><i class="fas fa-arrow-right"></i></span>
+ *   </button>
+ *
+ * - Icon only:
+ *   <button class="button button-primary button-icon-only">
+ *     <span class="button__icon"><i class="fas fa-search"></i></span>
+ *   </button>
+ *
+ * - Legacy styles (preserved for backward compatibility):
  *   <a href="#" class="button button--outline">Outline</a>
- *   <a href="#" class="button button--small">Small</a>
- *   <a href="#" class="button button--block">Full Width</a>
- *
- * - Mini round button (back to top):
  *   <button class="btn-mini"><i class="fas fa-arrow-up"></i></button>
  *
  * VARIANTS:
- * - .button           - Base button style
- * - .button--outline  - Outlined button (hollow)
- * - .button--small    - Smaller button size
- * - .button--block    - Full-width button
- * - .btn-mini         - Small circular button (e.g., back to top)
+ * Filled: .button-primary, .button-secondary, .button-success, .button-reverse
+ * Outline: .button-primary-outline, .button-secondary-outline, .button-success-outline, .button-reverse-outline
+ * Icons: .button-icon-left, .button-icon-right, .button-icon-only
+ * Legacy: .button--outline, .button--small, .button--block, .btn-mini
  */
+:root {
+  --button-primary-bg: var(--color-brand-primary);
+  --button-primary-hover: color-mix(in srgb, var(--color-brand-primary, #C00E0E) 85%, black);
+  --button-primary-active: color-mix(in srgb, var(--color-brand-primary) 85%, black);
+  --button-primary-disabled: color-mix(in srgb, var(--color-brand-primary) 60%, white);
+  --button-primary-text: var(--cu-white);
+  --button-secondary-bg: var(--color-brand-secondary);
+  --button-secondary-hover: color-mix(in srgb, var(--color-brand-secondary, #2e2e2e) 85%, black);
+  --button-secondary-active: color-mix(in srgb, var(--color-brand-secondary) 90%, black);
+  --button-secondary-disabled: color-mix(in srgb, var(--color-brand-secondary) 40%, white);
+  --button-secondary-text: var(--cu-white);
+  --button-success-bg: var(--color-accent-green, #07873e);
+  --button-success-hover: color-mix(in srgb, var(--color-accent-green, #07873e) 85%, black);
+  --button-success-active: color-mix(in srgb, var(--color-accent-green, #07873e) 80%, black);
+  --button-success-disabled: color-mix(in srgb, var(--color-accent-green, #07873e) 50%, white);
+  --button-success-text: var(--cu-white);
+  --button-reverse-bg: #fafafa;
+  --button-reverse-hover: var(--cu-gray-20);
+  --button-reverse-active: var(--cu-gray-30);
+  --button-reverse-disabled: #f5f5f5;
+  --button-reverse-text: var(--cu-black);
+  --button-reverse-disabled-text: var(--cu-gray-50);
+  --button-outline-primary-hover: color-mix(in srgb, var(--color-brand-primary) 10%, white);
+  --button-outline-primary-active: color-mix(in srgb, var(--color-brand-primary) 25%, white);
+  --button-outline-secondary-hover: color-mix(in srgb, var(--color-brand-secondary) 10%, white);
+  --button-outline-secondary-active: color-mix(in srgb, var(--color-brand-secondary) 25%, white);
+  --button-outline-success-hover: color-mix(in srgb, var(--color-accent-green, #07873e) 10%, white);
+  --button-outline-success-active: color-mix(in srgb, var(--color-accent-green, #07873e) 25%, white);
+  --button-outline-reverse-hover: rgba(255, 255, 255, 0.15);
+  --button-outline-reverse-active: rgba(255, 255, 255, 0.25);
+  --button-font-family: var(--font-primary-body);
+  --button-font-weight: var(--font-weight-medium);
+  --button-font-size-mobile: var(--font-size-sm);
+  --button-font-size-desktop: var(--font-size-base);
+  --button-line-height: var(--line-height-base);
+  --button-padding-h-mobile: var(--spacing-md);
+  --button-padding-v-mobile: var(--spacing-sm);
+  --button-padding-h-desktop: var(--spacing-md);
+  --button-padding-v-desktop: var(--spacing-sm);
+  --button-gap: var(--spacing-sm);
+  --button-radius: var(--radius-md);
+  --button-icon-size-mobile: 16px;
+  --button-icon-size-desktop: 20px;
+  --button-border-width: var(--border-width-md);
+  --button-breakpoint: 768px;
+  --color-focus: #fdcd0d;
+  --focus-outline-width: 3px;
+  --focus-outline-offset: 2px;
+}
+
 a.button {
   text-decoration: none;
 }
 
-button.button {
+.button {
   border: none;
-  background-color: transparent;
   font-family: inherit;
-  padding: 0;
   cursor: pointer;
 }
 @media screen and (-ms-high-contrast: active) {
-  button.button {
+  .button {
     border: 2px solid currentColor;
   }
 }
 
 a.button,
-button.button {
+.button {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  gap: var(--spacing-sm);
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  gap: var(--button-gap);
   -ms-flex-item-align: start;
       align-self: start;
-  background-color: var(--color-brand-secondary);
-  color: var(--cu-white);
-  border-radius: var(--radius-md);
-  -webkit-box-shadow: var(--shadow-sm);
-          box-shadow: var(--shadow-sm);
-  padding: 0.25em 0.75em;
-  min-width: 10ch;
-  min-height: 44px;
+  padding: var(--button-padding-v-mobile) var(--button-padding-h-mobile);
+  border-radius: var(--button-radius);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: var(--button-font-family);
+  font-size: var(--button-font-size-mobile);
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
   text-align: center;
-  line-height: 1.2;
-  -webkit-transition: all var(--animation-fast) var(--animation-easing);
-  transition: all var(--animation-fast) var(--animation-easing);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-transition: background-color var(--animation-fast) var(--animation-easing), -webkit-transform var(--animation-fast) var(--animation-easing);
+  transition: background-color var(--animation-fast) var(--animation-easing), -webkit-transform var(--animation-fast) var(--animation-easing);
+  transition: background-color var(--animation-fast) var(--animation-easing), transform var(--animation-fast) var(--animation-easing);
+  transition: background-color var(--animation-fast) var(--animation-easing), transform var(--animation-fast) var(--animation-easing), -webkit-transform var(--animation-fast) var(--animation-easing);
 }
-a.button:hover, a.button:active,
-button.button:hover,
-button.button:active {
-  background-color: var(--color-brand-secondary-hover);
+@media (min-width: 768px) {
+  a.button,
+  .button {
+    padding: var(--button-padding-v-desktop) var(--button-padding-h-desktop);
+    font-size: var(--button-font-size-desktop);
+  }
 }
 a.button:focus,
-button.button:focus {
-  outline-style: solid;
-  outline-color: transparent;
-  -webkit-box-shadow: 0 0 0 4px var(--color-brand-secondary-hover);
-          box-shadow: 0 0 0 4px var(--color-brand-secondary-hover);
+.button:focus {
+  outline: none;
 }
+a.button:focus-visible,
+.button:focus-visible {
+  outline: var(--focus-outline-width) solid var(--color-focus);
+  outline-offset: var(--focus-outline-offset);
+}
+a.button:active,
+.button:active {
+  -webkit-transform: translateY(1px);
+          transform: translateY(1px);
+}
+a.button:disabled, a.button.disabled,
+.button:disabled,
+.button.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+a.button .button__icon,
+.button .button__icon {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: var(--button-icon-size-mobile);
+  height: var(--button-icon-size-mobile);
+  font-size: var(--button-icon-size-mobile);
+  line-height: 1;
+}
+@media (min-width: 768px) {
+  a.button .button__icon,
+  .button .button__icon {
+    width: var(--button-icon-size-desktop);
+    height: var(--button-icon-size-desktop);
+    font-size: var(--button-icon-size-desktop);
+  }
+}
+
+.button-primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+.button-primary:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-primary-hover);
+  color: var(--button-primary-text);
+}
+.button-primary:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-primary-active);
+}
+.button-primary:disabled, .button-primary.disabled {
+  background-color: var(--button-primary-disabled);
+}
+
+.button-secondary {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+}
+.button-secondary:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-secondary-hover);
+  color: var(--button-secondary-text);
+}
+.button-secondary:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-secondary-active);
+}
+.button-secondary:disabled, .button-secondary.disabled {
+  background-color: var(--button-secondary-disabled);
+}
+
+.button-success {
+  background-color: var(--button-success-bg);
+  color: var(--button-success-text);
+}
+.button-success:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-success-hover);
+  color: var(--button-success-text);
+}
+.button-success:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-success-active);
+}
+.button-success:disabled, .button-success.disabled {
+  background-color: var(--button-success-disabled);
+}
+
+.button-reverse {
+  background-color: var(--button-reverse-bg);
+  color: var(--button-reverse-text);
+}
+.button-reverse:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-reverse-hover);
+}
+.button-reverse:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-reverse-active);
+}
+.button-reverse:disabled, .button-reverse.disabled {
+  background-color: var(--button-reverse-disabled);
+  color: var(--button-reverse-disabled-text);
+}
+
+.button-primary-outline {
+  background-color: transparent;
+  color: var(--button-primary-bg);
+  -webkit-box-shadow: inset 0 0 0 var(--button-border-width) var(--button-primary-bg);
+          box-shadow: inset 0 0 0 var(--button-border-width) var(--button-primary-bg);
+}
+.button-primary-outline:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-primary-hover);
+  color: var(--button-primary-bg);
+}
+.button-primary-outline:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-primary-active);
+}
+.button-primary-outline:disabled, .button-primary-outline.disabled {
+  opacity: 0.6;
+  background-color: transparent;
+}
+
+.button-secondary-outline {
+  background-color: transparent;
+  color: var(--button-secondary-bg);
+  -webkit-box-shadow: inset 0 0 0 var(--button-border-width) var(--button-secondary-bg);
+          box-shadow: inset 0 0 0 var(--button-border-width) var(--button-secondary-bg);
+}
+.button-secondary-outline:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-secondary-hover);
+  color: var(--button-secondary-bg);
+}
+.button-secondary-outline:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-secondary-active);
+}
+.button-secondary-outline:disabled, .button-secondary-outline.disabled {
+  opacity: 0.6;
+  background-color: transparent;
+}
+
+.button-success-outline {
+  background-color: transparent;
+  color: var(--button-success-bg);
+  -webkit-box-shadow: inset 0 0 0 var(--button-border-width) var(--button-success-bg);
+          box-shadow: inset 0 0 0 var(--button-border-width) var(--button-success-bg);
+}
+.button-success-outline:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-success-hover);
+  color: var(--button-success-bg);
+}
+.button-success-outline:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-success-active);
+}
+.button-success-outline:disabled, .button-success-outline.disabled {
+  opacity: 0.6;
+  background-color: transparent;
+}
+
+.button-reverse-outline {
+  background-color: transparent;
+  color: var(--cu-white);
+  -webkit-box-shadow: inset 0 0 0 var(--button-border-width) var(--cu-white);
+          box-shadow: inset 0 0 0 var(--button-border-width) var(--cu-white);
+}
+.button-reverse-outline:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-reverse-hover);
+  color: var(--cu-white);
+}
+.button-reverse-outline:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-reverse-active);
+}
+.button-reverse-outline:disabled, .button-reverse-outline.disabled {
+  opacity: 0.6;
+  background-color: transparent;
+}
+
+.button-icon-only {
+  padding: var(--button-padding-v-mobile);
+  aspect-ratio: 1;
+  min-width: 40px;
+}
+@media (min-width: 768px) {
+  .button-icon-only {
+    padding: var(--button-padding-v-desktop);
+    min-width: 56px;
+  }
+}
+
+.button-icon-left {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.button-icon-right {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.button-icon-right .button__icon {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+
 a.button--outline,
 button.button--outline {
-  background-color: #ffffff;
+  background-color: var(--cu-white);
   color: var(--color-brand-secondary);
   border: 2px solid currentColor;
+  -webkit-box-shadow: var(--shadow-sm);
+          box-shadow: var(--shadow-sm);
 }
 a.button--outline:hover,
 button.button--outline:hover {
   background-color: var(--color-brand-secondary);
-  color: #ffffff;
+  color: var(--cu-white);
   border-color: var(--color-brand-secondary);
+}
+a.button--outline:focus,
+button.button--outline:focus {
+  outline-style: solid;
+  outline-color: transparent;
+  -webkit-box-shadow: 0 0 0 4px var(--color-brand-secondary-hover);
+          box-shadow: 0 0 0 4px var(--color-brand-secondary-hover);
 }
 a.button--small,
 button.button--small {
@@ -1432,8 +1700,8 @@ button.button--block {
 
 .btn-mini {
   font-size: var(--font-size-sm);
-  color: var(--cu-white);
-  background: var(--color-brand-secondary);
+  color: var(--button-primary-text);
+  background: var(--button-primary-bg);
   text-shadow: none;
   width: 40px;
   height: 40px;
@@ -1462,8 +1730,8 @@ button.button--block {
   margin-bottom: 5px;
 }
 .btn-mini:hover, .btn-mini:focus {
-  background: var(--color-brand-secondary-hover);
-  color: var(--cu-white);
+  background: var(--button-primary-hover);
+  color: var(--button-primary-text);
   -webkit-transform: scale(1);
           transform: scale(1);
 }
@@ -2501,6 +2769,314 @@ a.link-external:hover::after {
     width: 80%;
   }
 }
+.text-primary {
+  color: var(--color-text-primary) !important;
+}
+
+.text-inverse {
+  color: var(--color-text-inverse) !important;
+}
+
+.text-hint {
+  color: var(--color-text-hint) !important;
+}
+
+.text-alert {
+  color: var(--color-text-alert) !important;
+}
+
+.text-on-light {
+  color: var(--color-text-on-light) !important;
+}
+
+.text-on-dark {
+  color: var(--color-text-on-dark) !important;
+}
+
+.text-on-brand {
+  color: var(--color-text-on-brand) !important;
+}
+
+.text-subtle {
+  color: var(--color-text-subtle) !important;
+}
+
+.text-muted {
+  color: var(--color-text-muted) !important;
+}
+
+.text-cu-red {
+  color: var(--cu-primary-red) !important;
+}
+
+.text-cu-white {
+  color: var(--cu-white) !important;
+}
+
+.text-cu-black {
+  color: var(--cu-black) !important;
+}
+
+.text-brand-primary {
+  color: var(--color-brand-primary) !important;
+}
+
+.text-brand-secondary {
+  color: var(--color-brand-secondary) !important;
+}
+
+.text-accent-green {
+  color: var(--color-accent-green) !important;
+}
+
+.text-accent-blue {
+  color: var(--color-accent-blue) !important;
+}
+
+.text-accent-orange {
+  color: var(--color-accent-orange) !important;
+}
+
+.text-cu-forest-green {
+  color: var(--cu-forest-green) !important;
+}
+
+.text-cu-cadet {
+  color: var(--cu-cadet) !important;
+}
+
+.text-cu-stone {
+  color: var(--cu-stone) !important;
+}
+
+.text-cu-light-blue {
+  color: var(--cu-light-blue) !important;
+}
+
+.text-cu-royal-blue {
+  color: var(--cu-royal-blue) !important;
+}
+
+.text-cu-midnight-blue {
+  color: var(--cu-midnight-blue) !important;
+}
+
+.text-cu-midnight-purple {
+  color: var(--cu-midnight-purple) !important;
+}
+
+.text-cu-orange {
+  color: var(--cu-orange) !important;
+}
+
+.text-cu-yellow {
+  color: var(--cu-yellow) !important;
+}
+
+.text-cu-yellow-green {
+  color: var(--cu-yellow-green) !important;
+}
+
+.text-cu-indigo {
+  color: var(--cu-indigo) !important;
+}
+
+.text-cu-dark-violet {
+  color: var(--cu-dark-violet) !important;
+}
+
+.text-gray-10 {
+  color: var(--cu-gray-10) !important;
+}
+
+.text-gray-20 {
+  color: var(--cu-gray-20) !important;
+}
+
+.text-gray-30 {
+  color: var(--cu-gray-30) !important;
+}
+
+.text-gray-40 {
+  color: var(--cu-gray-40) !important;
+}
+
+.text-gray-50 {
+  color: var(--cu-gray-50) !important;
+}
+
+.text-gray-60 {
+  color: var(--cu-gray-60) !important;
+}
+
+.text-gray-70 {
+  color: var(--cu-gray-70) !important;
+}
+
+.text-gray-80 {
+  color: var(--cu-gray-80) !important;
+}
+
+.text-gray-90 {
+  color: var(--cu-gray-90) !important;
+}
+
+.text-link {
+  color: var(--color-link-default) !important;
+}
+
+.text-link-hover {
+  color: var(--color-link-hover) !important;
+}
+
+.text-link-visited {
+  color: var(--color-link-visited) !important;
+}
+
+.bg-body {
+  background-color: var(--color-bg-body) !important;
+}
+
+.bg-page {
+  background-color: var(--color-bg-page) !important;
+}
+
+.bg-panel {
+  background-color: var(--color-bg-panel) !important;
+}
+
+.bg-subtle {
+  background-color: var(--color-bg-subtle) !important;
+}
+
+.bg-muted {
+  background-color: var(--color-bg-muted) !important;
+}
+
+.bg-elevated {
+  background-color: var(--color-bg-elevated) !important;
+}
+
+.bg-cu-red {
+  background-color: var(--cu-primary-red) !important;
+}
+
+.bg-cu-white {
+  background-color: var(--cu-white) !important;
+}
+
+.bg-cu-black {
+  background-color: var(--cu-black) !important;
+}
+
+.bg-primary {
+  background-color: var(--color-brand-primary) !important;
+}
+
+.bg-secondary {
+  background-color: var(--color-brand-secondary) !important;
+}
+
+.bg-cu-green {
+  background-color: var(--color-accent-green) !important;
+}
+
+.bg-cu-blue {
+  background-color: var(--color-accent-blue) !important;
+}
+
+.bg-cu-orange {
+  background-color: var(--color-accent-orange) !important;
+}
+
+.bg-cu-forest-green {
+  background-color: var(--cu-forest-green) !important;
+}
+
+.bg-cu-cadet {
+  background-color: var(--cu-cadet) !important;
+}
+
+.bg-cu-stone {
+  background-color: var(--cu-stone) !important;
+}
+
+.bg-cu-light-blue {
+  background-color: var(--cu-light-blue) !important;
+}
+
+.bg-cu-royal-blue {
+  background-color: var(--cu-royal-blue) !important;
+}
+
+.bg-cu-midnight-blue {
+  background-color: var(--cu-midnight-blue) !important;
+}
+
+.bg-cu-midnight-purple {
+  background-color: var(--cu-midnight-purple) !important;
+}
+
+.bg-cu-orange {
+  background-color: var(--cu-orange) !important;
+}
+
+.bg-cu-yellow {
+  background-color: var(--cu-yellow) !important;
+}
+
+.bg-cu-yellow-green {
+  background-color: var(--cu-yellow-green) !important;
+}
+
+.bg-cu-indigo {
+  background-color: var(--cu-indigo) !important;
+}
+
+.bg-cu-dark-violet {
+  background-color: var(--cu-dark-violet) !important;
+}
+
+.bg-gray-10 {
+  background-color: var(--cu-gray-10) !important;
+}
+
+.bg-gray-20 {
+  background-color: var(--cu-gray-20) !important;
+}
+
+.bg-gray-30 {
+  background-color: var(--cu-gray-30) !important;
+}
+
+.bg-gray-40 {
+  background-color: var(--cu-gray-40) !important;
+}
+
+.bg-gray-50 {
+  background-color: var(--cu-gray-50) !important;
+}
+
+.bg-gray-60 {
+  background-color: var(--cu-gray-60) !important;
+}
+
+.bg-gray-70 {
+  background-color: var(--cu-gray-70) !important;
+}
+
+.bg-gray-80 {
+  background-color: var(--cu-gray-80) !important;
+}
+
+.bg-gray-90 {
+  background-color: var(--cu-gray-90) !important;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}
+
 /**
  * Layout Styles
  *

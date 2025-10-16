@@ -192,11 +192,11 @@
 
         <h3>Box with Utility Classes</h3>
         <div class="example-grid example-grid-2">
-            <div class="box" style="background: var(--color-brand-primary); color: var(--cu-white); border-color: var(--color-brand-primary);">
+            <div class="box bg-primary text-on-dark" >
                 <h4 class="box__title" style="color: var(--cu-white);">Primary Brand Box</h4>
                 <p style="margin: 0;">Combine with utility classes to create custom color variants.</p>
             </div>
-            <div class="box" style="background: var(--color-accent-green); border-color: var(--color-accent-green);">
+            <div class="box bg-secondary text-on-dark">
                 <h4 class="box__title">Accent Color Box</h4>
                 <p style="margin: 0;">Use theme colors to create emphasis and visual hierarchy.</p>
             </div>
@@ -206,50 +206,88 @@
     <!-- BUTTON COMPONENT -->
     <section id="buttons" class="component-section">
         <h2>Button Component</h2>
-        <p>Custom button styles for links and button elements with multiple variants.</p>
+        <p>Responsive button system with filled and outline variants. All buttons automatically scale from mobile (14px) to desktop (16px) at 768px breakpoint.</p>
 
-        <h3>Button Variants</h3>
+        <h3>Filled Button Variants</h3>
         <div class="example">
-            <span class="example-label">Standard Buttons</span>
+            <span class="example-label">Primary, Secondary, Success, Reverse</span>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-                <a href="#" class="button">Default Button</a>
-                <button class="button">Button Element</button>
-                <a href="#" class="button button--outline">Outline Button</a>
-                <a href="#" class="button button--small">Small Button</a>
+                <button class="button button-primary">Primary</button>
+                <button class="button button-secondary">Secondary</button>
+                <button class="button button-success">Success</button>
+                <button class="button button-reverse">Reverse</button>
             </div>
         </div>
 
-        <h3>Button with Icons</h3>
+        <h3>Outline Button Variants</h3>
         <div class="example">
-            <span class="example-label">Buttons with Font Awesome Icons</span>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="#" class="button">
-                    <i class="fas fa-download"></i>
-                    Download
-                </a>
-                <a href="#" class="button button--outline">
-                    <i class="fas fa-arrow-right"></i>
-                    Next Step
-                </a>
-                <button class="button">
-                    <i class="fas fa-save"></i>
-                    Save Changes
+            <span class="example-label">Primary, Secondary, Success Outlines</span>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <button class="button button-primary-outline">Primary Outline</button>
+                <button class="button button-secondary-outline">Secondary Outline</button>
+                <button class="button button-success-outline">Success Outline</button>
+            </div>
+        </div>
+
+        <h3>Buttons with Icons</h3>
+        <div class="example">
+            <span class="example-label">Icon Right, Icon Left, Icon Only</span>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <button class="button button-primary button-icon-right">
+                    Next
+                    <span class="button__icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </button>
+                <button class="button button-secondary button-icon-left">
+                    <span class="button__icon">
+                        <i class="fas fa-arrow-left"></i>
+                    </span>
+                    Back
+                </button>
+                <button class="button button-success button-icon-only">
+                    <span class="button__icon">
+                        <i class="fas fa-search"></i>
+                    </span>
                 </button>
             </div>
         </div>
 
-        <h3>Block Button</h3>
+        <h3>Link Buttons</h3>
         <div class="example">
-            <span class="example-label">Example: .button.button--block</span>
-            <a href="#" class="button button--block">Full Width Button</a>
+            <span class="example-label">Using &lt;a&gt; elements</span>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <a href="#" class="button button-primary">Primary Link</a>
+                <a href="#" class="button button-primary-outline">Outline Link</a>
+                <a href="#" class="button button-success button-icon-right">
+                    Download
+                    <span class="button__icon">
+                        <i class="fas fa-download"></i>
+                    </span>
+                </a>
+            </div>
         </div>
 
-        <h3>Mini Round Button</h3>
+        <h3>Disabled States</h3>
         <div class="example">
-            <span class="example-label">Example: .btn-mini (Back to top button)</span>
-            <button class="btn-mini" aria-label="Back to top">
-                <i class="fas fa-arrow-up"></i>
-            </button>
+            <span class="example-label">Disabled buttons and links</span>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <button class="button button-primary" disabled>Disabled Button</button>
+                <a href="#" class="button button-primary disabled">Disabled Link</a>
+                <button class="button button-secondary-outline" disabled>Disabled Outline</button>
+            </div>
+        </div>
+
+        <h3>Legacy Components</h3>
+        <div class="example">
+            <span class="example-label">Legacy button styles (backward compatibility)</span>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <a href="#" class="button button--outline">Legacy Outline</a>
+                <a href="#" class="button button--small">Legacy Small</a>
+                <button class="btn-mini" aria-label="Back to top">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
         </div>
     </section>
 
