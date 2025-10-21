@@ -71,7 +71,6 @@
 
     // Brand Colors
     --color-brand-primary: var(--cu-primary-red);
-    --color-brand-primary-hover: #C00E0E;
     --color-brand-secondary: var(--cu-black);
 
     // Link Colors
@@ -201,11 +200,11 @@
     // These automatically update when base colors change
     // =========================================================================
 
-    // Primary Brand Scale
-    --color-brand-primary-lighter: color-mix(in srgb, var(--color-brand-primary) 30%, white);
-    --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 15%, white);
-    --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 15%, black);
-    --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 30%, black);
+    // Primary Brand Scale (color-mix for better browser support)
+    --color-brand-primary-lighter: color-mix(in srgb, var(--color-brand-primary) 40%, white 60%);
+    --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 70%, white 30%);
+    --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 70%, black 30%);
+    --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 40%, black 60%);
 
     // Secondary Brand Scale
     --color-brand-secondary-lighter: color-mix(in srgb, var(--color-brand-secondary) 30%, white);
