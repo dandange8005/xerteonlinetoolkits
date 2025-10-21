@@ -420,6 +420,53 @@ section dd,
   margin-bottom: var(--spacing-md);
 }
 
+.list-none {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-icon {
+  list-style: none;
+  margin-left: 0;
+}
+.list-icon li span {
+  margin-right: 10px;
+  color: var(--color-brand-primary);
+  font-size: inherit;
+}
+
+.list-counter {
+  counter-reset: orderedlist;
+  list-style-type: none;
+  margin-left: var(--spacing-sm);
+}
+.list-counter li {
+  position: relative;
+  padding-left: var(--spacing-xl);
+}
+.list-counter li::before {
+  counter-increment: orderedlist;
+  content: counter(orderedlist);
+  width: var(--spacing-lg);
+  height: var(--spacing-lg);
+  background: var(--cu-gray-80);
+  color: var(--color-text-on-brand);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: var(--radius-pill);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 table {
   width: 100%;
   background: var(--cu-white);
@@ -2125,53 +2172,6 @@ a.link-external:hover::after {
  * Reusable utility classes for common styling patterns
  * Uses Cardiff University design tokens
  */
-.list-none {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.list-icon {
-  list-style: none;
-  margin-left: 0;
-}
-.list-icon li span {
-  margin-right: 10px;
-  color: var(--color-brand-primary);
-  font-size: inherit;
-}
-
-.list-counter {
-  counter-reset: orderedlist;
-  list-style-type: none;
-  margin-left: var(--spacing-sm);
-}
-.list-counter li {
-  position: relative;
-  padding-left: var(--spacing-xl);
-}
-.list-counter li::before {
-  counter-increment: orderedlist;
-  content: counter(orderedlist);
-  width: var(--spacing-lg);
-  height: var(--spacing-lg);
-  background: var(--cu-gray-80);
-  color: var(--color-text-on-brand);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-radius: var(--radius-pill);
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
 .image-inline {
   display: inline-block;
 }

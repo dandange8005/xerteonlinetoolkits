@@ -30,6 +30,22 @@ body {
     line-height: var(--line-height-normal);
 }
 
+// =============================================================================
+// LINK STYLES (Xerte-specific)
+// =============================================================================
+
+// // Update link style for Xerte sections
+// section a:not(.accordion-toggle, .top-round, .carousel-control, .glossary) {
+//     text-decoration: none;
+// }
+
+// section a:hover:not(.accordion-toggle, .top-round, .carousel-control, .glossary, .btn, .button) {
+//     text-decoration: underline;
+//     text-underline-position: under;
+//     color: var(--color-link-default);
+// }
+
+
 // Links (general styling - navigation and components override as needed)
 a:where(:not(.button):not(.btn)) {
     color: var(--color-link-default);
@@ -199,6 +215,58 @@ section,
         margin-bottom: var(--spacing-md);
     }
 }
+
+// =============================================================================
+// LIST UTILITIES
+// =============================================================================
+
+// Remove list styling
+.list-none {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+// Icon list
+.list-icon {
+    list-style: none;
+    margin-left: 0;
+
+    li span {
+        margin-right: 10px;
+        color: var(--color-brand-primary);
+        font-size: inherit;
+    }
+}
+
+// Counter list with styled numbers
+.list-counter {
+    counter-reset: orderedlist;
+    list-style-type: none;
+    margin-left: var(--spacing-sm);
+
+    li {
+        position: relative;
+        padding-left: var(--spacing-xl);
+    }
+
+    li::before {
+        counter-increment: orderedlist;
+        content: counter(orderedlist);
+        width: var(--spacing-lg);
+        height: var(--spacing-lg);
+        background: var(--cu-gray-80);
+        color: var(--color-text-on-brand);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--radius-pill);
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
 
 // =============================================================================
 // TABLES
