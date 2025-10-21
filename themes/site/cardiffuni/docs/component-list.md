@@ -1,0 +1,24 @@
+
+- Accordion - A vertically stacked set of interactive headings that each reveal a section of content
+- Alert - Displays a callout for user attention.
+- Badge - Displays a badge or a component that looks like a badge
+- Box -
+- Breadcrumb - Displays the path to the current resource using a hierarchy of links
+- Button - Displays a button or a component that looks like a button
+- Callout
+- Card - Displays a card with header, content, and footer
+- Carousel - A carousel with motion and swipe.
+- Checkbox - A control that allows the user to toggle between checked and not checked.
+- Collapsible - An interactive component which expands/collapses a panel
+- Details
+- Dialog - A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
+- Divider
+- Pagination
+- Progress - Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
+- Separator - Visually or semantically separates content
+- Sidebar - A vertical navigation element that displays a list of links or actions related to the current context.
+- Slider - An input where the user selects a value from within a given range
+- Switch - A control that allows the user to toggle between on and off states.
+- Table - A responsive table component.
+- Tabs
+
