@@ -459,6 +459,7 @@ button.button {
     font-size: var(--font-size-sm);
     color: var(--button-primary-text);
     background: var(--button-primary-bg);
+    text-decoration: none!important;
     text-shadow: none;
     width: 40px;
     height: 40px;

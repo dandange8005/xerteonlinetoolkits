@@ -24,7 +24,7 @@
     li span {
         margin-right: 10px;
         color: var(--color-brand-primary);
-        font-size: 20px;
+        font-size: inherit;
     }
 }
 
@@ -402,6 +402,102 @@ $breakpoint-md: 806px;
     .c60 { width: 60%; }
     .c70 { width: 70%; }
     .c80 { width: 80%; }
+}
+
+// =============================================================================
+// FONT SIZE UTILITIES
+// =============================================================================
+
+.text-xs {
+    font-size: var(--font-size-xs) !important;
+}
+
+.text-sm {
+    font-size: var(--font-size-sm) !important;
+}
+
+.text-base {
+    font-size: var(--font-size-base) !important;
+}
+
+.text-md {
+    font-size: var(--font-size-md) !important;
+}
+
+.text-lg {
+    font-size: var(--font-size-lg) !important;
+}
+
+.text-xl {
+    font-size: var(--font-size-xl) !important;
+}
+
+.text-2xl {
+    font-size: var(--font-size-2xl) !important;
+}
+
+.text-3xl {
+    font-size: var(--font-size-3xl) !important;
+}
+
+.text-4xl {
+    font-size: var(--font-size-4xl) !important;
+}
+
+// =============================================================================
+// FONT WEIGHT UTILITIES
+// =============================================================================
+
+.font-light {
+    font-weight: var(--font-weight-light) !important;
+}
+
+.font-regular {
+    font-weight: var(--font-weight-regular) !important;
+}
+
+.font-medium {
+    font-weight: var(--font-weight-medium) !important;
+}
+
+.font-bold {
+    font-weight: var(--font-weight-bold) !important;
+}
+
+// =============================================================================
+// LINE HEIGHT UTILITIES
+// =============================================================================
+
+.leading-tight {
+    line-height: var(--line-height-tight) !important;
+}
+
+.leading-normal {
+    line-height: var(--line-height-normal) !important;
+}
+
+.leading-loose {
+    line-height: var(--line-height-loose) !important;
+}
+
+// =============================================================================
+// TEXT ALIGNMENT UTILITIES
+// =============================================================================
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-justify {
+    text-align: justify !important;
 }
 
 // =============================================================================

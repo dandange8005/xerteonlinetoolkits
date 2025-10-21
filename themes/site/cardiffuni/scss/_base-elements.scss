@@ -31,7 +31,7 @@ body {
 }
 
 // Links (general styling - navigation and components override as needed)
-a:not(.button) {
+a:where(:not(.button):not(.btn)) {
     color: var(--color-link-default);
 
     &:visited {

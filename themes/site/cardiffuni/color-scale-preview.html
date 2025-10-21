@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Scale Preview - HSL Method</title>
+    <style>
+        :root {
+            /* Auto-generated scale using color-mix */
+            --color-brand-primary: #006054;
+            --color-brand-primary-lighter: color-mix(in srgb, var(--color-brand-primary) 40%, white 60%);
+            --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 70%, white 30%);
+            --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 70%, black 30%);
+            --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 40%, black 60%);
+
+            /* Custom hand-picked scale */
+            --custom-lighter: #B3D9D4;
+            --custom-light: #66ADA2;
+            --custom-primary: #006054;
+            --custom-dark: #004840;
+            --custom-darker: #00302C;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1600px;
+        }
+
+        .scale-section h2 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .color-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .color-row {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .color-swatch {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .color-info {
+            padding: 15px;
+            font-size: 14px;
+        }
+
+        .color-info strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .hex-value {
+            font-family: monospace;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .note {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Color Scale Comparison: Auto-generated vs Custom</h1>
+
+    <div class="comparison-container">
+        <!-- Auto-generated scale -->
+        <div class="scale-section">
+            <h2>Auto-generated (color-mix)</h2>
+            <div class="color-grid">
+        <div class="color-row">
+            <div class="color-swatch" style="background: var(--color-brand-primary-lighter);">
+                Lighter (+30% lightness)
+            </div>
+            <div class="color-info">
+                <strong>--color-brand-primary-lighter</strong>
+                <span class="hex-value">For backgrounds or highlights</span>
+            </div>
+        </div>
+
+        <div class="color-row">
+            <div class="color-swatch" style="background: var(--color-brand-primary-light);">
+                Light (+15% lightness)
+            </div>
+            <div class="color-info">
+                <strong>--color-brand-primary-light</strong>
+                <span class="hex-value">For secondary elements</span>
+            </div>
+        </div>
+
+        <div class="color-row">
+            <div class="color-swatch" style="background: var(--color-brand-primary);">
+                Primary (base color)
+            </div>
+            <div class="color-info">
+                <strong>--color-brand-primary</strong>
+                <span class="hex-value">Base: #006054</span>
+            </div>
+        </div>
+
+        <div class="color-row">
+            <div class="color-swatch" style="background: var(--color-brand-primary-dark);">
+                Dark
+            </div>
+            <div class="color-info">
+                <strong>--color-brand-primary-dark</strong>
+                <span class="hex-value">For hover states or emphasis</span>
+            </div>
+        </div>
+
+        <div class="color-row">
+            <div class="color-swatch" style="background: var(--color-brand-primary-darker);">
+                Darker
+            </div>
+            <div class="color-info">
+                <strong>--color-brand-primary-darker</strong>
+                <span class="hex-value">For text or strong contrast</span>
+            </div>
+        </div>
+    </div>
+        </div>
+
+        <!-- Custom hand-picked scale -->
+        <div class="scale-section">
+            <h2>Custom Hand-picked Scale</h2>
+            <div class="color-grid">
+        <div class="color-row">
+            <div class="color-swatch" style="background: var(--custom-lighter);">
+                Lightest
+            </div>
+            <div class="color-info">
+                <strong>#B3D9D4</strong>
+                <span class="hex-value">A soft, pale teal for backgrounds or highlights</span>
+            </div>
+        </div>
+
+        <div class="color-row">
+            <div class="color-swatch" style="background: var(--custom-light);">
+                Light
+            </div>
+            <div class="color-info">
+                <strong>#66ADA2</strong>
+                <span class="hex-value">A muted mid-tone for secondary elements</span>
+            </div>
+        </div>
+
+        <div class="color-row">
+            <div class="color-swatch" style="background: var(--custom-primary);">
+                Primary
+            </div>
+            <div class="color-info">
+                <strong>#006054</strong>
+                <span class="hex-value">Your base colour for primary actions</span>
+            </div>
+        </div>
+
+        <div class="color-row">
+            <div class="color-swatch" style="background: var(--custom-dark);">
+                Dark
+            </div>
+            <div class="color-info">
+                <strong>#004840</strong>
+                <span class="hex-value">A deeper shade for hover states or emphasis</span>
+            </div>
+        </div>
+
+        <div class="color-row">
+            <div class="color-swatch" style="background: var(--custom-darker);">
+                Darkest
+            </div>
+            <div class="color-info">
+                <strong>#00302C</strong>
+                <span class="hex-value">The darkest tone for text or strong contrast</span>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>Comparison Results:</strong><br>
+        The left side shows the auto-generated scale using CSS color-mix. The right side shows your custom hand-picked colors.
+        <br><br>
+        Notice how the auto-generated colors might differ from your custom palette. This helps you decide whether to use:
+        <ul style="margin: 10px 0 0 20px;">
+            <li><strong>Auto-generated</strong>: Dynamic, works with any base color, easier to maintain</li>
+            <li><strong>Custom values</strong>: Precise control, brand-specific, requires manual updates</li>
+        </ul>
+    </div>
+
+    <script>
+        // Log computed colors to console for reference
+        const root = getComputedStyle(document.documentElement);
+        console.log('Color Scale Preview:');
+        console.log('Lighter:', root.getPropertyValue('--color-brand-primary-lighter'));
+        console.log('Light:', root.getPropertyValue('--color-brand-primary-light'));
+        console.log('Primary:', root.getPropertyValue('--color-brand-primary'));
+        console.log('Dark:', root.getPropertyValue('--color-brand-primary-dark'));
+        console.log('Darker:', root.getPropertyValue('--color-brand-primary-darker'));
+    </script>
+</body>
+</html>
