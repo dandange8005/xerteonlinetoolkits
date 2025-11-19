@@ -1,0 +1,96 @@
+/* Cards Component */
+.card {
+    background-color: var(--cu-white);
+    border: 1px solid var(--clr-border);
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-2);
+    overflow: hidden;
+
+    &__content {
+        padding: var(--size-4);
+        // position: relative;
+
+        >:first-child {
+            margin-top: 0;
+        }
+
+        >:last-child {
+            margin-bottom: 0;
+        }
+
+    }
+
+    &__heading,
+    &__metadata,
+    &__description {
+        margin-bottom: var(--size-3);
+    }
+
+    &__link {
+        position: initial;
+        // text-decoration: underline;
+        // text-decoration-thickness: max(0.08em, 1.5px);
+        // text-underline-offset: 0.15em;
+        // color: var(--clr-link);
+
+        // &:hover, &:focus {
+        //     text-decoration: none;
+        // }
+
+        &::before {
+            content: "";
+            position:absolute;
+            inset: 0;
+        }
+    }
+
+    &__image {
+        overflow: hidden;
+        // border-bottom: 1px solid var(--gray-2);
+        // display: block;
+        // width: 100%;
+
+        img {
+            transition: all .5s ease;
+            aspect-ratio: var(--ratio-widescreen);
+            object-fit: cover;
+            width: 100%
+        }
+    };
+    
+
+    &--clickable {
+        border-bottom-width: var(--border-size-3);
+        padding-bottom: var(--size-2);
+        transition: all .5s ease;
+
+        &:hover {
+            box-shadow: var(--shadow-3);
+
+            img {
+                transform: scale(1.05);
+            }
+
+            &::after {
+                transform: translateX(5px);
+            }
+        }
+    }
+
+    &--clickable::after {
+        position: absolute;
+        right: var(--size-3);
+        bottom: var(--size-2);
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f061";
+        color: var(--clr-link);
+        transition: all .5s ease;
+    }
+}

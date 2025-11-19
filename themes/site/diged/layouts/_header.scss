@@ -1,0 +1,121 @@
+/* ======================
+        HEADER
+=======================*/
+
+/* JUMBOTRON */
+
+.jumbotron {
+    // fallback for old broswer
+    background-color: var(--clr-jumbotron-bg)!important;
+    background-image: var(--clr-jumbotron-bg-gradient)!important;
+    // background: var(--clr-jumbotron-bg-gradient)!important;
+    padding: var(--size-fluid-3) var(--size-7);
+    background-size: cover!important;
+
+}
+
+// logo
+
+#overview.logoL {
+
+    .logoL {
+        margin-top: 0;
+        max-width: 90px;
+        width: 100%;
+    }
+    
+    .container {
+        display: flex;
+        align-items: center;
+    }
+}
+
+// main page title
+.titles {
+    padding: 0;
+}
+
+
+#pageTitle {
+    font-family: var(--ff-heading);
+    color: var(--cu-white);
+    line-height: var(--font-lineheight-1);
+    letter-spacing: 1px;
+    margin-bottom: var(--size-fluid-1);
+    font-size: var(--font-size-fluid-3);
+    font-weight: var(--font-weight-9);
+}
+
+// page sub title
+#pageSubTitle {
+    font-weight: var(--font-weight-4);
+    color: var(--cu-white);
+    padding-top: var(--size-1);
+    font-size: var(--fs-lg);
+    line-height: var(--font-lineheight-2);
+    margin-bottom: 0;
+}
+
+
+
+// /* Cardiff logo - ::before displays when full screen*/
+// .jumbotron::before {
+//     content: '';
+//     position: absolute;
+//     width: 300px;
+//     height: 100px;
+//     background-image: url("https://preprodxerte.cardiffmet.ac.uk/USER-FILES/669-sm80513-site/media/branding/CMET_Landscape_logo_white.svg");
+//     top: 10px;
+//     left: 10px;
+//     z-index: 1;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+// }
+
+
+
+// Page title container
+// .titles {
+//     padding: 0;
+// }
+
+
+// // line decoration of page subtitle
+// #pageSubTitle::before {
+//     content: '';
+//     display: block;
+//     width: 50px;
+//     height: 5px;
+//     background-color: $cm-turquoise;
+//     margin-bottom: 1rem;
+// }
+
+
+// @media (max-width:767px) {
+//     .jumbotron {
+//         margin-top: 0;
+//     }
+
+//     .jumbotron .container {
+//         width: 100%;
+//     }
+
+//     .titles {
+//         margin-left: 2rem;
+//         margin-right: 2rem;
+//     }
+
+//     #pageTitle {
+//         font-size: 32px;
+//     }
+
+//     #pageSubTitle {
+//         font-size: 16px;
+//     }
+
+//     .jumbotron::before {
+//         width: 200px;
+//         height: 65px;
+//     }
+
+// }

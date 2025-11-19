@@ -1,0 +1,39 @@
+/* Box Block component */
+
+/* A simple box component that add some space, round corner and shadows around content */
+.box {
+    border-radius: var(--radius-2);
+    border: 1px solid var(--clr-border);
+    padding: var(--size-fluid-2);
+    box-shadow: var(--shadow-1);
+
+    &.box-icon {
+        display: flex;
+        gap: var(--gap);
+
+        > i, > span.fas{
+            line-height: inherit;
+        }
+    }
+
+}
+
+.box__title {
+    font-size: var(--fs-base);
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: var(--size-2);
+}
+
+
+.box > *:last-child {
+    margin-bottom: 0;
+}
+
+.box .svg-icon {
+    flex: none;
+    width: var(--size-4);
+    height: var(--size-4);
+}
+
+

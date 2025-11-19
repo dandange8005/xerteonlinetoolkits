@@ -1,0 +1,148 @@
+/* Button Components */
+
+// reset styles for a and button
+
+a.button {
+    text-decoration: none;
+}
+
+button.button {
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    padding: 0;
+    cursor: pointer;
+
+    @media screen and (-ms-high-contrast:active) {
+        border: 2px solid currentColor;
+    }
+}
+
+a.button, button.button {
+    // Display
+    display: inline-flex;
+    gap: var(--size-2); // for gap with icon
+    align-items: center;
+    justify-content: center;
+    align-self: start; // optional in flex container
+    // Visual
+    background-color: var(--clr-accent);
+    color: var(--cu-white);
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow-2);
+    // size
+    padding: .25em .75em;
+    min-width: 10ch;
+    min-height: 44px;
+    // text
+    text-align: center;
+    line-height: 1.2;
+    transition: 200ms all ease-in-out;
+    
+
+    &:hover, &:active {
+        /*background-color: scale-color($btnColour, $lightness: +20%);*/
+        background-color: hsl(
+            var(--clr-h),
+            var(--clr-s),
+            calc(var(--clr-l) * 1.2)
+        );
+    
+    }
+
+    &:focus {
+        outline-style: solid;
+        outline-color: transparent;
+        // box-shadow: 0 0 0 4px scale-color($btnColour, $lightness: +40%);
+        box-shadow: 0 0 0 4px hsl(
+            var(--clr-h),
+            var(--clr-s),
+            calc(var(--clr-l) * 1.4)
+        );
+    }
+
+    &--outline {
+        background-color: #ffffff;
+        color: var(--clr-accent);
+        border: 2px solid currentColor;
+
+        &:hover {
+            background-color: var(--clr-accent);
+            color: #ffffff;
+            border-color: var(--clr-accent);
+        }
+
+    }
+
+    &--small {
+        font-size: var(--fs-sm);
+    }
+
+    &--block {
+        width: 100%;
+    }
+
+}
+
+// scroll back to the top button
+
+.btn-mini {
+    font-size: var(--fs-sm);
+    color: var(--cu-white);
+    background: hsl(
+                var(--clr-h),
+                var(--clr-s),
+                calc(var(--clr-l) * 1.2)
+            );
+    text-shadow: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    margin-bottom: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all .3s cubic-bezier(0.4, -1.5, 0.27, 1.55) !important;
+    transform: scale(0.9);
+    z-index: 2;
+    margin-right: 5px; // to fix overflow issue
+    margin-bottom: 5px; // to fix overflow issue
+}
+
+.btn-mini:hover,
+.btn-mini:focus {
+    background: hsl(
+                    var(--clr-h),
+                    var(--clr-s),
+                    calc(var(--clr-l) * 1.2)
+                );
+    color: var(--cu-white);
+    transform: scale(1);
+}
+
+.btn-mini:active {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transform: scale(0.9);
+}
+
+// .btn-mini::after {
+//     content: "";
+//     border-radius: 50%;
+//     position: absolute;
+//     z-index: -1;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+//     opacity: 0;
+//     transition: all .3s cubic-bezier(0.4, -1.5, 0.27, 1.55);
+// }
+
+// .btn-mini:hover::after {
+//     opacity: 1;
+// }

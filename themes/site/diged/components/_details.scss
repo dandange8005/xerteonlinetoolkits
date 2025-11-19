@@ -1,0 +1,92 @@
+/* Details component */
+
+.details {
+    display: block;
+    // line-height: 1.5;
+
+    // The heading
+    &__summary {
+        color: var(--clr-link);
+        cursor: pointer;
+        display: inline-block;
+        padding-left: var(--size-5);
+        position: relative;
+        text-decoration: underline;
+
+        // Hide triangle Safari user agent
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        // The triangle
+        &::before {
+            bottom: 0;
+            content: "";
+            left: 0;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-color: transparent;
+            clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+            border-width: 7px 0 7px 12.124px;
+            border-left-color: inherit;
+        }
+
+        // Hover State
+        &:hover {
+            text-decoration: none;
+        }
+
+        &:focus {
+            // outline-style: solid;
+            // outline-color: transparent;
+            // box-shadow: 0 0 0 4px scale-color($btnColour, $lightness: +40%);
+            background-color: #e4d490;
+            box-shadow: 0 -2px #e4d490, 0 4px #212b32;
+            color: #212b32;
+            outline: 4px solid transparent;
+            text-decoration: none;
+        }
+
+    }
+
+    &[open]>.details__summary::before {
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-color: transparent;
+        clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+        border-width: 12.124px 7px 0 7px;
+        border-top-color: inherit;
+    }
+
+    &__text {
+        border-left: 4px solid var(--clr-border);
+        margin-top: 8px;
+        padding: 16px;
+        padding-left: 20px;
+
+        // Flow spacing - all children except first get top margin
+        & > *:first-child {
+            margin-top: 0;
+        }
+
+    }
+
+}
+
+/* Figure + Details pattern (for accessible infographics) */
+// Remove bottom margin from figure when followed by details element
+figure:has(+ .details) {
+    margin-bottom: 0;
+}
+
+// Add small top margin to details when following figure
+figure + .details {
+    margin-top: var(--size-2);
+}

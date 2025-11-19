@@ -1,0 +1,26 @@
+/* ============================
+    Cardiff University Xerte Bootstrap Theme
+    Author: Nan Zhang
+==============================*/
+
+// Main SCSS file for the Bootstrap theme in the CU Xerte project
+// This file uses various SCSS modules to build the complete stylesheet
+
+// Import base styles and variables
+@use 'base'; // Contains foundational styles and variables
+
+// Import layout styles
+@use 'layouts'; // Defines layout-related styles such as grid, spacing, and positioning
+
+// Import component styles
+@use 'components'; // Includes styles for UI components like buttons, forms, and modals
+
+// Import utility classes
+@use 'utility'; // Provides utility classes for common styling needs like margin, padding, and text alignment
+
+// Import vendor-specific styles
+@use 'vendors'; // Contains styles for third-party libraries and plugins
+
+// Import media query styles
+@use 'mediaQueries'; // Defines responsive styles using media queries
+

@@ -1,0 +1,184 @@
+
+/* Flexbox System   */
+
+
+/* Flexbox System 1  */
+
+// Flex container
+.flex {
+    display: flex;
+    gap: var(--flex-gap);
+}
+
+// Flex items
+// Use .flex-1 to allow a flex item to grow and shrink as needed, ignoring its initial size
+.flex-1 {
+    flex: 1 1 0%;
+}
+
+// .flex-initial to allow a flex item to shrink but not grow, taking into account its initial size 
+.flex-initial {
+    flex: 0 1 auto;
+}
+
+// Use .flex-auto to allow a flex item to grow and shrink, taking into account its initial size
+.flex-auto {
+    flex: 1 1 auto;
+}
+
+// Use .flex-none to prevent a flex item from growing or shrinking
+.flex-none {
+    flex: none;
+}
+
+// Flex item with base set to differnet width
+.flex-100 {
+    flex: 1 1 100px;
+}
+
+.flex-200 {
+    flex: 1 1 200px;
+}
+
+.flex-300 {
+    flex: 1 1 300px;
+}
+
+.flex-400 {
+    flex: 1 1 400px;
+}
+
+.flex-500 {
+    flex: 1 1 500px;
+}
+
+.flex-600 {
+    flex: 1 1 600px;
+}
+
+/* Flexbox system 2 */
+
+.flexContainer {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin-block: var(--size-fluid-3);
+}
+
+.flexItem {
+    width: 100%;
+    padding: 0;
+    margin-bottom: var(--flex-gap);
+}
+
+.flexItem h3:is(:first-child) {
+    margin-top: 0;
+}
+.flexItem h3.topMargin {
+    margin-top: 2em;
+}
+
+.flexItem img {
+    width: 100%;
+    max-width: max-content;
+    display: block;
+    margin: 0 auto;
+}
+@media (min-width: 806px) {
+    .c80 {
+        width: 80%;
+    }
+    .c70 {
+        width: 70%;
+    }
+    .c60 {
+        width: 60%;
+    }
+    .c50 {
+        width: 50%;
+    }
+    .c40 {
+        width: 40%;
+    }
+    .c30 {
+        width: 30%;
+    }
+    .c33 {
+        width: 33.33%;
+    }
+    .c25 {
+        width: 25%;
+    }
+    .c20 {
+        width: 20%;
+    }
+    .c10 {
+        width: 10%;
+    }
+    .flexItem {
+        padding-right: var(--flex-gap);
+        margin-bottom: 0;
+    }
+    .flexItem:last-child {
+        padding-right: 0;
+    } 
+
+    .flex-row-reverse .flexItem {
+        padding-left: var(--flex-gap);
+        padding-right: 0;
+    }
+
+    .flex-row-reverse .flexItem:last-child {
+        padding-left: 0;
+    }
+}
+
+/* Flex Utility  */
+
+// flex-inline to make the flex container inline
+.flex-inline {
+    display: inline-flex;
+}
+
+// flex centering in x axis
+.flex-center-x {
+    justify-content: center;
+}
+// flex centering in y axis
+.flex-center-y {
+    align-items: center;
+}
+// flex centering in both axis
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-col-reverse {
+    flex-direction: column-reverse;
+}
+
+/* Flex Wrap */
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
+
+.flex-no-wrap {
+    flex-wrap: nowrap;
+}

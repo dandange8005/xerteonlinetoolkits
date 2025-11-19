@@ -1,0 +1,194 @@
+/* Bootstrap Navigators overwrite
+- tabs
+- pills
+- carousel
+- accordion
+*/
+
+.panel:after {
+    background-color: #f2f2f2;
+}
+
+/* Tabs - Modern tabbed navigation with underline active state */
+
+// Tab container
+ul.nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: var(--size-2);
+    column-gap: 0;
+    margin-bottom: 0;
+    padding-inline: 0;
+    list-style: none;
+    border-bottom: 1px solid var(--gray-3);
+    background: transparent;
+}
+
+// Individual tab items
+.nav-tabs>li {
+    margin-bottom: 0;
+}
+
+// Tab links - default state
+.nav-tabs>li>a {
+    display: block;
+    padding: var(--size-2) var(--size-4);
+    color: var(--gray-7);
+    font-weight: 500;
+    font-size: var(--fs-base);
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    margin-bottom: -1px;
+    transition: all 150ms ease-in-out;
+}
+
+// Tab links - hover state
+.nav-tabs>li>a:hover,
+.nav-tabs>li>a:focus {
+    color: var(--gray-9);
+    background-color: var(--gray-1);
+    border-bottom-color: var(--gray-5);
+    text-decoration: none;
+}
+
+// Tab links - active state (modern underline style)
+.nav-tabs>.active>a,
+.nav-tabs>.active>a:hover,
+.nav-tabs>.active>a:focus {
+    color: var(--gray-9);
+    font-weight: 500;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid var(--clr-accent);
+    cursor: default;
+    outline: none; // Remove focus outline
+    box-shadow: none; // Remove any focus box-shadow
+}
+
+// Tab content container
+.nav-tabs+.tab-content {
+    background: #fff;
+    padding: var(--size-4);
+    border: 1px solid var(--clr-border);
+}
+
+// Tab pane content
+.tab-pane {
+    padding-inline: 0;
+    font-size: var(--font-size-1);
+}
+
+// Remove top margin from first child in tab pane
+.tab-pane> :first-child {
+    margin-top: 0;
+}
+
+.tab-pane>*:where(:not(:last-child)) {
+    margin-bottom: var(--size-7);
+}
+
+/* Pills */
+.nav-pills {
+    margin-bottom: var(--size-3);
+}
+
+
+.nav-pills>li>a {
+    color: var(--clr-link);
+    font-weight: 500;
+    // font-size: 1.2em;
+    border-radius: 4px;
+    border: 1px solid var(--clr-border);
+}
+
+.nav-pills>.active>a,
+.nav-pills>.active>a:hover,
+.nav-pills>.active>a:focus {
+    color: white;
+    background-color: var(--clr-link);
+    border-color: var(--clr-link);
+}
+
+.nav-pills>li:not(.active):hover>a,
+.nav-pills>li:not(.active):focus>a {
+    background-color: var(--gray-2);
+}
+
+.nav-pills>li:not(:first-child) {
+    margin-left: 2px;
+}
+
+/* carousel */
+
+.carousel-control {
+    background-color: var(--navy-2);
+    font-size: var(--fs-lg);
+    font-weight: 900;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 0;
+}
+
+.carousel-indicators {
+    display: block;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    top: auto;
+    right: auto;
+}
+
+/* Accordions */
+a.accordion-toggle {
+    font-weight: bold;
+}
+
+a.accordion-toggle:hover,
+a.accordion-toggle:focus {
+    text-decoration: none;
+}
+
+.navigator.accordion {
+    margin-block: var(--size-7);
+}
+
+
+.accordion-heading .accordion-toggle {
+    display: flex;
+    align-items: center;
+    padding-right: 2rem;
+}
+
+a.accordion-toggle::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f054"; // chevron-right
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    right: 0.75rem;
+    vertical-align: middle;
+    position: absolute;
+    transition: transform 300ms ease-in-out;
+    transform: rotate(0deg) !important; // Default: points right (collapsed)
+}
+
+// Expanded state - rotate chevron 90 degrees to point down
+a.accordion-toggle[aria-expanded="true"]::after {
+    transform: rotate(90deg) !important; // Points down when expanded
+}
+
+// Remove top margin from first child in accordion
+.accordion-inner > :first-child {
+  margin-top: 0;
+}
+
+//add space to content elements within accordion
+.accordion-inner > *:where(:not(:last-child)) {
+    margin-bottom: var(--size-3);
+}

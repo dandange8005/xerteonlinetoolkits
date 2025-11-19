@@ -1,0 +1,25 @@
+/* ----------------- 
+Ratio Utilities
+----------------- */
+
+// Ratio size
+
+.square {
+    aspect-ratio: var(--ratio-square);
+}
+
+.portrait {
+    aspect-ratio: var(--ratio-portrait);
+}
+
+.ultrawide {
+    aspect-ratio: var(--ratio-ultrawide);
+}
+
+.widescreen {
+    aspect-ratio: var(--ratio-widescreen);
+}
+
+.landscape {
+    aspect-ratio: var(--ratio-landscape);
+}

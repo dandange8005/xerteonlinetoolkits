@@ -1,0 +1,125 @@
+// Cardiff University Colours
+
+/* Core colours*/
+$colourBlack: #22211f;
+$colourTrueBlack: #000000;
+$colourRed: #d4374a;
+$colourGreen: #008458;
+$colourLink: #045bc6;
+$colourWhite: #ffffff;
+$colourEnergyYellow: #f8d349;
+$colourLinkHover: darken($colourLink, 20%);
+
+/* Supplementary colours*/
+$colourOceanGreen: #499f7f;
+$colourAffair: #73479c;
+$colourAllports: #006aaf;
+$colourScienceBlue: #005ccd;
+$colourCerise: #d63694;
+$colourValencia: #D62A2A;
+$colourAlgaeGreen: lighten($colourOceanGreen, 25%);
+$colourAeroBlue: lighten($colourOceanGreen, 40%);
+$colourMalibu: lighten($colourAllports, 30%);
+$colourAnakiwa: lighten($colourAllports, 60%);
+$colourLavender: lighten($colourAffair, 25%);
+$colourMauve: lighten($colourAffair, 50%);
+$colourHotPink: lighten($colourCerise, 20%);
+$colourLavenderRose: lighten($colourCerise, 45%);
+
+/* Greys colours*/
+$colourLogCabin: #1a1a18;
+$colourGreyDarkest: #666666;
+$colourGreyDarker: #383735;
+$colourGreyDark: #4e4e4c;
+$colourGrey: #555555;
+$colourGreyLight: #d3d3d2;
+$colourGreySoft: #dadada;
+$colourGreyLighter: #e9e9e9;
+$colourGreyLightest: #f0f0f0;
+$colourGreySofter: #f6f6f6;
+$colourGreyNickel: #c6c6c5;
+$colourPrimeGrey: #d3d3d2;
+$colourWildSandGrey: #f5f5f5;
+$colourSilver: #bbbbbb;
+$colourSilverLight: #cccccc;
+
+/* Focus colours*/
+$colourSweetCorn: #FCF199;
+// $focus-box-shadow: 0 0 0 ($baseUnit * 0.3) $colourSweetCorn;
+
+/* Tints*/
+$colourTintPrime: #91908f;
+$colourWildSand: #f6f6f6;
+$colourTintDarkest: adjust-hue(darken($colourTintPrime, 35%), 2);
+$colourTintDarker: adjust-hue(darken($colourTintPrime, 17%), 1);
+$colourTintDark: adjust-hue(darken($colourTintPrime, 9%), 1);
+$colourTintLight: adjust-hue(lighten($colourTintPrime, 17%), 1);
+$colourTintLighter: adjust-hue(lighten($colourTintPrime, 25%), 2);
+$colourTintLightest: adjust-hue(lighten($colourTintPrime, 35%), 2);
+
+/* Bootstrap primary changes*/
+$colourAlertWarningBackground: #fef6da;
+$colourSuccess: $colourGreen;
+$colourInfo: #3a6cb5;
+$colourSteelBlue: #537fb6;
+$colourJade: #00b377;
+
+/* Buttons colours*/
+$colourBtnBackground: $colourGreyLighter;
+$colourBtnBackgroundHighlight: darken($colourGreyLighter, 10%);
+$colourBtnBorder: $colourSilver;
+$colourBtnPrimaryBackground: $colourRed;
+$colourBtnPrimaryBackgroundHighlight: darken($colourRed, 10%);
+$colourBtnInfoBackground: #214fa3;
+$colourBtnInfoBackgroundHighlight: darken($colourBtnInfoBackground, 5%);
+$colourBtnSuccessBackground: $colourGreen;
+$colourBtnSuccessBackgroundHighlight: darken($colourBtnSuccessBackground, 5%);
+$colourBtnWarningBackground: $colourEnergyYellow;
+$colourBtnWarningBackgroundHighlight: darken($colourBtnWarningBackground, 5%);
+$colourBtnDangerBackground: $colourGreyLighter;
+$colourBtnDangerBackgroundHighlight: darken($colourRed, 5%);
+$colourBtnInverseBackground: $colourGreyLight;
+$colourBtnInverseBackgroundHighlight: $colourGreyDarker;
+$colourBtnLinkColour: #054fa9;
+$colourBtnLinkColourHover: darken($colourBtnLinkColour, 10%);
+$colourBtnLinkColourHover: $colourBtnLinkColour;
+$colourBtnLinkBackground: transparent;
+$colourBtnLinkBackgroundHover: transparent;
+$colourText: $colourGreyDarker;
+
+/* General colours*/
+$colourAlto: #d9d9d9;
+$colourConcrete: #f2f2f2;
+$colourAzureRadiance: #007bff;
+$colourCararra: #ebe9e1;
+$colourHusk: #bd9e5e;
+$colourThunder: #231f20;
+$colourPickledBlueWood: #2f444e;
+$colourYuma: #c8bb8d;
+$colourBlueZodiac: #152c51;
+$colourHaiti: #191333;
+$colourBossanova: #3c2c59;
+$colourAtlantis: #8fc73e;
+$colourGreenHaze: #00a654;
+$colourOceanBreeze: #233e8b;
+$colourPrussianBlue: #002554;
+$colourWildSand: #f6f6f6;
+$colourPeppermint: #dff0d8;
+$colourPearlLusta: #fcf8e3;
+$colourLinkWater: #d9edf7;
+$colourPoloBlue: #7598cb;
+$colourGreenHaze: #009966;
+$colourBrickRed: #BA283A;
+$colourMercury: #e4e4e4;
+$colourPanache: #F8FCFA;
+$colourAlabaster: #f8f8f8;
+$colourHavelockBlue: #4786d5;
+$colourTapa: #727270;
+$colourDustyGrey: #999999;
+$colourLocalNaviation: #8a8a8a;
+$colourRegentGrey: #8A94A8;
+$colourBlueZodiac: #152c51;
+$colourMineShaft: #333333;
+$colourCabaret: #d94c5d;
+$colourTimberwolf: #D4D2CA;
+$colourTransparent: rgba($colourWhite, 0);

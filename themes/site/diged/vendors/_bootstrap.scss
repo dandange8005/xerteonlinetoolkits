@@ -1,0 +1,53 @@
+/* Customised style for bootstrap components */
+
+// lead component
+.lead {
+    font-size: var(--fs-xl);
+    color: var(--neutral-6);
+    line-height: var(--font-lineheight-1);
+    font-weight: 300;
+}
+
+
+// Panel component
+
+.panel {
+    padding-left: 2rem;
+    padding-top: var(--size-8);
+
+    &::after {
+        font-size: var(--fs-sm);
+        padding-inline: var(--size-3);
+        text-transform: uppercase;
+        letter-spacing: .8px;
+    }
+
+    &>*:first-child{
+        margin-top:0;
+    }
+    &>*:last-child{
+        margin-bottom:0;
+    }
+
+}
+
+.panel.tips {
+    border: 1px solid var(--pink-3);
+
+    &::after {
+        color: var(--pink-7);
+        background: var(--pink-0);
+        border: 1px solid var(--pink-3);
+    }
+}
+
+.panel.reflection {
+    border: 1px solid var(--blue-3);
+
+    &::after {
+        color: var(--blue-7);
+        background: var(--blue-0);
+        border: 1px solid var(--blue-3);
+    }
+
+}

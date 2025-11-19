@@ -1,0 +1,34 @@
+  /* Advanced quotation blocks */
+
+// This is still under development
+
+  .quote {
+      border-left: 5px solid hsl(var(--clr-primary));
+      padding: 1em;
+      margin: 0 0 24px;
+      font-size: var(--fs-400);
+      font-family: var(--ff-body);
+  }
+
+  .quote::before,
+  .quote::after {
+      font-family: var(--ff-serif);
+      color: var(--clr-gray-3);
+  }
+
+  .quote.with-image {
+      padding-left: 150px;
+  }
+
+  .quote-image {
+      border-radius: 50%;
+      max-width: 100px;
+      float: left;
+      margin-left: -130px;
+  }
+
+  .quote-author {
+      margin-top: 1rem;
+      margin-bottom: 0;
+      font-weight: 700;
+  }

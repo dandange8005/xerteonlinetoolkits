@@ -1,0 +1,18 @@
+// styles that are forwarded from the utility folder
+
+// Path: Bootstrap/utility/_index.scss
+
+/* ===================
+    UTILITY CLASSES 
+======================*/
+
+@forward 'background';
+@forward 'flex';
+@forward 'float';
+@forward 'grid';
+@forward 'ratio';
+@forward 'shadows';
+@forward 'spacing';
+@forward 'stretchedLink';
+@forward 'text';
+@forward 'utility';

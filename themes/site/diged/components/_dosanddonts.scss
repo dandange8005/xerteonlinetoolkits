@@ -1,0 +1,43 @@
+/* Dos and Donts List component */
+
+.do-dont-list {
+    margin: var(--size-8) 0;
+    padding: var(--size-5);
+    color: var(--clr-body);
+    border: 1px solid var(--clr-border);
+    padding-top: 0 !important;
+
+    .icon {
+      flex: none;
+      height: var(--size-7);
+    width: var(--size-7);
+    }
+  }
+  .do-dont-list>*:first-child {
+    margin-top: 0;
+  }
+  .do-dont-list__label {
+    font-size: var(--fs-base);
+    line-height: 1.4;
+    background-color: var(--clr-accent);
+    color: var(--cu-white);
+    display: inline-block;
+    margin: 0 0 8px -25px;
+    padding: var(--size-2) var(--size-7);
+    position: relative;
+    top: -23px;
+  }
+
+  .list--tick, .list--cross {
+    list-style: none;
+    margin:0;
+    padding-left: var(--size-6);
+    position: relative;
+    }
+    .list--tick svg, .list--cross svg {
+    left: -4px;
+    margin-top: -5px;
+    position: absolute;
+    }
+
+// Path: Bootstrap/components/_dosanddonts.scss

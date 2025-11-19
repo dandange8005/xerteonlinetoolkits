@@ -1,0 +1,85 @@
+/* ======================
+    FOOTER
+=======================*/
+
+.footer {
+    padding-block: var(--size-fluid-4);
+    position: relative;
+    background-color: transparent!important;
+    border: 0;
+    color: var(--clr-footer-text);
+}
+
+// footer background
+.footer::before {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    left: calc(-50vw + 50%);
+    z-index: -1;
+    top: 0;
+    background-color: var(--clr-footer-bg);
+}
+
+.footer p {
+    margin-bottom: 0;
+    text-align: center;
+    color: var(--clr-footer-text);
+}
+
+.footer a {
+    color: var(--clr-footer-link);
+    text-decoration: underline;
+  }
+  
+  .footer a:hover, .footer a:focus {
+    text-decoration: none;
+    color: var(--clr-footer-link-hover);
+  }
+
+.footer-logo {
+    max-width: 250px;
+    height: auto;
+    margin: auto;
+}
+
+
+
+/* Vertical Feedback button for the project*/
+
+#feedback_button {
+    writing-mode: vertical-lr;
+    background: var(--clr-accent);
+    color: white;
+    padding-inline: 16px;
+    padding-block: 4px;
+    padding-block-end: 8px;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    right: 0;
+    top: 62%;
+    z-index: 1000;
+    transform: translateX(10px);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 300ms var(--ease-in-out-1);
+    box-shadow: -2px 9px 20px 4px rgba(0,0,0,0.1);
+    font-weight: bold;
+
+    &:hover {
+        transform: translateX(2px);
+    }
+
+    i {
+        transform: rotate(90deg);
+        margin-inline-end: var(--size-2);
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: white;
+    }
+}
+

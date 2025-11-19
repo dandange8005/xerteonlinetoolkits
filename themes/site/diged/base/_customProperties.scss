@@ -1,0 +1,162 @@
+
+// Import OpenProps
+// @import "https://unpkg.com/open-props";
+@import "../../openprop/openProps";
+
+
+// Importing 'Inter' Google Fonts to enhance typography and design consistency.
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800;900&display=swap');
+
+
+// Importing Bootstrap Icons to provide a wide range of icons for use in the project.
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+/* -----------------------
+    CUSTOM PROPERTIES
+
+    This file contains custom CSS properties (variables) to enhance the styling capabilities of the project.
+-------------------------- */
+
+:root {
+
+/* Cardiff University Colours */
+
+// Primary colours
+--cu-red: #e4251b;
+
+// Secondary colours
+
+--cu-sky: #005fa8;
+--cu-gold: #c4a45f;
+--cu-gold-light: hsl(46, 44%, 69%);
+--navy-1:hsl(204, 29%, 28%);
+--navy-2:hsl(204, 14%, 46%);
+--navy-3:hsl(201, 27%, 20%);
+
+--cu-green: #07873E;
+--cu-cadet: #5EB99B;
+--cu-stone: #C9C2BA;
+--cu-blue: #223e8c;
+--cu-dark-blue: #1e2c4d;
+--cu-light-blue: #1E90FF;
+--cu-royal-blue: #4A42FF;
+--cu-navy: #273573;
+--cu-midnight-purple: #26192C;
+--cu-orange: #E9761E;
+--cu-yellow: #FFB300;
+--cu-yellow-green: #85C041;
+--cu-indigo: #570185;
+--cu-dark-violet: #D401C5;
+
+
+// Grey scale
+--cu-white: #ffffff;
+--cu-black: #121212;
+--cu-grey-1: #f2f2f2;
+--cu-grey-2: #e5e5e5;
+--cu-grey-3: #cccccc;
+--cu-grey-4: #b2b2b2;
+--cu-grey-5: #999999;
+--cu-grey-6: #808080;
+--cu-grey-7: #666666;
+--cu-grey-8: #4c4c4c;
+--cu-grey-9: #333333;
+   
+/* Bootstrap Project Theme */
+
+// Accent colour
+--clr-accent: var(--cu-red);
+
+// Accent colour in hsl
+--clr-h: 3;
+--clr-s: 79%;
+--clr-l: 50%;
+
+
+// Accent colour shades
+--clr-accent-1: hsl(var(--clr-h),
+    var(--clr-s),
+    calc(var(--clr-l) + (100% - var(--clr-l)) * 0.9));
+--clr-accent-2: hsl(var(--clr-h),
+    var(--clr-s),
+    calc(var(--clr-l) + (100% - var(--clr-l)) * 0.7));
+--clr-accent-3: hsl(var(--clr-h),
+    var(--clr-s),
+    calc(var(--clr-l) + (100% - var(--clr-l)) * 0.5));
+--clr-accent-4: hsl(var(--clr-h),
+    var(--clr-s),
+    calc(var(--clr-l) + (100% - var(--clr-l)) * 0.3));
+--clr-accent-5: hsl(var(--clr-h),
+    var(--clr-s),
+    calc(var(--clr-l) - var(--clr-l) * 0.2));
+--clr-accent-6: hsl(var(--clr-h),
+    var(--clr-s),
+    calc(var(--clr-l) - var(--clr-l) * 0.4));
+--clr-accent-7: hsl(var(--clr-h),
+    var(--clr-s),
+    calc(var(--clr-l) - var(--clr-l) * 0.6));
+--clr-accent-8: hsl(var(--clr-h),
+    var(--clr-s),
+    calc(var(--clr-l) - var(--clr-l) * 0.8));
+
+// Other colours
+--black: var(--cu-black);
+--white: var(--cu-white);
+--light: #f9fafb;
+
+--neutral-0: hsl(0, 0%, 98%);
+--neutral-1:hsl(0, 0%, 96%);
+--neutral-2:hsl(0, 0%, 90%);
+--neutral-3:hsl(0, 0%, 83%);
+--neutral-4:hsl(0, 0%, 64%);
+--neutral-5:hsl(0, 0%, 45%);
+--neutral-6:hsl(0, 0%, 32%);
+--neutral-7:hsl(0, 0%, 25%);
+--neutral-8:hsl(0, 0%, 15%);
+--neutral-9:hsl(0, 0%, 9%);
+
+// Function colours
+--clr-success:hsl(148, 100%, 25%);
+--clr-danger: hsl(4, 77%, 48%);
+
+// main text colour
+--clr-body: var(--cu-black);
+// link colour
+--clr-link: #045bc6;
+// border colour
+--clr-border: #d1d5db;
+// header background colour
+--clr-jumbotron-bg: var(--cu-dark-blue);
+// header background
+--clr-jumbotron-bg-gradient: var(--gradient-23);
+// footer colour
+--clr-footer-bg: var(--black);
+--clr-footer-text: var(--cu-white);
+--clr-footer-link: var(--cu-white);
+--clr-footer-link-hover: var(--cu-white);
+// main background colour
+--clr-main-bg: var(--light);
+
+/*Spacing*/
+--gap: var(--size-fluid-1);
+--flex-gap: var(--size-fluid-3);
+--grid-gap: var(--size-fluid-1);
+
+/* Typography */
+//font family
+--ff-body: 'Inter', sans-serif;
+--ff-heading: 'Inter', sans-serif;
+--ff-serif: "Georgia", serif;
+--ff-mono: var(--font-mono);
+
+// Fluid font size
+--fs-xs: clamp(0.74rem, 0.72rem + 0.08vw, 0.78rem);
+--fs-sm: clamp(0.83rem, 0.79rem + 0.20vw, 0.94rem);
+--fs-base: clamp(0.94rem, 0.86rem + 0.37vw, 1rem);
+--fs-lg: clamp(1.06rem, 0.94rem + 0.58vw, 1.35rem);
+--fs-xl: clamp(1.19rem, 1.02rem + 0.85vw, 1.62rem);
+--fs-2xl: clamp(1.34rem, 1.10rem + 1.19vw, 1.94rem);
+--fs-3xl: clamp(1.50rem, 1.18rem + 1.62vw, 2.33rem);
+--fs-4xl: clamp(1.69rem, 1.26rem + 2.17vw, 2.80rem);
+
+}

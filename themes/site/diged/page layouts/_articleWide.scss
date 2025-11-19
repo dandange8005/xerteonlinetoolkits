@@ -1,0 +1,81 @@
+/* ======================
+    NO TOC Page Template - Article Wide
+=======================*/
+
+/* A single page template with no table of content with default container width*/
+
+body {
+    --clr-main-bg: white;
+}
+
+/* remove toc */
+#contentTable {
+    display: none;
+}
+
+/*remove left margin for full width*/
+.row-fluid .span9 {
+    margin-left: 0;
+}
+
+/*remove extra spacing*/
+.navbar-fixed-top {
+    margin-bottom: 0;
+}
+
+/* Add full width background to the section container */
+section {
+    position: relative;
+    box-shadow: none;
+    border-radius: 0;
+    background: none;
+    margin: 0;
+    padding-block: var(--size-fluid-5);
+    overflow: revert; // fix for the overflow issue after upgrading to Xerte 3.13
+}
+
+section::before {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    left: calc(-50vw + 50%);
+    z-index: -1;
+    top: 0;
+}
+
+  /* custom background colour for sections  */
+  section:nth-child(odd)::before {
+    background-color: var(--light);
+  }
+  section:nth-child(even)::before {
+    background-color: var(--cu-white);
+  }
+
+  .footer {
+    margin-top: 0;
+}
+
+/* Section heading */
+.page-header {
+    border: none;
+}
+
+.page-header h1{
+    color: var(--cu-black);
+    font-weight: var(--font-weight-7);
+    margin-top: 0;
+}
+
+.page-header::after {
+    content: '';
+    width: 25px;
+    display: block;
+    border-bottom: 5px solid var(--cu-red);
+
+}
+
+/*remove scroll to the top button*/
+.btn-mini {
+    display: none;
+}

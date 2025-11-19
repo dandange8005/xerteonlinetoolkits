@@ -1,0 +1,20 @@
+// Importing base styles and variables
+@use 'base';
+
+// Importing layout styles
+@use 'layouts';
+
+// Importing specific page layout for articles
+@use 'page layouts/article';
+
+// Importing component styles
+@use 'components';
+
+// Importing utility classes and functions
+@use 'utility';
+
+// Importing vendor-specific styles
+@use 'vendors';
+
+// Importing media query definitions
+@use 'mediaQueries';

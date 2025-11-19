@@ -1,0 +1,66 @@
+/* Callout component */
+
+.callout {
+    background: var(--gray-2);
+    padding: var(--size-4);
+    padding-left: var(--size-8);
+    border-radius: var(--radius-2);
+    // box-shadow: var(--shadow-3);
+    font-size: var(--font-size-fluid-0);
+    color: var(--neutral-7);
+    position: relative;
+
+    //   margin: 2rem 0;
+    &::before {
+        content: attr(emoji-data);
+        font-family: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+        position: absolute;
+        top: var(--size-4);    
+        left: var(--size-3);
+        font-size: var(--font-size-2);
+    }
+
+    h4 {
+        font-size: var(--fs-base);
+        margin-top: 0;
+        margin-bottom: var(--size-2);
+    }
+
+    &.warning {
+        background-color: var(--yellow-0);
+        border: 1px solid var(--yellow-2);
+
+        &::before {
+            content: '⚠️';
+        }
+    }
+
+    &.success {
+        background-color: var(--green-0);
+        border: 1px solid var(--green-2);
+
+        &::before {
+            content: '✅';
+        }
+    }
+
+    &.danger {
+        background-color: var(--red-0);
+        border: 1px solid var(--red-4);
+
+        &::before {
+            content: '⛔️';
+        }
+    }
+
+    &.info {
+        background-color: var(--blue-0);
+        border: 1px solid var(--blue-2);
+
+        &::before {
+            content:'ℹ️';
+        }
+    }
+
+
+}

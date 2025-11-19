@@ -1,0 +1,15 @@
+/* project information component */
+
+#project-info {
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+    margin-block: var(--size-8);
+    color: var(--neutral-6);
+  }
+
+#project-info::before,
+#project-info::after {
+  content: none;
+}
+// Path: Bootstrap/components/_projectInfo.scss

@@ -1,0 +1,29 @@
+/* Example block Component */
+
+.example {
+    padding: 2em 1em;
+    padding-top: 3em;
+    border: 1px solid var(--clr-border);
+    position: relative;
+    background: var(--cu-white);
+    // max-width: 56em; 
+
+    &::before {
+        content: 'example';
+        position: absolute;
+        font-size: var(--fs-sm);
+        color: var(--cu-white);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        top: 0;
+        left: 0;
+        padding: 8px;
+        background: var(--navy-2);
+        border-bottom-right-radius: 4px;
+    }
+
+    & > *:last-child {
+        margin-bottom: 0;
+    }
+
+}

@@ -1,0 +1,41 @@
+/* Other utilities */
+
+
+// flow spacing class to add margin between elements
+.flow>*:where(:not(:last-child)) {
+  margin-block-end: var(--flow-gap, 1rem)!important;
+}
+
+
+// Line Breaks for Long URLs
+.dont-break-out {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+// Content wrapper
+.content-wrapper {
+  max-width: 56rem;
+  margin-inline: auto;
+}
+
+//  Margin and padding
+
+.mx-auto {
+  margin-inline: auto;
+}
+
+// screen reader only
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important; 
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

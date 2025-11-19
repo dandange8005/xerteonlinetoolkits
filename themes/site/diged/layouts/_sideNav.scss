@@ -1,0 +1,13 @@
+/* ======================
+    SIDE NAVIGATION
+=======================*/
+
+
+.nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
+    background: var(--clr-accent);
+  }
+  
+  .nav-list > li > a {
+    color: var(--clr-body);
+    font-size: var(--fs-sm);
+  }

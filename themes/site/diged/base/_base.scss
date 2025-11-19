@@ -1,0 +1,447 @@
+/* ======================
+    BASE ELEMENTS
+=======================*/
+// Smooth Scroll
+html {
+    scroll-behavior: smooth;
+}
+
+// Fix for featherlight lightbox scroll-to-top issue
+// The problem: featherlight applies overflow:hidden to html, which causes scroll reset
+// Solution: Don't apply any overflow changes to html, only to body
+html.with-featherlight {
+    overflow: visible !important;
+}
+
+html.with-featherlight body {
+    overflow: hidden !important;
+}
+
+// body
+body {
+    font-family: var(--ff-body);
+    font-size: var(--fs-base);
+    line-height: 1.625;
+    color: var(--clr-body);
+    background-color: var(--clr-main-bg);
+    overflow-x: hidden;
+}
+
+// headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--ff-heading);
+    font-weight: var(--font-weight-7);
+}
+
+h1 {
+    font-size: var(--fs-2xl);
+    line-height: var(--font-lineheight-0);
+}
+
+h2 {
+    font-size: var(--fs-xl);
+    line-height: var(--font-lineheight-1);
+}
+
+h3 {
+    font-size: var(--fs-lg);
+    line-height: var(--font-lineheight-2);
+}
+
+h4 {
+    font-size: var(--fs-base);
+    line-height: var(--font-lineheight-3);
+}
+
+// links
+a {
+    color: var(--clr-link);
+    // text-decoration: none;
+    position: relative;
+}
+
+// update link style due to Xerte update
+section a:not(.accordion-toggle, .top-round, .carousel-control, .glossary) {
+    text-decoration: none;
+}
+
+section a:hover:not(.accordion-toggle, .top-round, .carousel-control, .glossary, .btn, .button) {
+    text-decoration: underline;
+    text-underline-position: under;
+    color: var(--clr-link);
+}
+
+// a:hover,
+// a:focus {
+//     text-decoration: underline;
+//     text-decoration-thickness: max(0.08em, 1.5px);
+//     text-underline-offset: 0.15em;
+//     color: var(--clr-link);
+// }
+
+
+// a[target='_blank']:hover::after,
+// a[target='_blank']:focus::after {
+//     content: "\f35d";
+//     font-family: "Font Awesome 5 Free";
+//     font-weight: 900;
+//     margin-left: var(--size-1);
+//     font-size: var(--fs-xs);
+// }
+
+// a[href^="mailto"]::before {
+//     content: "\f0e0";
+//     font-family: "Font Awesome 5 Free";
+//     font-weight: 900;
+//     margin-right: var(--size-1);
+//     font-size: var(--fs-xs);
+
+// }
+
+
+// Section specific styles
+.page-header {
+    margin-top: 0;
+}
+
+// section Title
+
+h2.sectionTitle {
+    font-size: var(--fs-3xl);
+    font-weight: var(--font-weight-3);
+    margin-bottom: var(--size-2);
+    color: var(--clr-accent);
+    margin-top: var(--size-3);
+
+    // remove extra margin of p in heading
+    p {
+        margin-bottom: 0 !important;
+    }
+}
+
+// Content Title selector: h3.contentTitle
+h3.contentTitle {
+    font-size: var(--fs-lg);
+}
+
+// Section spacing
+section {
+    margin-bottom: var(--size-fluid-3);
+}
+
+// Section items Spacing
+section>*:where(:not(:last-child)) {
+    margin-bottom: var(--size-7);
+}
+
+// Section headings
+section {
+
+    h3,
+    h4 {
+        color: var(--neutral-7);
+        margin-bottom: var(--size-fluid-1);
+    }
+
+    h3 {
+        margin-top: var(--size-fluid-3);
+    }
+
+    h4 {
+        margin-top: var(--size-fluid-2);
+    }
+
+    p:not(:last-child) {
+        margin-bottom: var(--size-3);
+    }
+}
+
+.footer h3 {
+    margin-bottom: var(--size-3);
+}
+
+// lists
+/* reset the base style for list */
+
+section, .footer {
+
+    ul,
+    ol {
+        padding: 0;
+        margin-left: var(--size-5);
+        display: grid;
+        gap: var(--size-2);
+    }
+
+    li {
+        line-height: var(--font-lineheight-3);
+    }
+
+    ul li,
+    ol li {
+        padding-left: var(--size-2);
+    }
+
+    li ul {
+        margin-top: var(--size-3);
+
+    }
+
+}
+
+// Utility classes for list
+
+.list-none {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+// Icon list
+.list-icon {
+    list-style: none;
+    margin-left: 0;
+
+    li span {
+        margin-right: 10px;
+        color: var(--clr-accent);
+        font-size: 20px;
+    }
+
+}
+
+// Counter list
+.list-counter {
+    counter-reset: orderedlist;
+    list-style-type: none;
+    margin-left: var(--size-2);
+    // display: grid;
+    // gap: 1em;
+
+    li {
+        position: relative;
+        padding-left: var(--size-8);
+    }
+
+    li::before {
+        counter-increment: orderedlist;
+        content: counter(orderedlist);
+        width: var(--size-5);
+        height: var(--size-5);
+        background: var(--gray-2);
+        color: var(--gray-7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+
+// Utility classes for images
+
+.image-inline {
+    display: inline-block;
+}
+
+.image-full {
+    width: 100%;
+    height: auto;
+}
+
+.image-round {
+    border-radius: var(--radius-2);
+}
+
+// screenshot classes
+
+.image-screenshots {
+    border: 1px solid var(--clr-border);
+    margin: 2rem auto;
+    clear: both;
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow-3);
+}
+
+.screenshots {
+    border: 1px solid var(--clr-border);
+    margin: 2rem auto;
+    clear: both;
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow-3);
+}
+
+img.pull-right {
+    margin: 0 0 1em 1em;
+}
+
+img.pull-left {
+    margin: 0 1em 1em 0;
+}
+
+// Image with caption
+figure {
+    max-width: max-content;
+}
+
+figcaption {
+    background: var(--gray-2);
+    color: var(--cu-grey-8);
+    font-size: var(--fs-sm);
+    padding: var(--size-2);
+    caption-side: bottom;
+    margin-top: 0;
+}
+
+/* Table */
+table {
+    background: var(--cu-white);
+    box-shadow: var(--shadow-2);
+    font-size: var(--fs-sm);
+}
+
+table caption {
+    text-align: left;
+    color: var(--neutral-6);
+    padding-block: var(--size-1);
+}
+
+table,
+table tr,
+table td {
+    border: none;
+}
+
+thead th {
+    background: var(--navy-2);
+    color: var(--light);
+    font-weight: bold;
+    padding: var(--size-3);
+}
+
+table td {
+    padding: var(--size-3);
+}
+
+table tr td:not(:first-of-type) {
+    border-left: 1px solid var(--clr-border);
+}
+
+thead th:not(:first-of-type) {
+    border-left: 1px solid var(--light);
+}
+
+table tr:nth-child(even) {
+    background: var(--light);
+}
+
+// blockquote
+/* Quotes */
+blockquote::before,
+blockquote::after {
+    content: none;
+}
+
+blockquote .quote::before {
+    content: open-quote;
+}
+
+blockquote .quote::after {
+    content: close-quote;
+}
+
+blockquote {
+    display: grid;
+    gap: var(--size-3);
+    font-family: var(--ff-body);
+    font-weight: 400;
+    line-height: var(--font-lineheight-3);
+    font-size: var(--fs-base);
+    // margin: 0;
+    background: none;
+    border: none;
+    // margin-left: 0;
+    padding: var(--size-3) var(--size-5);
+    border-left: 5px solid var(--neutral-6);
+    max-inline-size: 70ch;
+}
+
+
+blockquote p {
+    font-weight: 400;
+    line-height: var(--font-lineheight-3);
+    font-size: var(--fs-base);
+}
+
+cite {
+    font-style: italic;
+}
+
+.source {
+    font-size: var(--fs-sm);
+    color: var(--neutral-4);
+    text-align: right;
+}
+
+
+// media
+/* iframe Block */
+
+.video-720 {
+    max-height: 405px;
+    max-width: 720px;
+}
+
+.iframe-container {
+    height: 0;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 56.32%;
+    // box-shadow: var(--shadow-3);
+    // margin-bottom: var(--border-size-3);
+
+    iframe {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border: 0;
+    }
+
+    &--xerte,
+    &--h5p {
+        border: 4px solid var(--clr-border);
+    }
+
+    &--xerte {
+        padding-bottom: 75%;
+    }
+
+    &__caption {
+        background: var(--light);
+        color: var(--clr-body);
+        font-style: italic;
+        font-size: var(--fs-sm);
+        padding: 4px;
+        margin-top: 0;
+    }
+}
+
+/* horizontal rule */
+
+/* Section break */
+hr {
+    background-color: var(--clr-border);
+    border: 0;
+    height: var(--border-size-2);
+    margin-block: var(--size-fluid-5);
+}

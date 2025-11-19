@@ -1,0 +1,48 @@
+/* Language toggle component */
+
+#language-toggle {
+
+    i {
+        // color: var(--orange-5);
+        margin-right: 6px;
+        font-size: var(--fs-lg);
+        vertical-align: middle;
+    }
+  }
+
+
+  #language-toggle {
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    font-size: var(--fs-sm);
+    cursor: pointer;
+    font-weight: var(--font-weight-7);
+    color: var(--cu-white);
+    display: flex;
+    align-items: center;
+  }
+  #language-toggle:hover,
+  #language-toggle:focus {
+    text-decoration: none;
+    color: var(--gray-3);
+  }
+
+  // .language-toggle-icon {
+  //   color: var(--orange-5);
+  //   margin-right: 6px;
+  //   font-size: var(--fs-lg);
+  //   vertical-align: middle;
+  // }
+
+/* Hide the language text on small screen */
+  @media (max-width:980px) {
+    .language-toggle-text {
+      position:absolute;
+      left:-10000px;
+      top:auto;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+    }
+  }
