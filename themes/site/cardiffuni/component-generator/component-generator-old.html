@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xerte Component Generator</title>
+    <link rel="stylesheet" href="../../css/bs_main.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <link rel="stylesheet" href="component-generator.css">
+</head>
+
+        .generator-app {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: 'Franklin Gothic Book', Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        .app-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .app-title {
+            color: var(--clr-accent);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .app-subtitle {
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .generator-layout {
+            display: grid;
+            grid-template-columns: 40% 60%;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        .component-selector-panel {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            box-sizing: border-box;
+        }
+
+        .controls-panel {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            box-sizing: border-box;
+        }
+
+        .preview-panel {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            min-height: 300px;
+            box-sizing: border-box;
+        }
+
+        .code-panel {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            min-height: 300px;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Toggle Switch Styles */
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background-color: var(--clr-accent);
+        }
+
+        .toggle-switch input:focus + .toggle-slider {
+            box-shadow: 0 0 0 4px hsl(
+                var(--clr-h),
+                var(--clr-s),
+                calc(var(--clr-l) * 1.4)
+            );
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .toggle-label {
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* Icon Picker Styles */
+        .icon-picker-container {
+            border: 1px solid #dee2e6;
+            border-radius: var(--radius-2);
+            background: white;
+            padding: 0.75rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .icon-picker {
+            display: block;
+        }
+
+        .icon-category {
+            margin-bottom: 1rem;
+        }
+
+        .icon-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .icon-category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .icon-option {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border: 2px solid #dee2e6;
+            border-radius: var(--radius-2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+            font-size: 1.1rem;
+            color: #6c757d;
+        }
+
+        .icon-option:hover {
+            border-color: var(--clr-accent);
+            background: #f8f9fa;
+            color: var(--clr-accent);
+        }
+
+        .icon-option.selected {
+            border-color: var(--clr-accent);
+            background: var(--clr-accent);
+            color: white;
+        }
+
+        .icon-search {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #dee2e6;
+            border-radius: var(--radius-2);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .icon-category {
+            margin-bottom: 0.5rem;
+        }
+
+        .icon-category-title {
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .component-selector {
+            background: var(--clr-accent);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .code-output {
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            color: #2d3748;
+            padding: 1rem;
+            border-radius: var(--radius-2);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: pre;
+            position: relative;
+            border: 1px solid #e9ecef;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .copy-button {
+            display: inline-flex;
+            gap: var(--size-2);
+            align-items: center;
+            justify-content: center;
+            background-color: var(--clr-accent);
+            color: var(--cu-white);
+            border-radius: var(--radius-2);
+            box-shadow: var(--shadow-2);
+            padding: .25em .75em;
+            min-height: 44px;
+            text-align: center;
+            line-height: 1.2;
+            transition: 200ms all ease-in-out;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+
+        .copy-button:hover, .copy-button:active {
+            background-color: hsl(
+                var(--clr-h),
+                var(--clr-s),
+                calc(var(--clr-l) * 1.2)
+            );
+        }
+
+        .copy-button:focus {
+            outline-style: solid;
+            outline-color: transparent;
+            box-shadow: 0 0 0 4px hsl(
+                var(--clr-h),
+                var(--clr-s),
+                calc(var(--clr-l) * 1.4)
+            );
+        }
+
+        .code-content {
+            border-radius: var(--radius-2);
+            max-height: 350px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .code-content pre {
+            margin: 0;
+            border-radius: var(--radius-2);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .code-content code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: inherit;
+        }
+
+        /* Line numbers styling */
+        .code-content .line-numbers-rows > span:before {
+            font-size: 0.8rem;
+        }
+
+        /* Code header styling */
+        .code-language-tag {
+            position: absolute;
+            top: 0.5rem;
+            right: 4rem;
+            background: #6c757d;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .section-title {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .generator-layout {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .generator-app {
+                padding: 1rem;
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .generator-layout {
+                grid-template-columns: 45% 55%;
+            }
+        }
+
+        /* Ensure all elements use box-sizing: border-box */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="generator-app">
+        <header class="app-header">
+            <h1 class="app-title">Xerte Component Generator</h1>
+            <p class="app-subtitle">Create and customize components for your Xerte projects</p>
+        </header>
+
+        <div class="generator-layout">
+            <div class="left-column">
+                <div class="component-selector-panel">
+                    <h2 class="section-title">List of Components</h2>
+                    <div class="form-group">
+                        <label for="componentType">Component Type</label>
+                        <select id="componentType" class="component-selector">
+                            <option value="box">Box</option>
+                            <option value="card">Card</option>
+                            <option value="button">Button</option>
+                            <option value="callout">Callout</option>
+                            <option value="accordion">Accordion</option>
+                            <option value="alert">Alert</option>
+                            <option value="quote">Quote</option>
+                            <option value="dosdonts">Dos and Don'ts</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="controls-panel">
+                    <h2 class="section-title">Component Settings</h2>
+                    <div id="componentControls">
+                        <!-- Dynamic controls will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="preview-panel">
+                    <h2 class="section-title">Preview Window</h2>
+                    <div id="componentPreview">
+                        <!-- Component preview will be rendered here -->
+                    </div>
+                </div>
+
+                <div class="code-panel">
+                    <div class="code-output">
+                        <div class="code-header">
+                            <h2 class="section-title">HTML Code</h2>
+                            <button class="copy-button" onclick="copyToClipboard()">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-content">
+                            <span class="code-language-tag">HTML</span>
+                            <pre class="line-numbers"><code id="generatedCode" class="language-html"><!-- Generated HTML will appear here --></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="component-generator.js"></script>
+</body>
+</html>

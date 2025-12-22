@@ -1,0 +1,383 @@
+/* Component Generator App Styles */
+@import url('https://unpkg.com/open-props');
+
+/* Custom Properties */
+:root {
+    --clr-accent: #d4374a;
+    --clr-h: 354;
+    --clr-s: 60%;
+    --clr-l: 51%;
+    --cu-white: #ffffff;
+}
+
+/* Base Styles */
+.generator-app {
+    width: min(1200px, 90%);
+    margin: 0 auto;
+    padding: var(--size-5);
+    font-family: 'Franklin Gothic Book', Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Header */
+.app-header {
+    text-align: center;
+    margin-bottom: var(--size-6);
+}
+
+.app-title {
+    color: var(--clr-accent);
+    font-size: var(--font-size-6);
+    margin-bottom: var(--size-3);
+}
+
+.app-subtitle {
+    color: var(--gray-6);
+    font-size: var(--font-size-3);
+}
+
+/* Layout */
+.generator-layout {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: var(--size-5);
+    margin-bottom: var(--size-5);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-4);
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-4);
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Panels */
+.component-selector-panel,
+.controls-panel,
+.code-panel {
+    background: var(--gray-1);
+    padding: var(--size-4);
+    border-radius: var(--radius-3);
+    border: var(--border-size-1) solid var(--gray-3);
+    box-sizing: border-box;
+}
+
+.preview-panel {
+    background: white;
+    padding: var(--size-4);
+    border-radius: var(--radius-3);
+    border: var(--border-size-1) solid var(--gray-3);
+    min-height: var(--size-15);
+    box-sizing: border-box;
+}
+
+.code-panel {
+    /* No min-height needed - content will determine size */
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: var(--size-3);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--size-2);
+    font-weight: var(--font-weight-6);
+    color: var(--gray-8);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--size-2);
+    border: var(--border-size-1) solid var(--gray-4);
+    border-radius: var(--radius-2);
+    font-size: var(--font-size-1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: var(--size-10);
+}
+
+/* Toggle Switch Styles */
+.toggle-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .3s ease;
+    border-radius: 24px;
+    border: 1px solid #ddd;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .3s ease;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--clr-accent);
+    border-color: var(--clr-accent);
+}
+
+.toggle-switch input:focus + .toggle-slider {
+    outline: 2px solid var(--clr-accent);
+    outline-offset: 2px;
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(20px);
+}
+
+.toggle-label {
+    font-weight: var(--font-weight-6);
+    color: var(--gray-8);
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Component Selector */
+.component-selector {
+    background: var(--clr-accent);
+    color: var(--cu-white);
+    padding: var(--size-3);
+    border: none;
+    border-radius: var(--radius-2);
+    font-size: var(--font-size-1);
+    cursor: pointer;
+}
+
+/* Code Section */
+.code-output {
+    margin-top: 0;
+}
+
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--size-3);
+}
+
+.code-content {
+    border-radius: var(--radius-3);
+    position: relative;
+}
+
+.code-content pre {
+    margin: 0;
+    border-radius: var(--radius-3);
+    font-size: var(--font-size-0);
+    line-height: var(--font-lineheight-3);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.code-content code {
+    font-family: var(--font-mono);
+    font-size: inherit;
+}
+
+.code-content .line-numbers-rows > span:before {
+    font-size: var(--font-size-00);
+}
+
+/* Copy Button */
+.copy-button {
+    display: inline-flex;
+    gap: var(--size-2);
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr-accent);
+    color: var(--cu-white);
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow-2);
+    padding: var(--size-2) var(--size-3);
+    min-height: var(--size-8);
+    text-align: center;
+    line-height: var(--font-lineheight-1);
+    transition: var(--animation-fade-in);
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-size-1);
+    font-family: inherit;
+}
+
+.copy-button:hover,
+.copy-button:active {
+    background-color: hsl(
+        var(--clr-h),
+        var(--clr-s),
+        calc(var(--clr-l) * 1.2)
+    );
+}
+
+.copy-button:focus {
+    outline-style: solid;
+    outline-color: transparent;
+    box-shadow: var(--shadow-4);
+}
+
+/* Code Language Tag */
+.code-language-tag {
+    position: absolute;
+    top: var(--size-2);
+    right: var(--size-8);
+    background: var(--gray-6);
+    color: var(--gray-0);
+    padding: var(--size-1) var(--size-2);
+    border-radius: var(--radius-1);
+    font-size: var(--font-size-00);
+    text-transform: uppercase;
+    font-weight: var(--font-weight-5);
+    z-index: 1;
+}
+
+/* Icon Picker Styles */
+.icon-picker-container {
+    border: var(--border-size-1) solid var(--gray-3);
+    border-radius: var(--radius-3);
+    background: var(--gray-0);
+    padding: var(--size-3);
+    max-height: var(--size-15);
+    overflow-y: auto;
+}
+
+.icon-picker {
+    display: block;
+}
+
+.icon-category {
+    margin-bottom: var(--size-3);
+}
+
+.icon-category:last-child {
+    margin-bottom: 0;
+}
+
+.icon-category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--size-8), 1fr));
+    gap: var(--size-2);
+    margin-top: var(--size-2);
+}
+
+.icon-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size-8);
+    height: var(--size-8);
+    border: var(--border-size-2) solid var(--gray-3);
+    border-radius: var(--radius-2);
+    cursor: pointer;
+    transition: var(--animation-fade-in);
+    background: var(--gray-0);
+    font-size: var(--font-size-2);
+    color: var(--gray-6);
+}
+
+.icon-option:hover {
+    border-color: var(--clr-accent);
+    background: var(--gray-1);
+    color: var(--clr-accent);
+}
+
+.icon-option.selected {
+    border-color: var(--clr-accent);
+    background: var(--clr-accent);
+    color: var(--gray-0);
+}
+
+.icon-search {
+    width: 100%;
+    padding: var(--size-2);
+    border: var(--border-size-1) solid var(--gray-3);
+    border-radius: var(--radius-2);
+    margin-bottom: var(--size-2);
+    font-size: var(--font-size-1);
+}
+
+.icon-category-title {
+    font-weight: var(--font-weight-6);
+    color: var(--gray-7);
+    font-size: var(--font-size-1);
+    margin-bottom: var(--size-1);
+}
+
+/* Section Titles */
+.section-title {
+    color: var(--gray-8);
+    margin-bottom: var(--size-3);
+    font-size: var(--font-size-3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .generator-layout {
+        grid-template-columns: 1fr;
+        gap: var(--size-3);
+    }
+    
+    .generator-app {
+        padding: var(--size-3);
+        margin: 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    .generator-layout {
+        grid-template-columns: 45% 55%;
+    }
+}
+
+/* Ensure all elements use box-sizing: border-box */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
