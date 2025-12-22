@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilities - Cardiff University Theme</title>
+    <meta name="description" content="60+ utility classes for flexbox, spacing, typography, and colors.">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="../cardiffuni.css">
+
+    <!-- Demo Site CSS -->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <link rel="stylesheet" href="assets/css/demo-site.css">
+</head>
+<body>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="demo-main">
+        <!-- Content Area -->
+        <div class="demo-content">
+
+            <!-- SECTION 4: UTILITIES -->
+            <section id="utilities" class="demo-section">
+                <h2 class="demo-section__title">Utility Classes</h2>
+                <p class="demo-section__description">60+ utility classes for rapid prototyping.</p>
+
+                <!-- Flexbox Utilities -->
+                <h3>Flexbox System</h3>
+
+                <h4>Basic Flexbox</h4>
+                <div class="utility-demo mb-4">
+                    <div class="utility-demo__preview">
+                        <div class="flex gap-md" style="background: var(--cu-gray-10); padding: 1rem; border-radius: 4px;">
+                            <div class="demo-box">1</div>
+                            <div class="demo-box">2</div>
+                            <div class="demo-box">3</div>
+                        </div>
+                    </div>
+                    <code class="utility-code">.flex .gap-md</code>
+                </div>
+
+                <h4>Justify Content</h4>
+                <div class="utility-demo mb-4">
+                    <div class="utility-demo__preview">
+                        <div class="flex justify-between gap-md" style="background: var(--cu-gray-10); padding: 1rem; border-radius: 4px; margin-bottom: 0.5rem;">
+                            <div class="demo-box">1</div>
+                            <div class="demo-box">2</div>
+                            <div class="demo-box">3</div>
+                        </div>
+                    </div>
+                    <code class="utility-code">.flex .justify-between</code>
+                </div>
+
+                <!-- Spacing Utilities -->
+                <h3>Spacing</h3>
+                <div class="utility-grid">
+                    <div class="utility-card">
+                        <code class="utility-class">.mt-0 to .mt-5</code>
+                        <p class="utility-desc">Margin top utilities</p>
+                    </div>
+                    <div class="utility-card">
+                        <code class="utility-class">.mb-0 to .mb-5</code>
+                        <p class="utility-desc">Margin bottom utilities</p>
+                    </div>
+                    <div class="utility-card">
+                        <code class="utility-class">.p-0 to .p-5</code>
+                        <p class="utility-desc">Padding utilities</p>
+                    </div>
+                </div>
+
+                <!-- Typography Utilities -->
+                <h3>Typography</h3>
+                <div class="utility-grid">
+                    <div class="utility-card">
+                        <code class="utility-class">.text-xs to .text-4xl</code>
+                        <p class="utility-desc">Font size utilities</p>
+                    </div>
+                    <div class="utility-card">
+                        <code class="utility-class">.font-light, .font-bold</code>
+                        <p class="utility-desc">Font weight utilities</p>
+                    </div>
+                    <div class="utility-card">
+                        <code class="utility-class">.text-left, .text-center</code>
+                        <p class="utility-desc">Text alignment utilities</p>
+                    </div>
+                </div>
+            </section>
+
+
+        </div><!-- .demo-content -->
+    </main>
+
+    <!-- Scripts -->
+    <script src="assets/js/vendor/prism.js" defer></script>
+    <script src="assets/js/vendor/clipboard.min.js" defer></script>
+    <script src="assets/js/demo-site.js" type="module"></script>
+
+</body>
+</html>

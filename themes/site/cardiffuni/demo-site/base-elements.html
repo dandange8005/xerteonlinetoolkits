@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base Elements - Cardiff University Theme</title>
+    <meta name="description" content="Styled base HTML elements - typography, lists, tables, forms, and more.">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="../cardiffuni.css">
+
+    <!-- Demo Site CSS -->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <link rel="stylesheet" href="assets/css/demo-site.css">
+</head>
+<body>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="demo-main">
+        <!-- Content Area -->
+        <div class="demo-content">
+
+            <!-- SECTION 5: BASE ELEMENTS -->
+            <section id="base-elements" class="demo-section">
+                <h2 class="demo-section__title">Base Elements</h2>
+                <p class="demo-section__description">Styled HTML elements following Cardiff brand guidelines.</p>
+
+                <!-- Typography -->
+                <h3>Typography</h3>
+                <div class="element-demo">
+                    <h1>Heading 1 - Main Page Title</h1>
+                    <h2>Heading 2 - Section Title</h2>
+                    <h3>Heading 3 - Subsection Title</h3>
+                    <h4>Heading 4 - Content Group</h4>
+                    <h5>Heading 5 - Minor Heading</h5>
+                    <h6>Heading 6 - Smallest Heading</h6>
+                    <p>Body paragraph with <strong>bold text</strong>, <em>italic text</em>, and <a href="#">link styling</a>. This demonstrates the default body text styling using the Marr Sans Regular font family.</p>
+                </div>
+
+                <!-- Lists -->
+                <h3>Lists</h3>
+                <div class="element-demo">
+                    <h4>Unordered List</h4>
+                    <ul>
+                        <li>First item in the list</li>
+                        <li>Second item with consistent spacing</li>
+                        <li>Third item demonstrating the list style</li>
+                    </ul>
+
+                    <h4>Ordered List</h4>
+                    <ol>
+                        <li>First step in the process</li>
+                        <li>Second step following the first</li>
+                        <li>Third step completing the sequence</li>
+                    </ol>
+                </div>
+
+                <!-- Tables -->
+                <h3>Tables</h3>
+                <div class="element-demo">
+                    <table>
+                        <caption>Student Enrollment by Programme - Academic Year 2024/25</caption>
+                        <thead>
+                            <tr>
+                                <th>Programme</th>
+                                <th>Undergraduate</th>
+                                <th>Postgraduate</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Computer Science</td>
+                                <td>1,234</td>
+                                <td>456</td>
+                                <td>1,690</td>
+                            </tr>
+                            <tr>
+                                <td>Engineering</td>
+                                <td>2,105</td>
+                                <td>678</td>
+                                <td>2,783</td>
+                            </tr>
+                            <tr>
+                                <td>Business</td>
+                                <td>1,876</td>
+                                <td>892</td>
+                                <td>2,768</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Code -->
+                <h3>Code & Preformatted Text</h3>
+                <div class="element-demo">
+                    <p>Use the <code>array.map()</code> method to transform array elements.</p>
+
+                    <pre><code>function calculateTotal(items) {
+    let total = 0;
+    for (let item of items) {
+        total += item.price * item.quantity;
+    }
+    return total;
+}</code></pre>
+                </div>
+            </section>
+
+
+        </div><!-- .demo-content -->
+    </main>
+
+    <!-- Scripts -->
+    <script src="assets/js/vendor/prism.js" defer></script>
+    <script src="assets/js/vendor/clipboard.min.js" defer></script>
+    <script src="assets/js/demo-site.js" type="module"></script>
+
+</body>
+</html>

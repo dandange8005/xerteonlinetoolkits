@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Layouts - Cardiff University Theme</title>
+    <meta name="description" content="Common flexbox layout patterns and utilities reference for the Cardiff University theme.">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="../cardiffuni.css">
+
+    <!-- Demo Site CSS -->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <link rel="stylesheet" href="assets/css/demo-site.css">
+</head>
+<body>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="demo-main">
+        <!-- Content Area -->
+        <div class="demo-content">
+
+            <section class="demo-section">
+                <h2 class="demo-section__title">Flexbox Layouts</h2>
+                <p class="demo-section__description">Common flexbox layout patterns and utilities for building responsive interfaces.</p>
+
+                <!-- Common Flexbox Patterns -->
+                <h3>Common Layout Patterns</h3>
+
+                <!-- Pattern 1: Holy Grail Layout -->
+                <div class="pattern-demo" style="margin: 2rem 0;">
+                    <h4>Holy Grail Layout (Header, Sidebar, Content, Footer)</h4>
+                    <div class="code-example">
+                        <button class="code-copy-btn" aria-label="Copy code">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                        <pre><code class="language-html">&lt;div style="display: flex; flex-direction: column; min-height: 100vh;"&gt;
+  &lt;header&gt;Header&lt;/header&gt;
+  &lt;div style="display: flex; flex: 1;"&gt;
+    &lt;aside style="flex: 0 0 250px;"&gt;Sidebar&lt;/aside&gt;
+    &lt;main style="flex: 1;"&gt;Main Content&lt;/main&gt;
+  &lt;/div&gt;
+  &lt;footer&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Pattern 2: Card Grid -->
+                <div class="pattern-demo" style="margin: 2rem 0;">
+                    <h4>Responsive Card Grid</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: var(--spacing-md); margin: 1rem 0;">
+                        <div class="card" style="flex: 1 1 300px;">
+                            <h5>Card 1</h5>
+                            <p>Flexible card that wraps responsively</p>
+                        </div>
+                        <div class="card" style="flex: 1 1 300px;">
+                            <h5>Card 2</h5>
+                            <p>Flexible card that wraps responsively</p>
+                        </div>
+                        <div class="card" style="flex: 1 1 300px;">
+                            <h5>Card 3</h5>
+                            <p>Flexible card that wraps responsively</p>
+                        </div>
+                    </div>
+                    <div class="code-example">
+                        <button class="code-copy-btn" aria-label="Copy code">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                        <pre><code class="language-html">&lt;div style="display: flex; flex-wrap: wrap; gap: var(--spacing-md);"&gt;
+  &lt;div class="card" style="flex: 1 1 300px;"&gt;Card 1&lt;/div&gt;
+  &lt;div class="card" style="flex: 1 1 300px;"&gt;Card 2&lt;/div&gt;
+  &lt;div class="card" style="flex: 1 1 300px;"&gt;Card 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Pattern 3: Centered Content -->
+                <div class="pattern-demo" style="margin: 2rem 0;">
+                    <h4>Centered Content</h4>
+                    <div style="display: flex; justify-content: center; align-items: center; min-height: 200px; background: var(--cu-gray-10); border-radius: var(--radius-md);">
+                        <div class="box" style="text-align: center;">
+                            <p>Perfectly centered content</p>
+                        </div>
+                    </div>
+                    <div class="code-example">
+                        <button class="code-copy-btn" aria-label="Copy code">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                        <pre><code class="language-html">&lt;div style="display: flex; justify-content: center; align-items: center; min-height: 100vh;"&gt;
+  &lt;div&gt;Centered content&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Pattern 4: Navigation Bar -->
+                <div class="pattern-demo" style="margin: 2rem 0;">
+                    <h4>Navigation Bar</h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-md); background: var(--cu-gray-90); color: white; border-radius: var(--radius-md);">
+                        <div style="font-weight: bold;">Brand Logo</div>
+                        <nav style="display: flex; gap: var(--spacing-md);">
+                            <a href="#" style="color: white;">Home</a>
+                            <a href="#" style="color: white;">About</a>
+                            <a href="#" style="color: white;">Contact</a>
+                        </nav>
+                    </div>
+                    <div class="code-example">
+                        <button class="code-copy-btn" aria-label="Copy code">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                        <pre><code class="language-html">&lt;div style="display: flex; justify-content: space-between; align-items: center;"&gt;
+  &lt;div&gt;Brand Logo&lt;/div&gt;
+  &lt;nav style="display: flex; gap: var(--spacing-md);"&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;About&lt;/a&gt;
+    &lt;a href="#"&gt;Contact&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Flexbox Utilities Reference -->
+                <h3 style="margin-top: 3rem;">Flexbox Utilities Reference</h3>
+                <p>Available utility classes for flexbox layouts.</p>
+
+                <!-- Display Utilities -->
+                <h4>Display</h4>
+                <table style="width: 100%; margin: 1rem 0;">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.flex</code></td>
+                            <td><code>display: flex;</code></td>
+                            <td>Creates a flex container</td>
+                        </tr>
+                        <tr>
+                            <td><code>.inline-flex</code></td>
+                            <td><code>display: inline-flex;</code></td>
+                            <td>Creates an inline flex container</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Flex Direction -->
+                <h4>Flex Direction</h4>
+                <table style="width: 100%; margin: 1rem 0;">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.flex-row</code></td>
+                            <td><code>flex-direction: row;</code></td>
+                            <td>Items in a row (default)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-column</code></td>
+                            <td><code>flex-direction: column;</code></td>
+                            <td>Items in a column</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-wrap</code></td>
+                            <td><code>flex-wrap: wrap;</code></td>
+                            <td>Items wrap to new lines</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Justify Content -->
+                <h4>Justify Content (Horizontal Alignment)</h4>
+                <table style="width: 100%; margin: 1rem 0;">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.justify-start</code></td>
+                            <td><code>justify-content: flex-start;</code></td>
+                            <td>Align to start</td>
+                        </tr>
+                        <tr>
+                            <td><code>.justify-center</code></td>
+                            <td><code>justify-content: center;</code></td>
+                            <td>Center items</td>
+                        </tr>
+                        <tr>
+                            <td><code>.justify-end</code></td>
+                            <td><code>justify-content: flex-end;</code></td>
+                            <td>Align to end</td>
+                        </tr>
+                        <tr>
+                            <td><code>.justify-between</code></td>
+                            <td><code>justify-content: space-between;</code></td>
+                            <td>Space between items</td>
+                        </tr>
+                        <tr>
+                            <td><code>.justify-around</code></td>
+                            <td><code>justify-content: space-around;</code></td>
+                            <td>Space around items</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Align Items -->
+                <h4>Align Items (Vertical Alignment)</h4>
+                <table style="width: 100%; margin: 1rem 0;">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.items-start</code></td>
+                            <td><code>align-items: flex-start;</code></td>
+                            <td>Align to start</td>
+                        </tr>
+                        <tr>
+                            <td><code>.items-center</code></td>
+                            <td><code>align-items: center;</code></td>
+                            <td>Center items</td>
+                        </tr>
+                        <tr>
+                            <td><code>.items-end</code></td>
+                            <td><code>align-items: flex-end;</code></td>
+                            <td>Align to end</td>
+                        </tr>
+                        <tr>
+                            <td><code>.items-baseline</code></td>
+                            <td><code>align-items: baseline;</code></td>
+                            <td>Align baselines</td>
+                        </tr>
+                        <tr>
+                            <td><code>.items-stretch</code></td>
+                            <td><code>align-items: stretch;</code></td>
+                            <td>Stretch to fill</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Gap Utilities -->
+                <h4>Gap (Spacing Between Items)</h4>
+                <table style="width: 100%; margin: 1rem 0;">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.gap-xs</code></td>
+                            <td><code>gap: var(--spacing-xs);</code></td>
+                            <td>4px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-sm</code></td>
+                            <td><code>gap: var(--spacing-sm);</code></td>
+                            <td>8px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-md</code></td>
+                            <td><code>gap: var(--spacing-md);</code></td>
+                            <td>16px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-lg</code></td>
+                            <td><code>gap: var(--spacing-lg);</code></td>
+                            <td>24px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-xl</code></td>
+                            <td><code>gap: var(--spacing-xl);</code></td>
+                            <td>32px</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Flex Items -->
+                <h4>Flex Items</h4>
+                <table style="width: 100%; margin: 1rem 0;">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.flex-1</code></td>
+                            <td><code>flex: 1 1 0%;</code></td>
+                            <td>Grow and shrink equally</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-auto</code></td>
+                            <td><code>flex: 1 1 auto;</code></td>
+                            <td>Grow and shrink based on content</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-none</code></td>
+                            <td><code>flex: none;</code></td>
+                            <td>Don't grow or shrink</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </section>
+
+        </div><!-- .demo-content -->
+    </main>
+
+    <!-- Scripts -->
+    <script src="assets/js/vendor/prism.js" defer></script>
+    <script src="assets/js/vendor/clipboard.min.js" defer></script>
+    <script src="assets/js/demo-site.js" type="module"></script>
+
+</body>
+</html>

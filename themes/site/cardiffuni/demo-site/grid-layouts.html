@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Layouts - Cardiff University Theme</title>
+    <meta name="description" content="CSS Grid layout patterns and utilities reference for the Cardiff University theme.">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="../cardiffuni.css">
+
+    <!-- Demo Site CSS -->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <link rel="stylesheet" href="assets/css/demo-site.css">
+</head>
+<body>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="demo-main">
+        <!-- Content Area -->
+        <div class="demo-content">
+
+            <section class="demo-section">
+                <h2 class="demo-section__title">CSS Grid Layouts</h2>
+                <p class="demo-section__description">CSS Grid layout patterns and utilities for building modern grid-based interfaces.</p>
+
+                <!-- Common Grid Patterns -->
+                <h3>Common Layout Patterns</h3>
+
+                <!-- Pattern 1: 12-Column Grid -->
+                <div class="pattern-demo" style="margin: 2rem 0;">
+                    <h4>12-Column Grid System</h4>
+                    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--spacing-sm); margin: 1rem 0;">
+                        <div style="grid-column: span 12; background: var(--cu-gray-20); padding: var(--spacing-md); text-align: center; border-radius: var(--radius-sm);">12 columns</div>
+                        <div style="grid-column: span 6; background: var(--cu-gray-20); padding: var(--spacing-md); text-align: center; border-radius: var(--radius-sm);">6 columns</div>
+                        <div style="grid-column: span 6; background: var(--cu-gray-20); padding: var(--spacing-md); text-align: center; border-radius: var(--radius-sm);">6 columns</div>
+                        <div style="grid-column: span 4; background: var(--cu-gray-20); padding: var(--spacing-md); text-align: center; border-radius: var(--radius-sm);">4 columns</div>
+                        <div style="grid-column: span 4; background: var(--cu-gray-20); padding: var(--spacing-md); text-align: center; border-radius: var(--radius-sm);">4 columns</div>
+                        <div style="grid-column: span 4; background: var(--cu-gray-20); padding: var(--spacing-md); text-align: center; border-radius: var(--radius-sm);">4 columns</div>
+                    </div>
+                    <div class="code-example">
+                        <button class="code-copy-btn" aria-label="Copy code">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                        <pre><code class="language-html">&lt;div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--spacing-sm);"&gt;
+  &lt;div style="grid-column: span 12;"&gt;12 columns&lt;/div&gt;
+  &lt;div style="grid-column: span 6;"&gt;6 columns&lt;/div&gt;
+  &lt;div style="grid-column: span 6;"&gt;6 columns&lt;/div&gt;
+  &lt;div style="grid-column: span 4;"&gt;4 columns&lt;/div&gt;
+  &lt;div style="grid-column: span 4;"&gt;4 columns&lt;/div&gt;
+  &lt;div style="grid-column: span 4;"&gt;4 columns&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Pattern 2: Auto-Fit Grid -->
+                <div class="pattern-demo" style="margin: 2rem 0;">
+                    <h4>Auto-Fit Responsive Grid</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md); margin: 1rem 0;">
+                        <div class="card">
+                            <h5>Card 1</h5>
+                            <p>Automatically responsive</p>
+                        </div>
+                        <div class="card">
+                            <h5>Card 2</h5>
+                            <p>Automatically responsive</p>
+                        </div>
+                        <div class="card">
+                            <h5>Card 3</h5>
+                            <p>Automatically responsive</p>
+                        </div>
+                        <div class="card">
+                            <h5>Card 4</h5>
+                            <p>Automatically responsive</p>
+                        </div>
+                    </div>
+                    <div class="code-example">
+                        <button class="code-copy-btn" aria-label="Copy code">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                        <pre><code class="language-html">&lt;div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md);"&gt;
+  &lt;div class="card"&gt;Card 1&lt;/div&gt;
+  &lt;div class="card"&gt;Card 2&lt;/div&gt;
+  &lt;div class="card"&gt;Card 3&lt;/div&gt;
+  &lt;div class="card"&gt;Card 4&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Pattern 3: Dashboard Layout -->
+                <div class="pattern-demo" style="margin: 2rem 0;">
+                    <h4>Dashboard Layout</h4>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto 1fr auto; gap: var(--spacing-md); min-height: 400px; margin: 1rem 0;">
+                        <div style="grid-column: 1 / -1; background: var(--cu-gray-90); color: white; padding: var(--spacing-md); border-radius: var(--radius-md); text-align: center;">Header</div>
+                        <div style="background: var(--cu-gray-20); padding: var(--spacing-md); border-radius: var(--radius-md);">Sidebar</div>
+                        <div style="grid-column: span 2; background: var(--cu-gray-20); padding: var(--spacing-md); border-radius: var(--radius-md);">Main Content</div>
+                        <div style="grid-column: 1 / -1; background: var(--cu-gray-90); color: white; padding: var(--spacing-md); border-radius: var(--radius-md); text-align: center;">Footer</div>
+                    </div>
+                    <div class="code-example">
+                        <button class="code-copy-btn" aria-label="Copy code">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                        <pre><code class="language-html">&lt;div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-md);"&gt;
+  &lt;header style="grid-column: 1 / -1;"&gt;Header&lt;/header&gt;
+  &lt;aside&gt;Sidebar&lt;/aside&gt;
+  &lt;main style="grid-column: span 2;"&gt;Main Content&lt;/main&gt;
+  &lt;footer style="grid-column: 1 / -1;"&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Pattern 4: Gallery Grid -->
+                <div class="pattern-demo" style="margin: 2rem 0;">
+                    <h4>Photo Gallery Grid</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--spacing-sm); margin: 1rem 0;">
+                        <div style="background: var(--cu-gray-30); aspect-ratio: 1; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">1</div>
+                        <div style="background: var(--cu-gray-30); aspect-ratio: 1; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">2</div>
+                        <div style="background: var(--cu-gray-30); aspect-ratio: 1; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">3</div>
+                        <div style="background: var(--cu-gray-30); aspect-ratio: 1; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">4</div>
+                        <div style="background: var(--cu-gray-30); aspect-ratio: 1; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">5</div>
+                        <div style="background: var(--cu-gray-30); aspect-ratio: 1; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">6</div>
+                    </div>
+                    <div class="code-example">
+                        <button class="code-copy-btn" aria-label="Copy code">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                        <pre><code class="language-html">&lt;div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--spacing-sm);"&gt;
+  &lt;div style="aspect-ratio: 1;"&gt;Image 1&lt;/div&gt;
+  &lt;div style="aspect-ratio: 1;"&gt;Image 2&lt;/div&gt;
+  &lt;div style="aspect-ratio: 1;"&gt;Image 3&lt;/div&gt;
+  &lt;!-- More items --&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Grid Utilities Reference -->
+                <h3 style="margin-top: 3rem;">CSS Grid Utilities Reference</h3>
+                <p>Available utility classes for CSS Grid layouts.</p>
+
+                <!-- Display Utilities -->
+                <h4>Display</h4>
+                <table style="width: 100%; margin: 1rem 0;">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.grid</code></td>
+                            <td><code>display: grid;</code></td>
+                            <td>Creates a grid container</td>
+                        </tr>
+                        <tr>
+                            <td><code>.inline-grid</code></td>
+                            <td><code>display: inline-grid;</code></td>
+                            <td>Creates an inline grid container</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Grid Template Columns -->
+                <h4>Grid Template Columns</h4>
+                <table style="width: 100%; margin: 1rem 0;">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.grid-cols-1</code></td>
+                            <td><code>grid-template-columns: repeat(1, 1fr);</code></td>
+                            <td>1 column grid</td>
+                        </tr>
+                        <tr>
+                            <td><code>.grid-cols-2</code></td>
+                            <td><code>grid-template-columns: repeat(2, 1fr);</code></td>
+                            <td>2 column grid</td>
+                        </tr>
+                        <tr>
+                            <td><code>.grid-cols-3</code></td>
+                            <td><code>grid-template-columns: repeat(3, 1fr);</code></td>
+                            <td>3 column grid</td>
+                        </tr>
+                        <tr>
+                            <td><code>.grid-cols-4</code></td>
+                            <td><code>grid-template-columns: repeat(4, 1fr);</code></td>
+                            <td>4 column grid</td>
+                        </tr>
+                        <tr>
+                            <td><code>.grid-cols-6</code></td>
+                            <td><code>grid-template-columns: repeat(6, 1fr);</code></td>
+                            <td>6 column grid</td>
+                        </tr>
+                        <tr>
+                            <td><code>.grid-cols-12</code></td>
+                            <td><code>grid-template-columns: repeat(12, 1fr);</code></td>
+                            <td>12 column grid</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Gap Utilities -->
+                <h4>Gap (Spacing Between Items)</h4>
+                <table style="width: 100%; margin: 1rem 0;">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.gap-xs</code></td>
+                            <td><code>gap: var(--spacing-xs);</code></td>
+                            <td>4px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-sm</code></td>
+                            <td><code>gap: var(--spacing-sm);</code></td>
+                            <td>8px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-md</code></td>
+                            <td><code>gap: var(--spacing-md);</code></td>
+                            <td>16px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-lg</code></td>
+                            <td><code>gap: var(--spacing-lg);</code></td>
+                            <td>24px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-xl</code></td>
+                            <td><code>gap: var(--spacing-xl);</code></td>
+                            <td>32px</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Grid Column Span -->
+                <h4>Column Span</h4>
+                <table style="width: 100%; margin: 1rem 0;">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.col-span-1</code></td>
+                            <td><code>grid-column: span 1;</code></td>
+                            <td>Span 1 column</td>
+                        </tr>
+                        <tr>
+                            <td><code>.col-span-2</code></td>
+                            <td><code>grid-column: span 2;</code></td>
+                            <td>Span 2 columns</td>
+                        </tr>
+                        <tr>
+                            <td><code>.col-span-3</code></td>
+                            <td><code>grid-column: span 3;</code></td>
+                            <td>Span 3 columns</td>
+                        </tr>
+                        <tr>
+                            <td><code>.col-span-4</code></td>
+                            <td><code>grid-column: span 4;</code></td>
+                            <td>Span 4 columns</td>
+                        </tr>
+                        <tr>
+                            <td><code>.col-span-6</code></td>
+                            <td><code>grid-column: span 6;</code></td>
+                            <td>Span 6 columns</td>
+                        </tr>
+                        <tr>
+                            <td><code>.col-span-12</code></td>
+                            <td><code>grid-column: span 12;</code></td>
+                            <td>Span all 12 columns</td>
+                        </tr>
+                        <tr>
+                            <td><code>.col-span-full</code></td>
+                            <td><code>grid-column: 1 / -1;</code></td>
+                            <td>Span full width</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Practical Example -->
+                <h3 style="margin-top: 3rem;">Practical Example: Card Layout</h3>
+                <div class="code-example">
+                    <button class="code-copy-btn" aria-label="Copy code">
+                        <span class="copy-icon">📋</span>
+                        <span class="copy-text">Copy</span>
+                    </button>
+                    <pre><code class="language-html">&lt;!-- Responsive card grid using auto-fit --&gt;
+&lt;div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);"&gt;
+  &lt;div class="card"&gt;
+    &lt;h3&gt;Feature 1&lt;/h3&gt;
+    &lt;p&gt;Description of feature&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="card"&gt;
+    &lt;h3&gt;Feature 2&lt;/h3&gt;
+    &lt;p&gt;Description of feature&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="card"&gt;
+    &lt;h3&gt;Feature 3&lt;/h3&gt;
+    &lt;p&gt;Description of feature&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+
+            </section>
+
+        </div><!-- .demo-content -->
+    </main>
+
+    <!-- Scripts -->
+    <script src="assets/js/vendor/prism.js" defer></script>
+    <script src="assets/js/vendor/clipboard.min.js" defer></script>
+    <script src="assets/js/demo-site.js" type="module"></script>
+
+</body>
+</html>

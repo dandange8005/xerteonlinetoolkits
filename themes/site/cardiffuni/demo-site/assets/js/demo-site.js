@@ -3,27 +3,31 @@
  * Coordinates all interactive features
  */
 
+import PageLayout from './modules/page-layout.js';
 import ThemeCustomizer from './modules/theme-customizer.js';
 import CodeSnippets from './modules/code-snippets.js';
-import ResponsivePreview from './modules/responsive-preview.js';
 import Navigation from './modules/navigation.js';
 
 class DemoSite {
     constructor() {
+        this.pageLayout = null;
         this.customizer = null;
         this.codeSnippets = null;
-        this.responsivePreview = null;
         this.navigation = null;
     }
 
-    init() {
+    async init() {
         console.log('Initializing Cardiff University Demo Site...');
+
+        // Initialize page layout first (injects shared header/nav/footer)
+        this.pageLayout = new PageLayout();
+        await this.pageLayout.init();
 
         // Initialize all modules
         this.customizer = new ThemeCustomizer();
         this.codeSnippets = new CodeSnippets();
-        this.responsivePreview = new ResponsivePreview();
         this.navigation = new Navigation();
+        this.navigation.init();
 
         // Setup event listeners
         this.setupEventListeners();
@@ -35,38 +39,33 @@ class DemoSite {
     }
 
     setupEventListeners() {
-        // Toggle customizer
-        const customizerBtn = document.getElementById('toggle-customizer');
-        if (customizerBtn) {
-            customizerBtn.addEventListener('click', () => {
-                this.customizer.toggle();
-            });
-        }
+        // Wait for page layout to inject elements
+        setTimeout(() => {
+            // Toggle customizer
+            const customizerBtn = document.getElementById('toggle-customizer');
+            if (customizerBtn) {
+                customizerBtn.addEventListener('click', () => {
+                    this.customizer.toggle();
+                });
+            }
 
-        // Toggle responsive preview
-        const responsiveBtn = document.getElementById('toggle-responsive');
-        if (responsiveBtn) {
-            responsiveBtn.addEventListener('click', () => {
-                this.responsivePreview.toggle();
-            });
-        }
-
-        // Handle keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            // Ctrl/Cmd + K: Open search
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                const searchInput = document.getElementById('demo-search');
-                if (searchInput) {
-                    searchInput.focus();
+            // Handle keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                // Ctrl/Cmd + K: Open search
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    const searchInput = document.getElementById('demo-search');
+                    if (searchInput) {
+                        searchInput.focus();
+                    }
                 }
-            }
 
-            // Escape: Close customizer
-            if (e.key === 'Escape') {
-                this.customizer.close();
-            }
-        });
+                // Escape: Close customizer
+                if (e.key === 'Escape') {
+                    this.customizer.close();
+                }
+            });
+        }, 150); // Delay to ensure DOM elements are injected
     }
 
     loadPreferences() {

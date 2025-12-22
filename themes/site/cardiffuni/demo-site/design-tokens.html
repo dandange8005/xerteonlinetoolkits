@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Tokens - Cardiff University Theme</title>
+    <meta name="description" content="Foundation of the Cardiff University design system - all customizable via CSS custom properties.">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="../cardiffuni.css">
+
+    <!-- Demo Site CSS -->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <link rel="stylesheet" href="assets/css/demo-site.css">
+</head>
+<body>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="demo-main">
+        <!-- Content Area -->
+        <div class="demo-content">
+
+            <!-- SECTION 2: DESIGN TOKENS -->
+            <section id="design-tokens" class="demo-section">
+                <h2 class="demo-section__title">Design Tokens</h2>
+                <p class="demo-section__description">Foundation of the design system - all customizable via CSS custom properties.</p>
+
+                <!-- Color Tokens -->
+                <h3>Colors</h3>
+
+                <h4>Cardiff Brand Colors</h4>
+                <div class="token-grid color-grid">
+                    <div class="token-card color-token" data-code="--cu-primary-red">
+                        <div class="color-swatch" style="background: var(--cu-primary-red);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Primary Red</div>
+                            <code class="token-var">--cu-primary-red</code>
+                            <code class="token-value">#E4251B</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-white">
+                        <div class="color-swatch" style="background: var(--cu-white); border: 1px solid var(--cu-gray-30);"></div>
+                        <div class="token-info">
+                            <div class="token-name">White</div>
+                            <code class="token-var">--cu-white</code>
+                            <code class="token-value">#FFFFFF</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-black">
+                        <div class="color-swatch" style="background: var(--cu-black);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Black</div>
+                            <code class="token-var">--cu-black</code>
+                            <code class="token-value">#121212</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                </div>
+
+                <h4>Grayscale</h4>
+                <div class="token-grid color-grid grayscale-grid">
+                    <div class="token-card color-token" data-code="--cu-gray-10">
+                        <div class="color-swatch" style="background: var(--cu-gray-10); border: 1px solid var(--cu-gray-30);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Gray 10</div>
+                            <code class="token-var">--cu-gray-10</code>
+                            <code class="token-value">#F2F2F2</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-gray-20">
+                        <div class="color-swatch" style="background: var(--cu-gray-20);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Gray 20</div>
+                            <code class="token-var">--cu-gray-20</code>
+                            <code class="token-value">#E5E5E5</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-gray-30">
+                        <div class="color-swatch" style="background: var(--cu-gray-30);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Gray 30</div>
+                            <code class="token-var">--cu-gray-30</code>
+                            <code class="token-value">#CCCCCC</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-gray-40">
+                        <div class="color-swatch" style="background: var(--cu-gray-40);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Gray 40</div>
+                            <code class="token-var">--cu-gray-40</code>
+                            <code class="token-value">#B3B3B3</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-gray-50">
+                        <div class="color-swatch" style="background: var(--cu-gray-50);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Gray 50</div>
+                            <code class="token-var">--cu-gray-50</code>
+                            <code class="token-value">#999999</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-gray-60">
+                        <div class="color-swatch" style="background: var(--cu-gray-60);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Gray 60</div>
+                            <code class="token-var">--cu-gray-60</code>
+                            <code class="token-value">#808080</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-gray-70">
+                        <div class="color-swatch" style="background: var(--cu-gray-70);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Gray 70</div>
+                            <code class="token-var">--cu-gray-70</code>
+                            <code class="token-value">#666666</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-gray-80">
+                        <div class="color-swatch" style="background: var(--cu-gray-80);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Gray 80</div>
+                            <code class="token-var">--cu-gray-80</code>
+                            <code class="token-value">#4C4C4C</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-gray-90">
+                        <div class="color-swatch" style="background: var(--cu-gray-90);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Gray 90</div>
+                            <code class="token-var">--cu-gray-90</code>
+                            <code class="token-value">#333333</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                </div>
+
+                <h4>Accent Colors</h4>
+                <div class="token-grid color-grid accent-grid">
+                    <div class="token-card color-token" data-code="--cu-forest-green">
+                        <div class="color-swatch" style="background: var(--cu-forest-green);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Forest Green</div>
+                            <code class="token-var">--cu-forest-green</code>
+                            <code class="token-value">#07873E</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-cadet">
+                        <div class="color-swatch" style="background: var(--cu-cadet);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Cadet</div>
+                            <code class="token-var">--cu-cadet</code>
+                            <code class="token-value">#5EB99B</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-stone">
+                        <div class="color-swatch" style="background: var(--cu-stone); border: 1px solid var(--cu-gray-30);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Stone</div>
+                            <code class="token-var">--cu-stone</code>
+                            <code class="token-value">#C9C2BA</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-light-blue">
+                        <div class="color-swatch" style="background: var(--cu-light-blue);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Light Blue</div>
+                            <code class="token-var">--cu-light-blue</code>
+                            <code class="token-value">#1E90FF</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-royal-blue">
+                        <div class="color-swatch" style="background: var(--cu-royal-blue);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Royal Blue</div>
+                            <code class="token-var">--cu-royal-blue</code>
+                            <code class="token-value">#4A42FF</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-midnight-blue">
+                        <div class="color-swatch" style="background: var(--cu-midnight-blue);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Midnight Blue</div>
+                            <code class="token-var">--cu-midnight-blue</code>
+                            <code class="token-value">#273573</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-midnight-purple">
+                        <div class="color-swatch" style="background: var(--cu-midnight-purple);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Midnight Purple</div>
+                            <code class="token-var">--cu-midnight-purple</code>
+                            <code class="token-value">#26192C</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-orange">
+                        <div class="color-swatch" style="background: var(--cu-orange);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Orange</div>
+                            <code class="token-var">--cu-orange</code>
+                            <code class="token-value">#E9761E</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-yellow">
+                        <div class="color-swatch" style="background: var(--cu-yellow);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Yellow</div>
+                            <code class="token-var">--cu-yellow</code>
+                            <code class="token-value">#FFB300</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-yellow-green">
+                        <div class="color-swatch" style="background: var(--cu-yellow-green);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Yellow Green</div>
+                            <code class="token-var">--cu-yellow-green</code>
+                            <code class="token-value">#85C041</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-indigo">
+                        <div class="color-swatch" style="background: var(--cu-indigo);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Indigo</div>
+                            <code class="token-var">--cu-indigo</code>
+                            <code class="token-value">#570185</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                    <div class="token-card color-token" data-code="--cu-dark-violet">
+                        <div class="color-swatch" style="background: var(--cu-dark-violet);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Dark Violet</div>
+                            <code class="token-var">--cu-dark-violet</code>
+                            <code class="token-value">#D401C5</code>
+                        </div>
+                        <button class="copy-btn" aria-label="Copy variable name">📋</button>
+                    </div>
+                </div>
+
+                <!-- Typography Tokens -->
+                <h3>Typography</h3>
+
+                <h4>Font Families</h4>
+                <div class="token-grid typography-grid">
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-family: var(--font-primary-heading); font-weight: var(--font-weight-bold);">
+                            The quick brown fox
+                        </div>
+                        <code class="token-var">--font-primary-heading</code>
+                        <button class="copy-btn" data-code="--font-primary-heading">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-family: var(--font-primary-body);">
+                            The quick brown fox jumps over
+                        </div>
+                        <code class="token-var">--font-primary-body</code>
+                        <button class="copy-btn" data-code="--font-primary-body">📋</button>
+                    </div>
+                </div>
+
+                <h4>Font Sizes (Fluid/Responsive)</h4>
+                <div class="token-grid typography-grid">
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-size: var(--font-size-xs);">
+                            Extra Small (12-13px)
+                        </div>
+                        <code class="token-var">--font-size-xs</code>
+                        <button class="copy-btn" data-code="--font-size-xs">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-size: var(--font-size-sm);">
+                            Small (13-14px)
+                        </div>
+                        <code class="token-var">--font-size-sm</code>
+                        <button class="copy-btn" data-code="--font-size-sm">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-size: var(--font-size-base);">
+                            Base (14-16px)
+                        </div>
+                        <code class="token-var">--font-size-base</code>
+                        <button class="copy-btn" data-code="--font-size-base">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-size: var(--font-size-md);">
+                            Medium (16-18px)
+                        </div>
+                        <code class="token-var">--font-size-md</code>
+                        <button class="copy-btn" data-code="--font-size-md">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-size: var(--font-size-lg);">
+                            Large (18-20px)
+                        </div>
+                        <code class="token-var">--font-size-lg</code>
+                        <button class="copy-btn" data-code="--font-size-lg">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-size: var(--font-size-xl);">
+                            XL (20-24px)
+                        </div>
+                        <code class="token-var">--font-size-xl</code>
+                        <button class="copy-btn" data-code="--font-size-xl">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-size: var(--font-size-2xl);">
+                            2XL (24-30px)
+                        </div>
+                        <code class="token-var">--font-size-2xl</code>
+                        <button class="copy-btn" data-code="--font-size-2xl">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-size: var(--font-size-3xl);">
+                            3XL (30-36px)
+                        </div>
+                        <code class="token-var">--font-size-3xl</code>
+                        <button class="copy-btn" data-code="--font-size-3xl">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-size: var(--font-size-4xl);">
+                            4XL (36-48px)
+                        </div>
+                        <code class="token-var">--font-size-4xl</code>
+                        <button class="copy-btn" data-code="--font-size-4xl">📋</button>
+                    </div>
+                </div>
+
+                <h4>Font Weights</h4>
+                <div class="token-grid typography-grid">
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-weight: var(--font-weight-light); font-size: 1.5rem;">
+                            Light (300)
+                        </div>
+                        <code class="token-var">--font-weight-light</code>
+                        <button class="copy-btn" data-code="--font-weight-light">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-weight: var(--font-weight-regular); font-size: 1.5rem;">
+                            Regular (400)
+                        </div>
+                        <code class="token-var">--font-weight-regular</code>
+                        <button class="copy-btn" data-code="--font-weight-regular">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-weight: var(--font-weight-medium); font-size: 1.5rem;">
+                            Medium (500)
+                        </div>
+                        <code class="token-var">--font-weight-medium</code>
+                        <button class="copy-btn" data-code="--font-weight-medium">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="font-weight: var(--font-weight-bold); font-size: 1.5rem;">
+                            Bold (700)
+                        </div>
+                        <code class="token-var">--font-weight-bold</code>
+                        <button class="copy-btn" data-code="--font-weight-bold">📋</button>
+                    </div>
+                </div>
+
+                <h4>Line Heights</h4>
+                <div class="token-grid typography-grid">
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="line-height: var(--line-height-tight); background: var(--cu-gray-10); padding: 0.5rem;">
+                            Tight line height (1.2)<br>
+                            Multiple lines of text<br>
+                            to show spacing
+                        </div>
+                        <code class="token-var">--line-height-tight</code>
+                        <button class="copy-btn" data-code="--line-height-tight">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="line-height: var(--line-height-normal); background: var(--cu-gray-10); padding: 0.5rem;">
+                            Normal line height (1.5)<br>
+                            Multiple lines of text<br>
+                            to show spacing
+                        </div>
+                        <code class="token-var">--line-height-normal</code>
+                        <button class="copy-btn" data-code="--line-height-normal">📋</button>
+                    </div>
+                    <div class="token-card type-token">
+                        <div class="type-sample" style="line-height: var(--line-height-loose); background: var(--cu-gray-10); padding: 0.5rem;">
+                            Loose line height (1.75)<br>
+                            Multiple lines of text<br>
+                            to show spacing
+                        </div>
+                        <code class="token-var">--line-height-loose</code>
+                        <button class="copy-btn" data-code="--line-height-loose">📋</button>
+                    </div>
+                </div>
+
+                <!-- Spacing Tokens -->
+                <h3>Spacing</h3>
+                <div class="token-grid spacing-grid">
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); height: var(--spacing-xs); width: var(--spacing-xs); border-radius: 2px; margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Extra Small</div>
+                            <code class="token-var">--spacing-xs</code>
+                            <code class="token-value">4px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--spacing-xs">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); height: var(--spacing-sm); width: var(--spacing-sm); border-radius: 2px; margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Small</div>
+                            <code class="token-var">--spacing-sm</code>
+                            <code class="token-value">8px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--spacing-sm">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); height: var(--spacing-md); width: var(--spacing-md); border-radius: 2px; margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Medium</div>
+                            <code class="token-var">--spacing-md</code>
+                            <code class="token-value">16px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--spacing-md">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); height: var(--spacing-lg); width: var(--spacing-lg); border-radius: 2px; margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Large</div>
+                            <code class="token-var">--spacing-lg</code>
+                            <code class="token-value">24px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--spacing-lg">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); height: var(--spacing-xl); width: var(--spacing-xl); border-radius: 2px; margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Extra Large</div>
+                            <code class="token-var">--spacing-xl</code>
+                            <code class="token-value">32px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--spacing-xl">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); height: var(--spacing-2xl); width: var(--spacing-2xl); border-radius: 2px; margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">2XL</div>
+                            <code class="token-var">--spacing-2xl</code>
+                            <code class="token-value">48px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--spacing-2xl">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); height: var(--spacing-3xl); width: var(--spacing-3xl); border-radius: 2px; margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">3XL</div>
+                            <code class="token-var">--spacing-3xl</code>
+                            <code class="token-value">64px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--spacing-3xl">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); height: var(--spacing-4xl); width: var(--spacing-4xl); border-radius: 2px; margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">4XL</div>
+                            <code class="token-var">--spacing-4xl</code>
+                            <code class="token-value">80px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--spacing-4xl">📋</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Border Radius Section -->
+            <section class="token-section">
+                <h3 class="token-section__title">Border Radius</h3>
+                <p>6 border radius tokens for rounding corners.</p>
+
+                <div class="token-grid color-grid">
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); width: 80px; height: 80px; border-radius: var(--radius-none); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">None</div>
+                            <code class="token-var">--radius-none</code>
+                            <code class="token-value">0</code>
+                        </div>
+                        <button class="copy-btn" data-code="--radius-none">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); width: 80px; height: 80px; border-radius: var(--radius-sm); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Small</div>
+                            <code class="token-var">--radius-sm</code>
+                            <code class="token-value">2px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--radius-sm">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); width: 80px; height: 80px; border-radius: var(--radius-md); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Medium</div>
+                            <code class="token-var">--radius-md</code>
+                            <code class="token-value">4px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--radius-md">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); width: 80px; height: 80px; border-radius: var(--radius-lg); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Large</div>
+                            <code class="token-var">--radius-lg</code>
+                            <code class="token-value">8px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--radius-lg">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); width: 80px; height: 80px; border-radius: var(--radius-xl); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Extra Large</div>
+                            <code class="token-var">--radius-xl</code>
+                            <code class="token-value">12px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--radius-xl">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); width: 80px; height: 80px; border-radius: var(--radius-pill); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Pill</div>
+                            <code class="token-var">--radius-pill</code>
+                            <code class="token-value">999px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--radius-pill">📋</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Border Width Section -->
+            <section class="token-section">
+                <h3 class="token-section__title">Border Width</h3>
+                <p>3 border width tokens for different border thicknesses.</p>
+
+                <div class="token-grid color-grid">
+                    <div class="token-card">
+                        <div style="background: var(--cu-white); width: 80px; height: 80px; border: var(--border-width-sm) solid var(--cu-gray-60); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Small</div>
+                            <code class="token-var">--border-width-sm</code>
+                            <code class="token-value">1px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--border-width-sm">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-white); width: 80px; height: 80px; border: var(--border-width-md) solid var(--cu-gray-60); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Medium</div>
+                            <code class="token-var">--border-width-md</code>
+                            <code class="token-value">2px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--border-width-md">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-white); width: 80px; height: 80px; border: var(--border-width-lg) solid var(--cu-gray-60); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Large</div>
+                            <code class="token-var">--border-width-lg</code>
+                            <code class="token-value">4px</code>
+                        </div>
+                        <button class="copy-btn" data-code="--border-width-lg">📋</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Border Colors Section -->
+            <section class="token-section">
+                <h3 class="token-section__title">Border Colors</h3>
+                <p>3 border color tokens mapped to grayscale colors.</p>
+
+                <div class="token-grid color-grid">
+                    <div class="token-card">
+                        <div style="background: var(--cu-white); width: 80px; height: 80px; border: 2px solid var(--border-color-light); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Light</div>
+                            <code class="token-var">--border-color-light</code>
+                            <code class="token-value">var(--cu-gray-20)</code>
+                        </div>
+                        <button class="copy-btn" data-code="--border-color-light">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-white); width: 80px; height: 80px; border: 2px solid var(--border-color-default); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Default</div>
+                            <code class="token-var">--border-color-default</code>
+                            <code class="token-value">var(--cu-gray-30)</code>
+                        </div>
+                        <button class="copy-btn" data-code="--border-color-default">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-white); width: 80px; height: 80px; border: 2px solid var(--border-color-dark); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Dark</div>
+                            <code class="token-var">--border-color-dark</code>
+                            <code class="token-value">var(--cu-gray-40)</code>
+                        </div>
+                        <button class="copy-btn" data-code="--border-color-dark">📋</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Shadows Section -->
+            <section class="token-section">
+                <h3 class="token-section__title">Shadows</h3>
+                <p>4 shadow tokens for creating depth and elevation.</p>
+
+                <div class="token-grid color-grid">
+                    <div class="token-card">
+                        <div style="background: var(--cu-white); width: 80px; height: 80px; box-shadow: var(--shadow-none); border: 1px solid var(--cu-gray-20); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">None</div>
+                            <code class="token-var">--shadow-none</code>
+                            <code class="token-value">none</code>
+                        </div>
+                        <button class="copy-btn" data-code="--shadow-none">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-white); width: 80px; height: 80px; box-shadow: var(--shadow-sm); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Small</div>
+                            <code class="token-var">--shadow-sm</code>
+                            <code class="token-value">0 1px 2px 0 rgba(0, 0, 0, 0.05)</code>
+                        </div>
+                        <button class="copy-btn" data-code="--shadow-sm">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-white); width: 80px; height: 80px; box-shadow: var(--shadow-md); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Medium</div>
+                            <code class="token-var">--shadow-md</code>
+                            <code class="token-value">0 4px 6px -1px rgba(0, 0, 0, 0.1)...</code>
+                        </div>
+                        <button class="copy-btn" data-code="--shadow-md">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-white); width: 80px; height: 80px; box-shadow: var(--shadow-lg); margin-bottom: 0.5rem;"></div>
+                        <div class="token-info">
+                            <div class="token-name">Large</div>
+                            <code class="token-var">--shadow-lg</code>
+                            <code class="token-value">0 10px 15px -3px rgba(0, 0, 0, 0.1)...</code>
+                        </div>
+                        <button class="copy-btn" data-code="--shadow-lg">📋</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Animation Section -->
+            <section class="token-section">
+                <h3 class="token-section__title">Animation</h3>
+                <p>6 animation tokens for timing and easing transitions.</p>
+
+                <div class="token-grid typography-grid">
+                    <div class="token-card">
+                        <div class="animation-demo" data-duration="var(--animation-fast)" style="background: var(--cu-primary-red); width: 60px; height: 60px; border-radius: var(--radius-md); margin-bottom: 0.5rem; transition: transform var(--animation-fast) var(--animation-easing);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Fast</div>
+                            <code class="token-var">--animation-fast</code>
+                            <code class="token-value">150ms</code>
+                        </div>
+                        <button class="copy-btn" data-code="--animation-fast">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div class="animation-demo" data-duration="var(--animation-medium)" style="background: var(--cu-primary-red); width: 60px; height: 60px; border-radius: var(--radius-md); margin-bottom: 0.5rem; transition: transform var(--animation-medium) var(--animation-easing);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Medium</div>
+                            <code class="token-var">--animation-medium</code>
+                            <code class="token-value">300ms</code>
+                        </div>
+                        <button class="copy-btn" data-code="--animation-medium">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div class="animation-demo" data-duration="var(--animation-slow)" style="background: var(--cu-primary-red); width: 60px; height: 60px; border-radius: var(--radius-md); margin-bottom: 0.5rem; transition: transform var(--animation-slow) var(--animation-easing);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Slow</div>
+                            <code class="token-var">--animation-slow</code>
+                            <code class="token-value">500ms</code>
+                        </div>
+                        <button class="copy-btn" data-code="--animation-slow">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div class="animation-demo" data-easing="ease-in-out" style="background: var(--cu-forest-green); width: 60px; height: 60px; border-radius: var(--radius-md); margin-bottom: 0.5rem; transition: transform var(--animation-medium) var(--animation-easing);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Ease In Out</div>
+                            <code class="token-var">--animation-easing</code>
+                            <code class="token-value">ease-in-out</code>
+                        </div>
+                        <button class="copy-btn" data-code="--animation-easing">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div class="animation-demo" data-easing="ease-in" style="background: var(--cu-forest-green); width: 60px; height: 60px; border-radius: var(--radius-md); margin-bottom: 0.5rem; transition: transform var(--animation-medium) var(--animation-easing-in);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Ease In</div>
+                            <code class="token-var">--animation-easing-in</code>
+                            <code class="token-value">ease-in</code>
+                        </div>
+                        <button class="copy-btn" data-code="--animation-easing-in">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div class="animation-demo" data-easing="ease-out" style="background: var(--cu-forest-green); width: 60px; height: 60px; border-radius: var(--radius-md); margin-bottom: 0.5rem; transition: transform var(--animation-medium) var(--animation-easing-out);"></div>
+                        <div class="token-info">
+                            <div class="token-name">Ease Out</div>
+                            <code class="token-var">--animation-easing-out</code>
+                            <code class="token-value">ease-out</code>
+                        </div>
+                        <button class="copy-btn" data-code="--animation-easing-out">📋</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Z-Index Section -->
+            <section class="token-section">
+                <h3 class="token-section__title">Z-Index</h3>
+                <p>4 z-index tokens for managing layer hierarchy.</p>
+
+                <div class="token-grid color-grid">
+                    <div class="token-card">
+                        <div style="position: relative; width: 80px; height: 80px; margin-bottom: 0.5rem;">
+                            <div style="position: absolute; bottom: 0; right: 0; background: var(--cu-gray-30); width: 60px; height: 60px; z-index: 1;"></div>
+                            <div style="position: absolute; top: 0; left: 0; background: var(--cu-primary-red); width: 60px; height: 60px; z-index: var(--z-index-sticky);"></div>
+                        </div>
+                        <div class="token-info">
+                            <div class="token-name">Sticky</div>
+                            <code class="token-var">--z-index-sticky</code>
+                            <code class="token-value">100</code>
+                        </div>
+                        <button class="copy-btn" data-code="--z-index-sticky">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="position: relative; width: 80px; height: 80px; margin-bottom: 0.5rem;">
+                            <div style="position: absolute; bottom: 0; right: 0; background: var(--cu-gray-30); width: 60px; height: 60px; z-index: 1;"></div>
+                            <div style="position: absolute; top: 0; left: 0; background: var(--cu-primary-red); width: 60px; height: 60px; z-index: var(--z-index-dropdown);"></div>
+                        </div>
+                        <div class="token-info">
+                            <div class="token-name">Dropdown</div>
+                            <code class="token-var">--z-index-dropdown</code>
+                            <code class="token-value">200</code>
+                        </div>
+                        <button class="copy-btn" data-code="--z-index-dropdown">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="position: relative; width: 80px; height: 80px; margin-bottom: 0.5rem;">
+                            <div style="position: absolute; bottom: 0; right: 0; background: var(--cu-gray-30); width: 60px; height: 60px; z-index: 1;"></div>
+                            <div style="position: absolute; top: 0; left: 0; background: var(--cu-primary-red); width: 60px; height: 60px; z-index: var(--z-index-overlay);"></div>
+                        </div>
+                        <div class="token-info">
+                            <div class="token-name">Overlay</div>
+                            <code class="token-var">--z-index-overlay</code>
+                            <code class="token-value">300</code>
+                        </div>
+                        <button class="copy-btn" data-code="--z-index-overlay">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="position: relative; width: 80px; height: 80px; margin-bottom: 0.5rem;">
+                            <div style="position: absolute; bottom: 0; right: 0; background: var(--cu-gray-30); width: 60px; height: 60px; z-index: 1;"></div>
+                            <div style="position: absolute; top: 0; left: 0; background: var(--cu-primary-red); width: 60px; height: 60px; z-index: var(--z-index-modal);"></div>
+                        </div>
+                        <div class="token-info">
+                            <div class="token-name">Modal</div>
+                            <code class="token-var">--z-index-modal</code>
+                            <code class="token-value">400</code>
+                        </div>
+                        <button class="copy-btn" data-code="--z-index-modal">📋</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Aspect Ratios Section -->
+            <section class="token-section">
+                <h3 class="token-section__title">Aspect Ratios</h3>
+                <p>5 aspect ratio tokens for embedded content (videos, iframes).</p>
+
+                <div class="token-grid color-grid">
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); width: 120px; aspect-ratio: var(--ratio-widescreen); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem;">16:9</div>
+                        <div class="token-info">
+                            <div class="token-name">Widescreen</div>
+                            <code class="token-var">--ratio-widescreen</code>
+                            <code class="token-value">16 / 9</code>
+                        </div>
+                        <button class="copy-btn" data-code="--ratio-widescreen">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); width: 120px; aspect-ratio: var(--ratio-standard); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem;">4:3</div>
+                        <div class="token-info">
+                            <div class="token-name">Standard</div>
+                            <code class="token-var">--ratio-standard</code>
+                            <code class="token-value">4 / 3</code>
+                        </div>
+                        <button class="copy-btn" data-code="--ratio-standard">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); width: 120px; aspect-ratio: var(--ratio-ultrawide); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem;">21:9</div>
+                        <div class="token-info">
+                            <div class="token-name">Ultrawide</div>
+                            <code class="token-var">--ratio-ultrawide</code>
+                            <code class="token-value">21 / 9</code>
+                        </div>
+                        <button class="copy-btn" data-code="--ratio-ultrawide">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); width: 80px; aspect-ratio: var(--ratio-square); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem;">1:1</div>
+                        <div class="token-info">
+                            <div class="token-name">Square</div>
+                            <code class="token-var">--ratio-square</code>
+                            <code class="token-value">1 / 1</code>
+                        </div>
+                        <button class="copy-btn" data-code="--ratio-square">📋</button>
+                    </div>
+                    <div class="token-card">
+                        <div style="background: var(--cu-gray-60); width: 60px; aspect-ratio: var(--ratio-portrait); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem;">9:16</div>
+                        <div class="token-info">
+                            <div class="token-name">Portrait</div>
+                            <code class="token-var">--ratio-portrait</code>
+                            <code class="token-value">9 / 16</code>
+                        </div>
+                        <button class="copy-btn" data-code="--ratio-portrait">📋</button>
+                    </div>
+                </div>
+            </section>
+
+
+        </div><!-- .demo-content -->
+    </main>
+
+    <!-- Scripts -->
+    <script src="assets/js/vendor/prism.js" defer></script>
+    <script src="assets/js/vendor/clipboard.min.js" defer></script>
+    <script src="assets/js/demo-site.js" type="module"></script>
+
+</body>
+</html>

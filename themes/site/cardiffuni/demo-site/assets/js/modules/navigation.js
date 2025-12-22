@@ -1,92 +1,78 @@
 /**
  * Navigation Module
- * Smooth scroll, active section tracking, sticky nav
+ * Multi-page navigation with active page highlighting and sticky nav
  */
 
 export default class Navigation {
     constructor() {
-        this.nav = document.querySelector('.demo-nav');
-        this.sections = [];
-        this.currentSection = null;
-        this.init();
+        this.nav = null;
+        this.currentPage = null;
     }
 
     init() {
-        if (!this.nav) {
-            console.warn('Navigation element not found');
-            return;
-        }
+        // Wait for page layout to load navigation
+        setTimeout(() => {
+            this.nav = document.querySelector('.demo-nav');
 
-        // Get all sections
-        this.sections = Array.from(document.querySelectorAll('.demo-section'));
+            if (!this.nav) {
+                console.warn('Navigation element not found');
+                return;
+            }
 
-        // Setup smooth scroll
-        this.setupSmoothScroll();
+            // Get current page from URL
+            this.currentPage = this.getCurrentPage();
 
-        // Setup intersection observer for active section tracking
-        this.setupSectionTracking();
+            // Highlight active page in navigation
+            this.highlightActivePage();
 
-        // Setup sticky nav on scroll
-        this.setupStickyNav();
+            // Setup sticky nav behavior
+            this.setupStickyNav();
 
-        console.log('Navigation initialized');
+            console.log('Navigation initialized for page:', this.currentPage);
+        }, 100); // Small delay to ensure DOM is ready
     }
 
-    setupSmoothScroll() {
-        const navLinks = this.nav.querySelectorAll('a[href^="#"]');
+    /**
+     * Extract current page name from URL
+     * @returns {string} Current page name (e.g., "components", "design-tokens")
+     */
+    getCurrentPage() {
+        const path = window.location.pathname;
+        const page = path.split('/').pop().replace('.html', '');
+
+        // Return 'index' for root or empty page
+        return page || 'index';
+    }
+
+    /**
+     * Highlight the active page in navigation
+     */
+    highlightActivePage() {
+        if (!this.nav) return;
+
+        const navLinks = this.nav.querySelectorAll('a');
 
         navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
+            link.classList.remove('active');
 
-                if (targetSection) {
-                    const offsetTop = targetSection.offsetTop - this.nav.offsetHeight - 20;
+            const href = link.getAttribute('href');
+            if (!href) return;
 
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
+            // Extract page name from href
+            const linkPage = href.replace('.html', '').replace('./', '');
+
+            // Match current page
+            if (linkPage === this.currentPage ||
+                (this.currentPage === 'index' && (linkPage === '' || linkPage === 'index'))) {
+                link.classList.add('active');
+            }
         });
     }
 
-    setupSectionTracking() {
-        const options = {
-            root: null,
-            rootMargin: `-${this.nav.offsetHeight + 50}px 0px -70% 0px`,
-            threshold: 0
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.updateActiveSection(entry.target.id);
-                }
-            });
-        }, options);
-
-        this.sections.forEach(section => {
-            observer.observe(section);
-        });
-    }
-
-    updateActiveSection(sectionId) {
-        // Remove active class from all links
-        const navLinks = this.nav.querySelectorAll('a');
-        navLinks.forEach(link => link.classList.remove('active'));
-
-        // Add active class to current section link
-        const activeLink = this.nav.querySelector(`a[href="#${sectionId}"]`);
-        if (activeLink) {
-            activeLink.classList.add('active');
-        }
-
-        this.currentSection = sectionId;
-    }
-
+    /**
+     * Setup sticky navigation behavior
+     * Shows/hides nav based on scroll direction
+     */
     setupStickyNav() {
         let lastScrollY = window.scrollY;
 

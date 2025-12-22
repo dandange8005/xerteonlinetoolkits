@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components - Cardiff University Theme</title>
+    <meta name="description" content="10 custom-built components using Cardiff design tokens.">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="../cardiffuni.css">
+
+    <!-- Demo Site CSS -->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <link rel="stylesheet" href="assets/css/demo-site.css">
+</head>
+<body>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="demo-main">
+        <!-- Content Area -->
+        <div class="demo-content">
+
+            <!-- SECTION 3: COMPONENTS -->
+            <section id="components" class="demo-section">
+                <h2 class="demo-section__title">Components</h2>
+                <p class="demo-section__description">10 custom-built components using Cardiff design tokens.</p>
+
+                <!-- Component Category: Content -->
+                <h3>Content Components</h3>
+
+                <!-- Box Component -->
+                <article class="component-demo" id="component-box">
+                    <div class="component-demo__header">
+                        <h4>Box</h4>
+                        <span class="component-badge">Content</span>
+                    </div>
+
+                    <div class="component-demo__preview">
+                        <div class="box">
+                            <h5 style="margin-top: 0;">Box Component</h5>
+                            <p>Simple container with padding, borders and shadows. Perfect for highlighting content or creating distinct content areas.</p>
+                        </div>
+                    </div>
+
+                    <div class="component-demo__code">
+                        <button class="code-copy-btn" aria-label="Copy code">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                        <pre><code class="language-html">&lt;div class="box"&gt;
+  &lt;h5&gt;Box Component&lt;/h5&gt;
+  &lt;p&gt;Simple container with padding, borders and shadows.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </article>
+
+                <!-- Button Component -->
+                <article class="component-demo" id="component-button">
+                    <div class="component-demo__header">
+                        <h4>Button</h4>
+                        <span class="component-badge">Interactive</span>
+                    </div>
+
+                    <div class="component-demo__preview">
+                        <h5>Filled Variants</h5>
+                        <div class="flex flex-wrap gap-md mb-4">
+                            <button class="button button-primary">Primary</button>
+                            <button class="button button-secondary">Secondary</button>
+                            <button class="button button-success">Success</button>
+                            <button class="button button-reverse">Reverse</button>
+                        </div>
+
+                        <h5>Outline Variants</h5>
+                        <div class="flex flex-wrap gap-md">
+                            <button class="button button-primary-outline">Primary Outline</button>
+                            <button class="button button-secondary-outline">Secondary Outline</button>
+                            <button class="button button-success-outline">Success Outline</button>
+                            <button class="button button-reverse-outline">Reverse Outline</button>
+                        </div>
+                    </div>
+
+                    <div class="component-demo__code">
+                        <button class="code-copy-btn" aria-label="Copy code">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                        <pre><code class="language-html">&lt;!-- Filled Buttons --&gt;
+&lt;button class="button button-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="button button-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="button button-success"&gt;Success&lt;/button&gt;
+&lt;button class="button button-reverse"&gt;Reverse&lt;/button&gt;
+
+&lt;!-- Outline Buttons --&gt;
+&lt;button class="button button-primary-outline"&gt;Primary Outline&lt;/button&gt;
+&lt;button class="button button-secondary-outline"&gt;Secondary Outline&lt;/button&gt;
+&lt;button class="button button-success-outline"&gt;Success Outline&lt;/button&gt;
+&lt;button class="button button-reverse-outline"&gt;Reverse Outline&lt;/button&gt;</code></pre>
+                    </div>
+                </article>
+
+                <!-- Callout Component -->
+                <article class="component-demo" id="component-callout">
+                    <div class="component-demo__header">
+                        <h4>Callout</h4>
+                        <span class="component-badge">Content</span>
+                    </div>
+
+                    <div class="component-demo__preview">
+                        <div class="callout info mb-3">
+                            <p><strong>Information:</strong> This is an informational callout to highlight important details.</p>
+                        </div>
+
+                        <div class="callout warning mb-3">
+                            <p><strong>Warning:</strong> This is a warning callout to draw attention to potential issues.</p>
+                        </div>
+
+                        <div class="callout success mb-3">
+                            <p><strong>Success:</strong> This is a success callout to confirm positive outcomes.</p>
+                        </div>
+
+                        <div class="callout danger">
+                            <p><strong>Danger:</strong> This is a danger callout for critical alerts.</p>
+                        </div>
+                    </div>
+
+                    <div class="component-demo__code">
+                        <button class="code-copy-btn" aria-label="Copy code">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                        <pre><code class="language-html">&lt;div class="callout info"&gt;
+  &lt;p&gt;&lt;strong&gt;Information:&lt;/strong&gt; Message here&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="callout warning"&gt;
+  &lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt; Message here&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="callout success"&gt;
+  &lt;p&gt;&lt;strong&gt;Success:&lt;/strong&gt; Message here&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="callout danger"&gt;
+  &lt;p&gt;&lt;strong&gt;Danger:&lt;/strong&gt; Message here&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </article>
+
+            </section>
+
+
+        </div><!-- .demo-content -->
+    </main>
+
+    <!-- Scripts -->
+    <script src="assets/js/vendor/prism.js" defer></script>
+    <script src="assets/js/vendor/clipboard.min.js" defer></script>
+    <script src="assets/js/demo-site.js" type="module"></script>
+
+</body>
+</html>
