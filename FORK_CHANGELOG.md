@@ -40,6 +40,36 @@ This fork maintains custom themes for Cardiff University's Digital Education tea
 
 ---
 
+### [2026-01-22] - Fork Sync & AI Features Setup
+
+#### Changed
+- Synced fork with upstream `develop` branch (994 new commits)
+- Major upstream additions include:
+  - AI integration (OpenAI, Anthropic, Mistral support)
+  - Security fixes (RCE vulnerability #1505, SSRF bypass #1504)
+  - Interactive Video improvements (#1513, #1510)
+  - Graph library for analytics
+  - Quiz/MCQ button display options
+  - Accessibility improvements (#922 Bullets page)
+
+#### Added
+- `vendor_config.php` - AI vendor API key configuration
+  - Configured OpenAI API keys for:
+    - AI content generation (GPT)
+    - Transcription (Whisper)
+    - Embeddings/RAG (OpenAI encoding)
+    - Image generation (DALL-E 2, DALL-E 3, GPT Image 1)
+
+#### Database
+- Ran `upgrade.php` to create AI-related tables:
+  - `management_helper` - Stores AI vendor settings and preferences
+  - `ai_request_logs` - Tracks AI API usage and costs
+
+#### Configuration
+- Enabled AI vendors in Management → AI Settings admin panel
+
+---
+
 ### [2024-11-23] - Fork Sync & DigEd Theme
 
 #### Changed
@@ -112,6 +142,7 @@ git push --force-with-lease origin develop
 CLAUDE.md
 FORK_CHANGELOG.md (this file)
 .vscode/settings.json
+vendor_config.php          (AI API keys - do not commit to public repos)
 themes/site/cardiffuni/    (entire directory)
 themes/site/diged/         (entire directory)
 ```
