@@ -1309,6 +1309,13 @@ function setup() {
 				function() { $(this).css('color', navBarText); }
 			);
 		}
+
+
+   var itemCount = $('#nav li').length;
+
+  if (itemCount > 10) {
+  	$(".bs-docs-sidenav.affix").css("top", "65px");
+  }
 	}
 
 	// --------------- Optional Footer properties --------------------
@@ -1777,7 +1784,7 @@ function parseContent(pageRef, sectionNum, contentNum, addHistory) {
 					pageIndex = $pageIndex;
 					found = true;
 					if (sectionNum == undefined) {
-						sectionNum = index + 1;
+						sectionNum = index + 0;
 					}
 					pageLinkType = false;
 					pageRefType = 'id';
@@ -2425,7 +2432,7 @@ function loadSection(thisSection, section, sectionIndex, page, pageHash, pageInd
 		if (topBtnRound == 'true') {
 			//add FA icon and make button round via .top-round class
 			//create round button
-			var $button = $('<a class="btn btn-mini pull-right top-round" href="#skipLink"><span class="sr-only">' + (languageData.find("top")[0] != undefined && languageData.find("top")[0].getAttribute('label') != null ? languageData.find("top")[0].getAttribute('label') : 'Top') + '</span><i class="fa fa-angle-up fa-2x" aria-hidden="true"></i></a>');
+			var $button = $('<a class="topBtn btn btn-mini pull-right top-round" href="#skipLink"><span class="sr-only">' + (languageData.find("top")[0] != undefined && languageData.find("top")[0].getAttribute('label') != null ? languageData.find("top")[0].getAttribute('label') : 'Top') + '</span><i class="fa fa-angle-up fa-2x" aria-hidden="true"></i></a>');
 			//attach the button
 			section.append(
 				$('<p>')
@@ -2433,7 +2440,7 @@ function loadSection(thisSection, section, sectionIndex, page, pageHash, pageInd
 					.append($button));
 		} else {
 			//original default button
-			section.append($('<p><br><a class="btn btn-mini pull-right" href="#skipLink">' + (languageData.find("top")[0] != undefined && languageData.find("top")[0].getAttribute('label') != null ? languageData.find("top")[0].getAttribute('label') : 'Top') + '</a></p>'));
+			section.append($('<p><br><a class="topBtn btn btn-mini pull-right" href="#skipLink">' + (languageData.find("top")[0] != undefined && languageData.find("top")[0].getAttribute('label') != null ? languageData.find("top")[0].getAttribute('label') : 'Top') + '</a></p>'));
 		}
 	} else if ($(data).find('learningObject').attr('topBtnHide') == 'true') {
 		section.append($('<p>').append($('<br>')));
