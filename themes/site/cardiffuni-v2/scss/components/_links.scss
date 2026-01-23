@@ -1,0 +1,152 @@
+/**
+ * Link Components
+ *
+ * PURPOSE: Specialized link styles with icons and visual treatments
+ *
+ * USAGE:
+ * - Action link (with arrow icon):
+ *   <a href="#" class="link-action">Take action</a>
+ *
+ * - External link (with external icon):
+ *   <a href="https://..." class="link-external">External site</a>
+ *
+ * - Link asset (for file downloads):
+ *   <a href="file.pdf" class="link-asset">
+ *     <i class="fas fa-file-pdf link-asset__icon"></i>
+ *     <div>
+ *       <div class="link-asset__name">Document Title</div>
+ *       <div class="link-asset__label">PDF, 2.5 MB</div>
+ *     </div>
+ *   </a>
+ *
+ * COMPONENTS:
+ * - .link-action      - Link with arrow icon (calls to action)
+ * - .link-external    - Link with external icon
+ * - .link-asset       - Styled file download link with metadata
+ *
+ * EXAMPLE: https://codepen.io/dandange8005/pen/bGKyrop
+ */
+
+// =============================================================================
+// ACTION LINK
+// Link with right arrow icon for calls to action
+// =============================================================================
+
+a.link-action {
+    display: inline-block;
+
+    &::before {
+        content: "\f0a9"; // fa-arrow-circle-right
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        margin-right: var(--spacing-sm);
+        color: var(--color-accent-green);
+        font-size: var(--font-size-lg);
+    }
+
+    &:hover::after,
+    &:focus::after {
+        content: none;
+    }
+
+    &:hover::before,
+    &:focus::before {
+        text-decoration: none;
+        display: inline-block;
+    }
+}
+
+// Legacy action link class (backwards compatibility)
+.action-link {
+    &::before {
+        content: "\f0a9";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        margin-right: var(--spacing-sm);
+        color: var(--color-accent-green);
+        font-size: var(--font-size-lg);
+    }
+}
+
+a.action-link:hover::after,
+a.action-link:focus::after {
+    content: none;
+}
+
+.action-link:hover::before,
+.action-link:focus::before {
+    text-decoration: none;
+    display: inline-block;
+}
+
+// =============================================================================
+// EXTERNAL LINK
+// Link with external/new window icon
+// =============================================================================
+
+a.link-external {
+    display: inline-block;
+    align-items: center;
+    gap: var(--spacing-xs);
+
+    &::after {
+        content: "\f35d"; // fa-external-link-square-alt
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 10px;
+        margin-left: 4px;
+        transform: translateY(-3px);
+        display: inline-block;
+    }
+
+    &:hover::after {
+        text-decoration: none;
+        display: inline-block;
+    }
+}
+
+// =============================================================================
+// LINK ASSET
+// Styled file download link with icon and metadata
+// =============================================================================
+
+.link-asset {
+    display: flex;
+    background: var(--cu-gray-10);
+    align-items: center;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    color: unset;
+
+    &:hover {
+        color: var(--color-link-default);
+        text-decoration: none;
+        outline: 1.5px solid var(--color-link-default);
+    }
+
+    // File icon
+    &__icon {
+        font-size: var(--font-size-lg);
+        margin-right: var(--spacing-md);
+
+        // PDF files (red)
+        &.fa-file-pdf {
+            color: #dc3545;
+        }
+
+        // Word documents (blue)
+        &.fa-file-word {
+            color: #2b579a;
+        }
+    }
+
+    // File name
+    &__name {
+        font-weight: var(--font-weight-bold);
+    }
+
+    // File metadata (size, type)
+    &__label {
+        color: var(--cu-gray-60);
+    }
+}

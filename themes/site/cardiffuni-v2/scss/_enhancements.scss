@@ -1,0 +1,115 @@
+/**
+ * Theme Enhancements & CSS Reset
+ *
+ * PURPOSE: Modern CSS reset and theme-agnostic improvements
+ *
+ * This module provides:
+ * 1. CSS Reset - Normalize browser defaults for consistency
+ * 2. Font rendering improvements (anti-aliasing, smoothing)
+ * 3. Modern text wrapping for better typography
+ * 4. Accessibility support (reduced motion preferences)
+ * 5. Progressive enhancements that don't conflict with Bootstrap
+ *
+ * NOTE: This file is portable and can be reused across different themes
+ * without modification. It contains NO Cardiff University specific styling.
+ */
+
+// =============================================================================
+// CSS RESET - Modern minimal reset for consistency
+// =============================================================================
+
+// Use border-box for all elements
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+// Remove default margin from common elements
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+picture,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+// Set core body defaults
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    // overflow-x: hidden; // Prevent horizontal scrollbar from viewport-width elements
+}
+
+// Remove list styles where ul/ol have a class
+// (Lists with classes are typically styled components, not content lists)
+ul[class],
+ol[class] {
+    list-style: none;
+    padding: 0;
+}
+
+// Make images and media easier to work with
+img,
+picture,
+svg {
+    max-width: 100%;
+    display: block;
+}
+
+// Inherit fonts for form controls
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+// =============================================================================
+// TEXT WRAPPING - Modern CSS for better typography
+// =============================================================================
+
+// Better line breaks for paragraphs (prevents orphans/widows)
+p {
+    text-wrap: pretty;
+}
+
+// Balance heading text across lines
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+
+// =============================================================================
+// SMOOTH SCROLLING (if user hasn't set reduced motion preference)
+// =============================================================================
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+// =============================================================================
+// REDUCED MOTION SUPPORT (respect user accessibility preferences)
+// =============================================================================
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

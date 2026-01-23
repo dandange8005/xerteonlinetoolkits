@@ -1,0 +1,81 @@
+/**
+ * Do's and Don'ts List Component
+ *
+ * PURPOSE: Visual list showing recommended and not-recommended actions
+ *
+ * USAGE:
+ * <div class="do-dont-list">
+ *   <h3 class="do-dont-list__label">Do</h3>
+ *   <ul class="list--tick">
+ *     <li><svg class="icon">...</svg>Use semantic HTML</li>
+ *     <li><svg class="icon">...</svg>Test accessibility</li>
+ *   </ul>
+ * </div>
+ *
+ * <div class="do-dont-list">
+ *   <h3 class="do-dont-list__label">Don't</h3>
+ *   <ul class="list--cross">
+ *     <li><svg class="icon">...</svg>Use divs for everything</li>
+ *   </ul>
+ * </div>
+ *
+ * ELEMENTS:
+ * - .do-dont-list        - Container box
+ * - .do-dont-list__label - Colored label (Do/Don't)
+ * - .list--tick          - List with checkmark icons
+ * - .list--cross         - List with cross/X icons
+ */
+
+// =============================================================================
+// DO'S AND DON'TS LIST COMPONENT
+// Structured list showing best practices vs. things to avoid
+// =============================================================================
+
+.do-dont-list {
+    margin: var(--spacing-3xl) 0;
+    padding: var(--spacing-xl);
+    color: var(--color-text-primary);
+    border: 1px solid var(--border-color-default);
+    padding-top: 0 !important;
+
+    // Icon sizing within lists
+    .icon {
+        flex: none;
+        height: var(--spacing-2xl);
+        width: var(--spacing-2xl);
+    }
+
+    // Remove top margin from first child
+    > *:first-child {
+        margin-top: 0;
+    }
+}
+
+// Label for Do/Don't heading
+.do-dont-list__label {
+    font-size: var(--font-size-base);
+    line-height: 1.4;
+    background-color: var(--color-brand-secondary);
+    color: var(--cu-white);
+    display: inline-block;
+    margin: 0 0 var(--spacing-sm) calc(var(--spacing-xl) * -1);
+    padding: var(--spacing-sm) var(--spacing-2xl);
+    position: relative;
+    top: calc(var(--spacing-lg) * -1);
+}
+
+// Tick list (Do's) and Cross list (Don'ts)
+.list--tick,
+.list--cross {
+    list-style: none;
+    margin: 0;
+    padding-left: var(--spacing-2xl);
+    position: relative;
+
+    // Position SVG icons
+    svg {
+        left: -4px;
+        margin-top: -5px;
+        position: absolute;
+    }
+}

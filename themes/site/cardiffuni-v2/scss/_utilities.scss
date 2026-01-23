@@ -1,0 +1,770 @@
+/**
+ * Utility Classes
+ *
+ * Reusable utility classes for common styling patterns
+ * Uses Cardiff University design tokens
+ */
+
+
+// =============================================================================
+// IMAGE UTILITIES
+// =============================================================================
+
+// Inline image
+.image-inline {
+    display: inline-block;
+}
+
+// Full width image
+.image-full {
+    width: 100%;
+    height: auto;
+}
+
+// Rounded corners
+.image-round {
+    border-radius: var(--radius-image);
+}
+
+// Screenshot styling
+.image-screenshots,
+.screenshots {
+    border: 1px solid var(--border-color-default);
+    margin: 2rem auto;
+    clear: both;
+    border-radius: var(--radius-image);
+    box-shadow: var(--shadow-md);
+}
+
+
+// =============================================================================
+// SPACING UTILITIES
+// =============================================================================
+
+// Margin utilities
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+
+// Padding utilities
+.p-0 { padding: 0; }
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-3 { padding: var(--spacing-md); }
+.p-4 { padding: var(--spacing-lg); }
+.p-5 { padding: var(--spacing-xl); }
+
+// =============================================================================
+// FLEXBOX UTILITIES - Enhanced System
+// =============================================================================
+
+// Breakpoint for responsive utilities (matches System 2's breakpoint)
+$breakpoint-md: 806px;
+
+// -----------------------------------------------------------------------------
+// Flex Container
+// -----------------------------------------------------------------------------
+
+.flex {
+    display: flex;
+    gap: var(--spacing-md); // Default gap using design token
+}
+
+// Direction utilities
+.flex-row { flex-direction: row; }
+.flex-row-reverse { flex-direction: row-reverse; }
+.flex-col { flex-direction: column; }
+.flex-col-reverse { flex-direction: column-reverse; }
+
+// Wrap utilities
+.flex-wrap { flex-wrap: wrap; }
+.flex-wrap-reverse { flex-wrap: wrap-reverse; }
+.flex-nowrap { flex-wrap: nowrap; }
+
+// Justify content
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.justify-evenly { justify-content: space-evenly; }
+
+// Align items
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.items-center { align-items: center; }
+.items-baseline { align-items: baseline; }
+.items-stretch { align-items: stretch; }
+
+// Align content
+.content-start { align-content: flex-start; }
+.content-end { align-content: flex-end; }
+.content-center { align-content: center; }
+.content-between { align-content: space-between; }
+.content-around { align-content: space-around; }
+.content-stretch { align-content: stretch; }
+
+// Gap utilities
+.gap-0 { gap: 0; }
+.gap-xs { gap: var(--spacing-xs); }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+.gap-xl { gap: var(--spacing-xl); }
+.gap-2xl { gap: var(--spacing-2xl); }
+
+// -----------------------------------------------------------------------------
+// Flex Items
+// -----------------------------------------------------------------------------
+
+// Flex grow/shrink behavior
+.flex-1 { flex: 1 1 0%; }           // Grow & shrink, ignore initial size
+.flex-auto { flex: 1 1 auto; }     // Grow & shrink, respect initial size
+.flex-initial { flex: 0 1 auto; }  // Shrink only, respect initial size
+.flex-none { flex: none; }         // No grow/shrink
+
+// Flex basis utilities (from System 1)
+.flex-100 { flex: 1 1 100px; }
+.flex-200 { flex: 1 1 200px; }
+.flex-300 { flex: 1 1 300px; }
+.flex-400 { flex: 1 1 400px; }
+.flex-500 { flex: 1 1 500px; }
+.flex-600 { flex: 1 1 600px; }
+
+// Align self
+.self-auto { align-self: auto; }
+.self-start { align-self: flex-start; }
+.self-end { align-self: flex-end; }
+.self-center { align-self: center; }
+.self-stretch { align-self: stretch; }
+.self-baseline { align-self: baseline; }
+
+// -----------------------------------------------------------------------------
+// Width Utilities (Mobile-first approach)
+// Note: Uses calc() to account for gap in flex containers
+// For 2 columns: calc((100% - gap) / 2)
+// For 3 columns: calc((100% - 2*gap) / 3)
+// -----------------------------------------------------------------------------
+
+// Base: All items full width on mobile
+.w-full {
+    width: 100%;
+}
+.w-auto {
+    width: auto;
+}
+
+// Fixed percentage widths (apply at all breakpoints)
+// Standard widths - use when NOT in flex container with gap
+.w-10 { width: 10%; }
+.w-20 { width: 20%; }
+.w-25 { width: 25%; }
+.w-30 { width: 30%; }
+.w-33 { width: 33.333%; }
+.w-40 { width: 40%; }
+.w-50 { width: 50%; }
+.w-60 { width: 60%; }
+.w-70 { width: 70%; }
+.w-80 { width: 80%; }
+
+// Responsive width utilities (md = 806px and up)
+@media (min-width: $breakpoint-md) {
+    .w-md-10 { width: 10%; }
+    .w-md-20 { width: 20%; }
+    .w-md-25 { width: 25%; }
+    .w-md-30 { width: 30%; }
+    .w-md-33 { width: 33.333%; }
+    .w-md-40 { width: 40%; }
+    .w-md-50 { width: 50%; }
+    .w-md-60 { width: 60%; }
+    .w-md-70 { width: 70%; }
+    .w-md-80 { width: 80%; }
+    .w-md-full { width: 100%; }
+    .w-md-auto { width: auto; }
+}
+
+// -----------------------------------------------------------------------------
+// Flex-compatible Width Utilities (for use with gap)
+// These account for gap spacing in flex containers
+// -----------------------------------------------------------------------------
+
+// Two column layouts (50/50)
+.flex > .w-md-50,
+.flex.flex-wrap > .w-md-50 {
+    @media (min-width: $breakpoint-md) {
+        flex: 1 1 calc(50% - (var(--spacing-md) / 2));
+        max-width: calc(50% - (var(--spacing-md) / 2));
+    }
+}
+
+// Three column layouts (33.33/33.33/33.33)
+.flex > .w-md-33,
+.flex.flex-wrap > .w-md-33 {
+    @media (min-width: $breakpoint-md) {
+        flex: 1 1 calc(33.333% - (var(--spacing-md) * 2 / 3));
+        max-width: calc(33.333% - (var(--spacing-md) * 2 / 3));
+    }
+}
+
+// Four column layouts (25/25/25/25)
+.flex > .w-md-25,
+.flex.flex-wrap > .w-md-25 {
+    @media (min-width: $breakpoint-md) {
+        flex: 1 1 calc(25% - (var(--spacing-md) * 3 / 4));
+        max-width: calc(25% - (var(--spacing-md) * 3 / 4));
+    }
+}
+
+// Other common splits (default gap or gap-md)
+.flex > .w-md-10,
+.flex.flex-wrap > .w-md-10,
+.flex.gap-md > .w-md-10 {
+    @media (min-width: $breakpoint-md) {
+        flex: 1 1 calc(10% - (var(--spacing-md) / 2));
+        max-width: calc(10% - (var(--spacing-md) / 2));
+    }
+}
+
+.flex > .w-md-20,
+.flex.flex-wrap > .w-md-20,
+.flex.gap-md > .w-md-20 {
+    @media (min-width: $breakpoint-md) {
+        flex: 1 1 calc(20% - (var(--spacing-md) / 2));
+        max-width: calc(20% - (var(--spacing-md) / 2));
+    }
+}
+
+.flex > .w-md-30,
+.flex.flex-wrap > .w-md-30,
+.flex.gap-md > .w-md-30 {
+    @media (min-width: $breakpoint-md) {
+        flex: 1 1 calc(30% - (var(--spacing-md) / 2));
+        max-width: calc(30% - (var(--spacing-md) / 2));
+    }
+}
+
+.flex > .w-md-40,
+.flex.flex-wrap > .w-md-40,
+.flex.gap-md > .w-md-40 {
+    @media (min-width: $breakpoint-md) {
+        flex: 1 1 calc(40% - (var(--spacing-md) / 2));
+        max-width: calc(40% - (var(--spacing-md) / 2));
+    }
+}
+
+.flex > .w-md-60,
+.flex.flex-wrap > .w-md-60,
+.flex.gap-md > .w-md-60 {
+    @media (min-width: $breakpoint-md) {
+        flex: 1 1 calc(60% - (var(--spacing-md) / 2));
+        max-width: calc(60% - (var(--spacing-md) / 2));
+    }
+}
+
+.flex > .w-md-70,
+.flex.flex-wrap > .w-md-70,
+.flex.gap-md > .w-md-70 {
+    @media (min-width: $breakpoint-md) {
+        flex: 1 1 calc(70% - (var(--spacing-md) / 2));
+        max-width: calc(70% - (var(--spacing-md) / 2));
+    }
+}
+
+.flex > .w-md-80,
+.flex.flex-wrap > .w-md-80,
+.flex.gap-md > .w-md-80 {
+    @media (min-width: $breakpoint-md) {
+        flex: 1 1 calc(80% - (var(--spacing-md) / 2));
+        max-width: calc(80% - (var(--spacing-md) / 2));
+    }
+}
+
+// Note: Percentage-based widths are calculated for gap-md (16px) only.
+// For other gap sizes, use flex-basis utilities (.flex-300, .flex-400, etc.) instead.
+
+// -----------------------------------------------------------------------------
+// Legacy System 2 Support (for backward compatibility)
+// -----------------------------------------------------------------------------
+
+.flexContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.flexItem {
+    width: 100%;
+    margin-bottom: var(--spacing-lg);
+
+    h3 {
+        margin-top: 0;
+
+        &.topMargin {
+            margin-top: var(--spacing-lg);
+        }
+    }
+
+    img {
+        width: 100%;
+        max-width: max-content;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+// Legacy column classes (responsive)
+@media (min-width: $breakpoint-md) {
+    .flexItem {
+        margin-bottom: 0;
+    }
+
+    .c10 { width: 10%; }
+    .c20 { width: 20%; }
+    .c25 { width: 25%; }
+    .c30 { width: 30%; }
+    .c33 { width: 33.33%; }
+    .c40 { width: 40%; }
+    .c50 { width: 50%; }
+    .c60 { width: 60%; }
+    .c70 { width: 70%; }
+    .c80 { width: 80%; }
+}
+
+// =============================================================================
+// FONT SIZE UTILITIES
+// =============================================================================
+
+.text-xs {
+    font-size: var(--font-size-xs) !important;
+}
+
+.text-sm {
+    font-size: var(--font-size-sm) !important;
+}
+
+.text-base {
+    font-size: var(--font-size-base) !important;
+}
+
+.text-md {
+    font-size: var(--font-size-md) !important;
+}
+
+.text-lg {
+    font-size: var(--font-size-lg) !important;
+}
+
+.text-xl {
+    font-size: var(--font-size-xl) !important;
+}
+
+.text-2xl {
+    font-size: var(--font-size-2xl) !important;
+}
+
+.text-3xl {
+    font-size: var(--font-size-3xl) !important;
+}
+
+.text-4xl {
+    font-size: var(--font-size-4xl) !important;
+}
+
+// =============================================================================
+// FONT WEIGHT UTILITIES
+// =============================================================================
+
+.font-light {
+    font-weight: var(--font-weight-light) !important;
+}
+
+.font-regular {
+    font-weight: var(--font-weight-regular) !important;
+}
+
+.font-medium {
+    font-weight: var(--font-weight-medium) !important;
+}
+
+.font-bold {
+    font-weight: var(--font-weight-bold) !important;
+}
+
+// =============================================================================
+// LINE HEIGHT UTILITIES
+// =============================================================================
+
+.leading-tight {
+    line-height: var(--line-height-tight) !important;
+}
+
+.leading-normal {
+    line-height: var(--line-height-normal) !important;
+}
+
+.leading-loose {
+    line-height: var(--line-height-loose) !important;
+}
+
+// =============================================================================
+// TEXT ALIGNMENT UTILITIES
+// =============================================================================
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-justify {
+    text-align: justify !important;
+}
+
+// =============================================================================
+// TEXT COLOR UTILITIES
+// =============================================================================
+
+// Base text colors
+.text-primary {
+    color: var(--color-text-primary) !important;
+}
+
+.text-inverse {
+    color: var(--color-text-inverse) !important;
+}
+
+.text-hint {
+    color: var(--color-text-hint) !important;
+}
+
+.text-alert {
+    color: var(--color-text-alert) !important;
+}
+
+.text-on-light {
+    color: var(--color-text-on-light) !important;
+}
+
+.text-on-dark {
+    color: var(--color-text-on-dark) !important;
+}
+
+.text-on-brand {
+    color: var(--color-text-on-brand) !important;
+}
+
+.text-subtle {
+    color: var(--color-text-subtle) !important;
+}
+
+.text-muted {
+    color: var(--color-text-muted) !important;
+}
+
+// Cardiff University brand colors
+.text-cu-red {
+    color: var(--cu-primary-red) !important;
+}
+
+.text-cu-white {
+    color: var(--cu-white) !important;
+}
+
+.text-cu-black {
+    color: var(--cu-black) !important;
+}
+
+// Brand colors
+.text-brand-primary {
+    color: var(--color-brand-primary) !important;
+}
+
+.text-brand-secondary {
+    color: var(--color-brand-secondary) !important;
+}
+
+// Accent colors
+.text-accent-green {
+    color: var(--color-accent-green) !important;
+}
+
+.text-accent-blue {
+    color: var(--color-accent-blue) !important;
+}
+
+.text-accent-orange {
+    color: var(--color-accent-orange) !important;
+}
+
+// Cardiff University extended palette
+.text-cu-forest-green {
+    color: var(--cu-forest-green) !important;
+}
+
+.text-cu-cadet {
+    color: var(--cu-cadet) !important;
+}
+
+.text-cu-stone {
+    color: var(--cu-stone) !important;
+}
+
+.text-cu-light-blue {
+    color: var(--cu-light-blue) !important;
+}
+
+.text-cu-royal-blue {
+    color: var(--cu-royal-blue) !important;
+}
+
+.text-cu-midnight-blue {
+    color: var(--cu-midnight-blue) !important;
+}
+
+.text-cu-midnight-purple {
+    color: var(--cu-midnight-purple) !important;
+}
+
+.text-cu-orange {
+    color: var(--cu-orange) !important;
+}
+
+.text-cu-yellow {
+    color: var(--cu-yellow) !important;
+}
+
+.text-cu-yellow-green {
+    color: var(--cu-yellow-green) !important;
+}
+
+.text-cu-indigo {
+    color: var(--cu-indigo) !important;
+}
+
+.text-cu-dark-violet {
+    color: var(--cu-dark-violet) !important;
+}
+
+// Grayscale
+.text-gray-10 {
+    color: var(--cu-gray-10) !important;
+}
+
+.text-gray-20 {
+    color: var(--cu-gray-20) !important;
+}
+
+.text-gray-30 {
+    color: var(--cu-gray-30) !important;
+}
+
+.text-gray-40 {
+    color: var(--cu-gray-40) !important;
+}
+
+.text-gray-50 {
+    color: var(--cu-gray-50) !important;
+}
+
+.text-gray-60 {
+    color: var(--cu-gray-60) !important;
+}
+
+.text-gray-70 {
+    color: var(--cu-gray-70) !important;
+}
+
+.text-gray-80 {
+    color: var(--cu-gray-80) !important;
+}
+
+.text-gray-90 {
+    color: var(--cu-gray-90) !important;
+}
+
+// Link colors
+.text-link {
+    color: var(--color-link-default) !important;
+}
+
+.text-link-hover {
+    color: var(--color-link-hover) !important;
+}
+
+.text-link-visited {
+    color: var(--color-link-visited) !important;
+}
+
+// =============================================================================
+// BACKGROUND COLOR UTILITIES
+// =============================================================================
+
+// Base backgrounds
+.bg-body {
+    background-color: var(--color-bg-body) !important;
+}
+
+.bg-page {
+    background-color: var(--color-bg-page) !important;
+}
+
+.bg-panel {
+    background-color: var(--color-bg-panel) !important;
+}
+
+.bg-subtle {
+    background-color: var(--color-bg-subtle) !important;
+}
+
+.bg-muted {
+    background-color: var(--color-bg-muted) !important;
+}
+
+.bg-elevated {
+    background-color: var(--color-bg-elevated) !important;
+}
+
+// Cardiff University brand colors
+.bg-cu-red {
+    background-color: var(--cu-primary-red) !important;
+}
+
+.bg-cu-white {
+    background-color: var(--cu-white) !important;
+}
+
+.bg-cu-black {
+    background-color: var(--cu-black) !important;
+}
+
+// Brand colors
+.bg-primary {
+    background-color: var(--color-brand-primary) !important;
+}
+
+.bg-secondary {
+    background-color: var(--color-brand-secondary) !important;
+}
+
+// Accent colors
+.bg-cu-green {
+    background-color: var(--color-accent-green) !important;
+}
+
+
+.bg-cu-blue {
+    background-color: var(--color-accent-blue) !important;
+}
+
+
+.bg-cu-orange {
+    background-color: var(--color-accent-orange) !important;
+}
+
+
+// Cardiff University extended palette
+.bg-cu-forest-green {
+    background-color: var(--cu-forest-green) !important;
+}
+
+.bg-cu-cadet {
+    background-color: var(--cu-cadet) !important;
+}
+
+.bg-cu-stone {
+    background-color: var(--cu-stone) !important;
+}
+
+.bg-cu-light-blue {
+    background-color: var(--cu-light-blue) !important;
+}
+
+.bg-cu-royal-blue {
+    background-color: var(--cu-royal-blue) !important;
+}
+
+.bg-cu-midnight-blue {
+    background-color: var(--cu-midnight-blue) !important;
+}
+
+.bg-cu-midnight-purple {
+    background-color: var(--cu-midnight-purple) !important;
+}
+
+.bg-cu-orange {
+    background-color: var(--cu-orange) !important;
+}
+
+.bg-cu-yellow {
+    background-color: var(--cu-yellow) !important;
+}
+
+.bg-cu-yellow-green {
+    background-color: var(--cu-yellow-green) !important;
+}
+
+.bg-cu-indigo {
+    background-color: var(--cu-indigo) !important;
+}
+
+.bg-cu-dark-violet {
+    background-color: var(--cu-dark-violet) !important;
+}
+
+// Grayscale
+.bg-gray-10 {
+    background-color: var(--cu-gray-10) !important;
+}
+
+.bg-gray-20 {
+    background-color: var(--cu-gray-20) !important;
+}
+
+.bg-gray-30 {
+    background-color: var(--cu-gray-30) !important;
+}
+
+.bg-gray-40 {
+    background-color: var(--cu-gray-40) !important;
+}
+
+.bg-gray-50 {
+    background-color: var(--cu-gray-50) !important;
+}
+
+.bg-gray-60 {
+    background-color: var(--cu-gray-60) !important;
+}
+
+.bg-gray-70 {
+    background-color: var(--cu-gray-70) !important;
+}
+
+.bg-gray-80 {
+    background-color: var(--cu-gray-80) !important;
+}
+
+.bg-gray-90 {
+    background-color: var(--cu-gray-90) !important;
+}
+
+// Transparent
+.bg-transparent {
+    background-color: transparent !important;
+}

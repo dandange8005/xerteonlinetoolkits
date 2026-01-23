@@ -1,0 +1,59 @@
+/**
+ * Box Component
+ *
+ * PURPOSE: Simple container component with padding, borders, and shadows
+ *
+ * USAGE:
+ * - Basic box: <div class="box">Content</div>
+ * - Box with icon: <div class="box box-icon"><i class="fas fa-icon"></i><div>Content</div></div>
+ * - Combine with utility classes for colors: box bg-accent text-white
+ *
+ * VARIANTS:
+ * - .box         - Base box style
+ * - .box-icon    - Flexbox layout for icon + content
+ * - .box__title  - Optional title element within box
+ */
+
+// =============================================================================
+// BOX COMPONENT
+// Simple container with padding, border, and shadow
+// =============================================================================
+
+.box {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color-default);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+    background-color: var(--color-bg-elevated);
+
+    // Box with icon variant
+    &.box-icon {
+        display: flex;
+        gap: var(--spacing-md);
+
+        > i,
+        > span.fas {
+            line-height: inherit;
+        }
+    }
+
+    // Remove bottom margin from last child
+    > *:last-child {
+        margin-bottom: 0;
+    }
+
+    // SVG icon sizing
+    .svg-icon {
+        flex: none;
+        width: var(--spacing-2xl);
+        height: var(--spacing-2xl);
+    }
+}
+
+// Box title element
+.box__title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+}

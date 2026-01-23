@@ -1,0 +1,37 @@
+/**
+ * Cardiff University Theme v2 - Main Entry Point
+ *
+ * This file orchestrates the theme by importing modular SCSS components.
+ * Each module serves a specific purpose:
+ *
+ * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
+ * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
+ * 3. base-elements        - Cardiff University branded element styles
+ * 4. bootstrap-components - Bootstrap component overrides
+ * 5. xerte-components     - Xerte Online Toolkits specific components
+ * 6. custom-components    - Custom Cardiff University components
+ * 7. utilities            - Helper classes and utility functions
+ * 8. layouts              - Page layout and structural components
+ *
+ * VERSION: 2.0
+ * IMPROVEMENTS:
+ * - Added form input zero-config styling
+ * - Added Bootstrap alerts, breadcrumbs, badges, progress bars
+ * - Improved accessibility (focus states, touch targets)
+ * - Fixed link underline accessibility
+ * - Added missing CSS custom properties
+ */
+
+/* Import modular SCSS components - @use must come before @import */
+@use "scss/_allvariables" as *;   // Design tokens and variables
+@use "scss/enhancements";          // Modern CSS enhancements (portable)
+@use "scss/base-elements";         // Cardiff University branded elements
+@use "scss/bootstrap-components";  // Bootstrap component overrides
+@use "scss/xerte-components";      // Xerte-specific components
+@use "scss/custom-components";     // Custom Cardiff University components
+@use "scss/utilities";             // Utility classes
+@use "scss/layouts";               // Layout components
+@use "scss/editorstyles";          // CKEditor custom styles
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');

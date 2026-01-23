@@ -1,0 +1,294 @@
+/**
+ * Layout Styles
+ *
+ * Styles for structural layout components:
+ * - Header & Jumbotron
+ * - Main Navigation
+ * - Side Navigation
+ * - Footer
+ * Uses Cardiff University design tokens
+ */
+
+// =============================================================================
+// HEADER & JUMBOTRON
+// =============================================================================
+
+.jumbotron {
+  background: var(--cu-gray-90);
+  background-image: linear-gradient(135deg, var(--cu-gray-80) 0%, var(--cu-gray-90) 100%);
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  background-size: cover;
+  color: var(--cu-white);
+  position: relative;
+  isolation: isolate;
+
+  // Transparent overlay above background
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5); // 50% black overlay - adjust opacity as needed
+    z-index: -1;
+  }
+}
+
+// Logo container
+#overview.logoL .logoL {
+  margin-top: 0;
+}
+
+// Logo image sizing
+.logo.logoL.themeLogo {
+  max-width: 90px;
+  width: 100%;
+  height: auto;
+}
+
+// Flex container for logo and titles
+#overview.logoL .container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.titles {
+  padding: 0;
+}
+
+#pageTitle {
+  font-family: var(--font-primary-heading);
+  color: var(--color-text-inverse);
+  line-height: var(--line-height-tight);
+  letter-spacing: 1px;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-top: 0;
+}
+
+#pageSubTitle {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-inverse);
+  padding-top: var(--spacing-xs);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-tight);
+  margin-bottom: 0;
+}
+
+// =============================================================================
+// MAIN NAVIGATION
+// =============================================================================
+
+.navbar {
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.navbar-inverse .navbar-inner {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  background: var(--cu-gray-20);
+  background-color: var(--cu-gray-20);
+  background-image: none;
+  background-repeat: repeat-x;
+  border-color: var(--cu-gray-20);
+  box-shadow: none;
+  border: 0;
+}
+
+// Navbar collapse (for mobile)
+
+.navbar-inverse .nav-collapse .nav > li > a,
+.navbar-inverse .nav-collapse .dropdown-menu a,
+.navbar-inverse .brand,
+.navbar-inverse .nav > li > a {
+  color: var(--cu-gray-80);
+  text-shadow: none;
+  border-radius: 0;
+  transition: 0.25s ease-in-out;
+}
+
+// Top navbar text colour when hover or focused
+.navbar-inverse .nav-collapse .nav > li > a:hover,
+.navbar-inverse .nav-collapse .nav > li > a:focus,
+.navbar-inverse .nav-collapse .dropdown-menu a:hover,
+.navbar-inverse .nav-collapse .dropdown-menu a:focus,
+.navbar-inverse .brand:hover,
+.navbar-inverse .nav > li > a:hover {
+  background-color: var(--cu-white);
+  color: var(--color-brand-primary);
+  box-sizing: border-box;
+}
+
+// Active nav item styling
+.navbar .nav > li.activePage > a,
+.navbar .nav > li.activePage > a:hover {
+  background-color: var(--cu-white);
+  text-decoration: none;
+  color: var(--color-brand-primary);
+  box-shadow: inset 0 -2px 0 0 var(--color-brand-primary);
+}
+
+// Navbar on top
+
+.navbar.navbar-fixed-top {
+  margin-bottom: 0;
+}
+
+// =============================================================================
+// SIDE NAVIGATION
+// =============================================================================
+
+.nav-list > .active > a,
+.nav-list > .active > a:hover,
+.nav-list > .active > a:focus {
+  background: var(--color-brand-primary);
+  background-color: var(--color-brand-primary);
+}
+
+.nav-list > li > a {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  text-shadow: none;
+}
+
+.nav-list .nav-header {
+  text-shadow: none;
+}
+
+// Table of Contents (Sidebar)
+.bs-docs-sidenav {
+  background-color: var(--cu-white);
+  border-radius: var(--radius-md);
+
+  > li > a {
+    color: var(--color-text-primary);
+  }
+
+  > li:first-child > a {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  > li:last-child > a {
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+
+  > .active > a {
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+    box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  }
+
+  > li > a:hover {
+    background-color: var(--color-bg-body);
+  }
+
+  a:hover .icon-chevron-right {
+    opacity: 0.5;
+  }
+
+  .active .icon-chevron-right,
+  .active a:hover .icon-chevron-right {
+    opacity: 1;
+  }
+}
+
+// =============================================================================
+// FOOTER
+// =============================================================================
+
+.footer {
+  padding-block: var(--spacing-xl);
+  position: relative;
+  background-color: var(--cu-gray-80);
+  border: 0;
+  color: var(--cu-white);
+
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   width: 100vw;
+  //   height: 100%;
+  //   left: calc(-50vw + 50%);
+  //   z-index: -1;
+  //   top: 0;
+  //   background-color: var(--color-brand-secondary);
+  //   background-image: linear-gradient(3deg, var(--color-brand-secondary) 0%, var(--color-brand-secondary) 100%);
+  // }
+
+  p {
+    margin-bottom: 0;
+    text-align: center;
+    color: var(--cu-white);
+  }
+
+  a {
+    color: var(--cu-white);
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      color: var(--cu-white);
+    }
+  }
+}
+
+.footer-logo {
+  max-width: 250px;
+  height: auto;
+  margin: auto;
+}
+
+// =============================================================================
+// FEEDBACK BUTTON
+// =============================================================================
+
+// Vertical Feedback button for the project
+#feedback_button {
+  writing-mode: vertical-lr;
+  background: var(--color-brand-primary);
+  color: var(--cu-white);
+  padding-inline: 16px;
+  padding-block: 4px;
+  padding-block-end: 8px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  right: 0;
+  top: 62%;
+  z-index: 1000;
+  transform: translateX(10px);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform 300ms ease-in-out;
+  box-shadow: -2px 9px 20px 4px rgba(0, 0, 0, 0.1);
+  font-weight: var(--font-weight-bold);
+
+  &:hover {
+    transform: translateX(2px);
+  }
+
+  i {
+    transform: rotate(90deg);
+    margin-inline-end: var(--spacing-xs);
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: var(--cu-white);
+  }
+}
+
+// =============================================================================
+// ALTERNATING SECTION BACKGROUNDS
+// =============================================================================
+
+.evenSection {
+    background: #ffffff;
+}
+
+.oddSection {
+    background: #f9f9f9;
+}

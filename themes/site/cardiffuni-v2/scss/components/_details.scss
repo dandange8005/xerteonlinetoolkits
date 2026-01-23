@@ -1,0 +1,104 @@
+/**
+ * Details Component
+ *
+ * PURPOSE: Native HTML <details> disclosure widget styling (accordion-like)
+ *
+ * USAGE:
+ * <details class="details">
+ *   <summary class="details__summary">Click to expand</summary>
+ *   <div class="details__text">
+ *     <p>Hidden content that expands when clicked</p>
+ *   </div>
+ * </details>
+ *
+ * ELEMENTS:
+ * - .details          - Container element
+ * - .details__summary - Clickable heading/toggle
+ * - .details__text    - Expanded content area
+ *
+ * FEATURES:
+ * - Animated triangle indicator (points right when closed, down when open)
+ * - Focus states for accessibility
+ * - Border on expanded content
+ */
+
+// =============================================================================
+// DETAILS COMPONENT
+// Native HTML disclosure widget with custom styling
+// =============================================================================
+
+.details {
+    display: block;
+
+    // The clickable summary/heading
+    &__summary {
+        color: var(--color-link-default);
+        cursor: pointer;
+        display: inline-block;
+        padding-left: var(--spacing-xl);
+        position: relative;
+        text-decoration: underline;
+
+        // Hide default browser triangle
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        // Custom triangle indicator (closed state - points right)
+        &::before {
+            bottom: 0;
+            content: "";
+            left: 0;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-color: transparent;
+            clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+            border-width: 7px 0 7px 12.124px;
+            border-left-color: inherit;
+        }
+
+        // Hover state
+        &:hover {
+            text-decoration: none;
+        }
+
+        // Focus state (accessibility)
+        &:focus {
+            background-color: var(--color-accent-gold);
+            box-shadow: 0 -2px var(--color-accent-gold), 0 4px var(--cu-gray-90);
+            color: var(--cu-gray-90);
+            outline: 4px solid transparent;
+            text-decoration: none;
+        }
+    }
+
+    // Open state - triangle points down
+    &[open] > .details__summary::before {
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-color: transparent;
+        clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+        border-width: 12.124px 7px 0 7px;
+        border-top-color: inherit;
+    }
+
+    // Content area (expanded text)
+    &__text {
+        border-left: 4px solid var(--border-color-default);
+        margin-top: var(--spacing-sm);
+        padding: var(--spacing-md);
+        padding-left: var(--spacing-lg);
+
+        // Flow spacing for child elements
+        > *:where(:not(:first-child)) {
+            margin-top: var(--spacing-md);
+        }
+    }
+}
