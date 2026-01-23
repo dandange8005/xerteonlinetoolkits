@@ -7,7 +7,7 @@
     }
   ],
   "liveSassCompile.settings.includeItems": [
-    "themes/site/cardiffuni/**/*.scss"
+    "themes/site/cardiffuni-v2/**/*.scss"
   ],
   "liveSassCompile.settings.generateMap": true,
   "liveSassCompile.settings.autoprefix": [
