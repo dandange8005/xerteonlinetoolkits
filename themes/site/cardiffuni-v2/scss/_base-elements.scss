@@ -50,8 +50,8 @@ body {
 // ACCESSIBILITY: Links must be underlined to be distinguishable from text (WCAG 2.1)
 a:where(:not(.button):not(.btn):not(.nav-link)) {
     color: var(--color-link-default);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    // text-decoration: underline;
+    // text-underline-offset: 2px;
 
     &:visited {
         color: var(--color-link-visited);
@@ -59,8 +59,8 @@ a:where(:not(.button):not(.btn):not(.nav-link)) {
 
     &:hover {
         color: var(--color-link-hover);
-        text-decoration: underline;
-        text-decoration-thickness: 2px; // Thicker underline on hover for feedback
+        text-decoration: none !important;
+        // text-decoration-thickness: 2px; // Thicker underline on hover for feedback
     }
 
     &:focus-visible {

@@ -1,4 +1,12 @@
-/* Cardiff Test Style - CKEditor custom style */
+/* CKEditor custom style
+
+This is where you can define styles that will be available
+   within the CKEditor content editor to style content blocks.
+*/
+
+
+// Cardiff Test Style - for demonstration purposes
+
 .cardiff-test-style {
   padding: var(--spacing-md, 1rem);
   background: var(--cu-primary-red, #E4251B);

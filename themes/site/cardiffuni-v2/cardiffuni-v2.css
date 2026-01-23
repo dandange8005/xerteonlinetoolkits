@@ -1,0 +1,3636 @@
+@charset "UTF-8";
+/**
+ * Cardiff University Theme v2 - Main Entry Point
+ *
+ * This file orchestrates the theme by importing modular SCSS components.
+ * Each module serves a specific purpose:
+ *
+ * 1. _allvariables        - Design tokens (colors, spacing, typography scales)
+ * 2. enhancements         - Theme-agnostic modern CSS improvements (portable)
+ * 3. base-elements        - Cardiff University branded element styles
+ * 4. bootstrap-components - Bootstrap component overrides
+ * 5. xerte-components     - Xerte Online Toolkits specific components
+ * 6. custom-components    - Custom Cardiff University components
+ * 7. utilities            - Helper classes and utility functions
+ * 8. layouts              - Page layout and structural components
+ *
+ * VERSION: 2.0
+ * IMPROVEMENTS:
+ * - Added form input zero-config styling
+ * - Added Bootstrap alerts, breadcrumbs, badges, progress bars
+ * - Improved accessibility (focus states, touch targets)
+ * - Fixed link underline accessibility
+ * - Added missing CSS custom properties
+ */
+/* Import modular SCSS components - @use must come before @import */
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+/**
+ * Cardiff University Theme Variables
+ *
+ * This file defines CSS custom properties for runtime customization.
+ * No intermediate SCSS variables - just pure CSS custom properties.
+ *
+ * ARCHITECTURE:
+ * - CSS custom properties defined in :root
+ * - Components use var() to reference these properties
+ * - Users can override at runtime without recompiling
+ *
+ * TO CUSTOMIZE:
+ * Override CSS variables in your HTML or with JavaScript:
+ * <style>
+ *   :root {
+ *     --color-brand-primary: #your-color;
+ *     --spacing-lg: 32px;
+ *   }
+ * </style>
+ */
+:root {
+  --cu-primary-red: #E4251B;
+  --cu-white: #FFFFFF;
+  --cu-black: #121212;
+  --cu-gray-10: #F2F2F2;
+  --cu-gray-20: #E5E5E5;
+  --cu-gray-30: #CCCCCC;
+  --cu-gray-40: #B3B3B3;
+  --cu-gray-50: #999999;
+  --cu-gray-60: #808080;
+  --cu-gray-70: #666666;
+  --cu-gray-80: #4C4C4C;
+  --cu-gray-90: #333333;
+  --cu-forest-green: #07873E;
+  --cu-cadet: #5EB99B;
+  --cu-stone: #C9C2BA;
+  --cu-light-blue: #1E90FF;
+  --cu-royal-blue: #4A42FF;
+  --cu-midnight-blue: #273573;
+  --cu-midnight-purple: #26192C;
+  --cu-orange: #E9761E;
+  --cu-yellow: #FFB300;
+  --cu-yellow-green: #85C041;
+  --cu-indigo: #570185;
+  --cu-dark-violet: #D401C5;
+  --color-text-primary: var(--cu-black);
+  --color-text-inverse: var(--cu-white);
+  --color-text-hint: var(--cu-primary-red);
+  --color-text-alert: var(--cu-primary-red);
+  --color-text-on-light: var(--cu-black);
+  --color-text-on-dark: var(--cu-white);
+  --color-text-on-brand: var(--cu-white);
+  --color-brand-primary: var(--cu-primary-red);
+  --color-brand-secondary: var(--cu-black);
+  --color-link-default: #045bc6;
+  --color-link-hover: #033a8a;
+  --color-link-visited: #551A8B;
+  --color-accent-green: var(--cu-forest-green);
+  --color-accent-blue: var(--cu-light-blue);
+  --color-accent-orange: var(--cu-orange);
+  --color-bg-body: #f9fafb;
+  --color-bg-page: var(--cu-white);
+  --color-bg-panel: var(--cu-gray-70);
+  --font-primary-body: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-primary-heading: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-secondary: "Darby Serif", Georgia, "Times New Roman", Times, serif;
+  --font-size-xs: clamp(0.75rem, 0.70rem + 0.25vw, 0.8125rem);
+  --font-size-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
+  --font-size-base: clamp(0.875rem, 0.80rem + 0.375vw, 1rem);
+  --font-size-md: clamp(1rem, 0.90rem + 0.5vw, 1.125rem);
+  --font-size-lg: clamp(1.125rem, 1.00rem + 0.625vw, 1.25rem);
+  --font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);
+  --font-size-2xl: clamp(1.5rem, 1.30rem + 1vw, 1.875rem);
+  --font-size-3xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);
+  --font-size-4xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-loose: 1.75;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 80px;
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-pill: 999px;
+  --radius-image: var(--radius-md);
+  --border-width-sm: 1px;
+  --border-width-md: 2px;
+  --border-width-lg: 4px;
+  --border-color-default: var(--cu-gray-30);
+  --border-color-light: var(--cu-gray-20);
+  --border-color-dark: var(--cu-gray-40);
+  --shadow-none: none;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --animation-fast: 150ms;
+  --animation-medium: 300ms;
+  --animation-slow: 500ms;
+  --animation-easing: ease-in-out;
+  --animation-easing-in: ease-in;
+  --animation-easing-out: ease-out;
+  --focus-ring-color: #fdcd0d;
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+  --focus-ring-style: solid;
+  --focus-ring: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color);
+  --z-index-dropdown: 200;
+  --z-index-sticky: 100;
+  --z-index-modal: 400;
+  --z-index-overlay: 300;
+  --ratio-widescreen: 16 / 9;
+  --ratio-standard: 4 / 3;
+  --ratio-ultrawide: 21 / 9;
+  --ratio-square: 1 / 1;
+  --ratio-portrait: 9 / 16;
+  --color-brand-primary-lighter: color-mix(in srgb, var(--color-brand-primary) 40%, white 60%);
+  --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 70%, white 30%);
+  --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 70%, black 30%);
+  --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 40%, black 60%);
+  --color-brand-secondary-lighter: color-mix(in srgb, var(--color-brand-secondary) 30%, white);
+  --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
+  --color-brand-secondary-dark: color-mix(in srgb, var(--color-brand-secondary) 15%, black);
+  --color-brand-secondary-darker: color-mix(in srgb, var(--color-brand-secondary) 30%, black);
+  --color-accent-green-light: color-mix(in srgb, var(--color-accent-green) 20%, white);
+  --color-accent-green-dark: color-mix(in srgb, var(--color-accent-green) 20%, black);
+  --color-accent-blue-light: color-mix(in srgb, var(--color-accent-blue) 20%, white);
+  --color-accent-blue-dark: color-mix(in srgb, var(--color-accent-blue) 20%, black);
+  --color-accent-orange-light: color-mix(in srgb, var(--color-accent-orange) 20%, white);
+  --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 20%, black);
+  --color-bg-subtle: color-mix(in srgb, var(--color-bg-body) 50%, white);
+  --color-bg-muted: color-mix(in srgb, var(--color-bg-body) 50%, var(--cu-gray-20));
+  --color-bg-elevated: var(--cu-white);
+  --color-text-subtle: color-mix(in srgb, var(--color-text-primary) 60%, var(--cu-gray-50));
+  --color-text-muted: color-mix(in srgb, var(--color-text-primary) 40%, var(--cu-gray-40));
+}
+
+/**
+ * Theme Enhancements & CSS Reset
+ *
+ * PURPOSE: Modern CSS reset and theme-agnostic improvements
+ *
+ * This module provides:
+ * 1. CSS Reset - Normalize browser defaults for consistency
+ * 2. Font rendering improvements (anti-aliasing, smoothing)
+ * 3. Modern text wrapping for better typography
+ * 4. Accessibility support (reduced motion preferences)
+ * 5. Progressive enhancements that don't conflict with Bootstrap
+ *
+ * NOTE: This file is portable and can be reused across different themes
+ * without modification. It contains NO Cardiff University specific styling.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+picture,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+  padding: 0;
+}
+
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/**
+ * Base Element Styles
+ *
+ * PURPOSE: Cardiff University branded styling for HTML elements
+ *
+ * This module defines the visual appearance of core HTML elements following
+ * a logical document structure hierarchy:
+ *
+ * 1. Document-level elements (body, links)
+ * 2. Typography (headings, paragraphs, blockquotes)
+ * 3. Lists
+ * 4. Tables
+ * 5. Media (images, figures, iframes)
+ * 6. Structural elements (sections, horizontal rules)
+ *
+ * NOTE: This file is Cardiff University specific. When updating brand
+ * guidelines or creating new themes, this is the primary file to modify.
+ */
+body {
+  font-family: var(--font-primary-body);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-body);
+  line-height: var(--line-height-normal);
+}
+
+a:where(:not(.button):not(.btn):not(.nav-link)) {
+  color: var(--color-link-default);
+}
+a:where(:not(.button):not(.btn):not(.nav-link)):visited {
+  color: var(--color-link-visited);
+}
+a:where(:not(.button):not(.btn):not(.nav-link)):hover {
+  color: var(--color-link-hover);
+  text-decoration: none !important;
+}
+a:where(:not(.button):not(.btn):not(.nav-link)):focus-visible {
+  outline: var(--focus-ring, 3px solid #fdcd0d);
+  outline-offset: var(--focus-ring-offset, 2px);
+  border-radius: var(--radius-sm);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary-heading);
+  font-weight: var(--font-weight-bold);
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+  line-height: var(--line-height-tight);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-tight);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-tight);
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-normal);
+}
+
+h5 {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+}
+
+h6 {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.page-header {
+  margin-top: 0;
+}
+
+h2.sectionTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-light);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-brand-primary);
+  margin-top: var(--spacing-xl);
+}
+h2.sectionTitle p {
+  margin-bottom: 0 !important;
+}
+
+h3.contentTitle {
+  font-size: var(--font-size-xl);
+}
+
+blockquote {
+  font-family: var(--font-primary-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  font-size: var(--font-size-base);
+  margin: var(--spacing-xl) 0;
+  margin-left: 0;
+  padding: var(--spacing-md);
+  background: none;
+  border: none;
+  border-left: 3px solid var(--cu-gray-90);
+  max-inline-size: 70ch;
+}
+blockquote::before, blockquote::after {
+  content: none;
+}
+blockquote .quote::before {
+  content: open-quote;
+}
+blockquote .quote::after {
+  content: close-quote;
+}
+
+cite {
+  font-style: italic;
+}
+
+.source {
+  font-size: var(--font-size-sm);
+  color: var(--cu-gray-60);
+  text-align: right;
+}
+
+section ul,
+section ol,
+.footer ul,
+.footer ol {
+  padding: 0;
+  margin-left: var(--spacing-xl);
+  display: grid;
+  gap: var(--spacing-sm);
+}
+section li,
+.footer li {
+  line-height: var(--line-height-normal);
+}
+section ul li,
+section ol li,
+.footer ul li,
+.footer ol li {
+  padding-left: var(--spacing-sm);
+}
+section li ul,
+section li ol,
+.footer li ul,
+.footer li ol {
+  margin-top: var(--spacing-sm);
+}
+section dl,
+.footer dl {
+  display: grid;
+  gap: var(--spacing-sm);
+}
+section dt,
+.footer dt {
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
+}
+section dd,
+.footer dd {
+  margin-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.list-none {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-icon {
+  list-style: none;
+  margin-left: 0;
+}
+.list-icon li span {
+  margin-right: 10px;
+  color: var(--color-brand-primary);
+  font-size: inherit;
+}
+
+.list-counter {
+  counter-reset: orderedlist;
+  list-style-type: none;
+  margin-left: var(--spacing-sm);
+}
+.list-counter li {
+  position: relative;
+  padding-left: var(--spacing-xl);
+}
+.list-counter li::before {
+  counter-increment: orderedlist;
+  content: counter(orderedlist);
+  width: var(--spacing-lg);
+  height: var(--spacing-lg);
+  background: var(--cu-gray-80);
+  color: var(--color-text-on-brand);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+table {
+  width: 100%;
+  background: var(--cu-white);
+  border-collapse: collapse;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  font-size: var(--font-size-sm);
+  border: 1px solid var(--cu-gray-20);
+}
+table caption {
+  text-align: left;
+  color: var(--cu-gray-60);
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-md) 0;
+  caption-side: top;
+}
+table th,
+table td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--cu-gray-20);
+}
+table th {
+  font-weight: var(--font-weight-bold);
+  color: var(--cu-gray-80);
+}
+table tbody tr {
+  transition: background-color 0.2s ease;
+}
+table tbody tr:hover {
+  background: var(--cu-gray-10);
+}
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+thead {
+  background: var(--cu-gray-10);
+  border-bottom: 2px solid var(--cu-gray-30);
+}
+thead th {
+  font-weight: var(--font-weight-bold);
+  color: var(--cu-gray-90);
+  text-transform: uppercase;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.5px;
+}
+
+code {
+  font-family: "Monaco", "Menlo", "Consolas", "Courier New", monospace;
+  font-size: 0.9em;
+  padding: 0.2em 0.4em;
+  background: var(--cu-gray-10);
+  color: var(--color-brand-primary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--cu-gray-20);
+}
+
+pre {
+  font-family: "Monaco", "Menlo", "Consolas", "Courier New", monospace;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  padding: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+  background: var(--cu-gray-90);
+  color: var(--cu-gray-10);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  box-shadow: var(--shadow-md);
+  border-left: 4px solid var(--color-brand-primary);
+}
+pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  border: none;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+kbd {
+  font-family: "Monaco", "Menlo", "Consolas", "Courier New", monospace;
+  font-size: 0.875em;
+  padding: 0.2em 0.5em;
+  background: var(--cu-gray-80);
+  color: var(--cu-white);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--cu-gray-60);
+  box-shadow: 0 2px 0 var(--cu-gray-70), 0 3px 1px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  line-height: 1;
+}
+
+samp {
+  font-family: "Monaco", "Menlo", "Consolas", "Courier New", monospace;
+  font-size: 0.9em;
+  padding: 0.2em 0.4em;
+  background: var(--cu-gray-10);
+  color: var(--cu-gray-80);
+  border-radius: var(--radius-sm);
+}
+
+label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=url],
+input[type=number],
+input[type=date],
+input[type=time],
+input[type=datetime-local],
+textarea {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--cu-white);
+  border: 2px solid var(--border-color-default);
+  border-radius: var(--radius-md);
+  transition: border-color var(--animation-fast) var(--animation-easing), box-shadow var(--animation-fast) var(--animation-easing);
+}
+input[type=text]::placeholder,
+input[type=email]::placeholder,
+input[type=password]::placeholder,
+input[type=search]::placeholder,
+input[type=tel]::placeholder,
+input[type=url]::placeholder,
+input[type=number]::placeholder,
+input[type=date]::placeholder,
+input[type=time]::placeholder,
+input[type=datetime-local]::placeholder,
+textarea::placeholder {
+  color: var(--cu-gray-50);
+  opacity: 1;
+}
+input[type=text]:hover:not(:disabled),
+input[type=email]:hover:not(:disabled),
+input[type=password]:hover:not(:disabled),
+input[type=search]:hover:not(:disabled),
+input[type=tel]:hover:not(:disabled),
+input[type=url]:hover:not(:disabled),
+input[type=number]:hover:not(:disabled),
+input[type=date]:hover:not(:disabled),
+input[type=time]:hover:not(:disabled),
+input[type=datetime-local]:hover:not(:disabled),
+textarea:hover:not(:disabled) {
+  border-color: var(--cu-gray-50);
+}
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=search]:focus,
+input[type=tel]:focus,
+input[type=url]:focus,
+input[type=number]:focus,
+input[type=date]:focus,
+input[type=time]:focus,
+input[type=datetime-local]:focus,
+textarea:focus {
+  outline: var(--focus-ring, 3px solid #fdcd0d);
+  outline-offset: 0;
+  border-color: var(--color-brand-primary);
+}
+input[type=text]:disabled,
+input[type=email]:disabled,
+input[type=password]:disabled,
+input[type=search]:disabled,
+input[type=tel]:disabled,
+input[type=url]:disabled,
+input[type=number]:disabled,
+input[type=date]:disabled,
+input[type=time]:disabled,
+input[type=datetime-local]:disabled,
+textarea:disabled {
+  background-color: var(--cu-gray-10);
+  color: var(--cu-gray-50);
+  cursor: not-allowed;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+select {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  padding-right: var(--spacing-xl);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--cu-white);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-sm) center;
+  border: 2px solid var(--border-color-default);
+  border-radius: var(--radius-md);
+  appearance: none;
+  cursor: pointer;
+}
+select:hover:not(:disabled) {
+  border-color: var(--cu-gray-50);
+}
+select:focus {
+  outline: var(--focus-ring, 3px solid #fdcd0d);
+  outline-offset: 0;
+  border-color: var(--color-brand-primary);
+}
+select:disabled {
+  background-color: var(--cu-gray-10);
+  color: var(--cu-gray-50);
+  cursor: not-allowed;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  width: 20px;
+  height: 20px;
+  margin-right: var(--spacing-sm);
+  accent-color: var(--color-brand-primary);
+  cursor: pointer;
+}
+input[type=checkbox]:focus-visible,
+input[type=radio]:focus-visible {
+  outline: var(--focus-ring, 3px solid #fdcd0d);
+  outline-offset: var(--focus-ring-offset, 2px);
+}
+
+fieldset {
+  border: 1px solid var(--border-color-default);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+legend {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  padding: 0 var(--spacing-sm);
+  color: var(--color-text-primary);
+}
+
+input:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown),
+select:invalid {
+  border-color: var(--cu-primary-red);
+}
+
+label.required::after {
+  content: " *";
+  color: var(--cu-primary-red);
+}
+
+img.pull-right {
+  margin: 0 0 1em 1em;
+  float: right;
+}
+img.pull-left {
+  margin: 0 1em 1em 0;
+  float: left;
+}
+
+figure {
+  max-width: max-content;
+}
+
+figcaption {
+  background: var(--cu-gray-20);
+  color: var(--cu-gray-80);
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs);
+  caption-side: bottom;
+}
+
+.video-720 {
+  max-height: 405px;
+  max-width: 720px;
+}
+
+.iframe-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--ratio-widescreen);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-lg);
+}
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.iframe-container--widescreen {
+  aspect-ratio: var(--ratio-widescreen);
+}
+.iframe-container--standard {
+  aspect-ratio: var(--ratio-standard);
+}
+.iframe-container--ultrawide {
+  aspect-ratio: var(--ratio-ultrawide);
+}
+.iframe-container--square {
+  aspect-ratio: var(--ratio-square);
+}
+.iframe-container--portrait {
+  aspect-ratio: var(--ratio-portrait);
+}
+.iframe-container--xerte, .iframe-container--h5p {
+  border: 4px solid var(--border-color-default);
+}
+.iframe-container--xerte {
+  aspect-ratio: var(--ratio-standard);
+}
+.iframe-container__caption {
+  background: var(--cu-gray-10);
+  color: var(--color-text-primary);
+  font-style: italic;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs);
+  margin-top: 0;
+}
+
+section {
+  margin-bottom: var(--spacing-3xl);
+}
+section > *:where(:not(:last-child)) {
+  margin-bottom: var(--spacing-lg);
+}
+section h3,
+section h4 {
+  margin-bottom: var(--spacing-md);
+}
+section h3 {
+  margin-top: var(--spacing-2xl);
+}
+section h4 {
+  margin-top: var(--spacing-xl);
+}
+section p:not(:last-child) {
+  margin-bottom: var(--spacing-md);
+}
+
+.footer h3 {
+  margin-bottom: var(--spacing-md);
+}
+
+hr {
+  background-color: var(--border-color-default);
+  border: 0;
+  height: var(--border-width-md);
+  margin-block: var(--spacing-3xl);
+}
+
+/**
+ * Bootstrap Component Overrides
+ *
+ * PURPOSE: Cardiff University branded overrides for Bootstrap components
+ *
+ * This module customizes Bootstrap UI components with Cardiff University branding:
+ * - Navigation components (tabs, pills, accordions, carousels)
+ * - Content containers (panels, wells)
+ * - Tables (striped table styling)
+ * - Typography (lead text)
+ *
+ * NOTE: These styles override Bootstrap's default component styling.
+ * Only Bootstrap-specific component classes should be added here.
+ */
+ul.nav-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: var(--spacing-sm);
+  column-gap: 0;
+  margin-bottom: 0;
+  padding-inline: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--cu-gray-30);
+  background: transparent;
+}
+
+.nav-tabs > li {
+  margin-bottom: 0;
+}
+
+.nav-tabs > li > a {
+  display: block;
+  padding: var(--spacing-xs) var(--spacing-md);
+  color: var(--cu-gray-60);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  margin-bottom: -1px;
+  transition: all var(--animation-fast) var(--animation-easing);
+}
+
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+  color: var(--color-text-primary);
+  background-color: transparent;
+  border-bottom-color: var(--cu-gray-40);
+  text-decoration: none;
+}
+
+.nav-tabs > li > a:focus-visible {
+  outline: var(--focus-ring, 3px solid #fdcd0d);
+  outline-offset: var(--focus-ring-offset, 2px);
+  border-radius: var(--radius-sm);
+}
+
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover,
+.nav-tabs > .active > a:focus {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid var(--color-brand-secondary);
+  cursor: default;
+  outline: none;
+  box-shadow: none;
+}
+
+.nav-tabs + .tab-content {
+  background: var(--cu-white);
+  padding: var(--spacing-md);
+  border: none;
+}
+
+.tab-pane {
+  padding-inline: 0;
+  font-size: var(--font-size-sm);
+}
+
+.tab-pane > :first-child {
+  margin-top: 0;
+}
+
+.tab-pane > *:where(:not(:last-child)) {
+  margin-bottom: var(--spacing-lg);
+}
+
+ul.nav-pills {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  padding-inline: 0;
+  list-style: none;
+}
+
+.nav-pills > li > a {
+  display: block;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  color: var(--color-brand-secondary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid var(--color-brand-secondary);
+  border-radius: var(--radius-md);
+  transition: all var(--animation-fast) var(--animation-easing);
+}
+
+.nav-pills > li:not(.active) > a:hover,
+.nav-pills > li:not(.active) > a:focus {
+  color: var(--cu-white);
+  background-color: var(--color-brand-secondary);
+  border-color: var(--color-brand-secondary);
+  text-decoration: none;
+}
+
+.nav-pills > li > a:focus-visible {
+  outline: var(--focus-ring, 3px solid #fdcd0d);
+  outline-offset: var(--focus-ring-offset, 2px);
+}
+
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover,
+.nav-pills > .active > a:focus {
+  color: var(--cu-white);
+  background-color: var(--color-brand-secondary);
+  border-color: var(--color-brand-secondary);
+  cursor: default;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Accordions */
+.navigator.accordion {
+  margin-block: var(--spacing-xl);
+}
+
+.accordion-group {
+  overflow: clip;
+}
+
+.accordion-heading .accordion-toggle {
+  display: flex;
+  align-items: center;
+  padding-right: 2rem;
+  position: relative;
+}
+
+.accordion-heading a,
+a.accordion-toggle {
+  color: var(--cu-gray-80);
+  font-weight: var(--font-weight-medium);
+}
+
+a.accordion-toggle:hover,
+a.accordion-toggle:focus {
+  color: var(--color-brand-secondary-dark);
+  background-color: var(--cu-gray-10);
+  text-decoration: none;
+}
+
+a.accordion-toggle:focus-visible {
+  outline: var(--focus-ring, 3px solid #fdcd0d);
+  outline-offset: var(--focus-ring-offset, 2px);
+}
+
+a.accordion-toggle::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f054";
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  right: 0.75rem;
+  vertical-align: middle;
+  position: absolute;
+  transition: transform var(--animation-medium) var(--animation-easing);
+  transform: rotate(0deg) !important;
+}
+
+a.accordion-toggle[aria-expanded=true]::after {
+  transform: rotate(90deg) !important;
+}
+
+.accordion-inner {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--cu-white);
+  font-size: var(--font-size-sm);
+}
+
+.accordion-inner > :first-child {
+  margin-top: 0;
+}
+
+.accordion-inner > *:where(:not(:last-child)) {
+  margin-bottom: var(--spacing-lg);
+}
+
+:root {
+  --carousel-control-size: 2.5rem;
+  --carousel-control-icon-size: 1.25rem;
+  --carousel-control-bg: var(--cu-gray-80);
+  --carousel-control-bg-hover: rgba(0, 0, 0, 0.6);
+  --carousel-control-icon-color: var(--cu-gray-70);
+  --carousel-control-icon-color-hover: var(--cu-gray-90);
+  --carousel-indicator-width: 2rem;
+  --carousel-indicator-height: 3px;
+  --carousel-indicator-color: rgba(255, 255, 255, 0.5);
+  --carousel-indicator-color-active: var(--cu-white);
+  --carousel-indicator-color-hover: rgba(255, 255, 255, 0.8);
+}
+
+.carousel-control {
+  width: var(--carousel-control-size);
+  height: var(--carousel-control-size);
+  background-color: var(--carousel-control-bg);
+  backdrop-filter: blur(8px);
+  font-size: var(--carousel-control-icon-size) !important;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 0;
+  opacity: 0.8;
+  transition: all var(--animation-fast) var(--animation-easing);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: none !important;
+}
+
+.carousel-control:hover,
+.carousel-control:focus {
+  opacity: 1;
+  background-color: var(--carousel-control-bg-hover);
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-control:focus-visible {
+  outline: var(--focus-ring, 3px solid #fdcd0d);
+  outline-offset: var(--focus-ring-offset, 2px);
+}
+
+.carousel-control.left {
+  left: 1rem;
+}
+
+.carousel-control.right {
+  right: 1rem;
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  top: auto;
+  right: auto;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.carousel-indicators li {
+  width: var(--carousel-indicator-width);
+  height: var(--carousel-indicator-height);
+  background-color: var(--carousel-indicator-color);
+  border: none;
+  border-radius: 2px;
+  margin: 0;
+  text-indent: -999px;
+  transition: all var(--animation-fast) var(--animation-easing);
+  cursor: pointer;
+}
+
+.carousel-indicators .active {
+  background-color: var(--carousel-indicator-color-active);
+  opacity: 1;
+}
+
+.carousel-indicators li:hover {
+  background-color: var(--carousel-indicator-color-hover);
+}
+
+.carousel figcaption {
+  position: absolute;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  bottom: 32px;
+  padding: 8px;
+}
+
+.carousel .img-polaroid {
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  position: relative;
+}
+
+.panel {
+  padding-left: 2rem;
+  padding-top: var(--spacing-2xl);
+}
+.panel > *:first-child {
+  margin-top: 0;
+}
+.panel > *:last-child {
+  margin-bottom: 0;
+}
+
+.panel::after {
+  font-size: var(--font-size-sm);
+  padding-inline: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.well {
+  background-color: var(--color-accent-green);
+  border: 1px solid var(--color-accent-green);
+  color: var(--color-text-primary);
+}
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+  background-color: var(--color-accent-green);
+  color: var(--color-text-primary);
+}
+
+.alert {
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  border: 1px solid transparent;
+  border-left: 4px solid;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+.alert::before {
+  margin-right: var(--spacing-sm);
+  font-weight: var(--font-weight-bold);
+}
+.alert strong {
+  font-weight: var(--font-weight-bold);
+}
+.alert p:last-child {
+  margin-bottom: 0;
+}
+.alert .close {
+  float: right;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  color: inherit;
+  opacity: 0.5;
+  text-decoration: none;
+}
+.alert .close:hover, .alert .close:focus {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.alert-success {
+  background-color: color-mix(in srgb, var(--color-accent-green) 10%, white);
+  border-color: color-mix(in srgb, var(--color-accent-green) 30%, white);
+  border-left-color: var(--color-accent-green);
+  color: color-mix(in srgb, var(--color-accent-green) 80%, black);
+}
+.alert-success::before {
+  content: "✓ ";
+}
+
+.alert-info {
+  background-color: color-mix(in srgb, var(--cu-light-blue) 10%, white);
+  border-color: color-mix(in srgb, var(--cu-light-blue) 30%, white);
+  border-left-color: var(--cu-light-blue);
+  color: color-mix(in srgb, var(--cu-light-blue) 80%, black);
+}
+.alert-info::before {
+  content: "ℹ ";
+}
+
+.alert-warning {
+  background-color: color-mix(in srgb, var(--cu-yellow) 15%, white);
+  border-color: color-mix(in srgb, var(--cu-orange) 30%, white);
+  border-left-color: var(--cu-orange);
+  color: color-mix(in srgb, var(--cu-orange) 80%, black);
+}
+.alert-warning::before {
+  content: "⚠ ";
+}
+
+.alert-danger,
+.alert-error {
+  background-color: color-mix(in srgb, var(--cu-primary-red) 10%, white);
+  border-color: color-mix(in srgb, var(--cu-primary-red) 30%, white);
+  border-left-color: var(--cu-primary-red);
+  color: color-mix(in srgb, var(--cu-primary-red) 80%, black);
+}
+.alert-danger::before,
+.alert-error::before {
+  content: "✗ ";
+}
+
+.alert-block {
+  padding: var(--spacing-lg);
+}
+.alert-block > p,
+.alert-block > ul {
+  margin-bottom: var(--spacing-sm);
+}
+.alert-block p + p {
+  margin-top: var(--spacing-sm);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) 0;
+  margin-bottom: var(--spacing-md);
+  list-style: none;
+  background-color: transparent;
+  border-radius: 0;
+  font-size: var(--font-size-sm);
+}
+.breadcrumb > li {
+  display: flex;
+  align-items: center;
+}
+.breadcrumb > li + li::before {
+  content: "/";
+  padding: 0 var(--spacing-sm);
+  color: var(--cu-gray-50);
+}
+.breadcrumb > li > a {
+  color: var(--color-link-default);
+  text-decoration: none;
+}
+.breadcrumb > li > a:hover, .breadcrumb > li > a:focus {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+.breadcrumb > li > a:focus-visible {
+  outline: var(--focus-ring, 3px solid #fdcd0d);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+.breadcrumb > .active {
+  color: var(--cu-gray-60);
+}
+
+.badge,
+.label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25em 0.6em;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  color: var(--cu-white);
+  background-color: var(--cu-gray-60);
+  border-radius: var(--radius-pill);
+}
+
+.label {
+  border-radius: var(--radius-sm);
+}
+
+.badge-success,
+.label-success {
+  background-color: var(--color-accent-green);
+}
+
+.badge-warning,
+.label-warning {
+  background-color: var(--cu-orange);
+  color: var(--cu-black);
+}
+
+.badge-important,
+.label-important,
+.badge-danger,
+.label-danger {
+  background-color: var(--cu-primary-red);
+}
+
+.badge-info,
+.label-info {
+  background-color: var(--cu-light-blue);
+}
+
+.badge-inverse,
+.label-inverse {
+  background-color: var(--cu-black);
+}
+
+.badge:empty,
+.label:empty {
+  display: none;
+}
+
+.progress {
+  height: 20px;
+  overflow: hidden;
+  background-color: var(--cu-gray-20);
+  border-radius: var(--radius-md);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: var(--spacing-md);
+}
+
+.bar,
+.progress-bar {
+  height: 100%;
+  font-size: var(--font-size-xs);
+  line-height: 20px;
+  color: var(--cu-white);
+  text-align: center;
+  background-color: var(--color-brand-primary);
+  transition: width var(--animation-medium) ease;
+}
+
+.bar-success,
+.progress-bar-success {
+  background-color: var(--color-accent-green);
+}
+
+.bar-warning,
+.progress-bar-warning {
+  background-color: var(--cu-orange);
+}
+
+.bar-danger,
+.progress-bar-danger {
+  background-color: var(--cu-primary-red);
+}
+
+.bar-info,
+.progress-bar-info {
+  background-color: var(--cu-light-blue);
+}
+
+.progress-striped .bar,
+.progress-striped .progress-bar {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+
+.progress.active .bar,
+.progress.active .progress-bar {
+  animation: progress-bar-stripes 2s linear infinite;
+}
+
+@keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+.lead {
+  font-size: var(--font-size-xl);
+  color: var(--cu-gray-60);
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-light);
+}
+
+/**
+ * Xerte-Specific Components
+ *
+ * PURPOSE: Cardiff University branded styling for Xerte Online Toolkits components
+ *
+ * This module contains styling for components that are unique to Xerte:
+ * - Alert messages
+ * - Glossary tooltips and links
+ * - Back-to-top navigation button
+ *
+ * NOTE: These components are NOT part of Bootstrap or standard HTML elements.
+ * They are specific to the Xerte Online Toolkits platform.
+ */
+.alertMsg {
+  color: var(--color-text-alert);
+}
+
+a.glossary:link,
+a.glossary:visited,
+a.glossary:hover,
+a.glossary:active {
+  color: var(--color-text-primary);
+}
+
+.glossaryTip {
+  background-color: var(--color-brand-primary);
+  color: var(--cu-white);
+}
+
+.top-round {
+  color: var(--cu-white);
+  background: var(--color-brand-primary);
+}
+.top-round:hover, .top-round:focus {
+  background: var(--color-brand-primary-dark);
+  color: var(--cu-white);
+}
+
+/**
+ * Custom Components
+ *
+ * PURPOSE: Forward all custom component modules for Cardiff University theme
+ *
+ * This file imports all custom-built components from the components/ folder.
+ * Components are organized into logical categories:
+ *
+ * CONTENT COMPONENTS:
+ * - Boxes       - Simple container component with borders and shadows
+ * - Cards       - Content cards with images and metadata
+ * - Callout     - Alert/notice boxes with semantic color variants
+ * - Quotes      - Styled blockquotes with optional imagery
+ *
+ * INTERACTIVE COMPONENTS:
+ * - Buttons     - Button styles for links and button elements
+ * - Details     - Native <details> disclosure widget styling
+ * - Language    - Language switcher toggle
+ *
+ * LIST COMPONENTS:
+ * - Dos & Don'ts - Visual lists showing best practices
+ *
+ * UTILITY COMPONENTS:
+ * - Links       - Specialized link styles (action, external, asset)
+ * - Project Info - Project metadata display
+ *
+ * NOTE: These components use Cardiff University design tokens defined in _allvariables.scss
+ */
+/**
+ * Box Component
+ *
+ * PURPOSE: Simple container component with padding, borders, and shadows
+ *
+ * USAGE:
+ * - Basic box: <div class="box">Content</div>
+ * - Box with icon: <div class="box box-icon"><i class="fas fa-icon"></i><div>Content</div></div>
+ * - Combine with utility classes for colors: box bg-accent text-white
+ *
+ * VARIANTS:
+ * - .box         - Base box style
+ * - .box-icon    - Flexbox layout for icon + content
+ * - .box__title  - Optional title element within box
+ */
+.box {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color-default);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--color-bg-elevated);
+}
+.box.box-icon {
+  display: flex;
+  gap: var(--spacing-md);
+}
+.box.box-icon > i,
+.box.box-icon > span.fas {
+  line-height: inherit;
+}
+.box > *:last-child {
+  margin-bottom: 0;
+}
+.box .svg-icon {
+  flex: none;
+  width: var(--spacing-2xl);
+  height: var(--spacing-2xl);
+}
+
+.box__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+}
+
+/**
+ * Card Component
+ *
+ * PURPOSE: Content card container with image, heading, and description
+ *
+ * USAGE:
+ * - Basic card:
+ *   <div class="card">
+ *     <div class="card__image"><img src="..." alt="..."></div>
+ *     <div class="card__content">
+ *       <h3 class="card__heading">Title</h3>
+ *       <p class="card__description">Description</p>
+ *     </div>
+ *   </div>
+ *
+ * - Clickable card:
+ *   <div class="card card--clickable">
+ *     <div class="card__content">
+ *       <h3><a href="#" class="card__link">Title</a></h3>
+ *     </div>
+ *   </div>
+ *
+ * VARIANTS:
+ * - .card            - Base card style
+ * - .card--clickable - Adds hover effects and arrow icon
+ *
+ * ELEMENTS:
+ * - .card__image       - Image container
+ * - .card__content     - Content wrapper
+ * - .card__heading     - Card title
+ * - .card__metadata    - Optional metadata
+ * - .card__description - Card description text
+ * - .card__link        - Clickable link (makes entire card clickable)
+ */
+.card {
+  background-color: var(--cu-white);
+  border: 1px solid var(--border-color-default);
+  border-radius: var(--radius-md);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.card__content {
+  padding: var(--spacing-lg);
+}
+.card__content > :first-child {
+  margin-top: 0;
+}
+.card__content > :last-child {
+  margin-bottom: 0;
+}
+.card__heading, .card__metadata, .card__description {
+  margin-bottom: var(--spacing-md);
+}
+.card__link {
+  position: initial;
+}
+.card__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.card__image {
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: var(--ratio-widescreen);
+  object-fit: cover;
+  transition: transform var(--animation-medium) var(--animation-easing);
+}
+.card--clickable {
+  border-bottom-width: 3px;
+  padding-bottom: var(--spacing-sm);
+  transition: all var(--animation-medium) var(--animation-easing);
+}
+.card--clickable:hover {
+  box-shadow: var(--shadow-lg);
+}
+.card--clickable:hover .card__image {
+  transform: scale(1.05);
+}
+.card--clickable:hover::after {
+  transform: translateX(5px);
+}
+.card--clickable::after {
+  position: absolute;
+  right: var(--spacing-md);
+  bottom: var(--spacing-sm);
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f061";
+  color: var(--color-link-default);
+  transition: all var(--animation-medium) var(--animation-easing);
+}
+
+/**
+ * Callout Component
+ *
+ * PURPOSE: Alert/notice box with icon and color variants for different message types
+ *
+ * USAGE:
+ * - Basic callout:
+ *   <div class="callout">Default callout message</div>
+ *
+ * - Callout with custom emoji:
+ *   <div class="callout" emoji-data="🎯">Message with custom icon</div>
+ *
+ * - Callout with variants:
+ *   <div class="callout warning">Warning message</div>
+ *   <div class="callout success">Success message</div>
+ *   <div class="callout danger">Error message</div>
+ *   <div class="callout info">Information message</div>
+ *
+ * VARIANTS:
+ * - .callout         - Base callout style (neutral gray)
+ * - .callout.warning - Yellow warning style with ⚠️ icon
+ * - .callout.success - Green success style with ✅ icon
+ * - .callout.danger  - Red error style with ⛔ icon
+ * - .callout.info    - Blue info style with ℹ️ icon
+ */
+.callout {
+  background: var(--cu-gray-10);
+  padding: var(--spacing-md);
+  padding-left: var(--spacing-2xl);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  position: relative;
+}
+.callout::before {
+  content: attr(emoji-data);
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+.callout h4 {
+  font-size: var(--font-size-base);
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+}
+.callout.warning::before {
+  content: "⚠️";
+}
+.callout.success::before {
+  content: "✅";
+}
+.callout.danger::before {
+  content: "⛔️";
+}
+.callout.info::before {
+  content: "ℹ️";
+}
+
+/**
+ * Quote Component
+ *
+ * PURPOSE: Advanced quotation block styles with optional images
+ *
+ * USAGE:
+ * - Basic quote:
+ *   <blockquote class="quote">
+ *     <p>Quote text here</p>
+ *     <p class="quote-author">— Author Name</p>
+ *   </blockquote>
+ *
+ * - Quote with image:
+ *   <blockquote class="quote with-image">
+ *     <img src="..." alt="Author" class="quote-image">
+ *     <p>Quote text here</p>
+ *     <p class="quote-author">— Author Name</p>
+ *   </blockquote>
+ *
+ * VARIANTS:
+ * - .quote          - Base quote style
+ * - .quote.with-image - Quote with author image
+ *
+ * ELEMENTS:
+ * - .quote-image    - Circular author image
+ * - .quote-author   - Author name/attribution
+ *
+ * NOTE: This component is still under development
+ */
+.quote::before, .quote::after {
+  font-family: Georgia, serif;
+  color: var(--cu-gray-40);
+}
+.quote.with-image {
+  padding-left: 150px;
+}
+
+.quote-image {
+  border-radius: var(--radius-pill);
+  aspect-ratio: var(--ratio-square);
+  max-width: 100px;
+  float: left;
+  margin-left: -130px;
+}
+
+.quote-author {
+  margin-top: var(--spacing-md);
+  margin-bottom: 0;
+  font-weight: var(--font-weight-bold);
+}
+
+/**
+ * Button Component - Cardiff University Design System
+ *
+ * PURPOSE: Comprehensive button system with multiple variants and states
+ *
+ * USAGE:
+ * - Filled buttons:
+ *   <button class="button button-primary">Primary</button>
+ *   <button class="button button-secondary">Secondary</button>
+ *   <button class="button button-success">Success</button>
+ *   <button class="button button-reverse">Reverse</button>
+ *
+ * - Outline buttons:
+ *   <button class="button button-primary-outline">Primary Outline</button>
+ *   <button class="button button-secondary-outline">Secondary Outline</button>
+ *   <button class="button button-success-outline">Success Outline</button>
+ *   <button class="button button-reverse-outline">Reverse Outline</button>
+ *
+ * - With icons:
+ *   <button class="button button-primary button-icon-right">
+ *     Next <span class="button__icon"><i class="fas fa-arrow-right"></i></span>
+ *   </button>
+ *
+ * - Icon only:
+ *   <button class="button button-primary button-icon-only">
+ *     <span class="button__icon"><i class="fas fa-search"></i></span>
+ *   </button>
+ *
+ * - Legacy styles (preserved for backward compatibility):
+ *   <a href="#" class="button button--outline">Outline</a>
+ *   <button class="btn-mini"><i class="fas fa-arrow-up"></i></button>
+ *
+ * VARIANTS:
+ * Filled: .button-primary, .button-secondary, .button-success, .button-reverse
+ * Outline: .button-primary-outline, .button-secondary-outline, .button-success-outline, .button-reverse-outline
+ * Icons: .button-icon-left, .button-icon-right, .button-icon-only
+ * Legacy: .button--outline, .button--small, .button--block, .btn-mini
+ */
+:root {
+  --button-primary-bg: var(--color-brand-primary);
+  --button-primary-hover: color-mix(in srgb, var(--color-brand-primary, #C00E0E) 85%, black);
+  --button-primary-active: color-mix(in srgb, var(--color-brand-primary) 85%, black);
+  --button-primary-disabled: color-mix(in srgb, var(--color-brand-primary) 60%, white);
+  --button-primary-text: var(--cu-white);
+  --button-secondary-bg: var(--color-brand-secondary);
+  --button-secondary-hover: color-mix(in srgb, var(--color-brand-secondary, #2e2e2e) 85%, black);
+  --button-secondary-active: color-mix(in srgb, var(--color-brand-secondary) 90%, black);
+  --button-secondary-disabled: color-mix(in srgb, var(--color-brand-secondary) 40%, white);
+  --button-secondary-text: var(--cu-white);
+  --button-success-bg: var(--color-accent-green, #07873e);
+  --button-success-hover: color-mix(in srgb, var(--color-accent-green, #07873e) 85%, black);
+  --button-success-active: color-mix(in srgb, var(--color-accent-green, #07873e) 80%, black);
+  --button-success-disabled: color-mix(in srgb, var(--color-accent-green, #07873e) 50%, white);
+  --button-success-text: var(--cu-white);
+  --button-reverse-bg: #fafafa;
+  --button-reverse-hover: var(--cu-gray-20);
+  --button-reverse-active: var(--cu-gray-30);
+  --button-reverse-disabled: #f5f5f5;
+  --button-reverse-text: var(--cu-black);
+  --button-reverse-disabled-text: var(--cu-gray-50);
+  --button-outline-primary-hover: color-mix(in srgb, var(--color-brand-primary) 10%, white);
+  --button-outline-primary-active: color-mix(in srgb, var(--color-brand-primary) 25%, white);
+  --button-outline-secondary-hover: color-mix(in srgb, var(--color-brand-secondary) 10%, white);
+  --button-outline-secondary-active: color-mix(in srgb, var(--color-brand-secondary) 25%, white);
+  --button-outline-success-hover: color-mix(in srgb, var(--color-accent-green, #07873e) 10%, white);
+  --button-outline-success-active: color-mix(in srgb, var(--color-accent-green, #07873e) 25%, white);
+  --button-outline-reverse-hover: rgba(255, 255, 255, 0.15);
+  --button-outline-reverse-active: rgba(255, 255, 255, 0.25);
+  --button-font-family: var(--font-primary-body);
+  --button-font-weight: var(--font-weight-medium);
+  --button-font-size-mobile: var(--font-size-sm);
+  --button-font-size-desktop: var(--font-size-base);
+  --button-line-height: var(--line-height-base);
+  --button-padding-h-mobile: var(--spacing-md);
+  --button-padding-v-mobile: var(--spacing-sm);
+  --button-padding-h-desktop: var(--spacing-md);
+  --button-padding-v-desktop: var(--spacing-sm);
+  --button-gap: var(--spacing-sm);
+  --button-radius: var(--radius-md);
+  --button-icon-size-mobile: 16px;
+  --button-icon-size-desktop: 20px;
+  --button-border-width: var(--border-width-md);
+  --button-breakpoint: 768px;
+  --color-focus: #fdcd0d;
+  --focus-outline-width: 3px;
+  --focus-outline-offset: 2px;
+}
+
+a.button {
+  text-decoration: none;
+}
+
+.button {
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+@media screen and (-ms-high-contrast: active) {
+  .button {
+    border: 2px solid currentColor;
+  }
+}
+
+a.button,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-gap);
+  align-self: start;
+  min-height: 44px;
+  min-width: 44px;
+  padding: var(--button-padding-v-mobile) var(--button-padding-h-mobile);
+  border-radius: var(--button-radius);
+  box-sizing: border-box;
+  font-family: var(--button-font-family);
+  font-size: var(--button-font-size-mobile);
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--animation-fast) var(--animation-easing), transform var(--animation-fast) var(--animation-easing);
+}
+@media (min-width: 768px) {
+  a.button,
+  .button {
+    padding: var(--button-padding-v-desktop) var(--button-padding-h-desktop);
+    font-size: var(--button-font-size-desktop);
+  }
+}
+a.button:focus,
+.button:focus {
+  outline: none;
+}
+a.button:focus-visible,
+.button:focus-visible {
+  outline: var(--focus-outline-width) solid var(--color-focus);
+  outline-offset: var(--focus-outline-offset);
+}
+a.button:active,
+.button:active {
+  transform: translateY(1px);
+}
+a.button:disabled, a.button.disabled,
+.button:disabled,
+.button.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+a.button .button__icon,
+.button .button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--button-icon-size-mobile);
+  height: var(--button-icon-size-mobile);
+  font-size: var(--button-icon-size-mobile);
+  line-height: 1;
+}
+@media (min-width: 768px) {
+  a.button .button__icon,
+  .button .button__icon {
+    width: var(--button-icon-size-desktop);
+    height: var(--button-icon-size-desktop);
+    font-size: var(--button-icon-size-desktop);
+  }
+}
+
+.button-primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+.button-primary:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-primary-hover);
+  color: var(--button-primary-text);
+}
+.button-primary:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-primary-active);
+}
+.button-primary:disabled, .button-primary.disabled {
+  background-color: var(--button-primary-disabled);
+}
+
+.button-secondary {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+}
+.button-secondary:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-secondary-hover);
+  color: var(--button-secondary-text);
+}
+.button-secondary:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-secondary-active);
+}
+.button-secondary:disabled, .button-secondary.disabled {
+  background-color: var(--button-secondary-disabled);
+}
+
+.button-success {
+  background-color: var(--button-success-bg);
+  color: var(--button-success-text);
+}
+.button-success:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-success-hover);
+  color: var(--button-success-text);
+}
+.button-success:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-success-active);
+}
+.button-success:disabled, .button-success.disabled {
+  background-color: var(--button-success-disabled);
+}
+
+.button-reverse {
+  background-color: var(--button-reverse-bg);
+  color: var(--button-reverse-text);
+}
+.button-reverse:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-reverse-hover);
+}
+.button-reverse:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-reverse-active);
+}
+.button-reverse:disabled, .button-reverse.disabled {
+  background-color: var(--button-reverse-disabled);
+  color: var(--button-reverse-disabled-text);
+}
+
+.button-primary-outline {
+  background-color: transparent;
+  color: var(--button-primary-bg);
+  box-shadow: inset 0 0 0 var(--button-border-width) var(--button-primary-bg);
+}
+.button-primary-outline:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-primary-hover);
+  color: var(--button-primary-bg);
+}
+.button-primary-outline:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-primary-active);
+}
+.button-primary-outline:disabled, .button-primary-outline.disabled {
+  opacity: 0.6;
+  background-color: transparent;
+}
+
+.button-secondary-outline {
+  background-color: transparent;
+  color: var(--button-secondary-bg);
+  box-shadow: inset 0 0 0 var(--button-border-width) var(--button-secondary-bg);
+}
+.button-secondary-outline:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-secondary-hover);
+  color: var(--button-secondary-bg);
+}
+.button-secondary-outline:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-secondary-active);
+}
+.button-secondary-outline:disabled, .button-secondary-outline.disabled {
+  opacity: 0.6;
+  background-color: transparent;
+}
+
+.button-success-outline {
+  background-color: transparent;
+  color: var(--button-success-bg);
+  box-shadow: inset 0 0 0 var(--button-border-width) var(--button-success-bg);
+}
+.button-success-outline:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-success-hover);
+  color: var(--button-success-bg);
+}
+.button-success-outline:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-success-active);
+}
+.button-success-outline:disabled, .button-success-outline.disabled {
+  opacity: 0.6;
+  background-color: transparent;
+}
+
+.button-reverse-outline {
+  background-color: transparent;
+  color: var(--cu-white);
+  box-shadow: inset 0 0 0 var(--button-border-width) var(--cu-white);
+}
+.button-reverse-outline:hover:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-reverse-hover);
+  color: var(--cu-white);
+}
+.button-reverse-outline:active:not(:disabled):not(.disabled) {
+  background-color: var(--button-outline-reverse-active);
+}
+.button-reverse-outline:disabled, .button-reverse-outline.disabled {
+  opacity: 0.6;
+  background-color: transparent;
+}
+
+.button-icon-only {
+  padding: var(--button-padding-v-mobile);
+  aspect-ratio: 1;
+  min-width: 40px;
+}
+@media (min-width: 768px) {
+  .button-icon-only {
+    padding: var(--button-padding-v-desktop);
+    min-width: 56px;
+  }
+}
+
+.button-icon-left {
+  flex-direction: row;
+}
+
+.button-icon-right {
+  flex-direction: row;
+}
+.button-icon-right .button__icon {
+  order: 2;
+}
+
+a.button--outline,
+button.button--outline {
+  background-color: var(--cu-white);
+  color: var(--color-brand-secondary);
+  border: 2px solid currentColor;
+  box-shadow: var(--shadow-sm);
+}
+a.button--outline:hover,
+button.button--outline:hover {
+  background-color: var(--color-brand-secondary);
+  color: var(--cu-white);
+  border-color: var(--color-brand-secondary);
+}
+a.button--outline:focus,
+button.button--outline:focus {
+  outline-style: solid;
+  outline-color: transparent;
+  box-shadow: 0 0 0 4px var(--color-brand-secondary-hover);
+}
+a.button--small,
+button.button--small {
+  font-size: var(--font-size-sm);
+}
+a.button--block,
+button.button--block {
+  width: 100%;
+}
+
+.btn-mini {
+  font-size: var(--font-size-sm);
+  color: var(--button-primary-text);
+  background: var(--button-primary-bg);
+  text-decoration: none !important;
+  text-shadow: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  margin-bottom: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.4, -1.5, 0.27, 1.55) !important;
+  transform: scale(0.9);
+  z-index: 2;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+.btn-mini:hover, .btn-mini:focus {
+  background: var(--button-primary-hover);
+  color: var(--button-primary-text);
+  transform: scale(1);
+}
+.btn-mini:active {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: scale(0.9);
+}
+
+/**
+ * Details Component
+ *
+ * PURPOSE: Native HTML <details> disclosure widget styling (accordion-like)
+ *
+ * USAGE:
+ * <details class="details">
+ *   <summary class="details__summary">Click to expand</summary>
+ *   <div class="details__text">
+ *     <p>Hidden content that expands when clicked</p>
+ *   </div>
+ * </details>
+ *
+ * ELEMENTS:
+ * - .details          - Container element
+ * - .details__summary - Clickable heading/toggle
+ * - .details__text    - Expanded content area
+ *
+ * FEATURES:
+ * - Animated triangle indicator (points right when closed, down when open)
+ * - Focus states for accessibility
+ * - Border on expanded content
+ */
+.details {
+  display: block;
+}
+.details__summary {
+  color: var(--color-link-default);
+  cursor: pointer;
+  display: inline-block;
+  padding-left: var(--spacing-xl);
+  position: relative;
+  text-decoration: underline;
+}
+.details__summary::-webkit-details-marker {
+  display: none;
+}
+.details__summary::before {
+  bottom: 0;
+  content: "";
+  left: 0;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  border-width: 7px 0 7px 12.124px;
+  border-left-color: inherit;
+}
+.details__summary:hover {
+  text-decoration: none;
+}
+.details__summary:focus {
+  background-color: var(--color-accent-gold);
+  box-shadow: 0 -2px var(--color-accent-gold), 0 4px var(--cu-gray-90);
+  color: var(--cu-gray-90);
+  outline: 4px solid transparent;
+  text-decoration: none;
+}
+.details[open] > .details__summary::before {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+  border-width: 12.124px 7px 0 7px;
+  border-top-color: inherit;
+}
+.details__text {
+  border-left: 4px solid var(--border-color-default);
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-md);
+  padding-left: var(--spacing-lg);
+}
+.details__text > *:where(:not(:first-child)) {
+  margin-top: var(--spacing-md);
+}
+
+/**
+ * Language Toggle Component
+ *
+ * PURPOSE: Language switcher button positioned in the header
+ *
+ * USAGE:
+ * <a href="#" id="language-toggle">
+ *   <i class="fas fa-globe"></i>
+ *   <span class="language-toggle-text">English</span>
+ * </a>
+ *
+ * FEATURES:
+ * - Positioned absolutely in top-right of header
+ * - Icon + text (text hidden on small screens for space)
+ * - Responsive: hides text label on screens < 980px
+ */
+#language-toggle {
+  position: absolute;
+  top: 28px;
+  right: 24px;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  font-weight: var(--font-weight-bold);
+  color: var(--cu-white);
+  display: flex;
+  align-items: center;
+}
+#language-toggle i {
+  margin-right: 6px;
+  font-size: var(--font-size-lg);
+  vertical-align: middle;
+}
+#language-toggle:hover, #language-toggle:focus {
+  text-decoration: none;
+  color: var(--cu-gray-30);
+}
+
+@media (max-width: 980px) {
+  .language-toggle-text {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+}
+/**
+ * Do's and Don'ts List Component
+ *
+ * PURPOSE: Visual list showing recommended and not-recommended actions
+ *
+ * USAGE:
+ * <div class="do-dont-list">
+ *   <h3 class="do-dont-list__label">Do</h3>
+ *   <ul class="list--tick">
+ *     <li><svg class="icon">...</svg>Use semantic HTML</li>
+ *     <li><svg class="icon">...</svg>Test accessibility</li>
+ *   </ul>
+ * </div>
+ *
+ * <div class="do-dont-list">
+ *   <h3 class="do-dont-list__label">Don't</h3>
+ *   <ul class="list--cross">
+ *     <li><svg class="icon">...</svg>Use divs for everything</li>
+ *   </ul>
+ * </div>
+ *
+ * ELEMENTS:
+ * - .do-dont-list        - Container box
+ * - .do-dont-list__label - Colored label (Do/Don't)
+ * - .list--tick          - List with checkmark icons
+ * - .list--cross         - List with cross/X icons
+ */
+.do-dont-list {
+  margin: var(--spacing-3xl) 0;
+  padding: var(--spacing-xl);
+  color: var(--color-text-primary);
+  border: 1px solid var(--border-color-default);
+  padding-top: 0 !important;
+}
+.do-dont-list .icon {
+  flex: none;
+  height: var(--spacing-2xl);
+  width: var(--spacing-2xl);
+}
+.do-dont-list > *:first-child {
+  margin-top: 0;
+}
+
+.do-dont-list__label {
+  font-size: var(--font-size-base);
+  line-height: 1.4;
+  background-color: var(--color-brand-secondary);
+  color: var(--cu-white);
+  display: inline-block;
+  margin: 0 0 var(--spacing-sm) calc(var(--spacing-xl) * -1);
+  padding: var(--spacing-sm) var(--spacing-2xl);
+  position: relative;
+  top: calc(var(--spacing-lg) * -1);
+}
+
+.list--tick,
+.list--cross {
+  list-style: none;
+  margin: 0;
+  padding-left: var(--spacing-2xl);
+  position: relative;
+}
+.list--tick svg,
+.list--cross svg {
+  left: -4px;
+  margin-top: -5px;
+  position: absolute;
+}
+
+/**
+ * Link Components
+ *
+ * PURPOSE: Specialized link styles with icons and visual treatments
+ *
+ * USAGE:
+ * - Action link (with arrow icon):
+ *   <a href="#" class="link-action">Take action</a>
+ *
+ * - External link (with external icon):
+ *   <a href="https://..." class="link-external">External site</a>
+ *
+ * - Link asset (for file downloads):
+ *   <a href="file.pdf" class="link-asset">
+ *     <i class="fas fa-file-pdf link-asset__icon"></i>
+ *     <div>
+ *       <div class="link-asset__name">Document Title</div>
+ *       <div class="link-asset__label">PDF, 2.5 MB</div>
+ *     </div>
+ *   </a>
+ *
+ * COMPONENTS:
+ * - .link-action      - Link with arrow icon (calls to action)
+ * - .link-external    - Link with external icon
+ * - .link-asset       - Styled file download link with metadata
+ *
+ * EXAMPLE: https://codepen.io/dandange8005/pen/bGKyrop
+ */
+a.link-action {
+  display: inline-block;
+}
+a.link-action::before {
+  content: "\f0a9";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: var(--spacing-sm);
+  color: var(--color-accent-green);
+  font-size: var(--font-size-lg);
+}
+a.link-action:hover::after, a.link-action:focus::after {
+  content: none;
+}
+a.link-action:hover::before, a.link-action:focus::before {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.action-link::before {
+  content: "\f0a9";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: var(--spacing-sm);
+  color: var(--color-accent-green);
+  font-size: var(--font-size-lg);
+}
+
+a.action-link:hover::after,
+a.action-link:focus::after {
+  content: none;
+}
+
+.action-link:hover::before,
+.action-link:focus::before {
+  text-decoration: none;
+  display: inline-block;
+}
+
+a.link-external {
+  display: inline-block;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+a.link-external::after {
+  content: "\f35d";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 10px;
+  margin-left: 4px;
+  transform: translateY(-3px);
+  display: inline-block;
+}
+a.link-external:hover::after {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.link-asset {
+  display: flex;
+  background: var(--cu-gray-10);
+  align-items: center;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  color: unset;
+}
+.link-asset:hover {
+  color: var(--color-link-default);
+  text-decoration: none;
+  outline: 1.5px solid var(--color-link-default);
+}
+.link-asset__icon {
+  font-size: var(--font-size-lg);
+  margin-right: var(--spacing-md);
+}
+.link-asset__icon.fa-file-pdf {
+  color: #dc3545;
+}
+.link-asset__icon.fa-file-word {
+  color: #2b579a;
+}
+.link-asset__name {
+  font-weight: var(--font-weight-bold);
+}
+.link-asset__label {
+  color: var(--cu-gray-60);
+}
+
+/**
+ * Project Information Component
+ *
+ * PURPOSE: Display project metadata in a flex layout
+ *
+ * USAGE:
+ * <div id="project-info">
+ *   <span>Version 1.0</span>
+ *   <span>Last updated: 2024</span>
+ *   <span>License: MIT</span>
+ * </div>
+ *
+ * FEATURES:
+ * - Flexbox layout with space-around distribution
+ * - Smaller text size for metadata display
+ * - Removes pseudo-elements from Bootstrap/other frameworks
+ */
+#project-info {
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
+  margin-block: var(--spacing-3xl);
+  color: var(--cu-gray-60);
+}
+#project-info::before, #project-info::after {
+  content: none;
+}
+
+/**
+ * Utility Classes
+ *
+ * Reusable utility classes for common styling patterns
+ * Uses Cardiff University design tokens
+ */
+.image-inline {
+  display: inline-block;
+}
+
+.image-full {
+  width: 100%;
+  height: auto;
+}
+
+.image-round {
+  border-radius: var(--radius-image);
+}
+
+.image-screenshots,
+.screenshots {
+  border: 1px solid var(--border-color-default);
+  margin: 2rem auto;
+  clear: both;
+  border-radius: var(--radius-image);
+  box-shadow: var(--shadow-md);
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mt-1 {
+  margin-top: var(--spacing-xs);
+}
+
+.mt-2 {
+  margin-top: var(--spacing-sm);
+}
+
+.mt-3 {
+  margin-top: var(--spacing-md);
+}
+
+.mt-4 {
+  margin-top: var(--spacing-lg);
+}
+
+.mt-5 {
+  margin-top: var(--spacing-xl);
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-1 {
+  margin-bottom: var(--spacing-xs);
+}
+
+.mb-2 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mb-3 {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-4 {
+  margin-bottom: var(--spacing-lg);
+}
+
+.mb-5 {
+  margin-bottom: var(--spacing-xl);
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.p-1 {
+  padding: var(--spacing-xs);
+}
+
+.p-2 {
+  padding: var(--spacing-sm);
+}
+
+.p-3 {
+  padding: var(--spacing-md);
+}
+
+.p-4 {
+  padding: var(--spacing-lg);
+}
+
+.p-5 {
+  padding: var(--spacing-xl);
+}
+
+.flex {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-col-reverse {
+  flex-direction: column-reverse;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-baseline {
+  align-items: baseline;
+}
+
+.items-stretch {
+  align-items: stretch;
+}
+
+.content-start {
+  align-content: flex-start;
+}
+
+.content-end {
+  align-content: flex-end;
+}
+
+.content-center {
+  align-content: center;
+}
+
+.content-between {
+  align-content: space-between;
+}
+
+.content-around {
+  align-content: space-around;
+}
+
+.content-stretch {
+  align-content: stretch;
+}
+
+.gap-0 {
+  gap: 0;
+}
+
+.gap-xs {
+  gap: var(--spacing-xs);
+}
+
+.gap-sm {
+  gap: var(--spacing-sm);
+}
+
+.gap-md {
+  gap: var(--spacing-md);
+}
+
+.gap-lg {
+  gap: var(--spacing-lg);
+}
+
+.gap-xl {
+  gap: var(--spacing-xl);
+}
+
+.gap-2xl {
+  gap: var(--spacing-2xl);
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.flex-auto {
+  flex: 1 1 auto;
+}
+
+.flex-initial {
+  flex: 0 1 auto;
+}
+
+.flex-none {
+  flex: none;
+}
+
+.flex-100 {
+  flex: 1 1 100px;
+}
+
+.flex-200 {
+  flex: 1 1 200px;
+}
+
+.flex-300 {
+  flex: 1 1 300px;
+}
+
+.flex-400 {
+  flex: 1 1 400px;
+}
+
+.flex-500 {
+  flex: 1 1 500px;
+}
+
+.flex-600 {
+  flex: 1 1 600px;
+}
+
+.self-auto {
+  align-self: auto;
+}
+
+.self-start {
+  align-self: flex-start;
+}
+
+.self-end {
+  align-self: flex-end;
+}
+
+.self-center {
+  align-self: center;
+}
+
+.self-stretch {
+  align-self: stretch;
+}
+
+.self-baseline {
+  align-self: baseline;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-33 {
+  width: 33.333%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.w-70 {
+  width: 70%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+@media (min-width: 806px) {
+  .w-md-10 {
+    width: 10%;
+  }
+  .w-md-20 {
+    width: 20%;
+  }
+  .w-md-25 {
+    width: 25%;
+  }
+  .w-md-30 {
+    width: 30%;
+  }
+  .w-md-33 {
+    width: 33.333%;
+  }
+  .w-md-40 {
+    width: 40%;
+  }
+  .w-md-50 {
+    width: 50%;
+  }
+  .w-md-60 {
+    width: 60%;
+  }
+  .w-md-70 {
+    width: 70%;
+  }
+  .w-md-80 {
+    width: 80%;
+  }
+  .w-md-full {
+    width: 100%;
+  }
+  .w-md-auto {
+    width: auto;
+  }
+}
+@media (min-width: 806px) {
+  .flex > .w-md-50,
+  .flex.flex-wrap > .w-md-50 {
+    flex: 1 1 calc(50% - var(--spacing-md) / 2);
+    max-width: calc(50% - var(--spacing-md) / 2);
+  }
+}
+
+@media (min-width: 806px) {
+  .flex > .w-md-33,
+  .flex.flex-wrap > .w-md-33 {
+    flex: 1 1 calc(33.333% - var(--spacing-md) * 2 / 3);
+    max-width: calc(33.333% - var(--spacing-md) * 2 / 3);
+  }
+}
+
+@media (min-width: 806px) {
+  .flex > .w-md-25,
+  .flex.flex-wrap > .w-md-25 {
+    flex: 1 1 calc(25% - var(--spacing-md) * 3 / 4);
+    max-width: calc(25% - var(--spacing-md) * 3 / 4);
+  }
+}
+
+@media (min-width: 806px) {
+  .flex > .w-md-10,
+  .flex.flex-wrap > .w-md-10,
+  .flex.gap-md > .w-md-10 {
+    flex: 1 1 calc(10% - var(--spacing-md) / 2);
+    max-width: calc(10% - var(--spacing-md) / 2);
+  }
+}
+
+@media (min-width: 806px) {
+  .flex > .w-md-20,
+  .flex.flex-wrap > .w-md-20,
+  .flex.gap-md > .w-md-20 {
+    flex: 1 1 calc(20% - var(--spacing-md) / 2);
+    max-width: calc(20% - var(--spacing-md) / 2);
+  }
+}
+
+@media (min-width: 806px) {
+  .flex > .w-md-30,
+  .flex.flex-wrap > .w-md-30,
+  .flex.gap-md > .w-md-30 {
+    flex: 1 1 calc(30% - var(--spacing-md) / 2);
+    max-width: calc(30% - var(--spacing-md) / 2);
+  }
+}
+
+@media (min-width: 806px) {
+  .flex > .w-md-40,
+  .flex.flex-wrap > .w-md-40,
+  .flex.gap-md > .w-md-40 {
+    flex: 1 1 calc(40% - var(--spacing-md) / 2);
+    max-width: calc(40% - var(--spacing-md) / 2);
+  }
+}
+
+@media (min-width: 806px) {
+  .flex > .w-md-60,
+  .flex.flex-wrap > .w-md-60,
+  .flex.gap-md > .w-md-60 {
+    flex: 1 1 calc(60% - var(--spacing-md) / 2);
+    max-width: calc(60% - var(--spacing-md) / 2);
+  }
+}
+
+@media (min-width: 806px) {
+  .flex > .w-md-70,
+  .flex.flex-wrap > .w-md-70,
+  .flex.gap-md > .w-md-70 {
+    flex: 1 1 calc(70% - var(--spacing-md) / 2);
+    max-width: calc(70% - var(--spacing-md) / 2);
+  }
+}
+
+@media (min-width: 806px) {
+  .flex > .w-md-80,
+  .flex.flex-wrap > .w-md-80,
+  .flex.gap-md > .w-md-80 {
+    flex: 1 1 calc(80% - var(--spacing-md) / 2);
+    max-width: calc(80% - var(--spacing-md) / 2);
+  }
+}
+
+.flexContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.flexItem {
+  width: 100%;
+  margin-bottom: var(--spacing-lg);
+}
+.flexItem h3 {
+  margin-top: 0;
+}
+.flexItem h3.topMargin {
+  margin-top: var(--spacing-lg);
+}
+.flexItem img {
+  width: 100%;
+  max-width: max-content;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (min-width: 806px) {
+  .flexItem {
+    margin-bottom: 0;
+  }
+  .c10 {
+    width: 10%;
+  }
+  .c20 {
+    width: 20%;
+  }
+  .c25 {
+    width: 25%;
+  }
+  .c30 {
+    width: 30%;
+  }
+  .c33 {
+    width: 33.33%;
+  }
+  .c40 {
+    width: 40%;
+  }
+  .c50 {
+    width: 50%;
+  }
+  .c60 {
+    width: 60%;
+  }
+  .c70 {
+    width: 70%;
+  }
+  .c80 {
+    width: 80%;
+  }
+}
+.text-xs {
+  font-size: var(--font-size-xs) !important;
+}
+
+.text-sm {
+  font-size: var(--font-size-sm) !important;
+}
+
+.text-base {
+  font-size: var(--font-size-base) !important;
+}
+
+.text-md {
+  font-size: var(--font-size-md) !important;
+}
+
+.text-lg {
+  font-size: var(--font-size-lg) !important;
+}
+
+.text-xl {
+  font-size: var(--font-size-xl) !important;
+}
+
+.text-2xl {
+  font-size: var(--font-size-2xl) !important;
+}
+
+.text-3xl {
+  font-size: var(--font-size-3xl) !important;
+}
+
+.text-4xl {
+  font-size: var(--font-size-4xl) !important;
+}
+
+.font-light {
+  font-weight: var(--font-weight-light) !important;
+}
+
+.font-regular {
+  font-weight: var(--font-weight-regular) !important;
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium) !important;
+}
+
+.font-bold {
+  font-weight: var(--font-weight-bold) !important;
+}
+
+.leading-tight {
+  line-height: var(--line-height-tight) !important;
+}
+
+.leading-normal {
+  line-height: var(--line-height-normal) !important;
+}
+
+.leading-loose {
+  line-height: var(--line-height-loose) !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+
+.text-primary {
+  color: var(--color-text-primary) !important;
+}
+
+.text-inverse {
+  color: var(--color-text-inverse) !important;
+}
+
+.text-hint {
+  color: var(--color-text-hint) !important;
+}
+
+.text-alert {
+  color: var(--color-text-alert) !important;
+}
+
+.text-on-light {
+  color: var(--color-text-on-light) !important;
+}
+
+.text-on-dark {
+  color: var(--color-text-on-dark) !important;
+}
+
+.text-on-brand {
+  color: var(--color-text-on-brand) !important;
+}
+
+.text-subtle {
+  color: var(--color-text-subtle) !important;
+}
+
+.text-muted {
+  color: var(--color-text-muted) !important;
+}
+
+.text-cu-red {
+  color: var(--cu-primary-red) !important;
+}
+
+.text-cu-white {
+  color: var(--cu-white) !important;
+}
+
+.text-cu-black {
+  color: var(--cu-black) !important;
+}
+
+.text-brand-primary {
+  color: var(--color-brand-primary) !important;
+}
+
+.text-brand-secondary {
+  color: var(--color-brand-secondary) !important;
+}
+
+.text-accent-green {
+  color: var(--color-accent-green) !important;
+}
+
+.text-accent-blue {
+  color: var(--color-accent-blue) !important;
+}
+
+.text-accent-orange {
+  color: var(--color-accent-orange) !important;
+}
+
+.text-cu-forest-green {
+  color: var(--cu-forest-green) !important;
+}
+
+.text-cu-cadet {
+  color: var(--cu-cadet) !important;
+}
+
+.text-cu-stone {
+  color: var(--cu-stone) !important;
+}
+
+.text-cu-light-blue {
+  color: var(--cu-light-blue) !important;
+}
+
+.text-cu-royal-blue {
+  color: var(--cu-royal-blue) !important;
+}
+
+.text-cu-midnight-blue {
+  color: var(--cu-midnight-blue) !important;
+}
+
+.text-cu-midnight-purple {
+  color: var(--cu-midnight-purple) !important;
+}
+
+.text-cu-orange {
+  color: var(--cu-orange) !important;
+}
+
+.text-cu-yellow {
+  color: var(--cu-yellow) !important;
+}
+
+.text-cu-yellow-green {
+  color: var(--cu-yellow-green) !important;
+}
+
+.text-cu-indigo {
+  color: var(--cu-indigo) !important;
+}
+
+.text-cu-dark-violet {
+  color: var(--cu-dark-violet) !important;
+}
+
+.text-gray-10 {
+  color: var(--cu-gray-10) !important;
+}
+
+.text-gray-20 {
+  color: var(--cu-gray-20) !important;
+}
+
+.text-gray-30 {
+  color: var(--cu-gray-30) !important;
+}
+
+.text-gray-40 {
+  color: var(--cu-gray-40) !important;
+}
+
+.text-gray-50 {
+  color: var(--cu-gray-50) !important;
+}
+
+.text-gray-60 {
+  color: var(--cu-gray-60) !important;
+}
+
+.text-gray-70 {
+  color: var(--cu-gray-70) !important;
+}
+
+.text-gray-80 {
+  color: var(--cu-gray-80) !important;
+}
+
+.text-gray-90 {
+  color: var(--cu-gray-90) !important;
+}
+
+.text-link {
+  color: var(--color-link-default) !important;
+}
+
+.text-link-hover {
+  color: var(--color-link-hover) !important;
+}
+
+.text-link-visited {
+  color: var(--color-link-visited) !important;
+}
+
+.bg-body {
+  background-color: var(--color-bg-body) !important;
+}
+
+.bg-page {
+  background-color: var(--color-bg-page) !important;
+}
+
+.bg-panel {
+  background-color: var(--color-bg-panel) !important;
+}
+
+.bg-subtle {
+  background-color: var(--color-bg-subtle) !important;
+}
+
+.bg-muted {
+  background-color: var(--color-bg-muted) !important;
+}
+
+.bg-elevated {
+  background-color: var(--color-bg-elevated) !important;
+}
+
+.bg-cu-red {
+  background-color: var(--cu-primary-red) !important;
+}
+
+.bg-cu-white {
+  background-color: var(--cu-white) !important;
+}
+
+.bg-cu-black {
+  background-color: var(--cu-black) !important;
+}
+
+.bg-primary {
+  background-color: var(--color-brand-primary) !important;
+}
+
+.bg-secondary {
+  background-color: var(--color-brand-secondary) !important;
+}
+
+.bg-cu-green {
+  background-color: var(--color-accent-green) !important;
+}
+
+.bg-cu-blue {
+  background-color: var(--color-accent-blue) !important;
+}
+
+.bg-cu-orange {
+  background-color: var(--color-accent-orange) !important;
+}
+
+.bg-cu-forest-green {
+  background-color: var(--cu-forest-green) !important;
+}
+
+.bg-cu-cadet {
+  background-color: var(--cu-cadet) !important;
+}
+
+.bg-cu-stone {
+  background-color: var(--cu-stone) !important;
+}
+
+.bg-cu-light-blue {
+  background-color: var(--cu-light-blue) !important;
+}
+
+.bg-cu-royal-blue {
+  background-color: var(--cu-royal-blue) !important;
+}
+
+.bg-cu-midnight-blue {
+  background-color: var(--cu-midnight-blue) !important;
+}
+
+.bg-cu-midnight-purple {
+  background-color: var(--cu-midnight-purple) !important;
+}
+
+.bg-cu-orange {
+  background-color: var(--cu-orange) !important;
+}
+
+.bg-cu-yellow {
+  background-color: var(--cu-yellow) !important;
+}
+
+.bg-cu-yellow-green {
+  background-color: var(--cu-yellow-green) !important;
+}
+
+.bg-cu-indigo {
+  background-color: var(--cu-indigo) !important;
+}
+
+.bg-cu-dark-violet {
+  background-color: var(--cu-dark-violet) !important;
+}
+
+.bg-gray-10 {
+  background-color: var(--cu-gray-10) !important;
+}
+
+.bg-gray-20 {
+  background-color: var(--cu-gray-20) !important;
+}
+
+.bg-gray-30 {
+  background-color: var(--cu-gray-30) !important;
+}
+
+.bg-gray-40 {
+  background-color: var(--cu-gray-40) !important;
+}
+
+.bg-gray-50 {
+  background-color: var(--cu-gray-50) !important;
+}
+
+.bg-gray-60 {
+  background-color: var(--cu-gray-60) !important;
+}
+
+.bg-gray-70 {
+  background-color: var(--cu-gray-70) !important;
+}
+
+.bg-gray-80 {
+  background-color: var(--cu-gray-80) !important;
+}
+
+.bg-gray-90 {
+  background-color: var(--cu-gray-90) !important;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}
+
+/**
+ * Layout Styles
+ *
+ * Styles for structural layout components:
+ * - Header & Jumbotron
+ * - Main Navigation
+ * - Side Navigation
+ * - Footer
+ * Uses Cardiff University design tokens
+ */
+.jumbotron {
+  background: var(--cu-gray-90);
+  background-image: linear-gradient(135deg, var(--cu-gray-80) 0%, var(--cu-gray-90) 100%);
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  background-size: cover;
+  color: var(--cu-white);
+  position: relative;
+  isolation: isolate;
+}
+.jumbotron::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+#overview.logoL .logoL {
+  margin-top: 0;
+}
+
+.logo.logoL.themeLogo {
+  max-width: 90px;
+  width: 100%;
+  height: auto;
+}
+
+#overview.logoL .container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.titles {
+  padding: 0;
+}
+
+#pageTitle {
+  font-family: var(--font-primary-heading);
+  color: var(--color-text-inverse);
+  line-height: var(--line-height-tight);
+  letter-spacing: 1px;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-top: 0;
+}
+
+#pageSubTitle {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-inverse);
+  padding-top: var(--spacing-xs);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-tight);
+  margin-bottom: 0;
+}
+
+.navbar {
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.navbar-inverse .navbar-inner {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  background: var(--cu-gray-20);
+  background-color: var(--cu-gray-20);
+  background-image: none;
+  background-repeat: repeat-x;
+  border-color: var(--cu-gray-20);
+  box-shadow: none;
+  border: 0;
+}
+
+.navbar-inverse .nav-collapse .nav > li > a,
+.navbar-inverse .nav-collapse .dropdown-menu a,
+.navbar-inverse .brand,
+.navbar-inverse .nav > li > a {
+  color: var(--cu-gray-80);
+  text-shadow: none;
+  border-radius: 0;
+  transition: 0.25s ease-in-out;
+}
+
+.navbar-inverse .nav-collapse .nav > li > a:hover,
+.navbar-inverse .nav-collapse .nav > li > a:focus,
+.navbar-inverse .nav-collapse .dropdown-menu a:hover,
+.navbar-inverse .nav-collapse .dropdown-menu a:focus,
+.navbar-inverse .brand:hover,
+.navbar-inverse .nav > li > a:hover {
+  background-color: var(--cu-white);
+  color: var(--color-brand-primary);
+  box-sizing: border-box;
+}
+
+.navbar .nav > li.activePage > a,
+.navbar .nav > li.activePage > a:hover {
+  background-color: var(--cu-white);
+  text-decoration: none;
+  color: var(--color-brand-primary);
+  box-shadow: inset 0 -2px 0 0 var(--color-brand-primary);
+}
+
+.navbar.navbar-fixed-top {
+  margin-bottom: 0;
+}
+
+.nav-list > .active > a,
+.nav-list > .active > a:hover,
+.nav-list > .active > a:focus {
+  background: var(--color-brand-primary);
+  background-color: var(--color-brand-primary);
+}
+
+.nav-list > li > a {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  text-shadow: none;
+}
+
+.nav-list .nav-header {
+  text-shadow: none;
+}
+
+.bs-docs-sidenav {
+  background-color: var(--cu-white);
+  border-radius: var(--radius-md);
+}
+.bs-docs-sidenav > li > a {
+  color: var(--color-text-primary);
+}
+.bs-docs-sidenav > li:first-child > a {
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+.bs-docs-sidenav > li:last-child > a {
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+.bs-docs-sidenav > .active > a {
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+.bs-docs-sidenav > li > a:hover {
+  background-color: var(--color-bg-body);
+}
+.bs-docs-sidenav a:hover .icon-chevron-right {
+  opacity: 0.5;
+}
+.bs-docs-sidenav .active .icon-chevron-right,
+.bs-docs-sidenav .active a:hover .icon-chevron-right {
+  opacity: 1;
+}
+
+.footer {
+  padding-block: var(--spacing-xl);
+  position: relative;
+  background-color: var(--cu-gray-80);
+  border: 0;
+  color: var(--cu-white);
+}
+.footer p {
+  margin-bottom: 0;
+  text-align: center;
+  color: var(--cu-white);
+}
+.footer a {
+  color: var(--cu-white);
+  text-decoration: underline;
+}
+.footer a:hover, .footer a:focus {
+  text-decoration: none;
+  color: var(--cu-white);
+}
+
+.footer-logo {
+  max-width: 250px;
+  height: auto;
+  margin: auto;
+}
+
+#feedback_button {
+  writing-mode: vertical-lr;
+  background: var(--color-brand-primary);
+  color: var(--cu-white);
+  padding-inline: 16px;
+  padding-block: 4px;
+  padding-block-end: 8px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  right: 0;
+  top: 62%;
+  z-index: 1000;
+  transform: translateX(10px);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform 300ms ease-in-out;
+  box-shadow: -2px 9px 20px 4px rgba(0, 0, 0, 0.1);
+  font-weight: var(--font-weight-bold);
+}
+#feedback_button:hover {
+  transform: translateX(2px);
+}
+#feedback_button i {
+  transform: rotate(90deg);
+  margin-inline-end: var(--spacing-xs);
+}
+#feedback_button a:hover {
+  text-decoration: none;
+  color: var(--cu-white);
+}
+
+.evenSection {
+  background: #ffffff;
+}
+
+.oddSection {
+  background: #f9f9f9;
+}
+
+/* CKEditor custom style
+
+This is where you can define styles that will be available
+   within the CKEditor content editor to style content blocks.
+*/
+.cardiff-test-style {
+  padding: var(--spacing-md, 1rem);
+  background: var(--cu-primary-red, #E4251B);
+  color: var(--cu-white, #FFFFFF);
+  border-left: 4px solid var(--cu-forest-green, #07873E);
+  border-radius: var(--radius-sm, 4px);
+  margin: var(--spacing-md, 1rem) 0;
+}
+
+/*# sourceMappingURL=cardiffuni-v2.css.map */
