@@ -1,0 +1,356 @@
+/**
+ * Cardiff University v2 Theme - Demo Pages Shared Styles
+ * Provides consistent styling across all demo pages
+ */
+
+/* ===========================
+   Demo Page Layout
+   =========================== */
+
+/* Body styling - let Bootstrap handle layout with containers */
+body {
+    padding-top: 0;
+}
+
+/* ===========================
+   Demo Jumbotron Header
+   =========================== */
+/* 
+.jumbotron {
+    background: linear-gradient(135deg, #4c4c4c 0%, #333333 100%) 0% 0% / cover #333333;
+    color: white;
+    padding: 2rem;
+    margin: -2rem -2rem 2rem -2rem;
+    border-radius: 0;
+}
+
+.jumbotron .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.jumbotron .logoL {
+    flex: 0 0 auto;
+}
+
+.jumbotron .logo {
+    max-width: 200px;
+    height: auto;
+}
+
+.jumbotron .titles {
+    flex: 1 1 auto;
+}
+
+.jumbotron h1 {
+    color: white;
+    margin: 0 0 0.5rem 0;
+    font-size: var(--font-size-3xl);
+}
+
+.jumbotron p {
+    color: white;
+    margin: 0;
+    font-size: var(--font-size-lg);
+    opacity: 0.9;
+} */
+
+/* Demo Navigation Links */
+.demo-nav__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0 0;
+}
+
+.demo-nav__link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    font-size: var(--font-size-sm);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.demo-nav__link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.demo-nav__link--active {
+    background: var(--cu-primary-red);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Mobile navigation */
+@media (max-width: 768px) {
+    .jumbotron {
+        padding: 1.5rem 1rem;
+        margin: -2rem -2rem 1rem -2rem;
+    }
+
+    .jumbotron .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .jumbotron .logo {
+        max-width: 150px;
+    }
+
+    .jumbotron h1 {
+        font-size: var(--font-size-2xl);
+    }
+
+    .demo-nav__links {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .demo-nav__link {
+        display: block;
+        text-align: center;
+    }
+}
+
+/* ===========================
+   Demo Content Sections
+   =========================== */
+
+.demo-section {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.demo-section>h2:first-child {
+    margin-top: 0;
+    color: var(--cu-primary-red);
+    border-bottom: 2px solid var(--cu-gray-20);
+    padding-bottom: 1rem;
+}
+
+.demo-section>h3 {
+    color: var(--cu-gray-80);
+    margin-top: 2rem;
+}
+
+/* ===========================
+   Demo Blocks
+   =========================== */
+
+.demo-block {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f9fafb;
+    border-radius: 4px;
+    border-left: 4px solid var(--cu-gray-30);
+}
+
+.demo-block--highlight {
+    border-left-color: var(--cu-primary-red);
+    background: #fff5f5;
+}
+
+.demo-block__title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--cu-gray-70);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 1rem 0;
+}
+
+.demo-block__description {
+    font-size: var(--font-size-sm);
+    color: var(--cu-gray-60);
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+/* ===========================
+   Demo Inline Examples
+   =========================== */
+
+.demo-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.demo-inline--column {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* ===========================
+   Code Labels & Examples
+   =========================== */
+
+.code-label {
+    font-family: monospace;
+    background: var(--cu-gray-20);
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    color: var(--cu-gray-70);
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.code-example {
+    background: var(--cu-gray-90);
+    color: #f8f8f2;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* ===========================
+   Demo Helpers
+   =========================== */
+
+.demo-text-flow {
+    overflow: auto;
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.demo-card {
+    background: white;
+    border: 1px solid var(--cu-gray-30);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.demo-card__title {
+    margin-top: 0;
+    color: var(--cu-primary-red);
+    font-size: var(--font-size-lg);
+}
+
+/* ===========================
+   Color Swatches
+   =========================== */
+
+.color-swatch {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    border: 1px solid var(--cu-gray-30);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.color-info {
+    margin-top: 0.5rem;
+    font-size: var(--font-size-sm);
+}
+
+.color-info__name {
+    font-weight: var(--font-weight-bold);
+    display: block;
+}
+
+.color-info__value {
+    font-family: monospace;
+    color: var(--cu-gray-60);
+    display: block;
+}
+
+/* ===========================
+   Page Footer
+   =========================== */
+
+.demo-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--cu-gray-20);
+    color: var(--cu-gray-60);
+    text-align: center;
+    font-size: var(--font-size-sm);
+}
+
+.demo-footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.demo-footer__link {
+    color: var(--cu-gray-60);
+    text-decoration: none;
+}
+
+.demo-footer__link:hover {
+    color: var(--cu-primary-red);
+    text-decoration: underline;
+}
+
+/* ===========================
+   Utility Classes
+   =========================== */
+
+.demo-spacer {
+    height: 2rem;
+}
+
+.demo-divider {
+    border: 0;
+    border-top: 2px solid var(--cu-gray-20);
+    margin: 2rem 0;
+}
+
+.demo-note {
+    background: #fffbea;
+    border-left: 4px solid var(--cu-yellow);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+}
+
+.demo-note__title {
+    font-weight: var(--font-weight-bold);
+    color: var(--cu-gray-80);
+    margin: 0 0 0.5rem 0;
+}
+
+.demo-warning {
+    background: #fff5f5;
+    border-left: 4px solid var(--cu-primary-red);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+}
+
+.demo-success {
+    background: #f0fdf4;
+    border-left: 4px solid var(--cu-forest-green);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+}

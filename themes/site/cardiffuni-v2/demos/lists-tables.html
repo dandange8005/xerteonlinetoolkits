@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lists & Tables - Cardiff University v2 Theme</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap-responsive.css">
+    <link rel="stylesheet" href="assets/bootstrap/custom.css">
+    <link rel="stylesheet" href="../cardiffuni-v2.css">
+    <link rel="stylesheet" href="assets/demo-styles.css">
+</head>
+
+<body>
+    <header class="jumbotron" id="overview">
+        <div class="container">
+            <div class="logoL">
+                <img class="logo logoL themeLogo"
+                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
+                    alt="Cardiff University Logo">
+            </div>
+
+            <div class="titles">
+                <h1 id="pageTitle" aria-live="polite">Lists & Tables</h1>
+                <p id="pageSubTitle" aria-live="polite">List Styles & Data Tables</p>
+            </div>
+    </header>
+
+    <div id="pageLinks">
+        <div class="navbar navbar-inverse navbar-fixed-top" id="topnav" role="navigation" aria-label="Pages"
+            style="position: static;">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button id="pageNavBtn" class="btn btn-navbar navbar-toggler collapsed" data-toggle="collapse"
+                        data-target=".nav-collapse" aria-haspopup="true" aria-controls="nav" aria-label="Page menu"
+                        aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="nav" aria-labelledby="pageNavBtn">
+                            <li role="none"><a href="index.html">← Home</a></li>
+                            <li role="none"><a href="typography.html">Typography</a></li>
+                            <li class="activePage" role="none" aria-current="page"><a href="lists-tables.html">Lists &
+                                    Tables</a></li>
+                            <li role="none"><a href="images-media.html">Images & Media</a></li>
+                            <li role="none"><a href="forms.html">Forms</a></li>
+                            <li role="none"><a href="components.html">Components</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Unordered Lists -->
+        <section class="demo-section">
+            <h2>Unordered Lists</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Standard Unordered List</div>
+                <div class="demo-block__description">Default bullet list styling</div>
+
+                <ul>
+                    <li>First item in the unordered list</li>
+                    <li>Second item demonstrating consistent spacing</li>
+                    <li>Third item with proper indentation</li>
+                    <li>Fourth item showing list flow</li>
+                    <li>Fifth and final item</li>
+                </ul>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Nested Unordered Lists</div>
+                <div class="demo-block__description">Lists within lists for hierarchical content</div>
+
+                <ul>
+                    <li>First level item one</li>
+                    <li>First level item two</li>
+                    <li>First level item three with nested list:
+                        <ul>
+                            <li>Second level nested item one</li>
+                            <li>Second level nested item two</li>
+                            <li>Second level nested item three with deeper nesting:
+                                <ul>
+                                    <li>Third level item one</li>
+                                    <li>Third level item two</li>
+                                </ul>
+                            </li>
+                            <li>Second level nested item four</li>
+                        </ul>
+                    </li>
+                    <li>First level item four after nested list</li>
+                    <li>First level item five</li>
+                </ul>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">List with Rich Content</div>
+                <div class="demo-block__description">Lists can contain paragraphs, links, and other elements</div>
+
+                <ul>
+                    <li>
+                        <strong>Course Materials:</strong> All required textbooks and readings are available through the
+                        <a href="#">university library</a>. Students should complete assigned readings before each
+                        lecture.
+                    </li>
+                    <li>
+                        <strong>Assessment:</strong> The course includes three components:
+                        <ul>
+                            <li>Weekly quizzes (20%)</li>
+                            <li>Mid-term examination (30%)</li>
+                            <li>Final project (50%)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Office Hours:</strong> Available Monday and Wednesday, 2:00-4:00 PM, or by appointment.
+                        Contact via <a href="#">email</a> to schedule.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Ordered Lists -->
+        <section class="demo-section">
+            <h2>Ordered Lists</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Standard Ordered List</div>
+                <div class="demo-block__description">Numbered list for sequential content</div>
+
+                <ol>
+                    <li>First step in the process</li>
+                    <li>Second step following the first</li>
+                    <li>Third step in the sequence</li>
+                    <li>Fourth step continuing the process</li>
+                    <li>Final step completing the process</li>
+                </ol>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Nested Ordered Lists</div>
+                <div class="demo-block__description">Hierarchical numbered lists</div>
+
+                <ol>
+                    <li>Main step one</li>
+                    <li>Main step two</li>
+                    <li>Main step three with sub-steps:
+                        <ol>
+                            <li>Sub-step 3.1</li>
+                            <li>Sub-step 3.2</li>
+                            <li>Sub-step 3.3 with further detail:
+                                <ol>
+                                    <li>Detail 3.3.1</li>
+                                    <li>Detail 3.3.2</li>
+                                </ol>
+                            </li>
+                            <li>Sub-step 3.4</li>
+                        </ol>
+                    </li>
+                    <li>Main step four</li>
+                    <li>Main step five</li>
+                </ol>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Instructional Steps Example</div>
+                <div class="demo-block__description">Practical use case for ordered lists</div>
+
+                <h4>How to Submit Your Assignment</h4>
+                <ol>
+                    <li>Log in to the student portal using your university credentials</li>
+                    <li>Navigate to the "Assignments" section in your course page</li>
+                    <li>Click on the assignment you wish to submit</li>
+                    <li>Prepare your submission:
+                        <ol>
+                            <li>Ensure your document is in the correct format (PDF or DOCX)</li>
+                            <li>Check that your name and student ID are on the first page</li>
+                            <li>Verify that all required sections are complete</li>
+                        </ol>
+                    </li>
+                    <li>Click the "Upload File" button and select your document</li>
+                    <li>Review your submission for accuracy</li>
+                    <li>Click "Submit" to finalize your submission</li>
+                    <li>Save the confirmation email for your records</li>
+                </ol>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Mixed List Types</div>
+                <div class="demo-block__description">Combining ordered and unordered lists</div>
+
+                <h4>Research Paper Requirements</h4>
+                <ol>
+                    <li>Select a topic from the approved list:
+                        <ul>
+                            <li>Climate change and sustainability</li>
+                            <li>Artificial intelligence ethics</li>
+                            <li>Public health policy</li>
+                            <li>Educational technology</li>
+                        </ul>
+                    </li>
+                    <li>Conduct preliminary research and create an outline</li>
+                    <li>Submit your proposal including:
+                        <ul>
+                            <li>Research question</li>
+                            <li>Methodology</li>
+                            <li>Preliminary bibliography</li>
+                        </ul>
+                    </li>
+                    <li>Write and submit your final paper (3000-5000 words)</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Description Lists -->
+        <section class="demo-section">
+            <h2>Description Lists</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Standard Description List</div>
+                <div class="demo-block__description">Term and definition pairs</div>
+
+                <dl>
+                    <dt>Undergraduate</dt>
+                    <dd>A student pursuing a bachelor's degree, typically requiring three to four years of full-time
+                        study.</dd>
+
+                    <dt>Postgraduate</dt>
+                    <dd>A student who has completed an undergraduate degree and is pursuing further education, such as a
+                        master's or doctoral degree.</dd>
+
+                    <dt>Semester</dt>
+                    <dd>An academic term, typically lasting 15-18 weeks. Most universities operate on a two-semester
+                        system (autumn and spring).</dd>
+
+                    <dt>Credit Hour</dt>
+                    <dd>A unit of measurement representing the amount of time a student spends in class per week
+                        throughout a semester.</dd>
+
+                    <dt>GPA (Grade Point Average)</dt>
+                    <dd>A numerical representation of a student's academic performance, calculated by averaging the
+                        grades earned in all courses.</dd>
+                </dl>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Glossary Example</div>
+                <div class="demo-block__description">Using description lists for terminology</div>
+
+                <h4>Key Terms in Computer Science</h4>
+                <dl>
+                    <dt>Algorithm</dt>
+                    <dd>A step-by-step procedure or formula for solving a problem or completing a task. Algorithms are
+                        fundamental to computer programming and data processing.</dd>
+
+                    <dt>API (Application Programming Interface)</dt>
+                    <dd>A set of protocols, tools, and definitions that allows different software applications to
+                        communicate with each other.</dd>
+
+                    <dt>Database</dt>
+                    <dd>An organized collection of structured information or data, typically stored electronically in a
+                        computer system and managed by a database management system (DBMS).</dd>
+
+                    <dt>Encryption</dt>
+                    <dd>The process of converting information or data into a code to prevent unauthorized access. It is
+                        a critical component of data security.</dd>
+
+                    <dt>Framework</dt>
+                    <dd>A platform for developing software applications that provides a foundation of reusable code,
+                        libraries, and tools to streamline development.</dd>
+                </dl>
+            </div>
+        </section>
+
+        <!-- List Utility Classes -->
+        <section class="demo-section">
+            <h2>List Utility Classes</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">List None (.list-none)</div>
+                <div class="demo-block__description">Removes default list styling</div>
+                <code class="code-label">.list-none</code>
+
+                <ul class="list-none">
+                    <li>Item with no bullets or default styling</li>
+                    <li>Second item without markers</li>
+                    <li>Third item in unstyled list</li>
+                    <li>Fourth item</li>
+                </ul>
+
+                <p style="margin-top: 1rem;"><small>Useful for navigation menus, custom styled lists, or when you need
+                        list semantics without visual list styling.</small></p>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Icon List (.list-icon)</div>
+                <div class="demo-block__description">Custom icon-based list styling</div>
+                <code class="code-label">.list-icon</code>
+
+                <ul class="list-icon">
+                    <li><span>✓</span>Completed task with checkmark icon</li>
+                    <li><span>✓</span>Another completed task</li>
+                    <li><span>✓</span>Third completed item</li>
+                    <li><span>✓</span>Final task in the list</li>
+                </ul>
+
+                <p style="margin-top: 1rem;"><small>The first <code>&lt;span&gt;</code> in each list item is styled as
+                        the icon. You can use any character or emoji.</small></p>
+
+                <h4 style="margin-top: 2rem;">Different Icons</h4>
+                <ul class="list-icon">
+                    <li><span>→</span>Arrow pointing to important information</li>
+                    <li><span>★</span>Starred or featured item</li>
+                    <li><span>📝</span>Note or documentation item</li>
+                    <li><span>⚠️</span>Warning or caution item</li>
+                </ul>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Counter List (.list-counter)</div>
+                <div class="demo-block__description">Styled numbered badges</div>
+                <code class="code-label">.list-counter</code>
+
+                <ul class="list-counter">
+                    <li>First step with styled number badge</li>
+                    <li>Second step in the process</li>
+                    <li>Third step with visual emphasis</li>
+                    <li>Fourth step continuing</li>
+                    <li>Fifth and final step</li>
+                </ul>
+
+                <p style="margin-top: 1rem;"><small>Provides a more visually prominent alternative to standard ordered
+                        lists, ideal for step-by-step instructions.</small></p>
+            </div>
+        </section>
+
+        <!-- Tables -->
+        <section class="demo-section">
+            <h2>Tables</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Standard Table with Caption</div>
+                <div class="demo-block__description">Basic table structure with header and body</div>
+
+                <table>
+                    <caption>Student Enrollment by Programme - Academic Year 2024/25</caption>
+                    <thead>
+                        <tr>
+                            <th>Programme</th>
+                            <th>Undergraduate</th>
+                            <th>Postgraduate</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Computer Science</td>
+                            <td>1,234</td>
+                            <td>456</td>
+                            <td>1,690</td>
+                        </tr>
+                        <tr>
+                            <td>Engineering</td>
+                            <td>2,105</td>
+                            <td>678</td>
+                            <td>2,783</td>
+                        </tr>
+                        <tr>
+                            <td>Business</td>
+                            <td>1,876</td>
+                            <td>892</td>
+                            <td>2,768</td>
+                        </tr>
+                        <tr>
+                            <td>Medicine</td>
+                            <td>987</td>
+                            <td>234</td>
+                            <td>1,221</td>
+                        </tr>
+                        <tr>
+                            <td>Arts & Humanities</td>
+                            <td>1,543</td>
+                            <td>321</td>
+                            <td>1,864</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Simple Data Table</div>
+                <div class="demo-block__description">Contact information table</div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Office</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dr. John Smith</td>
+                            <td>smithj@cardiff.ac.uk</td>
+                            <td>Computing</td>
+                            <td>QB 2.14</td>
+                        </tr>
+                        <tr>
+                            <td>Prof. Jane Doe</td>
+                            <td>doej@cardiff.ac.uk</td>
+                            <td>Engineering</td>
+                            <td>QB 3.22</td>
+                        </tr>
+                        <tr>
+                            <td>Dr. Bob Wilson</td>
+                            <td>wilsonb@cardiff.ac.uk</td>
+                            <td>Business</td>
+                            <td>AB 1.05</td>
+                        </tr>
+                        <tr>
+                            <td>Dr. Sarah Johnson</td>
+                            <td>johnsons@cardiff.ac.uk</td>
+                            <td>Medicine</td>
+                            <td>HC 4.18</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Course Schedule Table</div>
+                <div class="demo-block__description">Timetable example</div>
+
+                <table>
+                    <caption>Computer Science BSc - Year 1 Autumn Semester</caption>
+                    <thead>
+                        <tr>
+                            <th>Module Code</th>
+                            <th>Module Title</th>
+                            <th>Credits</th>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Room</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CM1101</td>
+                            <td>Introduction to Programming</td>
+                            <td>20</td>
+                            <td>Monday</td>
+                            <td>09:00-11:00</td>
+                            <td>QB 1.01</td>
+                        </tr>
+                        <tr>
+                            <td>CM1102</td>
+                            <td>Web Development</td>
+                            <td>20</td>
+                            <td>Tuesday</td>
+                            <td>14:00-16:00</td>
+                            <td>QB 1.02</td>
+                        </tr>
+                        <tr>
+                            <td>CM1103</td>
+                            <td>Computer Systems</td>
+                            <td>20</td>
+                            <td>Wednesday</td>
+                            <td>10:00-12:00</td>
+                            <td>QB 2.05</td>
+                        </tr>
+                        <tr>
+                            <td>CM1104</td>
+                            <td>Mathematics for Computing</td>
+                            <td>20</td>
+                            <td>Thursday</td>
+                            <td>13:00-15:00</td>
+                            <td>AB 3.12</td>
+                        </tr>
+                        <tr>
+                            <td>CM1105</td>
+                            <td>Professional Skills</td>
+                            <td>20</td>
+                            <td>Friday</td>
+                            <td>11:00-13:00</td>
+                            <td>QB 1.08</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Comparison Table</div>
+                <div class="demo-block__description">Feature comparison</div>
+
+                <table>
+                    <caption>Study Mode Comparison</caption>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Full-Time</th>
+                            <th>Part-Time</th>
+                            <th>Distance Learning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Duration</td>
+                            <td>3 years</td>
+                            <td>4-6 years</td>
+                            <td>4-8 years</td>
+                        </tr>
+                        <tr>
+                            <td>Campus Access</td>
+                            <td>Full access</td>
+                            <td>Full access</td>
+                            <td>Limited</td>
+                        </tr>
+                        <tr>
+                            <td>Lectures</td>
+                            <td>In-person</td>
+                            <td>In-person (evening)</td>
+                            <td>Online</td>
+                        </tr>
+                        <tr>
+                            <td>Flexibility</td>
+                            <td>Low</td>
+                            <td>Medium</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Support</td>
+                            <td>Full</td>
+                            <td>Full</td>
+                            <td>Online + occasional</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-note">
+                <div class="demo-note__title">Accessibility Note</div>
+                <p>All tables include proper semantic markup with <code>&lt;thead&gt;</code>,
+                    <code>&lt;tbody&gt;</code>, and <code>&lt;th&gt;</code> elements. Captions provide context for
+                    screen reader users. Tables are responsive and will scroll horizontally on small screens if needed.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="demo-footer">
+        <p>Cardiff University v2 Theme - Lists & Tables Demo</p>
+        <ul class="demo-footer__links">
+            <li><a href="index.html" class="demo-footer__link">Home</a></li>
+            <li><a href="typography.html" class="demo-footer__link">← Typography</a></li>
+            <li><a href="images-media.html" class="demo-footer__link">Images & Media →</a></li>
+        </ul>
+    </footer>
+    <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>

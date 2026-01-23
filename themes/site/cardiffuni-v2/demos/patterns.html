@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patterns - Cardiff University v2 Theme</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap-responsive.css">
+    <link rel="stylesheet" href="assets/bootstrap/custom.css">
+    <link rel="stylesheet" href="../cardiffuni-v2.css">
+    <link rel="stylesheet" href="assets/demo-styles.css">
+</head>
+
+<body>
+    <header class="jumbotron" id="overview">
+        <div class="container">
+            <div class="logoL">
+                <img class="logo logoL themeLogo"
+                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
+                    alt="Cardiff University Logo">
+            </div>
+
+            <div class="titles">
+                <h1 id="pageTitle" aria-live="polite">UI Patterns</h1>
+                <p id="pageSubTitle" aria-live="polite">Real-World Examples</p>
+            </div>
+    </header>
+
+    <div id="pageLinks">
+        <div class="navbar navbar-inverse navbar-fixed-top" id="topnav" role="navigation" aria-label="Pages"
+            style="position: static;">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button id="pageNavBtn" class="btn btn-navbar navbar-toggler collapsed" data-toggle="collapse"
+                        data-target=".nav-collapse" aria-haspopup="true" aria-controls="nav" aria-label="Page menu"
+                        aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="nav" aria-labelledby="pageNavBtn">
+                            <li role="none"><a href="index.html">← Home</a></li>
+                            <li role="none"><a href="typography.html">Typography</a></li>
+                            <li role="none"><a href="lists-tables.html">Lists & Tables</a></li>
+                            <li role="none"><a href="images-media.html">Images & Media</a></li>
+                            <li role="none"><a href="forms.html">Forms</a></li>
+                            <li role="none"><a href="components.html">Components</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="demo-section">
+            <h2>About UI Patterns</h2>
+            <p>This page demonstrates common UI patterns that combine multiple elements from the Cardiff University v2
+                theme. These patterns show real-world usage examples for building educational content and applications.
+            </p>
+        </section>
+
+        <!-- Card Pattern -->
+        <section class="demo-section">
+            <h2>Card Layouts</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Course Cards</div>
+                <div class="demo-block__description">Grid of course information cards</div>
+
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <h3 class="demo-card__title">Computer Science BSc</h3>
+                        <p><strong>Duration:</strong> 3 years full-time</p>
+                        <p><strong>Entry Requirements:</strong> AAB including Mathematics</p>
+                        <p>Develop essential programming skills and theoretical knowledge in computing.</p>
+                        <a href="#" class="button button-primary" style="margin-top: 1rem;">View Course →</a>
+                    </div>
+
+                    <div class="demo-card">
+                        <h3 class="demo-card__title">Engineering BEng</h3>
+                        <p><strong>Duration:</strong> 3 years full-time</p>
+                        <p><strong>Entry Requirements:</strong> AAA including Mathematics and Physics</p>
+                        <p>Learn to design, build, and test innovative engineering solutions.</p>
+                        <a href="#" class="button button-primary" style="margin-top: 1rem;">View Course →</a>
+                    </div>
+
+                    <div class="demo-card">
+                        <h3 class="demo-card__title">Business BA</h3>
+                        <p><strong>Duration:</strong> 3 years full-time</p>
+                        <p><strong>Entry Requirements:</strong> ABB</p>
+                        <p>Gain comprehensive business knowledge and practical management skills.</p>
+                        <a href="#" class="button button-primary" style="margin-top: 1rem;">View Course →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content with Sidebar -->
+        <section class="demo-section">
+            <h2>Content with Sidebar</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Article Layout</div>
+
+                <div class="flex flex-wrap" style="gap: 2rem;">
+                    <div style="flex: 1 1 600px;">
+                        <h1 class="page-header">Research Opportunities at Cardiff</h1>
+
+                        <p class="lead" style="font-size: var(--font-size-lg); color: var(--cu-gray-70);">Cardiff
+                            University offers world-class research opportunities across a wide range of disciplines.</p>
+
+                        <h2>Why Choose Cardiff for Research?</h2>
+                        <p>Our research community is vibrant, diverse, and internationally recognized. We provide
+                            state-of-the-art facilities, expert supervision, and a supportive environment for
+                            postgraduate researchers.</p>
+
+                        <h3>Research Excellence</h3>
+                        <p>Cardiff University is consistently ranked among the top research institutions in the UK. Our
+                            researchers are making significant contributions to knowledge and addressing global
+                            challenges.</p>
+
+                        <ul class="list-icon">
+                            <li><span>✓</span>World-leading research facilities</li>
+                            <li><span>✓</span>Expert supervisors</li>
+                            <li><span>✓</span>Collaborative environment</li>
+                            <li><span>✓</span>Funding opportunities</li>
+                        </ul>
+                    </div>
+
+                    <aside
+                        style="flex: 1 1 300px; background: var(--cu-gray-10); padding: 1.5rem; border-radius: 8px; height: fit-content;">
+                        <h3 style="margin-top: 0;">Quick Links</h3>
+                        <ul class="list-none">
+                            <li style="margin-bottom: 0.75rem;"><a href="#">→ Research Areas</a></li>
+                            <li style="margin-bottom: 0.75rem;"><a href="#">→ Find a Supervisor</a></li>
+                            <li style="margin-bottom: 0.75rem;"><a href="#">→ Funding Options</a></li>
+                            <li style="margin-bottom: 0.75rem;"><a href="#">→ Application Process</a></li>
+                        </ul>
+
+                        <hr class="demo-divider">
+
+                        <h4>Contact Us</h4>
+                        <p style="font-size: var(--font-size-sm);">
+                            <strong>Research Office</strong><br>
+                            Email: <a href="#">research@cardiff.ac.uk</a><br>
+                            Tel: +44 (0)29 2087 4000
+                        </p>
+
+                        <button class="button button-primary button--block" style="margin-top: 1rem;">Apply Now</button>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="demo-section">
+            <h2>Call-to-Action Sections</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Centered CTA</div>
+
+                <div
+                    style="background: var(--cu-primary-red); color: white; padding: 3rem 2rem; border-radius: 8px; text-align: center;">
+                    <h2 style="color: white; margin-top: 0;">Ready to Start Your Journey?</h2>
+                    <p style="font-size: var(--font-size-lg); max-width: 600px; margin: 1rem auto 2rem;">Join thousands
+                        of students who have chosen Cardiff University to pursue their academic goals.</p>
+                    <div class="demo-inline" style="justify-content: center;">
+                        <button class="button button-reverse">Apply Now</button>
+                        <button class="button button-reverse-outline">Request Information</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Split CTA</div>
+
+                <div class="flex flex-wrap"
+                    style="background: var(--cu-midnight-blue); color: white; border-radius: 8px; overflow: hidden;">
+                    <div style="flex: 1 1 300px; padding: 2rem;">
+                        <h3 style="color: white; margin-top: 0;">Open Days</h3>
+                        <p>Visit our campus and experience Cardiff University firsthand. Meet staff, tour facilities,
+                            and ask questions.</p>
+                        <button class="button button-reverse" style="margin-top: 1rem;">Book Your Place</button>
+                    </div>
+                    <div style="flex: 1 1 300px; padding: 2rem; background: rgba(255,255,255,0.1);">
+                        <h3 style="color: white; margin-top: 0;">Virtual Tours</h3>
+                        <p>Can't visit in person? Take a virtual tour of our campus from anywhere in the world.</p>
+                        <button class="button button-reverse-outline" style="margin-top: 1rem;">Start Tour</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Grid -->
+        <section class="demo-section">
+            <h2>Feature Grids</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Services Overview</div>
+
+                <div class="demo-grid">
+                    <div style="text-align: center; padding: 1.5rem;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
+                        <h4>Library Services</h4>
+                        <p>Access millions of books, journals, and digital resources 24/7.</p>
+                    </div>
+
+                    <div style="text-align: center; padding: 1.5rem;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">💻</div>
+                        <h4>IT Support</h4>
+                        <p>Technical assistance and computing facilities across campus.</p>
+                    </div>
+
+                    <div style="text-align: center; padding: 1.5rem;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🏥</div>
+                        <h4>Health & Wellbeing</h4>
+                        <p>Comprehensive support for your physical and mental health.</p>
+                    </div>
+
+                    <div style="text-align: center; padding: 1.5rem;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎓</div>
+                        <h4>Careers Service</h4>
+                        <p>Guidance and resources to help you plan your future career.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Staff Profile -->
+        <section class="demo-section">
+            <h2>Staff Profiles</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Academic Staff Card</div>
+
+                <div class="flex flex-wrap"
+                    style="gap: 2rem; background: white; border: 1px solid var(--cu-gray-30); border-radius: 8px; padding: 2rem;">
+                    <div style="flex: 0 0 150px;">
+                        <img src="https://placehold.co/150x150/5EB99B/FFFFFF?text=Photo" alt="Staff photo"
+                            style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+                    </div>
+
+                    <div style="flex: 1 1 400px;">
+                        <h3 style="margin-top: 0; color: var(--cu-primary-red);">Dr. Jane Smith</h3>
+                        <p><strong>Senior Lecturer in Computer Science</strong></p>
+                        <p>Dr. Smith's research focuses on artificial intelligence and machine learning, with particular
+                            interest in natural language processing and computer vision applications.</p>
+
+                        <div style="margin-top: 1rem;">
+                            <p style="margin: 0.25rem 0;"><strong>Email:</strong> <a href="#">smithj@cardiff.ac.uk</a>
+                            </p>
+                            <p style="margin: 0.25rem 0;"><strong>Office:</strong> Queen's Building 2.14</p>
+                            <p style="margin: 0.25rem 0;"><strong>Office Hours:</strong> Monday & Wednesday, 2:00-4:00
+                                PM</p>
+                        </div>
+
+                        <div class="demo-inline" style="margin-top: 1.5rem;">
+                            <a href="#" class="button button-primary-outline button--small">View Profile</a>
+                            <a href="#" class="button button-secondary-outline button--small">Research</a>
+                            <a href="#" class="button button-secondary-outline button--small">Publications</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News/Blog Layout -->
+        <section class="demo-section">
+            <h2>News & Blog Layouts</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">News Articles</div>
+
+                <article style="border-bottom: 1px solid var(--cu-gray-20); padding-bottom: 2rem; margin-bottom: 2rem;">
+                    <div class="flex flex-wrap" style="gap: 1.5rem;">
+                        <img src="https://placehold.co/300x200/E4251B/FFFFFF?text=News+Image" alt="News"
+                            class="image-screenshots" style="flex: 0 0 300px; max-width: 100%;">
+                        <div style="flex: 1 1 400px;">
+                            <p style="color: var(--cu-gray-60); font-size: var(--font-size-sm); margin: 0;">23 January
+                                2026</p>
+                            <h3 style="margin: 0.5rem 0 1rem;"><a href="#">Cardiff Researchers Make Breakthrough in
+                                    Renewable Energy</a></h3>
+                            <p>A team of researchers at Cardiff University has developed a new method for improving
+                                solar panel efficiency, potentially revolutionizing renewable energy production.</p>
+                            <a href="#" class="button button-primary-outline button--small">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article style="border-bottom: 1px solid var(--cu-gray-20); padding-bottom: 2rem; margin-bottom: 2rem;">
+                    <div class="flex flex-wrap" style="gap: 1.5rem;">
+                        <img src="https://placehold.co/300x200/5EB99B/FFFFFF?text=News+Image" alt="News"
+                            class="image-screenshots" style="flex: 0 0 300px; max-width: 100%;">
+                        <div style="flex: 1 1 400px;">
+                            <p style="color: var(--cu-gray-60); font-size: var(--font-size-sm); margin: 0;">20 January
+                                2026</p>
+                            <h3 style="margin: 0.5rem 0 1rem;"><a href="#">New Partnership with Leading Tech Company</a>
+                            </h3>
+                            <p>Cardiff University announces a strategic partnership with a global technology leader to
+                                enhance research opportunities and student placements.</p>
+                            <a href="#" class="button button-primary-outline button--small">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Step-by-Step Guide -->
+        <section class="demo-section">
+            <h2>Step-by-Step Guides</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Application Process</div>
+
+                <ul class="list-counter">
+                    <li>
+                        <strong>Choose Your Course</strong>
+                        <p>Browse our course catalog and select the programme that matches your interests and career
+                            goals.</p>
+                    </li>
+                    <li>
+                        <strong>Check Entry Requirements</strong>
+                        <p>Review the academic and English language requirements for your chosen course.</p>
+                    </li>
+                    <li>
+                        <strong>Prepare Your Documents</strong>
+                        <p>Gather transcripts, references, personal statement, and any other required materials.</p>
+                    </li>
+                    <li>
+                        <strong>Submit Your Application</strong>
+                        <p>Complete the online application form through UCAS or our direct application portal.</p>
+                    </li>
+                    <li>
+                        <strong>Await Decision</strong>
+                        <p>We'll review your application and notify you of our decision within 4-6 weeks.</p>
+                    </li>
+                    <li>
+                        <strong>Accept Your Offer</strong>
+                        <p>If successful, accept your offer and complete enrollment procedures.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="demo-footer">
+        <p>Cardiff University v2 Theme - UI Patterns Demo</p>
+        <ul class="demo-footer__links">
+            <li><a href="index.html" class="demo-footer__link">Home</a></li>
+            <li><a href="colors.html" class="demo-footer__link">← Colors</a></li>
+        </ul>
+    </footer>
+    <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>

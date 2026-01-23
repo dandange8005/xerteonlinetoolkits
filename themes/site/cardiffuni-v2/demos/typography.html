@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typography - Cardiff University v2 Theme</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap-responsive.css">
+    <link rel="stylesheet" href="assets/bootstrap/custom.css">
+    <link rel="stylesheet" href="../cardiffuni-v2.css">
+    <link rel="stylesheet" href="assets/demo-styles.css">
+</head>
+
+<body>
+    <header class="jumbotron" id="overview">
+        <div class="container">
+            <div class="logoL">
+                <img class="logo logoL themeLogo"
+                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
+                    alt="Cardiff University Logo">
+            </div>
+
+            <div class="titles">
+                <h1 id="pageTitle" aria-live="polite">Typography</h1>
+                <p id="pageSubTitle" aria-live="polite">Text Elements & Styles</p>
+            </div>
+    </header>
+
+    <div id="pageLinks">
+        <div class="navbar navbar-inverse navbar-fixed-top" id="topnav" role="navigation" aria-label="Pages"
+            style="position: static;">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button id="pageNavBtn" class="btn btn-navbar navbar-toggler collapsed" data-toggle="collapse"
+                        data-target=".nav-collapse" aria-haspopup="true" aria-controls="nav" aria-label="Page menu"
+                        aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="nav" aria-labelledby="pageNavBtn">
+                            <li role="none"><a href="index.html">← Home</a></li>
+                            <li class="activePage" role="none" aria-current="page"><a
+                                    href="typography.html">Typography</a></li>
+                            <li role="none"><a href="lists-tables.html">Lists & Tables</a></li>
+                            <li role="none"><a href="images-media.html">Images & Media</a></li>
+                            <li role="none"><a href="forms.html">Forms</a></li>
+                            <li role="none"><a href="components.html">Components</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row-fluid">
+            <!-- Sidebar Navigation -->
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#heading-hierarchy">Heading Hierarchy</a></li>
+                    <li><a href="#body-text">Body Text & Paragraphs</a></li>
+                    <li><a href="#links">Links</a></li>
+                    <li><a href="#inline-elements">Inline Text Elements</a></li>
+                    <li><a href="#blockquotes">Blockquotes & Citations</a></li>
+                    <li><a href="#typography-context">Typography in Context</a></li>
+                    <li><a href="#reading-considerations">Reading Considerations</a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="span9" id="mainContent">
+                <!-- Heading Hierarchy -->
+                <section class="demo-section" id="heading-hierarchy">
+                    <h2 class="page-header">Heading Hierarchy</h2>
+                    <p>Cardiff University uses a clear heading hierarchy to structure content. All headings use the Marr
+                        Sans
+                        font family.</p>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Standard Headings (H1-H6)</div>
+                        <h1>Heading 1 - Main Page Title</h1>
+                        <p>Use H1 for the main page title. There should only be one H1 per page for proper document
+                            structure
+                            and accessibility.</p>
+
+                        <h2>Heading 2 - Major Section Title</h2>
+                        <p>H2 headings divide the page into major sections. They are the primary organizational tool for
+                            content.</p>
+
+                        <h3>Heading 3 - Subsection Title</h3>
+                        <p>H3 headings break down H2 sections into smaller, more specific topics.</p>
+
+                        <h4>Heading 4 - Content Group</h4>
+                        <p>H4 headings are used for grouping related content within subsections.</p>
+
+                        <h5>Heading 5 - Minor Heading</h5>
+                        <p>H5 headings provide additional structure when needed for complex content.</p>
+
+                        <h6>Heading 6 - Smallest Heading</h6>
+                        <p>H6 is the smallest heading level, used sparingly for the finest level of detail.</p>
+                    </div>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Special Heading Classes</div>
+                        <div class="demo-block__description">These classes provide alternative styling for specific use
+                            cases.
+                        </div>
+
+                        <h2 class="sectionTitle">Section Title with .sectionTitle class</h2>
+                        <p>The <code>.sectionTitle</code> class provides distinctive styling for major section breaks.
+                        </p>
+
+                        <h3 class="contentTitle">Content Title with .contentTitle class</h3>
+                        <p>The <code>.contentTitle</code> class is used for content area headings.</p>
+
+                        <h1 class="page-header">Page Header with .page-header class</h1>
+                        <p>The <code>.page-header</code> class removes top margin, ideal for page titles at the top of
+                            content.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Body Text & Paragraphs -->
+                <section class="demo-section" id="body-text">
+                    <h2 class="page-header">Body Text & Paragraphs</h2>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Standard Paragraphs</div>
+                        <p>This is a standard paragraph demonstrating the default body text styling. Cardiff University
+                            uses the
+                            Marr Sans Regular font family for body copy, ensuring excellent readability across all
+                            devices and
+                            screen sizes. The font size, line height, and spacing are carefully calibrated to meet
+                            accessibility
+                            standards.</p>
+
+                        <p>Multiple paragraphs maintain consistent spacing and line height for optimal reading
+                            experience. The
+                            text color, line height, and font size are all carefully calibrated to meet accessibility
+                            standards
+                            while reflecting Cardiff University's brand guidelines.</p>
+
+                        <p>For text-heavy educational resources, proper paragraph spacing and line height are essential.
+                            The
+                            theme ensures comfortable reading even in long-form content such as academic papers, course
+                            materials, and research documentation.</p>
+                    </div>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Long-Form Content Example</div>
+                        <div class="demo-block__description">Demonstrating readability in extended text passages</div>
+
+                        <h3>The Importance of Typography in Education</h3>
+
+                        <p>Typography plays a crucial role in educational materials. Well-designed text not only
+                            enhances
+                            readability but also improves comprehension and retention. When students can easily read and
+                            understand course materials, they are better equipped to engage with the content and achieve
+                            learning outcomes.</p>
+
+                        <p>Research has shown that proper typography can reduce cognitive load, allowing students to
+                            focus on
+                            the content rather than struggling to decode poorly formatted text. Factors such as font
+                            choice,
+                            size, line height, and spacing all contribute to the overall reading experience.</p>
+
+                        <p>The Cardiff University v2 theme has been specifically designed with these principles in mind.
+                            Every
+                            typographic decision—from the selection of the Marr Sans font family to the careful
+                            calibration of
+                            line heights and spacing—serves to create an optimal reading environment for students and
+                            educators
+                            alike.</p>
+
+                        <h4>Key Typography Principles</h4>
+
+                        <p>Several key principles guide the typography system in this theme. First, consistency ensures
+                            that
+                            similar elements are styled the same way throughout the interface. Second, hierarchy helps
+                            users
+                            understand the relationship between different pieces of content. Third, accessibility
+                            ensures that
+                            all users, regardless of ability, can access and understand the content.</p>
+                    </div>
+                </section>
+
+                <!-- Links -->
+                <section class="demo-section" id="links">
+                    <h2 class="page-header">Links</h2>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Link States</div>
+                        <p>This paragraph contains a <a href="#default">default link</a> that demonstrates the link
+                            styling.
+                            Links use Cardiff University's brand colors and include <a href="#visited">visited state
+                                styling</a>. Hover over <a href="#hover">this link</a> to see the hover effect. Links
+                            also have
+                            a <a href="#focus">focus state</a> for keyboard navigation accessibility.</p>
+
+                        <p>Links within body text are underlined by default to ensure they are easily identifiable. This
+                            is
+                            particularly important for users with color blindness or other visual impairments who may
+                            not be
+                            able to distinguish links by color alone.</p>
+                    </div>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Link Examples in Context</div>
+                        <p>For more information about Cardiff University, visit the <a
+                                href="https://www.cardiff.ac.uk">official
+                                website</a>. Students can access their <a href="#">student portal</a> to view grades,
+                            register
+                            for courses, and manage their academic records.</p>
+
+                        <p>External resources such as <a href="https://library.cardiff.ac.uk">the library catalog</a>
+                            and <a href="#">research databases</a> are available to all students and staff members.</p>
+                    </div>
+                </section>
+
+                <!-- Inline Text Elements -->
+                <section class="demo-section" id="inline-elements">
+                    <h2 class="page-header">Inline Text Elements</h2>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Text Emphasis & Formatting</div>
+                        <div class="demo-inline demo-inline--column">
+                            <p><strong>Strong/Bold text</strong> is used for emphasis and important information.</p>
+                            <p><em>Emphasized/Italic text</em> is used for subtle emphasis, titles, or foreign words.
+                            </p>
+                            <p><mark>Highlighted text</mark> draws attention to specific content.</p>
+                            <p><small>Small text</small> is used for fine print or less important information.</p>
+                            <p><del>Deleted text</del> shows content that has been removed or is no longer valid.</p>
+                            <p><ins>Inserted text</ins> indicates new or added content.</p>
+                        </div>
+                    </div>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Scientific & Technical Notation</div>
+                        <p>The chemical formula for water is H<sub>2</sub>O, while carbon dioxide is CO<sub>2</sub>.
+                            Subscripts
+                            are commonly used in chemistry and mathematics.</p>
+
+                        <p>Einstein's famous equation is E=mc<sup>2</sup>. The area of a square is calculated as
+                            side<sup>2</sup>. Superscripts are used for exponents, footnotes, and ordinal indicators
+                            (1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>).</p>
+                    </div>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Code & Technical Elements</div>
+                        <p>Use the <code>console.log()</code> function to output debugging information. Inline code is
+                            styled
+                            with a monospace font and subtle background.</p>
+
+                        <p>To save a file, press <kbd>Ctrl</kbd> + <kbd>S</kbd> on Windows or <kbd>Cmd</kbd> +
+                            <kbd>S</kbd> on
+                            Mac. Keyboard shortcuts are displayed using the <code>&lt;kbd&gt;</code> element.
+                        </p>
+
+                        <p>The abbreviation <abbr title="HyperText Markup Language">HTML</abbr> stands for HyperText
+                            Markup
+                            Language. Hover over abbreviations to see their full meaning.</p>
+                    </div>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Combined Examples</div>
+                        <p>In academic writing, you might see <strong>important concepts</strong> highlighted, <em>book
+                                titles</em> in italics, and <code>technical terms</code> in monospace. Mathematical
+                            expressions
+                            like x<sup>2</sup> + y<sup>2</sup> = r<sup>2</sup> use superscripts, while chemical formulas
+                            like
+                            H<sub>2</sub>SO<sub>4</sub> use subscripts.</p>
+                    </div>
+                </section>
+
+                <!-- Blockquotes & Citations -->
+                <section class="demo-section" id="blockquotes">
+                    <h2 class="page-header">Blockquotes & Citations</h2>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Standard Blockquote with Citation</div>
+                        <blockquote>
+                            <p class="quote">Education is the most powerful weapon which you can use to change the
+                                world. It is
+                                through education that we can build a better future for all people, regardless of their
+                                background or circumstances.</p>
+                            <cite>Nelson Mandela</cite>
+                        </blockquote>
+                    </div>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Blockquote with Source Attribution</div>
+                        <blockquote>
+                            <p class="quote">The function of education is to teach one to think intensively and to think
+                                critically. Intelligence plus character - that is the goal of true education.</p>
+                            <p class="source">— Martin Luther King Jr., The Purpose of Education, 1947</p>
+                        </blockquote>
+                    </div>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Academic Quotation</div>
+                        <blockquote>
+                            <p class="quote">The university is not engaged in making ideas safe for students. It is
+                                engaged in
+                                making students safe for ideas. Thus it permits the freest expression of views before
+                                students,
+                                trusting to their good sense in passing judgment on these views.</p>
+                            <cite>Clark Kerr, The Uses of the University</cite>
+                        </blockquote>
+
+                        <p>Blockquotes are essential in academic writing for incorporating external sources and
+                            supporting
+                            arguments with authoritative voices.</p>
+                    </div>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Multiple Paragraph Blockquote</div>
+                        <blockquote>
+                            <p class="quote">Research is formalized curiosity. It is poking and prying with a purpose.
+                                It is a
+                                seeking that he who wishes may know the cosmic secrets of the world and they that dwell
+                                therein.
+                            </p>
+                            <p class="quote">Research is the highest form of adoration. It is the seeking of the truth,
+                                and the
+                                truth shall make you free.</p>
+                            <cite>Zora Neale Hurston, Dust Tracks on a Road</cite>
+                        </blockquote>
+                    </div>
+                </section>
+
+                <!-- Text in Context -->
+                <section class="demo-section" id="typography-context">
+                    <h2 class="page-header">Typography in Context</h2>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Complete Article Example</div>
+
+                        <h1 class="page-header">Understanding Climate Change: A Scientific Perspective</h1>
+
+                        <p class="lead" style="font-size: var(--font-size-lg); color: var(--cu-gray-70);">Climate change
+                            represents one of the most significant challenges facing humanity in the 21st century. This
+                            article
+                            explores the scientific consensus and evidence supporting our understanding of global
+                            climate
+                            systems.</p>
+
+                        <h2>Introduction</h2>
+
+                        <p>Climate change, also known as <strong>global warming</strong>, refers to the long-term shifts
+                            in
+                            global temperatures and weather patterns. While climate change is a natural phenomenon that
+                            has
+                            occurred throughout Earth's history, the current period of warming is occurring more rapidly
+                            than
+                            past events, and scientific evidence overwhelmingly indicates that human activities are the
+                            primary
+                            cause.</p>
+
+                        <h2>The Greenhouse Effect</h2>
+
+                        <p>The greenhouse effect is a natural process that warms the Earth's surface. When the Sun's
+                            energy
+                            reaches the Earth's atmosphere, some of it is reflected back to space and the rest is
+                            absorbed and
+                            re-radiated by greenhouse gases. These gases include:</p>
+
+                        <ul>
+                            <li>Carbon dioxide (CO<sub>2</sub>)</li>
+                            <li>Methane (CH<sub>4</sub>)</li>
+                            <li>Nitrous oxide (N<sub>2</sub>O)</li>
+                            <li>Water vapor (H<sub>2</sub>O)</li>
+                        </ul>
+
+                        <p>The absorbed energy warms the atmosphere and the surface of the Earth. This process is
+                            essential for
+                            life as we know it—without it, Earth's average temperature would be about -18°C instead of
+                            the
+                            current 15°C.</p>
+
+                        <blockquote>
+                            <p class="quote">The scientific evidence is clear: climate change is real, it is happening
+                                now, and
+                                human activities are the primary cause.</p>
+                            <cite>Intergovernmental Panel on Climate Change (IPCC)</cite>
+                        </blockquote>
+
+                        <h3>Human Impact</h3>
+
+                        <p>Since the Industrial Revolution, human activities—particularly the burning of fossil
+                            fuels—have
+                            increased atmospheric CO<sub>2</sub> concentrations by more than 40%. This enhancement of
+                            the
+                            greenhouse effect is causing global temperatures to rise at an unprecedented rate.</p>
+
+                        <p>For more information, visit the <a href="#">IPCC website</a> or consult the <a
+                                href="#">National
+                                Climate Assessment</a>.</p>
+
+                        <h2>Conclusion</h2>
+
+                        <p>Understanding climate change requires engagement with complex scientific concepts and data.
+                            However,
+                            the fundamental principles are clear, and the evidence is overwhelming. <em>Action is needed
+                                now</em> to mitigate the worst effects of climate change and ensure a sustainable future
+                            for
+                            generations to come.</p>
+                    </div>
+                </section>
+
+                <!-- Reading Considerations -->
+                <section class="demo-section" id="reading-considerations">
+                    <h2 class="page-header">Reading Considerations</h2>
+
+                    <div class="demo-note">
+                        <div class="demo-note__title">Accessibility Note</div>
+                        <p>All typography in this theme meets WCAG 2.1 Level AA standards for contrast and readability.
+                            Font
+                            sizes are specified in relative units (rem) to respect user preferences and browser
+                            settings.</p>
+                    </div>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Optimal Line Length</div>
+                        <p>The ideal line length for readability is generally considered to be 50-75 characters per
+                            line. This
+                            theme's default content width is optimized for comfortable reading. Lines that are too long
+                            can
+                            cause readers to lose their place, while lines that are too short create a choppy reading
+                            experience.</p>
+                    </div>
+
+                    <div class="demo-block">
+                        <div class="demo-block__title">Line Height & Spacing</div>
+                        <p>Proper line height (leading) is crucial for readability. This theme uses a line height of 1.6
+                            for
+                            body text, which provides comfortable spacing between lines without making the text feel
+                            disconnected.</p>
+
+                        <p>Paragraph spacing is also carefully considered. Each paragraph has appropriate margin spacing
+                            to
+                            clearly delineate separate thoughts while maintaining visual flow.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="wcagLink">
+                    <p>Cardiff University v2 Theme - Typography Demo</p>
+                    <ul class="demo-footer__links">
+                        <li><a href="index.html" class="demo-footer__link">Home</a></li>
+                        <li><a href="lists-tables.html" class="demo-footer__link">Lists & Tables →</a></li>
+                        <li><a href="images-media.html" class="demo-footer__link">Images & Media</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>

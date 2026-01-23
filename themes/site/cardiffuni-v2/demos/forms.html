@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms - Cardiff University v2 Theme</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap-responsive.css">
+    <link rel="stylesheet" href="assets/bootstrap/custom.css">
+    <link rel="stylesheet" href="../cardiffuni-v2.css">
+    <link rel="stylesheet" href="assets/demo-styles.css">
+</head>
+
+<body>
+    <header class="jumbotron" id="overview">
+        <div class="container">
+            <div class="logoL">
+                <img class="logo logoL themeLogo"
+                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
+                    alt="Cardiff University Logo">
+            </div>
+
+            <div class="titles">
+                <h1 id="pageTitle" aria-live="polite">Forms</h1>
+                <p id="pageSubTitle" aria-live="polite">Form Elements & Input Types</p>
+            </div>
+    </header>
+
+    <div id="pageLinks">
+        <div class="navbar navbar-inverse navbar-fixed-top" id="topnav" role="navigation" aria-label="Pages"
+            style="position: static;">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button id="pageNavBtn" class="btn btn-navbar navbar-toggler collapsed" data-toggle="collapse"
+                        data-target=".nav-collapse" aria-haspopup="true" aria-controls="nav" aria-label="Page menu"
+                        aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="nav" aria-labelledby="pageNavBtn">
+                            <li role="none"><a href="index.html">← Home</a></li>
+                            <li role="none"><a href="typography.html">Typography</a></li>
+                            <li role="none"><a href="lists-tables.html">Lists & Tables</a></li>
+                            <li role="none"><a href="images-media.html">Images & Media</a></li>
+                            <li class="activePage" role="none" aria-current="page"><a href="forms.html">Forms</a></li>
+                            <li role="none"><a href="components.html">Components</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Labels -->
+        <section class="demo-section">
+            <h2>Labels</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Standard Labels</div>
+                <div class="demo-block__description">Form field labels with proper association</div>
+
+                <p><label for="demo-standard">Standard Label</label></p>
+                <input type="text" id="demo-standard" placeholder="Enter text">
+
+                <p style="margin-top: 1.5rem;"><label for="demo-standard-2" class="required">Required Field
+                        Label</label></p>
+                <input type="text" id="demo-standard-2" placeholder="This field is required" required>
+
+                <p style="margin-top: 1rem;"><small>The <code>.required</code> class adds a red asterisk to indicate
+                        mandatory fields.</small></p>
+            </div>
+        </section>
+
+        <!-- Text Inputs -->
+        <section class="demo-section">
+            <h2>Text Input Fields</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Text Input Types</div>
+                <div class="demo-block__description">Various text input field types</div>
+
+                <div style="max-width: 600px;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-text">Text Input</label>
+                        <input type="text" id="input-text" placeholder="Enter your full name">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-email">Email Input</label>
+                        <input type="email" id="input-email" placeholder="name@cardiff.ac.uk">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-password">Password Input</label>
+                        <input type="password" id="input-password" placeholder="Enter password">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-search">Search Input</label>
+                        <input type="search" id="input-search" placeholder="Search courses...">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-tel">Telephone Input</label>
+                        <input type="tel" id="input-tel" placeholder="+44 29 2087 4000">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-url">URL Input</label>
+                        <input type="url" id="input-url" placeholder="https://www.cardiff.ac.uk">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-number">Number Input</label>
+                        <input type="number" id="input-number" placeholder="0" min="0" max="100">
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Input States</div>
+                <div class="demo-block__description">Different input states and styling</div>
+
+                <div style="max-width: 600px;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-default">Default State</label>
+                        <input type="text" id="input-default" placeholder="Default input field">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-filled">Filled State</label>
+                        <input type="text" id="input-filled" value="This field has content">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-disabled">Disabled State</label>
+                        <input type="text" id="input-disabled" value="This field is disabled" disabled>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-readonly">Readonly State</label>
+                        <input type="text" id="input-readonly" value="This field is readonly" readonly>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Date & Time Inputs -->
+        <section class="demo-section">
+            <h2>Date & Time Inputs</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Date and Time Input Types</div>
+                <div class="demo-block__description">HTML5 date and time pickers</div>
+
+                <div style="max-width: 600px;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-date">Date Input</label>
+                        <input type="date" id="input-date">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-time">Time Input</label>
+                        <input type="time" id="input-time">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-datetime">Date & Time Input</label>
+                        <input type="datetime-local" id="input-datetime">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-month">Month Input</label>
+                        <input type="month" id="input-month">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="input-week">Week Input</label>
+                        <input type="week" id="input-week">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Textarea -->
+        <section class="demo-section">
+            <h2>Textarea</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Multi-line Text Input</div>
+                <div class="demo-block__description">Textarea for longer text content</div>
+
+                <div style="max-width: 600px;">
+                    <label for="textarea-default">Message</label>
+                    <textarea id="textarea-default" placeholder="Enter your message here..." rows="4"></textarea>
+
+                    <div style="margin-top: 1.5rem;">
+                        <label for="textarea-large">Large Textarea</label>
+                        <textarea id="textarea-large" placeholder="Enter detailed information..." rows="8"></textarea>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <label for="textarea-disabled">Disabled Textarea</label>
+                        <textarea id="textarea-disabled"
+                            disabled>This textarea is disabled and cannot be edited.</textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Select Dropdowns -->
+        <section class="demo-section">
+            <h2>Select Dropdowns</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Standard Select</div>
+                <div class="demo-block__description">Dropdown selection fields</div>
+
+                <div style="max-width: 600px;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="select-programme">Programme of Study</label>
+                        <select id="select-programme">
+                            <option value="">-- Select a programme --</option>
+                            <option value="cs">Computer Science</option>
+                            <option value="eng">Engineering</option>
+                            <option value="bus">Business</option>
+                            <option value="med">Medicine</option>
+                            <option value="arts">Arts & Humanities</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="select-level">Level of Study</label>
+                        <select id="select-level">
+                            <option value="">-- Select level --</option>
+                            <option value="ug">Undergraduate</option>
+                            <option value="pgt">Postgraduate Taught</option>
+                            <option value="pgr">Postgraduate Research</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="select-disabled">Disabled Select</label>
+                        <select id="select-disabled" disabled>
+                            <option>This dropdown is disabled</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Select with Optgroups</div>
+                <div class="demo-block__description">Grouped dropdown options</div>
+
+                <div style="max-width: 600px;">
+                    <label for="select-grouped">Select a Course</label>
+                    <select id="select-grouped">
+                        <option value="">-- Select a course --</option>
+                        <optgroup label="Computer Science">
+                            <option value="cm1101">CM1101 - Introduction to Programming</option>
+                            <option value="cm1102">CM1102 - Web Development</option>
+                            <option value="cm1103">CM1103 - Computer Systems</option>
+                        </optgroup>
+                        <optgroup label="Engineering">
+                            <option value="en1101">EN1101 - Engineering Mathematics</option>
+                            <option value="en1102">EN1102 - Mechanics</option>
+                            <option value="en1103">EN1103 - Electrical Circuits</option>
+                        </optgroup>
+                        <optgroup label="Business">
+                            <option value="bs1101">BS1101 - Business Fundamentals</option>
+                            <option value="bs1102">BS1102 - Marketing Principles</option>
+                            <option value="bs1103">BS1103 - Financial Accounting</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkboxes -->
+        <section class="demo-section">
+            <h2>Checkboxes</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Standard Checkboxes</div>
+                <div class="demo-block__description">Multiple selection options</div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" checked> I agree to the terms and conditions
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox"> Subscribe to newsletter
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox"> Receive promotional emails
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" disabled> Disabled option
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" checked disabled> Disabled checked option
+                    </label>
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Checkbox Group</div>
+                <div class="demo-block__description">Related checkboxes with fieldset</div>
+
+                <fieldset style="border: 1px solid var(--cu-gray-30); padding: 1.5rem; border-radius: 4px;">
+                    <legend style="font-weight: var(--font-weight-medium); padding: 0 0.5rem;">Select your interests
+                    </legend>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="interests" value="research"> Research
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="interests" value="teaching"> Teaching
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="interests" value="industry"> Industry Collaboration
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="interests" value="community"> Community Engagement
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+        </section>
+
+        <!-- Radio Buttons -->
+        <section class="demo-section">
+            <h2>Radio Buttons</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Standard Radio Buttons</div>
+                <div class="demo-block__description">Single selection from multiple options</div>
+
+                <fieldset style="border: none; padding: 0; margin: 0;">
+                    <legend style="font-weight: var(--font-weight-medium); margin-bottom: 0.75rem;">Study Mode</legend>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="study-mode" value="full-time" checked> Full-time
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="study-mode" value="part-time"> Part-time
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="study-mode" value="distance"> Distance Learning
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="study-mode" value="disabled" disabled> Unavailable Option
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Multiple Radio Groups</div>
+                <div class="demo-block__description">Different radio button groups on the same form</div>
+
+                <fieldset
+                    style="border: 1px solid var(--cu-gray-30); padding: 1.5rem; border-radius: 4px; margin-bottom: 1.5rem;">
+                    <legend style="font-weight: var(--font-weight-medium); padding: 0 0.5rem;">Accommodation Preference
+                    </legend>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="accommodation" value="halls" checked> University Halls
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="accommodation" value="private"> Private Accommodation
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="accommodation" value="home"> Living at Home
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset style="border: 1px solid var(--cu-gray-30); padding: 1.5rem; border-radius: 4px;">
+                    <legend style="font-weight: var(--font-weight-medium); padding: 0 0.5rem;">Dietary Requirements
+                    </legend>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="dietary" value="none" checked> No special requirements
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="dietary" value="vegetarian"> Vegetarian
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="dietary" value="vegan"> Vegan
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="dietary" value="halal"> Halal
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="dietary" value="other"> Other (please specify)
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+        </section>
+
+        <!-- Complete Form Examples -->
+        <section class="demo-section">
+            <h2>Complete Form Examples</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Student Registration Form</div>
+                <div class="demo-block__description">Comprehensive form example</div>
+
+                <form style="max-width: 600px;">
+                    <h3 style="margin-top: 0;">Personal Information</h3>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="reg-name" class="required">Full Name</label>
+                        <input type="text" id="reg-name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="reg-email" class="required">Email Address</label>
+                        <input type="email" id="reg-email" placeholder="name@cardiff.ac.uk" required>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="reg-phone">Phone Number</label>
+                        <input type="tel" id="reg-phone" placeholder="+44 7XXX XXXXXX">
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="reg-dob">Date of Birth</label>
+                        <input type="date" id="reg-dob">
+                    </div>
+
+                    <hr class="demo-divider">
+
+                    <h3>Programme Details</h3>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="reg-programme" class="required">Programme</label>
+                        <select id="reg-programme" required>
+                            <option value="">-- Select a programme --</option>
+                            <option value="cs">Computer Science BSc</option>
+                            <option value="eng">Engineering BEng</option>
+                            <option value="bus">Business BA</option>
+                            <option value="med">Medicine MBBCh</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <fieldset style="border: none; padding: 0; margin: 0;">
+                            <legend style="font-weight: var(--font-weight-medium); margin-bottom: 0.75rem;">Study Mode
+                            </legend>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="radio" name="reg-mode" value="full" checked> Full-time
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="radio" name="reg-mode" value="part"> Part-time
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="reg-start">Preferred Start Date</label>
+                        <input type="date" id="reg-start">
+                    </div>
+
+                    <hr class="demo-divider">
+
+                    <h3>Additional Information</h3>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="reg-message">Personal Statement</label>
+                        <textarea id="reg-message"
+                            placeholder="Tell us about yourself and why you want to study at Cardiff University..."
+                            rows="6"></textarea>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <fieldset style="border: none; padding: 0; margin: 0;">
+                            <legend style="font-weight: var(--font-weight-medium); margin-bottom: 0.75rem;">Additional
+                                Services</legend>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="services" value="accommodation"> University
+                                    Accommodation
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="services" value="visa"> Visa Support
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="services" value="disability"> Disability Support
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: flex; align-items: flex-start; gap: 0.5rem;">
+                            <input type="checkbox" required style="margin-top: 0.25rem;">
+                            <span>I agree to the <a href="#">terms and conditions</a> and <a href="#">privacy
+                                    policy</a></span>
+                        </label>
+                    </div>
+
+                    <div class="demo-inline">
+                        <button type="submit" class="button button-primary">Submit Application</button>
+                        <button type="reset" class="button button-secondary-outline">Clear Form</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Contact Form</div>
+                <div class="demo-block__description">Simple contact form example</div>
+
+                <form style="max-width: 600px;">
+                    <div style="margin-bottom: 1rem;">
+                        <label for="contact-name" class="required">Name</label>
+                        <input type="text" id="contact-name" placeholder="Your name" required>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="contact-email" class="required">Email</label>
+                        <input type="email" id="contact-email" placeholder="your.email@example.com" required>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="contact-subject" class="required">Subject</label>
+                        <select id="contact-subject" required>
+                            <option value="">-- Select a subject --</option>
+                            <option value="general">General Enquiry</option>
+                            <option value="admissions">Admissions</option>
+                            <option value="technical">Technical Support</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="contact-message" class="required">Message</label>
+                        <textarea id="contact-message" placeholder="Your message..." rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="button button-primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Form Best Practices -->
+        <section class="demo-section">
+            <h2>Form Best Practices</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Accessibility Guidelines</div>
+
+                <ul>
+                    <li><strong>Labels:</strong> Always associate labels with form fields using the <code>for</code>
+                        attribute and matching <code>id</code>.</li>
+                    <li><strong>Required Fields:</strong> Clearly indicate required fields with the
+                        <code>required</code> attribute and visual indicators.
+                    </li>
+                    <li><strong>Fieldsets:</strong> Group related form elements using <code>&lt;fieldset&gt;</code> and
+                        <code>&lt;legend&gt;</code>.
+                    </li>
+                    <li><strong>Error Messages:</strong> Provide clear, specific error messages near the relevant
+                        fields.</li>
+                    <li><strong>Tab Order:</strong> Ensure logical tab order for keyboard navigation.</li>
+                    <li><strong>Autocomplete:</strong> Use appropriate <code>autocomplete</code> attributes to help
+                        users fill forms faster.</li>
+                </ul>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Usability Tips</div>
+
+                <ul>
+                    <li><strong>Placeholder Text:</strong> Use placeholders for examples, not instructions. Instructions
+                        should be in labels or help text.</li>
+                    <li><strong>Input Types:</strong> Use appropriate input types (email, tel, url, etc.) to trigger
+                        correct mobile keyboards.</li>
+                    <li><strong>Field Length:</strong> Make input fields an appropriate width for the expected content.
+                    </li>
+                    <li><strong>Validation:</strong> Provide inline validation feedback as users complete fields.</li>
+                    <li><strong>Submit Buttons:</strong> Use clear, action-oriented button text ("Submit Application"
+                        not just "Submit").</li>
+                    <li><strong>Progress Indicators:</strong> For long forms, show progress and allow saving drafts.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="demo-note">
+                <div class="demo-note__title">Form Validation</div>
+                <p>Use HTML5 validation attributes (<code>required</code>, <code>pattern</code>, <code>min</code>,
+                    <code>max</code>, etc.) for basic validation. Supplement with JavaScript for more complex validation
+                    and better user feedback.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="demo-footer">
+        <p>Cardiff University v2 Theme - Forms Demo</p>
+        <ul class="demo-footer__links">
+            <li><a href="index.html" class="demo-footer__link">Home</a></li>
+            <li><a href="images-media.html" class="demo-footer__link">← Images & Media</a></li>
+            <li><a href="components.html" class="demo-footer__link">Components →</a></li>
+        </ul>
+    </footer>
+    <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>

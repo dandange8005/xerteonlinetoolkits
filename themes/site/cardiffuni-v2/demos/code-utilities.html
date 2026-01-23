@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code & Utilities - Cardiff University v2 Theme</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap-responsive.css">
+    <link rel="stylesheet" href="assets/bootstrap/custom.css">
+    <link rel="stylesheet" href="../cardiffuni-v2.css">
+    <link rel="stylesheet" href="assets/demo-styles.css">
+</head>
+
+<body>
+    <header class="jumbotron" id="overview">
+        <div class="container">
+            <div class="logoL">
+                <img class="logo logoL themeLogo"
+                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
+                    alt="Cardiff University Logo">
+            </div>
+
+            <div class="titles">
+                <h1 id="pageTitle" aria-live="polite">Code & Utilities</h1>
+                <p id="pageSubTitle" aria-live="polite">Code Blocks & Utility Classes</p>
+            </div>
+    </header>
+
+    <div id="pageLinks">
+        <div class="navbar navbar-inverse navbar-fixed-top" id="topnav" role="navigation" aria-label="Pages"
+            style="position: static;">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button id="pageNavBtn" class="btn btn-navbar navbar-toggler collapsed" data-toggle="collapse"
+                        data-target=".nav-collapse" aria-haspopup="true" aria-controls="nav" aria-label="Page menu"
+                        aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="nav" aria-labelledby="pageNavBtn">
+                            <li role="none"><a href="index.html">← Home</a></li>
+                            <li role="none"><a href="typography.html">Typography</a></li>
+                            <li role="none"><a href="lists-tables.html">Lists & Tables</a></li>
+                            <li role="none"><a href="images-media.html">Images & Media</a></li>
+                            <li role="none"><a href="forms.html">Forms</a></li>
+                            <li role="none"><a href="components.html">Components</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Inline Code -->
+        <section class="demo-section">
+            <h2>Inline Code</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Code Element</div>
+                <div class="demo-block__description">Inline code snippets within text</div>
+                <code class="code-label">&lt;code&gt;</code>
+
+                <p>Use the <code>console.log()</code> function to output debugging information. The
+                    <code>Array.map()</code> method transforms array elements.
+                </p>
+
+                <p>In HTML, use <code>&lt;div&gt;</code> for generic containers and <code>&lt;span&gt;</code> for inline
+                    elements.</p>
+
+                <p>CSS variables are defined with <code>--variable-name</code> and accessed with
+                    <code>var(--variable-name)</code>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Code Blocks -->
+        <section class="demo-section">
+            <h2>Code Blocks</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Preformatted Code Block</div>
+                <div class="demo-block__description">Multi-line code with preserved formatting</div>
+                <code class="code-label">&lt;pre&gt;&lt;code&gt;</code>
+
+                <pre><code>function calculateTotal(items) {
+    let total = 0;
+    for (let item of items) {
+        total += item.price * item.quantity;
+    }
+    return total;
+}
+
+const cart = [
+    { name: 'Book', price: 15.99, quantity: 2 },
+    { name: 'Pen', price: 2.50, quantity: 5 }
+];
+
+console.log(calculateTotal(cart)); // 44.48</code></pre>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">HTML Code Example</div>
+
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Cardiff University&lt;/title&gt;
+    &lt;link rel="stylesheet" href="cardiffuni-v2.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 class="page-header"&gt;Welcome&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">CSS Code Example</div>
+
+                <pre><code>.button {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--cu-primary-red);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    background: var(--cu-dark-red);
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- Utility Classes Reference -->
+        <section class="demo-section">
+            <h2>Utility Classes Reference</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Spacing Utilities</div>
+
+                <h4>Margin Top Classes</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Value</th>
+                            <th>Usage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.mt-0</code></td>
+                            <td>0</td>
+                            <td>Remove top margin</td>
+                        </tr>
+                        <tr>
+                            <td><code>.mt-1</code></td>
+                            <td>4px</td>
+                            <td>Extra small top margin</td>
+                        </tr>
+                        <tr>
+                            <td><code>.mt-2</code></td>
+                            <td>8px</td>
+                            <td>Small top margin</td>
+                        </tr>
+                        <tr>
+                            <td><code>.mt-3</code></td>
+                            <td>16px</td>
+                            <td>Medium top margin</td>
+                        </tr>
+                        <tr>
+                            <td><code>.mt-4</code></td>
+                            <td>24px</td>
+                            <td>Large top margin</td>
+                        </tr>
+                        <tr>
+                            <td><code>.mt-5</code></td>
+                            <td>32px</td>
+                            <td>Extra large top margin</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-top: 2rem;">Padding Classes</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Value</th>
+                            <th>Usage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.p-0</code></td>
+                            <td>0</td>
+                            <td>Remove all padding</td>
+                        </tr>
+                        <tr>
+                            <td><code>.p-1</code></td>
+                            <td>4px</td>
+                            <td>Extra small padding</td>
+                        </tr>
+                        <tr>
+                            <td><code>.p-2</code></td>
+                            <td>8px</td>
+                            <td>Small padding</td>
+                        </tr>
+                        <tr>
+                            <td><code>.p-3</code></td>
+                            <td>16px</td>
+                            <td>Medium padding</td>
+                        </tr>
+                        <tr>
+                            <td><code>.p-4</code></td>
+                            <td>24px</td>
+                            <td>Large padding</td>
+                        </tr>
+                        <tr>
+                            <td><code>.p-5</code></td>
+                            <td>32px</td>
+                            <td>Extra large padding</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Flexbox Utilities</div>
+
+                <h4>Layout Classes</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.flex</code></td>
+                            <td>Display as flexbox</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-wrap</code></td>
+                            <td>Allow flex items to wrap</td>
+                        </tr>
+                        <tr>
+                            <td><code>.justify-between</code></td>
+                            <td>Space items evenly with space between</td>
+                        </tr>
+                        <tr>
+                            <td><code>.justify-center</code></td>
+                            <td>Center items horizontally</td>
+                        </tr>
+                        <tr>
+                            <td><code>.items-center</code></td>
+                            <td>Center items vertically</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-top: 2rem;">Gap Classes</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.gap-sm</code></td>
+                            <td>Small gap (8px)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-md</code></td>
+                            <td>Medium gap (16px)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-lg</code></td>
+                            <td>Large gap (24px)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-xl</code></td>
+                            <td>Extra large gap (32px)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-top: 2rem;">Width Classes</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Width</th>
+                            <th>Responsive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.w-md-25</code></td>
+                            <td>25% (1/4)</td>
+                            <td>Medium screens and up</td>
+                        </tr>
+                        <tr>
+                            <td><code>.w-md-33</code></td>
+                            <td>33.33% (1/3)</td>
+                            <td>Medium screens and up</td>
+                        </tr>
+                        <tr>
+                            <td><code>.w-md-50</code></td>
+                            <td>50% (1/2)</td>
+                            <td>Medium screens and up</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-top: 2rem;">Flex Basis Classes</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Min Width</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.flex-200</code></td>
+                            <td>200px minimum, grows to fill space</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-300</code></td>
+                            <td>300px minimum, grows to fill space</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-400</code></td>
+                            <td>400px minimum, grows to fill space</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Image Utilities</div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.pull-right</code></td>
+                            <td>Float image right with text wrapping</td>
+                        </tr>
+                        <tr>
+                            <td><code>.pull-left</code></td>
+                            <td>Float image left with text wrapping</td>
+                        </tr>
+                        <tr>
+                            <td><code>.image-full</code></td>
+                            <td>Full width image</td>
+                        </tr>
+                        <tr>
+                            <td><code>.image-screenshots</code></td>
+                            <td>Screenshot style with border and shadow</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">List Utilities</div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.list-none</code></td>
+                            <td>Remove list styling (bullets/numbers)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.list-icon</code></td>
+                            <td>Custom icon-based list (first span is icon)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.list-counter</code></td>
+                            <td>Styled numbered badges</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Special Classes</div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Element</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.page-header</code></td>
+                            <td>Headings</td>
+                            <td>Remove top margin for page titles</td>
+                        </tr>
+                        <tr>
+                            <td><code>.sectionTitle</code></td>
+                            <td>H2</td>
+                            <td>Special styling for section titles</td>
+                        </tr>
+                        <tr>
+                            <td><code>.contentTitle</code></td>
+                            <td>H3</td>
+                            <td>Special styling for content titles</td>
+                        </tr>
+                        <tr>
+                            <td><code>.video-720</code></td>
+                            <td>Container</td>
+                            <td>720p video container (16:9 ratio)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.required</code></td>
+                            <td>Label</td>
+                            <td>Add red asterisk for required fields</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CSS Custom Properties -->
+        <section class="demo-section">
+            <h2>CSS Custom Properties (Design Tokens)</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Spacing Scale</div>
+
+                <pre><code>--spacing-xs: 4px;
+--spacing-sm: 8px;
+--spacing-md: 16px;
+--spacing-lg: 24px;
+--spacing-xl: 32px;
+--spacing-2xl: 48px;
+--spacing-3xl: 64px;</code></pre>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Typography Scale</div>
+
+                <pre><code>--font-size-xs: 0.75rem;   /* 12px */
+--font-size-sm: 0.875rem;  /* 14px */
+--font-size-base: 1rem;    /* 16px */
+--font-size-lg: 1.125rem;  /* 18px */
+--font-size-xl: 1.25rem;   /* 20px */
+--font-size-2xl: 1.5rem;   /* 24px */
+--font-size-3xl: 1.875rem; /* 30px */
+--font-size-4xl: 2.25rem;  /* 36px */
+
+--font-weight-regular: 400;
+--font-weight-medium: 500;
+--font-weight-bold: 700;</code></pre>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Using CSS Variables</div>
+
+                <p>CSS custom properties can be used in your stylesheets:</p>
+
+                <pre><code>.my-element {
+    padding: var(--spacing-md);
+    font-size: var(--font-size-lg);
+    color: var(--cu-primary-red);
+    margin-bottom: var(--spacing-xl);
+}</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <footer class="demo-footer">
+        <p>Cardiff University v2 Theme - Code & Utilities Demo</p>
+        <ul class="demo-footer__links">
+            <li><a href="index.html" class="demo-footer__link">Home</a></li>
+            <li><a href="components.html" class="demo-footer__link">← Components</a></li>
+            <li><a href="colors.html" class="demo-footer__link">Colors →</a></li>
+        </ul>
+    </footer>
+    <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>
