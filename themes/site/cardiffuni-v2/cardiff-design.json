@@ -1,0 +1,521 @@
+{
+  "designSystem": {
+    "metadata": {
+      "name": "Cardiff University School of Medicine CPD Design System",
+      "version": "1.0.0",
+      "lastUpdated": "2026-01-19",
+      "description": "Design system extracted from Cardiff University School of Medicine CPD courses website (discover.cardiff.ac.uk), based on Cardiff University's refreshed brand identity by Only Studio",
+      "sourceUrl": "https://discover.cardiff.ac.uk/school-of-medicine-cpd-courses/",
+      "brandGuidelines": "Cardiff University Brand Identity 2023 - 'Together in Progress'"
+    },
+    
+    "principles": {
+      "style": "Academic Contemporary with Heritage",
+      "values": [
+        "Collaborative community focus",
+        "Research excellence and innovation",
+        "Approachable yet authoritative",
+        "Bilingual (English/Welsh) by design",
+        "Progressive and forward-thinking"
+      ],
+      "targetExperience": "Professional, trustworthy, and accessible medical education platform",
+      "brandStrategy": "Together in Progress - celebrating collective spirit and ambition"
+    },
+    
+    "colors": {
+      "primary": {
+        "main": "#D3374A",
+        "rgb": "rgb(211, 55, 74)",
+        "description": "Cardiff Red - vibrant and refined, represents progressive spirit",
+        "light": "#E65B6F",
+        "dark": "#B32035",
+        "contrastText": "#FFFFFF"
+      },
+      "secondary": {
+        "main": "#22211F",
+        "rgb": "rgb(34, 33, 31)",
+        "description": "Cardiff Black - authority and sophistication",
+        "light": "#3D3B38",
+        "dark": "#000000"
+      },
+      "neutral": {
+        "50": "#FAFAFA",
+        "100": "#F5F5F5",
+        "200": "#EEEEEE",
+        "300": "#E0E0E0",
+        "400": "#D3D3D2",
+        "description400": "Cardiff Grey - primary grey",
+        "500": "#9E9E9E",
+        "600": "#757575",
+        "700": "#616161",
+        "800": "#424242",
+        "900": "#212121"
+      },
+      "semantic": {
+        "success": "#2E7D32",
+        "warning": "#F57C00",
+        "error": "#D32F2F",
+        "info": "#1976D2"
+      },
+      "text": {
+        "primary": "#22211F",
+        "secondary": "#616161",
+        "disabled": "#9E9E9E",
+        "hint": "#BDBDBD",
+        "inverse": "#FFFFFF"
+      },
+      "background": {
+        "default": "#FFFFFF",
+        "paper": "#FAFAFA",
+        "elevated": "#FFFFFF",
+        "subtle": "#F5F5F5"
+      },
+      "accent": {
+        "medical": "#0D47A1",
+        "cpd": "#4A148C",
+        "description": "Used sparingly for medical/CPD specific contexts"
+      }
+    },
+    
+    "typography": {
+      "fontFamily": {
+        "primary": "\"Marr Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        "serif": "\"Darby Serif\", Georgia, \"Times New Roman\", Times, serif",
+        "fallback": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+        "description": {
+          "marrSans": "Clean and contemporary sans serif for body text and UI elements - represents modernity and progress",
+          "darbySerif": "Simple serif for headings and emphasis - provides academic tradition and authority"
+        }
+      },
+      "fontSize": {
+        "h1": "48px",
+        "h1Mobile": "36px",
+        "h2": "36px",
+        "h2Mobile": "28px",
+        "h3": "28px",
+        "h3Mobile": "24px",
+        "h4": "24px",
+        "h4Mobile": "20px",
+        "h5": "20px",
+        "h5Mobile": "18px",
+        "h6": "18px",
+        "body": "16px",
+        "bodyLarge": "18px",
+        "bodySmall": "14px",
+        "caption": "12px",
+        "overline": "10px"
+      },
+      "fontWeight": {
+        "light": 300,
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "lineHeight": {
+        "tight": 1.2,
+        "normal": 1.5,
+        "relaxed": 1.75,
+        "loose": 2,
+        "heading": 1.3,
+        "body": 1.6
+      },
+      "letterSpacing": {
+        "tight": "-0.02em",
+        "normal": "0",
+        "wide": "0.02em",
+        "wider": "0.05em",
+        "widest": "0.1em"
+      }
+    },
+    
+    "spacing": {
+      "unit": 8,
+      "description": "Base spacing unit of 8px for consistent rhythm",
+      "scale": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "32px",
+        "2xl": "48px",
+        "3xl": "64px",
+        "4xl": "96px",
+        "5xl": "128px"
+      },
+      "sectionSpacing": {
+        "small": "48px",
+        "medium": "64px",
+        "large": "96px",
+        "xlarge": "128px"
+      }
+    },
+    
+    "borderRadius": {
+      "none": "0",
+      "sm": "4px",
+      "md": "8px",
+      "lg": "12px",
+      "xl": "16px",
+      "2xl": "24px",
+      "full": "9999px",
+      "description": "Subtle rounded corners for modern, approachable feel"
+    },
+    
+    "shadows": {
+      "none": "none",
+      "sm": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+      "md": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+      "lg": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+      "xl": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+      "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "cardHover": "0 12px 24px -6px rgba(211, 55, 74, 0.15)"
+    },
+    
+    "components": {
+      "button": {
+        "primary": {
+          "backgroundColor": "$colors.primary.main",
+          "color": "$colors.primary.contrastText",
+          "borderRadius": "$borderRadius.md",
+          "padding": "12px 32px",
+          "fontSize": "$typography.fontSize.body",
+          "fontWeight": "$typography.fontWeight.semibold",
+          "fontFamily": "$typography.fontFamily.primary",
+          "border": "none",
+          "textTransform": "none",
+          "letterSpacing": "0.02em",
+          "transition": "all 0.3s ease",
+          "states": {
+            "hover": {
+              "backgroundColor": "$colors.primary.dark",
+              "transform": "translateY(-2px)",
+              "boxShadow": "$shadows.md"
+            },
+            "active": {
+              "transform": "translateY(0)",
+              "boxShadow": "$shadows.sm"
+            },
+            "focus": {
+              "outline": "2px solid $colors.primary.main",
+              "outlineOffset": "2px"
+            },
+            "disabled": {
+              "backgroundColor": "$colors.neutral.300",
+              "color": "$colors.text.disabled",
+              "cursor": "not-allowed",
+              "opacity": 0.6
+            }
+          }
+        },
+        "secondary": {
+          "backgroundColor": "transparent",
+          "color": "$colors.primary.main",
+          "border": "2px solid $colors.primary.main",
+          "borderRadius": "$borderRadius.md",
+          "padding": "10px 30px",
+          "fontSize": "$typography.fontSize.body",
+          "fontWeight": "$typography.fontWeight.semibold",
+          "states": {
+            "hover": {
+              "backgroundColor": "$colors.primary.main",
+              "color": "$colors.primary.contrastText",
+              "transform": "translateY(-2px)"
+            }
+          }
+        },
+        "text": {
+          "backgroundColor": "transparent",
+          "color": "$colors.primary.main",
+          "border": "none",
+          "padding": "8px 16px",
+          "fontSize": "$typography.fontSize.body",
+          "fontWeight": "$typography.fontWeight.medium",
+          "states": {
+            "hover": {
+              "backgroundColor": "$colors.background.subtle",
+              "textDecoration": "underline"
+            }
+          }
+        }
+      },
+      
+      "card": {
+        "course": {
+          "backgroundColor": "$colors.background.paper",
+          "borderRadius": "$borderRadius.lg",
+          "padding": "$spacing.xl",
+          "boxShadow": "$shadows.sm",
+          "border": "1px solid $colors.neutral.200",
+          "transition": "all 0.3s ease",
+          "states": {
+            "hover": {
+              "boxShadow": "$shadows.cardHover",
+              "transform": "translateY(-4px)",
+              "borderColor": "$colors.primary.light"
+            }
+          }
+        },
+        "feature": {
+          "backgroundColor": "$colors.background.default",
+          "borderRadius": "$borderRadius.lg",
+          "padding": "$spacing.lg",
+          "textAlign": "center",
+          "border": "none"
+        }
+      },
+      
+      "courseCard": {
+        "title": {
+          "fontFamily": "$typography.fontFamily.serif",
+          "fontSize": "$typography.fontSize.h4",
+          "fontWeight": "$typography.fontWeight.semibold",
+          "color": "$colors.text.primary",
+          "marginBottom": "$spacing.md",
+          "lineHeight": "$typography.lineHeight.heading"
+        },
+        "meta": {
+          "fontFamily": "$typography.fontFamily.primary",
+          "fontSize": "$typography.fontSize.bodySmall",
+          "fontWeight": "$typography.fontWeight.medium",
+          "color": "$colors.text.secondary",
+          "marginBottom": "$spacing.sm"
+        },
+        "description": {
+          "fontFamily": "$typography.fontFamily.primary",
+          "fontSize": "$typography.fontSize.body",
+          "lineHeight": "$typography.lineHeight.body",
+          "color": "$colors.text.primary",
+          "marginBottom": "$spacing.lg"
+        },
+        "cpdPoints": {
+          "backgroundColor": "$colors.primary.main",
+          "color": "$colors.primary.contrastText",
+          "padding": "4px 12px",
+          "borderRadius": "$borderRadius.full",
+          "fontSize": "$typography.fontSize.bodySmall",
+          "fontWeight": "$typography.fontWeight.semibold",
+          "display": "inline-block"
+        }
+      },
+      
+      "navigation": {
+        "backgroundColor": "$colors.background.default",
+        "borderBottom": "1px solid $colors.neutral.200",
+        "padding": "$spacing.md 0",
+        "link": {
+          "fontFamily": "$typography.fontFamily.primary",
+          "fontSize": "$typography.fontSize.body",
+          "fontWeight": "$typography.fontWeight.medium",
+          "color": "$colors.text.primary",
+          "padding": "$spacing.sm $spacing.md",
+          "states": {
+            "hover": {
+              "color": "$colors.primary.main",
+              "textDecoration": "none"
+            },
+            "active": {
+              "color": "$colors.primary.main",
+              "borderBottom": "2px solid $colors.primary.main"
+            }
+          }
+        }
+      },
+      
+      "heading": {
+        "h1": {
+          "fontFamily": "$typography.fontFamily.serif",
+          "fontSize": "$typography.fontSize.h1",
+          "fontWeight": "$typography.fontWeight.bold",
+          "lineHeight": "$typography.lineHeight.heading",
+          "color": "$colors.text.primary",
+          "marginBottom": "$spacing.lg",
+          "letterSpacing": "$typography.letterSpacing.tight"
+        },
+        "h2": {
+          "fontFamily": "$typography.fontFamily.serif",
+          "fontSize": "$typography.fontSize.h2",
+          "fontWeight": "$typography.fontWeight.bold",
+          "lineHeight": "$typography.lineHeight.heading",
+          "color": "$colors.text.primary",
+          "marginBottom": "$spacing.lg"
+        },
+        "h3": {
+          "fontFamily": "$typography.fontFamily.serif",
+          "fontSize": "$typography.fontSize.h3",
+          "fontWeight": "$typography.fontWeight.semibold",
+          "lineHeight": "$typography.lineHeight.heading",
+          "color": "$colors.text.primary",
+          "marginBottom": "$spacing.md"
+        }
+      },
+      
+      "icon": {
+        "size": {
+          "small": "20px",
+          "medium": "24px",
+          "large": "32px",
+          "xlarge": "48px"
+        },
+        "color": "$colors.primary.main",
+        "style": "outlined"
+      },
+      
+      "link": {
+        "color": "$colors.primary.main",
+        "textDecoration": "none",
+        "fontWeight": "$typography.fontWeight.medium",
+        "transition": "all 0.2s ease",
+        "states": {
+          "hover": {
+            "textDecoration": "underline",
+            "color": "$colors.primary.dark"
+          },
+          "visited": {
+            "color": "$colors.primary.dark"
+          }
+        }
+      },
+      
+      "tag": {
+        "backgroundColor": "$colors.background.subtle",
+        "color": "$colors.text.primary",
+        "padding": "4px 12px",
+        "borderRadius": "$borderRadius.full",
+        "fontSize": "$typography.fontSize.bodySmall",
+        "fontWeight": "$typography.fontWeight.medium",
+        "border": "1px solid $colors.neutral.300"
+      },
+      
+      "divider": {
+        "color": "$colors.neutral.200",
+        "thickness": "1px",
+        "margin": "$spacing.2xl 0"
+      }
+    },
+    
+    "layout": {
+      "grid": {
+        "columns": 12,
+        "gutter": "24px",
+        "outerMargin": "24px"
+      },
+      "breakpoints": {
+        "xs": "0px",
+        "sm": "640px",
+        "md": "768px",
+        "lg": "1024px",
+        "xl": "1280px",
+        "2xl": "1536px"
+      },
+      "container": {
+        "maxWidth": "1280px",
+        "padding": {
+          "mobile": "16px",
+          "tablet": "24px",
+          "desktop": "32px"
+        }
+      },
+      "contentWidth": {
+        "narrow": "640px",
+        "medium": "768px",
+        "wide": "1024px",
+        "full": "100%"
+      }
+    },
+    
+    "pageStructure": {
+      "hero": {
+        "backgroundColor": "$colors.background.default",
+        "padding": {
+          "mobile": "48px 0",
+          "tablet": "64px 0",
+          "desktop": "96px 0"
+        },
+        "title": {
+          "fontFamily": "$typography.fontFamily.serif",
+          "fontSize": {
+            "mobile": "$typography.fontSize.h1Mobile",
+            "desktop": "$typography.fontSize.h1"
+          },
+          "marginBottom": "$spacing.lg"
+        },
+        "subtitle": {
+          "fontFamily": "$typography.fontFamily.primary",
+          "fontSize": "$typography.fontSize.bodyLarge",
+          "color": "$colors.text.secondary",
+          "lineHeight": "$typography.lineHeight.relaxed"
+        }
+      },
+      
+      "section": {
+        "padding": {
+          "mobile": "48px 0",
+          "tablet": "64px 0",
+          "desktop": "80px 0"
+        },
+        "marginBottom": "$spacing.3xl"
+      },
+      
+      "footer": {
+        "backgroundColor": "$colors.secondary.main",
+        "color": "$colors.text.inverse",
+        "padding": "$spacing.3xl 0"
+      }
+    },
+    
+    "accessibility": {
+      "focus": {
+        "outline": "2px solid $colors.primary.main",
+        "outlineOffset": "2px",
+        "borderRadius": "$borderRadius.sm"
+      },
+      "minTouchTarget": "44px",
+      "minContrastRatio": {
+        "normal": "4.5:1",
+        "large": "3:1"
+      }
+    },
+    
+    "animation": {
+      "duration": {
+        "fast": "150ms",
+        "normal": "300ms",
+        "slow": "500ms"
+      },
+      "easing": {
+        "default": "ease",
+        "easeIn": "cubic-bezier(0.4, 0, 1, 1)",
+        "easeOut": "cubic-bezier(0, 0, 0.2, 1)",
+        "easeInOut": "cubic-bezier(0.4, 0, 0.2, 1)"
+      }
+    },
+    
+    "brandElements": {
+      "welshDigraphs": {
+        "description": "Custom Welsh digraphs developed for Marr Sans and Darby Serif",
+        "list": ["ch", "dd", "ff", "ng", "ll", "ph", "rh", "th"],
+        "usage": "Celebrate Welsh heritage in bilingual applications"
+      },
+      "languageToggle": {
+        "position": "top-right",
+        "options": ["English", "Cymraeg"],
+        "style": "text-based toggle"
+      }
+    },
+    
+    "contentGuidelines": {
+      "tone": [
+        "Professional yet approachable",
+        "Collaborative and inclusive",
+        "Evidence-based and authoritative",
+        "Forward-thinking and progressive"
+      ],
+      "messaging": {
+        "focus": "Community and collective progress over individual achievement",
+        "emphasis": "Research excellence and practical application",
+        "approach": "Bilingual equality (English/Welsh)"
+      }
+    }
+  }
+}
