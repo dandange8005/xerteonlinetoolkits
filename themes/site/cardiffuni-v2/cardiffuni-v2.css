@@ -23,130 +23,305 @@
  * - Added missing CSS custom properties
  */
 /* Import modular SCSS components - @use must come before @import */
+/**
+ * Cardiff University Theme - Semantic Design Tokens
+ * ==================================================
+ *
+ * HYBRID APPROACH:
+ * - Imports primitive tokens from _tokens.scss (single source of truth)
+ * - Generates CSS custom properties using SCSS interpolation
+ * - Single semantic layer for easy theming
+ *
+ * TO CREATE A NEW THEME:
+ * Override CSS variables using [data-theme] or inline styles:
+ * <style>
+ *   :root { --color-brand-primary: #0066CC; }
+ * </style>
+ *
+ * Or use a theme selector:
+ * [data-theme="other-uni"] { --color-brand-primary: #0066CC; }
+ */
 /* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 /**
- * Cardiff University Theme Variables
+ * Design Tokens - Cardiff University Theme
+ * =========================================
  *
- * This file defines CSS custom properties for runtime customization.
- * No intermediate SCSS variables - just pure CSS custom properties.
+ * PRIMITIVE TOKENS ONLY - Raw, immutable brand values.
+ * These are the foundation that semantic tokens build upon.
  *
  * ARCHITECTURE:
- * - CSS custom properties defined in :root
- * - Components use var() to reference these properties
- * - Users can override at runtime without recompiling
+ * - _tokens.scss       = Primitive tokens (this file) - SCSS variables, compile-time
+ * - _allvariables.scss = Semantic tokens - CSS custom properties, runtime-configurable
  *
- * TO CUSTOMIZE:
- * Override CSS variables in your HTML or with JavaScript:
- * <style>
- *   :root {
- *     --color-brand-primary: #your-color;
- *     --spacing-lg: 32px;
- *   }
- * </style>
+ * USAGE:
+ * 1. Import this file first: @use "tokens" as t;
+ * 2. Reference primitives: t.$token-color-brand-primary
+ * 3. Build semantic tokens in _allvariables.scss using these primitives
+ *
+ * FOR NEW THEMES:
+ * Copy this file and update the primitive values to match your brand.
+ * The semantic layer (_allvariables.scss) can remain largely unchanged.
  */
 :root {
-  --cu-primary-red: #E4251B;
-  --cu-white: #FFFFFF;
-  --cu-black: #121212;
-  --cu-gray-10: #F2F2F2;
-  --cu-gray-20: #E5E5E5;
-  --cu-gray-30: #CCCCCC;
-  --cu-gray-40: #B3B3B3;
-  --cu-gray-50: #999999;
-  --cu-gray-60: #808080;
-  --cu-gray-70: #666666;
-  --cu-gray-80: #4C4C4C;
-  --cu-gray-90: #333333;
-  --cu-forest-green: #07873E;
-  --cu-cadet: #5EB99B;
-  --cu-stone: #C9C2BA;
-  --cu-light-blue: #1E90FF;
-  --cu-royal-blue: #4A42FF;
-  --cu-midnight-blue: #273573;
-  --cu-midnight-purple: #26192C;
-  --cu-orange: #E9761E;
-  --cu-yellow: #FFB300;
-  --cu-yellow-green: #85C041;
-  --cu-indigo: #570185;
-  --cu-dark-violet: #D401C5;
-  --color-text-primary: var(--cu-black);
-  --color-text-inverse: var(--cu-white);
-  --color-text-hint: var(--cu-primary-red);
-  --color-text-alert: var(--cu-primary-red);
-  --color-text-on-light: var(--cu-black);
-  --color-text-on-dark: var(--cu-white);
-  --color-text-on-brand: var(--cu-white);
-  --color-brand-primary: var(--cu-primary-red);
-  --color-brand-secondary: var(--cu-black);
-  --color-link-default: #045bc6;
-  --color-link-hover: #033a8a;
+  --color-brand-primary: #E4251B;
+  --color-brand-secondary: #121212;
+  --color-white: #FFFFFF;
+  --color-light: #f9fafb;
+  --color-gray-10: #F2F2F2;
+  --color-gray-20: #E5E5E5;
+  --color-gray-30: #CCCCCC;
+  --color-gray-40: #B3B3B3;
+  --color-gray-50: #999999;
+  --color-gray-60: #808080;
+  --color-gray-70: #666666;
+  --color-gray-80: #4C4C4C;
+  --color-gray-90: #333333;
+  --color-accent-green: #07873E;
+  --color-accent-teal: #5EB99B;
+  --color-accent-stone: #C9C2BA;
+  --color-accent-blue: #1E90FF;
+  --color-accent-royal: #4A42FF;
+  --color-accent-navy: #273573;
+  --color-accent-purple: #26192C;
+  --color-accent-orange: #E9761E;
+  --color-accent-yellow: #FFB300;
+  --color-accent-lime: #85C041;
+  --color-accent-indigo: #570185;
+  --color-accent-violet: #D401C5;
+  --color-text-primary: var(--color-brand-secondary);
+  --color-text-secondary: var(--color-gray-70);
+  --color-text-tertiary: var(--color-gray-50);
+  --color-text-inverse: var(--color-white);
+  --color-text-brand: var(--color-brand-primary);
+  --color-text-on-brand: var(--color-white);
+  --color-link-default: #0645AD;
+  --color-link-hover: color-mix(in srgb, var(--color-link-default) 70%, black 30%);
   --color-link-visited: #551A8B;
-  --color-accent-green: var(--cu-forest-green);
-  --color-accent-blue: var(--cu-light-blue);
-  --color-accent-orange: var(--cu-orange);
-  --color-bg-body: #f9fafb;
-  --color-bg-page: var(--cu-white);
-  --color-bg-panel: var(--cu-gray-70);
-  --font-primary-body: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-primary-heading: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-secondary: "Darby Serif", Georgia, "Times New Roman", Times, serif;
+  --color-link-active: color-mix(in srgb, var(--color-link-default) 50%, black 50%);
+  --color-bg-body: var(--color-light);
+  --color-bg-page: var(--color-white);
+  --color-bg-subtle: var(--color-gray-10);
+  --color-bg-muted: var(--color-gray-20);
+  --color-bg-elevated: var(--color-white);
+  --color-bg-brand: var(--color-brand-primary);
+  --color-bg-dark: var(--color-brand-secondary);
+  --color-border-default: var(--color-gray-30);
+  --color-border-light: var(--color-gray-20);
+  --color-border-dark: var(--color-gray-40);
+  --color-border-focus: var(--color-brand-primary);
+  --color-border-brand: var(--color-brand-primary);
+  --color-status-success: var(--color-accent-green);
+  --color-status-warning: var(--color-accent-orange);
+  --color-status-error: var(--color-brand-primary);
+  --color-status-info: var(--color-accent-blue);
+  --btn-primary-bg: var(--color-brand-primary);
+  --btn-primary-text: var(--color-white);
+  --btn-primary-hover-bg: color-mix(in srgb, var(--color-brand-primary) 85%, black);
+  --btn-primary-active-bg: color-mix(in srgb, var(--color-brand-primary) 80%, black);
+  --btn-primary-disabled-bg: color-mix(in srgb, var(--color-brand-primary) 60%, white);
+  --btn-primary-disabled-text: var(--color-white);
+  --btn-secondary-bg: var(--color-brand-secondary);
+  --btn-secondary-text: var(--color-white);
+  --btn-secondary-hover-bg: color-mix(in srgb, var(--color-brand-secondary) 85%, white);
+  --btn-secondary-active-bg: color-mix(in srgb, var(--color-brand-secondary) 90%, black);
+  --btn-secondary-disabled-bg: color-mix(in srgb, var(--color-brand-secondary) 40%, white);
+  --btn-secondary-disabled-text: var(--color-white);
+  --btn-success-bg: var(--color-accent-green);
+  --btn-success-text: var(--color-white);
+  --btn-success-hover-bg: color-mix(in srgb, var(--color-accent-green) 85%, black);
+  --btn-success-active-bg: color-mix(in srgb, var(--color-accent-green) 80%, black);
+  --btn-success-disabled-bg: color-mix(in srgb, var(--color-accent-green) 50%, white);
+  --btn-success-disabled-text: var(--color-white);
+  --btn-reverse-bg: #fafafa;
+  --btn-reverse-text: var(--color-brand-secondary);
+  --btn-reverse-hover-bg: var(--color-gray-20);
+  --btn-reverse-active-bg: var(--color-gray-30);
+  --btn-reverse-disabled-bg: #f5f5f5;
+  --btn-reverse-disabled-text: var(--color-gray-50);
+  --btn-primary-outline-text: var(--color-brand-primary);
+  --btn-primary-outline-border: var(--color-brand-primary);
+  --btn-primary-outline-hover-bg: color-mix(in srgb, var(--color-brand-primary) 10%, white);
+  --btn-primary-outline-active-bg: color-mix(in srgb, var(--color-brand-primary) 25%, white);
+  --btn-secondary-outline-text: var(--color-brand-secondary);
+  --btn-secondary-outline-border: var(--color-brand-secondary);
+  --btn-secondary-outline-hover-bg: color-mix(in srgb, var(--color-brand-secondary) 10%, white);
+  --btn-secondary-outline-active-bg: color-mix(in srgb, var(--color-brand-secondary) 25%, white);
+  --btn-success-outline-text: var(--color-accent-green);
+  --btn-success-outline-border: var(--color-accent-green);
+  --btn-success-outline-hover-bg: color-mix(in srgb, var(--color-accent-green) 10%, white);
+  --btn-success-outline-active-bg: color-mix(in srgb, var(--color-accent-green) 25%, white);
+  --btn-reverse-outline-text: var(--color-white);
+  --btn-reverse-outline-border: var(--color-white);
+  --btn-reverse-outline-hover-bg: rgba(255, 255, 255, 0.15);
+  --btn-reverse-outline-active-bg: rgba(255, 255, 255, 0.25);
+  --btn-ghost-text: var(--color-brand-primary);
+  --btn-ghost-hover-bg: color-mix(in srgb, var(--color-brand-primary) 10%, transparent);
+  --btn-ghost-hover-text: color-mix(in srgb, var(--color-brand-primary) 80%, black);
+  --btn-ghost-active-text: color-mix(in srgb, var(--color-brand-primary) 70%, black);
+  --btn-ghost-disabled-text: var(--color-gray-50);
+  --btn-font-family: var(--font-family-primary);
+  --btn-font-weight: var(--font-weight-medium);
+  --btn-font-size: var(--font-size-base);
+  --btn-font-size-sm: var(--font-size-sm);
+  --btn-line-height: var(--line-height-normal);
+  --btn-padding-x: var(--spacing-4);
+  --btn-padding-y: var(--spacing-2);
+  --btn-padding-x-sm: var(--spacing-3);
+  --btn-padding-y-sm: var(--spacing-1);
+  --btn-padding-x-lg: var(--spacing-6);
+  --btn-padding-y-lg: var(--spacing-3);
+  --btn-gap: var(--spacing-2);
+  --btn-border-radius: var(--radius-md);
+  --btn-border-width: var(--border-width-2);
+  --btn-min-height: 44px;
+  --btn-min-width: 44px;
+  --btn-icon-size: 20px;
+  --btn-icon-size-sm: 16px;
+  --btn-transition: var(--transition-fast);
+  --font-family-primary: Marr Sans, Franklin Gothic, Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  --font-family-secondary: Darby Serif, Georgia, Times New Roman, Times, serif;
   --font-size-xs: clamp(0.75rem, 0.70rem + 0.25vw, 0.8125rem);
   --font-size-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
   --font-size-base: clamp(0.875rem, 0.80rem + 0.375vw, 1rem);
   --font-size-md: clamp(1rem, 0.90rem + 0.5vw, 1.125rem);
   --font-size-lg: clamp(1.125rem, 1.00rem + 0.625vw, 1.25rem);
   --font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);
-  --font-size-2xl: clamp(1.5rem, 1.30rem + 1vw, 1.875rem);
+  --font-size-2xl: clamp(1.5rem, 1.30rem + 1vw, 1.75rem);
   --font-size-3xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);
   --font-size-4xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.5;
-  --line-height-loose: 1.75;
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
+  --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-2xl: 48px;
-  --spacing-3xl: 64px;
-  --spacing-4xl: 80px;
+  --line-height-none: 1;
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.3;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.75;
+  --letter-spacing-tighter: -0.02em;
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em;
+  --letter-spacing-wider: 0.05em;
+  --h1-font-family: var(--font-family-primary);
+  --h1-font-size: var(--font-size-4xl);
+  --h1-font-weight: var(--font-weight-bold);
+  --h1-line-height: var(--line-height-snug);
+  --h1-letter-spacing: var(--letter-spacing-tighter);
+  --h2-font-family: var(--font-family-primary);
+  --h2-font-size: var(--font-size-3xl);
+  --h2-font-weight: var(--font-weight-bold);
+  --h2-line-height: var(--line-height-snug);
+  --h2-letter-spacing: var(--letter-spacing-tighter);
+  --h3-font-family: var(--font-family-primary);
+  --h3-font-size: var(--font-size-2xl);
+  --h3-font-weight: var(--font-weight-semibold);
+  --h3-line-height: var(--line-height-snug);
+  --h3-letter-spacing: var(--letter-spacing-tight);
+  --h4-font-family: var(--font-family-primary);
+  --h4-font-size: var(--font-size-xl);
+  --h4-font-weight: var(--font-weight-medium);
+  --h4-line-height: var(--line-height-snug);
+  --h5-font-family: var(--font-family-primary);
+  --h5-font-size: var(--font-size-lg);
+  --h5-font-weight: var(--font-weight-medium);
+  --h5-line-height: var(--line-height-snug);
+  --h6-font-family: var(--font-family-primary);
+  --h6-font-size: var(--font-size-md);
+  --h6-font-weight: var(--font-weight-medium);
+  --h6-line-height: var(--line-height-snug);
+  --h-secondary-font-family: var(--font-family-secondary);
+  --h-secondary-font-weight: var(--font-weight-regular);
+  --spacing-0: 0;
+  --spacing-px: 1px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+  --spacing-32: 128px;
+  --spacing-xs: var(--spacing-1);
+  --spacing-sm: var(--spacing-2);
+  --spacing-md: var(--spacing-4);
+  --spacing-lg: var(--spacing-6);
+  --spacing-xl: var(--spacing-8);
+  --spacing-2xl: var(--spacing-12);
+  --spacing-3xl: var(--spacing-16);
+  --spacing-4xl: var(--spacing-24);
+  --spacing-card: var(--spacing-6);
+  --spacing-section: var(--spacing-16);
+  --container-max-width: 1280px;
+  --container-padding-mobile: 16px;
+  --container-padding-tablet: 24px;
+  --container-padding-desktop: 32px;
+  --content-width-narrow: 640px;
+  --content-width-medium: 768px;
+  --content-width-wide: 1024px;
+  --content-width-full: 100%;
+  --grid-columns: 12;
+  --grid-gutter: 24px;
   --radius-none: 0;
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  --radius-pill: 999px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+  --radius-card: var(--radius-lg);
+  --radius-input: var(--radius-md);
   --radius-image: var(--radius-md);
-  --border-width-sm: 1px;
-  --border-width-md: 2px;
-  --border-width-lg: 4px;
-  --border-color-default: var(--cu-gray-30);
-  --border-color-light: var(--cu-gray-20);
-  --border-color-dark: var(--cu-gray-40);
+  --border-width-0: 0;
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
   --shadow-none: none;
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --animation-fast: 150ms;
-  --animation-medium: 300ms;
-  --animation-slow: 500ms;
-  --animation-easing: ease-in-out;
-  --animation-easing-in: ease-in;
-  --animation-easing-out: ease-out;
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-card: var(--shadow-sm);
+  --shadow-card-hover: 0 12px 24px -6px color-mix(in srgb, var(--color-brand-primary) 15%, transparent 85%);
+  --shadow-dropdown: var(--shadow-lg);
+  --shadow-modal: var(--shadow-xl);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --easing-default: ease;
+  --easing-in: cubic-bezier(0.4, 0, 1, 1);
+  --easing-out: cubic-bezier(0, 0, 0.2, 1);
+  --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: var(--duration-fast) var(--easing-default);
+  --transition-normal: var(--duration-normal) var(--easing-default);
+  --transition-slow: var(--duration-slow) var(--easing-default);
+  --z-index-behind: -1;
+  --z-index-base: 0;
+  --z-index-raised: 1;
+  --z-index-dropdown: 100;
+  --z-index-sticky: 200;
+  --z-index-overlay: 300;
+  --z-index-modal: 400;
+  --z-index-toast: 500;
   --focus-ring-color: #fdcd0d;
-  --focus-ring-width: 3px;
+  --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
   --focus-ring-style: solid;
   --focus-ring: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color);
-  --z-index-dropdown: 200;
-  --z-index-sticky: 100;
-  --z-index-modal: 400;
-  --z-index-overlay: 300;
+  --min-touch-target: 44px;
+  --icon-size-sm: 20px;
+  --icon-size-md: 24px;
+  --icon-size-lg: 32px;
+  --icon-size-xl: 48px;
   --ratio-widescreen: 16 / 9;
   --ratio-standard: 4 / 3;
   --ratio-ultrawide: 21 / 9;
@@ -160,17 +335,8 @@
   --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
   --color-brand-secondary-dark: color-mix(in srgb, var(--color-brand-secondary) 15%, black);
   --color-brand-secondary-darker: color-mix(in srgb, var(--color-brand-secondary) 30%, black);
-  --color-accent-green-light: color-mix(in srgb, var(--color-accent-green) 20%, white);
-  --color-accent-green-dark: color-mix(in srgb, var(--color-accent-green) 20%, black);
-  --color-accent-blue-light: color-mix(in srgb, var(--color-accent-blue) 20%, white);
-  --color-accent-blue-dark: color-mix(in srgb, var(--color-accent-blue) 20%, black);
-  --color-accent-orange-light: color-mix(in srgb, var(--color-accent-orange) 20%, white);
-  --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 20%, black);
-  --color-bg-subtle: color-mix(in srgb, var(--color-bg-body) 50%, white);
-  --color-bg-muted: color-mix(in srgb, var(--color-bg-body) 50%, var(--cu-gray-20));
-  --color-bg-elevated: var(--cu-white);
-  --color-text-subtle: color-mix(in srgb, var(--color-text-primary) 60%, var(--cu-gray-50));
-  --color-text-muted: color-mix(in srgb, var(--color-text-primary) 40%, var(--cu-gray-40));
+  --color-text-subtle: color-mix(in srgb, var(--color-text-primary) 60%, var(--color-gray-50));
+  --color-text-muted: color-mix(in srgb, var(--color-text-primary) 40%, var(--color-gray-40));
 }
 
 /**
@@ -1884,6 +2050,9 @@ a.glossary:active {
  *
  * PURPOSE: Comprehensive button system with multiple variants and states
  *
+ * TOKENS: All button design tokens are defined in _allvariables.scss
+ * This component references those centralized tokens for easy theming.
+ *
  * USAGE:
  * - Filled buttons:
  *   <button class="button button-primary">Primary</button>
@@ -1897,6 +2066,9 @@ a.glossary:active {
  *   <button class="button button-success-outline">Success Outline</button>
  *   <button class="button button-reverse-outline">Reverse Outline</button>
  *
+ * - Ghost button:
+ *   <button class="button button-ghost">Ghost</button>
+ *
  * - With icons:
  *   <button class="button button-primary button-icon-right">
  *     Next <span class="button__icon"><i class="fas fa-arrow-right"></i></span>
@@ -1907,6 +2079,10 @@ a.glossary:active {
  *     <span class="button__icon"><i class="fas fa-search"></i></span>
  *   </button>
  *
+ * - Sizes:
+ *   <button class="button button-primary button-sm">Small</button>
+ *   <button class="button button-primary button-lg">Large</button>
+ *
  * - Legacy styles (preserved for backward compatibility):
  *   <a href="#" class="button button--outline">Outline</a>
  *   <button class="btn-mini"><i class="fas fa-arrow-up"></i></button>
@@ -1914,59 +2090,11 @@ a.glossary:active {
  * VARIANTS:
  * Filled: .button-primary, .button-secondary, .button-success, .button-reverse
  * Outline: .button-primary-outline, .button-secondary-outline, .button-success-outline, .button-reverse-outline
+ * Ghost: .button-ghost
+ * Sizes: .button-sm, .button-lg
  * Icons: .button-icon-left, .button-icon-right, .button-icon-only
  * Legacy: .button--outline, .button--small, .button--block, .btn-mini
  */
-:root {
-  --button-primary-bg: var(--color-brand-primary);
-  --button-primary-hover: color-mix(in srgb, var(--color-brand-primary, #C00E0E) 85%, black);
-  --button-primary-active: color-mix(in srgb, var(--color-brand-primary) 85%, black);
-  --button-primary-disabled: color-mix(in srgb, var(--color-brand-primary) 60%, white);
-  --button-primary-text: var(--cu-white);
-  --button-secondary-bg: var(--color-brand-secondary);
-  --button-secondary-hover: color-mix(in srgb, var(--color-brand-secondary, #2e2e2e) 85%, black);
-  --button-secondary-active: color-mix(in srgb, var(--color-brand-secondary) 90%, black);
-  --button-secondary-disabled: color-mix(in srgb, var(--color-brand-secondary) 40%, white);
-  --button-secondary-text: var(--cu-white);
-  --button-success-bg: var(--color-accent-green, #07873e);
-  --button-success-hover: color-mix(in srgb, var(--color-accent-green, #07873e) 85%, black);
-  --button-success-active: color-mix(in srgb, var(--color-accent-green, #07873e) 80%, black);
-  --button-success-disabled: color-mix(in srgb, var(--color-accent-green, #07873e) 50%, white);
-  --button-success-text: var(--cu-white);
-  --button-reverse-bg: #fafafa;
-  --button-reverse-hover: var(--cu-gray-20);
-  --button-reverse-active: var(--cu-gray-30);
-  --button-reverse-disabled: #f5f5f5;
-  --button-reverse-text: var(--cu-black);
-  --button-reverse-disabled-text: var(--cu-gray-50);
-  --button-outline-primary-hover: color-mix(in srgb, var(--color-brand-primary) 10%, white);
-  --button-outline-primary-active: color-mix(in srgb, var(--color-brand-primary) 25%, white);
-  --button-outline-secondary-hover: color-mix(in srgb, var(--color-brand-secondary) 10%, white);
-  --button-outline-secondary-active: color-mix(in srgb, var(--color-brand-secondary) 25%, white);
-  --button-outline-success-hover: color-mix(in srgb, var(--color-accent-green, #07873e) 10%, white);
-  --button-outline-success-active: color-mix(in srgb, var(--color-accent-green, #07873e) 25%, white);
-  --button-outline-reverse-hover: rgba(255, 255, 255, 0.15);
-  --button-outline-reverse-active: rgba(255, 255, 255, 0.25);
-  --button-font-family: var(--font-primary-body);
-  --button-font-weight: var(--font-weight-medium);
-  --button-font-size-mobile: var(--font-size-sm);
-  --button-font-size-desktop: var(--font-size-base);
-  --button-line-height: var(--line-height-base);
-  --button-padding-h-mobile: var(--spacing-md);
-  --button-padding-v-mobile: var(--spacing-sm);
-  --button-padding-h-desktop: var(--spacing-md);
-  --button-padding-v-desktop: var(--spacing-sm);
-  --button-gap: var(--spacing-sm);
-  --button-radius: var(--radius-md);
-  --button-icon-size-mobile: 16px;
-  --button-icon-size-desktop: 20px;
-  --button-border-width: var(--border-width-md);
-  --button-breakpoint: 768px;
-  --color-focus: #fdcd0d;
-  --focus-outline-width: 3px;
-  --focus-outline-offset: 2px;
-}
-
 a.button {
   text-decoration: none !important;
 }
@@ -1993,33 +2121,28 @@ a.button,
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: var(--button-gap);
+  gap: var(--btn-gap);
   -ms-flex-item-align: start;
       align-self: start;
-  min-height: 44px;
-  min-width: 44px;
-  padding: var(--button-padding-v-mobile) var(--button-padding-h-mobile);
-  border-radius: var(--button-radius);
+  min-height: var(--btn-min-height);
+  min-width: var(--btn-min-width);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  border-radius: var(--btn-border-radius);
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: var(--button-font-family);
-  font-size: var(--button-font-size-mobile);
-  font-weight: var(--button-font-weight);
-  line-height: var(--button-line-height);
+  font-family: var(--btn-font-family);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  line-height: var(--btn-line-height);
   text-align: center;
   white-space: nowrap;
   cursor: pointer;
-  -webkit-transition: background-color var(--animation-fast) var(--animation-easing), -webkit-transform var(--animation-fast) var(--animation-easing);
-  transition: background-color var(--animation-fast) var(--animation-easing), -webkit-transform var(--animation-fast) var(--animation-easing);
-  transition: background-color var(--animation-fast) var(--animation-easing), transform var(--animation-fast) var(--animation-easing);
-  transition: background-color var(--animation-fast) var(--animation-easing), transform var(--animation-fast) var(--animation-easing), -webkit-transform var(--animation-fast) var(--animation-easing);
-}
-@media (min-width: 768px) {
-  a.button,
-  .button {
-    padding: var(--button-padding-v-desktop) var(--button-padding-h-desktop);
-    font-size: var(--button-font-size-desktop);
-  }
+  -webkit-transition: var(--btn-transition);
+  transition: var(--btn-transition);
+  -webkit-transition-property: background-color, color, border-color, -webkit-box-shadow, -webkit-transform;
+  transition-property: background-color, color, border-color, -webkit-box-shadow, -webkit-transform;
+  transition-property: background-color, color, border-color, box-shadow, transform;
+  transition-property: background-color, color, border-color, box-shadow, transform, -webkit-box-shadow, -webkit-transform;
 }
 a.button:focus,
 .button:focus {
@@ -2027,8 +2150,8 @@ a.button:focus,
 }
 a.button:focus-visible,
 .button:focus-visible {
-  outline: var(--focus-outline-width) solid var(--color-focus);
-  outline-offset: var(--focus-outline-offset);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 a.button:active,
 .button:active {
@@ -2040,6 +2163,7 @@ a.button:disabled, a.button.disabled,
 .button.disabled {
   cursor: not-allowed;
   pointer-events: none;
+  opacity: 0.7;
 }
 a.button .button__icon,
 .button .button__icon {
@@ -2052,162 +2176,169 @@ a.button .button__icon,
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: var(--button-icon-size-mobile);
-  height: var(--button-icon-size-mobile);
-  font-size: var(--button-icon-size-mobile);
+  width: var(--btn-icon-size);
+  height: var(--btn-icon-size);
+  font-size: var(--btn-icon-size);
   line-height: 1;
 }
-@media (min-width: 768px) {
-  a.button .button__icon,
-  .button .button__icon {
-    width: var(--button-icon-size-desktop);
-    height: var(--button-icon-size-desktop);
-    font-size: var(--button-icon-size-desktop);
-  }
+
+.button-sm {
+  padding: var(--btn-padding-y-sm) var(--btn-padding-x-sm);
+  font-size: var(--btn-font-size-sm);
+}
+.button-sm .button__icon {
+  width: var(--btn-icon-size-sm);
+  height: var(--btn-icon-size-sm);
+  font-size: var(--btn-icon-size-sm);
+}
+
+.button-lg {
+  padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
 }
 
 .button-primary {
-  background-color: var(--button-primary-bg);
-  color: var(--button-primary-text);
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
 }
 .button-primary:hover:not(:disabled):not(.disabled) {
-  background-color: var(--button-primary-hover);
-  color: var(--button-primary-text);
+  background-color: var(--btn-primary-hover-bg);
 }
 .button-primary:active:not(:disabled):not(.disabled) {
-  background-color: var(--button-primary-active);
+  background-color: var(--btn-primary-active-bg);
 }
 .button-primary:disabled, .button-primary.disabled {
-  background-color: var(--button-primary-disabled);
+  background-color: var(--btn-primary-disabled-bg);
+  color: var(--btn-primary-disabled-text);
 }
 
 .button-secondary {
-  background-color: var(--button-secondary-bg);
-  color: var(--button-secondary-text);
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
 }
 .button-secondary:hover:not(:disabled):not(.disabled) {
-  background-color: var(--button-secondary-hover);
-  color: var(--button-secondary-text);
+  background-color: var(--btn-secondary-hover-bg);
 }
 .button-secondary:active:not(:disabled):not(.disabled) {
-  background-color: var(--button-secondary-active);
+  background-color: var(--btn-secondary-active-bg);
 }
 .button-secondary:disabled, .button-secondary.disabled {
-  background-color: var(--button-secondary-disabled);
+  background-color: var(--btn-secondary-disabled-bg);
+  color: var(--btn-secondary-disabled-text);
 }
 
 .button-success {
-  background-color: var(--button-success-bg);
-  color: var(--button-success-text);
+  background-color: var(--btn-success-bg);
+  color: var(--btn-success-text);
 }
 .button-success:hover:not(:disabled):not(.disabled) {
-  background-color: var(--button-success-hover);
-  color: var(--button-success-text);
+  background-color: var(--btn-success-hover-bg);
 }
 .button-success:active:not(:disabled):not(.disabled) {
-  background-color: var(--button-success-active);
+  background-color: var(--btn-success-active-bg);
 }
 .button-success:disabled, .button-success.disabled {
-  background-color: var(--button-success-disabled);
+  background-color: var(--btn-success-disabled-bg);
+  color: var(--btn-success-disabled-text);
 }
 
 .button-reverse {
-  background-color: var(--button-reverse-bg);
-  color: var(--button-reverse-text);
+  background-color: var(--btn-reverse-bg);
+  color: var(--btn-reverse-text);
 }
 .button-reverse:hover:not(:disabled):not(.disabled) {
-  background-color: var(--button-reverse-hover);
+  background-color: var(--btn-reverse-hover-bg);
 }
 .button-reverse:active:not(:disabled):not(.disabled) {
-  background-color: var(--button-reverse-active);
+  background-color: var(--btn-reverse-active-bg);
 }
 .button-reverse:disabled, .button-reverse.disabled {
-  background-color: var(--button-reverse-disabled);
-  color: var(--button-reverse-disabled-text);
+  background-color: var(--btn-reverse-disabled-bg);
+  color: var(--btn-reverse-disabled-text);
 }
 
 .button-primary-outline {
   background-color: transparent;
-  color: var(--button-primary-bg);
-  -webkit-box-shadow: inset 0 0 0 var(--button-border-width) var(--button-primary-bg);
-          box-shadow: inset 0 0 0 var(--button-border-width) var(--button-primary-bg);
+  color: var(--btn-primary-outline-text);
+  -webkit-box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-primary-outline-border);
+          box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-primary-outline-border);
 }
 .button-primary-outline:hover:not(:disabled):not(.disabled) {
-  background-color: var(--button-outline-primary-hover);
-  color: var(--button-primary-bg);
+  background-color: var(--btn-primary-outline-hover-bg);
 }
 .button-primary-outline:active:not(:disabled):not(.disabled) {
-  background-color: var(--button-outline-primary-active);
+  background-color: var(--btn-primary-outline-active-bg);
 }
 .button-primary-outline:disabled, .button-primary-outline.disabled {
-  opacity: 0.6;
   background-color: transparent;
 }
 
 .button-secondary-outline {
   background-color: transparent;
-  color: var(--button-secondary-bg);
-  -webkit-box-shadow: inset 0 0 0 var(--button-border-width) var(--button-secondary-bg);
-          box-shadow: inset 0 0 0 var(--button-border-width) var(--button-secondary-bg);
+  color: var(--btn-secondary-outline-text);
+  -webkit-box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-secondary-outline-border);
+          box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-secondary-outline-border);
 }
 .button-secondary-outline:hover:not(:disabled):not(.disabled) {
-  background-color: var(--button-outline-secondary-hover);
-  color: var(--button-secondary-bg);
+  background-color: var(--btn-secondary-outline-hover-bg);
 }
 .button-secondary-outline:active:not(:disabled):not(.disabled) {
-  background-color: var(--button-outline-secondary-active);
+  background-color: var(--btn-secondary-outline-active-bg);
 }
 .button-secondary-outline:disabled, .button-secondary-outline.disabled {
-  opacity: 0.6;
   background-color: transparent;
 }
 
 .button-success-outline {
   background-color: transparent;
-  color: var(--button-success-bg);
-  -webkit-box-shadow: inset 0 0 0 var(--button-border-width) var(--button-success-bg);
-          box-shadow: inset 0 0 0 var(--button-border-width) var(--button-success-bg);
+  color: var(--btn-success-outline-text);
+  -webkit-box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-success-outline-border);
+          box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-success-outline-border);
 }
 .button-success-outline:hover:not(:disabled):not(.disabled) {
-  background-color: var(--button-outline-success-hover);
-  color: var(--button-success-bg);
+  background-color: var(--btn-success-outline-hover-bg);
 }
 .button-success-outline:active:not(:disabled):not(.disabled) {
-  background-color: var(--button-outline-success-active);
+  background-color: var(--btn-success-outline-active-bg);
 }
 .button-success-outline:disabled, .button-success-outline.disabled {
-  opacity: 0.6;
   background-color: transparent;
 }
 
 .button-reverse-outline {
   background-color: transparent;
-  color: var(--cu-white);
-  -webkit-box-shadow: inset 0 0 0 var(--button-border-width) var(--cu-white);
-          box-shadow: inset 0 0 0 var(--button-border-width) var(--cu-white);
+  color: var(--btn-reverse-outline-text);
+  -webkit-box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-reverse-outline-border);
+          box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-reverse-outline-border);
 }
 .button-reverse-outline:hover:not(:disabled):not(.disabled) {
-  background-color: var(--button-outline-reverse-hover);
-  color: var(--cu-white);
+  background-color: var(--btn-reverse-outline-hover-bg);
 }
 .button-reverse-outline:active:not(:disabled):not(.disabled) {
-  background-color: var(--button-outline-reverse-active);
+  background-color: var(--btn-reverse-outline-active-bg);
 }
 .button-reverse-outline:disabled, .button-reverse-outline.disabled {
-  opacity: 0.6;
   background-color: transparent;
 }
 
-.button-icon-only {
-  padding: var(--button-padding-v-mobile);
-  aspect-ratio: 1;
-  min-width: 40px;
+.button-ghost {
+  background-color: transparent;
+  color: var(--btn-ghost-text);
+  border: none;
 }
-@media (min-width: 768px) {
-  .button-icon-only {
-    padding: var(--button-padding-v-desktop);
-    min-width: 56px;
-  }
+.button-ghost:hover:not(:disabled):not(.disabled) {
+  background-color: var(--btn-ghost-hover-bg);
+  color: var(--btn-ghost-hover-text);
+}
+.button-ghost:active:not(:disabled):not(.disabled) {
+  color: var(--btn-ghost-active-text);
+}
+.button-ghost:disabled, .button-ghost.disabled {
+  color: var(--btn-ghost-disabled-text);
+}
+
+.button-icon-only {
+  padding: var(--btn-padding-y);
+  aspect-ratio: 1;
 }
 
 .button-icon-left {
@@ -2231,7 +2362,7 @@ a.button .button__icon,
 
 a.button--outline,
 button.button--outline {
-  background-color: var(--cu-white);
+  background-color: var(--color-white);
   color: var(--color-brand-secondary);
   border: 2px solid currentColor;
   -webkit-box-shadow: var(--shadow-sm);
@@ -2240,19 +2371,20 @@ button.button--outline {
 a.button--outline:hover,
 button.button--outline:hover {
   background-color: var(--color-brand-secondary);
-  color: var(--cu-white);
+  color: var(--color-white);
   border-color: var(--color-brand-secondary);
 }
 a.button--outline:focus,
 button.button--outline:focus {
   outline-style: solid;
   outline-color: transparent;
-  -webkit-box-shadow: 0 0 0 4px var(--color-brand-secondary-hover);
-          box-shadow: 0 0 0 4px var(--color-brand-secondary-hover);
+  -webkit-box-shadow: 0 0 0 4px var(--color-brand-secondary-light);
+          box-shadow: 0 0 0 4px var(--color-brand-secondary-light);
 }
 a.button--small,
 button.button--small {
-  font-size: var(--font-size-sm);
+  font-size: var(--btn-font-size-sm);
+  padding: var(--btn-padding-y-sm) var(--btn-padding-x-sm);
 }
 a.button--block,
 button.button--block {
@@ -2260,16 +2392,16 @@ button.button--block {
 }
 
 .btn-mini {
-  font-size: var(--font-size-sm);
-  color: var(--button-primary-text);
-  background: var(--button-primary-bg);
+  font-size: var(--btn-font-size-sm);
+  color: var(--btn-primary-text);
+  background: var(--btn-primary-bg);
   text-decoration: none !important;
   text-shadow: none;
   width: 40px;
   height: 40px;
   cursor: pointer;
   border: none;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   margin-bottom: 0;
   padding: 0;
   display: -webkit-box;
@@ -2281,25 +2413,31 @@ button.button--block {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -webkit-transition: all 0.3s cubic-bezier(0.4, -1.5, 0.27, 1.55) !important;
-  transition: all 0.3s cubic-bezier(0.4, -1.5, 0.27, 1.55) !important;
+  -webkit-box-shadow: var(--shadow-md);
+          box-shadow: var(--shadow-md);
+  -webkit-transition: var(--btn-transition);
+  transition: var(--btn-transition);
+  -webkit-transition-property: background-color, -webkit-transform, -webkit-box-shadow;
+  transition-property: background-color, -webkit-transform, -webkit-box-shadow;
+  transition-property: background-color, transform, box-shadow;
+  transition-property: background-color, transform, box-shadow, -webkit-transform, -webkit-box-shadow;
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
-  z-index: 2;
-  margin-right: 5px;
-  margin-bottom: 5px;
+  z-index: var(--z-index-raised);
 }
 .btn-mini:hover, .btn-mini:focus {
-  background: var(--button-primary-hover);
-  color: var(--button-primary-text);
+  background: var(--btn-primary-hover-bg);
+  color: var(--btn-primary-text);
   -webkit-transform: scale(1);
           transform: scale(1);
 }
+.btn-mini:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
 .btn-mini:active {
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -webkit-box-shadow: var(--shadow-lg);
+          box-shadow: var(--shadow-lg);
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
 }

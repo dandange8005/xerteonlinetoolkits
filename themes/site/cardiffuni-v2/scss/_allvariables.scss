@@ -1,101 +1,213 @@
 /**
- * Cardiff University Theme Variables
+ * Cardiff University Theme - Semantic Design Tokens
+ * ==================================================
  *
- * This file defines CSS custom properties for runtime customization.
- * No intermediate SCSS variables - just pure CSS custom properties.
+ * HYBRID APPROACH:
+ * - Imports primitive tokens from _tokens.scss (single source of truth)
+ * - Generates CSS custom properties using SCSS interpolation
+ * - Single semantic layer for easy theming
  *
- * ARCHITECTURE:
- * - CSS custom properties defined in :root
- * - Components use var() to reference these properties
- * - Users can override at runtime without recompiling
- *
- * TO CUSTOMIZE:
- * Override CSS variables in your HTML or with JavaScript:
+ * TO CREATE A NEW THEME:
+ * Override CSS variables using [data-theme] or inline styles:
  * <style>
- *   :root {
- *     --color-brand-primary: #your-color;
- *     --spacing-lg: 32px;
- *   }
+ *   :root { --color-brand-primary: #0066CC; }
  * </style>
+ *
+ * Or use a theme selector:
+ * [data-theme="other-uni"] { --color-brand-primary: #0066CC; }
  */
+
+@use "tokens" as t;
 
 :root {
     // =========================================================================
-    // CARDIFF UNIVERSITY BRAND COLORS
-    // Institution-specific colors (cu- prefix)
+    // BRAND COLORS
+    // Change these to rebrand the entire theme
     // =========================================================================
 
-    // Primary Colors
-    --cu-primary-red: #E4251B;
-    --cu-white: #FFFFFF;
-    --cu-black: #121212;
-
-    // Grayscale
-    --cu-gray-10: #F2F2F2;
-    --cu-gray-20: #E5E5E5;
-    --cu-gray-30: #CCCCCC;
-    --cu-gray-40: #B3B3B3;
-    --cu-gray-50: #999999;
-    --cu-gray-60: #808080;
-    --cu-gray-70: #666666;
-    --cu-gray-80: #4C4C4C;
-    --cu-gray-90: #333333;
-
-    // Accent Colors
-    --cu-forest-green: #07873E;
-    --cu-cadet: #5EB99B;
-    --cu-stone: #C9C2BA;
-    --cu-light-blue: #1E90FF;
-    --cu-royal-blue: #4A42FF;
-    --cu-midnight-blue: #273573;
-    --cu-midnight-purple: #26192C;
-    --cu-orange: #E9761E;
-    --cu-yellow: #FFB300;
-    --cu-yellow-green: #85C041;
-    --cu-indigo: #570185;
-    --cu-dark-violet: #D401C5;
+    --color-brand-primary: #{t.$token-color-brand-primary};
+    --color-brand-secondary: #{t.$token-color-brand-secondary};
 
     // =========================================================================
-    // SEMANTIC DESIGN TOKENS
-    // Generic tokens that can be reused across themes
+    // NEUTRAL COLORS
     // =========================================================================
 
-    // Text Colors
-    --color-text-primary: var(--cu-black);
-    --color-text-inverse: var(--cu-white);
-    --color-text-hint: var(--cu-primary-red);
-    --color-text-alert: var(--cu-primary-red);
-    --color-text-on-light: var(--cu-black);
-    --color-text-on-dark: var(--cu-white);
-    --color-text-on-brand: var(--cu-white);
+    --color-white: #{t.$token-color-brand-white};
+    --color-light: #{t.$token-color-brand-light};
 
-    // Brand Colors
-    --color-brand-primary: var(--cu-primary-red);
-    --color-brand-secondary: var(--cu-black);
+    --color-gray-10: #{t.$token-color-gray-10};
+    --color-gray-20: #{t.$token-color-gray-20};
+    --color-gray-30: #{t.$token-color-gray-30};
+    --color-gray-40: #{t.$token-color-gray-40};
+    --color-gray-50: #{t.$token-color-gray-50};
+    --color-gray-60: #{t.$token-color-gray-60};
+    --color-gray-70: #{t.$token-color-gray-70};
+    --color-gray-80: #{t.$token-color-gray-80};
+    --color-gray-90: #{t.$token-color-gray-90};
 
-    // Link Colors
-    --color-link-default: #045bc6;
-    --color-link-hover: #033a8a;
+    // =========================================================================
+    // ACCENT COLORS
+    // =========================================================================
+
+    --color-accent-green: #{t.$token-color-accent-forest-green};
+    --color-accent-teal: #{t.$token-color-accent-cadet};
+    --color-accent-stone: #{t.$token-color-accent-stone};
+    --color-accent-blue: #{t.$token-color-accent-light-blue};
+    --color-accent-royal: #{t.$token-color-accent-royal-blue};
+    --color-accent-navy: #{t.$token-color-accent-midnight-blue};
+    --color-accent-purple: #{t.$token-color-accent-midnight-purple};
+    --color-accent-orange: #{t.$token-color-accent-orange};
+    --color-accent-yellow: #{t.$token-color-accent-yellow};
+    --color-accent-lime: #{t.$token-color-accent-yellow-green};
+    --color-accent-indigo: #{t.$token-color-accent-indigo};
+    --color-accent-violet: #{t.$token-color-accent-dark-violet};
+
+    // =========================================================================
+    // SEMANTIC COLORS
+    // =========================================================================
+
+    // Text
+    --color-text-primary: var(--color-brand-secondary);
+    --color-text-secondary: var(--color-gray-70);
+    --color-text-tertiary: var(--color-gray-50);
+    --color-text-inverse: var(--color-white);
+    --color-text-brand: var(--color-brand-primary);
+    --color-text-on-brand: var(--color-white);
+
+    // Links (traditional blue)
+    --color-link-default: #0645AD;
+    --color-link-hover: color-mix(in srgb, var(--color-link-default) 70%, black 30%);
     --color-link-visited: #551A8B;
+    --color-link-active: color-mix(in srgb, var(--color-link-default) 50%, black 50%);
 
-    // Accent Colors
-    --color-accent-green: var(--cu-forest-green);
-    --color-accent-blue: var(--cu-light-blue);
-    --color-accent-orange: var(--cu-orange);
+    // Background
+    --color-bg-body: var(--color-light);
+    --color-bg-page: var(--color-white);
+    --color-bg-subtle: var(--color-gray-10);
+    --color-bg-muted: var(--color-gray-20);
+    --color-bg-elevated: var(--color-white);
+    --color-bg-brand: var(--color-brand-primary);
+    --color-bg-dark: var(--color-brand-secondary);
 
-    // Background Colors
-    --color-bg-body: #f9fafb;
-    --color-bg-page: var(--cu-white);
-    --color-bg-panel: var(--cu-gray-70);
+    // Border
+    --color-border-default: var(--color-gray-30);
+    --color-border-light: var(--color-gray-20);
+    --color-border-dark: var(--color-gray-40);
+    --color-border-focus: var(--color-brand-primary);
+    --color-border-brand: var(--color-brand-primary);
+
+    // Status
+    --color-status-success: var(--color-accent-green);
+    --color-status-warning: var(--color-accent-orange);
+    --color-status-error: var(--color-brand-primary);
+    --color-status-info: var(--color-accent-blue);
+
+    // =========================================================================
+    // BUTTONS
+    // Centralized button tokens - reference these in _buttons.scss
+    // =========================================================================
+
+    // ----- FILLED BUTTONS -----
+
+    // Primary Button (brand color)
+    --btn-primary-bg: var(--color-brand-primary);
+    --btn-primary-text: var(--color-white);
+    --btn-primary-hover-bg: color-mix(in srgb, var(--color-brand-primary) 85%, black);
+    --btn-primary-active-bg: color-mix(in srgb, var(--color-brand-primary) 80%, black);
+    --btn-primary-disabled-bg: color-mix(in srgb, var(--color-brand-primary) 60%, white);
+    --btn-primary-disabled-text: var(--color-white);
+
+    // Secondary Button (dark/black)
+    --btn-secondary-bg: var(--color-brand-secondary);
+    --btn-secondary-text: var(--color-white);
+    --btn-secondary-hover-bg: color-mix(in srgb, var(--color-brand-secondary) 85%, white);
+    --btn-secondary-active-bg: color-mix(in srgb, var(--color-brand-secondary) 90%, black);
+    --btn-secondary-disabled-bg: color-mix(in srgb, var(--color-brand-secondary) 40%, white);
+    --btn-secondary-disabled-text: var(--color-white);
+
+    // Success Button (green)
+    --btn-success-bg: var(--color-accent-green);
+    --btn-success-text: var(--color-white);
+    --btn-success-hover-bg: color-mix(in srgb, var(--color-accent-green) 85%, black);
+    --btn-success-active-bg: color-mix(in srgb, var(--color-accent-green) 80%, black);
+    --btn-success-disabled-bg: color-mix(in srgb, var(--color-accent-green) 50%, white);
+    --btn-success-disabled-text: var(--color-white);
+
+    // Reverse Button (light - for dark backgrounds)
+    --btn-reverse-bg: #fafafa;
+    --btn-reverse-text: var(--color-brand-secondary);
+    --btn-reverse-hover-bg: var(--color-gray-20);
+    --btn-reverse-active-bg: var(--color-gray-30);
+    --btn-reverse-disabled-bg: #f5f5f5;
+    --btn-reverse-disabled-text: var(--color-gray-50);
+
+    // ----- OUTLINE BUTTONS -----
+
+    // Primary Outline
+    --btn-primary-outline-text: var(--color-brand-primary);
+    --btn-primary-outline-border: var(--color-brand-primary);
+    --btn-primary-outline-hover-bg: color-mix(in srgb, var(--color-brand-primary) 10%, white);
+    --btn-primary-outline-active-bg: color-mix(in srgb, var(--color-brand-primary) 25%, white);
+
+    // Secondary Outline
+    --btn-secondary-outline-text: var(--color-brand-secondary);
+    --btn-secondary-outline-border: var(--color-brand-secondary);
+    --btn-secondary-outline-hover-bg: color-mix(in srgb, var(--color-brand-secondary) 10%, white);
+    --btn-secondary-outline-active-bg: color-mix(in srgb, var(--color-brand-secondary) 25%, white);
+
+    // Success Outline
+    --btn-success-outline-text: var(--color-accent-green);
+    --btn-success-outline-border: var(--color-accent-green);
+    --btn-success-outline-hover-bg: color-mix(in srgb, var(--color-accent-green) 10%, white);
+    --btn-success-outline-active-bg: color-mix(in srgb, var(--color-accent-green) 25%, white);
+
+    // Reverse Outline (for dark backgrounds)
+    --btn-reverse-outline-text: var(--color-white);
+    --btn-reverse-outline-border: var(--color-white);
+    --btn-reverse-outline-hover-bg: rgba(255, 255, 255, 0.15);
+    --btn-reverse-outline-active-bg: rgba(255, 255, 255, 0.25);
+
+    // ----- GHOST/TERTIARY BUTTON -----
+
+    --btn-ghost-text: var(--color-brand-primary);
+    --btn-ghost-hover-bg: color-mix(in srgb, var(--color-brand-primary) 10%, transparent);
+    --btn-ghost-hover-text: color-mix(in srgb, var(--color-brand-primary) 80%, black);
+    --btn-ghost-active-text: color-mix(in srgb, var(--color-brand-primary) 70%, black);
+    --btn-ghost-disabled-text: var(--color-gray-50);
+
+    // ----- BUTTON SIZING & STYLING -----
+
+    --btn-font-family: var(--font-family-primary);
+    --btn-font-weight: var(--font-weight-medium);
+    --btn-font-size: var(--font-size-base);
+    --btn-font-size-sm: var(--font-size-sm);
+    --btn-line-height: var(--line-height-normal);
+
+    --btn-padding-x: var(--spacing-4);
+    --btn-padding-y: var(--spacing-2);
+    --btn-padding-x-sm: var(--spacing-3);
+    --btn-padding-y-sm: var(--spacing-1);
+    --btn-padding-x-lg: var(--spacing-6);
+    --btn-padding-y-lg: var(--spacing-3);
+    --btn-gap: var(--spacing-2);
+
+    --btn-border-radius: var(--radius-md);
+    --btn-border-width: var(--border-width-2);
+    --btn-min-height: 44px;
+    --btn-min-width: 44px;
+
+    --btn-icon-size: 20px;
+    --btn-icon-size-sm: 16px;
+
+    --btn-transition: var(--transition-fast);
 
     // =========================================================================
     // TYPOGRAPHY
     // =========================================================================
 
     // Font Families
-    --font-primary-body: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --font-primary-heading: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --font-secondary: "Darby Serif", Georgia, "Times New Roman", Times, serif;
+    --font-family-primary: #{t.$token-font-family-primary};
+    --font-family-secondary: #{t.$token-font-family-secondary};
 
     // Font Sizes (fluid/responsive)
     --font-size-xs: clamp(0.75rem, 0.70rem + 0.25vw, 0.8125rem);
@@ -104,177 +216,268 @@
     --font-size-md: clamp(1rem, 0.90rem + 0.5vw, 1.125rem);
     --font-size-lg: clamp(1.125rem, 1.00rem + 0.625vw, 1.25rem);
     --font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);
-    --font-size-2xl: clamp(1.5rem, 1.30rem + 1vw, 1.875rem);
+    --font-size-2xl: clamp(1.5rem, 1.30rem + 1vw, 1.75rem);
     --font-size-3xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);
     --font-size-4xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);
 
-    // Line Heights
-    --line-height-tight: 1.2;
-    --line-height-normal: 1.5;
-    --line-height-loose: 1.75;
-
     // Font Weights
-    --font-weight-light: 300;
-    --font-weight-regular: 400;
-    --font-weight-medium: 500;
-    --font-weight-bold: 700;
+    --font-weight-light: #{t.$token-font-weight-light};
+    --font-weight-regular: #{t.$token-font-weight-regular};
+    --font-weight-medium: #{t.$token-font-weight-medium};
+    --font-weight-semibold: #{t.$token-font-weight-semibold};
+    --font-weight-bold: #{t.$token-font-weight-bold};
+
+    // Line Heights
+    --line-height-none: #{t.$token-line-height-none};
+    --line-height-tight: #{t.$token-line-height-tight};
+    --line-height-snug: #{t.$token-line-height-snug};
+    --line-height-normal: #{t.$token-line-height-normal};
+    --line-height-relaxed: #{t.$token-line-height-relaxed};
+    --line-height-loose: #{t.$token-line-height-loose};
+
+    // Letter Spacing
+    --letter-spacing-tighter: #{t.$token-letter-spacing-tighter};
+    --letter-spacing-tight: #{t.$token-letter-spacing-tight};
+    --letter-spacing-normal: #{t.$token-letter-spacing-normal};
+    --letter-spacing-wide: #{t.$token-letter-spacing-wide};
+    --letter-spacing-wider: #{t.$token-letter-spacing-wider};
+
+    // =========================================================================
+    // HEADING STYLES
+    // =========================================================================
+
+    --h1-font-family: var(--font-family-primary);
+    --h1-font-size: var(--font-size-4xl);
+    --h1-font-weight: var(--font-weight-bold);
+    --h1-line-height: var(--line-height-snug);
+    --h1-letter-spacing: var(--letter-spacing-tighter);
+
+    --h2-font-family: var(--font-family-primary);
+    --h2-font-size: var(--font-size-3xl);
+    --h2-font-weight: var(--font-weight-bold);
+    --h2-line-height: var(--line-height-snug);
+    --h2-letter-spacing: var(--letter-spacing-tighter);
+
+    --h3-font-family: var(--font-family-primary);
+    --h3-font-size: var(--font-size-2xl);
+    --h3-font-weight: var(--font-weight-semibold);
+    --h3-line-height: var(--line-height-snug);
+    --h3-letter-spacing: var(--letter-spacing-tight);
+
+    --h4-font-family: var(--font-family-primary);
+    --h4-font-size: var(--font-size-xl);
+    --h4-font-weight: var(--font-weight-medium);
+    --h4-line-height: var(--line-height-snug);
+
+    --h5-font-family: var(--font-family-primary);
+    --h5-font-size: var(--font-size-lg);
+    --h5-font-weight: var(--font-weight-medium);
+    --h5-line-height: var(--line-height-snug);
+
+    --h6-font-family: var(--font-family-primary);
+    --h6-font-size: var(--font-size-md);
+    --h6-font-weight: var(--font-weight-medium);
+    --h6-line-height: var(--line-height-snug);
+
+    // Secondary Headings (Serif)
+    --h-secondary-font-family: var(--font-family-secondary);
+    --h-secondary-font-weight: var(--font-weight-regular);
 
     // =========================================================================
     // SPACING
     // =========================================================================
 
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    --spacing-xl: 32px;
-    --spacing-2xl: 48px;
-    --spacing-3xl: 64px;
-    --spacing-4xl: 80px;
+    --spacing-0: #{t.$token-spacing-0};
+    --spacing-px: #{t.$token-spacing-px};
+    --spacing-1: #{t.$token-spacing-1};
+    --spacing-2: #{t.$token-spacing-2};
+    --spacing-3: #{t.$token-spacing-3};
+    --spacing-4: #{t.$token-spacing-4};
+    --spacing-5: #{t.$token-spacing-5};
+    --spacing-6: #{t.$token-spacing-6};
+    --spacing-8: #{t.$token-spacing-8};
+    --spacing-10: #{t.$token-spacing-10};
+    --spacing-12: #{t.$token-spacing-12};
+    --spacing-16: #{t.$token-spacing-16};
+    --spacing-20: #{t.$token-spacing-20};
+    --spacing-24: #{t.$token-spacing-24};
+    --spacing-32: #{t.$token-spacing-32};
+
+    // Semantic aliases
+    --spacing-xs: var(--spacing-1);
+    --spacing-sm: var(--spacing-2);
+    --spacing-md: var(--spacing-4);
+    --spacing-lg: var(--spacing-6);
+    --spacing-xl: var(--spacing-8);
+    --spacing-2xl: var(--spacing-12);
+    --spacing-3xl: var(--spacing-16);
+    --spacing-4xl: var(--spacing-24);
+
+    // Component Spacing
+    --spacing-card: var(--spacing-6);
+    --spacing-section: var(--spacing-16);
+
+    // =========================================================================
+    // LAYOUT
+    // =========================================================================
+
+    --container-max-width: 1280px;
+    --container-padding-mobile: 16px;
+    --container-padding-tablet: 24px;
+    --container-padding-desktop: 32px;
+
+    --content-width-narrow: 640px;
+    --content-width-medium: 768px;
+    --content-width-wide: 1024px;
+    --content-width-full: 100%;
+
+    --grid-columns: #{t.$token-grid-columns};
+    --grid-gutter: #{t.$token-grid-gutter};
 
     // =========================================================================
     // BORDERS
     // =========================================================================
 
-    // Border Radius
-    --radius-none: 0;
-    --radius-sm: 2px;
-    --radius-md: 4px;
-    --radius-lg: 8px;
-    --radius-xl: 12px;
-    --radius-pill: 999px;
-    --radius-image: var(--radius-md);  // Default radius for images
+    --radius-none: #{t.$token-radius-none};
+    --radius-sm: #{t.$token-radius-sm};
+    --radius-md: #{t.$token-radius-md};
+    --radius-lg: #{t.$token-radius-lg};
+    --radius-xl: #{t.$token-radius-xl};
+    --radius-2xl: #{t.$token-radius-2xl};
+    --radius-full: #{t.$token-radius-full};
 
-    // Border Width
-    --border-width-sm: 1px;
-    --border-width-md: 2px;
-    --border-width-lg: 4px;
+    // Semantic radius
+    --radius-card: var(--radius-lg);
+    --radius-input: var(--radius-md);
+    --radius-image: var(--radius-md);
 
-    // Border Colors
-    --border-color-default: var(--cu-gray-30);
-    --border-color-light: var(--cu-gray-20);
-    --border-color-dark: var(--cu-gray-40);
+    --border-width-0: #{t.$token-border-width-0};
+    --border-width-1: #{t.$token-border-width-1};
+    --border-width-2: #{t.$token-border-width-2};
+    --border-width-4: #{t.$token-border-width-4};
 
     // =========================================================================
     // SHADOWS
     // =========================================================================
 
-    --shadow-none: none;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-none: #{t.$token-shadow-none};
+    --shadow-sm: #{t.$token-shadow-sm};
+    --shadow-md: #{t.$token-shadow-md};
+    --shadow-lg: #{t.$token-shadow-lg};
+    --shadow-xl: #{t.$token-shadow-xl};
+    --shadow-2xl: #{t.$token-shadow-2xl};
+
+    // Semantic shadows
+    --shadow-card: var(--shadow-sm);
+    --shadow-card-hover: 0 12px 24px -6px color-mix(in srgb, var(--color-brand-primary) 15%, transparent 85%);
+    --shadow-dropdown: var(--shadow-lg);
+    --shadow-modal: var(--shadow-xl);
 
     // =========================================================================
     // ANIMATION
     // =========================================================================
 
-    --animation-fast: 150ms;
-    --animation-medium: 300ms;
-    --animation-slow: 500ms;
+    --duration-fast: #{t.$token-duration-fast};
+    --duration-normal: #{t.$token-duration-normal};
+    --duration-slow: #{t.$token-duration-slow};
 
-    --animation-easing: ease-in-out;
-    --animation-easing-in: ease-in;
-    --animation-easing-out: ease-out;
+    --easing-default: #{t.$token-easing-default};
+    --easing-in: #{t.$token-easing-in};
+    --easing-out: #{t.$token-easing-out};
+    --easing-in-out: #{t.$token-easing-in-out};
 
-    // =========================================================================
-    // ACCESSIBILITY - Focus States
-    // Consistent focus indicators for keyboard navigation (WCAG 2.1)
-    // =========================================================================
-
-    --focus-ring-color: #fdcd0d;           // High-contrast yellow (GOV.UK style)
-    --focus-ring-width: 3px;
-    --focus-ring-offset: 2px;
-    --focus-ring-style: solid;
-    --focus-ring: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color);
+    // Transition presets
+    --transition-fast: var(--duration-fast) var(--easing-default);
+    --transition-normal: var(--duration-normal) var(--easing-default);
+    --transition-slow: var(--duration-slow) var(--easing-default);
 
     // =========================================================================
     // Z-INDEX
     // =========================================================================
 
-    --z-index-dropdown: 200;
-    --z-index-sticky: 100;
-    --z-index-modal: 400;
-    --z-index-overlay: 300;
+    --z-index-behind: #{t.$token-z-index-behind};
+    --z-index-base: #{t.$token-z-index-base};
+    --z-index-raised: #{t.$token-z-index-raised};
+    --z-index-dropdown: #{t.$token-z-index-dropdown};
+    --z-index-sticky: #{t.$token-z-index-sticky};
+    --z-index-overlay: #{t.$token-z-index-overlay};
+    --z-index-modal: #{t.$token-z-index-modal};
+    --z-index-toast: #{t.$token-z-index-toast};
+
+    // =========================================================================
+    // ACCESSIBILITY
+    // =========================================================================
+
+    --focus-ring-color: #fdcd0d;
+    --focus-ring-width: #{t.$token-focus-ring-width};
+    --focus-ring-offset: #{t.$token-focus-ring-offset};
+    --focus-ring-style: solid;
+    --focus-ring: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color);
+
+    --min-touch-target: #{t.$token-min-touch-target};
+
+    // =========================================================================
+    // ICONS
+    // =========================================================================
+
+    --icon-size-sm: #{t.$token-icon-size-sm};
+    --icon-size-md: #{t.$token-icon-size-md};
+    --icon-size-lg: #{t.$token-icon-size-lg};
+    --icon-size-xl: #{t.$token-icon-size-xl};
 
     // =========================================================================
     // ASPECT RATIOS
-    // Common aspect ratios for embedded content (videos, iframes)
     // =========================================================================
 
-    --ratio-widescreen: 16 / 9;      // Standard video (YouTube, Vimeo)
-    --ratio-standard: 4 / 3;         // Traditional TV, Xerte content
-    --ratio-ultrawide: 21 / 9;       // Cinematic widescreen
-    --ratio-square: 1 / 1;           // Square content
-    --ratio-portrait: 9 / 16;        // Vertical video (TikTok, Stories)
+    --ratio-widescreen: 16 / 9;
+    --ratio-standard: 4 / 3;
+    --ratio-ultrawide: 21 / 9;
+    --ratio-square: 1 / 1;
+    --ratio-portrait: 9 / 16;
 
     // =========================================================================
-    // COLOR SCALES (Auto-generated from semantic colors)
-    // These automatically update when base colors change
+    // COLOR SCALES (Auto-generated with color-mix)
     // =========================================================================
 
-    // Primary Brand Scale (color-mix for better browser support)
     --color-brand-primary-lighter: color-mix(in srgb, var(--color-brand-primary) 40%, white 60%);
     --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 70%, white 30%);
     --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 70%, black 30%);
     --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 40%, black 60%);
 
-    // Secondary Brand Scale
     --color-brand-secondary-lighter: color-mix(in srgb, var(--color-brand-secondary) 30%, white);
     --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
     --color-brand-secondary-dark: color-mix(in srgb, var(--color-brand-secondary) 15%, black);
     --color-brand-secondary-darker: color-mix(in srgb, var(--color-brand-secondary) 30%, black);
 
-    // Accent Color Scales
-    --color-accent-green-light: color-mix(in srgb, var(--color-accent-green) 20%, white);
-    --color-accent-green-dark: color-mix(in srgb, var(--color-accent-green) 20%, black);
-
-    --color-accent-blue-light: color-mix(in srgb, var(--color-accent-blue) 20%, white);
-    --color-accent-blue-dark: color-mix(in srgb, var(--color-accent-blue) 20%, black);
-
-    --color-accent-orange-light: color-mix(in srgb, var(--color-accent-orange) 20%, white);
-    --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 20%, black);
-
-    // Background Scale
-    --color-bg-subtle: color-mix(in srgb, var(--color-bg-body) 50%, white);
-    --color-bg-muted: color-mix(in srgb, var(--color-bg-body) 50%, var(--cu-gray-20));
-    --color-bg-elevated: var(--cu-white);
-
-    // Text Scale (for reduced contrast needs)
-    --color-text-subtle: color-mix(in srgb, var(--color-text-primary) 60%, var(--cu-gray-50));
-    --color-text-muted: color-mix(in srgb, var(--color-text-primary) 40%, var(--cu-gray-40));
+    --color-text-subtle: color-mix(in srgb, var(--color-text-primary) 60%, var(--color-gray-50));
+    --color-text-muted: color-mix(in srgb, var(--color-text-primary) 40%, var(--color-gray-40));
 }
 
 // =============================================================================
 // THEME VARIANTS
-// Alternative themes for different projects or contexts
 // =============================================================================
 
-// Example: Dark Mode Theme
-// Uncomment and customize as needed
+// Example: Dark Mode
 // [data-theme="dark"] {
 //     --color-brand-primary: #FF6B5B;
 //     --color-bg-body: #1a1a1a;
 //     --color-bg-page: #121212;
 //     --color-text-primary: #ffffff;
 //     --color-text-inverse: #121212;
-//     --cu-gray-10: #2a2a2a;
-//     --cu-gray-20: #3a3a3a;
-//     --cu-gray-90: #e0e0e0;
-//     --cu-gray-80: #d0d0d0;
+//     --color-link-default: #6DB3F2;
 // }
 
-// Example: Alternative University Theme
-// [data-theme="project-blue"] {
-//     --color-brand-primary: #0066CC;
-//     --color-brand-secondary: #00A86B;
-//     --color-accent-green: #2E7D32;
-// }
-
-// Example: High Contrast Theme (Accessibility)
+// Example: High Contrast
 // [data-theme="high-contrast"] {
 //     --color-bg-body: #000000;
 //     --color-bg-page: #000000;
 //     --color-text-primary: #FFFFFF;
 //     --color-brand-primary: #FFFF00;
-//     --border-width-md: 3px;
+//     --focus-ring-width: 4px;
+// }
+
+// Example: Alternative Brand
+// [data-theme="other-uni"] {
+//     --color-brand-primary: #0066CC;
+//     --color-brand-secondary: #003366;
 // }

@@ -1,0 +1,321 @@
+@use "sass:color";
+
+/**
+ * Cardiff University Design Tokens
+ * Generated from Cardiff University Style Guide
+ *
+ * These tokens represent the official Cardiff University brand guidelines
+ * and should be used as the single source of truth for all design values.
+ *
+ * DO NOT EDIT THESE VALUES - they are the official Cardiff brand.
+ * To customize, override in _allvariables.scss
+ */
+
+// =============================================================================
+// COLOR TOKENS
+// =============================================================================
+
+// Base Colors - Primary
+$token-color-primary-red: #E4251B;      // PMS 485 C, RGB: 228/37/27, CMYK: 10/98/100/0
+$token-color-primary-white: #FFFFFF;    // Bright White
+$token-color-primary-black: #121212;    // RGB: 18/18/18
+$token-color-light: #f9fafb;          // Off-white for backgrounds
+
+// Base Colors - Grayscale (10% increments)
+$token-color-gray-10: #F2F2F2;
+$token-color-gray-20: #E5E5E5;
+$token-color-gray-30: #CCCCCC;
+$token-color-gray-40: #B3B3B3;
+$token-color-gray-50: #999999;
+$token-color-gray-60: #808080;
+$token-color-gray-70: #666666;
+$token-color-gray-80: #4C4C4C;
+$token-color-gray-90: #333333;
+
+// Base Colors - Accents (use sparingly, requires Design team permission)
+$token-color-accent-forest-green: #07873E;
+$token-color-accent-cadet: #5EB99B;
+$token-color-accent-stone: #C9C2BA;
+$token-color-accent-light-blue: #1E90FF;
+$token-color-accent-royal-blue: #4A42FF;
+$token-color-accent-midnight-blue: #273573;
+$token-color-accent-midnight-purple: #26192C;
+$token-color-accent-orange: #E9761E;
+$token-color-accent-yellow: #FFB300;
+$token-color-accent-yellow-green: #85C041;
+$token-color-accent-indigo: #570185;
+$token-color-accent-dark-violet: #D401C5;
+
+// Theme Colors - Background
+$token-bg-primary: $token-color-primary-white;
+$token-bg-secondary: $token-color-light;
+$token-bg-tertiary: $token-color-primary-red;
+$token-bg-accent: $token-color-accent-royal-blue;
+$token-bg-dark: $token-color-primary-black;
+
+// Theme Colors - Text
+$token-text-primary: $token-color-primary-black;
+$token-text-secondary: $token-color-gray-70;
+$token-text-tertiary: $token-color-gray-50;
+$token-text-inverted: $token-color-primary-white;
+$token-text-accent: $token-color-primary-red;
+$token-text-link: $token-color-primary-red;
+$token-text-link-hover: #C00E0E;
+
+// Theme Colors - Border
+$token-border-default: $token-color-gray-30;
+$token-border-focus: $token-color-primary-red;
+$token-border-accent: $token-color-primary-red;
+
+// Theme Colors - Buttons
+$token-btn-primary-bg: $token-color-primary-red;
+$token-btn-primary-text: $token-color-primary-white;
+$token-btn-primary-hover: #C00E0E;
+$token-btn-primary-disabled: #F8A8A5;
+
+$token-btn-secondary-bg: $token-color-primary-white;
+$token-btn-secondary-text: $token-color-primary-red;
+$token-btn-secondary-border: $token-color-primary-red;
+$token-btn-secondary-hover: #FFF4F4;
+$token-btn-secondary-disabled-text: $token-color-gray-50;
+$token-btn-secondary-disabled-border: $token-color-gray-30;
+
+$token-btn-tertiary-text: $token-color-primary-red;
+$token-btn-tertiary-hover: #C00E0E;
+
+// =============================================================================
+// TYPOGRAPHY TOKENS
+// =============================================================================
+
+// Font Families
+$token-font-primary-heading: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$token-font-primary-body: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$token-font-secondary: "Darby Serif", Georgia, "Times New Roman", Times, serif;
+
+// Font Weights
+$token-font-weight-light: 300;
+$token-font-weight-regular: 400;
+$token-font-weight-medium: 500;
+$token-font-weight-semibold: 600;
+$token-font-weight-bold: 700;
+
+// Font Sizes
+$token-font-size-xs: 12px;        // caption
+$token-font-size-sm: 14px;        // bodySmall
+$token-font-size-base: 16px;      // body
+$token-font-size-md: 18px;        // bodyLarge, h6
+$token-font-size-lg: 20px;        // h5
+$token-font-size-xl: 24px;        // h4
+$token-font-size-2xl: 28px;       // h3
+$token-font-size-3xl: 36px;       // h2
+$token-font-size-4xl: 48px;       // h1
+$token-font-size-overline: 10px;  // overline
+
+// Line Heights
+$token-line-height-tight: 1.2;
+$token-line-height-normal: 1.5;
+$token-line-height-relaxed: 1.75;
+$token-line-height-loose: 2;
+$token-line-height-heading: 1.3;
+$token-line-height-body: 1.6;
+
+// Letter Spacing
+$token-letter-spacing-tight: -0.02em;
+$token-letter-spacing-normal: 0;
+$token-letter-spacing-wide: 0.02em;
+$token-letter-spacing-wider: 0.05em;
+$token-letter-spacing-widest: 0.1em;
+
+// Heading Styles
+$token-h1-family: $token-font-primary-heading;
+$token-h1-weight: $token-font-weight-bold;
+$token-h1-size: $token-font-size-4xl;           // 48px
+$token-h1-size-mobile: $token-font-size-3xl;    // 36px
+$token-h1-line-height: $token-line-height-heading;
+$token-h1-letter-spacing: $token-letter-spacing-tight;
+
+$token-h2-family: $token-font-primary-heading;
+$token-h2-weight: $token-font-weight-bold;
+$token-h2-size: $token-font-size-3xl;           // 36px
+$token-h2-size-mobile: $token-font-size-2xl;    // 28px
+$token-h2-line-height: $token-line-height-heading;
+$token-h2-letter-spacing: $token-letter-spacing-tight;
+
+$token-h3-family: $token-font-primary-heading;
+$token-h3-weight: $token-font-weight-semibold;
+$token-h3-size: $token-font-size-2xl;           // 28px
+$token-h3-size-mobile: $token-font-size-xl;     // 24px
+$token-h3-line-height: $token-line-height-heading;
+$token-h3-letter-spacing: $token-letter-spacing-tight;
+
+$token-h4-family: $token-font-primary-heading;
+$token-h4-weight: $token-font-weight-medium;
+$token-h4-size: $token-font-size-xl;            // 24px
+$token-h4-size-mobile: $token-font-size-lg;     // 20px
+$token-h4-line-height: $token-line-height-heading;
+
+$token-h5-family: $token-font-primary-heading;
+$token-h5-weight: $token-font-weight-medium;
+$token-h5-size: $token-font-size-lg;            // 20px
+$token-h5-size-mobile: $token-font-size-md;     // 18px
+$token-h5-line-height: $token-line-height-heading;
+
+$token-h6-family: $token-font-primary-heading;
+$token-h6-weight: $token-font-weight-medium;
+$token-h6-size: $token-font-size-md;            // 18px
+$token-h6-line-height: $token-line-height-heading;
+
+// Secondary Heading Styles (Darby Serif)
+$token-h1-secondary-family: $token-font-secondary;
+$token-h1-secondary-weight: $token-font-weight-regular;
+$token-h1-secondary-size: $token-font-size-4xl;
+$token-h1-secondary-line-height: $token-line-height-heading;
+
+$token-h2-secondary-family: $token-font-secondary;
+$token-h2-secondary-weight: $token-font-weight-regular;
+$token-h2-secondary-size: $token-font-size-3xl;
+$token-h2-secondary-line-height: $token-line-height-heading;
+
+// =============================================================================
+// SPACING TOKENS
+// =============================================================================
+
+$token-spacing-unit: 8px;
+$token-spacing-xs: 4px;
+$token-spacing-sm: 8px;
+$token-spacing-md: 16px;
+$token-spacing-lg: 24px;
+$token-spacing-xl: 32px;
+$token-spacing-2xl: 48px;
+$token-spacing-3xl: 64px;
+$token-spacing-4xl: 96px;
+$token-spacing-5xl: 128px;
+
+// Section Spacing
+$token-spacing-section-small: 48px;
+$token-spacing-section-medium: 64px;
+$token-spacing-section-large: 96px;
+$token-spacing-section-xlarge: 128px;
+
+// Component Spacing
+$token-spacing-button-x: $token-spacing-md;
+$token-spacing-button-y: $token-spacing-sm;
+$token-spacing-card: $token-spacing-lg;
+$token-spacing-section: $token-spacing-3xl;
+$token-spacing-component: $token-spacing-lg;
+
+// =============================================================================
+// BORDER TOKENS
+// =============================================================================
+
+// Border Radius
+$token-radius-none: 0;
+$token-radius-sm: 4px;
+$token-radius-md: 8px;
+$token-radius-lg: 12px;
+$token-radius-xl: 16px;
+$token-radius-2xl: 24px;
+$token-radius-full: 9999px;
+
+// Border Width
+$token-border-width-none: 0;
+$token-border-width-sm: 1px;
+$token-border-width-md: 2px;
+$token-border-width-lg: 4px;
+
+// =============================================================================
+// SHADOW TOKENS
+// =============================================================================
+
+$token-shadow-none: none;
+$token-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$token-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$token-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$token-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+$token-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+// $token-shadow-card-hover: 0 12px 24px -6px rgba($token-color-primary-red, 0.15); Define this in _allvariables.scss if needed
+
+// =============================================================================
+// GRID TOKENS
+// =============================================================================
+
+// Grid Structure
+$token-grid-columns: 12;
+$token-grid-gutter: 24px;
+$token-grid-outer-margin: 24px;
+
+// Container & Content Width - Define in _allvariables.scss as CSS custom properties:
+// --container-max-width: 1280px;
+// --container-padding-mobile: 16px;
+// --container-padding-tablet: 24px;
+// --container-padding-desktop: 32px;
+// --content-width-narrow: 640px;
+// --content-width-medium: 768px;
+// --content-width-wide: 1024px;
+
+// =============================================================================
+// ICON TOKENS
+// =============================================================================
+
+$token-icon-size-sm: 20px;
+$token-icon-size-md: 24px;
+$token-icon-size-lg: 32px;
+$token-icon-size-xl: 48px;
+$token-icon-library: "Ionicons-sharp";
+
+// =============================================================================
+// BREAKPOINT TOKENS
+// =============================================================================
+
+$token-breakpoint-xs: 0;
+$token-breakpoint-sm: 640px;
+$token-breakpoint-md: 768px;
+$token-breakpoint-lg: 1024px;
+$token-breakpoint-xl: 1280px;
+$token-breakpoint-2xl: 1536px;
+
+// =============================================================================
+// ANIMATION TOKENS
+// =============================================================================
+
+// Duration
+$token-animation-fast: 150ms;
+$token-animation-normal: 300ms;
+$token-animation-slow: 500ms;
+
+// Easing
+$token-animation-easing-default: ease;
+$token-animation-easing-in: cubic-bezier(0.4, 0, 1, 1);
+$token-animation-easing-out: cubic-bezier(0, 0, 0.2, 1);
+$token-animation-easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+// Animation - Define in _allvariables.scss as CSS custom properties if runtime override needed
+
+// =============================================================================
+// Z-INDEX TOKENS
+// =============================================================================
+
+$token-z-index-below: -1;
+$token-z-index-base: 0;
+$token-z-index-elevated: 1;
+$token-z-index-sticky: 100;
+$token-z-index-dropdown: 200;
+$token-z-index-overlay: 300;
+$token-z-index-modal: 400;
+$token-z-index-toast: 500;
+
+// =============================================================================
+// ACCESSIBILITY TOKENS
+// =============================================================================
+
+// Focus styles - See _allvariables.scss for CSS custom property overrides
+$token-focus-outline-width: 2px;
+$token-focus-outline-offset: 2px;
+$token-focus-border-radius: $token-radius-sm;
+
+// Touch targets (WCAG 2.1)
+$token-min-touch-target: 44px;
+
+// Contrast ratios (reference values, not used in SCSS directly)
+// Normal text: 4.5:1
+// Large text: 3:1

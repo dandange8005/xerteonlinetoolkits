@@ -24,32 +24,32 @@
     
     "colors": {
       "primary": {
-        "main": "#D3374A",
-        "rgb": "rgb(211, 55, 74)",
-        "description": "Cardiff Red - vibrant and refined, represents progressive spirit",
-        "light": "#E65B6F",
-        "dark": "#B32035",
+        "main": "#E4251B",
+        "rgb": "rgb(228, 37, 27)",
+        "description": "Cardiff Red - PMS 485 C, vibrant and refined, represents progressive spirit",
+        "light": "#F8A8A5",
+        "dark": "#C00E0E",
         "contrastText": "#FFFFFF"
       },
       "secondary": {
-        "main": "#22211F",
-        "rgb": "rgb(34, 33, 31)",
+        "main": "#121212",
+        "rgb": "rgb(18, 18, 18)",
         "description": "Cardiff Black - authority and sophistication",
-        "light": "#3D3B38",
+        "light": "#333333",
         "dark": "#000000"
       },
       "neutral": {
-        "50": "#FAFAFA",
-        "100": "#F5F5F5",
-        "200": "#EEEEEE",
-        "300": "#E0E0E0",
-        "400": "#D3D3D2",
+        "50": "#f9fafb",
+        "100": "#F2F2F2",
+        "200": "#E5E5E5",
+        "300": "#CCCCCC",
+        "400": "#B3B3B3",
         "description400": "Cardiff Grey - primary grey",
-        "500": "#9E9E9E",
-        "600": "#757575",
-        "700": "#616161",
-        "800": "#424242",
-        "900": "#212121"
+        "500": "#999999",
+        "600": "#808080",
+        "700": "#666666",
+        "800": "#4C4C4C",
+        "900": "#333333"
       },
       "semantic": {
         "success": "#2E7D32",
@@ -58,22 +58,32 @@
         "info": "#1976D2"
       },
       "text": {
-        "primary": "#22211F",
-        "secondary": "#616161",
-        "disabled": "#9E9E9E",
-        "hint": "#BDBDBD",
+        "primary": "#121212",
+        "secondary": "#666666",
+        "disabled": "#999999",
+        "hint": "#B3B3B3",
         "inverse": "#FFFFFF"
       },
       "background": {
         "default": "#FFFFFF",
-        "paper": "#FAFAFA",
+        "paper": "#f9fafb",
         "elevated": "#FFFFFF",
-        "subtle": "#F5F5F5"
+        "subtle": "#F2F2F2"
       },
       "accent": {
-        "medical": "#0D47A1",
-        "cpd": "#4A148C",
-        "description": "Used sparingly for medical/CPD specific contexts"
+        "forestGreen": "#07873E",
+        "cadet": "#5EB99B",
+        "stone": "#C9C2BA",
+        "lightBlue": "#1E90FF",
+        "royalBlue": "#4A42FF",
+        "midnightBlue": "#273573",
+        "midnightPurple": "#26192C",
+        "orange": "#E9761E",
+        "yellow": "#FFB300",
+        "yellowGreen": "#85C041",
+        "indigo": "#570185",
+        "darkViolet": "#D401C5",
+        "description": "Use sparingly, requires Design team permission"
       }
     },
     

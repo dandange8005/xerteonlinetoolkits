@@ -1,27 +1,36 @@
-@use "sass:color";
-
 /**
- * Cardiff University Design Tokens
- * Generated from Cardiff University Style Guide
+ * Design Tokens - Cardiff University Theme
+ * =========================================
  *
- * These tokens represent the official Cardiff University brand guidelines
- * and should be used as the single source of truth for all design values.
+ * PRIMITIVE TOKENS ONLY - Raw, immutable brand values.
+ * These are the foundation that semantic tokens build upon.
  *
- * DO NOT EDIT THESE VALUES - they are the official Cardiff brand.
- * To customize, override in _allvariables.scss
+ * ARCHITECTURE:
+ * - _tokens.scss       = Primitive tokens (this file) - SCSS variables, compile-time
+ * - _allvariables.scss = Semantic tokens - CSS custom properties, runtime-configurable
+ *
+ * USAGE:
+ * 1. Import this file first: @use "tokens" as t;
+ * 2. Reference primitives: t.$token-color-brand-primary
+ * 3. Build semantic tokens in _allvariables.scss using these primitives
+ *
+ * FOR NEW THEMES:
+ * Copy this file and update the primitive values to match your brand.
+ * The semantic layer (_allvariables.scss) can remain largely unchanged.
  */
 
 // =============================================================================
-// COLOR TOKENS
+// BRAND COLORS
+// The official brand color palette. These are the source of truth.
 // =============================================================================
 
-// Base Colors - Primary
-$token-color-primary-red: #E4251B;      // PMS 485 C, RGB: 228/37/27, CMYK: 10/98/100/0
-$token-color-primary-white: #FFFFFF;    // Bright White
-$token-color-primary-black: #121212;    // RGB: 18/18/18
-$token-color-light: #f9fafb;          // Off-white for backgrounds
+// Primary Brand Colors
+$token-color-brand-primary: #E4251B;    // Cardiff Red - PMS 485 C
+$token-color-brand-secondary: #121212;  // Cardiff Black
+$token-color-brand-white: #FFFFFF;
+$token-color-brand-light: #f9fafb;      // Off-white for backgrounds
 
-// Base Colors - Grayscale (10% increments)
+// Grayscale (10% increments)
 $token-color-gray-10: #F2F2F2;
 $token-color-gray-20: #E5E5E5;
 $token-color-gray-30: #CCCCCC;
@@ -32,7 +41,7 @@ $token-color-gray-70: #666666;
 $token-color-gray-80: #4C4C4C;
 $token-color-gray-90: #333333;
 
-// Base Colors - Accents (use sparingly, requires Design team permission)
+// Accent Colors (use sparingly)
 $token-color-accent-forest-green: #07873E;
 $token-color-accent-cadet: #5EB99B;
 $token-color-accent-stone: #C9C2BA;
@@ -46,216 +55,171 @@ $token-color-accent-yellow-green: #85C041;
 $token-color-accent-indigo: #570185;
 $token-color-accent-dark-violet: #D401C5;
 
-// Theme Colors - Background
-$token-bg-primary: $token-color-primary-white;
-$token-bg-secondary: $token-color-light;
-$token-bg-tertiary: $token-color-primary-red;
-$token-bg-accent: $token-color-accent-royal-blue;
-$token-bg-dark: $token-color-primary-black;
-
-// Theme Colors - Text
-$token-text-primary: $token-color-primary-black;
-$token-text-secondary: $token-color-gray-70;
-$token-text-tertiary: $token-color-gray-50;
-$token-text-inverted: $token-color-primary-white;
-$token-text-accent: $token-color-primary-red;
-$token-text-link: $token-color-primary-red;
-$token-text-link-hover: #C00E0E;
-
-// Theme Colors - Border
-$token-border-default: $token-color-gray-30;
-$token-border-focus: $token-color-primary-red;
-$token-border-accent: $token-color-primary-red;
-
-// Theme Colors - Buttons
-$token-btn-primary-bg: $token-color-primary-red;
-$token-btn-primary-text: $token-color-primary-white;
-$token-btn-primary-hover: #C00E0E;
-$token-btn-primary-disabled: #F8A8A5;
-
-$token-btn-secondary-bg: $token-color-primary-white;
-$token-btn-secondary-text: $token-color-primary-red;
-$token-btn-secondary-border: $token-color-primary-red;
-$token-btn-secondary-hover: #FFF4F4;
-$token-btn-secondary-disabled-text: $token-color-gray-50;
-$token-btn-secondary-disabled-border: $token-color-gray-30;
-
-$token-btn-tertiary-text: $token-color-primary-red;
-$token-btn-tertiary-hover: #C00E0E;
-
 // =============================================================================
-// TYPOGRAPHY TOKENS
+// TYPOGRAPHY - PRIMITIVES
+// Base typographic values. Combine these in _allvariables.scss for headings.
 // =============================================================================
 
 // Font Families
-$token-font-primary-heading: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-$token-font-primary-body: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-$token-font-secondary: "Darby Serif", Georgia, "Times New Roman", Times, serif;
+$token-font-family-primary: "Marr Sans", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$token-font-family-secondary: "Darby Serif", Georgia, "Times New Roman", Times, serif;
 
 // Font Weights
 $token-font-weight-light: 300;
 $token-font-weight-regular: 400;
 $token-font-weight-medium: 500;
+$token-font-weight-semibold: 600;
 $token-font-weight-bold: 700;
 
-// Font Sizes
+// Font Size Scale
 $token-font-size-xs: 12px;
 $token-font-size-sm: 14px;
 $token-font-size-base: 16px;
 $token-font-size-md: 18px;
-$token-font-size-lg: 24px;
-$token-font-size-xl: 30px;
-$token-font-size-2xl: 36px;
-$token-font-size-3xl: 48px;
-$token-font-size-4xl: 64px;
+$token-font-size-lg: 20px;
+$token-font-size-xl: 24px;
+$token-font-size-2xl: 28px;
+$token-font-size-3xl: 36px;
+$token-font-size-4xl: 48px;
 
-// Line Heights
+// Line Height Scale
+$token-line-height-none: 1;
 $token-line-height-tight: 1.2;
-$token-line-height-base: 1.5;
+$token-line-height-snug: 1.3;
+$token-line-height-normal: 1.5;
+$token-line-height-relaxed: 1.6;
 $token-line-height-loose: 1.75;
-$token-line-height-heading: 1.2;
 
-// Heading Styles
-$token-h1-family: $token-font-primary-heading;
-$token-h1-weight: $token-font-weight-bold;
-$token-h1-size: $token-font-size-3xl;
-$token-h1-line-height: $token-line-height-heading;
-$token-h1-letter-spacing: -0.02em;
-
-$token-h2-family: $token-font-primary-heading;
-$token-h2-weight: $token-font-weight-bold;
-$token-h2-size: $token-font-size-2xl;
-$token-h2-line-height: $token-line-height-heading;
-$token-h2-letter-spacing: -0.01em;
-
-$token-h3-family: $token-font-primary-heading;
-$token-h3-weight: $token-font-weight-bold;
-$token-h3-size: $token-font-size-xl;
-$token-h3-line-height: $token-line-height-heading;
-$token-h3-letter-spacing: -0.01em;
-
-$token-h4-family: $token-font-primary-heading;
-$token-h4-weight: $token-font-weight-medium;
-$token-h4-size: $token-font-size-lg;
-$token-h4-line-height: $token-line-height-heading;
-
-// Secondary Heading Styles (Darby Serif)
-$token-h1-secondary-family: $token-font-secondary;
-$token-h1-secondary-weight: $token-font-weight-regular;
-$token-h1-secondary-size: $token-font-size-3xl;
-$token-h1-secondary-line-height: $token-line-height-heading;
-
-$token-h2-secondary-family: $token-font-secondary;
-$token-h2-secondary-weight: $token-font-weight-regular;
-$token-h2-secondary-size: $token-font-size-2xl;
-$token-h2-secondary-line-height: $token-line-height-heading;
+// Letter Spacing Scale
+$token-letter-spacing-tighter: -0.02em;
+$token-letter-spacing-tight: -0.01em;
+$token-letter-spacing-normal: 0;
+$token-letter-spacing-wide: 0.02em;
+$token-letter-spacing-wider: 0.05em;
 
 // =============================================================================
-// SPACING TOKENS
+// SPACING SCALE
+// Consistent spacing rhythm based on 8px unit.
 // =============================================================================
 
-$token-spacing-base: 4px;
-$token-spacing-xs: 4px;
-$token-spacing-sm: 8px;
-$token-spacing-md: 16px;
-$token-spacing-lg: 24px;
-$token-spacing-xl: 32px;
-$token-spacing-2xl: 48px;
-$token-spacing-3xl: 64px;
-$token-spacing-4xl: 80px;
-
-// Component Spacing
-$token-spacing-button-x: $token-spacing-md;
-$token-spacing-button-y: $token-spacing-sm;
-$token-spacing-card: $token-spacing-lg;
-$token-spacing-section: $token-spacing-3xl;
-$token-spacing-component: $token-spacing-lg;
+$token-spacing-px: 1px;
+$token-spacing-0: 0;
+$token-spacing-1: 4px;
+$token-spacing-2: 8px;
+$token-spacing-3: 12px;
+$token-spacing-4: 16px;
+$token-spacing-5: 20px;
+$token-spacing-6: 24px;
+$token-spacing-8: 32px;
+$token-spacing-10: 40px;
+$token-spacing-12: 48px;
+$token-spacing-16: 64px;
+$token-spacing-20: 80px;
+$token-spacing-24: 96px;
+$token-spacing-32: 128px;
 
 // =============================================================================
-// BORDER TOKENS
+// BORDER RADIUS SCALE
 // =============================================================================
 
-// Border Radius
 $token-radius-none: 0;
-$token-radius-sm: 2px;
-$token-radius-md: 4px;
-$token-radius-lg: 8px;
-$token-radius-xl: 12px;
-$token-radius-pill: 999px;
-
-// Border Width
-$token-border-width-none: 0;
-$token-border-width-sm: 1px;
-$token-border-width-md: 2px;
-$token-border-width-lg: 4px;
+$token-radius-sm: 4px;
+$token-radius-md: 8px;
+$token-radius-lg: 12px;
+$token-radius-xl: 16px;
+$token-radius-2xl: 24px;
+$token-radius-full: 9999px;
 
 // =============================================================================
-// SHADOW TOKENS
+// BORDER WIDTH SCALE
+// =============================================================================
+
+$token-border-width-0: 0;
+$token-border-width-1: 1px;
+$token-border-width-2: 2px;
+$token-border-width-4: 4px;
+
+// =============================================================================
+// SHADOW SCALE
 // =============================================================================
 
 $token-shadow-none: none;
 $token-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 $token-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 $token-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$token-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+$token-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
 // =============================================================================
-// GRID TOKENS
+// BREAKPOINTS
+// Required at compile-time for @media queries.
 // =============================================================================
 
-// Portrait Grid
-$token-grid-portrait-columns: 8;
-$token-grid-portrait-gutter: 16px;
-$token-grid-portrait-margin: 24px;
-
-// Landscape Grid
-$token-grid-landscape-columns: 12;
-$token-grid-landscape-gutter: 16px;
-$token-grid-landscape-margin: 24px;
-
-// =============================================================================
-// ICON TOKENS
-// =============================================================================
-
-$token-icon-size-sm: 16px;
-$token-icon-size-md: 24px;
-$token-icon-size-lg: 32px;
-$token-icon-library: "Ionicons-sharp";
-
-// =============================================================================
-// BREAKPOINT TOKENS
-// =============================================================================
-
-$token-breakpoint-xs: 320px;
+$token-breakpoint-xs: 0;
 $token-breakpoint-sm: 640px;
 $token-breakpoint-md: 768px;
 $token-breakpoint-lg: 1024px;
 $token-breakpoint-xl: 1280px;
-$token-breakpoint-2xl: 1440px;
+$token-breakpoint-2xl: 1536px;
+
+// Breakpoint map for mixins
+$token-breakpoints: (
+  "xs": $token-breakpoint-xs,
+  "sm": $token-breakpoint-sm,
+  "md": $token-breakpoint-md,
+  "lg": $token-breakpoint-lg,
+  "xl": $token-breakpoint-xl,
+  "2xl": $token-breakpoint-2xl
+);
 
 // =============================================================================
-// ANIMATION TOKENS
+// Z-INDEX SCALE
 // =============================================================================
 
-// Duration
-$token-animation-fast: 150ms;
-$token-animation-medium: 300ms;
-$token-animation-slow: 500ms;
-
-// Easing
-$token-animation-easing-default: ease-in-out;
-$token-animation-easing-in: ease-in;
-$token-animation-easing-out: ease-out;
-$token-animation-easing-sharp: cubic-bezier(0.4, 0, 0.2, 1);
-
-// =============================================================================
-// Z-INDEX TOKENS
-// =============================================================================
-
-$token-z-index-below: -1;
+$token-z-index-behind: -1;
 $token-z-index-base: 0;
-$token-z-index-elevated: 1;
-$token-z-index-sticky: 100;
-$token-z-index-dropdown: 200;
+$token-z-index-raised: 1;
+$token-z-index-dropdown: 100;
+$token-z-index-sticky: 200;
 $token-z-index-overlay: 300;
 $token-z-index-modal: 400;
 $token-z-index-toast: 500;
+
+// =============================================================================
+// ANIMATION
+// =============================================================================
+
+// Duration
+$token-duration-fast: 150ms;
+$token-duration-normal: 300ms;
+$token-duration-slow: 500ms;
+
+// Easing
+$token-easing-default: ease;
+$token-easing-in: cubic-bezier(0.4, 0, 1, 1);
+$token-easing-out: cubic-bezier(0, 0, 0.2, 1);
+$token-easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+// =============================================================================
+// GRID
+// =============================================================================
+
+$token-grid-columns: 12;
+$token-grid-gutter: 24px;
+
+// =============================================================================
+// ICONS
+// =============================================================================
+
+$token-icon-size-sm: 20px;
+$token-icon-size-md: 24px;
+$token-icon-size-lg: 32px;
+$token-icon-size-xl: 48px;
+
+// =============================================================================
+// ACCESSIBILITY
+// =============================================================================
+
+$token-focus-ring-width: 2px;
+$token-focus-ring-offset: 2px;
+$token-min-touch-target: 44px;

@@ -1,0 +1,280 @@
+/**
+ * Cardiff University Theme Variables
+ *
+ * This file defines CSS custom properties for runtime customization.
+ * No intermediate SCSS variables - just pure CSS custom properties.
+ *
+ * ARCHITECTURE:
+ * - CSS custom properties defined in :root
+ * - Components use var() to reference these properties
+ * - Users can override at runtime without recompiling
+ *
+ * TO CUSTOMIZE:
+ * Override CSS variables in your HTML or with JavaScript:
+ * <style>
+ *   :root {
+ *     --color-brand-primary: #your-color;
+ *     --spacing-lg: 32px;
+ *   }
+ * </style>
+ */
+
+:root {
+    // =========================================================================
+    // CARDIFF UNIVERSITY BRAND COLORS
+    // Institution-specific colors (cu- prefix)
+    // =========================================================================
+
+    // Primary Colors
+    --cu-primary-red: #E4251B;
+    --cu-white: #FFFFFF;
+    --cu-black: #121212;
+
+    // Grayscale
+    --cu-gray-10: #F2F2F2;
+    --cu-gray-20: #E5E5E5;
+    --cu-gray-30: #CCCCCC;
+    --cu-gray-40: #B3B3B3;
+    --cu-gray-50: #999999;
+    --cu-gray-60: #808080;
+    --cu-gray-70: #666666;
+    --cu-gray-80: #4C4C4C;
+    --cu-gray-90: #333333;
+
+    // Accent Colors
+    --cu-forest-green: #07873E;
+    --cu-cadet: #5EB99B;
+    --cu-stone: #C9C2BA;
+    --cu-light-blue: #1E90FF;
+    --cu-royal-blue: #4A42FF;
+    --cu-midnight-blue: #273573;
+    --cu-midnight-purple: #26192C;
+    --cu-orange: #E9761E;
+    --cu-yellow: #FFB300;
+    --cu-yellow-green: #85C041;
+    --cu-indigo: #570185;
+    --cu-dark-violet: #D401C5;
+
+    // =========================================================================
+    // SEMANTIC DESIGN TOKENS
+    // Generic tokens that can be reused across themes
+    // =========================================================================
+
+    // Text Colors
+    --color-text-primary: var(--cu-black);
+    --color-text-inverse: var(--cu-white);
+    --color-text-hint: var(--cu-primary-red);
+    --color-text-alert: var(--cu-primary-red);
+    --color-text-on-light: var(--cu-black);
+    --color-text-on-dark: var(--cu-white);
+    --color-text-on-brand: var(--cu-white);
+
+    // Brand Colors
+    --color-brand-primary: var(--cu-primary-red);
+    --color-brand-secondary: var(--cu-black);
+
+    // Link Colors
+    --color-link-default: #045bc6;
+    --color-link-hover: #033a8a;
+    --color-link-visited: #551A8B;
+
+    // Accent Colors
+    --color-accent-green: var(--cu-forest-green);
+    --color-accent-blue: var(--cu-light-blue);
+    --color-accent-orange: var(--cu-orange);
+
+    // Background Colors
+    --color-bg-body: #f9fafb;
+    --color-bg-page: var(--cu-white);
+    --color-bg-panel: var(--cu-gray-70);
+
+    // =========================================================================
+    // TYPOGRAPHY
+    // =========================================================================
+
+    // Font Families
+    --font-primary-body: "Marr Sans Regular", "Franklin Gothic Book", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-primary-heading: "Marr Sans Bold", "Franklin Gothic Heavy", "Franklin Gothic", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-secondary: "Darby Serif", Georgia, "Times New Roman", Times, serif;
+
+    // Font Sizes (fluid/responsive)
+    --font-size-xs: clamp(0.75rem, 0.70rem + 0.25vw, 0.8125rem);
+    --font-size-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
+    --font-size-base: clamp(0.875rem, 0.80rem + 0.375vw, 1rem);
+    --font-size-md: clamp(1rem, 0.90rem + 0.5vw, 1.125rem);
+    --font-size-lg: clamp(1.125rem, 1.00rem + 0.625vw, 1.25rem);
+    --font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);
+    --font-size-2xl: clamp(1.5rem, 1.30rem + 1vw, 1.875rem);
+    --font-size-3xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);
+    --font-size-4xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);
+
+    // Line Heights
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-loose: 1.75;
+
+    // Font Weights
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+
+    // =========================================================================
+    // SPACING
+    // =========================================================================
+
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+    --spacing-3xl: 64px;
+    --spacing-4xl: 80px;
+
+    // =========================================================================
+    // BORDERS
+    // =========================================================================
+
+    // Border Radius
+    --radius-none: 0;
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+    --radius-pill: 999px;
+    --radius-image: var(--radius-md);  // Default radius for images
+
+    // Border Width
+    --border-width-sm: 1px;
+    --border-width-md: 2px;
+    --border-width-lg: 4px;
+
+    // Border Colors
+    --border-color-default: var(--cu-gray-30);
+    --border-color-light: var(--cu-gray-20);
+    --border-color-dark: var(--cu-gray-40);
+
+    // =========================================================================
+    // SHADOWS
+    // =========================================================================
+
+    --shadow-none: none;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    // =========================================================================
+    // ANIMATION
+    // =========================================================================
+
+    --animation-fast: 150ms;
+    --animation-medium: 300ms;
+    --animation-slow: 500ms;
+
+    --animation-easing: ease-in-out;
+    --animation-easing-in: ease-in;
+    --animation-easing-out: ease-out;
+
+    // =========================================================================
+    // ACCESSIBILITY - Focus States
+    // Consistent focus indicators for keyboard navigation (WCAG 2.1)
+    // =========================================================================
+
+    --focus-ring-color: #fdcd0d;           // High-contrast yellow (GOV.UK style)
+    --focus-ring-width: 3px;
+    --focus-ring-offset: 2px;
+    --focus-ring-style: solid;
+    --focus-ring: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color);
+
+    // =========================================================================
+    // Z-INDEX
+    // =========================================================================
+
+    --z-index-dropdown: 200;
+    --z-index-sticky: 100;
+    --z-index-modal: 400;
+    --z-index-overlay: 300;
+
+    // =========================================================================
+    // ASPECT RATIOS
+    // Common aspect ratios for embedded content (videos, iframes)
+    // =========================================================================
+
+    --ratio-widescreen: 16 / 9;      // Standard video (YouTube, Vimeo)
+    --ratio-standard: 4 / 3;         // Traditional TV, Xerte content
+    --ratio-ultrawide: 21 / 9;       // Cinematic widescreen
+    --ratio-square: 1 / 1;           // Square content
+    --ratio-portrait: 9 / 16;        // Vertical video (TikTok, Stories)
+
+    // =========================================================================
+    // COLOR SCALES (Auto-generated from semantic colors)
+    // These automatically update when base colors change
+    // =========================================================================
+
+    // Primary Brand Scale (color-mix for better browser support)
+    --color-brand-primary-lighter: color-mix(in srgb, var(--color-brand-primary) 40%, white 60%);
+    --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 70%, white 30%);
+    --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 70%, black 30%);
+    --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 40%, black 60%);
+
+    // Secondary Brand Scale
+    --color-brand-secondary-lighter: color-mix(in srgb, var(--color-brand-secondary) 30%, white);
+    --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
+    --color-brand-secondary-dark: color-mix(in srgb, var(--color-brand-secondary) 15%, black);
+    --color-brand-secondary-darker: color-mix(in srgb, var(--color-brand-secondary) 30%, black);
+
+    // Accent Color Scales
+    --color-accent-green-light: color-mix(in srgb, var(--color-accent-green) 20%, white);
+    --color-accent-green-dark: color-mix(in srgb, var(--color-accent-green) 20%, black);
+
+    --color-accent-blue-light: color-mix(in srgb, var(--color-accent-blue) 20%, white);
+    --color-accent-blue-dark: color-mix(in srgb, var(--color-accent-blue) 20%, black);
+
+    --color-accent-orange-light: color-mix(in srgb, var(--color-accent-orange) 20%, white);
+    --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 20%, black);
+
+    // Background Scale
+    --color-bg-subtle: color-mix(in srgb, var(--color-bg-body) 50%, white);
+    --color-bg-muted: color-mix(in srgb, var(--color-bg-body) 50%, var(--cu-gray-20));
+    --color-bg-elevated: var(--cu-white);
+
+    // Text Scale (for reduced contrast needs)
+    --color-text-subtle: color-mix(in srgb, var(--color-text-primary) 60%, var(--cu-gray-50));
+    --color-text-muted: color-mix(in srgb, var(--color-text-primary) 40%, var(--cu-gray-40));
+}
+
+// =============================================================================
+// THEME VARIANTS
+// Alternative themes for different projects or contexts
+// =============================================================================
+
+// Example: Dark Mode Theme
+// Uncomment and customize as needed
+// [data-theme="dark"] {
+//     --color-brand-primary: #FF6B5B;
+//     --color-bg-body: #1a1a1a;
+//     --color-bg-page: #121212;
+//     --color-text-primary: #ffffff;
+//     --color-text-inverse: #121212;
+//     --cu-gray-10: #2a2a2a;
+//     --cu-gray-20: #3a3a3a;
+//     --cu-gray-90: #e0e0e0;
+//     --cu-gray-80: #d0d0d0;
+// }
+
+// Example: Alternative University Theme
+// [data-theme="project-blue"] {
+//     --color-brand-primary: #0066CC;
+//     --color-brand-secondary: #00A86B;
+//     --color-accent-green: #2E7D32;
+// }
+
+// Example: High Contrast Theme (Accessibility)
+// [data-theme="high-contrast"] {
+//     --color-bg-body: #000000;
+//     --color-bg-page: #000000;
+//     --color-text-primary: #FFFFFF;
+//     --color-brand-primary: #FFFF00;
+//     --border-width-md: 3px;
+// }
