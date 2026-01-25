@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Preview</title>
+    <!-- Load the base cardiffuni-v2 CSS -->
+    <link rel="stylesheet" href="../../cardiffuni-v2/cardiffuni-v2.css">
+    <style>
+        /* Preview-specific styles */
+        body {
+            padding: 1.5rem;
+            background: var(--color-bg-body, #fff);
+        }
+
+        .preview-section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--color-gray-30, #e5e5e5);
+        }
+
+        .preview-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-gray-50, #737373);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .component-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .color-swatch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-md, 8px);
+            border: 1px solid var(--color-gray-30, #e5e5e5);
+        }
+
+        .swatch-label {
+            font-size: 0.75rem;
+            color: var(--color-gray-60, #525252);
+        }
+
+        /* Hidden sections (for tab filtering) */
+        .preview-section.hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Typography Section -->
+    <section class="preview-section" data-section="typography">
+        <div class="section-label">Typography</div>
+
+        <h1>Heading Level 1</h1>
+        <h2>Heading Level 2</h2>
+        <h3>Heading Level 3</h3>
+        <h4>Heading Level 4</h4>
+
+        <p>This is a paragraph of text demonstrating the base typography. It includes <strong>bold text</strong>,
+            <em>italic text</em>, and <a href="#">a link that you can hover</a> to see the link states.
+        </p>
+
+        <p>Good typography is fundamental to creating accessible, readable content that works for all users.</p>
+    </section>
+
+    <!-- Colors Section -->
+    <section class="preview-section" data-section="colors">
+        <div class="section-label">Brand Colors</div>
+
+        <div class="component-row">
+            <div class="color-swatch">
+                <div class="swatch" style="background: var(--color-brand-primary);"></div>
+                <span class="swatch-label">Primary</span>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: var(--color-brand-secondary);"></div>
+                <span class="swatch-label">Secondary</span>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: var(--color-accent-green);"></div>
+                <span class="swatch-label">Accent</span>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: var(--color-link-default);"></div>
+                <span class="swatch-label">Link</span>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: var(--focus-ring-color, #fdcd0d);"></div>
+                <span class="swatch-label">Focus</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buttons Section -->
+    <section class="preview-section" data-section="buttons">
+        <div class="section-label">Buttons</div>
+
+        <div class="component-row">
+            <button class="btn btn-primary">Primary Button</button>
+            <button class="btn btn-secondary">Secondary Button</button>
+            <button class="btn btn-success">Success Button</button>
+        </div>
+
+        <div class="component-row">
+            <button class="btn btn-primary-outline">Primary Outline</button>
+            <button class="btn btn-secondary-outline">Secondary Outline</button>
+        </div>
+
+        <div class="component-row">
+            <button class="btn btn-primary" disabled>Disabled Button</button>
+        </div>
+    </section>
+
+    <!-- Forms Section -->
+    <section class="preview-section" data-section="forms">
+        <div class="section-label">Form Elements</div>
+
+        <div style="max-width: 400px;">
+            <div style="margin-bottom: 1rem;">
+                <label for="demo-input" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Text
+                    Input</label>
+                <input type="text" id="demo-input" placeholder="Enter some text..." style="width: 100%;">
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+                <label for="demo-select" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Select
+                    Dropdown</label>
+                <select id="demo-select" style="width: 100%;">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+                <label for="demo-textarea"
+                    style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Textarea</label>
+                <textarea id="demo-textarea" rows="3" placeholder="Enter longer text..."
+                    style="width: 100%;"></textarea>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alerts Section -->
+    <section class="preview-section" data-section="alerts">
+        <div class="section-label">Alerts</div>
+
+        <div class="alert alert-success">
+            <strong>Success!</strong> Your changes have been saved successfully.
+        </div>
+
+        <div class="alert alert-info">
+            <strong>Info:</strong> This is an informational message for the user.
+        </div>
+
+        <div class="alert alert-warning">
+            <strong>Warning:</strong> Please review your input before proceeding.
+        </div>
+
+        <div class="alert alert-danger">
+            <strong>Error:</strong> Something went wrong. Please try again.
+        </div>
+    </section>
+
+    <!-- Navigation Section -->
+    <section class="preview-section" data-section="navigation">
+        <div class="section-label">Navigation Tabs</div>
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#">Tab One</a></li>
+            <li><a href="#">Tab Two</a></li>
+            <li><a href="#">Tab Three</a></li>
+        </ul>
+
+        <div style="margin-top: 2rem;">
+            <div class="section-label">Pills</div>
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#">Pill One</a></li>
+                <li><a href="#">Pill Two</a></li>
+                <li><a href="#">Pill Three</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="preview-section" data-section="cards">
+        <div class="section-label">Cards & Boxes</div>
+
+        <div class="component-row">
+            <div class="callout callout-info" style="flex: 1; max-width: 300px;">
+                <h4>Information Box</h4>
+                <p>This is a callout box with useful information for the user.</p>
+            </div>
+
+            <div class="callout callout-success" style="flex: 1; max-width: 300px;">
+                <h4>Success Box</h4>
+                <p>This indicates a successful action or positive outcome.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Focus Demo -->
+    <section class="preview-section" data-section="accessibility">
+        <div class="section-label">Focus States (Tab to see)</div>
+
+        <div class="component-row">
+            <button class="btn btn-primary">Tab to me</button>
+            <a href="#">Focus this link</a>
+            <input type="text" placeholder="Focus this input">
+        </div>
+    </section>
+
+    <script>
+        // Listen for messages from parent to filter sections
+        window.addEventListener('message', (e) => {
+            if (e.data?.type === 'showSection') {
+                const section = e.data.section;
+                document.querySelectorAll('.preview-section').forEach(s => {
+                    if (section === 'all') {
+                        s.classList.remove('hidden');
+                    } else {
+                        s.classList.toggle('hidden', s.dataset.section !== section);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
