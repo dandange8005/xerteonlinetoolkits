@@ -27,7 +27,7 @@
     font-size: var(--font-size-sm);
     cursor: pointer;
     font-weight: var(--font-weight-bold);
-    color: var(--cu-white);
+    color: var(--color-white);
     display: flex;
     align-items: center;
 
@@ -42,7 +42,7 @@
     &:hover,
     &:focus {
         text-decoration: none;
-        color: var(--cu-gray-30);
+        color: var(--color-gray-30);
     }
 }
 

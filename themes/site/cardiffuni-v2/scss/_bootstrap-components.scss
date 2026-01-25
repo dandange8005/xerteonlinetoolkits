@@ -27,20 +27,20 @@ ul.nav-tabs {
     margin-bottom: 0;
     padding-inline: 0;
     list-style: none;
-    border-bottom: 1px solid var(--cu-gray-30);
+    border-bottom: 1px solid var(--color-gray-30);
     background: transparent;
 }
 
 // Individual tab items
-.nav-tabs > li {
+.nav-tabs>li {
     margin-bottom: 0;
 }
 
 // Tab links - default state
-.nav-tabs > li > a {
+.nav-tabs>li>a {
     display: block;
     padding: var(--spacing-xs) var(--spacing-md);
-    color: var(--cu-gray-60);
+    color: var(--color-gray-60);
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-sm);
     text-decoration: none;
@@ -49,29 +49,29 @@ ul.nav-tabs {
     border-bottom: 3px solid transparent;
     border-radius: 0;
     margin-bottom: -1px;
-    transition: all var(--animation-fast) var(--animation-easing);
+    transition: all var(--duration-fast) var(--easing-default);
 }
 
 // Tab links - hover state
-.nav-tabs > li > a:hover,
-.nav-tabs > li > a:focus {
+.nav-tabs>li>a:hover,
+.nav-tabs>li>a:focus {
     color: var(--color-text-primary);
     background-color: transparent;
-    border-bottom-color: var(--cu-gray-40);
+    border-bottom-color: var(--color-gray-40);
     text-decoration: none;
 }
 
 // Tab links - focus-visible state (keyboard navigation)
-.nav-tabs > li > a:focus-visible {
+.nav-tabs>li>a:focus-visible {
     outline: var(--focus-ring, 3px solid #fdcd0d);
     outline-offset: var(--focus-ring-offset, 2px);
     border-radius: var(--radius-sm);
 }
 
 // Tab links - active state (modern underline style)
-.nav-tabs > .active > a,
-.nav-tabs > .active > a:hover,
-.nav-tabs > .active > a:focus {
+.nav-tabs>.active>a,
+.nav-tabs>.active>a:hover,
+.nav-tabs>.active>a:focus {
     color: var(--color-text-primary);
     font-weight: var(--font-weight-medium);
     background-color: transparent;
@@ -83,8 +83,8 @@ ul.nav-tabs {
 }
 
 // Tab content container
-.nav-tabs + .tab-content {
-    background: var(--cu-white);
+.nav-tabs+.tab-content {
+    background: var(--color-white);
     padding: var(--spacing-md);
     border: none;
 }
@@ -96,11 +96,11 @@ ul.nav-tabs {
 }
 
 // Remove top margin from first child in tab pane
-.tab-pane > :first-child {
-  margin-top: 0;
+.tab-pane> :first-child {
+    margin-top: 0;
 }
 
-.tab-pane > *:where(:not(:last-child)) {
+.tab-pane>*:where(:not(:last-child)) {
     margin-bottom: var(--spacing-lg);
 }
 
@@ -118,7 +118,7 @@ ul.nav-pills {
 }
 
 // Pill links - default state
-.nav-pills > li > a {
+.nav-pills>li>a {
     display: block;
     padding: var(--spacing-sm) var(--spacing-lg);
     color: var(--color-brand-secondary);
@@ -128,29 +128,29 @@ ul.nav-pills {
     background-color: transparent;
     border: 1px solid var(--color-brand-secondary);
     border-radius: var(--radius-md);
-    transition: all var(--animation-fast) var(--animation-easing);
+    transition: all var(--duration-fast) var(--easing-default);
 }
 
 // Pill links - hover and focus (non-active)
-.nav-pills > li:not(.active) > a:hover,
-.nav-pills > li:not(.active) > a:focus {
-    color: var(--cu-white);
+.nav-pills>li:not(.active)>a:hover,
+.nav-pills>li:not(.active)>a:focus {
+    color: var(--color-white);
     background-color: var(--color-brand-secondary);
     border-color: var(--color-brand-secondary);
     text-decoration: none;
 }
 
 // Pill links - focus-visible state (keyboard navigation)
-.nav-pills > li > a:focus-visible {
+.nav-pills>li>a:focus-visible {
     outline: var(--focus-ring, 3px solid #fdcd0d);
     outline-offset: var(--focus-ring-offset, 2px);
 }
 
 // Pill links - active state
-.nav-pills > .active > a,
-.nav-pills > .active > a:hover,
-.nav-pills > .active > a:focus {
-    color: var(--cu-white);
+.nav-pills>.active>a,
+.nav-pills>.active>a:hover,
+.nav-pills>.active>a:focus {
+    color: var(--color-white);
     background-color: var(--color-brand-secondary);
     border-color: var(--color-brand-secondary);
     cursor: default;
@@ -241,7 +241,7 @@ ul.nav-pills {
 
 .accordion-group {
     overflow: clip;
-}   
+}
 
 
 .accordion-heading .accordion-toggle {
@@ -258,7 +258,7 @@ a.accordion-toggle {
     // justify-content: space-between;
     // padding: var(--spacing-md) var(--spacing-lg);
     // background: var(--cu-gray-10);
-    color: var(--cu-gray-80);
+    color: var(--color-gray-80);
     font-weight: var(--font-weight-medium);
     // border-bottom: 0;
     // border-radius: var(--radius-md);
@@ -270,7 +270,7 @@ a.accordion-toggle {
 a.accordion-toggle:hover,
 a.accordion-toggle:focus {
     color: var(--color-brand-secondary-dark);
-    background-color: var(--cu-gray-10);
+    background-color: var(--color-gray-10);
     text-decoration: none;
 }
 
@@ -293,7 +293,7 @@ a.accordion-toggle::after {
     right: 0.75rem;
     vertical-align: middle;
     position: absolute;
-    transition: transform var(--animation-medium) var(--animation-easing);
+    transition: transform var(--duration-normal) var(--easing-default);
     transform: rotate(0deg) !important; // Default: points right (collapsed)
 }
 
@@ -305,17 +305,17 @@ a.accordion-toggle[aria-expanded="true"]::after {
 // Accordion inner content 
 .accordion-inner {
     padding: var(--spacing-md) var(--spacing-lg);
-    background: var(--cu-white);
+    background: var(--color-white);
     font-size: var(--font-size-sm);
 }
 
 // Remove top margin from first child in accordion
-.accordion-inner > :first-child {
-  margin-top: 0;
+.accordion-inner> :first-child {
+    margin-top: 0;
 }
 
 //add space to content elements within accordion
-.accordion-inner > *:where(:not(:last-child)) {
+.accordion-inner>*:where(:not(:last-child)) {
     margin-bottom: var(--spacing-lg);
 }
 
@@ -328,16 +328,16 @@ a.accordion-toggle[aria-expanded="true"]::after {
     // Carousel control buttons
     --carousel-control-size: 2.5rem;
     --carousel-control-icon-size: 1.25rem;
-    --carousel-control-bg: var(--cu-gray-80);
+    --carousel-control-bg: var(--color-gray-80);
     --carousel-control-bg-hover: rgba(0, 0, 0, 0.6);
-    --carousel-control-icon-color: var(--cu-gray-70);
-    --carousel-control-icon-color-hover: var(--cu-gray-90);
+    --carousel-control-icon-color: var(--color-gray-70);
+    --carousel-control-icon-color-hover: var(--color-gray-90);
 
     // Carousel indicators
     --carousel-indicator-width: 2rem;
     --carousel-indicator-height: 3px;
     --carousel-indicator-color: rgba(255, 255, 255, 0.5);
-    --carousel-indicator-color-active: var(--cu-white);
+    --carousel-indicator-color-active: var(--color-white);
     --carousel-indicator-color-hover: rgba(255, 255, 255, 0.8);
 }
 
@@ -347,13 +347,13 @@ a.accordion-toggle[aria-expanded="true"]::after {
     height: var(--carousel-control-size);
     background-color: var(--carousel-control-bg);
     backdrop-filter: blur(8px);
-    font-size: var(--carousel-control-icon-size)!important;
+    font-size: var(--carousel-control-icon-size) !important;
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
     margin-top: 0;
     opacity: 0.8;
-    transition: all var(--animation-fast) var(--animation-easing);
+    transition: all var(--duration-fast) var(--easing-default);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(0, 0, 0, 0.1);
     display: flex;
@@ -429,7 +429,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
     border-radius: 2px;
     margin: 0;
     text-indent: -999px;
-    transition: all var(--animation-fast) var(--animation-easing);
+    transition: all var(--duration-fast) var(--easing-default);
     cursor: pointer;
 }
 
@@ -471,11 +471,11 @@ a.accordion-toggle[aria-expanded="true"]::after {
     padding-top: var(--spacing-2xl);
 
     // Remove extra spacing from first and last children
-    > *:first-child {
+    >*:first-child {
         margin-top: 0;
     }
 
-    > *:last-child {
+    >*:last-child {
         margin-bottom: 0;
     }
 }
@@ -504,8 +504,8 @@ a.accordion-toggle[aria-expanded="true"]::after {
 // Striped table rows for better readability
 // =============================================================================
 
-.table-striped tbody > tr:nth-child(odd) > td,
-.table-striped tbody > tr:nth-child(odd) > th {
+.table-striped tbody>tr:nth-child(odd)>td,
+.table-striped tbody>tr:nth-child(odd)>th {
     background-color: var(--color-accent-green);
     color: var(--color-text-primary);
 }
@@ -569,10 +569,10 @@ a.accordion-toggle[aria-expanded="true"]::after {
 }
 
 .alert-info {
-    background-color: color-mix(in srgb, var(--cu-light-blue) 10%, white);
-    border-color: color-mix(in srgb, var(--cu-light-blue) 30%, white);
-    border-left-color: var(--cu-light-blue);
-    color: color-mix(in srgb, var(--cu-light-blue) 80%, black);
+    background-color: color-mix(in srgb, var(--color-accent-blue) 10%, white);
+    border-color: color-mix(in srgb, var(--color-accent-blue) 30%, white);
+    border-left-color: var(--color-accent-blue);
+    color: color-mix(in srgb, var(--color-accent-blue) 80%, black);
 
     &::before {
         content: "ℹ ";
@@ -580,10 +580,10 @@ a.accordion-toggle[aria-expanded="true"]::after {
 }
 
 .alert-warning {
-    background-color: color-mix(in srgb, var(--cu-yellow) 15%, white);
-    border-color: color-mix(in srgb, var(--cu-orange) 30%, white);
-    border-left-color: var(--cu-orange);
-    color: color-mix(in srgb, var(--cu-orange) 80%, black);
+    background-color: color-mix(in srgb, var(--color-accent-yellow) 15%, white);
+    border-color: color-mix(in srgb, var(--color-accent-orange) 30%, white);
+    border-left-color: var(--color-accent-orange);
+    color: color-mix(in srgb, var(--color-accent-orange) 80%, black);
 
     &::before {
         content: "⚠ ";
@@ -592,10 +592,10 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
 .alert-danger,
 .alert-error {
-    background-color: color-mix(in srgb, var(--cu-primary-red) 10%, white);
-    border-color: color-mix(in srgb, var(--cu-primary-red) 30%, white);
-    border-left-color: var(--cu-primary-red);
-    color: color-mix(in srgb, var(--cu-primary-red) 80%, black);
+    background-color: color-mix(in srgb, var(--color-brand-primary) 10%, white);
+    border-color: color-mix(in srgb, var(--color-brand-primary) 30%, white);
+    border-left-color: var(--color-brand-primary);
+    color: color-mix(in srgb, var(--color-brand-primary) 80%, black);
 
     &::before {
         content: "✗ ";
@@ -606,12 +606,12 @@ a.accordion-toggle[aria-expanded="true"]::after {
 .alert-block {
     padding: var(--spacing-lg);
 
-    > p,
-    > ul {
+    >p,
+    >ul {
         margin-bottom: var(--spacing-sm);
     }
 
-    p + p {
+    p+p {
         margin-top: var(--spacing-sm);
     }
 }
@@ -633,17 +633,17 @@ a.accordion-toggle[aria-expanded="true"]::after {
     border-radius: 0;
     font-size: var(--font-size-sm);
 
-    > li {
+    >li {
         display: flex;
         align-items: center;
 
-        + li::before {
+        +li::before {
             content: "/";
             padding: 0 var(--spacing-sm);
-            color: var(--cu-gray-50);
+            color: var(--color-gray-50);
         }
 
-        > a {
+        >a {
             color: var(--color-link-default);
             text-decoration: none;
 
@@ -661,8 +661,8 @@ a.accordion-toggle[aria-expanded="true"]::after {
         }
     }
 
-    > .active {
-        color: var(--cu-gray-60);
+    >.active {
+        color: var(--color-gray-60);
     }
 }
 
@@ -683,9 +683,9 @@ a.accordion-toggle[aria-expanded="true"]::after {
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
-    color: var(--cu-white);
-    background-color: var(--cu-gray-60);
-    border-radius: var(--radius-pill);
+    color: var(--color-white);
+    background-color: var(--color-gray-60);
+    border-radius: var(--radius-full);
 }
 
 .label {
@@ -700,25 +700,25 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
 .badge-warning,
 .label-warning {
-    background-color: var(--cu-orange);
-    color: var(--cu-black);
+    background-color: var(--color-accent-orange);
+    color: var(--color-brand-secondary);
 }
 
 .badge-important,
 .label-important,
 .badge-danger,
 .label-danger {
-    background-color: var(--cu-primary-red);
+    background-color: var(--color-brand-primary);
 }
 
 .badge-info,
 .label-info {
-    background-color: var(--cu-light-blue);
+    background-color: var(--color-accent-blue);
 }
 
 .badge-inverse,
 .label-inverse {
-    background-color: var(--cu-black);
+    background-color: var(--color-brand-secondary);
 }
 
 // Empty badge (hidden when no content)
@@ -735,7 +735,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 .progress {
     height: 20px;
     overflow: hidden;
-    background-color: var(--cu-gray-20);
+    background-color: var(--color-gray-20);
     border-radius: var(--radius-md);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     margin-bottom: var(--spacing-md);
@@ -746,10 +746,10 @@ a.accordion-toggle[aria-expanded="true"]::after {
     height: 100%;
     font-size: var(--font-size-xs);
     line-height: 20px;
-    color: var(--cu-white);
+    color: var(--color-white);
     text-align: center;
     background-color: var(--color-brand-primary);
-    transition: width var(--animation-medium) ease;
+    transition: width var(--duration-normal) ease;
 }
 
 // Progress bar variants
@@ -760,32 +760,30 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
 .bar-warning,
 .progress-bar-warning {
-    background-color: var(--cu-orange);
+    background-color: var(--color-accent-orange);
 }
 
 .bar-danger,
 .progress-bar-danger {
-    background-color: var(--cu-primary-red);
+    background-color: var(--color-brand-primary);
 }
 
 .bar-info,
 .progress-bar-info {
-    background-color: var(--cu-light-blue);
+    background-color: var(--color-accent-blue);
 }
 
 // Striped progress bars
 .progress-striped .bar,
 .progress-striped .progress-bar {
-    background-image: linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.15) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.15) 75%,
-        transparent 75%,
-        transparent
-    );
+    background-image: linear-gradient(45deg,
+            rgba(255, 255, 255, 0.15) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.15) 50%,
+            rgba(255, 255, 255, 0.15) 75%,
+            transparent 75%,
+            transparent);
     background-size: 40px 40px;
 }
 
@@ -799,6 +797,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
     from {
         background-position: 40px 0;
     }
+
     to {
         background-position: 0 0;
     }
@@ -811,7 +810,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
 .lead {
     font-size: var(--font-size-xl);
-    color: var(--cu-gray-60);
+    color: var(--color-gray-60);
     line-height: var(--line-height-tight);
     font-weight: var(--font-weight-light);
 }

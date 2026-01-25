@@ -23,7 +23,7 @@
 
 // Body
 body {
-    font-family: var(--font-primary-body);
+    font-family: var(--font-family-primary);
     font-size: var(--font-size-base);
     color: var(--color-text-primary);
     background-color: var(--color-bg-body);
@@ -81,7 +81,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: var(--font-primary-heading);
+    font-family: var(--font-family-primary);
     font-weight: var(--font-weight-bold);
 }
 
@@ -139,7 +139,7 @@ h3.contentTitle {
 
 // Blockquotes & Citations
 blockquote {
-    font-family: var(--font-primary-body);
+    font-family: var(--font-family-primary);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
     font-size: var(--font-size-base);
@@ -148,7 +148,7 @@ blockquote {
     padding: var(--spacing-md);
     background: none;
     border: none;
-    border-left: 3px solid var(--cu-gray-90);
+    border-left: 3px solid var(--color-gray-90);
     max-inline-size: 70ch;
 
     &::before,
@@ -177,7 +177,7 @@ cite {
 
 .source {
     font-size: var(--font-size-sm);
-    color: var(--cu-gray-60);
+    color: var(--color-gray-60);
     text-align: right;
 }
 
@@ -187,6 +187,7 @@ cite {
 
 section,
 .footer {
+
     ul,
     ol {
         padding: 0;
@@ -265,12 +266,12 @@ section,
         content: counter(orderedlist);
         width: var(--spacing-lg);
         height: var(--spacing-lg);
-        background: var(--cu-gray-80);
+        background: var(--color-gray-80);
         color: var(--color-text-on-brand);
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: var(--radius-pill);
+        border-radius: var(--radius-full);
         position: absolute;
         left: 0;
         top: 0;
@@ -284,17 +285,17 @@ section,
 
 table {
     width: 100%;
-    background: var(--cu-white);
+    background: var(--color-white);
     border-collapse: collapse;
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: var(--shadow-sm);
     font-size: var(--font-size-sm);
-    border: 1px solid var(--cu-gray-20);
+    border: 1px solid var(--color-gray-20);
 
     caption {
         text-align: left;
-        color: var(--cu-gray-60);
+        color: var(--color-gray-60);
         font-weight: var(--font-weight-medium);
         padding: var(--spacing-md) 0;
         caption-side: top;
@@ -304,19 +305,19 @@ table {
     td {
         padding: var(--spacing-md);
         text-align: left;
-        border-bottom: 1px solid var(--cu-gray-20);
+        border-bottom: 1px solid var(--color-gray-20);
     }
 
     th {
         font-weight: var(--font-weight-bold);
-        color: var(--cu-gray-80);
+        color: var(--color-gray-80);
     }
 
     tbody tr {
         transition: background-color 0.2s ease;
 
         &:hover {
-            background: var(--cu-gray-10);
+            background: var(--color-gray-10);
         }
 
         &:last-child td {
@@ -326,12 +327,12 @@ table {
 }
 
 thead {
-    background: var(--cu-gray-10);
-    border-bottom: 2px solid var(--cu-gray-30);
+    background: var(--color-gray-10);
+    border-bottom: 2px solid var(--color-gray-30);
 
     th {
         font-weight: var(--font-weight-bold);
-        color: var(--cu-gray-90);
+        color: var(--color-gray-90);
         text-transform: uppercase;
         font-size: var(--font-size-xs);
         letter-spacing: 0.5px;
@@ -347,10 +348,10 @@ code {
     font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
     font-size: 0.9em;
     padding: 0.2em 0.4em;
-    background: var(--cu-gray-10);
+    background: var(--color-gray-10);
     color: var(--color-brand-primary);
     border-radius: var(--radius-sm);
-    border: 1px solid var(--cu-gray-20);
+    border: 1px solid var(--color-gray-20);
 }
 
 // Code blocks
@@ -360,8 +361,8 @@ pre {
     line-height: 1.6;
     padding: var(--spacing-lg);
     margin: var(--spacing-lg) 0;
-    background: var(--cu-gray-90);
-    color: var(--cu-gray-10);
+    background: var(--color-gray-90);
+    color: var(--color-gray-10);
     border-radius: var(--radius-md);
     overflow-x: auto;
     box-shadow: var(--shadow-md);
@@ -383,12 +384,12 @@ kbd {
     font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
     font-size: 0.875em;
     padding: 0.2em 0.5em;
-    background: var(--cu-gray-80);
-    color: var(--cu-white);
+    background: var(--color-gray-80);
+    color: var(--color-white);
     border-radius: var(--radius-sm);
-    border: 1px solid var(--cu-gray-60);
-    box-shadow: 0 2px 0 var(--cu-gray-70),
-                0 3px 1px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--color-gray-60);
+    box-shadow: 0 2px 0 var(--color-gray-70),
+        0 3px 1px rgba(0, 0, 0, 0.3);
     display: inline-block;
     line-height: 1;
 }
@@ -398,8 +399,8 @@ samp {
     font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
     font-size: 0.9em;
     padding: 0.2em 0.4em;
-    background: var(--cu-gray-10);
-    color: var(--cu-gray-80);
+    background: var(--color-gray-10);
+    color: var(--color-gray-80);
     border-radius: var(--radius-sm);
 }
 
@@ -428,26 +429,30 @@ input[type="number"],
 input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
 textarea {
     width: 100%;
+    height: auto; // Override Bootstrap's fixed height: 20px
+    box-sizing: border-box;
     padding: var(--spacing-sm) var(--spacing-md);
     font-family: inherit;
     font-size: var(--font-size-base);
     line-height: var(--line-height-normal);
     color: var(--color-text-primary);
-    background-color: var(--cu-white);
-    border: 2px solid var(--border-color-default);
+    background-color: var(--color-white);
+    border: 2px solid var(--color-border-default);
     border-radius: var(--radius-md);
-    transition: border-color var(--animation-fast) var(--animation-easing),
-                box-shadow var(--animation-fast) var(--animation-easing);
+    transition: border-color var(--duration-fast) var(--easing-default),
+        box-shadow var(--duration-fast) var(--easing-default);
 
     &::placeholder {
-        color: var(--cu-gray-50);
+        color: var(--color-gray-50);
         opacity: 1;
     }
 
     &:hover:not(:disabled) {
-        border-color: var(--cu-gray-50);
+        border-color: var(--color-gray-50);
     }
 
     &:focus {
@@ -457,8 +462,8 @@ textarea {
     }
 
     &:disabled {
-        background-color: var(--cu-gray-10);
-        color: var(--cu-gray-50);
+        background-color: var(--color-gray-10);
+        color: var(--color-gray-50);
         cursor: not-allowed;
     }
 }
@@ -472,23 +477,25 @@ textarea {
 // Select dropdowns
 select {
     width: 100%;
+    height: auto; // Override Bootstrap's fixed height: 20px
+    box-sizing: border-box;
     padding: var(--spacing-sm) var(--spacing-md);
     padding-right: var(--spacing-xl); // Space for dropdown arrow
     font-family: inherit;
     font-size: var(--font-size-base);
     line-height: var(--line-height-normal);
     color: var(--color-text-primary);
-    background-color: var(--cu-white);
+    background-color: var(--color-white);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right var(--spacing-sm) center;
-    border: 2px solid var(--border-color-default);
+    border: 2px solid var(--color-border-default);
     border-radius: var(--radius-md);
     appearance: none;
     cursor: pointer;
 
     &:hover:not(:disabled) {
-        border-color: var(--cu-gray-50);
+        border-color: var(--color-gray-50);
     }
 
     &:focus {
@@ -498,8 +505,8 @@ select {
     }
 
     &:disabled {
-        background-color: var(--cu-gray-10);
-        color: var(--cu-gray-50);
+        background-color: var(--color-gray-10);
+        color: var(--color-gray-50);
         cursor: not-allowed;
     }
 }
@@ -521,7 +528,7 @@ input[type="radio"] {
 
 // Fieldset and legend
 fieldset {
-    border: 1px solid var(--border-color-default);
+    border: 1px solid var(--color-border-default);
     border-radius: var(--radius-md);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
@@ -538,13 +545,13 @@ legend {
 input:invalid:not(:placeholder-shown),
 textarea:invalid:not(:placeholder-shown),
 select:invalid {
-    border-color: var(--cu-primary-red);
+    border-color: var(--color-brand-primary);
 }
 
 // Required field indicator (when combined with label)
 label.required::after {
     content: " *";
-    color: var(--cu-primary-red);
+    color: var(--color-brand-primary);
 }
 
 // =============================================================================
@@ -570,8 +577,8 @@ figure {
 }
 
 figcaption {
-    background: var(--cu-gray-20);
-    color: var(--cu-gray-80);
+    background: var(--color-gray-20);
+    color: var(--color-gray-80);
     font-size: var(--font-size-sm);
     padding: var(--spacing-xs);
     caption-side: bottom;
@@ -624,7 +631,7 @@ figcaption {
     // Xerte and H5P specific styling
     &--xerte,
     &--h5p {
-        border: 4px solid var(--border-color-default);
+        border: 4px solid var(--color-border-default);
     }
 
     &--xerte {
@@ -632,7 +639,7 @@ figcaption {
     }
 
     &__caption {
-        background: var(--cu-gray-10);
+        background: var(--color-gray-10);
         color: var(--color-text-primary);
         font-style: italic;
         font-size: var(--font-size-sm);
@@ -649,7 +656,7 @@ figcaption {
 section {
     margin-bottom: var(--spacing-3xl);
 
-    > *:where(:not(:last-child)) {
+    >*:where(:not(:last-child)) {
         margin-bottom: var(--spacing-lg);
     }
 
@@ -677,8 +684,8 @@ section {
 
 // Horizontal Rule
 hr {
-    background-color: var(--border-color-default);
+    background-color: var(--color-border-default);
     border: 0;
-    height: var(--border-width-md);
+    height: var(--border-width-2);
     margin-block: var(--spacing-3xl);
 }

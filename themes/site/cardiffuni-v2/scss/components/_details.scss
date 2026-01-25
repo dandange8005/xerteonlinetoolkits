@@ -70,15 +70,15 @@
         // Focus state (accessibility)
         &:focus {
             background-color: var(--color-accent-gold);
-            box-shadow: 0 -2px var(--color-accent-gold), 0 4px var(--cu-gray-90);
-            color: var(--cu-gray-90);
+            box-shadow: 0 -2px var(--color-accent-gold), 0 4px var(--color-gray-90);
+            color: var(--color-gray-90);
             outline: 4px solid transparent;
             text-decoration: none;
         }
     }
 
     // Open state - triangle points down
-    &[open] > .details__summary::before {
+    &[open]>.details__summary::before {
         display: block;
         width: 0;
         height: 0;
@@ -91,13 +91,13 @@
 
     // Content area (expanded text)
     &__text {
-        border-left: 4px solid var(--border-color-default);
+        border-left: 4px solid var(--color-border-default);
         margin-top: var(--spacing-sm);
         padding: var(--spacing-md);
         padding-left: var(--spacing-lg);
 
         // Flow spacing for child elements
-        > *:where(:not(:first-child)) {
+        >*:where(:not(:first-child)) {
             margin-top: var(--spacing-md);
         }
     }

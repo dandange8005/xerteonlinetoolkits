@@ -164,6 +164,7 @@ a.button,
 
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-primary-hover-bg);
+        color: var(--btn-primary-text); // Ensure text color stays white on hover
     }
 
     &:active:not(:disabled):not(.disabled) {
@@ -184,6 +185,7 @@ a.button,
 
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-secondary-hover-bg);
+        color: var(--btn-secondary-text); // Ensure text color stays on hover
     }
 
     &:active:not(:disabled):not(.disabled) {
@@ -204,6 +206,7 @@ a.button,
 
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-success-hover-bg);
+        color: var(--btn-success-text); // Ensure text color stays on hover
     }
 
     &:active:not(:disabled):not(.disabled) {
@@ -224,6 +227,7 @@ a.button,
 
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-reverse-hover-bg);
+        color: var(--btn-reverse-text); // Ensure text color stays on hover
     }
 
     &:active:not(:disabled):not(.disabled) {
@@ -375,6 +379,7 @@ a.button,
 
 a.button,
 button.button {
+
     // Legacy outline variant
     &--outline {
         background-color: var(--color-white);

@@ -112,7 +112,7 @@ a.link-external {
 
 .link-asset {
     display: flex;
-    background: var(--cu-gray-10);
+    background: var(--color-gray-10);
     align-items: center;
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
@@ -147,6 +147,6 @@ a.link-external {
 
     // File metadata (size, type)
     &__label {
-        color: var(--cu-gray-60);
+        color: var(--color-gray-60);
     }
 }

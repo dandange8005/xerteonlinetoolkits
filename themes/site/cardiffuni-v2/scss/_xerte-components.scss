@@ -33,7 +33,7 @@ a.glossary:active {
 
 .glossaryTip {
     background-color: var(--color-brand-primary);
-    color: var(--cu-white);
+    color: var(--color-white);
 }
 
 // =============================================================================
@@ -41,12 +41,12 @@ a.glossary:active {
 // =============================================================================
 
 .top-round {
-    color: var(--cu-white);
+    color: var(--color-white);
     background: var(--color-brand-primary);
 
     &:hover,
     &:focus {
         background: var(--color-brand-primary-dark);
-        color: var(--cu-white);
+        color: var(--color-white);
     }
 }

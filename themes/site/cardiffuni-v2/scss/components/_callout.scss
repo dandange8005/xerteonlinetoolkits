@@ -30,7 +30,7 @@
 // =============================================================================
 
 .callout {
-    background: var(--cu-gray-10);
+    background: var(--color-gray-10);
     padding: var(--spacing-md);
     padding-left: var(--spacing-2xl);
     border-radius: var(--radius-md);
@@ -42,7 +42,7 @@
     &::before {
         content: attr(emoji-data);
         font-family: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji,
-                     "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+            "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
         position: absolute;
         top: var(--spacing-md);
         left: var(--spacing-md);

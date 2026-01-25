@@ -39,8 +39,8 @@
 // =============================================================================
 
 .card {
-    background-color: var(--cu-white);
-    border: 1px solid var(--border-color-default);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border-default);
     border-radius: var(--radius-md);
     position: relative;
     width: 100%;
@@ -83,14 +83,14 @@
         width: 100%;
         aspect-ratio: var(--ratio-widescreen);
         object-fit: cover;
-        transition: transform var(--animation-medium) var(--animation-easing);
+        transition: transform var(--duration-normal) var(--easing-default);
 
         // // If card__image is a wrapper div with img inside
         // img {
         //     width: 100%;
         //     aspect-ratio: var(--ratio-widescreen);
         //     object-fit: cover;
-        //     transition: transform var(--animation-medium) var(--animation-easing);
+        //     transition: transform var(--duration-normal) var(--easing-default);
         // }
     }
 
@@ -98,7 +98,7 @@
     &--clickable {
         border-bottom-width: 3px;
         padding-bottom: var(--spacing-sm);
-        transition: all var(--animation-medium) var(--animation-easing);
+        transition: all var(--duration-normal) var(--easing-default);
 
         &:hover {
             box-shadow: var(--shadow-lg);
@@ -132,7 +132,7 @@
             font-weight: 900;
             content: "\f061"; // fa-arrow-right
             color: var(--color-link-default);
-            transition: all var(--animation-medium) var(--animation-easing);
+            transition: all var(--duration-normal) var(--easing-default);
         }
     }
 }

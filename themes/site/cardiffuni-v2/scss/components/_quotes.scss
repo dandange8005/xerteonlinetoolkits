@@ -41,7 +41,7 @@
     &::before,
     &::after {
         font-family: Georgia, serif;
-        color: var(--cu-gray-40);
+        color: var(--color-gray-40);
     }
 
     // Quote with author image
@@ -52,7 +52,7 @@
 
 // Author image (circular)
 .quote-image {
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-full);
     aspect-ratio: var(--ratio-square);
     max-width: 100px;
     float: left;
