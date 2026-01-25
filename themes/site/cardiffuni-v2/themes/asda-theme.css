@@ -1,0 +1,184 @@
+/**
+ * ASDA Brand Theme Variant
+ * ========================
+ * 
+ * Runtime theme override for cardiffuni-v2 using ASDA branding.
+ * Load this CSS AFTER cardiffuni-v2.css to apply the ASDA theme.
+ * 
+ * Usage:
+ * <link rel="stylesheet" href="cardiffuni-v2.css">
+ * <link rel="stylesheet" href="themes/asda-theme.css">
+ * 
+ * Or apply to specific elements:
+ * <div data-theme="asda">...</div>
+ */
+
+/* ============================================================================
+   ASDA BRAND COLORS
+   Primary Green: #78BE20 (Lima)
+   ============================================================================ */
+
+:root,
+[data-theme="asda"] {
+    /* =========================================================================
+       BRAND COLORS
+       ========================================================================= */
+
+    --color-brand-primary: #78BE20;
+    /* ASDA Green (Lima) */
+    --color-brand-secondary: #1D5632;
+    /* Dark green for contrast */
+
+    /* Auto-generated shades using color-mix */
+    --color-brand-primary-lighter: color-mix(in srgb, var(--color-brand-primary) 40%, white);
+    --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 70%, white);
+    --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 80%, black);
+    --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 60%, black);
+
+    /* =========================================================================
+       SEMANTIC COLORS
+       ========================================================================= */
+
+    /* Text */
+    --color-text-primary: #1a1a1a;
+    --color-text-brand: var(--color-brand-primary);
+    --color-text-on-brand: #ffffff;
+
+    /* Backgrounds */
+    --color-bg-brand: var(--color-brand-primary);
+    --color-bg-dark: var(--color-brand-secondary);
+
+    /* Status colors (ASDA-appropriate) */
+    --color-status-success: #78BE20;
+    /* ASDA Green */
+    --color-status-warning: #FFB81C;
+    /* Yellow/Gold */
+    --color-status-error: #DA291C;
+    /* Red */
+    --color-status-info: #0072CE;
+    /* Blue */
+
+    /* =========================================================================
+       BUTTONS
+       ========================================================================= */
+
+    /* Primary Button (ASDA Green) */
+    --btn-primary-bg: var(--color-brand-primary);
+    --btn-primary-text: #ffffff;
+    --btn-primary-hover-bg: color-mix(in srgb, var(--color-brand-primary) 85%, black);
+    --btn-primary-active-bg: color-mix(in srgb, var(--color-brand-primary) 75%, black);
+    --btn-primary-disabled-bg: color-mix(in srgb, var(--color-brand-primary) 50%, white);
+    --btn-primary-disabled-text: #ffffff;
+
+    /* Secondary Button (Dark Green) */
+    --btn-secondary-bg: var(--color-brand-secondary);
+    --btn-secondary-text: #ffffff;
+    --btn-secondary-hover-bg: color-mix(in srgb, var(--color-brand-secondary) 85%, white);
+    --btn-secondary-active-bg: color-mix(in srgb, var(--color-brand-secondary) 90%, black);
+
+    /* Primary Outline */
+    --btn-primary-outline-text: var(--color-brand-primary);
+    --btn-primary-outline-border: var(--color-brand-primary);
+    --btn-primary-outline-hover-bg: color-mix(in srgb, var(--color-brand-primary) 10%, white);
+
+    /* Ghost Button */
+    --btn-ghost-text: var(--color-brand-primary);
+    --btn-ghost-hover-bg: color-mix(in srgb, var(--color-brand-primary) 10%, transparent);
+    --btn-ghost-hover-text: var(--color-brand-primary-dark);
+
+    /* =========================================================================
+       LINKS
+       ========================================================================= */
+
+    --color-link-default: #0072CE;
+    /* Blue for accessibility */
+    --color-link-hover: color-mix(in srgb, var(--color-link-default) 70%, black);
+    --color-link-visited: #551A8B;
+    --color-link-active: color-mix(in srgb, var(--color-link-default) 50%, black);
+
+    /* =========================================================================
+       BORDERS & FOCUS
+       ========================================================================= */
+
+    --color-border-brand: var(--color-brand-primary);
+    --color-border-focus: var(--color-brand-primary);
+    --focus-ring-color: #FFB81C;
+    /* Yellow for visibility on green */
+
+    /* =========================================================================
+       ACCENTS (ASDA palette)
+       ========================================================================= */
+
+    --color-accent-green: #78BE20;
+    /* ASDA Green */
+    --color-accent-yellow: #FFB81C;
+    /* ASDA Yellow */
+    --color-accent-blue: #0072CE;
+    --color-accent-orange: #F26522;
+}
+
+/* ============================================================================
+   COMPONENT OVERRIDES
+   ============================================================================ */
+
+/* Header/Jumbotron with ASDA branding */
+[data-theme="asda"] .jumbotron,
+:root .jumbotron {
+    background: linear-gradient(135deg, var(--color-brand-secondary) 0%, #0f3d1f 100%);
+}
+
+/* Footer with ASDA branding */
+[data-theme="asda"] .footer,
+:root .footer {
+    background-color: var(--color-brand-secondary);
+}
+
+/* Active nav items */
+[data-theme="asda"] .navbar .nav>li.activePage>a,
+:root .navbar .nav>li.activePage>a {
+    color: var(--color-brand-primary);
+    box-shadow: inset 0 -2px 0 0 var(--color-brand-primary);
+}
+
+/* Alerts - Success uses ASDA green */
+[data-theme="asda"] .alert-success,
+:root .alert-success {
+    background-color: color-mix(in srgb, var(--color-brand-primary) 10%, white);
+    border-color: color-mix(in srgb, var(--color-brand-primary) 30%, white);
+    border-left-color: var(--color-brand-primary);
+    color: color-mix(in srgb, var(--color-brand-primary) 80%, black);
+}
+
+/* Progress bars */
+[data-theme="asda"] .bar,
+[data-theme="asda"] .progress-bar,
+:root .bar,
+:root .progress-bar {
+    background-color: var(--color-brand-primary);
+}
+
+/* Badges */
+[data-theme="asda"] .badge-success,
+[data-theme="asda"] .label-success,
+:root .badge-success,
+:root .label-success {
+    background-color: var(--color-brand-primary);
+}
+
+/* Side navigation active state */
+[data-theme="asda"] .nav-list>.active>a,
+:root .nav-list>.active>a {
+    background-color: var(--color-brand-primary);
+}
+
+/* ============================================================================
+   OPTIONAL: ASDA TYPOGRAPHY
+   Uncomment to use different fonts
+   ============================================================================ */
+
+/*
+:root,
+[data-theme="asda"] {
+    --font-family-primary: "Proxima Nova", "Helvetica Neue", Arial, sans-serif;
+}
+*/

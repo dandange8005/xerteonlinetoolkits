@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xerte Theme Designer</title>
+    <link rel="stylesheet" href="css/designer.css">
+</head>
+
+<body>
+    <div class="designer-layout">
+        <!-- Header -->
+        <header class="designer-header">
+            <h1 class="designer-logo">
+                <span class="logo-icon">🎨</span>
+                Xerte Theme Designer
+            </h1>
+            <div class="designer-actions">
+                <button type="button" id="btn-reset" class="btn btn-secondary">
+                    <span class="btn-icon">↺</span>
+                    Reset
+                </button>
+                <button type="button" id="btn-export" class="btn btn-primary">
+                    <span class="btn-icon">📋</span>
+                    Export CSS
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="designer-main">
+            <!-- Sidebar Controls -->
+            <aside class="designer-sidebar">
+                <!-- Presets -->
+                <section class="control-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">📦</span>
+                        Presets
+                    </h2>
+                    <div class="preset-buttons">
+                        <button type="button" class="preset-btn" data-preset="cardiff">Cardiff University</button>
+                        <button type="button" class="preset-btn" data-preset="medr">Medr (Welsh Gov)</button>
+                        <button type="button" class="preset-btn" data-preset="dark">Dark Mode</button>
+                    </div>
+                </section>
+
+                <!-- Brand Colors -->
+                <section class="control-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🎨</span>
+                        Brand Colors
+                    </h2>
+
+                    <div class="control-group">
+                        <label class="control-label" for="color-primary">
+                            Primary Color
+                            <span class="contrast-badge" id="contrast-primary"></span>
+                        </label>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="color-primary" class="color-picker" value="#E4251B">
+                            <input type="text" id="color-primary-hex" class="hex-input" value="#E4251B" maxlength="7">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="color-secondary">
+                            Secondary Color
+                            <span class="contrast-badge" id="contrast-secondary"></span>
+                        </label>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="color-secondary" class="color-picker" value="#121212">
+                            <input type="text" id="color-secondary-hex" class="hex-input" value="#121212" maxlength="7">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="color-accent">
+                            Accent Color
+                        </label>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="color-accent" class="color-picker" value="#07873E">
+                            <input type="text" id="color-accent-hex" class="hex-input" value="#07873E" maxlength="7">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Link Colors -->
+                <section class="control-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🔗</span>
+                        Link Colors
+                    </h2>
+
+                    <div class="control-group">
+                        <label class="control-label" for="color-link">
+                            Link Color
+                            <span class="contrast-badge" id="contrast-link"></span>
+                        </label>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="color-link" class="color-picker" value="#0645AD">
+                            <input type="text" id="color-link-hex" class="hex-input" value="#0645AD" maxlength="7">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Typography -->
+                <section class="control-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">📝</span>
+                        Typography
+                    </h2>
+
+                    <div class="control-group">
+                        <label class="control-label" for="font-family">Font Family</label>
+                        <select id="font-family" class="select-input">
+                            <option value="'Inter', -apple-system, sans-serif">Inter (Default)</option>
+                            <option value="'GDS Transport', Arial, sans-serif">GDS Transport (Gov)</option>
+                            <option value="Arial, sans-serif">Arial</option>
+                            <option value="Georgia, serif">Georgia</option>
+                            <option value="'Roboto', sans-serif">Roboto</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="font-size">
+                            Base Font Size: <output id="font-size-output">16px</output>
+                        </label>
+                        <input type="range" id="font-size" class="range-input" min="14" max="22" value="16" step="1">
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="line-height">
+                            Line Height: <output id="line-height-output">1.5</output>
+                        </label>
+                        <input type="range" id="line-height" class="range-input" min="1.2" max="2" value="1.5"
+                            step="0.1">
+                    </div>
+                </section>
+
+                <!-- Borders & Corners -->
+                <section class="control-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🔲</span>
+                        Borders & Corners
+                    </h2>
+
+                    <div class="control-group">
+                        <label class="control-label" for="border-radius">
+                            Border Radius: <output id="border-radius-output">8px</output>
+                        </label>
+                        <input type="range" id="border-radius" class="range-input" min="0" max="24" value="8" step="2">
+                    </div>
+                </section>
+
+                <!-- Focus Ring -->
+                <section class="control-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🎯</span>
+                        Focus Ring
+                    </h2>
+
+                    <div class="control-group">
+                        <label class="control-label" for="color-focus">Focus Ring Color</label>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="color-focus" class="color-picker" value="#fdcd0d">
+                            <input type="text" id="color-focus-hex" class="hex-input" value="#fdcd0d" maxlength="7">
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Preview Pane -->
+            <main class="designer-preview">
+                <div class="preview-tabs">
+                    <button type="button" class="preview-tab active" data-tab="all">All</button>
+                    <button type="button" class="preview-tab" data-tab="typography">Typography</button>
+                    <button type="button" class="preview-tab" data-tab="buttons">Buttons</button>
+                    <button type="button" class="preview-tab" data-tab="forms">Forms</button>
+                    <button type="button" class="preview-tab" data-tab="alerts">Alerts</button>
+                </div>
+                <div class="preview-frame-container">
+                    <iframe id="preview-frame" src="preview/components.html" title="Theme Preview"></iframe>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <dialog id="export-modal" class="export-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Export Theme CSS</h2>
+                <button type="button" id="btn-close-modal" class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Copy this CSS and add it after <code>cardiffuni-v2.css</code>:</p>
+                <textarea id="export-css" class="export-textarea" readonly></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-copy" class="btn btn-primary">
+                    <span class="btn-icon">📋</span>
+                    Copy to Clipboard
+                </button>
+                <button type="button" id="btn-download" class="btn btn-secondary">
+                    <span class="btn-icon">⬇️</span>
+                    Download .css
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="js/color-utils.js"></script>
+    <script src="js/presets.js"></script>
+    <script src="js/designer.js"></script>
+</body>
+
+</html>
