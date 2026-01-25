@@ -1,9 +1,11 @@
 # Xerte Bootstrap Sites - Theme Creation Guide
 
-**Version:** 1.0
-**Last Updated:** January 22, 2026
-**Author:** Based on analysis of `cardiffuni` and `diged` themes
+**Version:** 1.1
+**Last Updated:** January 25, 2026
+**Author:** Based on analysis of `cardiffuni-v2`, `cardiffuni`, and `diged` themes
 **Scope:** This guide is specifically for **Xerte Bootstrap sites**. A separate guide will be created for Xerte XOT sites.
+
+> **Reference Implementation:** The `cardiffuni-v2` theme is the canonical example of this guide's architecture.
 
 ## Executive Summary
 
@@ -526,7 +528,7 @@ Every theme MUST have these files in the root theme directory:
 
 ### 4.2 Recommended Folder Structure
 
-**Recommended Folder Structure** (Modern Modular - Used by `cardiffuni`):
+**Recommended Folder Structure** (Modern Modular - Used by `cardiffuni-v2`):
 
 ```
 themename/
@@ -535,28 +537,43 @@ themename/
 ├── themename.css           # Compiled output
 ├── themename.css.map
 ├── themename.js
+├── design-tokens.json      # Optional: Design JSON for tooling
 ├── scss/                   # SCSS source files
-│   ├── _tokens.scss        # Design tokens (colors, spacing, typography)
-│   ├── _allvariables.scss  # CSS custom properties
+│   ├── _tokens.scss        # Primitive tokens (SCSS variables, compile-time)
+│   ├── _allvariables.scss  # Semantic tokens (CSS custom properties, runtime)
 │   ├── _base-elements.scss # Base HTML element styles
-│   ├── _bootstrap-components.scss # Bootstrap component overrides
-│   ├── _site-components.scss # Site structure (header, nav, footer, jumbotron)
+│   ├── _bootstrap-components.scss # Bootstrap component overrides (tabs, accordions, alerts)
+│   ├── _layouts.scss       # Page structure (header, nav, footer, jumbotron)
 │   ├── _xerte-components.scss # Xerte-specific components
-│   ├── _custom-components.scss # Custom components
+│   ├── _custom-components.scss # Custom component imports
 │   ├── _utilities.scss     # Utility classes
 │   ├── _editorstyles.scss  # CKEditor styles
 │   ├── _enhancements.scss  # Modern CSS features
-│   └── _webkitCustoms.scss # Browser-specific overrides
+│   ├── _webkitCustoms.scss # Browser-specific overrides
+│   └── components/         # Individual custom components
+│       ├── _buttons.scss
+│       ├── _boxes.scss
+│       ├── _callout.scss
+│       ├── _cards.scss
+│       ├── _details.scss
+│       ├── _links.scss
+│       └── _quotes.scss
 ├── demos/                  # Component demonstrations
+│   ├── index.html          # Demo homepage
+│   ├── typography.html
 │   ├── base-elements-demo.html
-│   ├── bootstrap-components-demo.html
-│   └── component-showcase.html
-└── docs/                   # Documentation
+│   ├── lists-tables.html
+│   ├── forms.html
+│   ├── components.html
+│   ├── colors.html
+│   └── assets/             # Demo-specific assets
+│       └── demo-styles.css
+└── docs/                   # Documentation (optional)
     ├── THEMING-GUIDE.md
     └── README.md
 ```
 
-> **Note:** The Modern Modular Structure above is the recommended and adopted approach for all new themes.
+> **Note:** The Modern Modular Structure above is the recommended and adopted approach for all new themes. See `cardiffuni-v2` for the reference implementation.
 
 ---
 
@@ -606,19 +623,19 @@ preview: cardiffuni.jpg
  */
 
 /* 1. Design Tokens & Variables */
-@use "scss/_allvariables" as *;   // Design tokens (colors, spacing, etc.)
+@use "scss/_allvariables" as *;   // Semantic tokens (imports primitives internally)
 
 /* 2. Base Styles */
 @use "scss/enhancements";          // Modern CSS enhancements
 @use "scss/base-elements";         // HTML element styles
 
 /* 3. Component Styles */
-@use "scss/bootstrap-components";  // Bootstrap component overrides
-@use "scss/site-components";       // Site structure (header, nav, footer, jumbotron)
+@use "scss/bootstrap-components";  // Bootstrap component overrides (tabs, accordions, alerts)
+@use "scss/layouts";               // Page structure (header, nav, footer, jumbotron)
 @use "scss/xerte-components";      // Xerte-specific components
-@use "scss/custom-components";     // Custom components
+@use "scss/custom-components";     // Custom components (imports from components/ folder)
 
-/* 4. Utilities */
+/* 4. Utilities & Layout */
 @use "scss/utilities";             // Utility classes
 
 /* 5. Editor Styles */
@@ -637,132 +654,217 @@ preview: cardiffuni.jpg
 
 ---
 
-## 7. Design Tokens (_tokens.scss)
+## 7. Design Tokens - Hybrid Architecture
 
-Design tokens are the **single source of truth** for all design values.
+The `cardiffuni-v2` theme uses a **hybrid token architecture** with two layers:
 
-### 7.1 What to Include
+| Layer | File | Purpose | Format |
+|-------|------|---------|--------|
+| **Primitives** | `_tokens.scss` | Raw brand values (source of truth) | SCSS variables (`$token-*`) |
+| **Semantics** | `_allvariables.scss` | Runtime-configurable tokens | CSS custom properties (`--*`) |
+
+### 7.1 Primitive Tokens (_tokens.scss)
+
+Primitive tokens are **immutable brand values** that define your design foundation. They are SCSS variables used at compile-time.
 
 ```scss
+/**
+ * PRIMITIVE TOKENS - Raw, immutable brand values.
+ * These are the foundation that semantic tokens build upon.
+ */
+
 // =============================================================================
-// COLOR TOKENS
+// BRAND COLORS
 // =============================================================================
 
 // Primary Brand Colors
-$token-color-primary-red: #E4251B;
-$token-color-primary-white: #FFFFFF;
-$token-color-primary-black: #121212;
+$token-color-brand-primary: #E4251B;    // Cardiff Red - PMS 485 C
+$token-color-brand-secondary: #121212;  // Cardiff Black
+$token-color-brand-white: #FFFFFF;
+$token-color-brand-light: #f9fafb;      // Off-white for backgrounds
 
 // Grayscale (10% increments)
 $token-color-gray-10: #F2F2F2;
 $token-color-gray-20: #E5E5E5;
+$token-color-gray-30: #CCCCCC;
 // ... through gray-90
 
 // Accent Colors
-$token-color-accent-green: #07873E;
-$token-color-accent-blue: #1E90FF;
-// ...
+$token-color-accent-forest-green: #07873E;
+$token-color-accent-light-blue: #1E90FF;
+$token-color-accent-orange: #E9761E;
+$token-color-accent-yellow: #FFB300;
 
 // =============================================================================
-// TYPOGRAPHY TOKENS
+// TYPOGRAPHY
 // =============================================================================
 
-$token-font-primary-heading: "Helvetica", Arial, sans-serif;
-$token-font-primary-body: "Arial", sans-serif;
+$token-font-family-primary: "Marr Sans", "Inter", -apple-system, sans-serif;
+$token-font-family-secondary: "Darby Serif", Georgia, serif;
 
-$token-font-size-xs: 12px;
-$token-font-size-sm: 14px;
+$token-font-weight-regular: 400;
+$token-font-weight-medium: 500;
+$token-font-weight-semibold: 600;
+$token-font-weight-bold: 700;
+
 $token-font-size-base: 16px;
-$token-font-size-lg: 24px;
-// ...
-
-$token-line-height-tight: 1.2;
-$token-line-height-base: 1.5;
-$token-line-height-loose: 1.75;
-
-// =============================================================================
-// SPACING TOKENS
-// =============================================================================
-
-$token-spacing-xs: 4px;
-$token-spacing-sm: 8px;
-$token-spacing-md: 16px;
-$token-spacing-lg: 24px;
-$token-spacing-xl: 32px;
+$token-font-size-lg: 20px;
+$token-font-size-xl: 24px;
 // ...
 
 // =============================================================================
-// BORDER TOKENS
+// SPACING (8px base unit)
 // =============================================================================
 
-$token-radius-sm: 2px;
-$token-radius-md: 4px;
-$token-radius-lg: 8px;
-
-$token-border-width-sm: 1px;
-$token-border-width-md: 2px;
-
-// =============================================================================
-// SHADOW TOKENS
-// =============================================================================
-
-$token-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-$token-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+$token-spacing-1: 4px;
+$token-spacing-2: 8px;
+$token-spacing-4: 16px;
+$token-spacing-6: 24px;
+$token-spacing-8: 32px;
 // ...
 
 // =============================================================================
-// ANIMATION TOKENS
+// ACCESSIBILITY
 // =============================================================================
 
-$token-animation-fast: 150ms;
-$token-animation-medium: 300ms;
-$token-animation-slow: 500ms;
-
-$token-animation-easing-default: ease-in-out;
+$token-focus-ring-width: 2px;
+$token-min-touch-target: 44px;
 ```
 
 ### 7.2 Token Naming Convention
 
-- Prefix all tokens with `$token-`
-- Use descriptive, semantic names: `$token-color-primary-red` not `$red`
-- Group by category (colors, typography, spacing, etc.)
-- Document the purpose and official color codes (RGB, CMYK, Pantone)
+- **Prefix all tokens** with `$token-`
+- **Use brand-neutral names** where possible: `$token-color-brand-primary` not `$token-color-cardiff-red`
+- **Group by category**: colors, typography, spacing, borders, shadows, animation
+- **Document Pantone/official codes** in comments for brand colors
 
 ---
 
-## 8. CSS Custom Properties (_allvariables.scss)
+## 8. Semantic Tokens (_allvariables.scss)
 
-Convert SCSS tokens to CSS Custom Properties for runtime customization.
+Semantic tokens convert primitive SCSS variables to **CSS custom properties** for runtime theming.
 
-### 8.1 Pattern
+### 8.1 Import Pattern
 
 ```scss
+/**
+ * Semantic Design Tokens
+ * Uses @use to import primitives and generates CSS custom properties
+ */
+
+@use "tokens" as t;  // Import primitive tokens with namespace
+
 :root {
-  // Colors
-  --cu-primary-red: #{$token-color-primary-red};
-  --cu-white: #{$token-color-primary-white};
-  --cu-black: #{$token-color-primary-black};
-
-  // Typography
-  --font-size-base: #{$token-font-size-base};
-  --line-height-base: #{$token-line-height-base};
-
-  // Spacing
-  --spacing-sm: #{$token-spacing-sm};
-  --spacing-md: #{$token-spacing-md};
-  --spacing-lg: #{$token-spacing-lg};
-
-  // Borders
-  --radius-md: #{$token-radius-md};
-  --border-width-sm: #{$token-border-width-sm};
+    // =========================================================================
+    // BRAND COLORS (from primitives)
+    // =========================================================================
+    
+    --color-brand-primary: #{t.$token-color-brand-primary};
+    --color-brand-secondary: #{t.$token-color-brand-secondary};
+    
+    // =========================================================================
+    // SEMANTIC COLORS (derived)
+    // =========================================================================
+    
+    --color-text-primary: var(--color-brand-secondary);
+    --color-text-inverse: var(--color-white);
+    --color-bg-body: var(--color-light);
+    --color-bg-page: var(--color-white);
+    
+    // Links (traditional blue, not brand color)
+    --color-link-default: #0645AD;
+    --color-link-hover: color-mix(in srgb, var(--color-link-default) 70%, black);
+    --color-link-visited: #551A8B;
 }
 ```
 
-### 8.2 Benefits
+### 8.2 Modern CSS Techniques
+
+#### Using `color-mix()` for State Variations
+
+Generate hover, active, and disabled states dynamically:
+
+```scss
+:root {
+    // Button states using color-mix()
+    --btn-primary-bg: var(--color-brand-primary);
+    --btn-primary-hover-bg: color-mix(in srgb, var(--color-brand-primary) 85%, black);
+    --btn-primary-active-bg: color-mix(in srgb, var(--color-brand-primary) 80%, black);
+    --btn-primary-disabled-bg: color-mix(in srgb, var(--color-brand-primary) 60%, white);
+    
+    // Auto-generated color scales
+    --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 70%, white);
+    --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 70%, black);
+}
+```
+
+#### Fluid Typography with `clamp()`
+
+Responsive font sizes without media queries:
+
+```scss
+:root {
+    // Fluid font sizes (min, preferred, max)
+    --font-size-base: clamp(0.875rem, 0.80rem + 0.375vw, 1rem);
+    --font-size-lg: clamp(1.125rem, 1.00rem + 0.625vw, 1.25rem);
+    --font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);
+    --font-size-2xl: clamp(1.5rem, 1.30rem + 1vw, 1.75rem);
+    --font-size-3xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);
+    --font-size-4xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);
+}
+```
+
+#### Heading Style Tokens
+
+Pre-composed heading styles for consistency:
+
+```scss
+:root {
+    --h1-font-size: var(--font-size-4xl);
+    --h1-font-weight: var(--font-weight-bold);
+    --h1-line-height: var(--line-height-snug);
+    --h1-letter-spacing: var(--letter-spacing-tighter);
+    
+    --h2-font-size: var(--font-size-3xl);
+    --h2-font-weight: var(--font-weight-bold);
+    // ... and so on for h3-h6
+}
+```
+
+### 8.3 Theme Variants
+
+Override CSS variables for different themes:
+
+```scss
+// Dark mode
+[data-theme="dark"] {
+    --color-bg-body: #1a1a1a;
+    --color-bg-page: #121212;
+    --color-text-primary: #ffffff;
+    --color-link-default: #6DB3F2;
+}
+
+// High contrast
+[data-theme="high-contrast"] {
+    --color-bg-body: #000000;
+    --color-text-primary: #FFFFFF;
+    --color-brand-primary: #FFFF00;
+    --focus-ring-width: 4px;
+}
+
+// Alternative institution
+[data-theme="other-uni"] {
+    --color-brand-primary: #0066CC;
+    --color-brand-secondary: #003366;
+}
+```
+
+### 8.4 Benefits
 
 - **Runtime customization**: Change colors without recompiling SCSS
-- **JavaScript API**: Modify design values dynamically
-- **Theme variants**: Create dark mode or project-specific variants easily
+- **JavaScript API**: Modify design values dynamically via `element.style.setProperty()`
+- **Theme variants**: Dark mode, high contrast, institution-specific branding
+- **Reduced code**: `color-mix()` eliminates need for manually calculated shades
 
 ---
 
@@ -2115,10 +2217,12 @@ const PRESETS = {
 - Xerte Online Toolkits: https://xerte.org.uk/
 - Sass Documentation: https://sass-lang.com/documentation
 - CSS Custom Properties: https://developer.mozilla.org/en-US/docs/Web/CSS/--*
+- CSS color-mix(): https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix
 
 ### Theming Examples
-- Cardiff University Theme: `/themes/site/cardiffuni/`
-- DiGEd Theme: `/themes/site/diged/`
+- **Cardiff University v2** (Reference): `/themes/site/cardiffuni-v2/` — Modern implementation with hybrid tokens
+- Cardiff University v1: `/themes/site/cardiffuni/`
+- DigEd Theme: `/themes/site/diged/`
 - Black Grey Theme: `/themes/site/blackgrey/`
 
 ### Tools
@@ -2143,4 +2247,10 @@ For questions or suggestions, refer to existing theme documentation or consult w
 ---
 
 **Document Version History:**
+- v1.1 (2026-01-25): Updated to align with `cardiffuni-v2` reference implementation
+  - Added hybrid token architecture (primitives + semantics)
+  - Updated folder structure (`_layouts.scss`, `components/` subfolder)
+  - Added modern CSS techniques (`color-mix()`, `clamp()`, heading tokens)
+  - Removed `--cu-` prefix for generic token naming
+  - Updated demo pages structure
 - v1.0 (2026-01-22): Initial standardization guide created based on `cardiffuni` and `diged` theme analysis
