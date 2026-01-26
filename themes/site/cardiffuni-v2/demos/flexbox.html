@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox & Layout - Cardiff University v2 Theme</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap-responsive.css">
+    <link rel="stylesheet" href="assets/bootstrap/custom.css">
+    <link rel="stylesheet" href="../cardiffuni-v2.css">
+    <link rel="stylesheet" href="assets/demo-styles.css">
+    <style>
+        /* Demo-specific styles for visibility */
+        .demo-box {
+            background: var(--color-bg-subtle);
+            border: 1px solid var(--color-border-default);
+            padding: var(--spacing-4);
+            border-radius: var(--radius-md);
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .demo-box--brand {
+            background: var(--color-brand-primary);
+            color: white;
+            border: none;
+        }
+        .demo-box--dark {
+            background: var(--color-brand-secondary);
+            color: white;
+            border: none;
+        }
+        .demo-box--tall {
+            min-height: 120px;
+        }
+        .demo-box--short {
+            min-height: 40px;
+        }
+        .demo-container {
+            background: #f0f0f0;
+            padding: var(--spacing-4);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-4);
+        }
+        .code-snippet {
+            background: var(--color-brand-secondary);
+            color: #f8f8f2;
+            padding: var(--spacing-4);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-4);
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: var(--font-size-sm);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="jumbotron" id="overview">
+        <div class="container">
+            <div class="logoL">
+                <img class="logo logoL themeLogo"
+                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
+                    alt="Cardiff University Logo">
+            </div>
+
+            <div class="titles">
+                <h1 id="pageTitle" aria-live="polite">Flexbox & Layout</h1>
+                <p id="pageSubTitle" aria-live="polite">Responsive Grid Systems & Layout Utilities</p>
+            </div>
+    </header>
+
+    <div id="pageLinks">
+        <div class="navbar navbar-inverse navbar-fixed-top" id="topnav" role="navigation" aria-label="Pages"
+            style="position: static;">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button id="pageNavBtn" class="btn btn-navbar navbar-toggler collapsed" data-toggle="collapse"
+                        data-target=".nav-collapse" aria-haspopup="true" aria-controls="nav" aria-label="Page menu"
+                        aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="nav" aria-labelledby="pageNavBtn">
+                            <li role="none"><a href="index.html">Home</a></li>
+                            <li role="none"><a href="typography.html">Typography</a></li>
+                            <li role="none"><a href="lists-tables.html">Lists & Tables</a></li>
+                            <li role="none"><a href="images-media.html">Images & Media</a></li>
+                            <li role="none"><a href="forms.html">Forms</a></li>
+                            <li role="none"><a href="components.html">Components</a></li>
+                            <li role="none"><a href="code-utilities.html">Code & Utilities</a></li>
+                            <li role="none"><a href="colors.html">Colors</a></li>
+                            <li role="none"><a href="patterns.html">Patterns</a></li>
+                            <li class="activePage" role="none" aria-current="page"><a href="flexbox.html">Flexbox</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Introduction -->
+        <section class="demo-section">
+            <h2>Introduction</h2>
+            <div class="demo-block">
+                <div class="demo-block__description">
+                    <p>The Cardiff University v2 theme includes a comprehensive flexbox utility system for creating responsive layouts.
+                    These utilities follow a mobile-first approach: items stack vertically on small screens and arrange horizontally on larger screens.</p>
+                    <p><strong>Key classes:</strong></p>
+                    <ul>
+                        <li><code>.flex</code> - Creates a flex container</li>
+                        <li><code>.flex-wrap</code> - Allows items to wrap to new lines</li>
+                        <li><code>.gap-*</code> - Controls spacing between items (xs, sm, md, lg, xl, 2xl)</li>
+                        <li><code>.w-*</code> - Width utilities (w-full, w-1/2, w-1/3, w-1/4)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Basic Flex Container -->
+        <section class="demo-section">
+            <h2>Basic Flex Container</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Simple Row Layout</div>
+                <div class="demo-block__description">Use <code>.flex</code> to create a horizontal row of items.</div>
+
+                <div class="demo-container">
+                    <div class="flex gap-md">
+                        <div class="demo-box">Item 1</div>
+                        <div class="demo-box">Item 2</div>
+                        <div class="demo-box">Item 3</div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+&lt;div class="flex gap-md"&gt;
+    &lt;div&gt;Item 1&lt;/div&gt;
+    &lt;div&gt;Item 2&lt;/div&gt;
+    &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Column Layout</div>
+                <div class="demo-block__description">Use <code>.flex-col</code> to stack items vertically.</div>
+
+                <div class="demo-container">
+                    <div class="flex flex-col gap-md">
+                        <div class="demo-box">Item 1</div>
+                        <div class="demo-box">Item 2</div>
+                        <div class="demo-box">Item 3</div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+&lt;div class="flex flex-col gap-md"&gt;
+    &lt;div&gt;Item 1&lt;/div&gt;
+    &lt;div&gt;Item 2&lt;/div&gt;
+    &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+        </section>
+
+        <!-- Flex Basis Utilities (Recommended) -->
+        <section class="demo-section">
+            <h2>Flex Basis Utilities (Recommended)</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">How It Works</div>
+                <div class="demo-block__description">
+                    <p>Use <code>.flex-{size}</code> classes to create responsive columns without inline styles. The number represents the <strong>minimum width</strong> in pixels before wrapping.</p>
+                    <p><strong>Available classes:</strong> <code>.flex-100</code>, <code>.flex-150</code>, <code>.flex-200</code>, <code>.flex-250</code>, <code>.flex-300</code>, <code>.flex-350</code>, <code>.flex-400</code>, <code>.flex-500</code>, <code>.flex-600</code></p>
+                    <p><strong>Behavior:</strong> Items grow equally to fill space, but wrap when they can't maintain their minimum width.</p>
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">50/50 Split</div>
+                <div class="demo-block__description">Two equal columns using <code>.flex-300</code> on both. They wrap below 600px viewport.</div>
+
+                <div class="demo-container">
+                    <div class="flex flex-wrap gap-md">
+                        <div class="demo-box flex-300">Left Column</div>
+                        <div class="demo-box--brand demo-box flex-300">Right Column</div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+&lt;div class="flex flex-wrap gap-md"&gt;
+    &lt;div class="flex-300"&gt;Left Column&lt;/div&gt;
+    &lt;div class="flex-300"&gt;Right Column&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">40/60 Sidebar Layout</div>
+                <div class="demo-block__description">Use <code>.flex-200</code> for sidebar and <code>.flex-400</code> for main content (approximate 1:2 ratio).</div>
+
+                <div class="demo-container">
+                    <div class="flex flex-wrap gap-md">
+                        <div class="demo-box--dark demo-box flex-200">
+                            <strong>Sidebar</strong>
+                        </div>
+                        <div class="demo-box flex-400">
+                            <strong>Main Content</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+&lt;div class="flex flex-wrap gap-md"&gt;
+    &lt;div class="flex-200"&gt;Sidebar&lt;/div&gt;
+    &lt;div class="flex-400"&gt;Main Content&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">30/70 Layout</div>
+                <div class="demo-block__description">Use <code>.flex-150</code> for narrow sidebar and <code>.flex-350</code> for wider content (approximate 1:2.3 ratio).</div>
+
+                <div class="demo-container">
+                    <div class="flex flex-wrap gap-md">
+                        <div class="demo-box--dark demo-box flex-150">
+                            <strong>Narrow</strong>
+                        </div>
+                        <div class="demo-box flex-350">
+                            <strong>Wide Content Area</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+&lt;div class="flex flex-wrap gap-md"&gt;
+    &lt;div class="flex-150"&gt;Narrow&lt;/div&gt;
+    &lt;div class="flex-350"&gt;Wide Content&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Common Ratios Reference</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Desired Ratio</th>
+                            <th>Classes to Use</th>
+                            <th>Wraps Below</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>50/50</td><td><code>.flex-300</code> + <code>.flex-300</code></td><td>~616px</td></tr>
+                        <tr><td>40/60</td><td><code>.flex-200</code> + <code>.flex-400</code></td><td>~616px</td></tr>
+                        <tr><td>30/70</td><td><code>.flex-150</code> + <code>.flex-350</code></td><td>~516px</td></tr>
+                        <tr><td>25/75</td><td><code>.flex-150</code> + <code>.flex-400</code></td><td>~566px</td></tr>
+                        <tr><td>33/33/33</td><td><code>.flex-200</code> x 3</td><td>~616px</td></tr>
+                        <tr><td>25/25/25/25</td><td><code>.flex-150</code> x 4</td><td>~616px</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Three Column Layouts -->
+        <section class="demo-section">
+            <h2>Three Column Layouts</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Equal Three Columns</div>
+                <div class="demo-block__description">Three equal columns using <code>.flex-200</code>. Stacks on mobile.</div>
+
+                <div class="demo-container">
+                    <div class="flex flex-wrap gap-md">
+                        <div class="demo-box flex-200">Column 1</div>
+                        <div class="demo-box--brand demo-box flex-200">Column 2</div>
+                        <div class="demo-box--dark demo-box flex-200">Column 3</div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+&lt;div class="flex flex-wrap gap-md"&gt;
+    &lt;div class="flex-200"&gt;Column 1&lt;/div&gt;
+    &lt;div class="flex-200"&gt;Column 2&lt;/div&gt;
+    &lt;div class="flex-200"&gt;Column 3&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+        </section>
+
+        <!-- Four Column / Card Grid -->
+        <section class="demo-section">
+            <h2>Four Column / Card Grid</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Card Grid Layout</div>
+                <div class="demo-block__description">Use <code>.flex-200</code> for a responsive card grid (4 columns on wide screens, adapts down to 1).</div>
+
+                <div class="demo-container">
+                    <div class="flex flex-wrap gap-md">
+                        <div class="demo-box flex-200">Card 1</div>
+                        <div class="demo-box flex-200">Card 2</div>
+                        <div class="demo-box flex-200">Card 3</div>
+                        <div class="demo-box flex-200">Card 4</div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+&lt;div class="flex flex-wrap gap-md"&gt;
+    &lt;div class="flex-200"&gt;Card 1&lt;/div&gt;
+    &lt;div class="flex-200"&gt;Card 2&lt;/div&gt;
+    &lt;div class="flex-200"&gt;Card 3&lt;/div&gt;
+    &lt;div class="flex-200"&gt;Card 4&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Smaller Cards (5+ columns possible)</div>
+                <div class="demo-block__description">Use <code>.flex-150</code> for smaller cards that can fit more per row.</div>
+
+                <div class="demo-container">
+                    <div class="flex flex-wrap gap-sm">
+                        <div class="demo-box flex-150">1</div>
+                        <div class="demo-box flex-150">2</div>
+                        <div class="demo-box flex-150">3</div>
+                        <div class="demo-box flex-150">4</div>
+                        <div class="demo-box flex-150">5</div>
+                        <div class="demo-box flex-150">6</div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+&lt;div class="flex flex-wrap gap-sm"&gt;
+    &lt;div class="flex-150"&gt;1&lt;/div&gt;
+    &lt;div class="flex-150"&gt;2&lt;/div&gt;
+    &lt;!-- ... more items ... --&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+        </section>
+
+        <!-- Gap Utilities -->
+        <section class="demo-section">
+            <h2>Gap Utilities</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Gap Sizes</div>
+                <div class="demo-block__description">Control spacing between flex items with gap utilities.</div>
+
+                <h4>gap-xs (4px)</h4>
+                <div class="demo-container">
+                    <div class="flex gap-xs">
+                        <div class="demo-box--brand demo-box">1</div>
+                        <div class="demo-box--brand demo-box">2</div>
+                        <div class="demo-box--brand demo-box">3</div>
+                    </div>
+                </div>
+
+                <h4>gap-sm (8px)</h4>
+                <div class="demo-container">
+                    <div class="flex gap-sm">
+                        <div class="demo-box--brand demo-box">1</div>
+                        <div class="demo-box--brand demo-box">2</div>
+                        <div class="demo-box--brand demo-box">3</div>
+                    </div>
+                </div>
+
+                <h4>gap-md (16px) - Default</h4>
+                <div class="demo-container">
+                    <div class="flex gap-md">
+                        <div class="demo-box--brand demo-box">1</div>
+                        <div class="demo-box--brand demo-box">2</div>
+                        <div class="demo-box--brand demo-box">3</div>
+                    </div>
+                </div>
+
+                <h4>gap-lg (24px)</h4>
+                <div class="demo-container">
+                    <div class="flex gap-lg">
+                        <div class="demo-box--brand demo-box">1</div>
+                        <div class="demo-box--brand demo-box">2</div>
+                        <div class="demo-box--brand demo-box">3</div>
+                    </div>
+                </div>
+
+                <h4>gap-xl (32px)</h4>
+                <div class="demo-container">
+                    <div class="flex gap-xl">
+                        <div class="demo-box--brand demo-box">1</div>
+                        <div class="demo-box--brand demo-box">2</div>
+                        <div class="demo-box--brand demo-box">3</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alignment -->
+        <section class="demo-section">
+            <h2>Alignment Utilities</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Justify Content (Horizontal)</div>
+
+                <h4>justify-start</h4>
+                <div class="demo-container">
+                    <div class="flex justify-start gap-md">
+                        <div class="demo-box">1</div>
+                        <div class="demo-box">2</div>
+                        <div class="demo-box">3</div>
+                    </div>
+                </div>
+
+                <h4>justify-center</h4>
+                <div class="demo-container">
+                    <div class="flex justify-center gap-md">
+                        <div class="demo-box">1</div>
+                        <div class="demo-box">2</div>
+                        <div class="demo-box">3</div>
+                    </div>
+                </div>
+
+                <h4>justify-end</h4>
+                <div class="demo-container">
+                    <div class="flex justify-end gap-md">
+                        <div class="demo-box">1</div>
+                        <div class="demo-box">2</div>
+                        <div class="demo-box">3</div>
+                    </div>
+                </div>
+
+                <h4>justify-between</h4>
+                <div class="demo-container">
+                    <div class="flex justify-between">
+                        <div class="demo-box">1</div>
+                        <div class="demo-box">2</div>
+                        <div class="demo-box">3</div>
+                    </div>
+                </div>
+
+                <h4>justify-around</h4>
+                <div class="demo-container">
+                    <div class="flex justify-around">
+                        <div class="demo-box">1</div>
+                        <div class="demo-box">2</div>
+                        <div class="demo-box">3</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Align Items (Vertical)</div>
+
+                <h4>items-start</h4>
+                <div class="demo-container" style="min-height: 150px;">
+                    <div class="flex items-start gap-md" style="min-height: 120px;">
+                        <div class="demo-box demo-box--tall">Tall</div>
+                        <div class="demo-box">Normal</div>
+                        <div class="demo-box demo-box--short">Short</div>
+                    </div>
+                </div>
+
+                <h4>items-center</h4>
+                <div class="demo-container" style="min-height: 150px;">
+                    <div class="flex items-center gap-md" style="min-height: 120px;">
+                        <div class="demo-box demo-box--tall">Tall</div>
+                        <div class="demo-box">Normal</div>
+                        <div class="demo-box demo-box--short">Short</div>
+                    </div>
+                </div>
+
+                <h4>items-end</h4>
+                <div class="demo-container" style="min-height: 150px;">
+                    <div class="flex items-end gap-md" style="min-height: 120px;">
+                        <div class="demo-box demo-box--tall">Tall</div>
+                        <div class="demo-box">Normal</div>
+                        <div class="demo-box demo-box--short">Short</div>
+                    </div>
+                </div>
+
+                <h4>items-stretch (default)</h4>
+                <div class="demo-container" style="min-height: 150px;">
+                    <div class="flex items-stretch gap-md" style="min-height: 120px;">
+                        <div class="demo-box">Item 1</div>
+                        <div class="demo-box">Item 2</div>
+                        <div class="demo-box">Item 3</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practical Examples -->
+        <section class="demo-section">
+            <h2>Practical Examples</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Navigation Bar</div>
+                <div class="demo-block__description">Logo on left, navigation on right using <code>justify-between</code>.</div>
+
+                <div class="demo-container">
+                    <div class="flex justify-between items-center gap-md p-4 bg-dark rounded">
+                        <div class="text-white font-bold">Logo</div>
+                        <div class="flex gap-md">
+                            <a href="#" class="text-white">Home</a>
+                            <a href="#" class="text-white">About</a>
+                            <a href="#" class="text-white">Contact</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+&lt;div class="flex justify-between items-center gap-md p-4 bg-dark"&gt;
+    &lt;div class="font-bold"&gt;Logo&lt;/div&gt;
+    &lt;div class="flex gap-md"&gt;
+        &lt;a href="#"&gt;Home&lt;/a&gt;
+        &lt;a href="#"&gt;About&lt;/a&gt;
+        &lt;a href="#"&gt;Contact&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Media Object</div>
+                <div class="demo-block__description">Image alongside text content.</div>
+
+                <div class="demo-container">
+                    <div class="flex gap-md items-start bg-white p-4 rounded shadow-sm">
+                        <img src="https://via.placeholder.com/80" alt="Avatar" class="rounded" style="flex-shrink: 0;">
+                        <div class="flex-1">
+                            <h4 class="mt-0 mb-2">Dr. Jane Smith</h4>
+                            <p class="mb-0 text-secondary">Professor of Computer Science at Cardiff University. Research interests include machine learning and data visualization.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+&lt;div class="flex gap-md items-start"&gt;
+    &lt;img src="avatar.jpg" alt="Avatar" style="flex-shrink: 0;"&gt;
+    &lt;div class="flex-1"&gt;
+        &lt;h4&gt;Dr. Jane Smith&lt;/h4&gt;
+        &lt;p&gt;Description text...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Feature Cards</div>
+                <div class="demo-block__description">Responsive feature grid using <code>.flex-200</code>.</div>
+
+                <div class="demo-container">
+                    <div class="flex flex-wrap gap-lg">
+                        <div class="bg-white p-4 rounded shadow-sm text-center flex-200">
+                            <div class="text-brand text-3xl mb-3">&#9733;</div>
+                            <h4 class="mt-0">Quality</h4>
+                            <p class="text-secondary mb-0">High standards in everything we do.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow-sm text-center flex-200">
+                            <div class="text-brand text-3xl mb-3">&#9829;</div>
+                            <h4 class="mt-0">Care</h4>
+                            <p class="text-secondary mb-0">Student wellbeing is our priority.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow-sm text-center flex-200">
+                            <div class="text-brand text-3xl mb-3">&#9728;</div>
+                            <h4 class="mt-0">Innovation</h4>
+                            <p class="text-secondary mb-0">Leading research and discovery.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+&lt;div class="flex flex-wrap gap-lg"&gt;
+    &lt;div class="bg-white p-4 rounded shadow-sm text-center" style="flex: 1 1 200px;"&gt;
+        &lt;div class="text-brand text-3xl mb-3"&gt;Icon&lt;/div&gt;
+        &lt;h4&gt;Title&lt;/h4&gt;
+        &lt;p&gt;Description&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;!-- Repeat for more cards --&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Form Layout</div>
+                <div class="demo-block__description">Inline form fields using flexbox.</div>
+
+                <div class="demo-container">
+                    <div class="flex flex-wrap gap-md items-end">
+                        <div class="flex-1" style="min-width: 150px;">
+                            <label class="block mb-1">First Name</label>
+                            <input type="text" class="w-full" placeholder="John">
+                        </div>
+                        <div class="flex-1" style="min-width: 150px;">
+                            <label class="block mb-1">Last Name</label>
+                            <input type="text" class="w-full" placeholder="Doe">
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+&lt;div class="flex flex-wrap gap-md items-end"&gt;
+    &lt;div class="flex-1" style="min-width: 150px;"&gt;
+        &lt;label&gt;First Name&lt;/label&gt;
+        &lt;input type="text" class="w-full"&gt;
+    &lt;/div&gt;
+    &lt;div class="flex-1" style="min-width: 150px;"&gt;
+        &lt;label&gt;Last Name&lt;/label&gt;
+        &lt;input type="text" class="w-full"&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+        </section>
+
+        <!-- Utility Reference -->
+        <section class="demo-section">
+            <h2>Utility Class Reference</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Display & Direction</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.flex</code></td><td>display: flex</td><td>Create flex container</td></tr>
+                        <tr><td><code>.inline-flex</code></td><td>display: inline-flex</td><td>Inline flex container</td></tr>
+                        <tr><td><code>.flex-row</code></td><td>flex-direction: row</td><td>Horizontal (default)</td></tr>
+                        <tr><td><code>.flex-row-reverse</code></td><td>flex-direction: row-reverse</td><td>Horizontal reversed</td></tr>
+                        <tr><td><code>.flex-col</code></td><td>flex-direction: column</td><td>Vertical stacking</td></tr>
+                        <tr><td><code>.flex-col-reverse</code></td><td>flex-direction: column-reverse</td><td>Vertical reversed</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Wrap</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.flex-wrap</code></td><td>flex-wrap: wrap</td><td>Allow wrapping</td></tr>
+                        <tr><td><code>.flex-nowrap</code></td><td>flex-wrap: nowrap</td><td>Prevent wrapping</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Justify Content</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.justify-start</code></td><td>justify-content: flex-start</td><td>Pack at start</td></tr>
+                        <tr><td><code>.justify-center</code></td><td>justify-content: center</td><td>Center horizontally</td></tr>
+                        <tr><td><code>.justify-end</code></td><td>justify-content: flex-end</td><td>Pack at end</td></tr>
+                        <tr><td><code>.justify-between</code></td><td>justify-content: space-between</td><td>Space between items</td></tr>
+                        <tr><td><code>.justify-around</code></td><td>justify-content: space-around</td><td>Space around items</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Align Items</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.items-start</code></td><td>align-items: flex-start</td><td>Align to top</td></tr>
+                        <tr><td><code>.items-center</code></td><td>align-items: center</td><td>Center vertically</td></tr>
+                        <tr><td><code>.items-end</code></td><td>align-items: flex-end</td><td>Align to bottom</td></tr>
+                        <tr><td><code>.items-baseline</code></td><td>align-items: baseline</td><td>Align to text baseline</td></tr>
+                        <tr><td><code>.items-stretch</code></td><td>align-items: stretch</td><td>Stretch to fill (default)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Flex Item Sizing</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.flex-1</code></td><td>flex: 1 1 0%</td><td>Grow and shrink equally</td></tr>
+                        <tr><td><code>.flex-auto</code></td><td>flex: 1 1 auto</td><td>Grow/shrink based on content</td></tr>
+                        <tr><td><code>.flex-none</code></td><td>flex: none</td><td>Don't grow or shrink</td></tr>
+                        <tr><td><code>.grow</code></td><td>flex-grow: 1</td><td>Allow growing</td></tr>
+                        <tr><td><code>.grow-0</code></td><td>flex-grow: 0</td><td>Prevent growing</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Flex Basis (Responsive Columns)</div>
+                <div class="demo-block__description">Use these for responsive column layouts. Items grow to fill space but wrap when they can't maintain their minimum width.</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>CSS Property</th>
+                            <th>Min Width</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.flex-100</code></td><td>flex: 1 1 100px</td><td>100px</td></tr>
+                        <tr><td><code>.flex-150</code></td><td>flex: 1 1 150px</td><td>150px</td></tr>
+                        <tr><td><code>.flex-200</code></td><td>flex: 1 1 200px</td><td>200px</td></tr>
+                        <tr><td><code>.flex-250</code></td><td>flex: 1 1 250px</td><td>250px</td></tr>
+                        <tr><td><code>.flex-300</code></td><td>flex: 1 1 300px</td><td>300px</td></tr>
+                        <tr><td><code>.flex-350</code></td><td>flex: 1 1 350px</td><td>350px</td></tr>
+                        <tr><td><code>.flex-400</code></td><td>flex: 1 1 400px</td><td>400px</td></tr>
+                        <tr><td><code>.flex-500</code></td><td>flex: 1 1 500px</td><td>500px</td></tr>
+                        <tr><td><code>.flex-600</code></td><td>flex: 1 1 600px</td><td>600px</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Gap</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.gap-0</code></td><td>0</td></tr>
+                        <tr><td><code>.gap-xs</code></td><td>4px (--spacing-xs)</td></tr>
+                        <tr><td><code>.gap-sm</code></td><td>8px (--spacing-sm)</td></tr>
+                        <tr><td><code>.gap-md</code></td><td>16px (--spacing-md)</td></tr>
+                        <tr><td><code>.gap-lg</code></td><td>24px (--spacing-lg)</td></tr>
+                        <tr><td><code>.gap-xl</code></td><td>32px (--spacing-xl)</td></tr>
+                        <tr><td><code>.gap-2xl</code></td><td>48px (--spacing-2xl)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Width</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.w-full</code></td><td>100%</td></tr>
+                        <tr><td><code>.w-auto</code></td><td>auto</td></tr>
+                        <tr><td><code>.w-screen</code></td><td>100vw</td></tr>
+                        <tr><td><code>.w-1\/2</code></td><td>50%</td></tr>
+                        <tr><td><code>.w-1\/3</code></td><td>33.333%</td></tr>
+                        <tr><td><code>.w-1\/4</code></td><td>25%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Legacy Support -->
+        <section class="demo-section">
+            <h2>Legacy Support (System 2)</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Legacy Classes</div>
+                <div class="demo-block__description">For backward compatibility, the following legacy classes from System 2 are still supported via <code>_legacy.scss</code>.</div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Legacy Class</th>
+                            <th>Modern Equivalent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.flexContainer</code></td><td><code>.flex .flex-wrap .gap-md</code></td></tr>
+                        <tr><td><code>.flexItem</code></td><td>Direct children of flex container</td></tr>
+                        <tr><td><code>.c50</code></td><td><code>style="flex: 1 1 200px;"</code></td></tr>
+                        <tr><td><code>.c33</code></td><td><code>style="flex: 1 1 150px;"</code></td></tr>
+                        <tr><td><code>.c25</code></td><td><code>style="flex: 1 1 120px;"</code></td></tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-top: 2rem;">Legacy Example (Still Works)</h4>
+                <div class="demo-container">
+                    <div class="flexContainer">
+                        <div class="flexItem c50 demo-box">50% Column</div>
+                        <div class="flexItem c50 demo-box--brand demo-box">50% Column</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="demo-footer">
+        <p>Cardiff University v2 Theme - Flexbox & Layout Demo</p>
+        <ul class="demo-footer__links">
+            <li><a href="index.html" class="demo-footer__link">Home</a></li>
+            <li><a href="patterns.html" class="demo-footer__link">&larr; Patterns</a></li>
+            <li><a href="code-utilities.html" class="demo-footer__link">Code & Utilities &rarr;</a></li>
+        </ul>
+    </footer>
+    <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>

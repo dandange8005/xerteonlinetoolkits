@@ -54,7 +54,13 @@
 // =============================================================================
 
 // Reset styles for links and button elements
-a.button {
+// IMPORTANT: Override Bootstrap's a:hover styles that would change text to blue
+a.button,
+a.button:link,
+a.button:visited,
+a.button:hover,
+a.button:active,
+a.button:focus {
     text-decoration: none !important;
 }
 
@@ -158,13 +164,20 @@ a.button,
 // =============================================================================
 
 // Primary Button (brand color)
-.button-primary {
+.button-primary,
+a.button-primary,
+a.button-primary:link,
+a.button-primary:visited,
+a.button-primary:hover,
+a.button-primary:active,
+a.button-primary:focus {
     background-color: var(--btn-primary-bg);
-    color: var(--btn-primary-text);
+    color: var(--btn-primary-text) !important; // !important to override Bootstrap a:hover
+}
 
+.button-primary {
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-primary-hover-bg);
-        color: var(--btn-primary-text); // Ensure text color stays white on hover
     }
 
     &:active:not(:disabled):not(.disabled) {
@@ -174,18 +187,25 @@ a.button,
     &:disabled,
     &.disabled {
         background-color: var(--btn-primary-disabled-bg);
-        color: var(--btn-primary-disabled-text);
+        color: var(--btn-primary-disabled-text) !important;
     }
 }
 
 // Secondary Button (dark/black)
-.button-secondary {
+.button-secondary,
+a.button-secondary,
+a.button-secondary:link,
+a.button-secondary:visited,
+a.button-secondary:hover,
+a.button-secondary:active,
+a.button-secondary:focus {
     background-color: var(--btn-secondary-bg);
-    color: var(--btn-secondary-text);
+    color: var(--btn-secondary-text) !important;
+}
 
+.button-secondary {
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-secondary-hover-bg);
-        color: var(--btn-secondary-text); // Ensure text color stays on hover
     }
 
     &:active:not(:disabled):not(.disabled) {
@@ -195,18 +215,25 @@ a.button,
     &:disabled,
     &.disabled {
         background-color: var(--btn-secondary-disabled-bg);
-        color: var(--btn-secondary-disabled-text);
+        color: var(--btn-secondary-disabled-text) !important;
     }
 }
 
 // Success Button (green)
-.button-success {
+.button-success,
+a.button-success,
+a.button-success:link,
+a.button-success:visited,
+a.button-success:hover,
+a.button-success:active,
+a.button-success:focus {
     background-color: var(--btn-success-bg);
-    color: var(--btn-success-text);
+    color: var(--btn-success-text) !important;
+}
 
+.button-success {
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-success-hover-bg);
-        color: var(--btn-success-text); // Ensure text color stays on hover
     }
 
     &:active:not(:disabled):not(.disabled) {
@@ -216,18 +243,25 @@ a.button,
     &:disabled,
     &.disabled {
         background-color: var(--btn-success-disabled-bg);
-        color: var(--btn-success-disabled-text);
+        color: var(--btn-success-disabled-text) !important;
     }
 }
 
 // Reverse Button (light - for dark backgrounds)
-.button-reverse {
+.button-reverse,
+a.button-reverse,
+a.button-reverse:link,
+a.button-reverse:visited,
+a.button-reverse:hover,
+a.button-reverse:active,
+a.button-reverse:focus {
     background-color: var(--btn-reverse-bg);
-    color: var(--btn-reverse-text);
+    color: var(--btn-reverse-text) !important;
+}
 
+.button-reverse {
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-reverse-hover-bg);
-        color: var(--btn-reverse-text); // Ensure text color stays on hover
     }
 
     &:active:not(:disabled):not(.disabled) {
@@ -237,7 +271,7 @@ a.button,
     &:disabled,
     &.disabled {
         background-color: var(--btn-reverse-disabled-bg);
-        color: var(--btn-reverse-disabled-text);
+        color: var(--btn-reverse-disabled-text) !important;
     }
 }
 
@@ -246,11 +280,19 @@ a.button,
 // =============================================================================
 
 // Primary Outline
-.button-primary-outline {
+.button-primary-outline,
+a.button-primary-outline,
+a.button-primary-outline:link,
+a.button-primary-outline:visited,
+a.button-primary-outline:hover,
+a.button-primary-outline:active,
+a.button-primary-outline:focus {
     background-color: transparent;
-    color: var(--btn-primary-outline-text);
+    color: var(--btn-primary-outline-text) !important;
     box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-primary-outline-border);
+}
 
+.button-primary-outline {
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-primary-outline-hover-bg);
     }
@@ -266,11 +308,19 @@ a.button,
 }
 
 // Secondary Outline
-.button-secondary-outline {
+.button-secondary-outline,
+a.button-secondary-outline,
+a.button-secondary-outline:link,
+a.button-secondary-outline:visited,
+a.button-secondary-outline:hover,
+a.button-secondary-outline:active,
+a.button-secondary-outline:focus {
     background-color: transparent;
-    color: var(--btn-secondary-outline-text);
+    color: var(--btn-secondary-outline-text) !important;
     box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-secondary-outline-border);
+}
 
+.button-secondary-outline {
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-secondary-outline-hover-bg);
     }
@@ -286,11 +336,19 @@ a.button,
 }
 
 // Success Outline
-.button-success-outline {
+.button-success-outline,
+a.button-success-outline,
+a.button-success-outline:link,
+a.button-success-outline:visited,
+a.button-success-outline:hover,
+a.button-success-outline:active,
+a.button-success-outline:focus {
     background-color: transparent;
-    color: var(--btn-success-outline-text);
+    color: var(--btn-success-outline-text) !important;
     box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-success-outline-border);
+}
 
+.button-success-outline {
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-success-outline-hover-bg);
     }
@@ -306,11 +364,19 @@ a.button,
 }
 
 // Reverse Outline (for dark backgrounds)
-.button-reverse-outline {
+.button-reverse-outline,
+a.button-reverse-outline,
+a.button-reverse-outline:link,
+a.button-reverse-outline:visited,
+a.button-reverse-outline:hover,
+a.button-reverse-outline:active,
+a.button-reverse-outline:focus {
     background-color: transparent;
-    color: var(--btn-reverse-outline-text);
+    color: var(--btn-reverse-outline-text) !important;
     box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-reverse-outline-border);
+}
 
+.button-reverse-outline {
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-reverse-outline-hover-bg);
     }
@@ -329,23 +395,30 @@ a.button,
 // GHOST BUTTON
 // =============================================================================
 
-.button-ghost {
+.button-ghost,
+a.button-ghost,
+a.button-ghost:link,
+a.button-ghost:visited,
+a.button-ghost:hover,
+a.button-ghost:active,
+a.button-ghost:focus {
     background-color: transparent;
-    color: var(--btn-ghost-text);
+    color: var(--btn-ghost-text) !important;
     border: none;
+}
 
+.button-ghost {
     &:hover:not(:disabled):not(.disabled) {
         background-color: var(--btn-ghost-hover-bg);
-        color: var(--btn-ghost-hover-text);
     }
 
     &:active:not(:disabled):not(.disabled) {
-        color: var(--btn-ghost-active-text);
+        background-color: var(--btn-ghost-hover-bg);
     }
 
     &:disabled,
     &.disabled {
-        color: var(--btn-ghost-disabled-text);
+        color: var(--btn-ghost-disabled-text) !important;
     }
 }
 

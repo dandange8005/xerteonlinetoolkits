@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components - Cardiff University v2 Theme</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap-responsive.css">
+    <link rel="stylesheet" href="assets/bootstrap/custom.css">
+    <link rel="stylesheet" href="../cardiffuni-v2.css">
+    <link rel="stylesheet" href="assets/demo-styles.css">
+</head>
+
+<body>
+    <header>
+
+    </header>
+
+    <main>
+        <section class="demo-section">
+            <div class="demo-block">
+                <div class="flex flex-wrap gap-md">
+                    <!-- Column 1 -->
+                    <div class="w-full w-md-50 bg-white p-4 rounded">
+                        <h3>Left Column</h3>
+                        <p>This takes up 50% width on larger screens.</p>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div class="w-full w-md-50 bg-white p-4 rounded">
+                        <h3>Right Column</h3>
+                        <p>This takes up 50% width on larger screens.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <div class="demo-block">
+                <div class="flex flex-wrap gap-md">
+    <div class="w-full w-md-33 bg-light p-4 rounded">Card 1</div>
+    <div class="w-full w-md-33 bg-light p-4 rounded">Card 2</div>
+    <div class="w-full w-md-33 bg-light p-4 rounded">Card 3</div>
+</div>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <div class="demo-block">
+                <div class="flex flex-wrap gap-md">
+    <!-- Sidebar -->
+    <div class="w-full w-md-30 bg-light p-4 rounded">
+        <h3>Sidebar</h3>
+        <ul class="list-unstyled">
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="w-full w-md-70 bg-white shadow-sm p-4 rounded">
+        <h1>Main Content</h1>
+        <p>This area takes up the remaining 70% width.</p>
+    </div>
+</div>
+            </div>  
+        </section>
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>

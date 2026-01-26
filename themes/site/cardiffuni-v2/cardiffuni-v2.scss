@@ -23,15 +23,18 @@
  */
 
 /* Import modular SCSS components - @use must come before @import */
-@use "scss/_allvariables" as *;   // Design tokens and variables
-@use "scss/enhancements";          // Modern CSS enhancements (portable)
-@use "scss/base-elements";         // Cardiff University branded elements
-@use "scss/bootstrap-components";  // Bootstrap component overrides
-@use "scss/xerte-components";      // Xerte-specific components
-@use "scss/custom-components";     // Custom Cardiff University components
-@use "scss/utilities";             // Utility classes
-@use "scss/layouts";               // Layout components
-@use "scss/editorstyles";          // CKEditor custom styles
+@use "scss/_allvariables" as *; // Design tokens and variables
+@use "scss/enhancements"; // Modern CSS enhancements (portable)
+@use "scss/base-elements"; // Cardiff University branded elements
+@use "scss/bootstrap-components"; // Bootstrap component overrides
+@use "scss/xerte-components"; // Xerte-specific components
+@use "scss/custom-components"; // Custom Cardiff University components
+@use "scss/layouts"; // Layout components
+@use "scss/editorstyles"; // CKEditor custom styles
+
+/* Import CSS-only modules (these generate CSS, not just mixins/variables) */
+@use "scss/utilities"; // Utility classes
+@use "scss/legacy"; // Legacy System 2 support
 
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');

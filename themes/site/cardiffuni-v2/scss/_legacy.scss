@@ -1,0 +1,104 @@
+/**
+ * Legacy Utilities (System 2 Support)
+ * ===================================
+ * 
+ * Maintained for backward compatibility.
+ * Prefer using modern Flexbox/Grid utilities in new components.
+ */
+
+// Legacy Flexbox System
+.flexContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.flexItem {
+    width: 100%;
+    margin-bottom: var(--spacing-lg);
+
+    h3 {
+        margin-top: 0;
+
+        &.topMargin {
+            margin-top: var(--spacing-lg);
+        }
+    }
+
+    img {
+        width: 100%;
+        max-width: max-content;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+// Legacy column classes (responsive)
+@media (min-width: 806px) {
+    .flexItem {
+        margin-bottom: 0;
+    }
+
+    .c10 {
+        width: 10%;
+    }
+
+    .c20 {
+        width: 20%;
+    }
+
+    .c25 {
+        width: 25%;
+    }
+
+    .c30 {
+        width: 30%;
+    }
+
+    .c33 {
+        width: 33.33%;
+    }
+
+    .c40 {
+        width: 40%;
+    }
+
+    .c50 {
+        width: 50%;
+    }
+
+    .c60 {
+        width: 60%;
+    }
+
+    .c70 {
+        width: 70%;
+    }
+
+    .c80 {
+        width: 80%;
+    }
+}
+
+// Old image helpers (mapped to new utilities where possible)
+.image-screenshots,
+.screenshots {
+    border: 1px solid var(--color-border-default);
+    margin: 2rem auto;
+    clear: both;
+    border-radius: var(--radius-image);
+    box-shadow: var(--shadow-md);
+}
+
+// Old color naming
+.text-cu-red {
+    color: var(--color-brand-primary) !important;
+}
+
+.text-cu-white {
+    color: var(--color-white) !important;
+}
+
+.text-cu-black {
+    color: var(--color-brand-secondary) !important;
+}

@@ -51,6 +51,7 @@
                             <li role="none"><a href="code-utilities.html">Code & Utilities</a></li>
                             <li class="activePage" role="none" aria-current="page"><a href="colors.html">Colors</a></li>
                             <li role="none"><a href="patterns.html">Patterns</a></li>
+                            <li role="none"><a href="flexbox.html">Flexbox</a></li>
                         </ul>
                     </div>
                 </div>
@@ -310,22 +311,21 @@
             <div class="demo-block">
                 <div class="demo-block__title">Safe Color Combinations</div>
 
-                <div style="display: grid; gap: 1rem; margin-top: 1rem;">
-                    <div style="background: var(--cu-primary-red); color: white; padding: 1rem; border-radius: 4px;">
-                        <strong>White text on Primary Red</strong> - WCAG AA Compliant ✓
+                <div class="flex flex-col gap-md mt-4">
+                    <div class="bg-brand text-white p-4 rounded">
+                        <strong>White text on Primary Red</strong> - WCAG AA Compliant
                     </div>
 
-                    <div
-                        style="background: white; color: var(--cu-gray-90); padding: 1rem; border-radius: 4px; border: 1px solid var(--cu-gray-30);">
-                        <strong>Dark Gray text on White</strong> - WCAG AAA Compliant ✓
+                    <div class="bg-white text-primary p-4 rounded" style="border: 1px solid var(--color-border-default);">
+                        <strong>Dark Gray text on White</strong> - WCAG AAA Compliant
                     </div>
 
-                    <div style="background: var(--cu-midnight-blue); color: white; padding: 1rem; border-radius: 4px;">
-                        <strong>White text on Midnight Blue</strong> - WCAG AA Compliant ✓
+                    <div class="bg-dark text-white p-4 rounded">
+                        <strong>White text on Midnight Blue</strong> - WCAG AA Compliant
                     </div>
 
-                    <div style="background: var(--cu-forest-green); color: white; padding: 1rem; border-radius: 4px;">
-                        <strong>White text on Forest Green</strong> - WCAG AA Compliant ✓
+                    <div class="p-4 rounded text-white" style="background: var(--cu-forest-green);">
+                        <strong>White text on Forest Green</strong> - WCAG AA Compliant
                     </div>
                 </div>
             </div>

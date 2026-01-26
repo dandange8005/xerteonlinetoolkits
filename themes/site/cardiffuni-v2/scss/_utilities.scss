@@ -1,631 +1,454 @@
 /**
  * Utility Classes
- *
- * Reusable utility classes for common styling patterns
- * Uses Cardiff University design tokens
+ * =============================================================================
+ * Reusable utility classes generated from design tokens.
  */
 
+// @use "tokens" as *;
 
 // =============================================================================
-// IMAGE UTILITIES
+// ACCESSIBILITY
 // =============================================================================
 
-// Inline image
-.image-inline {
-    display: inline-block;
-}
-
-// Full width image
-.image-full {
-    width: 100%;
-    height: auto;
-}
-
-// Rounded corners
-.image-round {
-    border-radius: var(--radius-image);
-}
-
-// Screenshot styling
-.image-screenshots,
-.screenshots {
-    border: 1px solid var(--color-border-default);
-    margin: 2rem auto;
-    clear: both;
-    border-radius: var(--radius-image);
-    box-shadow: var(--shadow-md);
-}
-
-
-// =============================================================================
-// SPACING UTILITIES
-// =============================================================================
-
-// Margin utilities
-.mt-0 {
-    margin-top: 0;
-}
-
-.mt-1 {
-    margin-top: var(--spacing-xs);
-}
-
-.mt-2 {
-    margin-top: var(--spacing-sm);
-}
-
-.mt-3 {
-    margin-top: var(--spacing-md);
-}
-
-.mt-4 {
-    margin-top: var(--spacing-lg);
-}
-
-.mt-5 {
-    margin-top: var(--spacing-xl);
-}
-
-.mb-0 {
-    margin-bottom: 0;
-}
-
-.mb-1 {
-    margin-bottom: var(--spacing-xs);
-}
-
-.mb-2 {
-    margin-bottom: var(--spacing-sm);
-}
-
-.mb-3 {
-    margin-bottom: var(--spacing-md);
-}
-
-.mb-4 {
-    margin-bottom: var(--spacing-lg);
-}
-
-.mb-5 {
-    margin-bottom: var(--spacing-xl);
-}
-
-// Padding utilities
-.p-0 {
+// Screen reader only
+.sr-only,
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
     padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
-.p-1 {
-    padding: var(--spacing-xs);
+// Focus visible wrapper (for ensuring focus rings show when needed)
+.focus-visible:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
 }
 
-.p-2 {
-    padding: var(--spacing-sm);
-}
+// Skip link helper
+.skip-link {
+    position: absolute;
+    top: -9999px;
+    left: 1rem;
+    z-index: var(--z-index-toast);
+    padding: var(--spacing-4);
+    background: var(--color-bg-brand);
+    color: var(--color-text-on-brand);
+    text-decoration: none;
+    font-weight: var(--font-weight-bold);
 
-.p-3 {
-    padding: var(--spacing-md);
-}
-
-.p-4 {
-    padding: var(--spacing-lg);
-}
-
-.p-5 {
-    padding: var(--spacing-xl);
+    &:focus {
+        top: 1rem;
+        outline: var(--focus-ring);
+    }
 }
 
 // =============================================================================
-// FLEXBOX UTILITIES - Enhanced System
+// LAYOUT & DISPLAY
 // =============================================================================
 
-// Breakpoint for responsive utilities (matches System 2's breakpoint)
-$breakpoint-md: 806px;
+// Display
+.block {
+    display: block !important;
+}
 
-// -----------------------------------------------------------------------------
-// Flex Container
-// -----------------------------------------------------------------------------
+.inline-block {
+    display: inline-block !important;
+}
+
+.inline {
+    display: inline !important;
+}
 
 .flex {
-    display: flex;
-    gap: var(--spacing-md); // Default gap using design token
+    display: flex !important;
 }
 
-// Direction utilities
+.inline-flex {
+    display: inline-flex !important;
+}
+
+.grid {
+    display: grid !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+// Positioning
+.relative {
+    position: relative !important;
+}
+
+.absolute {
+    position: absolute !important;
+}
+
+.fixed {
+    position: fixed !important;
+}
+
+.sticky {
+    position: sticky !important;
+}
+
+// Overflow
+.overflow-auto {
+    overflow: auto !important;
+}
+
+.overflow-hidden {
+    overflow: hidden !important;
+}
+
+.overflow-visible {
+    overflow: visible !important;
+}
+
+.overflow-scroll {
+    overflow: scroll !important;
+}
+
+// Z-Index
+.z-0 {
+    z-index: 0 !important;
+}
+
+.z-10 {
+    z-index: 10 !important;
+}
+
+.z-50 {
+    z-index: 50 !important;
+}
+
+.z-100 {
+    z-index: 100 !important;
+}
+
+// =============================================================================
+// FLEXBOX
+// =============================================================================
+
+// Direction
 .flex-row {
-    flex-direction: row;
+    flex-direction: row !important;
 }
 
 .flex-row-reverse {
-    flex-direction: row-reverse;
+    flex-direction: row-reverse !important;
 }
 
 .flex-col {
-    flex-direction: column;
+    flex-direction: column !important;
 }
 
 .flex-col-reverse {
-    flex-direction: column-reverse;
+    flex-direction: column-reverse !important;
 }
 
-// Wrap utilities
+// Wrap
 .flex-wrap {
-    flex-wrap: wrap;
-}
-
-.flex-wrap-reverse {
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap !important;
 }
 
 .flex-nowrap {
-    flex-wrap: nowrap;
+    flex-wrap: nowrap !important;
 }
 
-// Justify content
-.justify-start {
-    justify-content: flex-start;
-}
-
-.justify-end {
-    justify-content: flex-end;
-}
-
-.justify-center {
-    justify-content: center;
-}
-
-.justify-between {
-    justify-content: space-between;
-}
-
-.justify-around {
-    justify-content: space-around;
-}
-
-.justify-evenly {
-    justify-content: space-evenly;
-}
-
-// Align items
+// Alignment
 .items-start {
-    align-items: flex-start;
+    align-items: flex-start !important;
 }
 
 .items-end {
-    align-items: flex-end;
+    align-items: flex-end !important;
 }
 
 .items-center {
-    align-items: center;
+    align-items: center !important;
 }
 
 .items-baseline {
-    align-items: baseline;
+    align-items: baseline !important;
 }
 
 .items-stretch {
-    align-items: stretch;
+    align-items: stretch !important;
 }
 
-// Align content
-.content-start {
-    align-content: flex-start;
+.justify-start {
+    justify-content: flex-start !important;
 }
 
-.content-end {
-    align-content: flex-end;
+.justify-end {
+    justify-content: flex-end !important;
 }
 
-.content-center {
-    align-content: center;
+.justify-center {
+    justify-content: center !important;
 }
 
-.content-between {
-    align-content: space-between;
+.justify-between {
+    justify-content: space-between !important;
 }
 
-.content-around {
-    align-content: space-around;
+.justify-around {
+    justify-content: space-around !important;
 }
 
-.content-stretch {
-    align-content: stretch;
+// Grow/Shrink
+.flex-1 {
+    flex: 1 1 0% !important;
+}
+
+.flex-auto {
+    flex: 1 1 auto !important;
+}
+
+.flex-none {
+    flex: none !important;
+}
+
+.grow {
+    flex-grow: 1 !important;
+}
+
+.grow-0 {
+    flex-grow: 0 !important;
+}
+
+// Flex Basis utilities
+// These create responsive columns: items have a minimum width but grow to fill space
+// Usage: <div class="flex flex-wrap gap-md"><div class="flex-200">Sidebar</div><div class="flex-400">Main</div></div>
+.flex-100 {
+    flex: 1 1 100px !important;
+}
+
+.flex-150 {
+    flex: 1 1 150px !important;
+}
+
+.flex-200 {
+    flex: 1 1 200px !important;
+}
+
+.flex-250 {
+    flex: 1 1 250px !important;
+}
+
+.flex-300 {
+    flex: 1 1 300px !important;
+}
+
+.flex-350 {
+    flex: 1 1 350px !important;
+}
+
+.flex-400 {
+    flex: 1 1 400px !important;
+}
+
+.flex-500 {
+    flex: 1 1 500px !important;
+}
+
+.flex-600 {
+    flex: 1 1 600px !important;
 }
 
 // Gap utilities
 .gap-0 {
-    gap: 0;
+    gap: 0 !important;
 }
 
 .gap-xs {
-    gap: var(--spacing-xs);
+    gap: var(--spacing-xs) !important;
 }
 
 .gap-sm {
-    gap: var(--spacing-sm);
+    gap: var(--spacing-sm) !important;
 }
 
 .gap-md {
-    gap: var(--spacing-md);
+    gap: var(--spacing-md) !important;
 }
 
 .gap-lg {
-    gap: var(--spacing-lg);
+    gap: var(--spacing-lg) !important;
 }
 
 .gap-xl {
-    gap: var(--spacing-xl);
+    gap: var(--spacing-xl) !important;
 }
 
 .gap-2xl {
-    gap: var(--spacing-2xl);
+    gap: var(--spacing-2xl) !important;
 }
 
-// -----------------------------------------------------------------------------
-// Flex Items
-// -----------------------------------------------------------------------------
+// =============================================================================
+// SPACING (Margins & Padding)
+// =============================================================================
 
-// Flex grow/shrink behavior
-.flex-1 {
-    flex: 1 1 0%;
+// Generates: m-0, p-4, mt-2, px-6, etc.
+$spacing-map: (
+    0: 0,
+    1: var(--spacing-1),
+    2: var(--spacing-2),
+    3: var(--spacing-3),
+    4: var(--spacing-4),
+    5: var(--spacing-5),
+    6: var(--spacing-6),
+    8: var(--spacing-8),
+    10: var(--spacing-10),
+    12: var(--spacing-12),
+    16: var(--spacing-16)
+);
+
+@each $name, $value in $spacing-map {
+
+    // Margin
+    .m-#{$name} {
+        margin: $value !important;
+    }
+
+    .mt-#{$name} {
+        margin-top: $value !important;
+    }
+
+    .mr-#{$name} {
+        margin-right: $value !important;
+    }
+
+    .mb-#{$name} {
+        margin-bottom: $value !important;
+    }
+
+    .ml-#{$name} {
+        margin-left: $value !important;
+    }
+
+    .mx-#{$name} {
+        margin-left: $value !important;
+        margin-right: $value !important;
+    }
+
+    .my-#{$name} {
+        margin-top: $value !important;
+        margin-bottom: $value !important;
+    }
+
+    // Padding
+    .p-#{$name} {
+        padding: $value !important;
+    }
+
+    .pt-#{$name} {
+        padding-top: $value !important;
+    }
+
+    .pr-#{$name} {
+        padding-right: $value !important;
+    }
+
+    .pb-#{$name} {
+        padding-bottom: $value !important;
+    }
+
+    .pl-#{$name} {
+        padding-left: $value !important;
+    }
+
+    .px-#{$name} {
+        padding-left: $value !important;
+        padding-right: $value !important;
+    }
+
+    .py-#{$name} {
+        padding-top: $value !important;
+        padding-bottom: $value !important;
+    }
 }
 
-// Grow & shrink, ignore initial size
-.flex-auto {
-    flex: 1 1 auto;
+.m-auto {
+    margin: auto !important;
 }
 
-// Grow & shrink, respect initial size
-.flex-initial {
-    flex: 0 1 auto;
+.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
-// Shrink only, respect initial size
-.flex-none {
-    flex: none;
-}
+// =============================================================================
+// SIZING
+// =============================================================================
 
-// No grow/shrink
-
-// Flex basis utilities (from System 1)
-.flex-100 {
-    flex: 1 1 100px;
-}
-
-.flex-200 {
-    flex: 1 1 200px;
-}
-
-.flex-300 {
-    flex: 1 1 300px;
-}
-
-.flex-400 {
-    flex: 1 1 400px;
-}
-
-.flex-500 {
-    flex: 1 1 500px;
-}
-
-.flex-600 {
-    flex: 1 1 600px;
-}
-
-// Align self
-.self-auto {
-    align-self: auto;
-}
-
-.self-start {
-    align-self: flex-start;
-}
-
-.self-end {
-    align-self: flex-end;
-}
-
-.self-center {
-    align-self: center;
-}
-
-.self-stretch {
-    align-self: stretch;
-}
-
-.self-baseline {
-    align-self: baseline;
-}
-
-// -----------------------------------------------------------------------------
-// Width Utilities (Mobile-first approach)
-// Note: Uses calc() to account for gap in flex containers
-// For 2 columns: calc((100% - gap) / 2)
-// For 3 columns: calc((100% - 2*gap) / 3)
-// -----------------------------------------------------------------------------
-
-// Base: All items full width on mobile
+// Widths
 .w-full {
-    width: 100%;
+    width: 100% !important;
+}
+
+.w-screen {
+    width: 100vw !important;
 }
 
 .w-auto {
-    width: auto;
+    width: auto !important;
 }
 
-// Fixed percentage widths (apply at all breakpoints)
-// Standard widths - use when NOT in flex container with gap
-.w-10 {
-    width: 10%;
+.w-1\/2 {
+    width: 50% !important;
 }
 
-.w-20 {
-    width: 20%;
+.w-1\/3 {
+    width: 33.333333% !important;
 }
 
-.w-25 {
-    width: 25%;
+.w-1\/4 {
+    width: 25% !important;
 }
 
-.w-30 {
-    width: 30%;
+// Heights
+.h-full {
+    height: 100% !important;
 }
 
-.w-33 {
-    width: 33.333%;
+.h-screen {
+    height: 100vh !important;
 }
 
-.w-40 {
-    width: 40%;
+.h-auto {
+    height: auto !important;
 }
 
-.w-50 {
-    width: 50%;
+// Max Widths (Containers)
+.max-w-sm {
+    max-width: 640px !important;
 }
 
-.w-60 {
-    width: 60%;
+.max-w-md {
+    max-width: 768px !important;
 }
 
-.w-70 {
-    width: 70%;
+.max-w-lg {
+    max-width: 1024px !important;
 }
 
-.w-80 {
-    width: 80%;
-}
-
-// Responsive width utilities (md = 806px and up)
-@media (min-width: $breakpoint-md) {
-    .w-md-10 {
-        width: 10%;
-    }
-
-    .w-md-20 {
-        width: 20%;
-    }
-
-    .w-md-25 {
-        width: 25%;
-    }
-
-    .w-md-30 {
-        width: 30%;
-    }
-
-    .w-md-33 {
-        width: 33.333%;
-    }
-
-    .w-md-40 {
-        width: 40%;
-    }
-
-    .w-md-50 {
-        width: 50%;
-    }
-
-    .w-md-60 {
-        width: 60%;
-    }
-
-    .w-md-70 {
-        width: 70%;
-    }
-
-    .w-md-80 {
-        width: 80%;
-    }
-
-    .w-md-full {
-        width: 100%;
-    }
-
-    .w-md-auto {
-        width: auto;
-    }
-}
-
-// -----------------------------------------------------------------------------
-// Flex-compatible Width Utilities (for use with gap)
-// These account for gap spacing in flex containers
-// -----------------------------------------------------------------------------
-
-// Two column layouts (50/50)
-.flex>.w-md-50,
-.flex.flex-wrap>.w-md-50 {
-    @media (min-width: $breakpoint-md) {
-        flex: 1 1 calc(50% - (var(--spacing-md) / 2));
-        max-width: calc(50% - (var(--spacing-md) / 2));
-    }
-}
-
-// Three column layouts (33.33/33.33/33.33)
-.flex>.w-md-33,
-.flex.flex-wrap>.w-md-33 {
-    @media (min-width: $breakpoint-md) {
-        flex: 1 1 calc(33.333% - (var(--spacing-md) * 2 / 3));
-        max-width: calc(33.333% - (var(--spacing-md) * 2 / 3));
-    }
-}
-
-// Four column layouts (25/25/25/25)
-.flex>.w-md-25,
-.flex.flex-wrap>.w-md-25 {
-    @media (min-width: $breakpoint-md) {
-        flex: 1 1 calc(25% - (var(--spacing-md) * 3 / 4));
-        max-width: calc(25% - (var(--spacing-md) * 3 / 4));
-    }
-}
-
-// Other common splits (default gap or gap-md)
-.flex>.w-md-10,
-.flex.flex-wrap>.w-md-10,
-.flex.gap-md>.w-md-10 {
-    @media (min-width: $breakpoint-md) {
-        flex: 1 1 calc(10% - (var(--spacing-md) / 2));
-        max-width: calc(10% - (var(--spacing-md) / 2));
-    }
-}
-
-.flex>.w-md-20,
-.flex.flex-wrap>.w-md-20,
-.flex.gap-md>.w-md-20 {
-    @media (min-width: $breakpoint-md) {
-        flex: 1 1 calc(20% - (var(--spacing-md) / 2));
-        max-width: calc(20% - (var(--spacing-md) / 2));
-    }
-}
-
-.flex>.w-md-30,
-.flex.flex-wrap>.w-md-30,
-.flex.gap-md>.w-md-30 {
-    @media (min-width: $breakpoint-md) {
-        flex: 1 1 calc(30% - (var(--spacing-md) / 2));
-        max-width: calc(30% - (var(--spacing-md) / 2));
-    }
-}
-
-.flex>.w-md-40,
-.flex.flex-wrap>.w-md-40,
-.flex.gap-md>.w-md-40 {
-    @media (min-width: $breakpoint-md) {
-        flex: 1 1 calc(40% - (var(--spacing-md) / 2));
-        max-width: calc(40% - (var(--spacing-md) / 2));
-    }
-}
-
-.flex>.w-md-60,
-.flex.flex-wrap>.w-md-60,
-.flex.gap-md>.w-md-60 {
-    @media (min-width: $breakpoint-md) {
-        flex: 1 1 calc(60% - (var(--spacing-md) / 2));
-        max-width: calc(60% - (var(--spacing-md) / 2));
-    }
-}
-
-.flex>.w-md-70,
-.flex.flex-wrap>.w-md-70,
-.flex.gap-md>.w-md-70 {
-    @media (min-width: $breakpoint-md) {
-        flex: 1 1 calc(70% - (var(--spacing-md) / 2));
-        max-width: calc(70% - (var(--spacing-md) / 2));
-    }
-}
-
-.flex>.w-md-80,
-.flex.flex-wrap>.w-md-80,
-.flex.gap-md>.w-md-80 {
-    @media (min-width: $breakpoint-md) {
-        flex: 1 1 calc(80% - (var(--spacing-md) / 2));
-        max-width: calc(80% - (var(--spacing-md) / 2));
-    }
-}
-
-// Note: Percentage-based widths are calculated for gap-md (16px) only.
-// For other gap sizes, use flex-basis utilities (.flex-300, .flex-400, etc.) instead.
-
-// -----------------------------------------------------------------------------
-// Legacy System 2 Support (for backward compatibility)
-// -----------------------------------------------------------------------------
-
-.flexContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-}
-
-.flexItem {
-    width: 100%;
-    margin-bottom: var(--spacing-lg);
-
-    h3 {
-        margin-top: 0;
-
-        &.topMargin {
-            margin-top: var(--spacing-lg);
-        }
-    }
-
-    img {
-        width: 100%;
-        max-width: max-content;
-        display: block;
-        margin: 0 auto;
-    }
-}
-
-// Legacy column classes (responsive)
-@media (min-width: $breakpoint-md) {
-    .flexItem {
-        margin-bottom: 0;
-    }
-
-    .c10 {
-        width: 10%;
-    }
-
-    .c20 {
-        width: 20%;
-    }
-
-    .c25 {
-        width: 25%;
-    }
-
-    .c30 {
-        width: 30%;
-    }
-
-    .c33 {
-        width: 33.33%;
-    }
-
-    .c40 {
-        width: 40%;
-    }
-
-    .c50 {
-        width: 50%;
-    }
-
-    .c60 {
-        width: 60%;
-    }
-
-    .c70 {
-        width: 70%;
-    }
-
-    .c80 {
-        width: 80%;
-    }
+.max-w-xl {
+    max-width: 1280px !important;
 }
 
 // =============================================================================
-// FONT SIZE UTILITIES
+// TYPOGRAPHY
 // =============================================================================
 
+// Font Size
 .text-xs {
     font-size: var(--font-size-xs) !important;
 }
@@ -636,10 +459,6 @@ $breakpoint-md: 806px;
 
 .text-base {
     font-size: var(--font-size-base) !important;
-}
-
-.text-md {
-    font-size: var(--font-size-md) !important;
 }
 
 .text-lg {
@@ -662,15 +481,12 @@ $breakpoint-md: 806px;
     font-size: var(--font-size-4xl) !important;
 }
 
-// =============================================================================
-// FONT WEIGHT UTILITIES
-// =============================================================================
-
+// Font Weight
 .font-light {
     font-weight: var(--font-weight-light) !important;
 }
 
-.font-regular {
+.font-normal {
     font-weight: var(--font-weight-regular) !important;
 }
 
@@ -678,30 +494,15 @@ $breakpoint-md: 806px;
     font-weight: var(--font-weight-medium) !important;
 }
 
+.font-semibold {
+    font-weight: var(--font-weight-semibold) !important;
+}
+
 .font-bold {
     font-weight: var(--font-weight-bold) !important;
 }
 
-// =============================================================================
-// LINE HEIGHT UTILITIES
-// =============================================================================
-
-.leading-tight {
-    line-height: var(--line-height-tight) !important;
-}
-
-.leading-normal {
-    line-height: var(--line-height-normal) !important;
-}
-
-.leading-loose {
-    line-height: var(--line-height-loose) !important;
-}
-
-// =============================================================================
-// TEXT ALIGNMENT UTILITIES
-// =============================================================================
-
+// Alignment
 .text-left {
     text-align: left !important;
 }
@@ -718,335 +519,138 @@ $breakpoint-md: 806px;
     text-align: justify !important;
 }
 
+// Transform
+.uppercase {
+    text-transform: uppercase !important;
+}
+
+.lowercase {
+    text-transform: lowercase !important;
+}
+
+.capitalize {
+    text-transform: capitalize !important;
+}
+
 // =============================================================================
-// TEXT COLOR UTILITIES
+// COLORS
 // =============================================================================
 
-// Base text colors
+// Text Colors
 .text-primary {
     color: var(--color-text-primary) !important;
 }
 
-.text-inverse {
-    color: var(--color-text-inverse) !important;
+.text-secondary {
+    color: var(--color-text-secondary) !important;
 }
 
-.text-hint {
-    color: var(--color-text-hint) !important;
-}
-
-.text-alert {
-    color: var(--color-text-alert) !important;
-}
-
-.text-on-light {
-    color: var(--color-text-on-light) !important;
-}
-
-.text-on-dark {
-    color: var(--color-text-on-dark) !important;
-}
-
-.text-on-brand {
-    color: var(--color-text-on-brand) !important;
-}
-
-.text-subtle {
-    color: var(--color-text-subtle) !important;
-}
-
-.text-muted {
-    color: var(--color-text-muted) !important;
-}
-
-// Cardiff University brand colors
-.text-cu-red {
-    color: var(--cu-primary-red) !important;
-}
-
-.text-cu-white {
-    color: var(--cu-white) !important;
-}
-
-.text-cu-black {
-    color: var(--cu-black) !important;
-}
-
-// Brand colors
-.text-brand-primary {
+.text-brand {
     color: var(--color-brand-primary) !important;
 }
 
-.text-brand-secondary {
-    color: var(--color-brand-secondary) !important;
+.text-white {
+    color: var(--color-white) !important;
 }
 
-// Accent colors
-.text-accent-green {
-    color: var(--color-accent-green) !important;
+.text-success {
+    color: var(--color-status-success) !important;
 }
 
-.text-accent-blue {
-    color: var(--color-accent-blue) !important;
+.text-error {
+    color: var(--color-status-error) !important;
 }
 
-.text-accent-orange {
-    color: var(--color-accent-orange) !important;
+.text-warning {
+    color: var(--color-status-warning) !important;
 }
 
-// Cardiff University extended palette
-.text-cu-forest-green {
-    color: var(--cu-forest-green) !important;
+// Background Colors
+.bg-white {
+    background-color: var(--color-white) !important;
 }
 
-.text-cu-cadet {
-    color: var(--cu-cadet) !important;
-}
-
-.text-cu-stone {
-    color: var(--cu-stone) !important;
-}
-
-.text-cu-light-blue {
-    color: var(--cu-light-blue) !important;
-}
-
-.text-cu-royal-blue {
-    color: var(--cu-royal-blue) !important;
-}
-
-.text-cu-midnight-blue {
-    color: var(--cu-midnight-blue) !important;
-}
-
-.text-cu-midnight-purple {
-    color: var(--cu-midnight-purple) !important;
-}
-
-.text-cu-orange {
-    color: var(--cu-orange) !important;
-}
-
-.text-cu-yellow {
-    color: var(--cu-yellow) !important;
-}
-
-.text-cu-yellow-green {
-    color: var(--cu-yellow-green) !important;
-}
-
-.text-cu-indigo {
-    color: var(--cu-indigo) !important;
-}
-
-.text-cu-dark-violet {
-    color: var(--cu-dark-violet) !important;
-}
-
-// Grayscale
-.text-gray-10 {
-    color: var(--cu-gray-10) !important;
-}
-
-.text-gray-20 {
-    color: var(--cu-gray-20) !important;
-}
-
-.text-gray-30 {
-    color: var(--cu-gray-30) !important;
-}
-
-.text-gray-40 {
-    color: var(--cu-gray-40) !important;
-}
-
-.text-gray-50 {
-    color: var(--cu-gray-50) !important;
-}
-
-.text-gray-60 {
-    color: var(--cu-gray-60) !important;
-}
-
-.text-gray-70 {
-    color: var(--cu-gray-70) !important;
-}
-
-.text-gray-80 {
-    color: var(--cu-gray-80) !important;
-}
-
-.text-gray-90 {
-    color: var(--cu-gray-90) !important;
-}
-
-// Link colors
-.text-link {
-    color: var(--color-link-default) !important;
-}
-
-.text-link-hover {
-    color: var(--color-link-hover) !important;
-}
-
-.text-link-visited {
-    color: var(--color-link-visited) !important;
-}
-
-// =============================================================================
-// BACKGROUND COLOR UTILITIES
-// =============================================================================
-
-// Base backgrounds
-.bg-body {
-    background-color: var(--color-bg-body) !important;
-}
-
-.bg-page {
-    background-color: var(--color-bg-page) !important;
-}
-
-.bg-panel {
-    background-color: var(--color-bg-panel) !important;
-}
-
-.bg-subtle {
+.bg-light {
     background-color: var(--color-bg-subtle) !important;
 }
 
-.bg-muted {
-    background-color: var(--color-bg-muted) !important;
-}
-
-.bg-elevated {
-    background-color: var(--color-bg-elevated) !important;
-}
-
-// Cardiff University brand colors
-.bg-cu-red {
-    background-color: var(--cu-primary-red) !important;
-}
-
-.bg-cu-white {
-    background-color: var(--cu-white) !important;
-}
-
-.bg-cu-black {
-    background-color: var(--cu-black) !important;
-}
-
-// Brand colors
-.bg-primary {
+.bg-brand {
     background-color: var(--color-brand-primary) !important;
 }
 
-.bg-secondary {
+.bg-dark {
     background-color: var(--color-brand-secondary) !important;
 }
 
-// Accent colors
-.bg-cu-green {
-    background-color: var(--color-accent-green) !important;
+// =============================================================================
+// BORDERS & EFFECTS
+// =============================================================================
+
+// Border Radius
+.rounded-none {
+    border-radius: 0 !important;
 }
 
-
-.bg-cu-blue {
-    background-color: var(--color-accent-blue) !important;
+.rounded-sm {
+    border-radius: var(--radius-sm) !important;
 }
 
-
-.bg-cu-orange {
-    background-color: var(--color-accent-orange) !important;
+.rounded {
+    border-radius: var(--radius-md) !important;
 }
 
-
-// Cardiff University extended palette
-.bg-cu-forest-green {
-    background-color: var(--cu-forest-green) !important;
+.rounded-md {
+    border-radius: var(--radius-md) !important;
 }
 
-.bg-cu-cadet {
-    background-color: var(--cu-cadet) !important;
+.rounded-lg {
+    border-radius: var(--radius-lg) !important;
 }
 
-.bg-cu-stone {
-    background-color: var(--cu-stone) !important;
+.rounded-full {
+    border-radius: 9999px !important;
 }
 
-.bg-cu-light-blue {
-    background-color: var(--cu-light-blue) !important;
+// Shadows
+.shadow-none {
+    box-shadow: none !important;
 }
 
-.bg-cu-royal-blue {
-    background-color: var(--cu-royal-blue) !important;
+.shadow-sm {
+    box-shadow: var(--shadow-sm) !important;
 }
 
-.bg-cu-midnight-blue {
-    background-color: var(--cu-midnight-blue) !important;
+.shadow {
+    box-shadow: var(--shadow-md) !important;
 }
 
-.bg-cu-midnight-purple {
-    background-color: var(--cu-midnight-purple) !important;
+.shadow-md {
+    box-shadow: var(--shadow-md) !important;
 }
 
-.bg-cu-orange {
-    background-color: var(--cu-orange) !important;
+.shadow-lg {
+    box-shadow: var(--shadow-lg) !important;
 }
 
-.bg-cu-yellow {
-    background-color: var(--cu-yellow) !important;
+// =============================================================================
+// INTERACTIVITY
+// =============================================================================
+
+.cursor-pointer {
+    cursor: pointer !important;
 }
 
-.bg-cu-yellow-green {
-    background-color: var(--cu-yellow-green) !important;
+.cursor-not-allowed {
+    cursor: not-allowed !important;
 }
 
-.bg-cu-indigo {
-    background-color: var(--cu-indigo) !important;
+.pointer-events-none {
+    pointer-events: none !important;
 }
 
-.bg-cu-dark-violet {
-    background-color: var(--cu-dark-violet) !important;
+.pointer-events-auto {
+    pointer-events: auto !important;
 }
 
-// Grayscale
-.bg-gray-10 {
-    background-color: var(--cu-gray-10) !important;
-}
-
-.bg-gray-20 {
-    background-color: var(--cu-gray-20) !important;
-}
-
-.bg-gray-30 {
-    background-color: var(--cu-gray-30) !important;
-}
-
-.bg-gray-40 {
-    background-color: var(--cu-gray-40) !important;
-}
-
-.bg-gray-50 {
-    background-color: var(--cu-gray-50) !important;
-}
-
-.bg-gray-60 {
-    background-color: var(--cu-gray-60) !important;
-}
-
-.bg-gray-70 {
-    background-color: var(--cu-gray-70) !important;
-}
-
-.bg-gray-80 {
-    background-color: var(--cu-gray-80) !important;
-}
-
-.bg-gray-90 {
-    background-color: var(--cu-gray-90) !important;
-}
-
-// Transparent
-.bg-transparent {
-    background-color: transparent !important;
-}
+// =============================================================================
+// End of utilities
