@@ -7,12 +7,12 @@
     }
   ],
   "liveSassCompile.settings.includeItems": [
-    "themes/site/cardiffuni-v2/**/*.scss"
+    "/themes/site/cardiffuni-v2/cardiffuni-v2.scss"
   ],
   "liveSassCompile.settings.generateMap": true,
   "liveSassCompile.settings.autoprefix": [
-    "> 1%",
-    "last 2 versions"
+    "defaults",
+    "not IE > 0"
   ],
   "liveSassCompile.settings.showOutputWindowOn": "Warning",
   "liveServer.settings.port": 5501

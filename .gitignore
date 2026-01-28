@@ -31,3 +31,8 @@ lrsdb_config.php
 /openai_config.php
 /vendor_config.php
 .DS_Store
+
+# Temp ignore folder
+
+/themes/Nottingham/lta/
+

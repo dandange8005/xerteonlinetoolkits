@@ -102,6 +102,11 @@
     --color-status-error: var(--color-brand-primary);
     --color-status-info: var(--color-accent-blue);
 
+    // Navigation
+    // Decoupled from brand-secondary for flexibility
+    --color-nav-accent: var(--color-brand-secondary);
+    --color-nav-accent-dark: var(--color-brand-secondary-dark);
+
     // =========================================================================
     // BUTTONS
     // Centralized button tokens - reference these in _buttons.scss
