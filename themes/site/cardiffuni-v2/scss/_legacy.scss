@@ -90,7 +90,7 @@
     box-shadow: var(--shadow-md);
 }
 
-// Old color naming
+// Old color naming (legacy support)
 .text-cu-red {
     color: var(--color-brand-primary) !important;
 }

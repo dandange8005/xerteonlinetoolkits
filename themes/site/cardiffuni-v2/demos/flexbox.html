@@ -23,28 +23,34 @@
             align-items: center;
             justify-content: center;
         }
+
         .demo-box--brand {
             background: var(--color-brand-primary);
             color: white;
             border: none;
         }
+
         .demo-box--dark {
             background: var(--color-brand-secondary);
             color: white;
             border: none;
         }
+
         .demo-box--tall {
             min-height: 120px;
         }
+
         .demo-box--short {
             min-height: 40px;
         }
+
         .demo-container {
             background: #f0f0f0;
             padding: var(--spacing-4);
             border-radius: var(--radius-md);
             margin-bottom: var(--spacing-4);
         }
+
         .code-snippet {
             background: var(--color-brand-secondary);
             color: #f8f8f2;
@@ -97,7 +103,8 @@
                             <li role="none"><a href="code-utilities.html">Code & Utilities</a></li>
                             <li role="none"><a href="colors.html">Colors</a></li>
                             <li role="none"><a href="patterns.html">Patterns</a></li>
-                            <li class="activePage" role="none" aria-current="page"><a href="flexbox.html">Flexbox</a></li>
+                            <li class="activePage" role="none" aria-current="page"><a href="flexbox.html">Flexbox</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -111,8 +118,10 @@
             <h2>Introduction</h2>
             <div class="demo-block">
                 <div class="demo-block__description">
-                    <p>The Cardiff University v2 theme includes a comprehensive flexbox utility system for creating responsive layouts.
-                    These utilities follow a mobile-first approach: items stack vertically on small screens and arrange horizontally on larger screens.</p>
+                    <p>The Cardiff University v2 theme includes a comprehensive flexbox utility system for creating
+                        responsive layouts.
+                        These utilities follow a mobile-first approach: items stack vertically on small screens and
+                        arrange horizontally on larger screens.</p>
                     <p><strong>Key classes:</strong></p>
                     <ul>
                         <li><code>.flex</code> - Creates a flex container</li>
@@ -141,11 +150,11 @@
                 </div>
 
                 <div class="code-snippet">
-&lt;div class="flex gap-md"&gt;
-    &lt;div&gt;Item 1&lt;/div&gt;
-    &lt;div&gt;Item 2&lt;/div&gt;
-    &lt;div&gt;Item 3&lt;/div&gt;
-&lt;/div&gt;
+                    &lt;div class="flex gap-md"&gt;
+                    &lt;div&gt;Item 1&lt;/div&gt;
+                    &lt;div&gt;Item 2&lt;/div&gt;
+                    &lt;div&gt;Item 3&lt;/div&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
 
@@ -162,11 +171,11 @@
                 </div>
 
                 <div class="code-snippet">
-&lt;div class="flex flex-col gap-md"&gt;
-    &lt;div&gt;Item 1&lt;/div&gt;
-    &lt;div&gt;Item 2&lt;/div&gt;
-    &lt;div&gt;Item 3&lt;/div&gt;
-&lt;/div&gt;
+                    &lt;div class="flex flex-col gap-md"&gt;
+                    &lt;div&gt;Item 1&lt;/div&gt;
+                    &lt;div&gt;Item 2&lt;/div&gt;
+                    &lt;div&gt;Item 3&lt;/div&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
         </section>
@@ -178,15 +187,21 @@
             <div class="demo-block">
                 <div class="demo-block__title">How It Works</div>
                 <div class="demo-block__description">
-                    <p>Use <code>.flex-{size}</code> classes to create responsive columns without inline styles. The number represents the <strong>minimum width</strong> in pixels before wrapping.</p>
-                    <p><strong>Available classes:</strong> <code>.flex-100</code>, <code>.flex-150</code>, <code>.flex-200</code>, <code>.flex-250</code>, <code>.flex-300</code>, <code>.flex-350</code>, <code>.flex-400</code>, <code>.flex-500</code>, <code>.flex-600</code></p>
-                    <p><strong>Behavior:</strong> Items grow equally to fill space, but wrap when they can't maintain their minimum width.</p>
+                    <p>Use <code>.flex-{size}</code> classes to create responsive columns without inline styles. The
+                        number represents the <strong>minimum width</strong> in pixels before wrapping.</p>
+                    <p><strong>Available classes:</strong> <code>.flex-100</code>, <code>.flex-150</code>,
+                        <code>.flex-200</code>, <code>.flex-250</code>, <code>.flex-300</code>, <code>.flex-350</code>,
+                        <code>.flex-400</code>, <code>.flex-500</code>, <code>.flex-600</code>
+                    </p>
+                    <p><strong>Behavior:</strong> Items grow equally to fill space, but wrap when they can't maintain
+                        their minimum width.</p>
                 </div>
             </div>
 
             <div class="demo-block">
                 <div class="demo-block__title">50/50 Split</div>
-                <div class="demo-block__description">Two equal columns using <code>.flex-300</code> on both. They wrap below 600px viewport.</div>
+                <div class="demo-block__description">Two equal columns using <code>.flex-300</code> on both. They wrap
+                    below 600px viewport.</div>
 
                 <div class="demo-container">
                     <div class="flex flex-wrap gap-md">
@@ -196,16 +211,17 @@
                 </div>
 
                 <div class="code-snippet">
-&lt;div class="flex flex-wrap gap-md"&gt;
-    &lt;div class="flex-300"&gt;Left Column&lt;/div&gt;
-    &lt;div class="flex-300"&gt;Right Column&lt;/div&gt;
-&lt;/div&gt;
+                    &lt;div class="flex flex-wrap gap-md"&gt;
+                    &lt;div class="flex-300"&gt;Left Column&lt;/div&gt;
+                    &lt;div class="flex-300"&gt;Right Column&lt;/div&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
 
             <div class="demo-block">
                 <div class="demo-block__title">40/60 Sidebar Layout</div>
-                <div class="demo-block__description">Use <code>.flex-200</code> for sidebar and <code>.flex-400</code> for main content (approximate 1:2 ratio).</div>
+                <div class="demo-block__description">Use <code>.flex-200</code> for sidebar and <code>.flex-400</code>
+                    for main content (approximate 1:2 ratio).</div>
 
                 <div class="demo-container">
                     <div class="flex flex-wrap gap-md">
@@ -219,16 +235,18 @@
                 </div>
 
                 <div class="code-snippet">
-&lt;div class="flex flex-wrap gap-md"&gt;
-    &lt;div class="flex-200"&gt;Sidebar&lt;/div&gt;
-    &lt;div class="flex-400"&gt;Main Content&lt;/div&gt;
-&lt;/div&gt;
+                    &lt;div class="flex flex-wrap gap-md"&gt;
+                    &lt;div class="flex-200"&gt;Sidebar&lt;/div&gt;
+                    &lt;div class="flex-400"&gt;Main Content&lt;/div&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
 
             <div class="demo-block">
                 <div class="demo-block__title">30/70 Layout</div>
-                <div class="demo-block__description">Use <code>.flex-150</code> for narrow sidebar and <code>.flex-350</code> for wider content (approximate 1:2.3 ratio).</div>
+                <div class="demo-block__description">Use <code>.flex-150</code> for narrow sidebar and
+                    <code>.flex-350</code> for wider content (approximate 1:2.3 ratio).
+                </div>
 
                 <div class="demo-container">
                     <div class="flex flex-wrap gap-md">
@@ -242,10 +260,10 @@
                 </div>
 
                 <div class="code-snippet">
-&lt;div class="flex flex-wrap gap-md"&gt;
-    &lt;div class="flex-150"&gt;Narrow&lt;/div&gt;
-    &lt;div class="flex-350"&gt;Wide Content&lt;/div&gt;
-&lt;/div&gt;
+                    &lt;div class="flex flex-wrap gap-md"&gt;
+                    &lt;div class="flex-150"&gt;Narrow&lt;/div&gt;
+                    &lt;div class="flex-350"&gt;Wide Content&lt;/div&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
 
@@ -260,12 +278,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>50/50</td><td><code>.flex-300</code> + <code>.flex-300</code></td><td>~616px</td></tr>
-                        <tr><td>40/60</td><td><code>.flex-200</code> + <code>.flex-400</code></td><td>~616px</td></tr>
-                        <tr><td>30/70</td><td><code>.flex-150</code> + <code>.flex-350</code></td><td>~516px</td></tr>
-                        <tr><td>25/75</td><td><code>.flex-150</code> + <code>.flex-400</code></td><td>~566px</td></tr>
-                        <tr><td>33/33/33</td><td><code>.flex-200</code> x 3</td><td>~616px</td></tr>
-                        <tr><td>25/25/25/25</td><td><code>.flex-150</code> x 4</td><td>~616px</td></tr>
+                        <tr>
+                            <td>50/50</td>
+                            <td><code>.flex-300</code> + <code>.flex-300</code></td>
+                            <td>~616px</td>
+                        </tr>
+                        <tr>
+                            <td>40/60</td>
+                            <td><code>.flex-200</code> + <code>.flex-400</code></td>
+                            <td>~616px</td>
+                        </tr>
+                        <tr>
+                            <td>30/70</td>
+                            <td><code>.flex-150</code> + <code>.flex-350</code></td>
+                            <td>~516px</td>
+                        </tr>
+                        <tr>
+                            <td>25/75</td>
+                            <td><code>.flex-150</code> + <code>.flex-400</code></td>
+                            <td>~566px</td>
+                        </tr>
+                        <tr>
+                            <td>33/33/33</td>
+                            <td><code>.flex-200</code> x 3</td>
+                            <td>~616px</td>
+                        </tr>
+                        <tr>
+                            <td>25/25/25/25</td>
+                            <td><code>.flex-150</code> x 4</td>
+                            <td>~616px</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -277,7 +319,8 @@
 
             <div class="demo-block">
                 <div class="demo-block__title">Equal Three Columns</div>
-                <div class="demo-block__description">Three equal columns using <code>.flex-200</code>. Stacks on mobile.</div>
+                <div class="demo-block__description">Three equal columns using <code>.flex-200</code>. Stacks on mobile.
+                </div>
 
                 <div class="demo-container">
                     <div class="flex flex-wrap gap-md">
@@ -288,11 +331,11 @@
                 </div>
 
                 <div class="code-snippet">
-&lt;div class="flex flex-wrap gap-md"&gt;
-    &lt;div class="flex-200"&gt;Column 1&lt;/div&gt;
-    &lt;div class="flex-200"&gt;Column 2&lt;/div&gt;
-    &lt;div class="flex-200"&gt;Column 3&lt;/div&gt;
-&lt;/div&gt;
+                    &lt;div class="flex flex-wrap gap-md"&gt;
+                    &lt;div class="flex-200"&gt;Column 1&lt;/div&gt;
+                    &lt;div class="flex-200"&gt;Column 2&lt;/div&gt;
+                    &lt;div class="flex-200"&gt;Column 3&lt;/div&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
         </section>
@@ -303,7 +346,8 @@
 
             <div class="demo-block">
                 <div class="demo-block__title">Card Grid Layout</div>
-                <div class="demo-block__description">Use <code>.flex-200</code> for a responsive card grid (4 columns on wide screens, adapts down to 1).</div>
+                <div class="demo-block__description">Use <code>.flex-200</code> for a responsive card grid (4 columns on
+                    wide screens, adapts down to 1).</div>
 
                 <div class="demo-container">
                     <div class="flex flex-wrap gap-md">
@@ -315,18 +359,19 @@
                 </div>
 
                 <div class="code-snippet">
-&lt;div class="flex flex-wrap gap-md"&gt;
-    &lt;div class="flex-200"&gt;Card 1&lt;/div&gt;
-    &lt;div class="flex-200"&gt;Card 2&lt;/div&gt;
-    &lt;div class="flex-200"&gt;Card 3&lt;/div&gt;
-    &lt;div class="flex-200"&gt;Card 4&lt;/div&gt;
-&lt;/div&gt;
+                    &lt;div class="flex flex-wrap gap-md"&gt;
+                    &lt;div class="flex-200"&gt;Card 1&lt;/div&gt;
+                    &lt;div class="flex-200"&gt;Card 2&lt;/div&gt;
+                    &lt;div class="flex-200"&gt;Card 3&lt;/div&gt;
+                    &lt;div class="flex-200"&gt;Card 4&lt;/div&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
 
             <div class="demo-block">
                 <div class="demo-block__title">Smaller Cards (5+ columns possible)</div>
-                <div class="demo-block__description">Use <code>.flex-150</code> for smaller cards that can fit more per row.</div>
+                <div class="demo-block__description">Use <code>.flex-150</code> for smaller cards that can fit more per
+                    row.</div>
 
                 <div class="demo-container">
                     <div class="flex flex-wrap gap-sm">
@@ -340,11 +385,11 @@
                 </div>
 
                 <div class="code-snippet">
-&lt;div class="flex flex-wrap gap-sm"&gt;
-    &lt;div class="flex-150"&gt;1&lt;/div&gt;
-    &lt;div class="flex-150"&gt;2&lt;/div&gt;
-    &lt;!-- ... more items ... --&gt;
-&lt;/div&gt;
+                    &lt;div class="flex flex-wrap gap-sm"&gt;
+                    &lt;div class="flex-150"&gt;1&lt;/div&gt;
+                    &lt;div class="flex-150"&gt;2&lt;/div&gt;
+                    &lt;!-- ... more items ... --&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
         </section>
@@ -504,7 +549,9 @@
 
             <div class="demo-block">
                 <div class="demo-block__title">Navigation Bar</div>
-                <div class="demo-block__description">Logo on left, navigation on right using <code>justify-between</code>.</div>
+                <div class="demo-block__description">Logo on left, navigation on right using
+                    <code>justify-between</code>.
+                </div>
 
                 <div class="demo-container">
                     <div class="flex justify-between items-center gap-md p-4 bg-dark rounded">
@@ -518,14 +565,14 @@
                 </div>
 
                 <div class="code-snippet">
-&lt;div class="flex justify-between items-center gap-md p-4 bg-dark"&gt;
-    &lt;div class="font-bold"&gt;Logo&lt;/div&gt;
-    &lt;div class="flex gap-md"&gt;
-        &lt;a href="#"&gt;Home&lt;/a&gt;
-        &lt;a href="#"&gt;About&lt;/a&gt;
-        &lt;a href="#"&gt;Contact&lt;/a&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
+                    &lt;div class="flex justify-between items-center gap-md p-4 bg-dark"&gt;
+                    &lt;div class="font-bold"&gt;Logo&lt;/div&gt;
+                    &lt;div class="flex gap-md"&gt;
+                    &lt;a href="#"&gt;Home&lt;/a&gt;
+                    &lt;a href="#"&gt;About&lt;/a&gt;
+                    &lt;a href="#"&gt;Contact&lt;/a&gt;
+                    &lt;/div&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
 
@@ -538,19 +585,62 @@
                         <img src="https://via.placeholder.com/80" alt="Avatar" class="rounded" style="flex-shrink: 0;">
                         <div class="flex-1">
                             <h4 class="mt-0 mb-2">Dr. Jane Smith</h4>
-                            <p class="mb-0 text-secondary">Professor of Computer Science at Cardiff University. Research interests include machine learning and data visualization.</p>
+                            <p class="mb-0 text-secondary">Professor of Computer Science at Cardiff University. Research
+                                interests include machine learning and data visualization.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="code-snippet">
-&lt;div class="flex gap-md items-start"&gt;
-    &lt;img src="avatar.jpg" alt="Avatar" style="flex-shrink: 0;"&gt;
-    &lt;div class="flex-1"&gt;
-        &lt;h4&gt;Dr. Jane Smith&lt;/h4&gt;
-        &lt;p&gt;Description text...&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
+                    &lt;div class="flex gap-md items-start"&gt;
+                    &lt;img src="avatar.jpg" alt="Avatar" style="flex-shrink: 0;"&gt;
+                    &lt;div class="flex-1"&gt;
+                    &lt;h4&gt;Dr. Jane Smith&lt;/h4&gt;
+                    &lt;p&gt;Description text...&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Two-Column: Image + Text Content</div>
+                <div class="demo-block__description">Image on left, text content with headings on right using
+                    <code>.flex-300</code> for responsive 50/50 split.
+                </div>
+
+                <div class="demo-container">
+                    <div class="flex flex-wrap gap-lg items-start">
+                        <div class="flex-300">
+                            <img src="https://via.placeholder.com/400x300/E4251B/FFFFFF?text=Cardiff+University"
+                                alt="Cardiff University Building" class="w-full rounded shadow-sm">
+                        </div>
+                        <div class="flex-300">
+                            <h3>About Our Research</h3>
+                            <h4>Leading Innovation</h4>
+                            <p>Cardiff University is a world-leading research institution, consistently ranked among the
+                                top universities globally for research excellence and impact.</p>
+                            <h4>Our Commitment</h4>
+                            <p>We are committed to advancing knowledge through cutting-edge research that addresses
+                                real-world challenges and makes a positive difference to society.</p>
+                            <p><strong>Key Areas:</strong> Health Sciences, Engineering, Social Sciences, and
+                                Humanities.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+                    &lt;div class="flex flex-wrap gap-lg items-start"&gt;
+                    &lt;div class="flex-300"&gt;
+                    &lt;img src="image.jpg" alt="Description" class="w-full rounded"&gt;
+                    &lt;/div&gt;
+                    &lt;div class="flex-300"&gt;
+                    &lt;h3&gt;Main Heading&lt;/h3&gt;
+                    &lt;h4&gt;Subheading&lt;/h4&gt;
+                    &lt;p&gt;Content paragraph...&lt;/p&gt;
+                    &lt;h4&gt;Another Subheading&lt;/h4&gt;
+                    &lt;p&gt;More content...&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
 
@@ -579,14 +669,14 @@
                 </div>
 
                 <div class="code-snippet">
-&lt;div class="flex flex-wrap gap-lg"&gt;
-    &lt;div class="bg-white p-4 rounded shadow-sm text-center" style="flex: 1 1 200px;"&gt;
-        &lt;div class="text-brand text-3xl mb-3"&gt;Icon&lt;/div&gt;
-        &lt;h4&gt;Title&lt;/h4&gt;
-        &lt;p&gt;Description&lt;/p&gt;
-    &lt;/div&gt;
-    &lt;!-- Repeat for more cards --&gt;
-&lt;/div&gt;
+                    &lt;div class="flex flex-wrap gap-lg"&gt;
+                    &lt;div class="bg-white p-4 rounded shadow-sm text-center" style="flex: 1 1 200px;"&gt;
+                    &lt;div class="text-brand text-3xl mb-3"&gt;Icon&lt;/div&gt;
+                    &lt;h4&gt;Title&lt;/h4&gt;
+                    &lt;p&gt;Description&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;!-- Repeat for more cards --&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
 
@@ -611,19 +701,19 @@
                 </div>
 
                 <div class="code-snippet">
-&lt;div class="flex flex-wrap gap-md items-end"&gt;
-    &lt;div class="flex-1" style="min-width: 150px;"&gt;
-        &lt;label&gt;First Name&lt;/label&gt;
-        &lt;input type="text" class="w-full"&gt;
-    &lt;/div&gt;
-    &lt;div class="flex-1" style="min-width: 150px;"&gt;
-        &lt;label&gt;Last Name&lt;/label&gt;
-        &lt;input type="text" class="w-full"&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-        &lt;button type="submit"&gt;Submit&lt;/button&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
+                    &lt;div class="flex flex-wrap gap-md items-end"&gt;
+                    &lt;div class="flex-1" style="min-width: 150px;"&gt;
+                    &lt;label&gt;First Name&lt;/label&gt;
+                    &lt;input type="text" class="w-full"&gt;
+                    &lt;/div&gt;
+                    &lt;div class="flex-1" style="min-width: 150px;"&gt;
+                    &lt;label&gt;Last Name&lt;/label&gt;
+                    &lt;input type="text" class="w-full"&gt;
+                    &lt;/div&gt;
+                    &lt;div&gt;
+                    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+                    &lt;/div&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
         </section>
@@ -643,12 +733,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>.flex</code></td><td>display: flex</td><td>Create flex container</td></tr>
-                        <tr><td><code>.inline-flex</code></td><td>display: inline-flex</td><td>Inline flex container</td></tr>
-                        <tr><td><code>.flex-row</code></td><td>flex-direction: row</td><td>Horizontal (default)</td></tr>
-                        <tr><td><code>.flex-row-reverse</code></td><td>flex-direction: row-reverse</td><td>Horizontal reversed</td></tr>
-                        <tr><td><code>.flex-col</code></td><td>flex-direction: column</td><td>Vertical stacking</td></tr>
-                        <tr><td><code>.flex-col-reverse</code></td><td>flex-direction: column-reverse</td><td>Vertical reversed</td></tr>
+                        <tr>
+                            <td><code>.flex</code></td>
+                            <td>display: flex</td>
+                            <td>Create flex container</td>
+                        </tr>
+                        <tr>
+                            <td><code>.inline-flex</code></td>
+                            <td>display: inline-flex</td>
+                            <td>Inline flex container</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-row</code></td>
+                            <td>flex-direction: row</td>
+                            <td>Horizontal (default)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-row-reverse</code></td>
+                            <td>flex-direction: row-reverse</td>
+                            <td>Horizontal reversed</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-col</code></td>
+                            <td>flex-direction: column</td>
+                            <td>Vertical stacking</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-col-reverse</code></td>
+                            <td>flex-direction: column-reverse</td>
+                            <td>Vertical reversed</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -664,8 +778,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>.flex-wrap</code></td><td>flex-wrap: wrap</td><td>Allow wrapping</td></tr>
-                        <tr><td><code>.flex-nowrap</code></td><td>flex-wrap: nowrap</td><td>Prevent wrapping</td></tr>
+                        <tr>
+                            <td><code>.flex-wrap</code></td>
+                            <td>flex-wrap: wrap</td>
+                            <td>Allow wrapping</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-nowrap</code></td>
+                            <td>flex-wrap: nowrap</td>
+                            <td>Prevent wrapping</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -681,11 +803,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>.justify-start</code></td><td>justify-content: flex-start</td><td>Pack at start</td></tr>
-                        <tr><td><code>.justify-center</code></td><td>justify-content: center</td><td>Center horizontally</td></tr>
-                        <tr><td><code>.justify-end</code></td><td>justify-content: flex-end</td><td>Pack at end</td></tr>
-                        <tr><td><code>.justify-between</code></td><td>justify-content: space-between</td><td>Space between items</td></tr>
-                        <tr><td><code>.justify-around</code></td><td>justify-content: space-around</td><td>Space around items</td></tr>
+                        <tr>
+                            <td><code>.justify-start</code></td>
+                            <td>justify-content: flex-start</td>
+                            <td>Pack at start</td>
+                        </tr>
+                        <tr>
+                            <td><code>.justify-center</code></td>
+                            <td>justify-content: center</td>
+                            <td>Center horizontally</td>
+                        </tr>
+                        <tr>
+                            <td><code>.justify-end</code></td>
+                            <td>justify-content: flex-end</td>
+                            <td>Pack at end</td>
+                        </tr>
+                        <tr>
+                            <td><code>.justify-between</code></td>
+                            <td>justify-content: space-between</td>
+                            <td>Space between items</td>
+                        </tr>
+                        <tr>
+                            <td><code>.justify-around</code></td>
+                            <td>justify-content: space-around</td>
+                            <td>Space around items</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -701,11 +843,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>.items-start</code></td><td>align-items: flex-start</td><td>Align to top</td></tr>
-                        <tr><td><code>.items-center</code></td><td>align-items: center</td><td>Center vertically</td></tr>
-                        <tr><td><code>.items-end</code></td><td>align-items: flex-end</td><td>Align to bottom</td></tr>
-                        <tr><td><code>.items-baseline</code></td><td>align-items: baseline</td><td>Align to text baseline</td></tr>
-                        <tr><td><code>.items-stretch</code></td><td>align-items: stretch</td><td>Stretch to fill (default)</td></tr>
+                        <tr>
+                            <td><code>.items-start</code></td>
+                            <td>align-items: flex-start</td>
+                            <td>Align to top</td>
+                        </tr>
+                        <tr>
+                            <td><code>.items-center</code></td>
+                            <td>align-items: center</td>
+                            <td>Center vertically</td>
+                        </tr>
+                        <tr>
+                            <td><code>.items-end</code></td>
+                            <td>align-items: flex-end</td>
+                            <td>Align to bottom</td>
+                        </tr>
+                        <tr>
+                            <td><code>.items-baseline</code></td>
+                            <td>align-items: baseline</td>
+                            <td>Align to text baseline</td>
+                        </tr>
+                        <tr>
+                            <td><code>.items-stretch</code></td>
+                            <td>align-items: stretch</td>
+                            <td>Stretch to fill (default)</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -721,18 +883,39 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>.flex-1</code></td><td>flex: 1 1 0%</td><td>Grow and shrink equally</td></tr>
-                        <tr><td><code>.flex-auto</code></td><td>flex: 1 1 auto</td><td>Grow/shrink based on content</td></tr>
-                        <tr><td><code>.flex-none</code></td><td>flex: none</td><td>Don't grow or shrink</td></tr>
-                        <tr><td><code>.grow</code></td><td>flex-grow: 1</td><td>Allow growing</td></tr>
-                        <tr><td><code>.grow-0</code></td><td>flex-grow: 0</td><td>Prevent growing</td></tr>
+                        <tr>
+                            <td><code>.flex-1</code></td>
+                            <td>flex: 1 1 0%</td>
+                            <td>Grow and shrink equally</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-auto</code></td>
+                            <td>flex: 1 1 auto</td>
+                            <td>Grow/shrink based on content</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-none</code></td>
+                            <td>flex: none</td>
+                            <td>Don't grow or shrink</td>
+                        </tr>
+                        <tr>
+                            <td><code>.grow</code></td>
+                            <td>flex-grow: 1</td>
+                            <td>Allow growing</td>
+                        </tr>
+                        <tr>
+                            <td><code>.grow-0</code></td>
+                            <td>flex-grow: 0</td>
+                            <td>Prevent growing</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="demo-block">
                 <div class="demo-block__title">Flex Basis (Responsive Columns)</div>
-                <div class="demo-block__description">Use these for responsive column layouts. Items grow to fill space but wrap when they can't maintain their minimum width.</div>
+                <div class="demo-block__description">Use these for responsive column layouts. Items grow to fill space
+                    but wrap when they can't maintain their minimum width.</div>
                 <table>
                     <thead>
                         <tr>
@@ -742,15 +925,51 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>.flex-100</code></td><td>flex: 1 1 100px</td><td>100px</td></tr>
-                        <tr><td><code>.flex-150</code></td><td>flex: 1 1 150px</td><td>150px</td></tr>
-                        <tr><td><code>.flex-200</code></td><td>flex: 1 1 200px</td><td>200px</td></tr>
-                        <tr><td><code>.flex-250</code></td><td>flex: 1 1 250px</td><td>250px</td></tr>
-                        <tr><td><code>.flex-300</code></td><td>flex: 1 1 300px</td><td>300px</td></tr>
-                        <tr><td><code>.flex-350</code></td><td>flex: 1 1 350px</td><td>350px</td></tr>
-                        <tr><td><code>.flex-400</code></td><td>flex: 1 1 400px</td><td>400px</td></tr>
-                        <tr><td><code>.flex-500</code></td><td>flex: 1 1 500px</td><td>500px</td></tr>
-                        <tr><td><code>.flex-600</code></td><td>flex: 1 1 600px</td><td>600px</td></tr>
+                        <tr>
+                            <td><code>.flex-100</code></td>
+                            <td>flex: 1 1 100px</td>
+                            <td>100px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-150</code></td>
+                            <td>flex: 1 1 150px</td>
+                            <td>150px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-200</code></td>
+                            <td>flex: 1 1 200px</td>
+                            <td>200px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-250</code></td>
+                            <td>flex: 1 1 250px</td>
+                            <td>250px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-300</code></td>
+                            <td>flex: 1 1 300px</td>
+                            <td>300px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-350</code></td>
+                            <td>flex: 1 1 350px</td>
+                            <td>350px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-400</code></td>
+                            <td>flex: 1 1 400px</td>
+                            <td>400px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-500</code></td>
+                            <td>flex: 1 1 500px</td>
+                            <td>500px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.flex-600</code></td>
+                            <td>flex: 1 1 600px</td>
+                            <td>600px</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -765,13 +984,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>.gap-0</code></td><td>0</td></tr>
-                        <tr><td><code>.gap-xs</code></td><td>4px (--spacing-xs)</td></tr>
-                        <tr><td><code>.gap-sm</code></td><td>8px (--spacing-sm)</td></tr>
-                        <tr><td><code>.gap-md</code></td><td>16px (--spacing-md)</td></tr>
-                        <tr><td><code>.gap-lg</code></td><td>24px (--spacing-lg)</td></tr>
-                        <tr><td><code>.gap-xl</code></td><td>32px (--spacing-xl)</td></tr>
-                        <tr><td><code>.gap-2xl</code></td><td>48px (--spacing-2xl)</td></tr>
+                        <tr>
+                            <td><code>.gap-0</code></td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-xs</code></td>
+                            <td>4px (--spacing-xs)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-sm</code></td>
+                            <td>8px (--spacing-sm)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-md</code></td>
+                            <td>16px (--spacing-md)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-lg</code></td>
+                            <td>24px (--spacing-lg)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-xl</code></td>
+                            <td>32px (--spacing-xl)</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gap-2xl</code></td>
+                            <td>48px (--spacing-2xl)</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -786,12 +1026,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>.w-full</code></td><td>100%</td></tr>
-                        <tr><td><code>.w-auto</code></td><td>auto</td></tr>
-                        <tr><td><code>.w-screen</code></td><td>100vw</td></tr>
-                        <tr><td><code>.w-1\/2</code></td><td>50%</td></tr>
-                        <tr><td><code>.w-1\/3</code></td><td>33.333%</td></tr>
-                        <tr><td><code>.w-1\/4</code></td><td>25%</td></tr>
+                        <tr>
+                            <td><code>.w-full</code></td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td><code>.w-auto</code></td>
+                            <td>auto</td>
+                        </tr>
+                        <tr>
+                            <td><code>.w-screen</code></td>
+                            <td>100vw</td>
+                        </tr>
+                        <tr>
+                            <td><code>.w-1\/2</code></td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td><code>.w-1\/3</code></td>
+                            <td>33.333%</td>
+                        </tr>
+                        <tr>
+                            <td><code>.w-1\/4</code></td>
+                            <td>25%</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -803,7 +1061,8 @@
 
             <div class="demo-block">
                 <div class="demo-block__title">Legacy Classes</div>
-                <div class="demo-block__description">For backward compatibility, the following legacy classes from System 2 are still supported via <code>_legacy.scss</code>.</div>
+                <div class="demo-block__description">For backward compatibility, the following legacy classes from
+                    System 2 are still supported via <code>_legacy.scss</code>.</div>
 
                 <table>
                     <thead>
@@ -813,11 +1072,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>.flexContainer</code></td><td><code>.flex .flex-wrap .gap-md</code></td></tr>
-                        <tr><td><code>.flexItem</code></td><td>Direct children of flex container</td></tr>
-                        <tr><td><code>.c50</code></td><td><code>style="flex: 1 1 200px;"</code></td></tr>
-                        <tr><td><code>.c33</code></td><td><code>style="flex: 1 1 150px;"</code></td></tr>
-                        <tr><td><code>.c25</code></td><td><code>style="flex: 1 1 120px;"</code></td></tr>
+                        <tr>
+                            <td><code>.flexContainer</code></td>
+                            <td><code>.flex .flex-wrap .gap-md</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>.flexItem</code></td>
+                            <td>Direct children of flex container</td>
+                        </tr>
+                        <tr>
+                            <td><code>.c50</code></td>
+                            <td><code>style="flex: 1 1 200px;"</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>.c33</code></td>
+                            <td><code>style="flex: 1 1 150px;"</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>.c25</code></td>
+                            <td><code>style="flex: 1 1 120px;"</code></td>
+                        </tr>
                     </tbody>
                 </table>
 

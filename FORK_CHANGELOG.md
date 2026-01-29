@@ -29,15 +29,150 @@ This fork maintains custom themes for Cardiff University's Digital Education tea
 
 ### [Unreleased]
 
-#### Added
-- DigEd Bootstrap theme (`themes/site/diged/`)
-  - Modular SCSS architecture with abstract, base, components, layouts, utility layers
-  - Custom properties system for runtime theming
-  - Responsive breakpoint system
-  - Print styles support
-
 #### Notes
 - Featherlight lightbox applies `overflow:hidden` to html, which causes scroll reset - needs investigation
+
+---
+
+### [2026-01-29] - Demo Pages Enhancement
+
+#### Changed
+- **Demo Pages Refactor** (`themes/site/cardiffuni-v2/demos/`)
+  - Updated color palette demo to use semantic design tokens
+  - Expanded components demo with alerts, badges, progress bars, and more UI elements
+  - Refactored demo styles to use new CSS custom properties
+  - Updated navigation links and titles across all demo pages
+
+#### Added
+- **FontAwesome 6.6.0 Integration**
+  - Comprehensive icon system for demo pages
+  - Icon examples in components showcase
+
+#### Files Modified
+- 11 demo HTML files updated with new color system and icons
+- `demo-styles.css` refactored for CSS custom properties
+
+---
+
+### [2026-01-28] - Navigation Color System Decoupling
+
+#### Added
+- **Independent Navigation Colors** (`scss/_allvariables.scss`)
+  - New CSS variables: `--color-nav-accent` and `--color-nav-accent-dark`
+  - Separates navigation styling from brand colors for greater customization flexibility
+
+#### Changed
+- Updated Bootstrap component styles to use new navigation color tokens
+- Regenerated compiled CSS with new color system
+
+#### Configuration
+- Updated `.gitignore` with additional exclusions
+- Refined VS Code settings for Live Sass Compiler
+- Updated autoprefixer configuration to exclude Internet Explorer
+  - Settings: `["defaults", "not IE > 0"]`
+  - Removes unnecessary vendor prefixes (`-webkit-box-sizing`, `-ms-flexbox`, etc.)
+
+---
+
+### [2026-01-26] - Utility Classes Refactor & Flexbox Demo
+
+#### Changed
+- **Utilities SCSS Reorganization** (`scss/_utilities.scss`)
+  - Refactored with modern SCSS loops for spacing, flexbox, and utilities
+  - Reduced from 802 lines to more maintainable structure
+  - Moved legacy utilities to separate `_legacy.scss` file (104 lines)
+
+#### Added
+- **Flexbox Demo Page** (`demos/flexbox.html`)
+  - Comprehensive flexbox utility demonstrations (847 lines)
+  - Interactive examples of flex layouts and utilities
+  - Added to navigation across all demo pages
+
+- **Legacy Utilities Module** (`scss/_legacy.scss`)
+  - Backward-compatible utilities from System 2
+  - Legacy flexbox system (`.flexContainer`, `.flexItem`)
+  - Responsive column classes (`.c10` through `.c80`)
+  - Old image helpers and color naming classes
+  - All mapped to modern design tokens
+
+#### Fixed
+- **Button Component Styles** (`scss/components/_buttons.scss`)
+  - Prevented Bootstrap link hover color overrides
+  - Improved button state management
+
+#### Files Modified
+- 18 files changed, 3,447 insertions, 1,513 deletions
+- Created backup: `_utilities.scss.bak`
+
+---
+
+### [2026-01-25] - Theme Designer Tool & Theme Variants
+
+#### Added
+- **Theme Designer Tool** (`themes/site/theme-designer/`)
+  - Interactive web-based theme customization tool
+  - Real-time color palette editor with live preview
+  - Color utility functions for shade generation
+  - Preset theme configurations
+  - Files:
+    - `index.html` - Main designer interface (218 lines)
+    - `css/designer.css` - Designer UI styles (534 lines)
+    - `js/designer.js` - Core designer logic (426 lines)
+    - `js/color-utils.js` - Color manipulation utilities (109 lines)
+    - `js/presets.js` - Theme presets (56 lines)
+    - `preview/components.html` - Component preview page
+    - `README.md` - Tool documentation
+
+- **Medr Theme** (`themes/site/cardiffuni-v2/themes/medr-theme.css`)
+  - Complete theme variant for Medr branding (391 lines)
+  - Custom color palette and typography
+
+- **ASDA Theme** (`themes/site/cardiffuni-v2/themes/asda-theme.css`)
+  - Theme variant for ASDA project (184 lines)
+  - Alternative color scheme and styling
+
+- **Medr Design System** (`themes/site/Medr/Medr Design System.json`)
+  - JSON design token specification for Medr theme
+
+#### Documentation
+- **Cardiff Uni v2 README** (`themes/site/cardiffuni-v2/README.md`)
+  - Comprehensive theme overview (118 lines)
+  - Quick start guide and feature documentation
+
+- **Theming Guide** (`themes/site/cardiffuni-v2/THEMING-GUIDE.md`)
+  - Detailed customization instructions (417 lines)
+  - Token architecture explanation
+  - Component customization examples
+  - Theme variant creation guide
+
+- **Standardization Guide Relocation**
+  - Moved `XERTE_THEME_STANDARDIZATION_GUIDE.md` from `cardiffuni/` to `themes/site/` root
+  - Updated with Cardiff Uni v2 theme documentation (300 lines)
+  - Added 205 new lines, removed 95 outdated lines
+
+#### Files Added
+- 10 new files, 2,502 total lines added
+
+---
+
+### [2026-01-25] - CSS Variable Naming Standardization
+
+#### Changed
+- **CSS Variable Prefix Refactor**
+  - Renamed all `--cu-*` prefixes to `--color-*` for generic reusability
+  - Updated animation variable names for consistency
+  - Applied across all components and SCSS modules
+
+#### Files Modified
+- 20 files updated across theme components
+- `_base-elements.scss`, `_bootstrap-components.scss`, `_editorstyles.scss`
+- `_layouts.scss`, `_utilities.scss`, `_xerte-components.scss`
+- All 10 component SCSS files updated
+
+#### Impact
+- 1,014 insertions, 938 deletions
+- Improved theme portability and reusability
+- Cleaner, more semantic variable naming
 
 ---
 
@@ -214,10 +349,18 @@ git push --force-with-lease origin develop
 CLAUDE.md
 FORK_CHANGELOG.md (this file)
 .vscode/settings.json
-vendor_config.php          (AI API keys - do not commit to public repos)
-themes/site/cardiffuni/    (entire directory)
-themes/site/cardiffuni-v2/ (entire directory)
-themes/site/diged/         (entire directory)
+vendor_config.php                                  (AI API keys - do not commit to public repos)
+themes/site/cardiffuni/                            (entire directory)
+themes/site/cardiffuni-v2/                         (entire directory)
+  ├── themes/medr-theme.css                        (Medr theme variant)
+  ├── themes/asda-theme.css                        (ASDA theme variant)
+  ├── README.md                                    (Theme overview)
+  ├── THEMING-GUIDE.md                             (Customization guide)
+  └── demos/flexbox.html                           (Flexbox utilities demo)
+themes/site/diged/                                 (entire directory)
+themes/site/theme-designer/                        (Interactive theme designer tool)
+themes/site/Medr/                                  (Medr design system)
+themes/site/XERTE_THEME_STANDARDIZATION_GUIDE.md   (Relocated from cardiffuni/)
 ```
 
 ---

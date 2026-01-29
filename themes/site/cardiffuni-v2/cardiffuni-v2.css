@@ -510,6 +510,15 @@ h6 {
   line-height: var(--line-height-normal);
 }
 
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+  margin-top: 0;
+}
+
 .page-header {
   margin-top: 0;
 }
@@ -3212,6 +3221,23 @@ This is where you can define styles that will be available
 
 .gap-2xl {
   gap: var(--spacing-2xl) !important;
+}
+
+[class*=flex-] > h1,
+[class*=flex-] > h2,
+[class*=flex-] > h3,
+[class*=flex-] > h4,
+[class*=flex-] > h5,
+[class*=flex-] > h6 {
+  margin-top: var(--spacing-md) !important;
+}
+[class*=flex-] > h1:first-child,
+[class*=flex-] > h2:first-child,
+[class*=flex-] > h3:first-child,
+[class*=flex-] > h4:first-child,
+[class*=flex-] > h5:first-child,
+[class*=flex-] > h6:first-child {
+  margin-top: 0 !important;
 }
 
 .m-0 {

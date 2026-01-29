@@ -116,6 +116,18 @@ h6 {
     line-height: var(--line-height-normal);
 }
 
+// Remove top margin from headings when they're the first child
+// This prevents the need for manual .mt-0 classes
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+    margin-top: 0;
+}
+
+
 // Special Heading Classes
 .page-header {
     margin-top: 0;

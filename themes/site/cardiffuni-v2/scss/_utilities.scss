@@ -292,6 +292,26 @@
     gap: var(--spacing-2xl) !important;
 }
 
+// Flex child heading spacing
+// Remove excessive top margin from headings in flex children
+// Common pattern: image/media followed by heading
+[class*="flex-"] {
+
+    >h1,
+    >h2,
+    >h3,
+    >h4,
+    >h5,
+    >h6 {
+        margin-top: var(--spacing-md) !important;
+
+        &:first-child {
+            margin-top: 0 !important;
+        }
+    }
+}
+
+
 // =============================================================================
 // SPACING (Margins & Padding)
 // =============================================================================
