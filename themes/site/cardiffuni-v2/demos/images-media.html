@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Images & Media - Cardiff University v2 Theme</title>
+    <title>Images, Media & Icons - Cardiff University v2 Theme</title>
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="assets/bootstrap/bootstrap-responsive.css">
     <link rel="stylesheet" href="assets/bootstrap/custom.css">
     <link rel="stylesheet" href="../cardiffuni-v2.css">
     <link rel="stylesheet" href="assets/demo-styles.css">
+    <!-- FontAwesome 6.6.0 -->
+    <link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/fontawesome-6.6.0/css/all.min.css">
 </head>
 
 <body>
@@ -22,8 +24,8 @@
             </div>
 
             <div class="titles">
-                <h1 id="pageTitle" aria-live="polite">Images & Media</h1>
-                <p id="pageSubTitle" aria-live="polite">Image Utilities & Media Embedding</p>
+                <h1 id="pageTitle" aria-live="polite">Images, Media & Icons</h1>
+                <p id="pageSubTitle" aria-live="polite">Visual Assets & Icon System</p>
             </div>
     </header>
 
@@ -45,7 +47,7 @@
                             <li role="none"><a href="index.html">Home</a></li>
                             <li role="none"><a href="typography.html">Typography</a></li>
                             <li role="none"><a href="lists-tables.html">Lists & Tables</a></li>
-                            <li class="activePage" role="none" aria-current="page"><a href="images-media.html">Images & Media</a></li>
+                            <li class="activePage" role="none" aria-current="page"><a href="images-media.html">Images, Media & Icons</a></li>
                             <li role="none"><a href="forms.html">Forms</a></li>
                             <li role="none"><a href="components.html">Components</a></li>
                             <li role="none"><a href="code-utilities.html">Code & Utilities</a></li>
@@ -60,373 +62,434 @@
     </div>
 
     <main>
-        <!-- Basic Images -->
+        <!-- Section Index -->
         <section class="demo-section">
-            <h2>Basic Images</h2>
+            <h2>Section Index</h2>
+            <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
+                <a href="#images" class="button button-secondary-outline button--small"><i class="fa-solid fa-image"></i> Images</a>
+                <a href="#video" class="button button-secondary-outline button--small"><i class="fa-solid fa-video"></i> Video</a>
+                <a href="#audio" class="button button-secondary-outline button--small"><i class="fa-solid fa-volume-high"></i> Audio</a>
+                <a href="#icons" class="button button-secondary-outline button--small"><i class="fa-solid fa-icons"></i> Icons</a>
+            </div>
+        </section>
+
+        <!-- ==================== ICONS ==================== -->
+        <section class="demo-section" id="icons">
+            <h2><i class="fa-solid fa-icons"></i> Icon System (FontAwesome 6.6.0)</h2>
+            <p>This theme uses <strong>FontAwesome 6.6.0</strong> for icons. Include the CSS in your page head to use icons throughout your content.</p>
 
             <div class="demo-block">
-                <div class="demo-block__title">Standard Image</div>
-                <div class="demo-block__description">Default image behavior - responsive by default</div>
-
-                <img src="https://placehold.co/800x400/E4251B/FFFFFF?text=Cardiff+University"
-                    alt="Cardiff University placeholder" style="max-width: 100%; height: auto;">
-
-                <p style="margin-top: 1rem;"><small>Images are responsive by default. Use <code>max-width: 100%</code>
-                        and <code>height: auto</code> to ensure images scale properly on different screen sizes.</small>
-                </p>
+                <div class="demo-block__title">How to Include FontAwesome</div>
+                <pre><code>&lt;link rel="stylesheet" href="modules/site/parent_templates/site/common/fontawesome-6.6.0/css/all.min.css"&gt;</code></pre>
             </div>
+
+            <!-- Basic Icon Usage -->
+            <div class="demo-block">
+                <div class="demo-block__title">Basic Icon Usage</div>
+                <div class="demo-block__description">Icons are added using <code>&lt;i&gt;</code> elements with FontAwesome classes</div>
+
+                <div class="demo-inline" style="font-size: 1.5rem; gap: 1.5rem;">
+                    <i class="fa-solid fa-house" title="Home"></i>
+                    <i class="fa-solid fa-user" title="User"></i>
+                    <i class="fa-solid fa-gear" title="Settings"></i>
+                    <i class="fa-solid fa-envelope" title="Email"></i>
+                    <i class="fa-solid fa-bell" title="Notifications"></i>
+                    <i class="fa-solid fa-magnifying-glass" title="Search"></i>
+                    <i class="fa-solid fa-check" title="Check"></i>
+                    <i class="fa-solid fa-xmark" title="Close"></i>
+                </div>
+
+                <code class="code-label">&lt;i class="fa-solid fa-house"&gt;&lt;/i&gt;</code>
+            </div>
+
+            <!-- Icon Styles -->
+            <div class="demo-block">
+                <div class="demo-block__title">Icon Styles</div>
+                <div class="demo-block__description">FontAwesome offers different icon styles</div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Style</th>
+                            <th>Class Prefix</th>
+                            <th>Example</th>
+                            <th>Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Solid</td>
+                            <td><code>fa-solid</code> or <code>fas</code></td>
+                            <td><i class="fa-solid fa-star" style="font-size: 1.25rem;"></i></td>
+                            <td><code>fa-solid fa-star</code></td>
+                        </tr>
+                        <tr>
+                            <td>Regular</td>
+                            <td><code>fa-regular</code> or <code>far</code></td>
+                            <td><i class="fa-regular fa-star" style="font-size: 1.25rem;"></i></td>
+                            <td><code>fa-regular fa-star</code></td>
+                        </tr>
+                        <tr>
+                            <td>Brands</td>
+                            <td><code>fa-brands</code> or <code>fab</code></td>
+                            <td><i class="fa-brands fa-github" style="font-size: 1.25rem;"></i></td>
+                            <td><code>fa-brands fa-github</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Icon Sizes -->
+            <div class="demo-block">
+                <div class="demo-block__title">Icon Sizes</div>
+                <div class="demo-block__description">Use size classes to scale icons</div>
+
+                <div class="demo-inline" style="align-items: center; gap: 1.5rem;">
+                    <span><i class="fa-solid fa-camera fa-xs"></i> fa-xs</span>
+                    <span><i class="fa-solid fa-camera fa-sm"></i> fa-sm</span>
+                    <span><i class="fa-solid fa-camera"></i> (default)</span>
+                    <span><i class="fa-solid fa-camera fa-lg"></i> fa-lg</span>
+                    <span><i class="fa-solid fa-camera fa-xl"></i> fa-xl</span>
+                    <span><i class="fa-solid fa-camera fa-2xl"></i> fa-2xl</span>
+                </div>
+
+                <div class="demo-inline" style="align-items: center; gap: 1.5rem; margin-top: 1rem;">
+                    <span><i class="fa-solid fa-camera fa-2x"></i> fa-2x</span>
+                    <span><i class="fa-solid fa-camera fa-3x"></i> fa-3x</span>
+                    <span><i class="fa-solid fa-camera fa-4x"></i> fa-4x</span>
+                    <span><i class="fa-solid fa-camera fa-5x"></i> fa-5x</span>
+                </div>
+
+                <code class="code-label">&lt;i class="fa-solid fa-camera fa-2x"&gt;&lt;/i&gt;</code>
+            </div>
+
+            <!-- Icon Colors -->
+            <div class="demo-block">
+                <div class="demo-block__title">Icon Colors</div>
+                <div class="demo-block__description">Icons inherit text color, or use inline styles/utility classes</div>
+
+                <div class="demo-inline" style="font-size: 1.5rem; gap: 1.5rem;">
+                    <i class="fa-solid fa-circle-check" style="color: var(--color-status-success);" title="Success"></i>
+                    <i class="fa-solid fa-circle-info" style="color: var(--color-status-info);" title="Info"></i>
+                    <i class="fa-solid fa-triangle-exclamation" style="color: var(--color-status-warning);" title="Warning"></i>
+                    <i class="fa-solid fa-circle-xmark" style="color: var(--color-status-error);" title="Error"></i>
+                    <i class="fa-solid fa-heart" style="color: var(--color-brand-primary);" title="Brand"></i>
+                    <i class="fa-solid fa-star" style="color: var(--color-accent-yellow);" title="Star"></i>
+                </div>
+
+                <code class="code-label">&lt;i class="fa-solid fa-circle-check" style="color: var(--color-status-success);"&gt;&lt;/i&gt;</code>
+            </div>
+
+            <!-- Animated Icons -->
+            <div class="demo-block">
+                <div class="demo-block__title">Animated Icons</div>
+                <div class="demo-block__description">Built-in animation classes for loading states and attention</div>
+
+                <div class="demo-inline" style="font-size: 1.5rem; gap: 2rem;">
+                    <span><i class="fa-solid fa-spinner fa-spin"></i> fa-spin</span>
+                    <span><i class="fa-solid fa-circle-notch fa-spin"></i> fa-spin</span>
+                    <span><i class="fa-solid fa-rotate fa-spin"></i> fa-spin</span>
+                    <span><i class="fa-solid fa-heart fa-beat"></i> fa-beat</span>
+                    <span><i class="fa-solid fa-bell fa-shake"></i> fa-shake</span>
+                    <span><i class="fa-solid fa-circle-right fa-bounce"></i> fa-bounce</span>
+                </div>
+
+                <code class="code-label">&lt;i class="fa-solid fa-spinner fa-spin"&gt;&lt;/i&gt;</code>
+            </div>
+
+            <!-- Icons with Text -->
+            <div class="demo-block">
+                <div class="demo-block__title">Icons with Text</div>
+                <div class="demo-block__description">Use fixed-width icons for consistent alignment in lists</div>
+
+                <ul style="list-style: none; padding-left: 0;">
+                    <li><i class="fa-solid fa-envelope fa-fw" style="color: var(--color-accent-blue);"></i> Email: contact@cardiff.ac.uk</li>
+                    <li><i class="fa-solid fa-phone fa-fw" style="color: var(--color-accent-green);"></i> Phone: +44 29 2087 4000</li>
+                    <li><i class="fa-solid fa-location-dot fa-fw" style="color: var(--color-brand-primary);"></i> Address: Cardiff, Wales, UK</li>
+                    <li><i class="fa-solid fa-clock fa-fw" style="color: var(--color-accent-orange);"></i> Hours: Mon-Fri, 9am-5pm</li>
+                </ul>
+
+                <code class="code-label">&lt;i class="fa-solid fa-envelope fa-fw"&gt;&lt;/i&gt; (fa-fw = fixed width)</code>
+            </div>
+
+            <!-- Icons in Buttons -->
+            <div class="demo-block">
+                <div class="demo-block__title">Icons in Buttons</div>
+                <div class="demo-block__description">Combine icons with button components</div>
+
+                <div class="demo-inline">
+                    <button class="button button-primary"><i class="fa-solid fa-download"></i> Download</button>
+                    <button class="button button-secondary"><i class="fa-solid fa-share"></i> Share</button>
+                    <button class="button button-success"><i class="fa-solid fa-check"></i> Save</button>
+                    <button class="button button-primary-outline"><i class="fa-solid fa-print"></i> Print</button>
+                    <button class="button button-secondary-outline"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button class="button button-primary">Next <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="demo-inline" style="margin-top: 1rem;">
+                    <button class="button button-primary button-icon-only" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="button button-secondary button-icon-only" aria-label="Settings"><i class="fa-solid fa-gear"></i></button>
+                    <button class="button button-success button-icon-only" aria-label="Add"><i class="fa-solid fa-plus"></i></button>
+                    <button class="button button-primary-outline button-icon-only" aria-label="Edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="button button-secondary-outline button-icon-only" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+
+                <code class="code-label">&lt;button class="button button-primary"&gt;&lt;i class="fa-solid fa-download"&gt;&lt;/i&gt; Download&lt;/button&gt;</code>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="demo-block">
+                <div class="demo-block__title">Brand / Social Media Icons</div>
+                <div class="demo-block__description">Popular brand icons for social links</div>
+
+                <div class="demo-inline" style="font-size: 2rem; gap: 1.5rem;">
+                    <a href="#" style="color: #1877F2;" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" style="color: #1DA1F2;" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" style="color: #0A66C2;" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" style="color: #E4405F;" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" style="color: #FF0000;" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" style="color: #333;" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+
+                <code class="code-label">&lt;i class="fa-brands fa-facebook"&gt;&lt;/i&gt;</code>
+            </div>
+
+            <!-- Common UI Icons -->
+            <div class="demo-block">
+                <div class="demo-block__title">Common UI Icons Reference</div>
+                <div class="demo-block__description">Frequently used icons for interface design</div>
+
+                <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; text-align: center;">
+                    <div><i class="fa-solid fa-house fa-lg"></i><br><small>fa-house</small></div>
+                    <div><i class="fa-solid fa-user fa-lg"></i><br><small>fa-user</small></div>
+                    <div><i class="fa-solid fa-users fa-lg"></i><br><small>fa-users</small></div>
+                    <div><i class="fa-solid fa-gear fa-lg"></i><br><small>fa-gear</small></div>
+                    <div><i class="fa-solid fa-magnifying-glass fa-lg"></i><br><small>fa-magnifying-glass</small></div>
+                    <div><i class="fa-solid fa-bell fa-lg"></i><br><small>fa-bell</small></div>
+                    <div><i class="fa-solid fa-envelope fa-lg"></i><br><small>fa-envelope</small></div>
+                    <div><i class="fa-solid fa-comment fa-lg"></i><br><small>fa-comment</small></div>
+                    <div><i class="fa-solid fa-heart fa-lg"></i><br><small>fa-heart</small></div>
+                    <div><i class="fa-solid fa-star fa-lg"></i><br><small>fa-star</small></div>
+                    <div><i class="fa-solid fa-bookmark fa-lg"></i><br><small>fa-bookmark</small></div>
+                    <div><i class="fa-solid fa-folder fa-lg"></i><br><small>fa-folder</small></div>
+                    <div><i class="fa-solid fa-file fa-lg"></i><br><small>fa-file</small></div>
+                    <div><i class="fa-solid fa-image fa-lg"></i><br><small>fa-image</small></div>
+                    <div><i class="fa-solid fa-video fa-lg"></i><br><small>fa-video</small></div>
+                    <div><i class="fa-solid fa-music fa-lg"></i><br><small>fa-music</small></div>
+                    <div><i class="fa-solid fa-download fa-lg"></i><br><small>fa-download</small></div>
+                    <div><i class="fa-solid fa-upload fa-lg"></i><br><small>fa-upload</small></div>
+                    <div><i class="fa-solid fa-link fa-lg"></i><br><small>fa-link</small></div>
+                    <div><i class="fa-solid fa-share fa-lg"></i><br><small>fa-share</small></div>
+                    <div><i class="fa-solid fa-print fa-lg"></i><br><small>fa-print</small></div>
+                    <div><i class="fa-solid fa-trash fa-lg"></i><br><small>fa-trash</small></div>
+                    <div><i class="fa-solid fa-pen fa-lg"></i><br><small>fa-pen</small></div>
+                    <div><i class="fa-solid fa-plus fa-lg"></i><br><small>fa-plus</small></div>
+                    <div><i class="fa-solid fa-minus fa-lg"></i><br><small>fa-minus</small></div>
+                    <div><i class="fa-solid fa-check fa-lg"></i><br><small>fa-check</small></div>
+                    <div><i class="fa-solid fa-xmark fa-lg"></i><br><small>fa-xmark</small></div>
+                    <div><i class="fa-solid fa-info fa-lg"></i><br><small>fa-info</small></div>
+                    <div><i class="fa-solid fa-question fa-lg"></i><br><small>fa-question</small></div>
+                    <div><i class="fa-solid fa-exclamation fa-lg"></i><br><small>fa-exclamation</small></div>
+                    <div><i class="fa-solid fa-arrow-left fa-lg"></i><br><small>fa-arrow-left</small></div>
+                    <div><i class="fa-solid fa-arrow-right fa-lg"></i><br><small>fa-arrow-right</small></div>
+                    <div><i class="fa-solid fa-chevron-down fa-lg"></i><br><small>fa-chevron-down</small></div>
+                    <div><i class="fa-solid fa-chevron-up fa-lg"></i><br><small>fa-chevron-up</small></div>
+                    <div><i class="fa-solid fa-bars fa-lg"></i><br><small>fa-bars</small></div>
+                    <div><i class="fa-solid fa-ellipsis fa-lg"></i><br><small>fa-ellipsis</small></div>
+                </div>
+
+                <p style="margin-top: 1rem;"><small>Browse all icons at <a href="https://fontawesome.com/icons" target="_blank" rel="noopener">fontawesome.com/icons</a></small></p>
+            </div>
+
+            <!-- Accessibility -->
+            <div class="demo-block">
+                <div class="demo-block__title">Icon Accessibility</div>
+
+                <h4>Decorative Icons</h4>
+                <p>Icons that are purely decorative should be hidden from screen readers:</p>
+                <pre><code>&lt;i class="fa-solid fa-star" aria-hidden="true"&gt;&lt;/i&gt; Rating</code></pre>
+
+                <h4>Meaningful Icons</h4>
+                <p>Icons that convey meaning need accessible labels:</p>
+                <pre><code>&lt;!-- Option 1: aria-label on the icon --&gt;
+&lt;i class="fa-solid fa-trash" aria-label="Delete item"&gt;&lt;/i&gt;
+
+&lt;!-- Option 2: Visually hidden text --&gt;
+&lt;i class="fa-solid fa-trash" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;span class="sr-only"&gt;Delete item&lt;/span&gt;
+
+&lt;!-- Option 3: aria-label on button --&gt;
+&lt;button aria-label="Delete item"&gt;
+    &lt;i class="fa-solid fa-trash" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/button&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- ==================== IMAGES ==================== -->
+        <section class="demo-section" id="images">
+            <h2><i class="fa-solid fa-image"></i> Images</h2>
 
             <div class="demo-block">
                 <div class="demo-block__title">Figure with Caption</div>
-                <div class="demo-block__description">Semantic markup for images with captions</div>
-                <code class="code-label">&lt;figure&gt; and &lt;figcaption&gt;</code>
+                <code class="code-label">&lt;figure&gt; + &lt;figcaption&gt;</code>
 
                 <figure>
-                    <img src="https://placehold.co/800x400/E4251B/FFFFFF?text=Cardiff+University+Main+Building"
+                    <img src="https://placehold.co/800x400/E4251B/FFFFFF?text=Cardiff+University"
                         alt="Cardiff University Main Building" style="max-width: 100%; height: auto;">
                     <figcaption>Cardiff University Main Building on Cathays Park</figcaption>
                 </figure>
-
-                <p style="margin-top: 1rem;"><small>The <code>&lt;figure&gt;</code> element provides semantic meaning
-                        and proper styling for images with captions.</small></p>
             </div>
-        </section>
-
-        <!-- Image Alignment -->
-        <section class="demo-section">
-            <h2>Image Alignment Classes</h2>
 
             <div class="demo-block">
-                <div class="demo-block__title">Pull Right (.pull-right)</div>
-                <div class="demo-block__description">Float image to the right with text wrapping</div>
-                <code class="code-label">.pull-right</code>
+                <div class="demo-block__title">Image Alignment</div>
 
-                <div class="demo-text-flow">
-                    <img src="https://placehold.co/300x200/5EB99B/FFFFFF?text=Pull+Right" alt="Pull right example"
-                        class="pull-right" style="max-width: 300px; height: auto;">
-
-                    <p>This paragraph demonstrates text flowing around an image that is floated to the right using the
-                        <code>pull-right</code> class. The image has appropriate margins to ensure proper spacing
-                        between the text and the image. This is useful for creating magazine-style layouts where images
-                        are integrated into the text content.
-                    </p>
-
-                    <p>Additional paragraphs continue to wrap around the floated image, creating a natural and
-                        professional layout. This technique is commonly used in articles, blog posts, and educational
-                        content where visual elements need to be integrated seamlessly with text.</p>
-
-                    <p>The pull-right class automatically adds appropriate margins and ensures the image floats
-                        correctly on all screen sizes. On mobile devices, the image may stack above the text for better
-                        readability.</p>
+                <div class="demo-grid" style="grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <h4>.pull-left</h4>
+                        <div class="demo-text-flow" style="overflow: hidden;">
+                            <img src="https://placehold.co/150x100/5EB99B/FFFFFF?text=Left" alt="Pull left" class="pull-left" style="max-width: 150px;">
+                            <p>Text wraps around images floated left using the <code>.pull-left</code> class. Useful for magazine-style layouts.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>.pull-right</h4>
+                        <div class="demo-text-flow" style="overflow: hidden;">
+                            <img src="https://placehold.co/150x100/4A42FF/FFFFFF?text=Right" alt="Pull right" class="pull-right" style="max-width: 150px;">
+                            <p>Text wraps around images floated right using the <code>.pull-right</code> class. Great for sidebar content.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="demo-block">
-                <div class="demo-block__title">Pull Left (.pull-left)</div>
-                <div class="demo-block__description">Float image to the left with text wrapping</div>
-                <code class="code-label">.pull-left</code>
+                <div class="demo-block__title">Image Utility Classes</div>
 
-                <div class="demo-text-flow">
-                    <img src="https://placehold.co/300x200/4A42FF/FFFFFF?text=Pull+Left" alt="Pull left example"
-                        class="pull-left" style="max-width: 300px; height: auto;">
+                <h4>.image-full</h4>
+                <img src="https://placehold.co/1200x200/E4251B/FFFFFF?text=Full+Width+Image" alt="Full width" class="image-full">
 
-                    <p>This paragraph demonstrates text flowing around an image that is floated to the left using the
-                        <code>pull-left</code> class. Similar to the pull-right example, the image has proper margins to
-                        maintain good spacing and readability.
-                    </p>
-
-                    <p>The text continues to flow naturally around the floated image, creating an attractive and
-                        functional layout that enhances the reading experience while showcasing relevant visual content.
-                        This is particularly effective for case studies, research articles, and instructional materials.
-                    </p>
-
-                    <p>Both pull-left and pull-right classes are responsive and will adapt to different screen sizes,
-                        ensuring your content looks great on all devices from mobile phones to desktop computers.</p>
-                </div>
+                <h4 style="margin-top: 1.5rem;">.image-screenshots</h4>
+                <img src="https://placehold.co/600x300/5EB99B/FFFFFF?text=Screenshot+Style" alt="Screenshot" class="image-screenshots" style="max-width: 100%;">
             </div>
         </section>
 
-        <!-- Image Utility Classes -->
-        <section class="demo-section">
-            <h2>Image Utility Classes</h2>
+        <!-- ==================== VIDEO ==================== -->
+        <section class="demo-section" id="video">
+            <h2><i class="fa-solid fa-video"></i> Video</h2>
 
             <div class="demo-block">
-                <div class="demo-block__title">Full Width Image (.image-full)</div>
-                <div class="demo-block__description">Image spans full container width</div>
-                <code class="code-label">.image-full</code>
+                <div class="demo-block__title">HTML5 Video</div>
+                <code class="code-label">&lt;video controls&gt;</code>
 
-                <img src="https://placehold.co/1200x300/E4251B/FFFFFF?text=Full+Width+Image" alt="Full width example"
-                    class="image-full">
-
-                <p style="margin-top: 1rem;"><small>The <code>.image-full</code> class makes images span the full width
-                        of their container. Useful for hero images, banners, and full-width visual elements.</small></p>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Screenshot Style (.image-screenshots)</div>
-                <div class="demo-block__description">Adds border and shadow for screenshot-style images</div>
-                <code class="code-label">.image-screenshots</code>
-
-                <img src="https://placehold.co/800x400/5EB99B/FFFFFF?text=Screenshot+Style" alt="Screenshot example"
-                    class="image-screenshots" style="max-width: 100%;">
-
-                <p style="margin-top: 1rem;"><small>The <code>.image-screenshots</code> class adds a subtle border and
-                        shadow effect, perfect for displaying software screenshots, UI mockups, or any image that should
-                        appear as a distinct visual element.</small></p>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Multiple Images in Sequence</div>
-                <div class="demo-block__description">Using image utilities together</div>
-
-                <div
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
-                    <figure>
-                        <img src="https://placehold.co/400x300/E4251B/FFFFFF?text=Image+1" alt="Example 1"
-                            class="image-screenshots" style="max-width: 100%;">
-                        <figcaption>Screenshot example 1</figcaption>
-                    </figure>
-
-                    <figure>
-                        <img src="https://placehold.co/400x300/5EB99B/FFFFFF?text=Image+2" alt="Example 2"
-                            class="image-screenshots" style="max-width: 100%;">
-                        <figcaption>Screenshot example 2</figcaption>
-                    </figure>
-
-                    <figure>
-                        <img src="https://placehold.co/400x300/4A42FF/FFFFFF?text=Image+3" alt="Example 3"
-                            class="image-screenshots" style="max-width: 100%;">
-                        <figcaption>Screenshot example 3</figcaption>
-                    </figure>
-                </div>
-            </div>
-        </section>
-
-        <!-- Video Embedding -->
-        <section class="demo-section">
-            <h2>Video Embedding</h2>
-
-            <div class="demo-block">
-                <div class="demo-block__title">HTML5 Video Element</div>
-                <div class="demo-block__description">Native HTML5 video with controls</div>
-                <code class="code-label">&lt;video&gt;</code>
-
-                <video controls style="max-width: 100%; height: auto; border-radius: 4px;">
+                <video controls style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
                     <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                    <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
                     Your browser does not support the video tag.
                 </video>
-
-                <p style="margin-top: 1rem;"><small>HTML5 video supports multiple formats. Always include fallback text
-                        for browsers that don't support the video element.</small></p>
             </div>
 
             <div class="demo-block">
-                <div class="demo-block__title">Video Container (.video-720)</div>
-                <div class="demo-block__description">Responsive container for 720p video (16:9 aspect ratio)</div>
-                <code class="code-label">.video-720</code>
+                <div class="demo-block__title">Responsive YouTube Embed</div>
+                <code class="code-label">16:9 aspect ratio wrapper</code>
 
-                <div class="video-720"
-                    style="background: var(--cu-gray-20); display: flex; align-items: center; justify-content: center; min-height: 200px; border-radius: 4px;">
-                    <p style="margin: 0; color: var(--cu-gray-60);">720p Video Container (max-width: 720px, max-height:
-                        405px)</p>
-                </div>
-
-                <p style="margin-top: 1rem;"><small>The <code>.video-720</code> class creates a responsive container
-                        optimized for 720p video content with a 16:9 aspect ratio.</small></p>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">YouTube Embed (Responsive)</div>
-                <div class="demo-block__description">Responsive YouTube iframe embedding</div>
-                <code class="code-label">&lt;iframe&gt; with responsive wrapper</code>
-
-                <div
-                    style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 4px;">
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius-md);">
                     <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player"
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                     </iframe>
                 </div>
 
-                <div class="demo-note" style="margin-top: 1rem;">
-                    <div class="demo-note__title">Responsive Video Wrapper</div>
-                    <p>To make YouTube/Vimeo embeds responsive, wrap the iframe in a container with
-                        <code>padding-bottom: 56.25%</code> (for 16:9 ratio) or <code>padding-bottom: 75%</code> (for
-                        4:3 ratio).
-                    </p>
-                </div>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Vimeo Embed (Responsive)</div>
-                <div class="demo-block__description">Responsive Vimeo iframe embedding</div>
-                <code class="code-label">&lt;iframe&gt; with responsive wrapper</code>
-
-                <div
-                    style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 4px;">
-                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-                        src="https://player.vimeo.com/video/148751763" title="Vimeo video player"
-                        allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
-                    </iframe>
-                </div>
+                <pre style="margin-top: 1rem;"><code>&lt;div style="position: relative; padding-bottom: 56.25%; height: 0;"&gt;
+    &lt;iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+            src="https://www.youtube.com/embed/VIDEO_ID"&gt;&lt;/iframe&gt;
+&lt;/div&gt;</code></pre>
             </div>
         </section>
 
-        <!-- Audio Embedding -->
-        <section class="demo-section">
-            <h2>Audio Embedding</h2>
+        <!-- ==================== AUDIO ==================== -->
+        <section class="demo-section" id="audio">
+            <h2><i class="fa-solid fa-volume-high"></i> Audio</h2>
 
             <div class="demo-block">
-                <div class="demo-block__title">HTML5 Audio Element</div>
-                <div class="demo-block__description">Native HTML5 audio with controls</div>
-                <code class="code-label">&lt;audio&gt;</code>
+                <div class="demo-block__title">HTML5 Audio</div>
+                <code class="code-label">&lt;audio controls&gt;</code>
 
                 <audio controls style="width: 100%; max-width: 500px;">
-                    <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
                     <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
-
-                <p style="margin-top: 1rem;"><small>HTML5 audio supports multiple formats including MP3, OGG, and WAV.
-                        Always provide multiple formats for better browser compatibility.</small></p>
             </div>
 
             <div class="demo-block">
                 <div class="demo-block__title">Audio with Description</div>
-                <div class="demo-block__description">Audio element with contextual information</div>
 
                 <figure>
-                    <figcaption><strong>Lecture Recording:</strong> Introduction to Computer Science - Week 1
-                    </figcaption>
+                    <figcaption><i class="fa-solid fa-microphone"></i> <strong>Lecture Recording:</strong> Introduction to Computer Science - Week 1</figcaption>
                     <audio controls style="width: 100%; margin-top: 0.5rem;">
                         <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
                     </audio>
                 </figure>
-
-                <p style="margin-top: 1rem;"><small>Use <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code>
-                        to provide context for audio content.</small></p>
             </div>
         </section>
 
-        <!-- Interactive Media -->
+        <!-- ==================== BEST PRACTICES ==================== -->
         <section class="demo-section">
-            <h2>Interactive Media Examples</h2>
+            <h2><i class="fa-solid fa-lightbulb"></i> Best Practices</h2>
 
-            <div class="demo-block">
-                <div class="demo-block__title">Embedded Google Maps</div>
-                <div class="demo-block__description">Responsive map embedding</div>
-                <code class="code-label">&lt;iframe&gt; with responsive wrapper</code>
-
-                <div
-                    style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 4px;">
-                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2485.0847779159!2d-3.1767!3d51.4875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e1cb8a95e0e0b%3A0x5f4b3c3b3c3b3c3b!2sCardiff%20University!5e0!3m2!1sen!2suk!4v1234567890"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Embedded PDF Viewer</div>
-                <div class="demo-block__description">PDF document embedding</div>
-                <code class="code-label">&lt;iframe&gt; or &lt;object&gt;</code>
-
-                <div
-                    style="border: 1px solid var(--cu-gray-30); border-radius: 4px; padding: 2rem; text-align: center; background: var(--cu-gray-10);">
-                    <p style="margin: 0; color: var(--cu-gray-60);">
-                        <strong>PDF Viewer Placeholder</strong><br>
-                        <small>Use <code>&lt;iframe src="document.pdf"&gt;</code> or
-                            <code>&lt;object data="document.pdf" type="application/pdf"&gt;</code></small>
-                    </p>
+            <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+                <div class="demo-block">
+                    <div class="demo-block__title"><i class="fa-solid fa-image"></i> Images</div>
+                    <ul>
+                        <li>Always provide descriptive <code>alt</code> text</li>
+                        <li>Use <code>loading="lazy"</code> for below-fold images</li>
+                        <li>Specify <code>width</code> and <code>height</code></li>
+                        <li>Use appropriate formats (JPEG, PNG, SVG)</li>
+                    </ul>
                 </div>
 
-                <div class="demo-note" style="margin-top: 1rem;">
-                    <div class="demo-note__title">PDF Embedding Note</div>
-                    <p>For better accessibility and mobile compatibility, consider providing a download link alongside
-                        embedded PDFs. Not all browsers support inline PDF viewing.</p>
+                <div class="demo-block">
+                    <div class="demo-block__title"><i class="fa-solid fa-video"></i> Video</div>
+                    <ul>
+                        <li>Provide captions/subtitles</li>
+                        <li>Include text transcripts</li>
+                        <li>Use <code>poster</code> attribute for thumbnails</li>
+                        <li>Host large files externally</li>
+                    </ul>
                 </div>
-            </div>
-        </section>
 
-        <!-- Media Best Practices -->
-        <section class="demo-section">
-            <h2>Media Best Practices</h2>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Accessibility Considerations</div>
-
-                <h4>Images</h4>
-                <ul>
-                    <li><strong>Alt Text:</strong> Always provide descriptive alt text for images. Describe what the
-                        image shows, not just its filename.</li>
-                    <li><strong>Decorative Images:</strong> Use <code>alt=""</code> for purely decorative images that
-                        don't convey information.</li>
-                    <li><strong>Complex Images:</strong> For charts, diagrams, or infographics, provide detailed
-                        descriptions in the surrounding text or use <code>longdesc</code>.</li>
-                </ul>
-
-                <h4>Video</h4>
-                <ul>
-                    <li><strong>Captions:</strong> Provide captions or subtitles for all video content.</li>
-                    <li><strong>Transcripts:</strong> Include text transcripts for important video content.</li>
-                    <li><strong>Audio Description:</strong> Consider providing audio descriptions for visual content in
-                        videos.</li>
-                </ul>
-
-                <h4>Audio</h4>
-                <ul>
-                    <li><strong>Transcripts:</strong> Always provide text transcripts for audio content.</li>
-                    <li><strong>Controls:</strong> Ensure audio players have accessible controls.</li>
-                    <li><strong>Autoplay:</strong> Avoid autoplaying audio as it can be disruptive and inaccessible.
-                    </li>
-                </ul>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Performance Considerations</div>
-
-                <ul>
-                    <li><strong>Image Optimization:</strong> Compress images before uploading. Use appropriate formats
-                        (JPEG for photos, PNG for graphics, SVG for icons).</li>
-                    <li><strong>Responsive Images:</strong> Use <code>srcset</code> and <code>sizes</code> attributes to
-                        serve appropriately sized images for different devices.</li>
-                    <li><strong>Lazy Loading:</strong> Use <code>loading="lazy"</code> attribute for images below the
-                        fold.</li>
-                    <li><strong>Video Hosting:</strong> Host large video files on dedicated platforms (YouTube, Vimeo)
-                        rather than your server.</li>
-                    <li><strong>Thumbnails:</strong> Provide poster images for videos using the <code>poster</code>
-                        attribute.</li>
-                </ul>
+                <div class="demo-block">
+                    <div class="demo-block__title"><i class="fa-solid fa-icons"></i> Icons</div>
+                    <ul>
+                        <li>Use <code>aria-hidden="true"</code> for decorative icons</li>
+                        <li>Add <code>aria-label</code> for meaningful icons</li>
+                        <li>Use <code>fa-fw</code> for fixed-width alignment</li>
+                        <li>Don't rely solely on icons for meaning</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="demo-success">
-                <p><strong>✓ Good Example:</strong></p>
-                <pre style="background: white; padding: 1rem; border-radius: 4px; overflow-x: auto;"><code>&lt;img src="campus.jpg" 
-     alt="Students walking across Cardiff University campus on a sunny day" 
-     loading="lazy"
-     width="800" 
-     height="600"&gt;</code></pre>
+                <p><strong><i class="fa-solid fa-check"></i> Good Example:</strong></p>
+                <pre><code>&lt;button aria-label="Delete item"&gt;
+    &lt;i class="fa-solid fa-trash" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/button&gt;</code></pre>
             </div>
 
             <div class="demo-warning">
-                <p><strong>✗ Poor Example:</strong></p>
-                <pre
-                    style="background: white; padding: 1rem; border-radius: 4px; overflow-x: auto;"><code>&lt;img src="IMG_1234.jpg" alt="image"&gt;</code></pre>
-                <p style="margin-top: 0.5rem;"><small>This example lacks descriptive alt text, dimensions, and
-                        optimization attributes.</small></p>
+                <p><strong><i class="fa-solid fa-triangle-exclamation"></i> Poor Example:</strong></p>
+                <pre><code>&lt;button&gt;
+    &lt;i class="fa-solid fa-trash"&gt;&lt;/i&gt;
+&lt;/button&gt;</code></pre>
+                <p><small>Missing accessible label - screen readers won't know the button's purpose.</small></p>
             </div>
         </section>
     </main>
 
     <footer class="demo-footer">
-        <p>Cardiff University v2 Theme - Images & Media Demo</p>
+        <p>Cardiff University v2 Theme - Images, Media & Icons Demo</p>
         <ul class="demo-footer__links">
             <li><a href="index.html" class="demo-footer__link">Home</a></li>
-            <li><a href="lists-tables.html" class="demo-footer__link">← Lists & Tables</a></li>
-            <li><a href="forms.html" class="demo-footer__link">Forms →</a></li>
+            <li><a href="lists-tables.html" class="demo-footer__link"><i class="fa-solid fa-arrow-left"></i> Lists & Tables</a></li>
+            <li><a href="forms.html" class="demo-footer__link">Forms <i class="fa-solid fa-arrow-right"></i></a></li>
         </ul>
     </footer>
     <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>

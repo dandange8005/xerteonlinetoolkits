@@ -155,7 +155,7 @@ body {
     padding: 1.5rem;
     background: #f9fafb;
     border-radius: 4px;
-    border-left: 4px solid var(--cu-gray-30);
+    border-left: 4px solid var(--color-accent-stone);
 }
 
 .demo-block--highlight {
@@ -321,13 +321,13 @@ body {
 
 .demo-divider {
     border: 0;
-    border-top: 2px solid var(--cu-gray-20);
+    border-top: 2px solid var(--color-gray-20);
     margin: 2rem 0;
 }
 
 .demo-note {
     background: #fffbea;
-    border-left: 4px solid var(--cu-yellow);
+    border-left: 4px solid var(--color-accent-yellow);
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 4px;
@@ -341,7 +341,7 @@ body {
 
 .demo-warning {
     background: #fff5f5;
-    border-left: 4px solid var(--cu-primary-red);
+    border-left: 4px solid var(--color-status-warning);
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 4px;
@@ -349,7 +349,7 @@ body {
 
 .demo-success {
     background: #f0fdf4;
-    border-left: 4px solid var(--cu-forest-green);
+    border-left: 4px solid var(--color-status-success);
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 4px;

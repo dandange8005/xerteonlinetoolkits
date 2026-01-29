@@ -23,7 +23,7 @@
 
             <div class="titles">
                 <h1 id="pageTitle" aria-live="polite">Color Palette</h1>
-                <p id="pageSubTitle" aria-live="polite">Brand Colors & Guidelines</p>
+                <p id="pageSubTitle" aria-live="polite">Design Tokens & Color System</p>
             </div>
     </header>
 
@@ -45,7 +45,7 @@
                             <li role="none"><a href="index.html">Home</a></li>
                             <li role="none"><a href="typography.html">Typography</a></li>
                             <li role="none"><a href="lists-tables.html">Lists & Tables</a></li>
-                            <li role="none"><a href="images-media.html">Images & Media</a></li>
+                            <li role="none"><a href="images-media.html">Images, Media & Icons</a></li>
                             <li role="none"><a href="forms.html">Forms</a></li>
                             <li role="none"><a href="components.html">Components</a></li>
                             <li role="none"><a href="code-utilities.html">Code & Utilities</a></li>
@@ -60,95 +60,27 @@
     </div>
 
     <main>
-        <!-- Primary Colors -->
+        <!-- Brand Colors -->
         <section class="demo-section">
-            <h2>Primary Brand Colors</h2>
+            <h2>Brand Colors</h2>
+            <p>The core brand colors that define the Cardiff University visual identity.</p>
 
             <div class="demo-grid">
                 <div>
-                    <div class="color-swatch" style="background: var(--cu-primary-red);"></div>
+                    <div class="color-swatch" style="background: var(--color-brand-primary);"></div>
                     <div class="color-info">
-                        <span class="color-info__name">Primary Red</span>
-                        <span class="color-info__value">--cu-primary-red</span>
+                        <span class="color-info__name">Brand Primary</span>
+                        <span class="color-info__value">--color-brand-primary</span>
                         <span class="color-info__value">#E4251B</span>
                     </div>
                 </div>
 
                 <div>
-                    <div class="color-swatch" style="background: var(--cu-dark-red);"></div>
+                    <div class="color-swatch" style="background: var(--color-brand-secondary);"></div>
                     <div class="color-info">
-                        <span class="color-info__name">Dark Red</span>
-                        <span class="color-info__value">--cu-dark-red</span>
-                        <span class="color-info__value">#C41E3A</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Secondary Colors - Blues -->
-        <section class="demo-section">
-            <h2>Secondary Colors - Blues</h2>
-
-            <div class="demo-grid">
-                <div>
-                    <div class="color-swatch" style="background: var(--cu-light-blue);"></div>
-                    <div class="color-info">
-                        <span class="color-info__name">Light Blue</span>
-                        <span class="color-info__value">--cu-light-blue</span>
-                        <span class="color-info__value">#5EB99B</span>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="color-swatch" style="background: var(--cu-royal-blue);"></div>
-                    <div class="color-info">
-                        <span class="color-info__name">Royal Blue</span>
-                        <span class="color-info__value">--cu-royal-blue</span>
-                        <span class="color-info__value">#4A42FF</span>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="color-swatch" style="background: var(--cu-midnight-blue);"></div>
-                    <div class="color-info">
-                        <span class="color-info__name">Midnight Blue</span>
-                        <span class="color-info__value">--cu-midnight-blue</span>
-                        <span class="color-info__value">#003C71</span>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="color-swatch" style="background: var(--cu-cadet); border: 1px solid var(--cu-gray-30);">
-                    </div>
-                    <div class="color-info">
-                        <span class="color-info__name">Cadet</span>
-                        <span class="color-info__value">--cu-cadet</span>
-                        <span class="color-info__value">#9FBECC</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Secondary Colors - Greens -->
-        <section class="demo-section">
-            <h2>Secondary Colors - Greens</h2>
-
-            <div class="demo-grid">
-                <div>
-                    <div class="color-swatch" style="background: var(--cu-forest-green);"></div>
-                    <div class="color-info">
-                        <span class="color-info__name">Forest Green</span>
-                        <span class="color-info__value">--cu-forest-green</span>
-                        <span class="color-info__value">#006341</span>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="color-swatch" style="background: var(--cu-yellow-green);"></div>
-                    <div class="color-info">
-                        <span class="color-info__name">Yellow Green</span>
-                        <span class="color-info__value">--cu-yellow-green</span>
-                        <span class="color-info__value">#C4D600</span>
+                        <span class="color-info__name">Brand Secondary</span>
+                        <span class="color-info__value">--color-brand-secondary</span>
+                        <span class="color-info__value">#121212</span>
                     </div>
                 </div>
             </div>
@@ -157,23 +89,114 @@
         <!-- Accent Colors -->
         <section class="demo-section">
             <h2>Accent Colors</h2>
+            <p>A vibrant palette for emphasis, callouts, and visual variety.</p>
 
             <div class="demo-grid">
                 <div>
-                    <div class="color-swatch" style="background: var(--cu-orange);"></div>
+                    <div class="color-swatch" style="background: var(--color-accent-green);"></div>
                     <div class="color-info">
-                        <span class="color-info__name">Orange</span>
-                        <span class="color-info__value">--cu-orange</span>
-                        <span class="color-info__value">#FF6B35</span>
+                        <span class="color-info__name">Green</span>
+                        <span class="color-info__value">--color-accent-green</span>
+                        <span class="color-info__value">#07873E</span>
                     </div>
                 </div>
 
                 <div>
-                    <div class="color-swatch" style="background: var(--cu-yellow);"></div>
+                    <div class="color-swatch" style="background: var(--color-accent-teal);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Teal</span>
+                        <span class="color-info__value">--color-accent-teal</span>
+                        <span class="color-info__value">#5EB99B</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-accent-lime);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Lime</span>
+                        <span class="color-info__value">--color-accent-lime</span>
+                        <span class="color-info__value">#85C041</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-accent-blue);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Blue</span>
+                        <span class="color-info__value">--color-accent-blue</span>
+                        <span class="color-info__value">#1E90FF</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-accent-royal);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Royal</span>
+                        <span class="color-info__value">--color-accent-royal</span>
+                        <span class="color-info__value">#4A42FF</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-accent-navy);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Navy</span>
+                        <span class="color-info__value">--color-accent-navy</span>
+                        <span class="color-info__value">#273573</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-accent-orange);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Orange</span>
+                        <span class="color-info__value">--color-accent-orange</span>
+                        <span class="color-info__value">#E9761E</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-accent-yellow);"></div>
                     <div class="color-info">
                         <span class="color-info__name">Yellow</span>
-                        <span class="color-info__value">--cu-yellow</span>
-                        <span class="color-info__value">#FFD100</span>
+                        <span class="color-info__value">--color-accent-yellow</span>
+                        <span class="color-info__value">#FFB300</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-accent-indigo);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Indigo</span>
+                        <span class="color-info__value">--color-accent-indigo</span>
+                        <span class="color-info__value">#570185</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-accent-violet);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Violet</span>
+                        <span class="color-info__value">--color-accent-violet</span>
+                        <span class="color-info__value">#D401C5</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-accent-purple);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Purple</span>
+                        <span class="color-info__value">--color-accent-purple</span>
+                        <span class="color-info__value">#26192C</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-accent-stone); border: 1px solid var(--color-gray-30);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Stone</span>
+                        <span class="color-info__value">--color-accent-stone</span>
+                        <span class="color-info__value">#C9C2BA</span>
                     </div>
                 </div>
             </div>
@@ -182,79 +205,357 @@
         <!-- Grayscale -->
         <section class="demo-section">
             <h2>Grayscale</h2>
+            <p>A comprehensive grayscale for text, borders, and backgrounds.</p>
 
             <div class="demo-grid">
                 <div>
                     <div class="color-swatch"
-                        style="background: var(--cu-gray-10); border: 1px solid var(--cu-gray-30);"></div>
+                        style="background: var(--color-white); border: 1px solid var(--color-gray-30);"></div>
                     <div class="color-info">
-                        <span class="color-info__name">Gray 10</span>
-                        <span class="color-info__value">--cu-gray-10</span>
+                        <span class="color-info__name">White</span>
+                        <span class="color-info__value">--color-white</span>
+                        <span class="color-info__value">#FFFFFF</span>
                     </div>
                 </div>
 
                 <div>
                     <div class="color-swatch"
-                        style="background: var(--cu-gray-20); border: 1px solid var(--cu-gray-30);"></div>
+                        style="background: var(--color-light); border: 1px solid var(--color-gray-30);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Light</span>
+                        <span class="color-info__value">--color-light</span>
+                        <span class="color-info__value">#f9fafb</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch"
+                        style="background: var(--color-gray-10); border: 1px solid var(--color-gray-30);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Gray 10</span>
+                        <span class="color-info__value">--color-gray-10</span>
+                        <span class="color-info__value">#F2F2F2</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch"
+                        style="background: var(--color-gray-20); border: 1px solid var(--color-gray-30);"></div>
                     <div class="color-info">
                         <span class="color-info__name">Gray 20</span>
-                        <span class="color-info__value">--cu-gray-20</span>
+                        <span class="color-info__value">--color-gray-20</span>
+                        <span class="color-info__value">#E5E5E5</span>
                     </div>
                 </div>
 
                 <div>
-                    <div class="color-swatch" style="background: var(--cu-gray-30);"></div>
+                    <div class="color-swatch" style="background: var(--color-gray-30);"></div>
                     <div class="color-info">
                         <span class="color-info__name">Gray 30</span>
-                        <span class="color-info__value">--cu-gray-30</span>
+                        <span class="color-info__value">--color-gray-30</span>
+                        <span class="color-info__value">#CCCCCC</span>
                     </div>
                 </div>
 
                 <div>
-                    <div class="color-swatch" style="background: var(--cu-gray-40);"></div>
+                    <div class="color-swatch" style="background: var(--color-gray-40);"></div>
                     <div class="color-info">
                         <span class="color-info__name">Gray 40</span>
-                        <span class="color-info__value">--cu-gray-40</span>
+                        <span class="color-info__value">--color-gray-40</span>
+                        <span class="color-info__value">#B3B3B3</span>
                     </div>
                 </div>
 
                 <div>
-                    <div class="color-swatch" style="background: var(--cu-gray-50);"></div>
+                    <div class="color-swatch" style="background: var(--color-gray-50);"></div>
                     <div class="color-info">
                         <span class="color-info__name">Gray 50</span>
-                        <span class="color-info__value">--cu-gray-50</span>
+                        <span class="color-info__value">--color-gray-50</span>
+                        <span class="color-info__value">#999999</span>
                     </div>
                 </div>
 
                 <div>
-                    <div class="color-swatch" style="background: var(--cu-gray-60);"></div>
+                    <div class="color-swatch" style="background: var(--color-gray-60);"></div>
                     <div class="color-info">
                         <span class="color-info__name">Gray 60</span>
-                        <span class="color-info__value">--cu-gray-60</span>
+                        <span class="color-info__value">--color-gray-60</span>
+                        <span class="color-info__value">#808080</span>
                     </div>
                 </div>
 
                 <div>
-                    <div class="color-swatch" style="background: var(--cu-gray-70);"></div>
+                    <div class="color-swatch" style="background: var(--color-gray-70);"></div>
                     <div class="color-info">
                         <span class="color-info__name">Gray 70</span>
-                        <span class="color-info__value">--cu-gray-70</span>
+                        <span class="color-info__value">--color-gray-70</span>
+                        <span class="color-info__value">#666666</span>
                     </div>
                 </div>
 
                 <div>
-                    <div class="color-swatch" style="background: var(--cu-gray-80);"></div>
+                    <div class="color-swatch" style="background: var(--color-gray-80);"></div>
                     <div class="color-info">
                         <span class="color-info__name">Gray 80</span>
-                        <span class="color-info__value">--cu-gray-80</span>
+                        <span class="color-info__value">--color-gray-80</span>
+                        <span class="color-info__value">#4C4C4C</span>
                     </div>
                 </div>
 
                 <div>
-                    <div class="color-swatch" style="background: var(--cu-gray-90);"></div>
+                    <div class="color-swatch" style="background: var(--color-gray-90);"></div>
                     <div class="color-info">
                         <span class="color-info__name">Gray 90</span>
-                        <span class="color-info__value">--cu-gray-90</span>
+                        <span class="color-info__value">--color-gray-90</span>
+                        <span class="color-info__value">#333333</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Semantic Text Colors -->
+        <section class="demo-section">
+            <h2>Semantic Text Colors</h2>
+            <p>Purpose-driven color tokens for consistent text styling.</p>
+
+            <div class="demo-grid">
+                <div>
+                    <div class="color-swatch" style="background: var(--color-text-primary);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Text Primary</span>
+                        <span class="color-info__value">--color-text-primary</span>
+                        <span class="color-info__value">var(--color-brand-secondary)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-text-secondary);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Text Secondary</span>
+                        <span class="color-info__value">--color-text-secondary</span>
+                        <span class="color-info__value">var(--color-gray-70)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-text-tertiary);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Text Tertiary</span>
+                        <span class="color-info__value">--color-text-tertiary</span>
+                        <span class="color-info__value">var(--color-gray-50)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-text-brand);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Text Brand</span>
+                        <span class="color-info__value">--color-text-brand</span>
+                        <span class="color-info__value">var(--color-brand-primary)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-brand-secondary);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Text Inverse</span>
+                        <span class="color-info__value">--color-text-inverse</span>
+                        <span class="color-info__value">var(--color-white)</span>
+                        <span class="color-info__value" style="color: white; display: block; margin-top: 4px;">Sample</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Link Colors -->
+        <section class="demo-section">
+            <h2>Link Colors</h2>
+            <p>Accessible link colors for all interaction states.</p>
+
+            <div class="demo-grid">
+                <div>
+                    <div class="color-swatch" style="background: var(--color-link-default);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Link Default</span>
+                        <span class="color-info__value">--color-link-default</span>
+                        <span class="color-info__value">#0645AD</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-link-hover);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Link Hover</span>
+                        <span class="color-info__value">--color-link-hover</span>
+                        <span class="color-info__value">color-mix()</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-link-visited);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Link Visited</span>
+                        <span class="color-info__value">--color-link-visited</span>
+                        <span class="color-info__value">#551A8B</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-link-active);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Link Active</span>
+                        <span class="color-info__value">--color-link-active</span>
+                        <span class="color-info__value">color-mix()</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Background Colors -->
+        <section class="demo-section">
+            <h2>Background Colors</h2>
+            <p>Semantic background tokens for layering and visual hierarchy.</p>
+
+            <div class="demo-grid">
+                <div>
+                    <div class="color-swatch" style="background: var(--color-bg-body); border: 1px solid var(--color-gray-30);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Body</span>
+                        <span class="color-info__value">--color-bg-body</span>
+                        <span class="color-info__value">var(--color-light)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-bg-page); border: 1px solid var(--color-gray-30);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Page</span>
+                        <span class="color-info__value">--color-bg-page</span>
+                        <span class="color-info__value">var(--color-white)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-bg-subtle); border: 1px solid var(--color-gray-30);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Subtle</span>
+                        <span class="color-info__value">--color-bg-subtle</span>
+                        <span class="color-info__value">var(--color-gray-10)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-bg-muted);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Muted</span>
+                        <span class="color-info__value">--color-bg-muted</span>
+                        <span class="color-info__value">var(--color-gray-20)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-bg-brand);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Brand</span>
+                        <span class="color-info__value">--color-bg-brand</span>
+                        <span class="color-info__value">var(--color-brand-primary)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-bg-dark);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Dark</span>
+                        <span class="color-info__value">--color-bg-dark</span>
+                        <span class="color-info__value">var(--color-brand-secondary)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Border Colors -->
+        <section class="demo-section">
+            <h2>Border Colors</h2>
+            <p>Consistent border tokens for dividers and outlines.</p>
+
+            <div class="demo-grid">
+                <div>
+                    <div class="color-swatch" style="background: var(--color-border-light);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Border Light</span>
+                        <span class="color-info__value">--color-border-light</span>
+                        <span class="color-info__value">var(--color-gray-20)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-border-default);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Border Default</span>
+                        <span class="color-info__value">--color-border-default</span>
+                        <span class="color-info__value">var(--color-gray-30)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-border-dark);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Border Dark</span>
+                        <span class="color-info__value">--color-border-dark</span>
+                        <span class="color-info__value">var(--color-gray-40)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-border-focus);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Border Focus</span>
+                        <span class="color-info__value">--color-border-focus</span>
+                        <span class="color-info__value">var(--color-brand-primary)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Status Colors -->
+        <section class="demo-section">
+            <h2>Status Colors</h2>
+            <p>Semantic colors for feedback and system states.</p>
+
+            <div class="demo-grid">
+                <div>
+                    <div class="color-swatch" style="background: var(--color-status-success);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Success</span>
+                        <span class="color-info__value">--color-status-success</span>
+                        <span class="color-info__value">var(--color-accent-green)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-status-warning);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Warning</span>
+                        <span class="color-info__value">--color-status-warning</span>
+                        <span class="color-info__value">var(--color-accent-orange)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-status-error);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Error</span>
+                        <span class="color-info__value">--color-status-error</span>
+                        <span class="color-info__value">var(--color-brand-primary)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="color-swatch" style="background: var(--color-status-info);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Info</span>
+                        <span class="color-info__value">--color-status-info</span>
+                        <span class="color-info__value">var(--color-accent-blue)</span>
                     </div>
                 </div>
             </div>
@@ -265,24 +566,23 @@
             <h2>Color Usage Guidelines</h2>
 
             <div class="demo-block">
-                <div class="demo-block__title">Primary Red</div>
-                <p><strong>Usage:</strong> Primary brand color, main CTAs, important headings, links, active states</p>
+                <div class="demo-block__title">Brand Primary (Red)</div>
+                <p><strong>Usage:</strong> Primary CTAs, important headings, active states, error messages</p>
                 <p><strong>Avoid:</strong> Large background areas, body text</p>
             </div>
 
             <div class="demo-block">
-                <div class="demo-block__title">Blues</div>
-                <p><strong>Usage:</strong> Secondary buttons, informational elements, accents, backgrounds</p>
-                <p><strong>Light Blue:</strong> Highlights, success states</p>
-                <p><strong>Royal Blue:</strong> Interactive elements, links</p>
-                <p><strong>Midnight Blue:</strong> Dark backgrounds, headers</p>
+                <div class="demo-block__title">Brand Secondary (Dark)</div>
+                <p><strong>Usage:</strong> Body text, secondary buttons, dark backgrounds, navigation</p>
+                <p><strong>Avoid:</strong> Small text on colored backgrounds</p>
             </div>
 
             <div class="demo-block">
-                <div class="demo-block__title">Greens</div>
-                <p><strong>Usage:</strong> Success messages, positive actions, environmental themes</p>
-                <p><strong>Forest Green:</strong> Success buttons, confirmations</p>
-                <p><strong>Yellow Green:</strong> Highlights, call-outs</p>
+                <div class="demo-block__title">Accent Colors</div>
+                <p><strong>Usage:</strong> Visual variety, callouts, charts, illustrations, status indicators</p>
+                <p><strong>Green:</strong> Success states, confirmations</p>
+                <p><strong>Orange:</strong> Warnings, attention-grabbing elements</p>
+                <p><strong>Blue:</strong> Information, links, interactive elements</p>
             </div>
 
             <div class="demo-block">
@@ -312,20 +612,24 @@
                 <div class="demo-block__title">Safe Color Combinations</div>
 
                 <div class="flex flex-col gap-md mt-4">
-                    <div class="bg-brand text-white p-4 rounded">
-                        <strong>White text on Primary Red</strong> - WCAG AA Compliant
+                    <div class="p-4 rounded" style="background: var(--color-brand-primary); color: var(--color-white);">
+                        <strong>White text on Brand Primary</strong> - WCAG AA Compliant
                     </div>
 
-                    <div class="bg-white text-primary p-4 rounded" style="border: 1px solid var(--color-border-default);">
-                        <strong>Dark Gray text on White</strong> - WCAG AAA Compliant
+                    <div class="p-4 rounded" style="background: var(--color-white); color: var(--color-text-primary); border: 1px solid var(--color-border-default);">
+                        <strong>Primary text on White</strong> - WCAG AAA Compliant
                     </div>
 
-                    <div class="bg-dark text-white p-4 rounded">
-                        <strong>White text on Midnight Blue</strong> - WCAG AA Compliant
+                    <div class="p-4 rounded" style="background: var(--color-brand-secondary); color: var(--color-white);">
+                        <strong>White text on Brand Secondary</strong> - WCAG AAA Compliant
                     </div>
 
-                    <div class="p-4 rounded text-white" style="background: var(--cu-forest-green);">
-                        <strong>White text on Forest Green</strong> - WCAG AA Compliant
+                    <div class="p-4 rounded" style="background: var(--color-accent-green); color: var(--color-white);">
+                        <strong>White text on Accent Green</strong> - WCAG AA Compliant
+                    </div>
+
+                    <div class="p-4 rounded" style="background: var(--color-accent-navy); color: var(--color-white);">
+                        <strong>White text on Accent Navy</strong> - WCAG AA Compliant
                     </div>
                 </div>
             </div>
@@ -335,14 +639,34 @@
                     visual cues (icons, text, patterns) for users with color blindness.</p>
             </div>
         </section>
+
+        <!-- Theming -->
+        <section class="demo-section">
+            <h2>Theming with CSS Custom Properties</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Creating a New Theme</div>
+                <p>Override CSS custom properties to create a new theme:</p>
+                <pre><code>&lt;style&gt;
+  :root {
+    --color-brand-primary: #0066CC;
+    --color-brand-secondary: #1A1A1A;
+  }
+&lt;/style&gt;</code></pre>
+                <p>Or use a theme selector:</p>
+                <pre><code>[data-theme="other-uni"] {
+  --color-brand-primary: #0066CC;
+}</code></pre>
+            </div>
+        </section>
     </main>
 
     <footer class="demo-footer">
         <p>Cardiff University v2 Theme - Color Palette Demo</p>
         <ul class="demo-footer__links">
             <li><a href="index.html" class="demo-footer__link">Home</a></li>
-            <li><a href="code-utilities.html" class="demo-footer__link">← Code & Utilities</a></li>
-            <li><a href="patterns.html" class="demo-footer__link">Patterns →</a></li>
+            <li><a href="code-utilities.html" class="demo-footer__link">&larr; Code & Utilities</a></li>
+            <li><a href="patterns.html" class="demo-footer__link">Patterns &rarr;</a></li>
         </ul>
     </footer>
     <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>

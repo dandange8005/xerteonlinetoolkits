@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="assets/bootstrap/custom.css">
     <link rel="stylesheet" href="../cardiffuni-v2.css">
     <link rel="stylesheet" href="assets/demo-styles.css">
+    <!-- FontAwesome 6.6.0 -->
+    <link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/fontawesome-6.6.0/css/all.min.css">
 </head>
 
 <body>
@@ -45,7 +47,7 @@
                             <li role="none"><a href="index.html">Home</a></li>
                             <li role="none"><a href="typography.html">Typography</a></li>
                             <li role="none"><a href="lists-tables.html">Lists & Tables</a></li>
-                            <li role="none"><a href="images-media.html">Images & Media</a></li>
+                            <li role="none"><a href="images-media.html">Images, Media & Icons</a></li>
                             <li role="none"><a href="forms.html">Forms</a></li>
                             <li class="activePage" role="none" aria-current="page"><a href="components.html">Components</a></li>
                             <li role="none"><a href="code-utilities.html">Code & Utilities</a></li>
@@ -60,387 +62,512 @@
     </div>
 
     <main>
+        <!-- Table of Contents -->
         <section class="demo-section">
-            <h2>About Components</h2>
-            <p>This page showcases UI components available in the Cardiff University v2 theme. Currently focused on
-                buttons, with more components to be added gradually.</p>
+            <h2>Component Index</h2>
+            <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
+                <a href="#buttons" class="button button-secondary-outline button--small"><i class="fa-solid fa-hand-pointer"></i> Buttons</a>
+                <a href="#alerts" class="button button-secondary-outline button--small"><i class="fa-solid fa-bell"></i> Alerts</a>
+                <a href="#badges" class="button button-secondary-outline button--small"><i class="fa-solid fa-tag"></i> Badges & Labels</a>
+                <a href="#progress" class="button button-secondary-outline button--small"><i class="fa-solid fa-bars-progress"></i> Progress Bars</a>
+                <a href="#breadcrumbs" class="button button-secondary-outline button--small"><i class="fa-solid fa-sitemap"></i> Breadcrumbs</a>
+                <a href="#cards" class="button button-secondary-outline button--small"><i class="fa-solid fa-id-card"></i> Cards</a>
+                <a href="#callouts" class="button button-secondary-outline button--small"><i class="fa-solid fa-bullhorn"></i> Callouts</a>
+                <a href="#tabs" class="button button-secondary-outline button--small"><i class="fa-solid fa-folder"></i> Tabs</a>
+                <a href="#accordions" class="button button-secondary-outline button--small"><i class="fa-solid fa-list"></i> Accordions</a>
+            </div>
         </section>
 
-        <!-- Filled Buttons -->
-        <section class="demo-section">
-            <h2>Filled Buttons</h2>
+        <!-- ==================== BUTTONS ==================== -->
+        <section class="demo-section" id="buttons">
+            <h2><i class="fa-solid fa-hand-pointer"></i> Buttons</h2>
 
+            <!-- Filled Buttons -->
             <div class="demo-block">
-                <div class="demo-block__title">Primary Button</div>
-                <div class="demo-block__description">Main call-to-action button using Cardiff Red</div>
-                <code class="code-label">.button .button-primary</code>
-
-                <div class="demo-inline">
-                    <button class="button button-primary">Primary Button</button>
-                    <button class="button button-primary" disabled>Primary Disabled</button>
-                </div>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Secondary Button</div>
-                <div class="demo-block__description">Secondary actions using Cardiff Blue</div>
-                <code class="code-label">.button .button-secondary</code>
-
-                <div class="demo-inline">
-                    <button class="button button-secondary">Secondary Button</button>
-                    <button class="button button-secondary" disabled>Secondary Disabled</button>
-                </div>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Success Button</div>
-                <div class="demo-block__description">Positive actions using green</div>
-                <code class="code-label">.button .button-success</code>
-
-                <div class="demo-inline">
-                    <button class="button button-success">Success Button</button>
-                    <button class="button button-success" disabled>Success Disabled</button>
-                </div>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Reverse Button</div>
-                <div class="demo-block__description">For use on dark backgrounds</div>
-                <code class="code-label">.button .button-reverse</code>
-
-                <div style="background: var(--cu-primary-red); padding: 1.5rem; border-radius: 4px;">
-                    <div class="demo-inline">
-                        <button class="button button-reverse">Reverse Button</button>
-                        <button class="button button-reverse" disabled>Reverse Disabled</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">All Filled Buttons Together</div>
+                <div class="demo-block__title">Filled Buttons</div>
                 <div class="demo-inline">
                     <button class="button button-primary">Primary</button>
                     <button class="button button-secondary">Secondary</button>
                     <button class="button button-success">Success</button>
-                    <button class="button button-reverse">Reverse</button>
+                    <button class="button button-primary" disabled>Disabled</button>
                 </div>
+                <code class="code-label">.button .button-primary | .button-secondary | .button-success</code>
             </div>
-        </section>
 
-        <!-- Outline Buttons -->
-        <section class="demo-section">
-            <h2>Outline Buttons</h2>
-
+            <!-- Outline Buttons -->
             <div class="demo-block">
-                <div class="demo-block__title">Primary Outline</div>
-                <div class="demo-block__description">Outlined version of primary button</div>
-                <code class="code-label">.button .button-primary-outline</code>
-
+                <div class="demo-block__title">Outline Buttons</div>
                 <div class="demo-inline">
-                    <button class="button button-primary-outline">Primary Outline</button>
-                    <button class="button button-primary-outline" disabled>Primary Outline Disabled</button>
+                    <button class="button button-primary-outline">Primary</button>
+                    <button class="button button-secondary-outline">Secondary</button>
+                    <button class="button button-success-outline">Success</button>
+                    <button class="button button-primary-outline" disabled>Disabled</button>
                 </div>
+                <code class="code-label">.button .button-primary-outline | .button-secondary-outline | .button-success-outline</code>
             </div>
 
+            <!-- Ghost Button -->
             <div class="demo-block">
-                <div class="demo-block__title">Secondary Outline</div>
-                <div class="demo-block__description">Outlined version of secondary button</div>
-                <code class="code-label">.button .button-secondary-outline</code>
-
+                <div class="demo-block__title">Ghost Button</div>
                 <div class="demo-inline">
-                    <button class="button button-secondary-outline">Secondary Outline</button>
-                    <button class="button button-secondary-outline" disabled>Secondary Outline Disabled</button>
+                    <button class="button button-ghost">Ghost Button</button>
+                    <button class="button button-ghost" disabled>Ghost Disabled</button>
                 </div>
+                <code class="code-label">.button .button-ghost</code>
             </div>
 
+            <!-- Reverse Buttons (Dark Background) -->
             <div class="demo-block">
-                <div class="demo-block__title">Success Outline</div>
-                <div class="demo-block__description">Outlined version of success button</div>
-                <code class="code-label">.button .button-success-outline</code>
+                <div class="demo-block__title">Reverse Buttons (Dark Backgrounds)</div>
+                <div style="background: var(--color-brand-primary); padding: 1rem; border-radius: var(--radius-md); display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <button class="button button-reverse">Reverse Filled</button>
+                    <button class="button button-reverse-outline">Reverse Outline</button>
+                </div>
+                <code class="code-label">.button .button-reverse | .button-reverse-outline</code>
+            </div>
 
+            <!-- Button Sizes -->
+            <div class="demo-block">
+                <div class="demo-block__title">Button Sizes</div>
+                <div class="demo-inline" style="align-items: center;">
+                    <button class="button button--small button-primary">Small</button>
+                    <button class="button button-primary">Default</button>
+                    <button class="button button-primary button--block" style="max-width: 200px;">Block</button>
+                </div>
+                <code class="code-label">.button--small | .button--block</code>
+            </div>
+
+            <!-- Buttons with Icons -->
+            <div class="demo-block">
+                <div class="demo-block__title">Buttons with Icons</div>
                 <div class="demo-inline">
-                    <button class="button button-success-outline">Success Outline</button>
-                    <button class="button button-success-outline" disabled>Success Outline Disabled</button>
+                    <button class="button button-primary button-icon-left"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                    <button class="button button-primary button-icon-right">Next <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="button button-secondary button-icon-only" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="button button-success button-icon-only" aria-label="Check"><i class="fa-solid fa-check"></i></button>
                 </div>
+                <code class="code-label">.button-icon-left | .button-icon-right | .button-icon-only (using FontAwesome icons)</code>
             </div>
 
-            <div class="demo-block">
-                <div class="demo-block__title">Reverse Outline</div>
-                <div class="demo-block__description">For use on dark backgrounds</div>
-                <code class="code-label">.button .button-reverse-outline</code>
-
-                <div style="background: var(--cu-primary-red); padding: 1.5rem; border-radius: 4px;">
-                    <div class="demo-inline">
-                        <button class="button button-reverse-outline">Reverse Outline</button>
-                        <button class="button button-reverse-outline" disabled>Reverse Outline Disabled</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">All Outline Buttons Together</div>
-                <div class="demo-inline">
-                    <button class="button button-primary-outline">Primary Outline</button>
-                    <button class="button button-secondary-outline">Secondary Outline</button>
-                    <button class="button button-success-outline">Success Outline</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Buttons with Icons -->
-        <section class="demo-section">
-            <h2>Buttons with Icons</h2>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Icon on Right</div>
-                <div class="demo-block__description">Icon positioned after button text</div>
-                <code class="code-label">.button .button-icon-right</code>
-
-                <div class="demo-inline">
-                    <button class="button button-primary button-icon-right">
-                        Next <span class="button__icon">→</span>
-                    </button>
-                    <button class="button button-secondary button-icon-right">
-                        Download <span class="button__icon">↓</span>
-                    </button>
-                    <button class="button button-success button-icon-right">
-                        Continue <span class="button__icon">✓</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Icon on Left</div>
-                <div class="demo-block__description">Icon positioned before button text</div>
-                <code class="code-label">.button .button-icon-left</code>
-
-                <div class="demo-inline">
-                    <button class="button button-primary button-icon-left">
-                        <span class="button__icon">←</span> Previous
-                    </button>
-                    <button class="button button-secondary button-icon-left">
-                        <span class="button__icon">+</span> Add New
-                    </button>
-                    <button class="button button-success button-icon-left">
-                        <span class="button__icon">✓</span> Save
-                    </button>
-                </div>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Icon Only</div>
-                <div class="demo-block__description">Compact icon-only buttons</div>
-                <code class="code-label">.button .button-icon-only</code>
-
-                <div class="demo-inline">
-                    <button class="button button-primary button-icon-only">
-                        <span class="button__icon">🔍</span>
-                    </button>
-                    <button class="button button-secondary button-icon-only">
-                        <span class="button__icon">✕</span>
-                    </button>
-                    <button class="button button-success button-icon-only">
-                        <span class="button__icon">✓</span>
-                    </button>
-                    <button class="button button-primary-outline button-icon-only">
-                        <span class="button__icon">⚙</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Icon Buttons with Outline Styles</div>
-                <div class="demo-inline">
-                    <button class="button button-primary-outline button-icon-right">
-                        Learn More <span class="button__icon">→</span>
-                    </button>
-                    <button class="button button-secondary-outline button-icon-left">
-                        <span class="button__icon">←</span> Go Back
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Button Sizes -->
-        <section class="demo-section">
-            <h2>Button Sizes</h2>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Small Button</div>
-                <div class="demo-block__description">Compact button size</div>
-                <code class="code-label">.button .button--small</code>
-
-                <div class="demo-inline">
-                    <button class="button button--small button-primary">Small Primary</button>
-                    <button class="button button--small button-secondary">Small Secondary</button>
-                    <button class="button button--small button-primary-outline">Small Outline</button>
-                </div>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Default Button</div>
-                <div class="demo-block__description">Standard button size</div>
-
-                <div class="demo-inline">
-                    <button class="button button-primary">Default Primary</button>
-                    <button class="button button-secondary">Default Secondary</button>
-                    <button class="button button-primary-outline">Default Outline</button>
-                </div>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Block Button</div>
-                <div class="demo-block__description">Full-width button</div>
-                <code class="code-label">.button .button--block</code>
-
-                <div style="max-width: 500px;">
-                    <button class="button button-primary button--block">Full Width Block Button</button>
-                    <button class="button button-secondary-outline button--block" style="margin-top: 0.5rem;">Full Width
-                        Outline Button</button>
-                </div>
-            </div>
-
+            <!-- Mini Buttons -->
             <div class="demo-block">
                 <div class="demo-block__title">Mini Buttons</div>
-                <div class="demo-block__description">Very compact buttons for UI controls</div>
+                <div class="demo-inline">
+                    <button class="btn-mini"><i class="fa-solid fa-arrow-up"></i></button>
+                    <button class="btn-mini"><i class="fa-solid fa-arrow-down"></i></button>
+                    <button class="btn-mini"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button class="btn-mini"><i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="btn-mini"><i class="fa-solid fa-xmark"></i></button>
+                    <button class="btn-mini"><i class="fa-solid fa-plus"></i></button>
+                </div>
                 <code class="code-label">.btn-mini</code>
+            </div>
 
+            <!-- Links as Buttons -->
+            <div class="demo-block">
+                <div class="demo-block__title">Links as Buttons</div>
                 <div class="demo-inline">
-                    <button class="btn-mini">↑</button>
-                    <button class="btn-mini">↓</button>
-                    <button class="btn-mini">←</button>
-                    <button class="btn-mini">→</button>
-                    <button class="btn-mini">✕</button>
-                    <button class="btn-mini">+</button>
-                    <button class="btn-mini">−</button>
+                    <a href="#" class="button button-primary">Link Button</a>
+                    <a href="#" class="button button-secondary-outline">Outline Link</a>
                 </div>
-
-                <p style="margin-top: 1rem;"><small>Mini buttons are useful for scroll-to-top, close buttons, and other
-                        compact UI controls.</small></p>
+                <code class="code-label">&lt;a class="button ..."&gt;</code>
             </div>
         </section>
 
-        <!-- Buttons as Links -->
-        <section class="demo-section">
-            <h2>Buttons as Links</h2>
+        <!-- ==================== ALERTS ==================== -->
+        <section class="demo-section" id="alerts">
+            <h2><i class="fa-solid fa-bell"></i> Alerts</h2>
 
             <div class="demo-block">
-                <div class="demo-block__title">Link Elements Styled as Buttons</div>
-                <div class="demo-block__description">Using anchor tags with button classes</div>
+                <div class="demo-block__title">Alert Variants</div>
 
-                <div class="demo-inline">
-                    <a href="#" class="button button-primary">Link as Primary Button</a>
-                    <a href="#" class="button button-secondary">Link as Secondary Button</a>
-                    <a href="#" class="button button-primary-outline">Link as Outline Button</a>
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Your changes have been saved successfully.
                 </div>
 
-                <p style="margin-top: 1rem;"><small>Use <code>&lt;a&gt;</code> tags with button classes when the action
-                        navigates to a new page. Use <code>&lt;button&gt;</code> tags for actions that don't
-                        navigate.</small></p>
+                <div class="alert alert-info">
+                    <strong>Info:</strong> This course will be available from September 2025.
+                </div>
+
+                <div class="alert alert-warning">
+                    <strong>Warning!</strong> Your session will expire in 5 minutes.
+                </div>
+
+                <div class="alert alert-danger">
+                    <strong>Error!</strong> Unable to submit form. Please check required fields.
+                </div>
+
+                <code class="code-label">.alert .alert-success | .alert-info | .alert-warning | .alert-danger</code>
             </div>
 
             <div class="demo-block">
-                <div class="demo-block__title">Link Buttons with Icons</div>
-                <div class="demo-inline">
-                    <a href="#" class="button button-primary button-icon-right">
-                        View Course <span class="button__icon">→</span>
-                    </a>
-                    <a href="#" class="button button-secondary-outline button-icon-left">
-                        <span class="button__icon">←</span> Back to List
-                    </a>
+                <div class="demo-block__title">Block Alert with Dismissible</div>
+
+                <div class="alert alert-block alert-info">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <h4>Important Information</h4>
+                    <p>This is a block-level alert with more content. It can contain multiple paragraphs and additional formatting.</p>
+                    <p>Click the &times; button to dismiss this alert.</p>
                 </div>
+
+                <code class="code-label">.alert .alert-block + .close[data-dismiss="alert"]</code>
             </div>
         </section>
 
-        <!-- Legacy Button Styles -->
-        <section class="demo-section">
-            <h2>Legacy Button Styles</h2>
+        <!-- ==================== BADGES & LABELS ==================== -->
+        <section class="demo-section" id="badges">
+            <h2><i class="fa-solid fa-tag"></i> Badges & Labels</h2>
 
             <div class="demo-block">
-                <div class="demo-block__title">Legacy Outline Button</div>
-                <div class="demo-block__description">Older outline style (maintained for compatibility)</div>
-                <code class="code-label">.button .button--outline</code>
-
+                <div class="demo-block__title">Badges (Pill Shape)</div>
                 <div class="demo-inline">
-                    <button class="button button--outline">Legacy Outline</button>
-                    <button class="button button--outline" disabled>Legacy Outline Disabled</button>
+                    <span class="badge">Default</span>
+                    <span class="badge badge-success">Success</span>
+                    <span class="badge badge-warning">Warning</span>
+                    <span class="badge badge-important">Important</span>
+                    <span class="badge badge-info">Info</span>
+                    <span class="badge badge-inverse">Inverse</span>
                 </div>
+                <code class="code-label">.badge .badge-success | .badge-warning | .badge-important | .badge-info | .badge-inverse</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Labels (Square Shape)</div>
+                <div class="demo-inline">
+                    <span class="label">Default</span>
+                    <span class="label label-success">Success</span>
+                    <span class="label label-warning">Warning</span>
+                    <span class="label label-important">Important</span>
+                    <span class="label label-info">Info</span>
+                    <span class="label label-inverse">Inverse</span>
+                </div>
+                <code class="code-label">.label .label-success | .label-warning | .label-important | .label-info | .label-inverse</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Usage Example</div>
+                <p>
+                    Course Status: <span class="badge badge-success">Active</span>
+                    &nbsp;&nbsp;
+                    Level: <span class="label label-info">Undergraduate</span>
+                    &nbsp;&nbsp;
+                    New <span class="badge badge-important">3</span> notifications
+                </p>
             </div>
         </section>
 
-        <!-- Button Usage Guidelines -->
-        <section class="demo-section">
-            <h2>Button Usage Guidelines</h2>
+        <!-- ==================== PROGRESS BARS ==================== -->
+        <section class="demo-section" id="progress">
+            <h2><i class="fa-solid fa-bars-progress"></i> Progress Bars</h2>
 
             <div class="demo-block">
-                <div class="demo-block__title">When to Use Each Button Type</div>
+                <div class="demo-block__title">Basic Progress Bars</div>
 
-                <h4>Primary Buttons</h4>
-                <ul>
-                    <li>Main call-to-action on a page</li>
-                    <li>Submit actions (forms, applications)</li>
-                    <li>Important affirmative actions</li>
-                    <li><strong>Limit to one primary button per section</strong></li>
-                </ul>
+                <p>Default (40%)</p>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 40%;">40%</div>
+                </div>
 
-                <h4>Secondary Buttons</h4>
-                <ul>
-                    <li>Secondary actions that complement the primary action</li>
-                    <li>Alternative options</li>
-                    <li>Less critical actions</li>
-                </ul>
+                <p>Success (60%)</p>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" style="width: 60%;">60%</div>
+                </div>
 
-                <h4>Success Buttons</h4>
-                <ul>
-                    <li>Positive confirmations</li>
-                    <li>Completion actions</li>
-                    <li>Save/approve operations</li>
-                </ul>
+                <p>Warning (80%)</p>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-warning" style="width: 80%;">80%</div>
+                </div>
 
-                <h4>Outline Buttons</h4>
-                <ul>
-                    <li>Tertiary actions</li>
-                    <li>Cancel or dismiss actions</li>
-                    <li>When you need visual hierarchy with multiple buttons</li>
-                </ul>
+                <p>Danger (25%)</p>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-danger" style="width: 25%;">25%</div>
+                </div>
+
+                <p>Info (55%)</p>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info" style="width: 55%;">55%</div>
+                </div>
+
+                <code class="code-label">.progress > .progress-bar | .progress-bar-success | .progress-bar-warning | .progress-bar-danger | .progress-bar-info</code>
             </div>
 
             <div class="demo-block">
-                <div class="demo-block__title">Button Hierarchy Example</div>
-                <div class="demo-block__description">Proper use of button types together</div>
+                <div class="demo-block__title">Striped & Animated</div>
 
-                <div style="background: var(--cu-gray-10); padding: 2rem; border-radius: 4px;">
-                    <h3 style="margin-top: 0;">Complete Your Application</h3>
-                    <p>You've filled out all required fields. Review your information and submit your application.</p>
+                <p>Striped</p>
+                <div class="progress progress-striped">
+                    <div class="progress-bar" style="width: 45%;">45%</div>
+                </div>
 
-                    <div class="demo-inline">
-                        <button class="button button-primary">Submit Application</button>
-                        <button class="button button-secondary-outline">Save as Draft</button>
-                        <button class="button button-secondary-outline">Cancel</button>
+                <p>Animated Striped</p>
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" style="width: 70%;">Loading...</div>
+                </div>
+
+                <code class="code-label">.progress .progress-striped | .progress-striped.active</code>
+            </div>
+        </section>
+
+        <!-- ==================== BREADCRUMBS ==================== -->
+        <section class="demo-section" id="breadcrumbs">
+            <h2><i class="fa-solid fa-sitemap"></i> Breadcrumbs</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Navigation Breadcrumb</div>
+
+                <ul class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Computer Science</a></li>
+                    <li class="active">Introduction to Programming</li>
+                </ul>
+
+                <code class="code-label">.breadcrumb > li > a | li.active</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Short Breadcrumb</div>
+
+                <ul class="breadcrumb">
+                    <li><a href="#">Dashboard</a></li>
+                    <li class="active">Settings</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ==================== CARDS ==================== -->
+        <section class="demo-section" id="cards">
+            <h2><i class="fa-solid fa-id-card"></i> Cards</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Basic Card</div>
+
+                <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+                    <div class="card">
+                        <div class="card__content">
+                            <h3 class="card__heading">Card Title</h3>
+                            <p class="card__description">This is a basic card component with a heading and description text.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://picsum.photos/400/225" alt="Placeholder" class="card__image">
+                        <div class="card__content">
+                            <h3 class="card__heading">Card with Image</h3>
+                            <p class="card__metadata">Category &bull; 5 min read</p>
+                            <p class="card__description">Cards can include images, metadata, and descriptive text.</p>
+                        </div>
                     </div>
                 </div>
+
+                <code class="code-label">.card > .card__image + .card__content > .card__heading + .card__metadata + .card__description</code>
             </div>
 
             <div class="demo-block">
-                <div class="demo-block__title">Accessibility Considerations</div>
+                <div class="demo-block__title">Clickable Cards</div>
 
-                <ul>
-                    <li><strong>Button Text:</strong> Use clear, action-oriented text ("Submit Application" not "Click
-                        Here")</li>
-                    <li><strong>Focus States:</strong> All buttons have visible focus indicators for keyboard navigation
-                    </li>
-                    <li><strong>Disabled State:</strong> Disabled buttons are visually distinct and not
-                        keyboard-focusable</li>
-                    <li><strong>Icon-Only Buttons:</strong> Include <code>aria-label</code> for screen readers when
-                        using icon-only buttons</li>
-                    <li><strong>Color Contrast:</strong> All button styles meet WCAG AA contrast requirements</li>
-                </ul>
+                <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+                    <div class="card card--clickable">
+                        <img src="https://picsum.photos/400/226" alt="Course preview" class="card__image">
+                        <div class="card__content">
+                            <h3 class="card__heading"><a href="#" class="card__link">Introduction to Data Science</a></h3>
+                            <p class="card__metadata">Online Course &bull; 12 weeks</p>
+                            <p class="card__description">Learn the fundamentals of data science and machine learning.</p>
+                        </div>
+                    </div>
+
+                    <div class="card card--clickable">
+                        <img src="https://picsum.photos/400/227" alt="Course preview" class="card__image">
+                        <div class="card__content">
+                            <h3 class="card__heading"><a href="#" class="card__link">Web Development Bootcamp</a></h3>
+                            <p class="card__metadata">Self-paced &bull; Beginner</p>
+                            <p class="card__description">Build modern websites with HTML, CSS, and JavaScript.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <code class="code-label">.card .card--clickable + .card__link (makes entire card clickable)</code>
+            </div>
+        </section>
+
+        <!-- ==================== CALLOUTS ==================== -->
+        <section class="demo-section" id="callouts">
+            <h2><i class="fa-solid fa-bullhorn"></i> Callouts</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Callout Variants</div>
+
+                <div class="callout" style="margin-bottom: 1rem;">
+                    <h4>Default Callout</h4>
+                    <p>This is a neutral callout without a specific semantic meaning.</p>
+                </div>
+
+                <div class="callout info" style="margin-bottom: 1rem;">
+                    <h4>Information</h4>
+                    <p>This callout provides helpful information to the user.</p>
+                </div>
+
+                <div class="callout success" style="margin-bottom: 1rem;">
+                    <h4>Success</h4>
+                    <p>This callout indicates a successful action or positive outcome.</p>
+                </div>
+
+                <div class="callout warning" style="margin-bottom: 1rem;">
+                    <h4>Warning</h4>
+                    <p>This callout warns the user about something important.</p>
+                </div>
+
+                <div class="callout danger">
+                    <h4>Danger</h4>
+                    <p>This callout alerts the user to an error or critical issue.</p>
+                </div>
+
+                <code class="code-label">.callout | .callout.info | .callout.success | .callout.warning | .callout.danger</code>
             </div>
 
-            <div class="demo-note">
-                <div class="demo-note__title">Future Components</div>
-                <p>This components page will be expanded gradually to include additional UI components such as cards,
-                    alerts, badges, navigation elements, modals, tabs, and accordions.</p>
+            <div class="demo-block">
+                <div class="demo-block__title">Callout with Custom Emoji</div>
+
+                <div class="callout" emoji-data="&#127891;">
+                    <h4>Did You Know?</h4>
+                    <p>You can customize the callout icon using the <code>emoji-data</code> attribute.</p>
+                </div>
+
+                <code class="code-label">.callout[emoji-data="&#127891;"]</code>
+            </div>
+        </section>
+
+        <!-- ==================== TABS ==================== -->
+        <section class="demo-section" id="tabs">
+            <h2><i class="fa-solid fa-folder"></i> Tabs</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Tab Navigation</div>
+
+                <ul class="nav nav-tabs" id="demoTabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">Overview</a></li>
+                    <li><a href="#tab2" data-toggle="tab">Details</a></li>
+                    <li><a href="#tab3" data-toggle="tab">Requirements</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <h4>Course Overview</h4>
+                        <p>This is the overview tab content. It provides a high-level summary of the course material and learning objectives.</p>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <h4>Course Details</h4>
+                        <p>Detailed information about the course structure, duration, and assessment methods would appear here.</p>
+                    </div>
+                    <div class="tab-pane" id="tab3">
+                        <h4>Prerequisites</h4>
+                        <ul>
+                            <li>Basic computer literacy</li>
+                            <li>Access to a modern web browser</li>
+                            <li>Minimum 10 hours per week study time</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <code class="code-label">.nav .nav-tabs + .tab-content > .tab-pane</code>
+            </div>
+        </section>
+
+        <!-- ==================== ACCORDIONS ==================== -->
+        <section class="demo-section" id="accordions">
+            <h2><i class="fa-solid fa-list"></i> Accordions</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Collapsible Accordion</div>
+
+                <div class="accordion" id="demoAccordion">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#demoAccordion" href="#collapse1" aria-expanded="true">
+                                What is Xerte Online Toolkits?
+                            </a>
+                        </div>
+                        <div id="collapse1" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                <p>Xerte Online Toolkits is a suite of browser-based tools that allow users to create interactive learning materials using simple forms-based authoring.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#demoAccordion" href="#collapse2" aria-expanded="false">
+                                How do I get started?
+                            </a>
+                        </div>
+                        <div id="collapse2" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <p>To get started, simply log in with your university credentials and create a new project. You'll be guided through the process of adding pages and interactive elements.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#demoAccordion" href="#collapse3" aria-expanded="false">
+                                Can I share my content?
+                            </a>
+                        </div>
+                        <div id="collapse3" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <p>Yes! You can share your content via direct links, embed it in your VLE, or export it as a SCORM package for use in other learning management systems.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <code class="code-label">.accordion > .accordion-group > .accordion-heading + .accordion-body.collapse > .accordion-inner</code>
+            </div>
+        </section>
+
+        <!-- ==================== USAGE GUIDELINES ==================== -->
+        <section class="demo-section">
+            <h2><i class="fa-solid fa-book"></i> Component Usage Guidelines</h2>
+
+            <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+                <div class="demo-block">
+                    <div class="demo-block__title">Buttons</div>
+                    <ul>
+                        <li><strong>Primary:</strong> Main CTA, one per section</li>
+                        <li><strong>Secondary:</strong> Alternative actions</li>
+                        <li><strong>Success:</strong> Confirmations, saves</li>
+                        <li><strong>Outline:</strong> Tertiary actions, cancel</li>
+                    </ul>
+                </div>
+
+                <div class="demo-block">
+                    <div class="demo-block__title">Alerts</div>
+                    <ul>
+                        <li><strong>Success:</strong> Completed actions</li>
+                        <li><strong>Info:</strong> Neutral information</li>
+                        <li><strong>Warning:</strong> Caution needed</li>
+                        <li><strong>Danger:</strong> Errors, critical issues</li>
+                    </ul>
+                </div>
+
+                <div class="demo-block">
+                    <div class="demo-block__title">Badges vs Labels</div>
+                    <ul>
+                        <li><strong>Badges:</strong> Counts, notifications</li>
+                        <li><strong>Labels:</strong> Categories, status tags</li>
+                        <li>Use sparingly to avoid clutter</li>
+                    </ul>
+                </div>
+
+                <div class="demo-block">
+                    <div class="demo-block__title">Accessibility</div>
+                    <ul>
+                        <li>All components have focus states</li>
+                        <li>Use <code>aria-label</code> for icon-only buttons</li>
+                        <li>Alerts use semantic color + icons</li>
+                        <li>Accordions use ARIA expanded states</li>
+                    </ul>
+                </div>
             </div>
         </section>
     </main>
@@ -449,8 +576,8 @@
         <p>Cardiff University v2 Theme - Components Demo</p>
         <ul class="demo-footer__links">
             <li><a href="index.html" class="demo-footer__link">Home</a></li>
-            <li><a href="forms.html" class="demo-footer__link">← Forms</a></li>
-            <li><a href="code-utilities.html" class="demo-footer__link">Code & Utilities →</a></li>
+            <li><a href="forms.html" class="demo-footer__link">&larr; Forms</a></li>
+            <li><a href="code-utilities.html" class="demo-footer__link">Code & Utilities &rarr;</a></li>
         </ul>
     </footer>
     <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>
