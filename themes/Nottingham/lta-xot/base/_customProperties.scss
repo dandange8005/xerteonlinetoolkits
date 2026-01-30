@@ -1,0 +1,281 @@
+/* ------ Project Information --------
+Name: DigEd Xerte XOT Project Theme
+Author: Nan Zhang
+*/
+
+// use CU colours
+// @use '../abstract/cuColours'as *;
+
+
+
+/* ============================
+    OPEN-PROP CUSTOM PROPERTIES
+==============================*/
+@import "https://unpkg.com/open-props"; //open-props CDN link
+// @import "../../openprop/openProps";
+
+
+/* ============================
+    ANIMATE
+    Add in Animation css library https://animate.style/
+==============================*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
+
+/* ============================
+    GOOGLE FONT IMPORT DECLARATION
+==============================*/
+// /* Import Google Fonts and materials icons */
+// @import url('https://fonts.googleapis.com/css2?family=Georama:wght@600;700;800;900&family=Open+Sans:wght@300;400;600;700&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round');
+
+
+/* ======================
+    XOT CUSTOM PROPERTIES
+=======================*/
+
+//Cardiff University Colours
+:where(html) {
+    /* CU Core Colours */
+
+    // CU Red
+    --cu-red: hsl(3, 79%, 50%);
+
+    // Secondary colours
+    --cu-cabaret: #d94c5d;
+    --cu-yellow: #F8D349;
+    --cu-green: #008458;
+    --cu-purple: #73479C;
+    --cu-magenta: #D63694;
+    --cu-bossanova: #3C2C59;
+    //Gold colours
+    --cu-gold: #BD9E5E;
+    --cu-yuma: #C8BB8D;
+    --cu-timberwolf: #D4D2CA;
+    --cu-cararra: #EBE9E1;
+    //Blue colours
+    --cu-blue: #233E8B;
+    --cu-PrussianBlue: #002554;
+    --cu-BlueZodiac: hsl(217, 59%, 20%);
+    --cu-link: #045BC6;
+    --cu-allports: #006AAF;
+    --cu-poloBlue:#7598CB;
+    --cu-regentgrey: #8A94A8;
+    --cu-navy-1: #657986;
+    --cu-navy-2: #4D5E69;
+    --cu-navy-3: #2F444E;
+
+    // Function colours
+    --clr-success:hsl(148, 100%, 25%);
+    --clr-danger: hsl(4, 77%, 48%);
+
+
+    /* Neutral colour */
+    --black: #22211f;
+    --white: #ffffff;
+    --light: #f9fafb;
+
+    /* Neutral colour shades */
+    --neutral-0: #F6F6F6;
+    --neutral-1: #F0F0F0;
+    --neutral-2: #cccccc;
+    --neutral-3: #BBBBBB;
+    --neutral-4: #999999;
+    --neutral-5: #8A8A8A;
+    --neutral-6: #666666;
+    --neutral-7: #555555;
+    --neutral-8: #333333;
+    --neutral-9: #1A1A18;
+
+    /* Shades */
+    --shade-gray: #D9D9D9;
+    --shade-gold: #EEE7D7;
+    --shade-sand: #EBE9E1;
+    --shade-blue: #EFF3F5;
+    --shade-green: #F0F5EF;
+}   
+
+// XERTE Project Tokens
+:where(html) {
+
+    /* Core colours */  
+    --text: hsl(240, 33%, 6%);
+    --background: hsl(36, 33%, 97%);
+    --primary: hsl(240, 39%, 18%);
+    --secondary: hsl(50, 38%, 68%);
+    --accent: hsl(353, 65%, 52%);
+
+    /* Primary colour in HSL */
+    --clr-h: 240;
+    --clr-s: 39%;
+    --clr-l: 18%;
+
+    /* Colour shades */
+    --background-50: hsl(240, 8%, 95%);
+    --background-100: hsl(240, 10%, 90%);
+    --background-200: hsl(240, 10%, 80%);
+    --background-300: hsl(240, 8%, 70%);
+    --background-400: hsl(240, 9%, 60%);
+    --background-500: hsl(240, 9%, 50%);
+    --background-600: hsl(240, 9%, 40%);
+    --background-700: hsl(240, 8%, 30%);
+    --background-800: hsl(240, 10%, 20%);
+    --background-900: hsl(240, 10%, 10%);
+    --background-950: hsl(240, 8%, 5%);
+    
+    --primary-50: hsl(240, 38%, 95%);
+    --primary-100: hsl(240, 37%, 90%);
+    --primary-200: hsl(240, 39%, 80%);
+    --primary-300: hsl(240, 39%, 70%);
+    --primary-400: hsl(240, 39%, 60%);
+    --primary-500: hsl(240, 39%, 50%);
+    --primary-600: hsl(240, 39%, 40%);
+    --primary-700: hsl(240, 39%, 30%);
+    --primary-800: hsl(240, 39%, 20%);
+    --primary-900: hsl(240, 37%, 10%);
+    --primary-950: hsl(240, 38%, 5%);
+    
+    --secondary-50: hsl(48, 38%, 95%);
+    --secondary-100: hsl(51, 37%, 90%);
+    --secondary-200: hsl(51, 37%, 80%);
+    --secondary-300: hsl(50, 39%, 70%);
+    --secondary-400: hsl(50, 38%, 60%);
+    --secondary-500: hsl(50, 38%, 50%);
+    --secondary-600: hsl(50, 38%, 40%);
+    --secondary-700: hsl(50, 39%, 30%);
+    --secondary-800: hsl(51, 37%, 20%);
+    --secondary-900: hsl(51, 37%, 10%);
+    --secondary-950: hsl(48, 38%, 5%);
+    
+    --accent-50: hsl(353, 68%, 95%);
+    --accent-100: hsl(353, 65%, 90%);
+    --accent-200: hsl(353, 65%, 80%);
+    --accent-300: hsl(353, 65%, 70%);
+    --accent-400: hsl(353, 65%, 60%);
+    --accent-500: hsl(353, 65%, 50%);
+    --accent-600: hsl(353, 65%, 40%);
+    --accent-700: hsl(353, 65%, 30%);
+    --accent-800: hsl(353, 65%, 20%);
+    --accent-900: hsl(353, 65%, 10%);
+    --accent-950: hsl(353, 68%, 5%);
+
+    // for older project compatibility
+    --clr-accent: var(--primary);
+
+    
+        // --clr-accent: var(--cu-BlueZodiac);
+        // --clr-accent: hsl(217, 59%, 20%);
+
+    
+        // /* Accent colour shades */
+        // --clr-accent-1: hsl(var(--clr-h),
+        //     var(--clr-s),
+        //     calc(var(--clr-l) + (100% - var(--clr-l)) * 0.9));
+        // --clr-accent-2: hsl(var(--clr-h),
+        //     var(--clr-s),
+        //     calc(var(--clr-l) + (100% - var(--clr-l)) * 0.7));
+        // --clr-accent-3: hsl(var(--clr-h),
+        //     var(--clr-s),
+        //     calc(var(--clr-l) + (100% - var(--clr-l)) * 0.5));
+        // --clr-accent-4: hsl(var(--clr-h),
+        //     var(--clr-s),
+        //     calc(var(--clr-l) + (100% - var(--clr-l)) * 0.3));
+        // --clr-accent-5: hsl(var(--clr-h),
+        //     var(--clr-s),
+        //     calc(var(--clr-l) - var(--clr-l) * 0.2));
+        // --clr-accent-6: hsl(var(--clr-h),
+        //     var(--clr-s),
+        //     calc(var(--clr-l) - var(--clr-l) * 0.4));
+        // --clr-accent-7: hsl(var(--clr-h),
+        //     var(--clr-s),
+        //     calc(var(--clr-l) - var(--clr-l) * 0.6));
+        // --clr-accent-8: hsl(var(--clr-h),
+        //     var(--clr-s),
+        //     calc(var(--clr-l) - var(--clr-l) * 0.8));
+        
+            
+        // //Compliment colour: hue + 180 
+        // --clr-compliment: hsl(calc(var(--clr-h) + 180), var(--clr-s), var(--clr-l));
+
+    // The accent colour of the project
+    
+
+    // The compliment colour of the project
+    // --clr-compliment: var(--cu-gold);
+
+    // The main gradient of the project
+    // --clr-gradient: var(--gradient-23);
+
+
+    // XOT HEADER
+    --clr-header-bg: var(--primary);
+    --clr-header-h1: var(--light);
+    --clr-header-h2: var(--white);
+    --main-logo: url("https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png");
+
+    // XOT Footer
+    --clr-footer-bg: #495057;
+    // --clr-footer-text: var(--cu-blue-dark);
+
+    // Body
+    --clr-body-bg: var(--background);
+    --clr-body-text: var(--text);
+    --clr-headline: var(--primary);
+
+    // Link colours - do not change
+    --clr-link: #045BC6;
+    --clr-link-visited: #330072;
+
+    // jQuery UI - can use more unique names
+    // for example: --clr-jquery-ui-bg: var(--cu-blue);
+
+
+    --clr-border: #d1d5db;
+    --clr-headershade: #4E597E;
+    --clr-panelborder: var(--gray-5);
+    --clr-shaded: var(--light);
+    --clr-btn: var(--cu-navy-2);
+    --clr-btn-rollover: var(--cu-navy-3);
+
+    // New Button colours
+    --button-primary: var(--cu-blue);
+    --button-secondary: var(--secondary);
+    --button-primary-hover: var(--primary-500);
+    --button-primary-focus: var(--primary-700);
+    --button-text: var(--white);
+    --button-text-hover: var(--white);
+    --button-text-focus: var(--white);
+
+    // Function colours
+    --clr-success: hsl(148, 100%, 25%);
+    --clr-danger: hsl(4, 77%, 48%);
+
+    
+    /* Typography */
+    //font family
+    --ff-body: var(--font-sans);
+    --ff-headline: var(--font-sans);
+    --ff-serif: var(--font-serif);
+    --ff-mono: var(--font-mono);
+
+    // Fluid font size
+    --fs-xs: clamp(0.74rem, 0.72rem + 0.08vw, 0.78rem);
+    --fs-sm: clamp(0.83rem, 0.79rem + 0.20vw, 0.94rem);
+    --fs-base: clamp(0.94rem, 0.86rem + 0.37vw, 1rem);
+    --fs-lg: clamp(1.06rem, 0.94rem + 0.58vw, 1.35rem);
+    --fs-xl: clamp(1.19rem, 1.02rem + 0.85vw, 1.62rem);
+    --fs-2xl: clamp(1.34rem, 1.10rem + 1.19vw, 1.94rem);
+    --fs-3xl: clamp(1.50rem, 1.18rem + 1.62vw, 2.33rem);
+    --fs-4xl: clamp(1.69rem, 1.26rem + 2.17vw, 2.80rem);
+
+    //font colours
+
+    --gradient-text: var(--clr-gradient);
+
+    // Spacing for flex and grid
+    --flex-gap: var(--size-fluid-1);
+    --grid-gap: var(--size-fluid-1);
+
+    // a readable content container
+    --container-width: 47rem;
+
+}

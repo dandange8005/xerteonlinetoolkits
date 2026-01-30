@@ -1,0 +1,19 @@
+/* =========================================
+  # COMPONENTS / # BOXES
+============================================ */
+
+
+.box{
+    background: var(--white);
+    padding: var(--size-5);
+    border-radius: var(--radius-2);
+    border: 1px solid var(--clr-border);
+}
+
+.box>*:where(:not(:last-child)) {
+    margin-bottom: var(--size-fluid-2);
+}
+
+.box>*:where(:first-child), .box>h3 {
+    margin-top: 0;
+}

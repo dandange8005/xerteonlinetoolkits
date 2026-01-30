@@ -1,0 +1,17 @@
+/* ==========================================================================
+  # PAGES / # Text Page
+    .x_bullets_page
+    .x_text_page
+    .x_orient_page
+    .x_summary_page
+========================================================================== */
+ 
+
+// Restrict the width of the page contents to 80 characters and center it
+.x_orient_page, 
+.x_summary_page {
+    #pageContents{
+        max-width: 80ch;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,57 @@
+/* ==========================================================================
+   COMPONENTS / Alerts
+
+   Site-wide alert styles.
+   ========================================================================== */
+
+// Alerts
+
+// reference: https://codepen.io/dandange8005/pen/MWMWyRL?editors=1100
+
+.alert {
+
+    padding: var(--size-3);
+    padding-left: var(--size-8);
+    margin-bottom: var(--size-fluid-2);
+    border: 1px solid transparent;
+    border-radius: var(--radius-2);
+    background: #f3f3f3;
+    position: relative;
+    font-size: var(--fs-sm);
+
+
+    &::before {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        font-size: 18px;
+    }
+
+    >:first-child {
+        margin-top: 0;
+    }
+
+
+    &.alert-info::before {
+        content: "\f06a";
+        color: var(--blue-6);
+    }
+
+    &.alert-success::before {
+        content: "\f164";
+        color: var(--clr-success);
+    }
+
+    &.alert-warning::before {
+        content: "\f071";
+        color: var(--orange-6);
+    }
+
+    &.alert-danger::before {
+        content: "\f071";
+        color: var(--clr-danger);
+
+    }
+}

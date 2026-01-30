@@ -1,0 +1,87 @@
+/* ==========================================================================
+  # BASE / # HEADER
+========================================================================== */
+
+// #x_headerBlock
+// #x_headerBlock div to select the title container
+// #x_headerBlock::after to add drop shadow
+// #x_headerBlock div::before for the logo
+// #x_headerBlock h1
+// #x_headerBlock h2
+
+
+#x_headerBlock {
+    box-shadow: none;
+    background: var(--clr-header-bg);
+    // Add gradient and background image to the header
+    /* background: linear-gradient(50deg, rgba(0, 106, 175, 0.8) 0%, 
+                                            rgba(0, 106, 175, 0.98) 45%, 
+                                            rgba(0, 106, 175, 0.98) 45%, 
+                                            rgba(0, 106, 175, 0.8) 100%), 
+                                            url("https://xerte.cardiff.ac.uk/USER-FILES/10067-sopnz-Nottingham/media/carbs_001.jpg");
+      background-size: cover;
+      background-position: center 65%; */
+  }
+
+  #x_headerBlock div {
+    padding: 1.5rem 0;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+// Header bottom decoration
+// #x_headerBlock::after {
+//     position: absolute;
+//     content: '';
+//     bottom: -12px;
+//     left: 0px;
+//     width: 100%;
+//     background-image: url('https://dandange8005.github.io/CU-Xerte-Themes/Assets/images/shadow.png');
+//     background-repeat: repeat-x;
+//     background-size: 1px 12px;
+//     height: 12px;
+//     z-index: 2;
+//   }
+
+  #x_headerBlock h1 {
+    // font-family: $ff-condensed;
+    text-transform: uppercase;
+    font-size: var(--fs-sm);
+    color: var(--clr-header-h1);
+    opacity: .8;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+
+  #x_headerBlock h2 {
+    font-size: var(--fs-lg);
+    color: var(--clr-header-h2);
+    margin-bottom: 0;
+  }
+
+  // If logo is needed, add the code below 
+
+#x_headerBlock div {
+    padding-left: 70px;
+    position:relative;
+}
+
+  #x_headerBlock div::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 60px;
+    aspect-ratio: 1;
+    background-image: var(--main-logo);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+
+  #x_headerBlock h1, #x_headerBlock h2 {
+    margin-left: 1rem;
+  } 

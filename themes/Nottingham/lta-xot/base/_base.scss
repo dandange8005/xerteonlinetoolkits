@@ -1,0 +1,179 @@
+/* ======================
+    LAYOUT - BASE
+=======================*/
+
+/* ===============
+    XERTE PAGE WIDTH
+
+    This is now available in optional property 
+================== */
+
+// #x_headerBlock div,
+// #x_pageDiv {
+//     width: 90%;
+//     max-width: 1200px;
+//     margin: 0 auto;
+// }
+
+/* ===============
+    BODY
+================== */
+
+/* BODY BACKGROUND */
+#x_mainHolder {
+    background-color: var(--clr-body-bg);
+    border: none;
+    width: 100% !important;
+}
+
+// /* PARAGRAPH COLOUR */
+// #x_mainHolder p,
+// #textHolder {
+//     color: var(--clr-body-text);
+// }
+
+/* CONTENT RESET */
+#x_pageDiv {
+    padding-block: var(--size-fluid-3); 
+    width: 90%;
+}
+
+
+body {
+    font-family: var(--ff-body);
+    font-weight: 400;
+    font-size: var(--fs-base) !important;
+    color: var(--text);
+    line-height: 1.625;
+}
+
+
+/* ===============
+    SPCACING
+================== */
+
+#pageContents>*:where(:not(:last-child)),
+.container>*:where(:not(:last-child)),
+.flow>*:where(:not(:last-child))
+{
+    margin-bottom: var(--size-fluid-2);
+}
+
+#pageContents>*:where(:first-child) {
+    margin-top: 0;
+}
+
+
+/* ======================
+    BASE - MEDIA
+
+    - images
+    - figures
+    - video
+    - embeded links
+
+=======================*/
+
+// Image and Figures
+
+
+/* ==================
+    FIGURE
+=================== */
+
+figure img {
+    margin: 0;
+    max-width: max-content;
+}
+
+figure figcaption {
+    background: var(--gray-2);
+    color: var(--text-3);
+    font-size: var(--fs-sm);
+    padding: var(--size-2);
+    caption-side: bottom;
+}
+
+// utility classes
+.image-inline {
+    display: inline-block;
+}
+
+.image-full {
+    width: 100%;
+    height: auto;
+}
+
+.image-round {
+    border-radius: var(--radius-2);
+}
+
+/* Styles to the screenshots */
+.image-screenshots {
+    border: 1px solid var(--clr-border);
+    margin: 2rem auto;
+    clear: both;
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow-3);
+}
+
+/* ==================
+    VIDEO
+=================== */
+
+/* Media - iframe Block */
+
+/* iframe Block */
+
+// to restrict video size
+.video-720 {
+    max-width: 720px;
+    aspect-ratio: 16 / 9;
+}
+
+.iframe-block {
+    height: 0;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 56.32%;
+    box-shadow: var(--shadow-3);
+
+    iframe {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border: 0;
+    }
+
+    &--xerte,
+    &--h5p {
+        border: 4px solid var(--clr-border);
+    }
+
+    &--xerte {
+        padding-bottom: 75%;
+    }
+
+    &__caption {
+        background: var(--light);
+        color: var(--clr-body);
+        font-style: italic;
+        font-size: var(--fs-sm);
+        padding: 4px;
+        margin-top: 0;
+    }
+}
+
+
+
+/* XERTE PAGE WIDTH Small screen*/
+
+@media (min-width: 768px) {
+
+    #x_headerBlock div,
+    #x_pageDiv {
+        width: 85%;
+    }
+}

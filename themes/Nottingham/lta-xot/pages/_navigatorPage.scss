@@ -1,0 +1,83 @@
+/* ==========================================================================
+  # PAGES / # Navigator Page
+========================================================================== */
+
+.x_buttonNav_page #btnHolder .panelBtnLabel {
+	border: 1px solid var(--clr-panelborder);
+	color: var(--clr-btn);
+	font-weight: 500;
+	border-radius: 2px;
+	padding: .4em 1em;
+	margin: 2px 2px 2px 0;
+	line-height: 14px;
+}
+
+.x_buttonNav_page #btnHolder .panelBtnLabel:first-of-type {
+	margin-right: -2px;
+}
+
+.x_buttonNav_page #btnHolder .panelBtnLabel.ui-state-active, .x_nav_page #pageContents.button button.selected {
+	background-color: var(--clr-btn);
+	border-color: var(--clr-btn);
+	color: var(--white);
+}
+
+.x_buttonNav_page #btnHolder .panelBtnLabel.ui-state-hover:not(.ui-state-active), .x_buttonNav_page #btnHolder .panelBtnLabel.ui-state-focus:not(.ui-state-active) {
+	background-color: var(--clr-shaded);
+}
+
+.x_buttonNav_page #btnHolder .panelBtnLabel .ui-button-text {
+	padding: 0;
+	margin: 0;
+}
+
+// Column
+.x_columnPage_page #textHolder {
+	border-bottom-color: var(--clr-panelborder);
+}
+
+// Embed
+// Flash
+// Hyperlinks
+// Multi-navigator
+.x_nav_page #pageContents.button button.ui-state-hover:not(.selected), .x_nav_page #pageContents.button button.ui-state-focus:not(.selected) {
+	background-color: var(--clr-shaded);
+	border-color: var(--clr-panelborder);
+	color: var(--clr-btn);
+}
+
+.x_nav_page #pageContents.slide #btnHolder {
+	border-color: var(--clr-panelborder);
+}
+
+// .x_nav_page #pageContents.tab {
+	
+// }
+
+// New Window
+
+
+// Slideshow
+.x_slideshow_page #slideTxt, .x_nav_page #pageContents.slide #slideTxt {
+	color: var(--clr-heading);
+}
+
+// Tabbed Navigator
+// Tabbed Navigator +
+.x_tabNavExtra_page .paneList {
+	color: var(--clr-panelborder);
+	border-color: var(--clr-panelborder);
+    padding-bottom: .5rem;
+    margin-bottom: 1rem;
+}
+
+.x_tabNavExtra_page .paneList a, .x_tabNavExtra_page .paneList a {
+	font-size: 0.9rem;
+}
+
+.x_tabNavExtra_page .paneList a:link, .x_tabNavExtra_page .paneList a:visited, .x_tabNavExtra_page .paneList a:hover, .x_tabNavExtra_page .paneList a:active {
+	color: var(--clr-link);
+}
+
+
+// Thumbnail Viewer

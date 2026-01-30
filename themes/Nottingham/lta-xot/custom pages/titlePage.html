@@ -1,0 +1,260 @@
+<!-- CUSTOM PAGES / Title Page
+ 
+This page is used to display a title page for the Xerte module. It is designed to be used as a custom page in Xerte.
+
+-->
+
+
+
+<style>
+    /*Title page style*/
+
+    /*---- HIDE HEADER Banner ----*/
+    #x_headerBlock {
+        display: none;
+    }
+
+    #x_background {
+        margin: 0 !important;
+    }
+
+    /*---- BACKGROUND IMAGE AND FALLBACK COLOUR ----*/
+
+    #x_mainHolder {
+        background: var(--primary);        /*fallback colour*/
+        background: linear-gradient(to right, #000, var(--primary));
+    }
+
+    /*----- TITLE PAGE OVERLAY --------------------*/
+
+    /*pseudo element for gradient overlay, with fallback colour options*/
+    #x_mainHolder::before {
+        content: ' ';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.95;
+        background: linear-gradient(100deg, var(--primary) 55%, transparent 55%);
+        background: radial-gradient(ellipse 75% 150% at bottom right, transparent 0%, transparent 75%, var(--primary) 75%);
+    }
+
+    /*-----  LOGO --------------------*/
+    #logoHolder {
+        --logo-min-width: 100px;
+        --logo-max-width: 260px;
+
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        min-width: var(--logo-min-width);
+        max-width: var(--logo-max-width);
+        width: 45%;
+        z-index: 1;
+    }
+
+    #logoHolder img {
+        width: 100%;
+        height: auto;
+    }
+
+
+    /*#logo img {
+  max-width: 100%;
+  height: auto;
+}*/
+
+    /*----- WELSH LANGUAGE TOGGLE --------------------*/
+    #cymraeg-icon {
+        position: fixed;
+        top: 26px;
+        right: 26px;
+        color: #fff;
+        font-size: 12px;
+        line-height: 30px;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    #cymraeg-icon-img {
+        width: 25px;
+        float: left;
+        margin-right: 4px;
+    }
+
+    #cymraeg-icon-img img {
+        width: 100%;
+    }
+
+    #cymraeg-icon-text {
+        float: right;
+    }
+
+
+
+    /*---- PAGE HEADINGS ----*/
+    #titlePage {
+        position: fixed;
+        width: 50vw;
+        left: calc(-50vw + 50%);
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    #titlePage div {
+        margin: 0 24px;
+    }
+
+    #titlePage h1 {
+        font-size: var(--fs-4xl);
+        font-weight: 900;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    #titlePage h2 {
+        text-transform: none;
+        font-size: var(--fs-xl);
+        font-weight: 400;
+        color: white;
+        text-transform: none;
+        display: inline-block;
+        margin-bottom: 6px;
+    }
+
+    #titlePage .author {
+        display: flex;
+        align-items: center;
+        color: #ffffff;
+    }
+
+    .author img {
+        max-width: 40px;
+        border-radius: 50%;
+        box-shadow: var(--shadow-2);
+        margin-right: var(--size-2);
+    }
+
+    #titlePage h3 {
+        font: 300 18px/24px var(--ff-body);
+        color: #bd9e5e;
+        margin: 6px 0;
+        padding: 0;
+        text-align: right;
+    }
+
+    /*----- CREATIVE COMMONS / COPYRIGHT DETAILS ---- */
+    #license {
+        position: fixed;
+        width: 100vw;
+        left: calc(-50vw + 50%);
+        bottom: 52px;
+        background: transparent;
+        text-align: center;
+        z-index: 1;
+    }
+
+    #licenseInner {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #licenseInner h1 {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    #licenseInner p {
+        color: #fff;
+        font-size: clamp(0.83rem, 0.79rem + 0.20vw, 0.94rem);
+        font-weight: 400;
+        padding: 0;
+    }
+
+    #license a {
+        color: #fff;
+        text-decoration: none;
+        border-bottom: 0.0625rem solid rgba(220, 220, 220, 0.4);
+    }
+
+    #license a:hover {
+        border-bottom: 0.0625rem solid #fff;
+    }
+
+    #license img {
+        margin: auto;
+    }
+
+
+    /* ----FOOTER---- */
+
+    /* transparent footer background */
+    #x_footerBlock {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    /* ---MEDIA QUERY--- */
+
+    /* Change the title page layout when user viewing the page on a screen size smaller than 767px */
+
+    @media (max-width: 767px) {
+        #titlePage {
+            width: 100vw !important;
+            transition: 0.25s ease-in-out;
+            background: hsla(var(--clr-h), var(--clr-s), var(--clr-l), 0.9);
+            padding: 32px 0;
+            transition: 0.25s ease-in-out;
+        }
+
+        #x_mainHolder::before {
+            background: rgba(0, 0, 0, 0.4) !important;
+            transition: 0.25s ease-in-out;
+        }
+
+    }
+</style>
+
+
+<!-- Main logo -->
+
+<div id="logoHolder"><img alt="CU LTA logo" class="animate__animated animate__flipInX"
+        src="https://xerte.cardiff.ac.uk/USER-FILES/20885-sopnz-Nottingham/media/Academic_Integrity/CUident_RGB.jpg"
+        style="--animate-duration: 2s;" />
+</div>
+
+<!-- Welsh icon for language toggle -->
+<div id="cymraeg-icon" onclick="location.href='#'">
+    <div id="cymraeg-icon-img"><img alt="" height="91"
+            src="https://xerte.cardiff.ac.uk/USER-FILES/20885-sopnz-Nottingham/media/cymraeg_white.png" width="74" />
+    </div>
+    <div id="cymraeg-icon-text">Cymraeg
+    </div>
+</div>
+
+<!-- title container -->
+<div id="titlePage">
+    <div>
+        <h2 class="animate__animated animate__slideInDown">Academic Integrity
+        </h2>
+        <h1 class="animate__animated animate__fadeInUp" style="text-transform: none;">Module 1: What is academic
+            integrity?&nbsp;
+        </h1>
+    </div>
+</div>
+
+<!-- license container -->
+<div id="license">
+    <div id="licenseInner">
+        <p>This work is licensed under a <a class="tidyLink" href="http://creativecommons.org/licenses/by/4.0/"
+                rel="license">Creative Commons Attribution 4.0 International License</a>.
+            <br />
+            <a href="http://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License"
+                    src="https://i.creativecommons.org/l/by/4.0/80x15.png" style="border-width:0" /></a>
+        </p>
+    </div>
+</div>

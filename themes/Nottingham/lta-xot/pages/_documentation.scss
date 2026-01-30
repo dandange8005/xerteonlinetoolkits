@@ -1,0 +1,32 @@
+/* ==========================================================================
+  # PAGES / # Documentation
+========================================================================== */
+
+// reduce margin between sections
+.item, .intro, .section {
+    margin: var(--size-3) 0;
+
+    h3 {
+        font-size: var(--fs-lg);
+        margin-bottom: 0;
+    }
+}
+
+// change horizontal optionGroup to inline-flex
+.optionGroup.horizontal {
+    display: inline-flex;
+}
+
+// fix margin between optionGroups
+.optionGroup.horizontal:not(:first-child) {
+    margin-left: var(--size-3);
+}
+
+// fix margin between options
+.optionTxt {
+    margin-left: var(--size-3);
+}
+
+.optionGroup.horizontal:not(:first-of-type) .optionTxt {
+    margin-left: var(--size-3);
+}

@@ -1,0 +1,236 @@
+/* Xerte theme generated via Xhibit App (https://www.xhibitapp.com) */
+
+/* THEME: My Xhibit Theme */
+/* DESCRIPTION: A theme generated via Xhibit App. */
+
+
+/* FOOTER GRADIENT */
+
+#x_footerBlock {
+	background: -ms-linear-gradient(top, #E5E4E2, #D1D0CE);
+	background: -webkit-gradient(linear, left top, left bottom, from(#E5E4E2), to(#D1D0CE));
+	background: -moz-linear-gradient(top,  #E5E4E2,  #D1D0CE);
+	// backgroundImage: -o-linear-gradient(#E5E4E2, #D1D0CE);
+}
+
+/* TOP BORDER OF FOOTER */
+
+#x_footerBlock {
+	border-top: 1px solid #ffffff;
+}
+
+/* DOTS TEXTURE ON/OFF */
+
+#x_footerBg {
+	background-image: none;
+}
+
+/* FOOTER PAGE NUMBERING BOX */
+
+#x_pageNo {
+	background-color: transparent;
+	border: 1px solid transparent;
+	color: #151B54;
+}
+
+
+/* BODY BORDER */
+
+#x_mainHolder {
+	border: 1px solid var(--clr-border);
+}
+
+
+/* SETUP FOR FONT AWESOME ICONS */
+/* (Already present in Xhibit Base Theme, but needed here for older versions of Xerte that do not have the base theme) */
+
+#x_footerBlock button span {
+	background: none; /* Hide any PNG buttons */
+}
+
+.ui-button:after { /* Setup for FontAwesome icons */
+	font-family: "FontAwesome";
+	color: white;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	font-size: 1.58rem;
+	line-height: 1.5em;
+}
+
+/* ICONS */
+
+#x_footerBlock .ui-button:after {
+	color: #151B54;
+}
+
+#x_footerBlock .ui-button.ui-state-hover:after {
+	color: #98AFC7;
+}
+
+#x_nextBtn:after {
+	content: "\f061";
+}
+
+#x_prevBtn:after {
+	content: "\f060";
+}
+
+#x_menuBtn:after {
+	content: "\f02d";
+}
+
+#x_colourChangerBtn:after {
+	content: "\f042";
+}
+
+#x_cssBtn:after {
+	content: "\f0b2";
+}
+
+#x_helpBtn:after {
+	content: "\f059";
+}
+
+#x_glossaryBtn:after {
+	content: "\f02d";
+}
+
+#x_mediaBtn:after {
+	content: "\f16a";
+}
+
+#x_footerChevron {
+	color: #151B54;
+}
+
+/* PRESERVE INVERT FUNCTIONALITY FOR ACCESSIBILITY */
+
+.filter_inv #x_headerBlock h1, .filter_inv #x_headerBlock h2, .filter_inv #x_pageNo, .filter_inv #x_footerChevron {
+	color: black;
+}
+
+.filter_inv #x_mainHolder p, .filter_inv #textHolder, .filter_inv #x_mainHolder a, .filter_inv #x_mainHolder a:hover, .filter_inv #x_mainHolder a.x_glossary {
+	color: white;
+}
+
+.filter_inv #x_pageNo {
+	background-color: white;
+	border: none;
+}
+
+.filter_inv .ui-dialog {
+	background-color: #ffffff;
+}
+
+.filter_inv .ui-dialog .ui-widget-header {
+	border: 1px solid #666666;
+	background: #000000;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.filter_inv .ui-state-default {
+	color: #000000;
+	background: #ffffff;
+}
+
+.filter_inv p.pbTxt {
+	color: #000000 !important;
+}
+
+.filter_inv .pbContainer {
+	background-color: #000000;
+}
+
+.filter_inv #x_footerBlock .ui-button:after {
+	color: #000000;
+}
+
+.filter_inv #x_footerBlock .ui-button.ui-state-hover:after {
+	color: #404040;
+}
+
+.filter_inv #x_mainHolder a {
+	color: #000000;
+}
+
+.filter_inv #x_mainHolder a:hover {
+	color: #404040;
+}
+
+.filter_inv .x_tooltip {
+	background: #ffffff;
+	color: #000000;
+}
+
+/* PRESERVE BLACK ON YELLOW FUNCTIONALITY FOR ACCESSIBILITY */
+
+.filter_boy #x_mainHolder p, .filter_boy #textHolder, .filter_boy #x_mainHolder a, .filter_boy #x_mainHolder a:hover, .filter_boy #x_mainHolder a.x_glossary {
+	color: black;
+}
+
+.filter_boy .ui-dialog .ui-widget-header {
+	border: 1px solid #666666;
+	background: #000000;
+	color: #ffff99;
+	font-weight: bold;
+}
+
+.filter_boy .ui-dialog {
+	background-color: #ffff99;
+}
+
+.filter_boy .ui-state-default {
+	color: #ffff99;
+	background: #000000;
+}
+
+.filter_boy p.pbTxt {
+	color: #ffff99 !important;
+}
+
+.filter_boy .pbContainer {
+	background-color: #ffff99;
+}
+
+.filter_boy #x_footerBlock {
+	border-top: 1px solid #ffff99;
+}
+
+.filter_boy #x_headerBlock {
+	border-bottom: 1px solid #ffff99;
+}
+
+.filter_boy #x_footerBlock .ui-button:after {
+	color: #ffff99;
+}
+
+.filter_boy #x_footerBlock .ui-button.ui-state-hover:after {
+	color: #B2B235;
+}
+
+.filter_boy #x_pageNo, .filter_boy #x_footerChevron {
+	color: #ffff99;
+}
+
+.filter_boy #x_mainHolder a {
+	color: #ffff99;
+}
+
+.filter_boy #x_mainHolder a:hover {
+	color: #B2B235;
+}
+
+.filter_boy .ui-widget-content {
+	background: #ffff99;
+}
+
+.filter_boy .x_tooltip {
+	background: #000000;
+	color: #ffff99;
+}
+
+#x_pageNo {
+padding-top: 6px;
+}

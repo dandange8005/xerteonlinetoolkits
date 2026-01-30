@@ -1,0 +1,25 @@
+/* ==========================================================================
+  # PAGES / # Category
+========================================================================== */
+
+#categoryHolder h3 {
+    font-size: var(--fs-lg);
+}
+
+ul.category {
+    display: initial;
+}
+
+.category.highlight {
+    background: var(--light);
+    border-radius: var(--radius-2);
+    border: 1px solid var(--clr-border);
+}
+
+// category page label
+#dragDropHolder .label{
+    background: var(--yellow-0);
+    text-align: center;
+    box-shadow: var(--shadow-2);
+    border-radius: var(--radius-1);
+}

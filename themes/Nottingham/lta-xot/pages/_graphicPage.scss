@@ -1,0 +1,13 @@
+/* ==========================================================================
+  # PAGES / # Graphic Page
+========================================================================== */
+
+.x_textGraphics_page #imgCaption {
+	color: var(--clr-heading);
+}
+
+.x_textGraphics_page #imgCaption.transcript { /* hr */
+	border-color: var(--clr-border);
+}
+
+
