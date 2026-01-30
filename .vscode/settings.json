@@ -1,19 +1,31 @@
 {
+  // Live Sass Compiler settings
   "liveSassCompile.settings.formats": [
     {
-      "format": "expanded",
+      "format": "expanded", // Output style: expanded, compressed, compact, nested
       "extensionName": ".css",
-      "savePath": null
+      "savePath": null // null = save CSS in same folder as SCSS
     }
   ],
+
+  // Only compile these specific SCSS files (ignores partials starting with _)
   "liveSassCompile.settings.includeItems": [
-    "/themes/site/cardiffuni-v2/cardiffuni-v2.scss"
+    "/themes/site/cardiffuni-v2/cardiffuni-v2.scss",
+    "/themes/Nottingham/lta-xot/lta-xot.scss"
   ],
+
+  // Generate .map files for debugging in browser DevTools
   "liveSassCompile.settings.generateMap": true,
+
+  // Autoprefixer: adds vendor prefixes (-webkit-, -moz-, etc.)
   "liveSassCompile.settings.autoprefix": [
-    "defaults",
-    "not IE > 0"
+    "defaults", // Target browsers based on browserslist defaults
+    "not IE > 0" // Exclude all Internet Explorer versions
   ],
+
+  // Only show output window on warnings/errors (not on success)
   "liveSassCompile.settings.showOutputWindowOn": "Warning",
+
+  // Live Server port for local development
   "liveServer.settings.port": 5501
 }
