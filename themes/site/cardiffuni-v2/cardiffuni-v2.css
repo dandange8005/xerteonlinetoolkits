@@ -928,7 +928,7 @@ legend {
   color: var(--color-text-primary);
 }
 
-input:invalid:not(:-moz-placeholder-shown), textarea:invalid:not(:-moz-placeholder-shown) {
+input:invalid:not(:-moz-placeholder), textarea:invalid:not(:-moz-placeholder) {
   border-color: var(--color-brand-primary);
 }
 
@@ -2420,8 +2420,7 @@ button.button--block {
   height: 0;
   border-style: solid;
   border-color: transparent;
-  -webkit-clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
-          clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
   border-width: 7px 0 7px 12.124px;
   border-left-color: inherit;
 }
@@ -2441,8 +2440,7 @@ button.button--block {
   height: 0;
   border-style: solid;
   border-color: transparent;
-  -webkit-clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
-          clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+  clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
   border-width: 12.124px 7px 0 7px;
   border-top-color: inherit;
 }
