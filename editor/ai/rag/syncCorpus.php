@@ -13,7 +13,7 @@ require_once (str_replace('\\', '/', __DIR__) . "/RagFactory.php");
 require_once (str_replace('\\', '/', __DIR__) . "/../management/dataRetrievalHelper.php");
 require_once (str_replace('\\', '/', __DIR__) . "/../logging/ActorContext.php");
 require_once __DIR__ . '/sync_job_store.php';
-\_load_language_file("/editor/ai_internal/ai.inc");
+\_load_language_file("/editor/ai_internal/ai_language_internal.inc");
 
 use function rag\makeRag;
 use function transcribe\makeTranscriber;
@@ -100,7 +100,7 @@ try {
         $job['workspace_id']
     );
 
-
+    $language = isset($input['language']) ? $input['language'] : '';
     $gridData = isset($input['gridData']) ? $input['gridData'] : [];
     function sanitize_grid_data(array $gridData)
     {
@@ -163,20 +163,25 @@ try {
     $transcriptionKey = $xerte_toolkits_site->{$managementSettings['transcription']['key_name']};
 
     $provider = $managementSettings['transcription']['active_vendor'];
+    $preferredTranscriptionModel = $managementSettings['transcription']['preferred_model'];
     $cfgTranscribe = [
         'api_key' => $transcriptionKey,
         'basedir' => $baseDir,
-        'provider' => $provider
+        'provider' => $provider,
+        'preferred_model' => $preferredTranscriptionModel,
+        'language' => $language
     ];
 
     $transcriptMgr = makeTranscriber($cfgTranscribe);
 
     $encodingKey = $xerte_toolkits_site->{$managementSettings['encoding']['key_name']};
     $provider = $managementSettings['encoding']['active_vendor'];
+    $preferredEncodingModel = $managementSettings['encoding']['preferred_model'];
     $cfg = [
             'api_key' => $encodingKey,
             'encoding_directory' => $baseDir,
-            'provider' => $provider
+            'provider' => $provider,
+            'preferredModel' => $preferredEncodingModel
         ];
     $rag = makeRag($cfg);
 
