@@ -1,0 +1,628 @@
+/* ============================================================
+   Inclusive Prehabilitation for People with Cancer
+   Custom stylesheet — design tokens v1.0.0
+   Base theme: Modern XOT1 (Nottingham)
+   Last updated: 2026-03-06
+   ============================================================
+   USAGE: Paste the full contents of this file into the
+   "Styles" field in Xerte project properties. The @import
+   rule must remain the very first line.
+   ============================================================ */
+
+/* --- Google Fonts: Inter --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+
+/* ============================================================
+   DESIGN TOKENS — CSS Custom Properties
+   All values sourced from design.json
+   ============================================================ */
+:root {
+  /* Colours: Primary */
+  --color-primary:       #256a91;
+  --color-primary-light: #4a8fb5;
+  --color-primary-dark:  #1a4f6e;
+
+  /* Colours: Accent */
+  --color-accent:      #0f6b99;
+  --color-accent-dark: #0b4f74;
+
+  /* Colours: Interactive */
+  --color-interactive: #0a6dc2;
+
+  /* Colours: Highlight */
+  --color-highlight: #f5c200;
+
+  /* Colours: Neutrals */
+  --color-neutral-50:  #f8f9fa;
+  --color-neutral-100: #f0f2f4;
+  --color-neutral-200: #e5e8eb;
+  --color-neutral-300: #d0d5da;
+  --color-neutral-400: #adb4bc;
+  --color-neutral-500: #87919b;
+  --color-neutral-600: #636d78;
+  --color-neutral-700: #4a525b;
+  --color-neutral-800: #333a42;
+  --color-neutral-900: #1a1e24;
+
+  /* Colours: Semantic text */
+  --color-text-primary:   #333333;
+  --color-text-secondary: #666666;
+  --color-text-muted:     #909090;
+  --color-text-on-dark:   #ffffff;
+  --color-text-link:      #0a6dc2;
+  --color-text-heading:   #0f6b99;
+
+  /* Colours: Backgrounds */
+  --color-bg-page:    #ffffff;
+  --color-bg-surface: #f8f9fa;
+  --color-bg-hero:    #256a91;
+
+  /* Colours: Semantic states */
+  --color-success:       #2e7d32;
+  --color-success-light: #e8f5e9;
+  --color-warning:       #e65100;
+  --color-warning-light: #fff3e0;
+  --color-error:         #c62828;
+  --color-error-light:   #ffebee;
+  --color-info:          #1565c0;
+  --color-info-light:    #e3f2fd;
+
+  /* Typography */
+  --font-family-base: 'Inter', Arial, Helvetica, sans-serif;
+
+  --font-size-h1:   2rem;
+  --font-size-h2:   1.625rem;
+  --font-size-h3:   1.375rem;
+  --font-size-h4:   1.125rem;
+  --font-size-body: 1.125rem;
+  --font-size-sm:   0.875rem;
+  --font-size-xs:   0.75rem;
+
+  --font-weight-regular:  400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+
+  --line-height-tight:   1.2;
+  --line-height-normal:  1.5;
+  --line-height-relaxed: 1.7;
+
+  --letter-spacing-wide:  0.02em;
+  --letter-spacing-wider: 0.05em;
+
+  /* Spacing */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Border Radius */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-pill: 100px;
+
+  /* Shadows */
+  --shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md:   0 4px 12px rgba(0, 0, 0, 0.10);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.09);
+}
+
+
+/* ============================================================
+   SCOPED RESETS — safe for XOT1, won't break jQuery UI or FA icons
+   ============================================================ */
+
+/* Font smoothing — improves Inter rendering on macOS/retina */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Box-sizing scoped to content area only */
+#x_pageDiv,
+#x_pageDiv * {
+  box-sizing: border-box;
+}
+
+/* Prevent orphaned words at paragraph line ends */
+#x_pageDiv p,
+#x_pageContent p {
+  text-wrap: pretty;
+}
+
+/* Balance heading line breaks */
+#x_pageDiv h1, #x_pageDiv h2,
+#x_pageDiv h3, #x_pageDiv h4,
+#x_pageContent h1, #x_pageContent h2,
+#x_pageContent h3, #x_pageContent h4 {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+/* Prevent long words/URLs breaking layout */
+#x_pageDiv p,
+#x_pageDiv li {
+  overflow-wrap: break-word;
+}
+
+
+/* ============================================================
+   BASE — Font family applied globally
+   ============================================================ */
+body,
+#x_pageContent,
+#x_contentBlock,
+#x_sideBar,
+#x_footerBlock,
+#x_headerBlock {
+  font-family: var(--font-family-base);
+}
+
+body {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-page);
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+#x_headerBlock {
+  background: var(--color-bg-hero);
+  background-image: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Project title (h1 — small label above page title) */
+#x_headerBlock h1,
+#x_headerBlock .x_projectTitle {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-on-dark);
+  opacity: 0.85;
+}
+
+/* Page title (h2) */
+#x_headerBlock h2,
+#x_headerBlock .x_pageTitle {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-on-dark);
+}
+
+/* Progress bar text — must be white on blue header background */
+#x_headerProgress .pbTxt {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Progress bar track — semi-transparent white on blue */
+#x_headerProgress .pbContainer {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-pill);
+  height: 6px;
+}
+
+/* Progress bar fill — highlight yellow for contrast on blue */
+#x_headerProgress .pbBar {
+  background-color: var(--color-highlight);
+  border-radius: var(--radius-pill);
+  height: 6px;
+}
+
+/* Progress marker dots (dot-type progress bars) */
+#x_headerProgress .progressMarker {
+  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+#x_headerProgress .progressMarker.complete {
+  border-color: var(--color-highlight);
+  background-color: var(--color-highlight);
+}
+
+/* Header utility buttons */
+#x_headerBlock #x_pageIntroBtn,
+#x_headerBlock #x_pageResourcesBtn {
+  color: var(--color-text-on-dark);
+}
+
+
+/* ============================================================
+   CONTENT AREA — Layout & Breathing Space
+   ============================================================ */
+
+/* ============================================================
+   CONTENT GRID — narrow reading column with full-width breakouts
+
+   Xerte renders content as:
+     #x_pageDiv > .innerPage > #pageContents > (p, h3, .panel…)
+
+   The grid is applied to #pageContents — the actual element
+   whose direct children are paragraphs, headings, panels etc.
+
+   Three named zones:
+     full    — spans entire container (cards, media, tables)
+     content — constrained to 720px reading width (text, headings)
+
+   Authors can add class="wide" to any element in the Xerte
+   editor to manually promote it to the full-width zone.
+   ============================================================ */
+
+/* Let .innerPage and #pageContents fill the available width */
+#x_pageDiv {
+  padding-top:    var(--space-xl);
+  padding-bottom: var(--space-xl);
+  box-sizing: border-box;
+}
+
+#x_pageDiv .innerPage {
+  width: 100%;
+}
+
+/* Apply grid to the actual content container */
+#pageContents {
+  display: grid;
+  grid-template-columns:
+    [full-start]    1fr
+    [content-start] min(720px, 100%)
+    [content-end]   1fr
+    [full-end];
+}
+
+/* Default: all direct children sit in the reading column */
+#pageContents > * {
+  grid-column: content;
+}
+
+/* Full-width breakout: Xerte panels, media, tables, figures */
+#pageContents > .panel,
+#pageContents > figure,
+#pageContents > table,
+#pageContents > iframe,
+#pageContents > video,
+#pageContents > .x_mediaPage,
+#pageContents > .x_imagePage,
+#pageContents > .x_flashcardsPage,
+#pageContents > .wide {
+  grid-column: full;
+}
+
+/* Page content typography base
+   NOTE: no color here — let body colour cascade and be overridden by
+   accessibility themes (darkmode.css uses low-specificity selectors) */
+#x_pageContent,
+#x_contentBlock,
+#x_pageDiv,
+#pageContents {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Paragraphs — space between each block of text */
+#x_pageDiv p,
+#x_pageContent p,
+#x_contentBlock p {
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-relaxed);
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  padding: 0;
+  font-size: var(--font-size-body);
+}
+
+/* Headings — generous space above to separate sections */
+#x_pageDiv h1, #x_pageContent h1, #x_contentBlock h1 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-md);
+  padding: 0;
+}
+
+#x_pageDiv h2, #x_pageContent h2, #x_contentBlock h2 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+  padding: 0;
+}
+
+#x_pageDiv h3, #x_pageContent h3, #x_contentBlock h3 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+  padding: 0;
+}
+
+#x_pageDiv h4, #x_pageContent h4, #x_contentBlock h4 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-semibold);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  padding: 0;
+}
+
+/* Text colours — low specificity (element selectors only) so that
+   accessibility themes (darkmode.css etc.) can override them.
+   These come after xot1.css in source order so they set brand colours
+   in default mode, but darkmode.css (loaded later) wins when active. */
+h1, h2, h3, h4 { color: var(--color-text-heading); }
+p               { color: var(--color-text-primary); }
+
+/* First heading on a page — no top margin needed */
+#x_pageDiv > h1:first-child,
+#x_pageDiv > h2:first-child,
+#x_pageDiv > h3:first-child,
+#x_pageDiv *:first-child > h1,
+#x_pageDiv *:first-child > h2,
+#x_pageDiv *:first-child > h3 {
+  margin-top: 0;
+}
+
+/* Lists */
+#x_pageDiv ul, #x_pageDiv ol,
+#x_pageContent ul, #x_pageContent ol {
+  padding-left: var(--space-xl);
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+/* When a paragraph leads directly into a list, collapse the gap */
+#x_pageDiv p + ul,
+#x_pageDiv p + ol,
+#x_pageContent p + ul,
+#x_pageContent p + ol,
+#pageContents p + ul,
+#pageContents p + ol {
+  margin-top: calc(var(--space-sm) * -1);
+}
+
+#x_pageDiv li,
+#x_pageContent li {
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-sm);
+  padding: 0;
+}
+
+/* Links */
+#x_pageDiv a,
+#x_pageContent a,
+#x_contentBlock a {
+  color: var(--color-text-link);
+  text-decoration: underline;
+}
+
+#x_pageDiv a:hover,
+#x_pageContent a:hover,
+#x_contentBlock a:hover {
+  color: var(--color-accent-dark);
+}
+
+/* Strong / bold */
+#x_pageDiv strong, #x_pageDiv b,
+#x_pageContent strong, #x_pageContent b,
+#x_contentBlock strong, #x_contentBlock b {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Horizontal rule — section divider */
+#x_pageDiv hr,
+#x_pageContent hr {
+  border: none;
+  border-top: 1px solid var(--color-neutral-200);
+  margin: var(--space-xl) 0;
+}
+
+/* ============================================================
+   MEDIA — Responsive iframes & embeds
+   Overrides hardcoded width/height HTML attributes on iframes
+   (e.g. YouTube embeds authored with fixed width="832" height="468")
+   ============================================================ */
+
+/* Responsive iframe — fluid width, locked 16:9 aspect ratio */
+#pageContents iframe,
+#x_pageDiv iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  border-radius: var(--radius-md);
+  display: block;
+  margin-block: var(--space-lg);
+}
+
+
+/* Responsive images — fluid, never overflow their container */
+#pageContents img,
+#x_pageDiv img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+/* Images inside figures — centred with caption spacing */
+#pageContents figure,
+#x_pageDiv figure {
+  margin: var(--space-lg) 0;
+  text-align: center;
+}
+
+#pageContents figure img,
+#x_pageDiv figure img {
+  margin-inline: auto;
+}
+
+#pageContents figcaption,
+#x_pageDiv figcaption {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-sm);
+}
+
+/* Standalone images (not in figure) get vertical breathing room */
+#pageContents p img,
+#x_pageDiv p img {
+  margin-block: var(--space-md);
+}
+
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+#x_sideBar {
+  background-color: var(--color-bg-page);
+  border-right: 1px solid var(--color-neutral-200);
+}
+
+#x_sideBarTocHolder {
+  padding: var(--space-sm) 0;
+}
+
+/* Collapse toggle button */
+#x_sideBarToggleBtn {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+}
+
+#x_sideBarToggleBtn:hover,
+#x_sideBarToggleBtn:focus,
+#x_sideBarToggleBtn:active {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-on-dark);
+}
+
+/* Sidebar icon buttons */
+#x_sideBarBtnHolder button {
+  font-family: var(--font-family-base);
+  color: var(--color-primary);
+}
+
+/* TOC menu items — colour only */
+#menuHolder .menuItem,
+#menuItems .menuItem {
+  color: var(--color-text-primary);
+}
+
+/* Align icon to vertical centre on multi-line items */
+#menuHolder .menuItem .ui-button-text,
+#menuItems .menuItem .ui-button-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+#menuHolder .menuItem.ui-state-hover,
+#menuItems .menuItem.ui-state-hover,
+#menuHolder .menuItem:hover,
+#menuItems .menuItem:hover {
+  color: var(--color-primary);
+  background-color: var(--color-neutral-50);
+}
+
+/* Active / current page */
+#menuHolder .menuItem.current,
+#menuItems .menuItem.current {
+  color: var(--color-primary-dark);
+  background-color: #deeef8;
+  outline: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+/* Visited checkmark */
+#menuHolder .viewTick:not(.notvisited),
+#menuItems .viewTick:not(.notvisited) {
+  color: var(--color-primary);
+}
+
+/* Unvisited checkmark */
+#menuHolder .viewTick.notvisited,
+#menuItems .viewTick.notvisited {
+  color: var(--color-neutral-300);
+}
+
+/* Chapter / module accordion headers */
+#menuHolder .chapterItem,
+#menuItems .chapterItem {
+  color: var(--color-accent);
+  background-color: var(--color-neutral-50);
+}
+
+#menuHolder .chapterItem.ui-state-hover,
+#menuHolder .chapterItem:hover {
+  background-color: var(--color-neutral-100);
+}
+
+
+/* ============================================================
+   FOOTER / NAVIGATION
+   ============================================================ */
+#x_footerBlock {
+  background: var(--color-bg-page);
+  border-top: 1px solid var(--color-neutral-200);
+}
+
+/* Prev / next buttons — do NOT override font-family here,
+   Font Awesome icons depend on "Font Awesome 5 Free" being inherited */
+#x_footerBlock button {
+  color: var(--color-primary);
+}
+
+#x_footerBlock button.ui-state-hover,
+#x_footerBlock button:hover,
+#x_footerBlock button:focus {
+  color: var(--color-primary-dark);
+}
+
+/* Page number */
+#x_pageNo {
+  font-family: var(--font-family-base);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* Progress bar track (footer) */
+#x_footerProgress .pbContainer,
+#x_footerBlock .pbContainer {
+  background-color: var(--color-neutral-200);
+  border-radius: var(--radius-pill);
+}
+
+/* Progress bar fill (footer) */
+#x_footerProgress .pbBar,
+#x_footerBlock .pbBar {
+  background-color: var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+
+/* Progress percentage text */
+.pbTxt {
+  font-family: var(--font-family-base);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}

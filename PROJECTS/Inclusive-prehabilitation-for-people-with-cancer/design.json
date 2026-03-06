@@ -1,0 +1,289 @@
+{
+  "designSystem": {
+    "metadata": {
+      "name": "Inclusive Prehabilitation for People with Cancer",
+      "version": "1.0.0",
+      "lastUpdated": "2026-03-06",
+      "description": "Design tokens extracted from the I-Prehab course on the HEIW learning platform. Used to guide consistent styling of the Xerte XOT rebuild."
+    },
+
+    "principles": {
+      "style": "Clean, accessible, healthcare-focused",
+      "values": [
+        "Clear hierarchy and readability",
+        "Trustworthy and professional",
+        "Accessible for all users",
+        "Consistent and predictable"
+      ],
+      "targetExperience": "Approachable clinical training that feels modern but not clinical"
+    },
+
+    "colours": {
+      "primary": {
+        "note": "Main steel blue — used for course hero background, primary UI surfaces. Darkened from #4a8fb5 for WCAG AA compliance (5.92:1 with white).",
+        "main": "#256a91",
+        "light": "#4a8fb5",
+        "dark": "#1a4f6e",
+        "contrastText": "#ffffff"
+      },
+      "accent": {
+        "note": "Teal-blue — used for section headings, module titles, card link text. Darkened from #3aadd4 for WCAG AA compliance (5.86:1 on white).",
+        "main": "#0f6b99",
+        "light": "#3aadd4",
+        "dark": "#0b4f74",
+        "contrastText": "#ffffff"
+      },
+      "interactive": {
+        "note": "Interactive blue — links, icon buttons, audio player, download actions. Darkened from #1a8ed4 for WCAG AA compliance (5.28:1 on white).",
+        "main": "#0a6dc2",
+        "light": "#1a8ed4",
+        "dark": "#084e8f",
+        "contrastText": "#ffffff"
+      },
+      "navy": {
+        "note": "Dark navy — used for checklist circle backgrounds, icon fills",
+        "main": "#1e3d72",
+        "light": "#2d5499",
+        "dark": "#132745",
+        "contrastText": "#ffffff"
+      },
+      "highlight": {
+        "note": "Yellow accent — seen in course graphics and branding imagery",
+        "main": "#f5c200",
+        "light": "#ffd740",
+        "dark": "#c49800",
+        "contrastText": "#1a1a1a"
+      },
+      "neutral": {
+        "0":   "#ffffff",
+        "50":  "#f8f9fa",
+        "100": "#f0f2f4",
+        "200": "#e5e8eb",
+        "300": "#d0d5da",
+        "400": "#adb4bc",
+        "500": "#87919b",
+        "600": "#636d78",
+        "700": "#4a525b",
+        "800": "#333a42",
+        "900": "#1a1e24"
+      },
+      "semantic": {
+        "success":     "#2e7d32",
+        "successLight":"#e8f5e9",
+        "warning":     "#e65100",
+        "warningLight":"#fff3e0",
+        "error":       "#c62828",
+        "errorLight":  "#ffebee",
+        "info":        "#1565c0",
+        "infoLight":   "#e3f2fd"
+      },
+      "text": {
+        "primary":   "#333333",
+        "secondary": "#666666",
+        "muted":     "#909090",
+        "onDark":    "#ffffff",
+        "link":      "#0a6dc2",
+        "heading":   "#0f6b99"
+      },
+      "background": {
+        "page":    "#ffffff",
+        "surface": "#f8f9fa",
+        "card":    "#ffffff",
+        "hero":    "#256a91"
+      },
+      "checklist": {
+        "circleBg":    "#1e3d72",
+        "circleRing":  "#c8def0",
+        "checkmark":   "#ffffff"
+      }
+    },
+
+    "typography": {
+      "fontFamily": {
+        "primary": "\"Franklin Gothic Medium\", \"Arial Narrow\", Arial, sans-serif",
+        "fallback": "Arial, Helvetica, sans-serif",
+        "code":     "\"Consolas\", \"Monaco\", monospace"
+      },
+      "fontSize": {
+        "hero":  "clamp(2rem, 5vw, 3.5rem)",
+        "h1":    "2rem",
+        "h2":    "1.625rem",
+        "h3":    "1.375rem",
+        "h4":    "1.125rem",
+        "h5":    "1rem",
+        "h6":    "0.875rem",
+        "body":  "1rem",
+        "small": "0.875rem",
+        "tiny":  "0.75rem"
+      },
+      "fontWeight": {
+        "regular":  400,
+        "medium":   500,
+        "semibold": 600,
+        "bold":     700
+      },
+      "lineHeight": {
+        "tight":   1.2,
+        "normal":  1.5,
+        "relaxed": 1.7,
+        "loose":   2
+      },
+      "letterSpacing": {
+        "tight":  "-0.01em",
+        "normal": "0",
+        "wide":   "0.02em",
+        "wider":  "0.05em"
+      }
+    },
+
+    "spacing": {
+      "unit": 8,
+      "scale": {
+        "1":  "4px",
+        "2":  "8px",
+        "3":  "12px",
+        "4":  "16px",
+        "5":  "20px",
+        "6":  "24px",
+        "8":  "32px",
+        "10": "40px",
+        "12": "48px",
+        "16": "64px",
+        "20": "80px",
+        "24": "96px"
+      },
+      "named": {
+        "xs":  "4px",
+        "sm":  "8px",
+        "md":  "16px",
+        "lg":  "24px",
+        "xl":  "32px",
+        "2xl": "48px",
+        "3xl": "64px"
+      }
+    },
+
+    "borderRadius": {
+      "none":   "0",
+      "sm":     "4px",
+      "md":     "8px",
+      "lg":     "12px",
+      "xl":     "16px",
+      "pill":   "100px",
+      "circle": "50%"
+    },
+
+    "shadows": {
+      "none": "none",
+      "sm":   "0 1px 3px rgba(0,0,0,0.08)",
+      "md":   "0 4px 12px rgba(0,0,0,0.10)",
+      "lg":   "0 8px 24px rgba(0,0,0,0.12)",
+      "card": "0 2px 8px rgba(0,0,0,0.09)",
+      "hero": "0 4px 16px rgba(0,0,0,0.15)"
+    },
+
+    "components": {
+      "card": {
+        "backgroundColor": "#ffffff",
+        "borderRadius": "12px",
+        "padding": "20px 24px",
+        "boxShadow": "0 2px 8px rgba(0,0,0,0.09)",
+        "border": "1px solid #e5e8eb"
+      },
+      "button": {
+        "primary": {
+          "backgroundColor": "#4a8fb5",
+          "colour": "#ffffff",
+          "borderRadius": "6px",
+          "padding": "10px 24px",
+          "fontSize": "1rem",
+          "fontWeight": 600,
+          "border": "none"
+        },
+        "outline": {
+          "backgroundColor": "transparent",
+          "colour": "#1a8ed4",
+          "border": "1.5px solid #1a8ed4",
+          "borderRadius": "6px",
+          "padding": "10px 24px"
+        },
+        "pill": {
+          "backgroundColor": "#e5e8eb",
+          "colour": "#333333",
+          "borderRadius": "100px",
+          "padding": "6px 16px",
+          "fontSize": "0.875rem"
+        }
+      },
+      "badge": {
+        "completed": {
+          "backgroundColor": "#ffffff",
+          "colour": "#333333",
+          "border": "1.5px solid #adb4bc",
+          "borderRadius": "6px",
+          "padding": "4px 14px",
+          "fontSize": "0.875rem"
+        },
+        "required": {
+          "backgroundColor": "#e3f2fd",
+          "colour": "#1565c0",
+          "border": "none",
+          "borderRadius": "6px",
+          "padding": "4px 14px",
+          "fontSize": "0.875rem"
+        },
+        "inProgress": {
+          "backgroundColor": "#4a8fb5",
+          "colour": "#ffffff",
+          "borderRadius": "6px",
+          "padding": "4px 14px",
+          "fontSize": "0.875rem"
+        }
+      },
+      "checklistItem": {
+        "circleSize": "48px",
+        "circleBg": "#1e3d72",
+        "circleRing": "4px solid #c8def0",
+        "checkmarkColour": "#ffffff",
+        "labelFontWeight": 600,
+        "labelFontSize": "1rem",
+        "gap": "20px"
+      },
+      "audioPlayer": {
+        "backgroundColor": "#ffffff",
+        "borderRadius": "12px",
+        "boxShadow": "0 2px 8px rgba(0,0,0,0.09)",
+        "padding": "16px 20px",
+        "iconBg": "#0a6dc2",
+        "iconColour": "#ffffff",
+        "linkColour": "#0a6dc2",
+        "linkFontWeight": 600
+      },
+      "progressBar": {
+        "trackColour": "#e5e8eb",
+        "fillColour": "#256a91",
+        "height": "8px",
+        "borderRadius": "100px"
+      }
+    },
+
+    "layout": {
+      "grid": {
+        "columns": 12,
+        "gutter": "24px"
+      },
+      "breakpoints": {
+        "xs":  "320px",
+        "sm":  "576px",
+        "md":  "768px",
+        "lg":  "1024px",
+        "xl":  "1280px",
+        "2xl": "1440px"
+      },
+      "container": {
+        "maxWidth": "900px",
+        "padding": "0 24px"
+      }
+    }
+  }
+}
