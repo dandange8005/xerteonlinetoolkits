@@ -8,22 +8,6 @@ Xerte Online Toolkits is a PHP-based e-learning content creation platform that a
 
 ## Development Commands
 
-### Testing
-- **PHP Unit Tests**: Download `phpunit.phar` and run:
-  ```bash
-  php phpunit.phar
-  ```
-  Configuration is in `tests/phpunit.xml`
-
-### Build Commands (for Popcorn.js component)
-The `src/popcorn-js` directory contains a JavaScript media framework with its own build system:
-```bash
-cd src/popcorn-js
-make all          # Build all components
-make check        # Run JSLint on all files
-make lint         # Lint core popcorn.js
-make clean        # Clean build artifacts
-```
 
 ### Setup and Installation
 - Initial setup wizard: Visit `/setup` in your web browser
