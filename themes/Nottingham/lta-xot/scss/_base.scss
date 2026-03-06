@@ -1,0 +1,784 @@
+/* ==========================================================================
+   BASE - Reset, Typography & Base Elements
+
+   Consolidated from:
+   - base/_overall-reset.scss
+   - base/_xot-reset.scss
+   - base/_base.scss
+   - base/_typography.scss
+   - base/_focused.scss
+   ========================================================================== */
+
+
+/* ==========================================================================
+   OVERALL RESET
+
+   Elements styled:
+   - *, *::before, *::after      — box-sizing: border-box
+   - *                            — text-wrap: pretty
+   - html, body, h1–h6, p,
+     figure, blockquote, dl, dd   — remove default margin & padding
+   - html                         — smooth scroll, text-size-adjust
+   - body                         — text-rendering, line-height, font smoothing
+   - img, picture, video,
+     canvas, svg                  — block display, max-width: 100%
+   - input, button, textarea,
+     select                       — font: inherit
+   - p, h1–h6                    — overflow-wrap, hyphens
+   - h1–h6                       — text-wrap: balance
+   - #root, #__next               — isolation: isolate
+   - ul[role='list'],
+     ol[role='list']              — list-style: none
+   - a:not([class])               — text-decoration-skip-ink
+   - @media prefers-reduced-motion — disable animations & transitions
+   ========================================================================== */
+
+// Box sizing rules
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+// text-wrap rules
+* {
+    text-wrap: pretty;
+}
+
+// Remove default margin and padding
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+    padding: 0;
+}
+
+// Set core root defaults
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+// Set core body defaults
+body {
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+// Make images easier to work with
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+// Inherit fonts for inputs and buttons
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+// Avoid text overflows
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+// Text wrap rules
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+// Create a root stacking context
+#root,
+#__next {
+    isolation: isolate;
+}
+
+// Remove list styles on ul, ol elements with a list role
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+// A elements that don't have a class get default styles
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+// Remove all animations, transitions and smooth scroll for people that prefer not to see them
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* ==========================================================================
+   XOT RESET
+   ========================================================================== */
+
+/* prevent elements from overflowing width of screen on mobile */
+#x_mobileScroll {
+    overflow-x: hidden;
+}
+
+/* stop scrollbar from showing when pseudo elements extend beyond the page view width */
+#x_pageHolder {
+    overflow-x: hidden;
+}
+
+/* remove mainHolder border */
+#x_mainHolder {
+    border: none;
+}
+
+/* MAIN CONTENT */
+#x_pageHolder button {
+    font-family: var(--ff-body);
+    font-weight: bold;
+}
+
+.x_tooltip {
+    border-color: var(--clr-headershade);
+    background-color: var(--clr-headershade);
+}
+
+a.x_glossary:link,
+a.x_glossary:visited,
+a.x_glossary:hover,
+a.x_glossary:active {
+    color: var(--clr-body-text);
+}
+
+/* RESET PANEL STYLE */
+#x_mainHolder:not(.x_flashCards_page) .panel:not(.ui-draggable) {
+    border: 1px solid var(--clr-panelborder);
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -ms-filter: none;
+    filter: none;
+}
+
+.panel {
+    border-radius: var(--radius-2);
+}
+
+.fa-x-tick,
+.fa-x-tick:before {
+    color: var(--clr-success);
+}
+
+.fa-x-cross,
+.fa-x-cross:before {
+    color: var(--clr-danger);
+}
+
+#infoHolder {
+    border: none;
+}
+
+
+/* ==========================================================================
+   ACCESSIBILITY FILTERS
+   ========================================================================== */
+
+/* PRESERVE INVERT FUNCTIONALITY FOR ACCESSIBILITY */
+
+.filter_inv #x_headerBlock h1,
+.filter_inv #x_headerBlock h2,
+.filter_inv #x_pageNo,
+.filter_inv #x_footerChevron {
+    color: black;
+}
+
+.filter_inv #x_mainHolder p,
+.filter_inv #textHolder,
+.filter_inv #x_mainHolder a,
+.filter_inv #x_mainHolder a:hover,
+.filter_inv #x_mainHolder a.x_glossary {
+    color: white;
+}
+
+.filter_inv #x_pageNo {
+    background-color: white;
+    border: none;
+}
+
+.filter_inv .ui-dialog {
+    background-color: #ffffff;
+}
+
+.filter_inv .ui-dialog .ui-widget-header {
+    border: 1px solid #666666;
+    background: #000000;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.filter_inv .ui-state-default {
+    color: #000000;
+    background: #ffffff;
+}
+
+.filter_inv p.pbTxt {
+    color: #000000 !important;
+}
+
+.filter_inv .pbContainer {
+    background-color: #000000;
+}
+
+.filter_inv #x_footerBlock .ui-button:after {
+    color: #000000;
+}
+
+.filter_inv #x_footerBlock .ui-button.ui-state-hover:after {
+    color: #404040;
+}
+
+.filter_inv #x_mainHolder a {
+    color: #000000;
+}
+
+.filter_inv #x_mainHolder a:hover {
+    color: #404040;
+}
+
+.filter_inv .x_tooltip {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* PRESERVE BLACK ON YELLOW FUNCTIONALITY FOR ACCESSIBILITY */
+
+.filter_boy #x_mainHolder p,
+.filter_boy #textHolder,
+.filter_boy #x_mainHolder a,
+.filter_boy #x_mainHolder a:hover,
+.filter_boy #x_mainHolder a.x_glossary {
+    color: black;
+}
+
+.filter_boy .ui-dialog .ui-widget-header {
+    border: 1px solid #666666;
+    background: #000000;
+    color: #ffff99;
+    font-weight: bold;
+}
+
+.filter_boy .ui-dialog {
+    background-color: #ffff99;
+}
+
+.filter_boy .ui-state-default {
+    color: #ffff99;
+    background: #000000;
+}
+
+.filter_boy p.pbTxt {
+    color: #ffff99 !important;
+}
+
+.filter_boy .pbContainer {
+    background-color: #ffff99;
+}
+
+.filter_boy #x_footerBlock {
+    border-top: 1px solid #ffff99;
+}
+
+.filter_boy #x_headerBlock {
+    border-bottom: 1px solid #ffff99;
+}
+
+.filter_boy #x_footerBlock .ui-button:after {
+    color: #ffff99;
+}
+
+.filter_boy #x_footerBlock .ui-button.ui-state-hover:after {
+    color: #B2B235;
+}
+
+.filter_boy #x_pageNo,
+.filter_boy #x_footerChevron {
+    color: #ffff99;
+}
+
+.filter_boy #x_mainHolder a {
+    color: #ffff99;
+}
+
+.filter_boy #x_mainHolder a:hover {
+    color: #B2B235;
+}
+
+.filter_boy .ui-widget-content {
+    background: #ffff99;
+}
+
+.filter_boy .x_tooltip {
+    background: #000000;
+    color: #ffff99;
+}
+
+
+/* ==========================================================================
+   BASE LAYOUT
+   ========================================================================== */
+
+/* BODY BACKGROUND */
+#x_mainHolder {
+    background-color: var(--clr-body-bg);
+    border: none;
+    width: 100% !important;
+}
+
+/* CONTENT RESET */
+#x_pageDiv {
+    padding-block: var(--size-fluid-3);
+    width: 90%;
+}
+
+body {
+    font-family: var(--ff-body);
+    font-weight: 400;
+    font-size: var(--fs-base) !important;
+    color: var(--text);
+    line-height: 1.625;
+}
+
+
+/* ==========================================================================
+   SPACING
+   ========================================================================== */
+
+#pageContents>*:where(:not(:last-child)),
+.container>*:where(:not(:last-child)),
+.flow>*:where(:not(:last-child)) {
+    margin-bottom: var(--size-fluid-2);
+}
+
+#pageContents>*:where(:first-child) {
+    margin-top: 0;
+}
+
+
+/* ==========================================================================
+   MEDIA - Images, Figures, Video
+   ========================================================================== */
+
+/* FIGURE */
+figure img {
+    margin: 0;
+    max-width: max-content;
+}
+
+figure figcaption {
+    background: var(--gray-2);
+    color: var(--text-3);
+    font-size: var(--fs-sm);
+    padding: var(--size-2);
+    caption-side: bottom;
+}
+
+// utility classes
+.image-inline {
+    display: inline-block;
+}
+
+.image-full {
+    width: 100%;
+    height: auto;
+}
+
+.image-round {
+    border-radius: var(--radius-2);
+}
+
+/* Styles to the screenshots */
+.image-screenshots {
+    border: 1px solid var(--clr-border);
+    margin: 2rem auto;
+    clear: both;
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow-3);
+}
+
+/* VIDEO */
+
+// to restrict video size
+.video-720 {
+    max-width: 720px;
+    aspect-ratio: 16 / 9;
+}
+
+.iframe-block {
+    height: 0;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 56.32%;
+    box-shadow: var(--shadow-3);
+
+    iframe {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border: 0;
+    }
+
+    &--xerte,
+    &--h5p {
+        border: 4px solid var(--clr-border);
+    }
+
+    &--xerte {
+        padding-bottom: 75%;
+    }
+
+    &__caption {
+        background: var(--light);
+        color: var(--clr-body);
+        font-style: italic;
+        font-size: var(--fs-sm);
+        padding: 4px;
+        margin-top: 0;
+    }
+}
+
+/* XERTE PAGE WIDTH Small screen */
+@media (min-width: 768px) {
+    #x_headerBlock div,
+    #x_pageDiv {
+        width: 85%;
+    }
+}
+
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+/* Headings */
+h1,
+h2,
+h3:not(.ui-accordion-header),
+h4,
+h5,
+h6 {
+    font-family: var(--ff-headline);
+    font-weight: 700;
+    color: var(--clr-headline);
+    margin-bottom: var(--size-fluid-1);
+}
+
+h1 {
+    font-size: var(--fs-3xl);
+    line-height: var(--font-lineheight-0);
+}
+
+h2 {
+    font-size: var(--fs-2xl);
+    line-height: var(--font-lineheight-1);
+}
+
+h3:not(.ui-accordion-header) {
+    font-size: var(--fs-xl);
+    line-height: var(--font-lineheight-2);
+}
+
+// make sure the first h3 in #infoHolder container doesn't have a top margin
+#infoHolder > h3:first-child,
+.panel h3:first-child {
+    margin-top: 0;
+}
+
+h4 {
+    font-size: var(--fs-lg);
+    line-height: var(--font-lineheight-3);
+}
+
+h5 {
+    font-size: 1.25rem;
+}
+
+/* Page title */
+#pageContents .page-title {
+    font-size: var(--fs-3xl);
+    color: var(--primary);
+    font-weight: 900;
+    max-width: var(--size-header-3);
+    margin-block: var(--size-fluid-3);
+}
+
+/* Paragraphs */
+#x_mainHolder p + p {
+    margin-top: 1rem;
+}
+
+/* Links */
+a {
+    color: var(--clr-link);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+        text-underline-position: under;
+        color: var(--clr-link);
+    }
+
+    &:visited {
+        color: var(--clr-link-visited);
+    }
+}
+
+/* External link */
+.link-external {
+    display: inline-block;
+    align-items: center;
+    gap: var(--size-1);
+
+    &::after {
+        content: "\f35d";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 10px;
+        margin-left: 4px;
+        transform: translateY(-3px);
+        display: inline-block;
+    }
+
+    &:hover::after {
+        text-decoration: none;
+        display: inline-block;
+    }
+}
+
+/* Action link */
+.link-action {
+    display: inline-block;
+
+    &::before {
+        content: "\f0a9";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        margin-right: var(--size-2);
+        color: var(--clr-success);
+        font-size: var(--fs-lg);
+    }
+
+    &:hover,
+    &:focus {
+        &::before {
+            text-decoration: none;
+            display: inline-block;
+        }
+    }
+}
+
+/* Blockquote */
+blockquote {
+    margin-left: 0;
+    padding: 0.5rem 1rem;
+    border-left: 5px solid var(--primary);
+    font-family: var(--ff-serif);
+    font-size: var(--fs-lg);
+    line-height: 1.625;
+}
+
+/* Code */
+code {
+    background-color: var(--clr-code-bg);
+    color: var(--clr-code-text);
+    padding: 0.25rem;
+}
+
+/* Pre */
+pre {
+    background-color: var(--clr-code-bg);
+    color: var(--clr-code-text);
+    padding: 1rem;
+    white-space: pre-wrap;
+}
+
+/* Horizontal Rule */
+hr {
+    margin-block: var(--size-fluid-2);
+    border: none;
+    border-top: 1px solid var(--clr-border);
+
+    &.break-l {
+        margin-block: var(--size-fluid-4);
+    }
+
+    &.break-m {
+        margin-block: var(--size-fluid-3);
+    }
+}
+
+/* Table */
+table {
+    background: var(--white);
+    box-shadow: var(--shadow-2);
+    font-size: var(--fs-sm);
+
+    tr,
+    td {
+        border: none;
+    }
+
+    tr {
+        td:not(:first-of-type) {
+            border-left: 1px solid var(--clr-border);
+        }
+
+        &:nth-child(even) {
+            background: var(--light);
+        }
+    }
+
+    thead {
+        th {
+            background: var(--clr-headershade);
+            color: var(--light);
+            font-weight: bold;
+
+            &:not(:first-of-type) {
+                border-left: 1px solid var(--light);
+            }
+        }
+    }
+}
+
+/* Lists */
+ul,
+ol {
+    padding: 0;
+    padding-left: var(--size-5);
+    display: grid;
+    gap: var(--size-1);
+
+    li {
+        line-height: var(--font-lineheight-3);
+        padding-left: var(--size-2);
+    }
+}
+
+ul#tabHolder,
+ul.tabList {
+    display: block;
+}
+
+li ul {
+    margin-top: var(--size-1);
+}
+
+/* List utility classes */
+.list-none {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-icon {
+    margin-left: 0;
+    padding-left: var(--size-1);
+
+    li {
+        display: flex;
+
+        span {
+            margin-right: var(--size-3);
+            color: var(--neutral-7);
+            font-size: var(--fs-lg);
+            margin-top: 3px;
+            line-height: 0;
+        }
+    }
+}
+
+.list-counter {
+    counter-reset: orderedlist;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: var(--size-1);
+
+    li {
+        position: relative;
+        padding-left: 2.5rem;
+
+        &::before {
+            counter-increment: orderedlist;
+            content: counter(orderedlist);
+            width: var(--size-5);
+            height: var(--size-5);
+            background: var(--gray-2);
+            color: var(--gray-7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+}
+
+
+/* ==========================================================================
+   FOCUS STATES
+   ========================================================================== */
+
+// Footer focused buttons
+#x_footerBlock button:focus {
+    background-color: var(--clr-focus);
+    box-shadow: 0 -2px var(--clr-focus), 0 var(--focus-width) var(--clr-focus-text);
+    color: var(--clr-focus-text) !important;
+    outline: var(--focus-width) solid transparent;
+    outline-offset: var(--focus-width);
+}

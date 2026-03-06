@@ -1,3 +1,23 @@
+/**
+ * LTA XOT Theme - Main Entry Point
+ *
+ * A flattened, descriptive SCSS structure for the Xerte Online Toolkits theme.
+ *
+ * 1. _tokens      - Design tokens (colors, typography, spacing)
+ * 2. _base        - Reset, typography, base elements
+ * 3. _components  - UI components (buttons, forms, alerts)
+ * 4. _layouts     - Layout systems (flex, grid)
+ * 5. _xerte       - Xerte-specific styles (header, footer, pages)
+ * 6. _utilities   - Helper classes
+ * 7. _vendors     - Third-party overrides (jQuery UI)
+ */
+/* ==========================================================================
+   TOKENS - Design Tokens & CSS Custom Properties
+
+   Consolidated from:
+   - base/_customProperties.scss
+   - abstract/_cuColours.scss (converted to CSS custom properties)
+   ========================================================================== */
 /* ------ Project Information --------
 Name: DigEd Xerte XOT Project Theme
 Author: Nan Zhang
@@ -11,9 +31,6 @@ Author: Nan Zhang
     Add in Animation css library https://animate.style/
 ==============================*/
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
-/* ============================
-    GOOGLE FONT IMPORT DECLARATION
-==============================*/
 /* ======================
     XOT CUSTOM PROPERTIES
 =======================*/
@@ -40,7 +57,7 @@ Author: Nan Zhang
   --cu-navy-1: #657986;
   --cu-navy-2: #4D5E69;
   --cu-navy-3: #2F444E;
-  --clr-success:hsl(148, 100%, 25%);
+  --clr-success: hsl(148, 100%, 25%);
   --clr-danger: hsl(4, 77%, 48%);
   /* Neutral colour */
   --black: #22211f;
@@ -164,11 +181,24 @@ Author: Nan Zhang
   --flex-gap: var(--size-fluid-1);
   --grid-gap: var(--size-fluid-1);
   --container-width: 47rem;
+  --clr-focus: #ffeb3b;
+  --clr-focus-text: #212b32;
+  --focus-width: 4px;
 }
 
 /* ==========================================================================
-  # BASE / # OVERALL-RESET
-========================================================================== */
+   BASE - Reset, Typography & Base Elements
+
+   Consolidated from:
+   - base/_overall-reset.scss
+   - base/_xot-reset.scss
+   - base/_base.scss
+   - base/_typography.scss
+   - base/_focused.scss
+   ========================================================================== */
+/* ==========================================================================
+   OVERALL RESET
+   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -276,24 +306,24 @@ a:not([class]) {
   }
 }
 /* ==========================================================================
-  # BASE / # XOT-RESET
-========================================================================== */
+   XOT RESET
+   ========================================================================== */
 /* prevent elements from overflowing width of screen on mobile */
 #x_mobileScroll {
   overflow-x: hidden;
 }
 
-/*stop scrollbar from showing when pseudo elements extend beyond the page view width*/
+/* stop scrollbar from showing when pseudo elements extend beyond the page view width */
 #x_pageHolder {
   overflow-x: hidden;
 }
 
-/*remove mainHolder border*/
+/* remove mainHolder border */
 #x_mainHolder {
   border: none;
 }
 
-/* --MAIN CONTENT--- */
+/* MAIN CONTENT */
 #x_pageHolder button {
   font-family: var(--ff-body);
   font-weight: bold;
@@ -304,7 +334,10 @@ a:not([class]) {
   background-color: var(--clr-headershade);
 }
 
-a.x_glossary:link, a.x_glossary:visited, a.x_glossary:hover, a.x_glossary:active {
+a.x_glossary:link,
+a.x_glossary:visited,
+a.x_glossary:hover,
+a.x_glossary:active {
   color: var(--clr-body-text);
 }
 
@@ -320,11 +353,13 @@ a.x_glossary:link, a.x_glossary:visited, a.x_glossary:hover, a.x_glossary:active
   border-radius: var(--radius-2);
 }
 
-.fa-x-tick, .fa-x-tick:before {
+.fa-x-tick,
+.fa-x-tick:before {
   color: var(--clr-success);
 }
 
-.fa-x-cross, .fa-x-cross:before {
+.fa-x-cross,
+.fa-x-cross:before {
   color: var(--clr-danger);
 }
 
@@ -332,12 +367,22 @@ a.x_glossary:link, a.x_glossary:visited, a.x_glossary:hover, a.x_glossary:active
   border: none;
 }
 
+/* ==========================================================================
+   ACCESSIBILITY FILTERS
+   ========================================================================== */
 /* PRESERVE INVERT FUNCTIONALITY FOR ACCESSIBILITY */
-.filter_inv #x_headerBlock h1, .filter_inv #x_headerBlock h2, .filter_inv #x_pageNo, .filter_inv #x_footerChevron {
+.filter_inv #x_headerBlock h1,
+.filter_inv #x_headerBlock h2,
+.filter_inv #x_pageNo,
+.filter_inv #x_footerChevron {
   color: black;
 }
 
-.filter_inv #x_mainHolder p, .filter_inv #textHolder, .filter_inv #x_mainHolder a, .filter_inv #x_mainHolder a:hover, .filter_inv #x_mainHolder a.x_glossary {
+.filter_inv #x_mainHolder p,
+.filter_inv #textHolder,
+.filter_inv #x_mainHolder a,
+.filter_inv #x_mainHolder a:hover,
+.filter_inv #x_mainHolder a.x_glossary {
   color: white;
 }
 
@@ -392,7 +437,11 @@ a.x_glossary:link, a.x_glossary:visited, a.x_glossary:hover, a.x_glossary:active
 }
 
 /* PRESERVE BLACK ON YELLOW FUNCTIONALITY FOR ACCESSIBILITY */
-.filter_boy #x_mainHolder p, .filter_boy #textHolder, .filter_boy #x_mainHolder a, .filter_boy #x_mainHolder a:hover, .filter_boy #x_mainHolder a.x_glossary {
+.filter_boy #x_mainHolder p,
+.filter_boy #textHolder,
+.filter_boy #x_mainHolder a,
+.filter_boy #x_mainHolder a:hover,
+.filter_boy #x_mainHolder a.x_glossary {
   color: black;
 }
 
@@ -436,7 +485,8 @@ a.x_glossary:link, a.x_glossary:visited, a.x_glossary:hover, a.x_glossary:active
   color: #B2B235;
 }
 
-.filter_boy #x_pageNo, .filter_boy #x_footerChevron {
+.filter_boy #x_pageNo,
+.filter_boy #x_footerChevron {
   color: #ffff99;
 }
 
@@ -458,104 +508,8 @@ a.x_glossary:link, a.x_glossary:visited, a.x_glossary:hover, a.x_glossary:active
 }
 
 /* ==========================================================================
-  # BASE / # HEADER
-========================================================================== */
-#x_headerBlock {
-  box-shadow: none;
-  background: var(--clr-header-bg);
-  /* background: linear-gradient(50deg, rgba(0, 106, 175, 0.8) 0%, 
-                                          rgba(0, 106, 175, 0.98) 45%, 
-                                          rgba(0, 106, 175, 0.98) 45%, 
-                                          rgba(0, 106, 175, 0.8) 100%), 
-                                          url("https://xerte.cardiff.ac.uk/USER-FILES/10067-sopnz-Nottingham/media/carbs_001.jpg");
-    background-size: cover;
-    background-position: center 65%; */
-}
-
-#x_headerBlock div {
-  padding: 1.5rem 0;
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-#x_headerBlock h1 {
-  text-transform: uppercase;
-  font-size: var(--fs-sm);
-  color: var(--clr-header-h1);
-  opacity: 0.8;
-  margin-bottom: 5px;
-  font-weight: 600;
-}
-
-#x_headerBlock h2 {
-  font-size: var(--fs-lg);
-  color: var(--clr-header-h2);
-  margin-bottom: 0;
-}
-
-#x_headerBlock div {
-  padding-left: 70px;
-  position: relative;
-}
-
-#x_headerBlock div::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 60px;
-  aspect-ratio: 1;
-  background-image: var(--main-logo);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#x_headerBlock h1, #x_headerBlock h2 {
-  margin-left: 1rem;
-}
-
-/* ==========================================================================
-  # BASE / # FOOTER
-========================================================================== */
-/* Footer background colour */
-#x_footerBlock {
-  background: var(--clr-footer-bg);
-}
-
-/* remove page number background */
-#x_pageNo {
-  background: transparent;
-  padding-top: 8px;
-  box-sizing: initial;
-}
-
-/*hide resize button*/
-#x_cssBtn {
-  display: none !important;
-}
-
-/* progress bar background and text */
-#x_footerProgress .pbBar {
-  background-color: var(--clr-header-bg);
-}
-#x_footerProgress .pbTxt {
-  color: var(--white);
-}
-
-/* ======================
-    LAYOUT - BASE
-=======================*/
-/* ===============
-    XERTE PAGE WIDTH
-
-    This is now available in optional property 
-================== */
-/* ===============
-    BODY
-================== */
+   BASE LAYOUT
+   ========================================================================== */
 /* BODY BACKGROUND */
 #x_mainHolder {
   background-color: var(--clr-body-bg);
@@ -577,9 +531,9 @@ body {
   line-height: 1.625;
 }
 
-/* ===============
-    SPCACING
-================== */
+/* ==========================================================================
+   SPACING
+   ========================================================================== */
 #pageContents > *:where(:not(:last-child)),
 .container > *:where(:not(:last-child)),
 .flow > *:where(:not(:last-child)) {
@@ -590,18 +544,10 @@ body {
   margin-top: 0;
 }
 
-/* ======================
-    BASE - MEDIA
-
-    - images
-    - figures
-    - video
-    - embeded links
-
-=======================*/
-/* ==================
-    FIGURE
-=================== */
+/* ==========================================================================
+   MEDIA - Images, Figures, Video
+   ========================================================================== */
+/* FIGURE */
 figure img {
   margin: 0;
   max-width: -moz-max-content;
@@ -638,11 +584,7 @@ figure figcaption {
   box-shadow: var(--shadow-3);
 }
 
-/* ==================
-    VIDEO
-=================== */
-/* Media - iframe Block */
-/* iframe Block */
+/* VIDEO */
 .video-720 {
   max-width: 720px;
   aspect-ratio: 16/9;
@@ -678,7 +620,7 @@ figure figcaption {
   margin-top: 0;
 }
 
-/* XERTE PAGE WIDTH Small screen*/
+/* XERTE PAGE WIDTH Small screen */
 @media (min-width: 768px) {
   #x_headerBlock div,
   #x_pageDiv {
@@ -686,25 +628,8 @@ figure figcaption {
   }
 }
 /* ==========================================================================
-  # BASE / # FOCUSED
-========================================================================== */
-:where(html) {
-  --clr-focus: #ffeb3b;
-  --clr-focus-text: #212b32;
-  --focus-width: 4px;
-}
-
-#x_footerBlock button:focus {
-  background-color: var(--clr-focus);
-  box-shadow: 0 -2px var(--clr-focus), 0 var(--focus-width) var(--clr-focus-text);
-  color: var(--clr-focus-text) !important;
-  outline: var(--focus-width) solid transparent;
-  outline-offset: var(--focus-width);
-}
-
-/* ==========================================================================
-  # BASE / # TYPOGRAPHY
-========================================================================== */
+   TYPOGRAPHY
+   ========================================================================== */
 /* Headings */
 h1,
 h2,
@@ -733,7 +658,8 @@ h3:not(.ui-accordion-header) {
   line-height: var(--font-lineheight-2);
 }
 
-#infoHolder > h3:first-child, .panel h3:first-child {
+#infoHolder > h3:first-child,
+.panel h3:first-child {
   margin-top: 0;
 }
 
@@ -946,849 +872,39 @@ li ul {
   top: 0;
 }
 
-/* ==================
-    MISC
-=================== */
-/* ================================
-    LAYOUT - TABLE OF CONTENT MENU
-===================================*/
-.ui-dialog {
-  padding: 0;
-  border: 1px solid var(--clr-border);
-  border-radius: 5px;
-  box-shadow: var(--shadow-2);
-  font-family: var(--ff-body);
-}
-
-#menuItems {
-  background: var(--gray-1);
-}
-
-#menuItems .menuItem {
-  font-size: 0.85rem;
-  background: var(--gray-1);
-  color: var(--clr-body);
-  border: none;
-}
-
-#menuItems .sectionHeader {
-  opacity: 0.7;
-  color: var(--clr-header-bg);
-}
-
-#menuItems .sectionHeader::after {
-  content: " - ";
-}
-
-.ui-dialog .ui-widget-header {
-  color: var(--white);
-  background: var(--clr-header-bg);
-  font-size: 16px;
-  letter-spacing: 0.03em;
-  border-radius: 0;
-  border: none;
-  padding: 8px;
-}
-
-.ui-widget-header .ui-state-default {
-  color: var(--white);
-}
-
-.ui-widget-header .ui-state-hover {
-  color: var(--gray-2);
-}
-
-#menuItems .menuItem.current {
-  border: none !important;
-  background: var(--gray-4);
-  border-radius: 0;
-}
-
-.ui-dialog .ui-dialog-titlebar-close {
-  border: none;
-  background: transparent;
-  right: 0;
-}
-
-#menuItems .ui-state-hover {
-  background: var(--gray-4) !important;
-  border-radius: 0;
-}
-
-.ui-button-icon-primary.ui-icon.fa.fa-x-close {
-  color: white;
-}
-
-.flex {
-  display: flex;
-  gap: var(--flex-gap);
-}
-
-.flex-inline {
-  display: inline-flex;
-}
-
-.flex-row {
-  flex-direction: row;
-}
-
-.flex-row-reverse {
-  flex-direction: row-reverse;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.flex-col-reverse {
-  flex-direction: column-reverse;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.flex-wrap-reverse {
-  flex-wrap: wrap-reverse;
-}
-
-.flex-no-wrap {
-  flex-wrap: nowrap;
-}
-
-.flex-1 {
-  flex: 1 1 0%;
-}
-
-.flex-initial {
-  flex: 0 1 auto;
-}
-
-.flex-auto {
-  flex: 1 1 auto;
-}
-
-.flex-none {
-  flex: none;
-}
-
-.flex-100 {
-  flex: 1 1 100px;
-}
-
-.flex-200 {
-  flex: 1 1 200px;
-}
-
-.flex-300 {
-  flex: 1 1 300px;
-}
-
-.flex-400 {
-  flex: 1 1 400px;
-}
-
-.flex-500 {
-  flex: 1 1 500px;
-}
-
-.flex-600 {
-  flex: 1 1 600px;
-}
-
-.flex-center-x {
-  justify-content: center;
-}
-
-.flex-center-y {
-  align-items: center;
-}
-
-.flex-center {
-  justify-content: center;
-  align-items: center;
-}
-
-.flexContainer {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  margin-block: var(--size-fluid-3);
-}
-
-.flexItem {
-  width: 100%;
-  padding: 0;
-  margin-bottom: var(--flex-gap);
-}
-.flexItem h3:is(:first-child) {
-  margin-top: 0;
-}
-.flexItem h3.topMargin {
-  margin-top: 2em;
-}
-.flexItem img {
-  width: 100%;
-  max-width: -moz-max-content;
-  max-width: max-content;
-  display: block;
-  margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .c80 {
-    width: 80%;
-  }
-  .c70 {
-    width: 70%;
-  }
-  .c60 {
-    width: 60%;
-  }
-  .c50 {
-    width: 50%;
-  }
-  .c40 {
-    width: 40%;
-  }
-  .c30 {
-    width: 30%;
-  }
-  .c33 {
-    width: 33.33%;
-  }
-  .c25 {
-    width: 25%;
-  }
-  .c20 {
-    width: 20%;
-  }
-  .c10 {
-    width: 10%;
-  }
-  .flexItem {
-    padding-right: var(--flex-gap);
-    margin-bottom: 0;
-  }
-  .flexItem:last-child {
-    padding-right: 0;
-  }
-  .flex-row-reverse .flexItem {
-    padding-left: var(--flex-gap);
-    padding-right: 0;
-  }
-  .flex-row-reverse .flexItem:last-child {
-    padding-left: 0;
-  }
-}
-/* Grid Utility Classes */
-.grid {
-  display: grid;
-  gap: var(--grid-gap);
-}
-
-/* Grid Template Columns */
-.grid-cols-1 {
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-cols-5 {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.grid-cols-6 {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
-.grid-cols-7 {
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-
-.grid-cols-8 {
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-}
-
-.grid-cols-9 {
-  grid-template-columns: repeat(9, minmax(0, 1fr));
-}
-
-.grid-cols-10 {
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-}
-
-.grid-cols-11 {
-  grid-template-columns: repeat(11, minmax(0, 1fr));
-}
-
-.grid-cols-12 {
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-}
-
-/* Grid Column Start / End */
-.col-auto {
-  grid-column: auto;
-}
-
-.col-span-1 {
-  grid-column: span 1/span 1;
-}
-
-.col-span-2 {
-  grid-column: span 2/span 2;
-}
-
-.col-span-3 {
-  grid-column: span 3/span 3;
-}
-
-.col-span-4 {
-  grid-column: span 4/span 4;
-}
-
-.col-span-5 {
-  grid-column: span 5/span 5;
-}
-
-.col-span-6 {
-  grid-column: span 6/span 6;
-}
-
-.col-span-7 {
-  grid-column: span 7/span 7;
-}
-
-.col-span-8 {
-  grid-column: span 8/span 8;
-}
-
-.col-span-9 {
-  grid-column: span 6/span 9;
-}
-
-.col-span-10 {
-  grid-column: span 10/span 10;
-}
-
-.col-span-11 {
-  grid-column: span 11/span 11;
-}
-
-.col-span-12 {
-  grid-column: span 12/span 12;
-}
-
-.col-span-full {
-  grid-column: 1/-1;
-}
-
 /* ==========================================================================
-  # PAGES / # Text Page
-    .x_bullets_page
-    .x_text_page
-    .x_orient_page
-    .x_summary_page
-========================================================================== */
-.x_orient_page #pageContents,
-.x_summary_page #pageContents {
-  max-width: 80ch;
-  margin: 0 auto;
-}
-
-/* ==========================================================================
-  # PAGES / # Table Page
-========================================================================== */
-table.full td, table.simple, table.horizontal tr, table.vertical td, table.header.simple tr:first-child, table.footer.simple tr:last-child, table.headerCol.simple td:first-child {
-  border-color: var(--clr-headershade);
-}
-
-table.header.shaded tr:first-child, table.footer.shaded tr:last-child, table.headerCol.shaded td.header {
-  background: var(--clr-headershade);
-  color: var(--white);
-}
-
-table.header tr:first-child, table.footer tr:last-child {
-  color: var(--clr-heading);
-}
-
-table.header.shaded.full tr:first-child td:not(:last-child), table.header.shaded.vertical tr:first-child td:not(:last-child), table.footer.shaded.full tr:last-child td:not(:last-child), table.header.footer.vertical tr:last-child td:not(:last-child) {
-  border-right-color: var(--white);
-}
-
-table.headerCol.shaded.full tr:not(:last-child) td:first-child, table.headerCol.shaded.horizontal tr:not(:last-child) td:first-child {
-  border-bottom: 1px solid var(--white);
-}
-
-table tr.shaded, table.glossary tr.shaded {
-  background: var(--clr-shaded);
-}
-
-table.glossary tr td:first-child {
-  border-color: var(--clr-shaded);
-}
-
-.x_table_page #tableName {
-  color: var(--clr-heading);
-}
-
-.x_table_page #footnote {
-  border-color: var(--clr-border);
-}
-
-/* ==========================================================================
-  # PAGES / # Graphic Page
-========================================================================== */
-.x_textGraphics_page #imgCaption {
-  color: var(--clr-heading);
-}
-
-.x_textGraphics_page #imgCaption.transcript { /* hr */
-  border-color: var(--clr-border);
-}
-
-/* ==========================================================================
-  # PAGES / # Media Page
-========================================================================== */
-.x_audioSlideshow_page .slide {
-  padding: 1rem;
-}
-
-.centerAlign #pageVideo {
-  margin: auto;
-}
-
-/* ==========================================================================
-  # PAGES / # Navigator Page
-========================================================================== */
-.x_buttonNav_page #btnHolder .panelBtnLabel {
-  border: 1px solid var(--clr-panelborder);
-  color: var(--clr-btn);
-  font-weight: 500;
-  border-radius: 2px;
-  padding: 0.4em 1em;
-  margin: 2px 2px 2px 0;
-  line-height: 14px;
-}
-
-.x_buttonNav_page #btnHolder .panelBtnLabel:first-of-type {
-  margin-right: -2px;
-}
-
-.x_buttonNav_page #btnHolder .panelBtnLabel.ui-state-active, .x_nav_page #pageContents.button button.selected {
-  background-color: var(--clr-btn);
-  border-color: var(--clr-btn);
-  color: var(--white);
-}
-
-.x_buttonNav_page #btnHolder .panelBtnLabel.ui-state-hover:not(.ui-state-active), .x_buttonNav_page #btnHolder .panelBtnLabel.ui-state-focus:not(.ui-state-active) {
-  background-color: var(--clr-shaded);
-}
-
-.x_buttonNav_page #btnHolder .panelBtnLabel .ui-button-text {
-  padding: 0;
-  margin: 0;
-}
-
-.x_columnPage_page #textHolder {
-  border-bottom-color: var(--clr-panelborder);
-}
-
-.x_nav_page #pageContents.button button.ui-state-hover:not(.selected), .x_nav_page #pageContents.button button.ui-state-focus:not(.selected) {
-  background-color: var(--clr-shaded);
-  border-color: var(--clr-panelborder);
-  color: var(--clr-btn);
-}
-
-.x_nav_page #pageContents.slide #btnHolder {
-  border-color: var(--clr-panelborder);
-}
-
-.x_slideshow_page #slideTxt, .x_nav_page #pageContents.slide #slideTxt {
-  color: var(--clr-heading);
-}
-
-.x_tabNavExtra_page .paneList {
-  color: var(--clr-panelborder);
-  border-color: var(--clr-panelborder);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.x_tabNavExtra_page .paneList a, .x_tabNavExtra_page .paneList a {
-  font-size: 0.9rem;
-}
-
-.x_tabNavExtra_page .paneList a:link, .x_tabNavExtra_page .paneList a:visited, .x_tabNavExtra_page .paneList a:hover, .x_tabNavExtra_page .paneList a:active {
-  color: var(--clr-link);
-}
-
-/* ==========================================================================
-  # PAGES / # Category
-========================================================================== */
-#categoryHolder h3 {
-  font-size: var(--fs-lg);
-}
-
-ul.category {
-  display: initial;
-}
-
-.category.highlight {
-  background: var(--light);
-  border-radius: var(--radius-2);
-  border: 1px solid var(--clr-border);
-}
-
-#dragDropHolder .label {
-  background: var(--yellow-0);
-  text-align: center;
-  box-shadow: var(--shadow-2);
-  border-radius: var(--radius-1);
-}
-
-/* ==========================================================================
-  # PAGES / # Documentation
-========================================================================== */
-.item, .intro, .section {
-  margin: var(--size-3) 0;
-}
-.item h3, .intro h3, .section h3 {
-  font-size: var(--fs-lg);
-  margin-bottom: 0;
-}
-
-.optionGroup.horizontal {
-  display: inline-flex;
-}
-
-.optionGroup.horizontal:not(:first-child) {
-  margin-left: var(--size-3);
-}
-
-.optionTxt {
-  margin-left: var(--size-3);
-}
-
-.optionGroup.horizontal:not(:first-of-type) .optionTxt {
-  margin-left: var(--size-3);
-}
-
-/* ==========================================================================
-  # PAGES / # _x_hangman_page
-========================================================================== */
-#clue .dash {
-  box-sizing: initial;
-}
-
-/* ------------------- */
-/* UTILITY CLASSES     */
-/* ------------------- */
-.container {
-  width: min(var(--container-width), 100% - 2rem);
-  margin: var(--size-fluid-2);
-}
-
-.mx-auto {
-  margin-inline: auto;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.relative {
-  position: relative;
-}
-
-.hidden {
-  visibility: hidden;
-}
-
-.none {
-  display: none;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.bg-success {
-  background-color: var(--clr-success);
-}
-
-.bg-danger {
-  background-color: var(--clr-danger);
-}
-
-.text-gray {
-  color: #555555;
-}
-
-.text-light {
-  color: #8A8A8A;
-}
-
-.text-white {
-  color: #ffffff;
-}
-
-.text-success {
-  color: var(--clr-success);
-}
-
-.text-danger {
-  color: var(--clr-danger);
-}
-
-.gradient-text {
-  background: var(--gradient-text);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.fs-4xl {
-  font-size: var(--fs-4xl);
-}
-
-.fs-3xl {
-  font-size: var(--fs-3xl);
-}
-
-.fs-2xl {
-  font-size: var(--fs-2xl);
-}
-
-.fs-xl {
-  font-size: var(--fs-2xl);
-  line-height: 1.3;
-}
-
-.fs-lg {
-  font-size: var(--fs-lg);
-}
-
-.fs-base {
-  font-size: var(--fs-base);
-}
-
-.fs-sm {
-  font-size: var(--fs-sm);
-}
-
-.fs-xs {
-  font-size: var(--fs-xs);
-}
-
-.square {
-  aspect-ratio: var(--ratio-square);
-}
-
-.portrait {
-  aspect-ratio: var(--ratio-portrait);
-}
-
-.ultrawide {
-  aspect-ratio: var(--ratio-ultrawide);
-}
-
-.widescreen {
-  aspect-ratio: var(--ratio-widescreen);
-}
-
-.landscape {
-  aspect-ratio: var(--ratio-landscape);
-}
-
-.dont-break-out {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-  -webkit-hyphens: auto;
-          hyphens: auto;
-}
-
-.mx-auto {
-  margin-inline: auto;
-}
-
-/*!
- * jQuery UI CSS Framework 1.13.3
- * https://jqueryui.com
- *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
- * https://jquery.org/license
- *
- * https://api.jqueryui.com/category/theming/
- *
- * To view and modify this theme, visit https://jqueryui.com/themeroller/?ffDefault=Arial%2CHelvetica%2Csans-serif&fsDefault=1em&fwDefault=normal&cornerRadius=3px&bgColorHeader=%23e9e9e9&bgTextureHeader=flat&borderColorHeader=%23dddddd&fcHeader=%23333333&iconColorHeader=%23444444&bgColorContent=%23ffffff&bgTextureContent=flat&borderColorContent=%23dddddd&fcContent=%23333333&iconColorContent=%23444444&bgColorDefault=%23f6f6f6&bgTextureDefault=flat&borderColorDefault=%23c5c5c5&fcDefault=%23454545&iconColorDefault=%23777777&bgColorHover=%23ededed&bgTextureHover=flat&borderColorHover=%23cccccc&fcHover=%232b2b2b&iconColorHover=%23555555&bgColorActive=%234d5e69&bgTextureActive=flat&borderColorActive=%234d5e69&fcActive=%23ffffff&iconColorActive=%23ffffff&bgColorHighlight=%23fffa90&bgTextureHighlight=flat&borderColorHighlight=%23dad55e&fcHighlight=%23777620&iconColorHighlight=%23777620&bgColorError=%23fddfdf&bgTextureError=flat&borderColorError=%23f1a899&fcError=%235f3f3f&iconColorError=%23cc0000&bgColorOverlay=%23aaaaaa&bgTextureOverlay=flat&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=%23666666&bgTextureShadow=flat&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=5px&offsetTopShadow=0px&offsetLeftShadow=0px&cornerRadiusShadow=8px&bgImgOpacityHeader=&bgImgOpacityContent=&bgImgOpacityDefault=&bgImgOpacityHover=&bgImgOpacityActive=&bgImgOpacityHighlight=&bgImgOpacityError=
- */
-/* Interaction states
-----------------------------------*/
-.ui-state-default,
-.ui-widget-content .ui-state-default,
-.ui-widget-header .ui-state-default,
-.ui-button,
-html .ui-button.ui-state-disabled:hover,
-html .ui-button.ui-state-disabled:active {
-  border: 1px solid #c5c5c5;
-  background: #f6f6f6;
-  font-weight: normal;
-  color: #454545;
-}
-
-.ui-state-default a,
-.ui-state-default a:link,
-.ui-state-default a:visited,
-a.ui-button,
-a:link.ui-button,
-a:visited.ui-button,
-.ui-button {
-  color: #454545;
-  text-decoration: none;
-}
-
-.ui-state-hover,
-.ui-widget-content .ui-state-hover,
-.ui-widget-header .ui-state-hover,
-.ui-state-focus,
-.ui-widget-content .ui-state-focus,
-.ui-widget-header .ui-state-focus,
-.ui-button:hover,
-.ui-button:focus {
-  border: 1px solid #cccccc;
-  background: #ededed;
-  font-weight: normal;
-  color: #2b2b2b;
-}
-
-.ui-state-hover a,
-.ui-state-hover a:hover,
-.ui-state-hover a:link,
-.ui-state-hover a:visited,
-.ui-state-focus a,
-.ui-state-focus a:hover,
-.ui-state-focus a:link,
-.ui-state-focus a:visited,
-a.ui-button:hover,
-a.ui-button:focus {
-  color: #2b2b2b;
-  text-decoration: none;
-}
-
-.ui-visual-focus {
-  box-shadow: 0 0 3px 1px rgb(94, 158, 214);
-}
-
-.ui-state-active,
-.ui-widget-content .ui-state-active,
-.ui-widget-header .ui-state-active,
-a.ui-button:active,
-.ui-button:active,
-.ui-button.ui-state-active:hover {
-  border: 1px solid #4d5e69;
-  background: #4d5e69;
-  font-weight: normal;
-  color: #ffffff;
-}
-
-.ui-icon-background,
-.ui-state-active .ui-icon-background {
-  border: #4d5e69;
-  background-color: #ffffff;
-}
-
-.ui-state-active a,
-.ui-state-active a:link,
-.ui-state-active a:visited {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-/* ==========================================================================
-   COMPONENTS / Alerts
-
-   Site-wide alert styles.
+   FOCUS STATES
    ========================================================================== */
-.alert {
-  padding: var(--size-3);
-  padding-left: var(--size-8);
-  margin-bottom: var(--size-fluid-2);
-  border: 1px solid transparent;
-  border-radius: var(--radius-2);
-  background: #f3f3f3;
-  position: relative;
-  font-size: var(--fs-sm);
-}
-.alert::before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  font-size: 18px;
-}
-.alert > :first-child {
-  margin-top: 0;
-}
-.alert.alert-info::before {
-  content: "\f06a";
-  color: var(--blue-6);
-}
-.alert.alert-success::before {
-  content: "\f164";
-  color: var(--clr-success);
-}
-.alert.alert-warning::before {
-  content: "\f071";
-  color: var(--orange-6);
-}
-.alert.alert-danger::before {
-  content: "\f071";
-  color: var(--clr-danger);
+#x_footerBlock button:focus {
+  background-color: var(--clr-focus);
+  box-shadow: 0 -2px var(--clr-focus), 0 var(--focus-width) var(--clr-focus-text);
+  color: var(--clr-focus-text) !important;
+  outline: var(--focus-width) solid transparent;
+  outline-offset: var(--focus-width);
 }
 
-/* =========================================
-  # COMPONENTS / # BOXES
-============================================ */
-.box {
-  background: var(--white);
-  padding: var(--size-5);
-  border-radius: var(--radius-2);
-  border: 1px solid var(--clr-border);
-}
+/* ==========================================================================
+   COMPONENTS - Buttons, Forms, Alerts, Boxes, Cards
 
-.box > *:where(:not(:last-child)) {
-  margin-bottom: var(--size-fluid-2);
-}
-
-.box > *:where(:first-child), .box > h3 {
-  margin-top: 0;
-}
-
-/* Button Components */
-a.btn, a.btn:hover {
+   Consolidated from:
+   - components/_buttons.scss
+   - components/_forms.scss
+   - components/_alerts.scss
+   - components/_boxes.scss
+   - components/_cards.scss
+   - components/_sidebar.scss
+   ========================================================================== */
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+a.btn,
+a.btn:hover {
   text-decoration: none;
 }
 
 @media screen and (-ms-high-contrast: active) {
-  button.btn, button.btn:hover {
+  button.btn,
+  button.btn:hover {
     border: 2px solid currentColor;
   }
 }
@@ -1965,13 +1081,15 @@ a.btn, a.btn:hover {
   box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
 }
 
-.btn-light, .btn-light:disabled {
+.btn-light,
+.btn-light:disabled {
   color: #212529;
   background-color: #e8eaeb;
   border-color: #e8eaeb;
 }
 
-.btn-light:hover, .btn-light:focus {
+.btn-light:hover,
+.btn-light:focus {
   color: #212529;
   background-color: #e2e6ea;
   border-color: #dae0e5;
@@ -2063,20 +1181,21 @@ a.btn, a.btn:hover {
 }
 
 /* ==========================================================================
-   COMPONENTS / Cards
-
-   Site-wide Card styles.
+   FORMS
    ========================================================================== */
-/*Old custom Form Elements*/
-/*remove browser appearance*/
+/* remove browser appearance */
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
-  input[type=text], textarea, input[type=checkbox], input[type=radio] {
+  input[type=text],
+  textarea,
+  input[type=checkbox],
+  input[type=radio] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
   }
 }
-input, textarea {
+input,
+textarea {
   font-family: var(--ff-body);
   outline: none;
   padding: 0.8rem;
@@ -2093,16 +1212,18 @@ textarea {
   max-width: 600px;
 }
 
-/*style placeholder text*/
+/* style placeholder text */
 textarea::-moz-placeholder, input::-moz-placeholder {
   color: #bbbbbb;
 }
-textarea::placeholder, input::placeholder {
+textarea::placeholder,
+input::placeholder {
   color: #bbbbbb;
 }
 
-/*Checkbox*/
-input[type=checkbox], input[type=radio] {
+/* Checkbox */
+input[type=checkbox],
+input[type=radio] {
   display: block;
   width: 16px;
   height: 16px;
@@ -2156,8 +1277,9 @@ input[type=radio]:checked::after {
   transform: scale(1);
 }
 
-/*focusing state*/
-input:not([type=checkbox]):not([type=radio]):not([type=submit]):not(.error):focus, textarea:focus {
+/* focusing state */
+input:not([type=checkbox]):not([type=radio]):not([type=submit]):not(.error):focus,
+textarea:focus {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -2167,4 +1289,1276 @@ input:not([type=checkbox]):not([type=radio]):not([type=submit]):not(.error):focu
 
 input[type=checkbox]:focus {
   border: 1px solid #718096;
+}
+
+/* ==========================================================================
+   ALERTS
+   ========================================================================== */
+.alert {
+  padding: var(--size-3);
+  padding-left: var(--size-8);
+  margin-bottom: var(--size-fluid-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-2);
+  background: #f3f3f3;
+  position: relative;
+  font-size: var(--fs-sm);
+}
+.alert::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  font-size: 18px;
+}
+.alert > :first-child {
+  margin-top: 0;
+}
+.alert.alert-info::before {
+  content: "\f06a";
+  color: var(--blue-6);
+}
+.alert.alert-success::before {
+  content: "\f164";
+  color: var(--clr-success);
+}
+.alert.alert-warning::before {
+  content: "\f071";
+  color: var(--orange-6);
+}
+.alert.alert-danger::before {
+  content: "\f071";
+  color: var(--clr-danger);
+}
+
+/* ==========================================================================
+   BOXES
+   ========================================================================== */
+.box {
+  background: var(--white);
+  padding: var(--size-5);
+  border-radius: var(--radius-2);
+  border: 1px solid var(--clr-border);
+}
+
+.box > *:where(:not(:last-child)) {
+  margin-bottom: var(--size-fluid-2);
+}
+
+.box > *:where(:first-child),
+.box > h3 {
+  margin-top: 0;
+}
+
+/* ==========================================================================
+   CARDS
+   (Placeholder for future card styles)
+   ========================================================================== */
+/* ==========================================================================
+   SIDEBAR
+   (Commented out - kept for reference)
+   ========================================================================== */
+/*
+#x_sideBar {
+    height: 100%;
+    position: absolute;
+    background-color: #ccc;
+    box-shadow: inset 0 0.5em 1.5em rgb(0 0 0 / 10%), inset 0 0.125em 0.5em rgb(0 0 0 / 50%);
+}
+
+.sb_right #x_sideBar {
+    right: 0;
+}
+
+#x_sideBarToggleBtn {
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    border-bottom: 1px #666 solid;
+    border-radius: 0;
+    color: #212121;
+}
+
+#x_sideBarToggleBtn:hover,
+#x_sideBarToggleBtn:focus,
+#x_sideBarToggleBtn:active {
+    color: white;
+    background-color: #212121;
+}
+*/
+/* ==========================================================================
+   LAYOUTS - Flex, Grid, Content Layouts
+
+   Consolidated from:
+   - layouts/_flex.scss
+   - layouts/_grid.scss
+   - layouts/_contentMenu.scss
+   ========================================================================== */
+/* ==========================================================================
+   FLEXBOX SYSTEM
+   ========================================================================== */
+/* ---------- Core Flex Container Properties ---------- */
+.flex {
+  display: flex;
+  gap: var(--flex-gap);
+}
+
+.flex-inline {
+  display: inline-flex;
+}
+
+/* ---------- Flex Direction Utilities ---------- */
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-col-reverse {
+  flex-direction: column-reverse;
+}
+
+/* ---------- Flex Wrap Utilities ---------- */
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+.flex-no-wrap {
+  flex-wrap: nowrap;
+}
+
+/* ---------- Flex Item Growth/Shrink Behaviors ---------- */
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.flex-initial {
+  flex: 0 1 auto;
+}
+
+.flex-auto {
+  flex: 1 1 auto;
+}
+
+.flex-none {
+  flex: none;
+}
+
+/* ---------- Flex Items with Predefined Base Widths ---------- */
+.flex-100 {
+  flex: 1 1 100px;
+}
+
+.flex-200 {
+  flex: 1 1 200px;
+}
+
+.flex-300 {
+  flex: 1 1 300px;
+}
+
+.flex-400 {
+  flex: 1 1 400px;
+}
+
+.flex-500 {
+  flex: 1 1 500px;
+}
+
+.flex-600 {
+  flex: 1 1 600px;
+}
+
+/* ---------- Flex Alignment Utilities ---------- */
+.flex-center-x {
+  justify-content: center;
+}
+
+.flex-center-y {
+  align-items: center;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================================================
+   PERCENTAGE-BASED FLEX CONTAINER SYSTEM
+   ========================================================================== */
+.flexContainer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-block: var(--size-fluid-3);
+}
+
+.flexItem {
+  width: 100%;
+  padding: 0;
+  margin-bottom: var(--flex-gap);
+}
+.flexItem h3:is(:first-child) {
+  margin-top: 0;
+}
+.flexItem h3.topMargin {
+  margin-top: 2em;
+}
+.flexItem img {
+  width: 100%;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ---------- Responsive Width Classes ---------- */
+@media (min-width: 768px) {
+  .c80 {
+    width: 80%;
+  }
+  .c70 {
+    width: 70%;
+  }
+  .c60 {
+    width: 60%;
+  }
+  .c50 {
+    width: 50%;
+  }
+  .c40 {
+    width: 40%;
+  }
+  .c30 {
+    width: 30%;
+  }
+  .c33 {
+    width: 33.33%;
+  }
+  .c25 {
+    width: 25%;
+  }
+  .c20 {
+    width: 20%;
+  }
+  .c10 {
+    width: 10%;
+  }
+  .flexItem {
+    padding-right: var(--flex-gap);
+    margin-bottom: 0;
+  }
+  .flexItem:last-child {
+    padding-right: 0;
+  }
+  .flex-row-reverse .flexItem {
+    padding-left: var(--flex-gap);
+    padding-right: 0;
+  }
+  .flex-row-reverse .flexItem:last-child {
+    padding-left: 0;
+  }
+}
+/* ==========================================================================
+   GRID SYSTEM
+   ========================================================================== */
+.grid {
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+/* Grid Template Columns */
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid-cols-7 {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.grid-cols-8 {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.grid-cols-9 {
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+}
+
+.grid-cols-10 {
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+}
+
+.grid-cols-11 {
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+}
+
+.grid-cols-12 {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+/* Grid Column Start / End */
+.col-auto {
+  grid-column: auto;
+}
+
+.col-span-1 {
+  grid-column: span 1/span 1;
+}
+
+.col-span-2 {
+  grid-column: span 2/span 2;
+}
+
+.col-span-3 {
+  grid-column: span 3/span 3;
+}
+
+.col-span-4 {
+  grid-column: span 4/span 4;
+}
+
+.col-span-5 {
+  grid-column: span 5/span 5;
+}
+
+.col-span-6 {
+  grid-column: span 6/span 6;
+}
+
+.col-span-7 {
+  grid-column: span 7/span 7;
+}
+
+.col-span-8 {
+  grid-column: span 8/span 8;
+}
+
+.col-span-9 {
+  grid-column: span 6/span 9;
+}
+
+.col-span-10 {
+  grid-column: span 10/span 10;
+}
+
+.col-span-11 {
+  grid-column: span 11/span 11;
+}
+
+.col-span-12 {
+  grid-column: span 12/span 12;
+}
+
+.col-span-full {
+  grid-column: 1/-1;
+}
+
+/* ==========================================================================
+   TABLE OF CONTENT MENU (Dialog)
+   ========================================================================== */
+.ui-dialog {
+  padding: 0;
+  border: 1px solid var(--clr-border);
+  border-radius: 5px;
+  box-shadow: var(--shadow-2);
+  font-family: var(--ff-body);
+}
+
+#menuItems {
+  background: var(--gray-1);
+}
+
+#menuItems .menuItem {
+  font-size: 0.85rem;
+  background: var(--gray-1);
+  color: var(--clr-body);
+  border: none;
+}
+
+#menuItems .sectionHeader {
+  opacity: 0.7;
+  color: var(--clr-header-bg);
+}
+
+#menuItems .sectionHeader::after {
+  content: " - ";
+}
+
+.ui-dialog .ui-widget-header {
+  color: var(--white);
+  background: var(--clr-header-bg);
+  font-size: 16px;
+  letter-spacing: 0.03em;
+  border-radius: 0;
+  border: none;
+  padding: 8px;
+}
+
+.ui-widget-header .ui-state-default {
+  color: var(--white);
+}
+
+.ui-widget-header .ui-state-hover {
+  color: var(--gray-2);
+}
+
+#menuItems .menuItem.current {
+  border: none !important;
+  background: var(--gray-4);
+  border-radius: 0;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+  border: none;
+  background: transparent;
+  right: 0;
+}
+
+#menuItems .ui-state-hover {
+  background: var(--gray-4) !important;
+  border-radius: 0;
+}
+
+.ui-button-icon-primary.ui-icon.fa.fa-x-close {
+  color: white;
+}
+
+/* ==========================================================================
+   XERTE - XOT-Specific Styles (Header, Footer, Page Types)
+
+   Consolidated from:
+   - base/_header.scss
+   - base/_footer.scss
+   - pages/_textPage.scss
+   - pages/_category.scss
+   - pages/_graphicPage.scss
+   - pages/_mediaPage.scss
+   - pages/_navigatorPage.scss
+   - pages/_tablePage.scss
+   - pages/_hangmanPage.scss
+   - pages/_documentation.scss
+   - abstract/_xibit.scss
+   ========================================================================== */
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+#x_headerBlock {
+  box-shadow: none;
+  background: var(--clr-header-bg);
+}
+
+#x_headerBlock div {
+  padding: 1.5rem 0;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#x_headerBlock h1 {
+  text-transform: uppercase;
+  font-size: var(--fs-sm);
+  color: var(--clr-header-h1);
+  opacity: 0.8;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+#x_headerBlock h2 {
+  font-size: var(--fs-lg);
+  color: var(--clr-header-h2);
+  margin-bottom: 0;
+}
+
+#x_headerBlock div {
+  padding-left: 70px;
+  position: relative;
+}
+
+#x_headerBlock div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 60px;
+  aspect-ratio: 1;
+  background-image: var(--main-logo);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#x_headerBlock h1,
+#x_headerBlock h2 {
+  margin-left: 1rem;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+/* Footer background colour */
+#x_footerBlock {
+  background: var(--clr-footer-bg);
+}
+
+/* remove page number background */
+#x_pageNo {
+  background: transparent;
+  padding-top: 8px;
+  box-sizing: initial;
+}
+
+/* hide resize button */
+#x_cssBtn {
+  display: none !important;
+}
+
+/* progress bar background and text */
+#x_footerProgress .pbBar {
+  background-color: var(--clr-header-bg);
+}
+#x_footerProgress .pbTxt {
+  color: var(--white);
+}
+
+/* ==========================================================================
+   XHIBIT FOOTER STYLES (FontAwesome icons)
+   ========================================================================== */
+/* FOOTER GRADIENT */
+#x_footerBlock {
+  background: -moz-linear-gradient(top, #E5E4E2, #D1D0CE);
+}
+
+/* TOP BORDER OF FOOTER */
+#x_footerBlock {
+  border-top: 1px solid #ffffff;
+}
+
+/* DOTS TEXTURE ON/OFF */
+#x_footerBg {
+  background-image: none;
+}
+
+/* FOOTER PAGE NUMBERING BOX */
+#x_pageNo {
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: #151B54;
+}
+
+/* BODY BORDER */
+#x_mainHolder {
+  border: 1px solid var(--clr-border);
+}
+
+/* SETUP FOR FONT AWESOME ICONS */
+#x_footerBlock button span {
+  background: none;
+}
+
+.ui-button:after {
+  font-family: "FontAwesome";
+  color: white;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  font-size: 1.58rem;
+  line-height: 1.5em;
+}
+
+/* ICONS */
+#x_footerBlock .ui-button:after {
+  color: #151B54;
+}
+
+#x_footerBlock .ui-button.ui-state-hover:after {
+  color: #98AFC7;
+}
+
+#x_nextBtn:after {
+  content: "\f061";
+}
+
+#x_prevBtn:after {
+  content: "\f060";
+}
+
+#x_menuBtn:after {
+  content: "\f02d";
+}
+
+#x_colourChangerBtn:after {
+  content: "\f042";
+}
+
+#x_cssBtn:after {
+  content: "\f0b2";
+}
+
+#x_helpBtn:after {
+  content: "\f059";
+}
+
+#x_glossaryBtn:after {
+  content: "\f02d";
+}
+
+#x_mediaBtn:after {
+  content: "\f16a";
+}
+
+#x_footerChevron {
+  color: #151B54;
+}
+
+#x_pageNo {
+  padding-top: 6px;
+}
+
+/* ==========================================================================
+   TEXT PAGE
+   ========================================================================== */
+.x_orient_page #pageContents,
+.x_summary_page #pageContents {
+  max-width: 80ch;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   CATEGORY PAGE
+   ========================================================================== */
+#categoryHolder h3 {
+  font-size: var(--fs-lg);
+}
+
+ul.category {
+  display: initial;
+}
+
+.category.highlight {
+  background: var(--light);
+  border-radius: var(--radius-2);
+  border: 1px solid var(--clr-border);
+}
+
+#dragDropHolder .label {
+  background: var(--yellow-0);
+  text-align: center;
+  box-shadow: var(--shadow-2);
+  border-radius: var(--radius-1);
+}
+
+/* ==========================================================================
+   GRAPHIC PAGE
+   ========================================================================== */
+.x_textGraphics_page #imgCaption {
+  color: var(--clr-heading);
+}
+
+.x_textGraphics_page #imgCaption.transcript {
+  border-color: var(--clr-border);
+}
+
+/* ==========================================================================
+   MEDIA PAGE
+   ========================================================================== */
+.x_audioSlideshow_page .slide {
+  padding: 1rem;
+}
+
+.centerAlign #pageVideo {
+  margin: auto;
+}
+
+/* ==========================================================================
+   NAVIGATOR PAGE
+   ========================================================================== */
+.x_buttonNav_page #btnHolder .panelBtnLabel {
+  border: 1px solid var(--clr-panelborder);
+  color: var(--clr-btn);
+  font-weight: 500;
+  border-radius: 2px;
+  padding: 0.4em 1em;
+  margin: 2px 2px 2px 0;
+  line-height: 14px;
+}
+
+.x_buttonNav_page #btnHolder .panelBtnLabel:first-of-type {
+  margin-right: -2px;
+}
+
+.x_buttonNav_page #btnHolder .panelBtnLabel.ui-state-active,
+.x_nav_page #pageContents.button button.selected {
+  background-color: var(--clr-btn);
+  border-color: var(--clr-btn);
+  color: var(--white);
+}
+
+.x_buttonNav_page #btnHolder .panelBtnLabel.ui-state-hover:not(.ui-state-active),
+.x_buttonNav_page #btnHolder .panelBtnLabel.ui-state-focus:not(.ui-state-active) {
+  background-color: var(--clr-shaded);
+}
+
+.x_buttonNav_page #btnHolder .panelBtnLabel .ui-button-text {
+  padding: 0;
+  margin: 0;
+}
+
+.x_columnPage_page #textHolder {
+  border-bottom-color: var(--clr-panelborder);
+}
+
+.x_nav_page #pageContents.button button.ui-state-hover:not(.selected),
+.x_nav_page #pageContents.button button.ui-state-focus:not(.selected) {
+  background-color: var(--clr-shaded);
+  border-color: var(--clr-panelborder);
+  color: var(--clr-btn);
+}
+
+.x_nav_page #pageContents.slide #btnHolder {
+  border-color: var(--clr-panelborder);
+}
+
+.x_slideshow_page #slideTxt,
+.x_nav_page #pageContents.slide #slideTxt {
+  color: var(--clr-heading);
+}
+
+.x_tabNavExtra_page .paneList {
+  color: var(--clr-panelborder);
+  border-color: var(--clr-panelborder);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.x_tabNavExtra_page .paneList a,
+.x_tabNavExtra_page .paneList a {
+  font-size: 0.9rem;
+}
+
+.x_tabNavExtra_page .paneList a:link,
+.x_tabNavExtra_page .paneList a:visited,
+.x_tabNavExtra_page .paneList a:hover,
+.x_tabNavExtra_page .paneList a:active {
+  color: var(--clr-link);
+}
+
+/* ==========================================================================
+   TABLE PAGE
+   ========================================================================== */
+table.full td,
+table.simple,
+table.horizontal tr,
+table.vertical td,
+table.header.simple tr:first-child,
+table.footer.simple tr:last-child,
+table.headerCol.simple td:first-child {
+  border-color: var(--clr-headershade);
+}
+
+table.header.shaded tr:first-child,
+table.footer.shaded tr:last-child,
+table.headerCol.shaded td.header {
+  background: var(--clr-headershade);
+  color: var(--white);
+}
+
+table.header tr:first-child,
+table.footer tr:last-child {
+  color: var(--clr-heading);
+}
+
+table.header.shaded.full tr:first-child td:not(:last-child),
+table.header.shaded.vertical tr:first-child td:not(:last-child),
+table.footer.shaded.full tr:last-child td:not(:last-child),
+table.header.footer.vertical tr:last-child td:not(:last-child) {
+  border-right-color: var(--white);
+}
+
+table.headerCol.shaded.full tr:not(:last-child) td:first-child,
+table.headerCol.shaded.horizontal tr:not(:last-child) td:first-child {
+  border-bottom: 1px solid var(--white);
+}
+
+table tr.shaded,
+table.glossary tr.shaded {
+  background: var(--clr-shaded);
+}
+
+table.glossary tr td:first-child {
+  border-color: var(--clr-shaded);
+}
+
+.x_table_page #tableName {
+  color: var(--clr-heading);
+}
+
+.x_table_page #footnote {
+  border-color: var(--clr-border);
+}
+
+/* ==========================================================================
+   HANGMAN PAGE
+   ========================================================================== */
+#clue .dash {
+  box-sizing: initial;
+}
+
+/* ==========================================================================
+   DOCUMENTATION PAGE
+   ========================================================================== */
+.item,
+.intro,
+.section {
+  margin: var(--size-3) 0;
+}
+.item h3,
+.intro h3,
+.section h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: 0;
+}
+
+.optionGroup.horizontal {
+  display: inline-flex;
+}
+
+.optionGroup.horizontal:not(:first-child) {
+  margin-left: var(--size-3);
+}
+
+.optionTxt {
+  margin-left: var(--size-3);
+}
+
+.optionGroup.horizontal:not(:first-of-type) .optionTxt {
+  margin-left: var(--size-3);
+}
+
+/* ==========================================================================
+   UTILITIES - Helper Classes
+
+   Consolidated from:
+   - utility/_utilityClass.scss
+   ========================================================================== */
+/* ==========================================================================
+   CONTAINER
+   ========================================================================== */
+.container {
+  width: min(var(--container-width), 100% - 2rem);
+  margin: var(--size-fluid-2);
+}
+
+.mx-auto {
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   POSITION
+   ========================================================================== */
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+/* ==========================================================================
+   VISIBILITY
+   ========================================================================== */
+.hidden {
+  visibility: hidden;
+}
+
+.none {
+  display: none;
+}
+
+/* ==========================================================================
+   TEXT ALIGNMENT
+   ========================================================================== */
+.text-center {
+  text-align: center;
+}
+
+/* ==========================================================================
+   BACKGROUND COLORS
+   ========================================================================== */
+.bg-success {
+  background-color: var(--clr-success);
+}
+
+.bg-danger {
+  background-color: var(--clr-danger);
+}
+
+/* ==========================================================================
+   TEXT COLORS
+   ========================================================================== */
+.text-gray {
+  color: #555555;
+}
+
+.text-light {
+  color: #8A8A8A;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-success {
+  color: var(--clr-success);
+}
+
+.text-danger {
+  color: var(--clr-danger);
+}
+
+.gradient-text {
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   TEXT TRANSFORM
+   ========================================================================== */
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   FONT SIZE
+   ========================================================================== */
+.fs-4xl {
+  font-size: var(--fs-4xl);
+}
+
+.fs-3xl {
+  font-size: var(--fs-3xl);
+}
+
+.fs-2xl {
+  font-size: var(--fs-2xl);
+}
+
+.fs-xl {
+  font-size: var(--fs-2xl);
+  line-height: 1.3;
+}
+
+.fs-lg {
+  font-size: var(--fs-lg);
+}
+
+.fs-base {
+  font-size: var(--fs-base);
+}
+
+.fs-sm {
+  font-size: var(--fs-sm);
+}
+
+.fs-xs {
+  font-size: var(--fs-xs);
+}
+
+/* ==========================================================================
+   ASPECT RATIOS
+   ========================================================================== */
+.square {
+  aspect-ratio: var(--ratio-square);
+}
+
+.portrait {
+  aspect-ratio: var(--ratio-portrait);
+}
+
+.ultrawide {
+  aspect-ratio: var(--ratio-ultrawide);
+}
+
+.widescreen {
+  aspect-ratio: var(--ratio-widescreen);
+}
+
+.landscape {
+  aspect-ratio: var(--ratio-landscape);
+}
+
+/* ==========================================================================
+   TEXT WRAPPING
+   ========================================================================== */
+.dont-break-out {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+          hyphens: auto;
+}
+
+/* ==========================================================================
+   VENDORS - Third-party Overrides
+
+   Consolidated from:
+   - vendors/_jquery-ui.scss
+   - vendors/_jquery-ui-theme.scss
+   ========================================================================== */
+/* ==========================================================================
+   JQUERY UI THEME
+   (Based on jQuery UI CSS Framework 1.13.3)
+   ========================================================================== */
+/* Interaction states */
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+  border: 1px solid #c5c5c5;
+  background: #f6f6f6;
+  font-weight: normal;
+  color: #454545;
+}
+
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited,
+a.ui-button,
+a:link.ui-button,
+a:visited.ui-button,
+.ui-button {
+  color: #454545;
+  text-decoration: none;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-button:hover,
+.ui-button:focus {
+  border: 1px solid #cccccc;
+  background: #ededed;
+  font-weight: normal;
+  color: #2b2b2b;
+}
+
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited,
+.ui-state-focus a,
+.ui-state-focus a:hover,
+.ui-state-focus a:link,
+.ui-state-focus a:visited,
+a.ui-button:hover,
+a.ui-button:focus {
+  color: #2b2b2b;
+  text-decoration: none;
+}
+
+.ui-visual-focus {
+  box-shadow: 0 0 3px 1px rgb(94, 158, 214);
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+  border: 1px solid #4d5e69;
+  background: #4d5e69;
+  font-weight: normal;
+  color: #ffffff;
+}
+
+.ui-icon-background,
+.ui-state-active .ui-icon-background {
+  border: #4d5e69;
+  background-color: #ffffff;
+}
+
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   JQUERY UI CUSTOMIZATION
+   ========================================================================== */
+/* jQuery UI base states */
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  color: var(--clr-btn);
+}
+
+.ui-state-default.ui-state-hover:not(.ui-accordion-header):not(.tabHeader):not(.navChildTitle) {
+  color: var(--white);
+  background-color: var(--clr-btn);
+  border-color: var(--clr-btn);
+}
+
+.ui-state-default {
+  border: 1px solid var(--clr-panelborder);
+  border-radius: 2px;
+  background: none;
+  background-color: var(--white);
+}
+
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited,
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+  color: var(--clr-btn);
+  font-weight: 500;
+}
+
+.ui-widget-content {
+  border: 1px solid var(--clr-panelborder);
+}
+
+.ui-state-active a:hover,
+.ui-state-active a:focus,
+.ui-state-default a:hover,
+.ui-state-default a:focus {
+  background-color: var(--clr-btn-rollover);
+  text-decoration: none;
+  color: var(--white) !important;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   TABS
+   ========================================================================== */
+.ui-tabs {
+  border: none;
+  background: none;
+}
+
+.ui-tabs .ui-widget-header {
+  background: none;
+  border: none;
+  border-radius: 0;
+}
+
+.ui-tabs .ui-tabs-nav {
+  padding: 0;
+}
+
+.ui-tabs .ui-tabs-nav .tabHeader,
+.ui-tabs .ui-tabs-nav .navChildTitle {
+  background-color: var(--white);
+  border-color: var(--clr-border);
+  border-radius: 4px 4px 0 0;
+}
+
+.ui-tabs .ui-tabs-nav .tabHeader:not(.ui-state-active),
+.x_nav_page #pageContents.tab .ui-tabs .ui-tabs-nav .navChildTitle:not(.ui-state-active) {
+  border-color: var(--clr-border);
+  background: none;
+  background-color: var(--white);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-state-active {
+  border-bottom: 1px solid var(--white) !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-state-active a {
+  color: var(--clr-heading);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-state-active a:hover,
+.ui-tabs .ui-tabs-nav li.ui-state-active a:focus {
+  background: none;
+}
+
+.ui-tabs #paneHolder,
+.ui-tabs .paneHolder {
+  border: 1px solid var(--clr-border);
+  margin-top: -1px;
+  background-color: var(--white);
+}
+
+/* ==========================================================================
+   ACCORDION
+   ========================================================================== */
+.ui-accordion-header {
+  margin-bottom: 0 !important;
+}
+
+.ui-accordion .ui-accordion-header .ui-icon {
+  color: var(--clr-btn);
+  left: 0.7em;
+}
+
+.ui-accordion .ui-accordion-header.ui-state-hover .ui-icon {
+  color: var(--white);
+}
+
+.ui-accordion .ui-accordion-content {
+  border-top: 1px solid var(--clr-border);
+}
+
+/* ==========================================================================
+   NAVIGATION PAGE
+   ========================================================================== */
+.x_nav_page #pageContents.button button.ui-state-hover:not(.selected),
+.x_nav_page #pageContents.button button.ui-state-focus:not(.selected) {
+  background-color: var(--clr-shaded);
+  border-color: var(--clr-panelborder);
+  color: var(--clr-btn);
+}
+
+.x_nav_page #pageContents.button button.selected {
+  background-color: var(--clr-btn);
+  color: var(--white);
+}
+
+.x_nav_page #pageContents.slide #btnHolder {
+  border-color: var(--clr-panelborder);
 }/*# sourceMappingURL=lta-xot.css.map */

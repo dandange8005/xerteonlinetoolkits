@@ -1,8 +1,21 @@
-// Master stylesheet that brings all the components together
+/**
+ * LTA XOT Theme - Main Entry Point
+ *
+ * A flattened, descriptive SCSS structure for the Xerte Online Toolkits theme.
+ *
+ * 1. _tokens      - Design tokens (colors, typography, spacing)
+ * 2. _base        - Reset, typography, base elements
+ * 3. _components  - UI components (buttons, forms, alerts)
+ * 4. _layouts     - Layout systems (flex, grid)
+ * 5. _xerte       - Xerte-specific styles (header, footer, pages)
+ * 6. _utilities   - Helper classes
+ * 7. _vendors     - Third-party overrides (jQuery UI)
+ */
 
-@use 'base';
-@use 'layouts';
-@use 'pages';
-@use 'utility/utilityClass';
-@use 'vendors';
-@use 'components';
+@use "scss/tokens" as *;
+@use "scss/base";
+@use "scss/components";
+@use "scss/layouts";
+@use "scss/xerte";
+@use "scss/utilities";
+@use "scss/vendors";

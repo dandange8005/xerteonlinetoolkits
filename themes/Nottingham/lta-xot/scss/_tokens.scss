@@ -1,19 +1,20 @@
+/* ==========================================================================
+   TOKENS - Design Tokens & CSS Custom Properties
+
+   Consolidated from:
+   - base/_customProperties.scss
+   - abstract/_cuColours.scss (converted to CSS custom properties)
+   ========================================================================== */
+
 /* ------ Project Information --------
 Name: DigEd Xerte XOT Project Theme
 Author: Nan Zhang
 */
 
-// use CU colours
-// @use '../abstract/cuColours'as *;
-
-
-
 /* ============================
     OPEN-PROP CUSTOM PROPERTIES
 ==============================*/
-@import "https://unpkg.com/open-props"; //open-props CDN link
-// @import "../../openprop/openProps";
-
+@import "https://unpkg.com/open-props";
 
 /* ============================
     ANIMATE
@@ -21,19 +22,11 @@ Author: Nan Zhang
 ==============================*/
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
 
-/* ============================
-    GOOGLE FONT IMPORT DECLARATION
-==============================*/
-// /* Import Google Fonts and materials icons */
-// @import url('https://fonts.googleapis.com/css2?family=Georama:wght@600;700;800;900&family=Open+Sans:wght@300;400;600;700&display=swap');
-// @import url('https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Round');
-
-
 /* ======================
     XOT CUSTOM PROPERTIES
 =======================*/
 
-//Cardiff University Colours
+// Cardiff University Colours
 :where(html) {
     /* CU Core Colours */
 
@@ -47,12 +40,14 @@ Author: Nan Zhang
     --cu-purple: #73479C;
     --cu-magenta: #D63694;
     --cu-bossanova: #3C2C59;
-    //Gold colours
+
+    // Gold colours
     --cu-gold: #BD9E5E;
     --cu-yuma: #C8BB8D;
     --cu-timberwolf: #D4D2CA;
     --cu-cararra: #EBE9E1;
-    //Blue colours
+
+    // Blue colours
     --cu-blue: #233E8B;
     --cu-PrussianBlue: #002554;
     --cu-BlueZodiac: hsl(217, 59%, 20%);
@@ -65,9 +60,8 @@ Author: Nan Zhang
     --cu-navy-3: #2F444E;
 
     // Function colours
-    --clr-success:hsl(148, 100%, 25%);
+    --clr-success: hsl(148, 100%, 25%);
     --clr-danger: hsl(4, 77%, 48%);
-
 
     /* Neutral colour */
     --black: #22211f;
@@ -92,12 +86,12 @@ Author: Nan Zhang
     --shade-sand: #EBE9E1;
     --shade-blue: #EFF3F5;
     --shade-green: #F0F5EF;
-}   
+}
 
 // XERTE Project Tokens
 :where(html) {
 
-    /* Core colours */  
+    /* Core colours */
     --text: hsl(240, 33%, 6%);
     --background: hsl(36, 33%, 97%);
     --primary: hsl(240, 39%, 18%);
@@ -121,7 +115,7 @@ Author: Nan Zhang
     --background-800: hsl(240, 10%, 20%);
     --background-900: hsl(240, 10%, 10%);
     --background-950: hsl(240, 8%, 5%);
-    
+
     --primary-50: hsl(240, 38%, 95%);
     --primary-100: hsl(240, 37%, 90%);
     --primary-200: hsl(240, 39%, 80%);
@@ -133,7 +127,7 @@ Author: Nan Zhang
     --primary-800: hsl(240, 39%, 20%);
     --primary-900: hsl(240, 37%, 10%);
     --primary-950: hsl(240, 38%, 5%);
-    
+
     --secondary-50: hsl(48, 38%, 95%);
     --secondary-100: hsl(51, 37%, 90%);
     --secondary-200: hsl(51, 37%, 80%);
@@ -145,7 +139,7 @@ Author: Nan Zhang
     --secondary-800: hsl(51, 37%, 20%);
     --secondary-900: hsl(51, 37%, 10%);
     --secondary-950: hsl(48, 38%, 5%);
-    
+
     --accent-50: hsl(353, 68%, 95%);
     --accent-100: hsl(353, 65%, 90%);
     --accent-200: hsl(353, 65%, 80%);
@@ -161,51 +155,6 @@ Author: Nan Zhang
     // for older project compatibility
     --clr-accent: var(--primary);
 
-    
-        // --clr-accent: var(--cu-BlueZodiac);
-        // --clr-accent: hsl(217, 59%, 20%);
-
-    
-        // /* Accent colour shades */
-        // --clr-accent-1: hsl(var(--clr-h),
-        //     var(--clr-s),
-        //     calc(var(--clr-l) + (100% - var(--clr-l)) * 0.9));
-        // --clr-accent-2: hsl(var(--clr-h),
-        //     var(--clr-s),
-        //     calc(var(--clr-l) + (100% - var(--clr-l)) * 0.7));
-        // --clr-accent-3: hsl(var(--clr-h),
-        //     var(--clr-s),
-        //     calc(var(--clr-l) + (100% - var(--clr-l)) * 0.5));
-        // --clr-accent-4: hsl(var(--clr-h),
-        //     var(--clr-s),
-        //     calc(var(--clr-l) + (100% - var(--clr-l)) * 0.3));
-        // --clr-accent-5: hsl(var(--clr-h),
-        //     var(--clr-s),
-        //     calc(var(--clr-l) - var(--clr-l) * 0.2));
-        // --clr-accent-6: hsl(var(--clr-h),
-        //     var(--clr-s),
-        //     calc(var(--clr-l) - var(--clr-l) * 0.4));
-        // --clr-accent-7: hsl(var(--clr-h),
-        //     var(--clr-s),
-        //     calc(var(--clr-l) - var(--clr-l) * 0.6));
-        // --clr-accent-8: hsl(var(--clr-h),
-        //     var(--clr-s),
-        //     calc(var(--clr-l) - var(--clr-l) * 0.8));
-        
-            
-        // //Compliment colour: hue + 180 
-        // --clr-compliment: hsl(calc(var(--clr-h) + 180), var(--clr-s), var(--clr-l));
-
-    // The accent colour of the project
-    
-
-    // The compliment colour of the project
-    // --clr-compliment: var(--cu-gold);
-
-    // The main gradient of the project
-    // --clr-gradient: var(--gradient-23);
-
-
     // XOT HEADER
     --clr-header-bg: var(--primary);
     --clr-header-h1: var(--light);
@@ -214,7 +163,6 @@ Author: Nan Zhang
 
     // XOT Footer
     --clr-footer-bg: #495057;
-    // --clr-footer-text: var(--cu-blue-dark);
 
     // Body
     --clr-body-bg: var(--background);
@@ -224,10 +172,6 @@ Author: Nan Zhang
     // Link colours - do not change
     --clr-link: #045BC6;
     --clr-link-visited: #330072;
-
-    // jQuery UI - can use more unique names
-    // for example: --clr-jquery-ui-bg: var(--cu-blue);
-
 
     --clr-border: #d1d5db;
     --clr-headershade: #4E597E;
@@ -249,9 +193,8 @@ Author: Nan Zhang
     --clr-success: hsl(148, 100%, 25%);
     --clr-danger: hsl(4, 77%, 48%);
 
-    
     /* Typography */
-    //font family
+    // font family
     --ff-body: var(--font-sans);
     --ff-headline: var(--font-sans);
     --ff-serif: var(--font-serif);
@@ -267,8 +210,6 @@ Author: Nan Zhang
     --fs-3xl: clamp(1.50rem, 1.18rem + 1.62vw, 2.33rem);
     --fs-4xl: clamp(1.69rem, 1.26rem + 2.17vw, 2.80rem);
 
-    //font colours
-
     --gradient-text: var(--clr-gradient);
 
     // Spacing for flex and grid
@@ -278,4 +219,8 @@ Author: Nan Zhang
     // a readable content container
     --container-width: 47rem;
 
+    // Focus colours
+    --clr-focus: #ffeb3b;
+    --clr-focus-text: #212b32;
+    --focus-width: 4px;
 }

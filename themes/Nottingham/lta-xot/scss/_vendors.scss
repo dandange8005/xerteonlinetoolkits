@@ -1,0 +1,350 @@
+/* ==========================================================================
+   VENDORS - Third-party Overrides
+
+   Consolidated from:
+   - vendors/_jquery-ui.scss
+   - vendors/_jquery-ui-theme.scss
+
+   jQuery UI overrides in this file:
+   ──────────────────────────────────────────────────────────────────────────
+
+   JQUERY UI THEME (base states)
+   - .ui-state-default              — default state (border, bg, color)
+   - .ui-state-hover / .ui-state-focus — hover & focus states
+   - .ui-visual-focus               — keyboard focus ring
+   - .ui-state-active               — active/selected state
+   - .ui-icon-background            — icon background colours
+   - .ui-widget-content             — content container border
+
+   JQUERY UI CUSTOMIZATION (theme-specific)
+   - .ui-state-default              — themed default state
+   - .ui-state-default.ui-state-hover — themed hover (excludes accordion/tabs)
+   - .ui-state-active/default links — themed link colours
+   - .ui-widget-content             — themed content border
+
+   TABS
+   - .ui-tabs                       — tab container reset
+   - .ui-tabs .ui-widget-header     — tab header bar reset
+   - .ui-tabs .ui-tabs-nav          — tab navigation list
+   - .tabHeader, .navChildTitle     — individual tab styling
+   - .ui-state-active tab           — active tab highlight
+   - #paneHolder, .paneHolder       — tab content panel
+
+   ACCORDION
+   - .ui-accordion-header           — accordion header spacing
+   - .ui-accordion .ui-icon         — expand/collapse icon colour
+   - .ui-accordion-header:hover     — header hover icon colour
+   - .ui-accordion-content          — content panel border
+
+   BUTTON / BUTTONSET
+   - (placeholder — add overrides as needed)
+
+   SLIDER
+   - (placeholder — add overrides as needed)
+
+   DRAGGABLE / DROPPABLE
+   - (placeholder — add overrides as needed)
+
+   NAVIGATION PAGE
+   - .x_nav_page button states      — button/slide navigation overrides
+   - #btnHolder                     — slide nav border
+   ========================================================================== */
+
+
+/* ==========================================================================
+   JQUERY UI THEME
+   (Based on jQuery UI CSS Framework 1.13.3)
+   ========================================================================== */
+
+/* Interaction states */
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+    border: 1px solid #c5c5c5;
+    background: #f6f6f6;
+    font-weight: normal;
+    color: #454545;
+}
+
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited,
+a.ui-button,
+a:link.ui-button,
+a:visited.ui-button,
+.ui-button {
+    color: #454545;
+    text-decoration: none;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-button:hover,
+.ui-button:focus {
+    border: 1px solid #cccccc;
+    background: #ededed;
+    font-weight: normal;
+    color: #2b2b2b;
+}
+
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited,
+.ui-state-focus a,
+.ui-state-focus a:hover,
+.ui-state-focus a:link,
+.ui-state-focus a:visited,
+a.ui-button:hover,
+a.ui-button:focus {
+    color: #2b2b2b;
+    text-decoration: none;
+}
+
+.ui-visual-focus {
+    box-shadow: 0 0 3px 1px rgb(94, 158, 214);
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+    border: 1px solid #4d5e69;
+    background: #4d5e69;
+    font-weight: normal;
+    color: #ffffff;
+}
+
+.ui-icon-background,
+.ui-state-active .ui-icon-background {
+    border: #4d5e69;
+    background-color: #ffffff;
+}
+
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+/* ==========================================================================
+   JQUERY UI CUSTOMIZATION
+   ========================================================================== */
+
+/* jQuery UI base states */
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    color: var(--clr-btn);
+}
+
+.ui-state-default.ui-state-hover:not(.ui-accordion-header):not(.tabHeader):not(.navChildTitle) {
+    color: var(--white);
+    background-color: var(--clr-btn);
+    border-color: var(--clr-btn);
+}
+
+.ui-state-default {
+    border: 1px solid var(--clr-panelborder);
+    border-radius: 2px;
+    background: none;
+    background-color: var(--white);
+}
+
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited,
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+    color: var(--clr-btn);
+    font-weight: 500;
+}
+
+.ui-widget-content {
+    border: 1px solid var(--clr-panelborder);
+}
+
+.ui-state-active a:hover,
+.ui-state-active a:focus,
+.ui-state-default a:hover,
+.ui-state-default a:focus {
+    background-color: var(--clr-btn-rollover);
+    text-decoration: none;
+    color: var(--white) !important;
+    box-shadow: none;
+}
+
+
+/* ==========================================================================
+   TABS
+   ========================================================================== */
+
+.ui-tabs {
+    border: none;
+    background: none;
+}
+
+.ui-tabs .ui-widget-header {
+    background: none;
+    border: none;
+    border-radius: 0;
+}
+
+.ui-tabs .ui-tabs-nav {
+    padding: 0;
+}
+
+.ui-tabs .ui-tabs-nav .tabHeader,
+.ui-tabs .ui-tabs-nav .navChildTitle {
+    background-color: var(--white);
+    border-color: var(--clr-border);
+    border-radius: 4px 4px 0 0;
+}
+
+.ui-tabs .ui-tabs-nav .tabHeader:not(.ui-state-active),
+.x_nav_page #pageContents.tab .ui-tabs .ui-tabs-nav .navChildTitle:not(.ui-state-active) {
+    border-color: var(--clr-border);
+    background: none;
+    background-color: var(--white);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-state-active {
+    border-bottom: 1px solid var(--white) !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-state-active a {
+    color: var(--clr-heading);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-state-active a:hover,
+.ui-tabs .ui-tabs-nav li.ui-state-active a:focus {
+    background: none;
+}
+
+.ui-tabs #paneHolder,
+.ui-tabs .paneHolder {
+    border: 1px solid var(--clr-border);
+    margin-top: -1px;
+    background-color: var(--white);
+}
+
+
+/* ==========================================================================
+   ACCORDION
+   ========================================================================== */
+
+.ui-accordion-header {
+    margin-bottom: 0 !important;
+}
+
+.ui-accordion .ui-accordion-header .ui-icon {
+    color: var(--clr-btn);
+    left: 0.7em;
+}
+
+.ui-accordion .ui-accordion-header.ui-state-hover {
+    .ui-icon {
+        color: var(--white);
+    }
+}
+
+.ui-accordion .ui-accordion-content {
+    border-top: 1px solid var(--clr-border);
+}
+
+
+/* ==========================================================================
+   BUTTON / BUTTONSET
+   Used by: buttonNav, mcq, gapFill, imageViewer, dialog pages
+   jQuery UI classes: .ui-button, .ui-buttonset, .ui-button-text
+   ========================================================================== */
+
+// .ui-buttonset {
+// }
+
+// .ui-buttonset .ui-button {
+// }
+
+// .ui-buttonset .ui-button.ui-state-active {
+// }
+
+
+/* ==========================================================================
+   SLIDER
+   Used by: imageSequence page
+   jQuery UI classes: .ui-slider, .ui-slider-handle, .ui-slider-range
+   ========================================================================== */
+
+// .ui-slider {
+//     border: 1px solid var(--clr-border);
+//     background: var(--gray-2);
+// }
+
+// .ui-slider .ui-slider-handle {
+//     background: var(--clr-btn);
+//     border-color: var(--clr-btn);
+// }
+
+// .ui-slider .ui-slider-handle:hover,
+// .ui-slider .ui-slider-handle:focus {
+//     background: var(--clr-btn-rollover);
+// }
+
+// .ui-slider .ui-slider-range {
+//     background: var(--primary-200);
+// }
+
+
+/* ==========================================================================
+   DRAGGABLE / DROPPABLE
+   Used by: dragDropLabel, textMatch pages
+   jQuery UI classes: .ui-draggable, .ui-droppable, .ui-draggable-dragging
+   ========================================================================== */
+
+// .ui-draggable {
+// }
+
+// .ui-draggable-dragging {
+//     opacity: 0.8;
+//     z-index: 100;
+// }
+
+// .ui-droppable {
+// }
+
+// .ui-droppable.ui-state-hover {
+//     /* highlight when a draggable is over the drop zone */
+// }
+
+
+/* ==========================================================================
+   NAVIGATION PAGE
+   ========================================================================== */
+
+.x_nav_page #pageContents.button button.ui-state-hover:not(.selected),
+.x_nav_page #pageContents.button button.ui-state-focus:not(.selected) {
+    background-color: var(--clr-shaded);
+    border-color: var(--clr-panelborder);
+    color: var(--clr-btn);
+}
+
+.x_nav_page #pageContents.button button.selected {
+    background-color: var(--clr-btn);
+    color: var(--white);
+}
+
+.x_nav_page #pageContents.slide #btnHolder {
+    border-color: var(--clr-panelborder);
+}

@@ -1,0 +1,575 @@
+/* ==========================================================================
+   COMPONENTS - Buttons, Forms, Alerts, Boxes, Cards
+
+   Consolidated from:
+   - components/_buttons.scss
+   - components/_forms.scss
+   - components/_alerts.scss
+   - components/_boxes.scss
+   - components/_cards.scss
+   - components/_sidebar.scss
+
+   Components in this file:
+   ──────────────────────────────────────────────────────────────────────────
+
+   BUTTONS
+   - a.btn, button.btn             — reset link/button defaults
+   - .btn                          — base button styles
+   - .btn-primary                  — primary colour button (+hover, focus, active)
+   - .btn-secondary                — secondary colour button (+hover, focus, active, disabled)
+   - .btn-outline                  — transparent outline button (+hover)
+   - .btn-success                  — green success button (+hover, focus, active, disabled)
+   - .btn-warning                  — yellow warning button (+hover, focus, active, disabled)
+   - .btn-light                    — light background button (+hover, focus, active, disabled)
+   - .btn-dark                     — dark background button (+hover, focus, active, disabled)
+   - .btn-lg, .btn-sm, .btn-block  — size & layout variants
+   - .btn-group                    — inline button grouping
+
+   FORMS
+   - input[type=text], textarea    — remove browser appearance
+   - input, textarea               — base input styles
+   - textarea                      — min-height & max-width
+   - ::placeholder                 — placeholder text colour
+   - input[type="checkbox"]        — custom checkbox with FA icon
+   - input[type="radio"]           — custom radio with dot indicator
+   - .optionGroup                  — flex wrapper for options
+   - :focus states                 — focus ring for inputs, checkboxes
+
+   ALERTS
+   - .alert                        — base alert box with FA icon
+   - .alert-info                   — blue info icon
+   - .alert-success                — green success icon
+   - .alert-warning                — orange warning icon
+   - .alert-danger                 — red danger icon
+
+   BOXES
+   - .box                          — bordered content box with spacing
+
+   CARDS
+   - (placeholder — no styles yet)
+
+   SIDEBAR
+   - (commented out — kept for reference)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+// reset styles for a and button
+a.btn,
+a.btn:hover {
+    text-decoration: none;
+}
+
+button.btn,
+button.btn:hover {
+    @media screen and (-ms-high-contrast: active) {
+        border: 2px solid currentColor;
+    }
+}
+
+// Button base
+.btn {
+    position: relative;
+    display: inline-block;
+    padding: .375em .75em;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    cursor: pointer;
+}
+
+// Button Primary
+.btn-primary {
+    color: var(--button-text);
+    background-color: var(--button-primary);
+    border-color: var(--button-primary);
+}
+
+.btn-primary:hover {
+    color: var(--button-text-hover);
+    background-color: var(--button-primary-hover);
+    border-color: var(--button-primary-hover);
+}
+
+.btn-primary:focus {
+    color: var(--button-text-focus);
+    background-color: var(--button-primary-focus);
+    border-color: var(--button-primary-focus);
+    box-shadow: 0 0 0 .2rem var(--primary-200);
+}
+
+.btn-primary:active {
+    color: #fff;
+    background-color: var(--button-hover);
+    border-color: var(--button-hover);
+}
+
+// Button Secondary
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.btn-secondary:focus {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+    box-shadow: 0 0 0 .2rem rgba(108, 117, 125, .5);
+}
+
+.btn-secondary:active {
+    color: #fff;
+    background-color: #545b62;
+    border-color: #4e555b;
+}
+
+.btn-secondary:disabled {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+// Button Outline
+.btn-outline {
+    background-color: transparent;
+    color: var(--button-primary);
+    border: 2px solid currentColor;
+
+    &:hover {
+        background-color: var(--button-primary);
+        color: #ffffff;
+        border-color: var(--button-primary);
+    }
+}
+
+// Button Success
+.btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-success:focus {
+    color: #fff;
+    background-color: #218838;
+    border-color: #1e7e34;
+    box-shadow: 0 0 0 .2rem rgba(40, 167, 69, .5);
+}
+
+.btn-success:active {
+    color: #fff;
+    background-color: #1e7e34;
+    border-color: #1c7430;
+}
+
+.btn-success:disabled {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:not(:disabled):not(.disabled).active {
+    color: #fff;
+    background-color: #1e7e34;
+    border-color: #1c7430;
+}
+
+.btn-success:not(:disabled):not(.disabled).active:focus {
+    box-shadow: 0 0 0 .2rem rgba(40, 167, 69, .5);
+}
+
+.btn-success:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 .2rem rgba(40, 167, 69, .5);
+}
+
+// Button Warning
+.btn-warning {
+    color: #212529;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.btn-warning:hover {
+    color: #212529;
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.btn-warning:focus {
+    color: #212529;
+    background-color: #e0a800;
+    border-color: #d39e00;
+    box-shadow: 0 0 0 .2rem rgba(255, 193, 7, .5);
+}
+
+.btn-warning:active {
+    color: #212529;
+    background-color: #d39e00;
+    border-color: #c69500;
+}
+
+.btn-warning:disabled {
+    color: #212529;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.btn-warning:not(:disabled):not(.disabled).active {
+    color: #212529;
+    background-color: #d39e00;
+    border-color: #c69500;
+}
+
+.btn-warning:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 .2rem rgba(255, 193, 7, .5);
+}
+
+// Button Light
+.btn-light,
+.btn-light:disabled {
+    color: #212529;
+    background-color: #e8eaeb;
+    border-color: #e8eaeb;
+}
+
+.btn-light:hover,
+.btn-light:focus {
+    color: #212529;
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+}
+
+.btn-light:focus {
+    box-shadow: 0 0 0 .2rem rgba(248, 249, 250, .5);
+}
+
+.btn-light:active {
+    color: #212529;
+    background-color: #dae0e5;
+    border-color: #d3d9df;
+}
+
+// Button Dark
+.btn-dark {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.btn-dark:hover {
+    color: #fff;
+    background-color: #23272b;
+    border-color: #1d2124;
+}
+
+.btn-dark:focus {
+    color: #fff;
+    background-color: #23272b;
+    border-color: #1d2124;
+    box-shadow: 0 0 0 .2rem rgba(52, 58, 64, .5);
+}
+
+.btn-dark:active {
+    color: #fff;
+    background-color: #1d2124;
+    border-color: #171a1d;
+}
+
+.btn-dark:disabled {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+// Button Sizes
+.btn-lg {
+    padding: .5rem 1rem;
+    font-size: var(--fs-base);
+    line-height: 1.5;
+    border-radius: .3rem;
+}
+
+.btn-sm {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+// Button Group
+.btn-group {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.btn-group > .btn {
+    position: relative;
+    flex: 1 1 auto;
+}
+
+.btn-group > .btn + .btn {
+    margin-left: -1px;
+}
+
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-group > .btn:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+/* ==========================================================================
+   FORMS
+   ========================================================================== */
+
+/* remove browser appearance */
+@supports(-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type=text],
+    textarea,
+    input[type='checkbox'],
+    input[type="radio"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+}
+
+input,
+textarea {
+    font-family: var(--ff-body);
+    outline: none;
+    padding: .8rem;
+    border: 1px solid #718096;
+    border-radius: 4px;
+    font-size: .9em;
+    color: #525252;
+    transition: background .25s, color .25s;
+    box-sizing: border-box;
+}
+
+textarea {
+    min-height: 150px;
+    max-width: 600px;
+}
+
+/* style placeholder text */
+textarea::placeholder,
+input::placeholder {
+    color: #bbbbbb;
+}
+
+/* Checkbox */
+input[type="checkbox"],
+input[type="radio"] {
+    display: block;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    cursor: pointer;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+input[type="checkbox"]::after {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: bold;
+    font-size: 16px;
+    display: none;
+    color: #718096;
+}
+
+input[type="checkbox"]:checked::after {
+    display: block;
+}
+
+.optionGroup {
+    display: flex;
+    align-items: center;
+}
+
+/* Radio option */
+input[type="radio"] {
+    border-radius: 50%;
+    padding: 3px;
+    width: 20px;
+    height: 20px;
+}
+
+input[type="radio"]::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #718096;
+    border-radius: 50%;
+    transform: scale(0);
+}
+
+input[type="radio"]:checked::after {
+    transform: scale(1);
+}
+
+/* focusing state */
+input:not([type='checkbox']):not([type='radio']):not([type='submit']):not(.error):focus,
+textarea:focus {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-shadow: inset 0 0 0 2px #4ab26b !important;
+    border: none;
+}
+
+input[type="checkbox"]:focus {
+    border: 1px solid #718096;
+}
+
+
+/* ==========================================================================
+   ALERTS
+   ========================================================================== */
+
+.alert {
+    padding: var(--size-3);
+    padding-left: var(--size-8);
+    margin-bottom: var(--size-fluid-2);
+    border: 1px solid transparent;
+    border-radius: var(--radius-2);
+    background: #f3f3f3;
+    position: relative;
+    font-size: var(--fs-sm);
+
+    &::before {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        font-size: 18px;
+    }
+
+    >:first-child {
+        margin-top: 0;
+    }
+
+    &.alert-info::before {
+        content: "\f06a";
+        color: var(--blue-6);
+    }
+
+    &.alert-success::before {
+        content: "\f164";
+        color: var(--clr-success);
+    }
+
+    &.alert-warning::before {
+        content: "\f071";
+        color: var(--orange-6);
+    }
+
+    &.alert-danger::before {
+        content: "\f071";
+        color: var(--clr-danger);
+    }
+}
+
+
+/* ==========================================================================
+   BOXES
+   ========================================================================== */
+
+.box {
+    background: var(--white);
+    padding: var(--size-5);
+    border-radius: var(--radius-2);
+    border: 1px solid var(--clr-border);
+}
+
+.box>*:where(:not(:last-child)) {
+    margin-bottom: var(--size-fluid-2);
+}
+
+.box>*:where(:first-child),
+.box>h3 {
+    margin-top: 0;
+}
+
+
+/* ==========================================================================
+   CARDS
+   (Placeholder for future card styles)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   SIDEBAR
+   (Commented out - kept for reference)
+   ========================================================================== */
+
+/*
+#x_sideBar {
+    height: 100%;
+    position: absolute;
+    background-color: #ccc;
+    box-shadow: inset 0 0.5em 1.5em rgb(0 0 0 / 10%), inset 0 0.125em 0.5em rgb(0 0 0 / 50%);
+}
+
+.sb_right #x_sideBar {
+    right: 0;
+}
+
+#x_sideBarToggleBtn {
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    border-bottom: 1px #666 solid;
+    border-radius: 0;
+    color: #212121;
+}
+
+#x_sideBarToggleBtn:hover,
+#x_sideBarToggleBtn:focus,
+#x_sideBarToggleBtn:active {
+    color: white;
+    background-color: #212121;
+}
+*/

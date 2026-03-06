@@ -1,0 +1,457 @@
+/* ==========================================================================
+   XERTE - XOT-Specific Styles (Header, Footer, Page Types)
+
+   Consolidated from:
+   - base/_header.scss
+   - base/_footer.scss
+   - pages/_textPage.scss
+   - pages/_category.scss
+   - pages/_graphicPage.scss
+   - pages/_mediaPage.scss
+   - pages/_navigatorPage.scss
+   - pages/_tablePage.scss
+   - pages/_hangmanPage.scss
+   - pages/_documentation.scss
+   - abstract/_xibit.scss
+   ========================================================================== */
+
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+#x_headerBlock {
+    box-shadow: none;
+    background: var(--clr-header-bg);
+}
+
+#x_headerBlock div {
+    padding: 1.5rem 0;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#x_headerBlock h1 {
+    text-transform: uppercase;
+    font-size: var(--fs-sm);
+    color: var(--clr-header-h1);
+    opacity: .8;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+#x_headerBlock h2 {
+    font-size: var(--fs-lg);
+    color: var(--clr-header-h2);
+    margin-bottom: 0;
+}
+
+// Logo positioning
+#x_headerBlock div {
+    padding-left: 70px;
+    position: relative;
+}
+
+#x_headerBlock div::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 60px;
+    aspect-ratio: 1;
+    background-image: var(--main-logo);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#x_headerBlock h1,
+#x_headerBlock h2 {
+    margin-left: 1rem;
+}
+
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+/* Footer background colour */
+#x_footerBlock {
+    background: var(--clr-footer-bg);
+}
+
+/* remove page number background */
+#x_pageNo {
+    background: transparent;
+    padding-top: 8px;
+    box-sizing: initial;
+}
+
+/* hide resize button */
+#x_cssBtn {
+    display: none !important;
+}
+
+/* progress bar background and text */
+#x_footerProgress {
+    .pbBar {
+        background-color: var(--clr-header-bg);
+    }
+
+    .pbTxt {
+        color: var(--white);
+    }
+}
+
+
+/* ==========================================================================
+   XHIBIT FOOTER STYLES (FontAwesome icons)
+   ========================================================================== */
+
+/* FOOTER GRADIENT */
+#x_footerBlock {
+    background: -ms-linear-gradient(top, #E5E4E2, #D1D0CE);
+    background: -webkit-gradient(linear, left top, left bottom, from(#E5E4E2), to(#D1D0CE));
+    background: -moz-linear-gradient(top, #E5E4E2, #D1D0CE);
+}
+
+/* TOP BORDER OF FOOTER */
+#x_footerBlock {
+    border-top: 1px solid #ffffff;
+}
+
+/* DOTS TEXTURE ON/OFF */
+#x_footerBg {
+    background-image: none;
+}
+
+/* FOOTER PAGE NUMBERING BOX */
+#x_pageNo {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: #151B54;
+}
+
+/* BODY BORDER */
+#x_mainHolder {
+    border: 1px solid var(--clr-border);
+}
+
+/* SETUP FOR FONT AWESOME ICONS */
+#x_footerBlock button span {
+    background: none;
+}
+
+.ui-button:after {
+    font-family: "FontAwesome";
+    color: white;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    font-size: 1.58rem;
+    line-height: 1.5em;
+}
+
+/* ICONS */
+#x_footerBlock .ui-button:after {
+    color: #151B54;
+}
+
+#x_footerBlock .ui-button.ui-state-hover:after {
+    color: #98AFC7;
+}
+
+#x_nextBtn:after {
+    content: "\f061";
+}
+
+#x_prevBtn:after {
+    content: "\f060";
+}
+
+#x_menuBtn:after {
+    content: "\f02d";
+}
+
+#x_colourChangerBtn:after {
+    content: "\f042";
+}
+
+#x_cssBtn:after {
+    content: "\f0b2";
+}
+
+#x_helpBtn:after {
+    content: "\f059";
+}
+
+#x_glossaryBtn:after {
+    content: "\f02d";
+}
+
+#x_mediaBtn:after {
+    content: "\f16a";
+}
+
+#x_footerChevron {
+    color: #151B54;
+}
+
+#x_pageNo {
+    padding-top: 6px;
+}
+
+
+/* ==========================================================================
+   TEXT PAGE
+   ========================================================================== */
+
+// Restrict the width of the page contents to 80 characters and center it
+.x_orient_page,
+.x_summary_page {
+    #pageContents {
+        max-width: 80ch;
+        margin: 0 auto;
+    }
+}
+
+
+/* ==========================================================================
+   CATEGORY PAGE
+   ========================================================================== */
+
+#categoryHolder h3 {
+    font-size: var(--fs-lg);
+}
+
+ul.category {
+    display: initial;
+}
+
+.category.highlight {
+    background: var(--light);
+    border-radius: var(--radius-2);
+    border: 1px solid var(--clr-border);
+}
+
+// category page label
+#dragDropHolder .label {
+    background: var(--yellow-0);
+    text-align: center;
+    box-shadow: var(--shadow-2);
+    border-radius: var(--radius-1);
+}
+
+
+/* ==========================================================================
+   GRAPHIC PAGE
+   ========================================================================== */
+
+.x_textGraphics_page #imgCaption {
+    color: var(--clr-heading);
+}
+
+.x_textGraphics_page #imgCaption.transcript {
+    border-color: var(--clr-border);
+}
+
+
+/* ==========================================================================
+   MEDIA PAGE
+   ========================================================================== */
+
+// Media > Audio Slideshow
+.x_audioSlideshow_page {
+    .slide {
+        padding: 1rem;
+    }
+}
+
+// Media > video
+.centerAlign #pageVideo {
+    margin: auto;
+}
+
+
+/* ==========================================================================
+   NAVIGATOR PAGE
+   ========================================================================== */
+
+.x_buttonNav_page #btnHolder .panelBtnLabel {
+    border: 1px solid var(--clr-panelborder);
+    color: var(--clr-btn);
+    font-weight: 500;
+    border-radius: 2px;
+    padding: .4em 1em;
+    margin: 2px 2px 2px 0;
+    line-height: 14px;
+}
+
+.x_buttonNav_page #btnHolder .panelBtnLabel:first-of-type {
+    margin-right: -2px;
+}
+
+.x_buttonNav_page #btnHolder .panelBtnLabel.ui-state-active,
+.x_nav_page #pageContents.button button.selected {
+    background-color: var(--clr-btn);
+    border-color: var(--clr-btn);
+    color: var(--white);
+}
+
+.x_buttonNav_page #btnHolder .panelBtnLabel.ui-state-hover:not(.ui-state-active),
+.x_buttonNav_page #btnHolder .panelBtnLabel.ui-state-focus:not(.ui-state-active) {
+    background-color: var(--clr-shaded);
+}
+
+.x_buttonNav_page #btnHolder .panelBtnLabel .ui-button-text {
+    padding: 0;
+    margin: 0;
+}
+
+// Column
+.x_columnPage_page #textHolder {
+    border-bottom-color: var(--clr-panelborder);
+}
+
+// Multi-navigator
+.x_nav_page #pageContents.button button.ui-state-hover:not(.selected),
+.x_nav_page #pageContents.button button.ui-state-focus:not(.selected) {
+    background-color: var(--clr-shaded);
+    border-color: var(--clr-panelborder);
+    color: var(--clr-btn);
+}
+
+.x_nav_page #pageContents.slide #btnHolder {
+    border-color: var(--clr-panelborder);
+}
+
+// Slideshow
+.x_slideshow_page #slideTxt,
+.x_nav_page #pageContents.slide #slideTxt {
+    color: var(--clr-heading);
+}
+
+// Tabbed Navigator +
+.x_tabNavExtra_page .paneList {
+    color: var(--clr-panelborder);
+    border-color: var(--clr-panelborder);
+    padding-bottom: .5rem;
+    margin-bottom: 1rem;
+}
+
+.x_tabNavExtra_page .paneList a,
+.x_tabNavExtra_page .paneList a {
+    font-size: 0.9rem;
+}
+
+.x_tabNavExtra_page .paneList a:link,
+.x_tabNavExtra_page .paneList a:visited,
+.x_tabNavExtra_page .paneList a:hover,
+.x_tabNavExtra_page .paneList a:active {
+    color: var(--clr-link);
+}
+
+
+/* ==========================================================================
+   TABLE PAGE
+   ========================================================================== */
+
+table.full td,
+table.simple,
+table.horizontal tr,
+table.vertical td,
+table.header.simple tr:first-child,
+table.footer.simple tr:last-child,
+table.headerCol.simple td:first-child {
+    border-color: var(--clr-headershade);
+}
+
+table.header.shaded tr:first-child,
+table.footer.shaded tr:last-child,
+table.headerCol.shaded td.header {
+    background: var(--clr-headershade);
+    color: var(--white);
+}
+
+table.header tr:first-child,
+table.footer tr:last-child {
+    color: var(--clr-heading);
+}
+
+table.header.shaded.full tr:first-child td:not(:last-child),
+table.header.shaded.vertical tr:first-child td:not(:last-child),
+table.footer.shaded.full tr:last-child td:not(:last-child),
+table.header.footer.vertical tr:last-child td:not(:last-child) {
+    border-right-color: var(--white);
+}
+
+table.headerCol.shaded.full tr:not(:last-child) td:first-child,
+table.headerCol.shaded.horizontal tr:not(:last-child) td:first-child {
+    border-bottom: 1px solid var(--white);
+}
+
+table tr.shaded,
+table.glossary tr.shaded {
+    background: var(--clr-shaded);
+}
+
+table.glossary tr td:first-child {
+    border-color: var(--clr-shaded);
+}
+
+.x_table_page #tableName {
+    color: var(--clr-heading);
+}
+
+.x_table_page #footnote {
+    border-color: var(--clr-border);
+}
+
+
+/* ==========================================================================
+   HANGMAN PAGE
+   ========================================================================== */
+
+// box sizing fix
+#clue .dash {
+    box-sizing: initial;
+}
+
+
+/* ==========================================================================
+   DOCUMENTATION PAGE
+   ========================================================================== */
+
+// reduce margin between sections
+.item,
+.intro,
+.section {
+    margin: var(--size-3) 0;
+
+    h3 {
+        font-size: var(--fs-lg);
+        margin-bottom: 0;
+    }
+}
+
+// change horizontal optionGroup to inline-flex
+.optionGroup.horizontal {
+    display: inline-flex;
+}
+
+// fix margin between optionGroups
+.optionGroup.horizontal:not(:first-child) {
+    margin-left: var(--size-3);
+}
+
+// fix margin between options
+.optionTxt {
+    margin-left: var(--size-3);
+}
+
+.optionGroup.horizontal:not(:first-of-type) .optionTxt {
+    margin-left: var(--size-3);
+}
