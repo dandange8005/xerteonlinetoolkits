@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utility Classes — I-Prehab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Design tokens (mirrored from custom.css) ── */
+    :root {
+      --color-primary:        #256a91;
+      --color-primary-light:  #4a8fb5;
+      --color-primary-dark:   #1a4f6e;
+      --color-accent:         #0f6b99;
+      --color-accent-dark:    #0b4f74;
+      --color-interactive:    #0a6dc2;
+      --color-highlight:      #f5c200;
+      --color-neutral-50:     #f8f9fa;
+      --color-neutral-100:    #f0f2f4;
+      --color-neutral-200:    #e5e8eb;
+      --color-neutral-300:    #d0d5da;
+      --color-neutral-400:    #adb4bc;
+      --color-neutral-500:    #87919b;
+      --color-neutral-600:    #636d78;
+      --color-neutral-700:    #4a525b;
+      --color-neutral-800:    #333a42;
+      --color-neutral-900:    #1a1e24;
+      --color-text-primary:   #333333;
+      --color-text-secondary: #666666;
+      --color-text-muted:     #909090;
+      --color-text-on-dark:   #ffffff;
+      --color-text-heading:   #0f6b99;
+      --color-text-link:      #0a6dc2;
+      --color-bg-page:        #ffffff;
+      --color-bg-surface:     #f8f9fa;
+      --color-bg-hero:        #256a91;
+      --color-success:        #2e7d32;
+      --color-success-light:  #e8f5e9;
+      --color-warning:        #e65100;
+      --color-warning-light:  #fff3e0;
+      --font-family-base:     'Inter', Arial, Helvetica, sans-serif;
+      --font-size-h1:         2rem;
+      --font-size-h2:         1.625rem;
+      --font-size-h3:         1.375rem;
+      --font-size-h4:         1.125rem;
+      --font-size-body:       1.125rem;
+      --font-size-sm:         0.875rem;
+      --font-size-xs:         0.75rem;
+      --font-weight-regular:  400;
+      --font-weight-medium:   500;
+      --font-weight-semibold: 600;
+      --font-weight-bold:     700;
+      --line-height-tight:    1.2;
+      --line-height-normal:   1.5;
+      --line-height-relaxed:  1.7;
+      --space-xs:  4px;
+      --space-sm:  8px;
+      --space-md:  16px;
+      --space-lg:  24px;
+      --space-xl:  32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+      --radius-sm:   4px;
+      --radius-md:   8px;
+      --radius-lg:   12px;
+      --radius-xl:   16px;
+      --radius-pill: 100px;
+      --shadow-sm:   0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md:   0 4px 12px rgba(0,0,0,0.10);
+      --shadow-card: 0 2px 8px rgba(0,0,0,0.09);
+    }
+
+    /* ── Utility classes (identical to custom.css) ── */
+    .text-left   { text-align: left; }
+    .text-center { text-align: center; }
+    .text-right  { text-align: right; }
+
+    .mx-auto { margin-left: auto; margin-right: auto; }
+
+    .flex        { display: flex; }
+    .flex-col    { flex-direction: column; }
+    .flex-wrap   { flex-wrap: wrap; }
+    .flex-nowrap { flex-wrap: nowrap; }
+
+    .items-start   { align-items: flex-start; }
+    .items-center  { align-items: center; }
+    .items-end     { align-items: flex-end; }
+    .items-stretch { align-items: stretch; }
+
+    .justify-start   { justify-content: flex-start; }
+    .justify-center  { justify-content: center; }
+    .justify-end     { justify-content: flex-end; }
+    .justify-between { justify-content: space-between; }
+    .justify-around  { justify-content: space-around; }
+
+    .flex-center { display: flex; align-items: center; justify-content: center; }
+
+    .gap-xs { gap: var(--space-xs); }
+    .gap-sm { gap: var(--space-sm); }
+    .gap-md { gap: var(--space-md); }
+    .gap-lg { gap: var(--space-lg); }
+    .gap-xl { gap: var(--space-xl); }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
+    .grid-auto { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--space-lg); }
+
+    .col-span-2 { grid-column: span 2; }
+    .col-span-3 { grid-column: span 3; }
+
+    @media (max-width: 960px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .col-span-2, .col-span-3  { grid-column: span 1; }
+    }
+
+    /* ── Page chrome ── */
+    body {
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-normal);
+      color: var(--color-text-primary);
+      background: var(--color-bg-surface);
+    }
+
+    .page-header {
+      background: var(--color-bg-hero);
+      color: #fff;
+      padding: 40px 24px;
+    }
+    .page-header h1 {
+      font-size: var(--font-size-h2);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: 8px;
+    }
+    .page-header p { opacity: 0.85; font-size: var(--font-size-sm); }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .section-title {
+      font-size: var(--font-size-h3);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--color-neutral-200);
+      margin-bottom: 24px;
+    }
+
+    /* Demo block */
+    .demo-block {
+      background: var(--color-bg-page);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 12px;
+    }
+    .demo-label {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    /* Code snippet */
+    .code-block {
+      background: var(--color-neutral-900);
+      color: #e5e8eb;
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: var(--font-size-sm);
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      white-space: pre;
+    }
+    .t { color: #7dd3fc; }  /* tag */
+    .a { color: #86efac; }  /* attr */
+    .v { color: #fca5a5; }  /* value */
+    .c { color: #94a3b8; }  /* comment */
+
+    /* Class pill */
+    .pill {
+      display: inline-block;
+      background: #e3f2fd;
+      color: #1565c0;
+      border-radius: var(--radius-pill);
+      padding: 2px 10px;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      font-family: monospace;
+      margin-right: 4px;
+    }
+
+    /* ── Sample components for demos ── */
+
+    /* Generic card */
+    .card {
+      background: var(--color-bg-page);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+    }
+    .card__icon {
+      width: 40px; height: 40px;
+      border-radius: var(--radius-md);
+      background: var(--color-primary);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: var(--space-sm);
+      flex-shrink: 0;
+    }
+    .card__icon svg {
+      width: 20px; height: 20px;
+      stroke: #fff; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .card__title {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-heading);
+      margin-bottom: var(--space-xs);
+    }
+    .card__body {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+    }
+
+    /* Step card */
+    .step-card {
+      background: var(--color-bg-page);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+    }
+    .step-card__num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #fff;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: var(--space-md);
+    }
+    .step-card__title {
+      font-size: var(--font-size-body);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-heading);
+      margin-bottom: var(--space-sm);
+    }
+    .step-card__body {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+    }
+
+    /* Stat card */
+    .stat-card {
+      background: var(--color-primary);
+      color: #fff;
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      text-align: center;
+    }
+    .stat-card__number {
+      font-size: var(--font-size-h2);
+      font-weight: var(--font-weight-bold);
+      line-height: 1.2;
+    }
+    .stat-card__label {
+      font-size: var(--font-size-xs);
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    /* Topic tag */
+    .topic-tag {
+      display: inline-flex;
+      align-items: center;
+      background: var(--color-neutral-100);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-primary);
+    }
+
+    /* Centred CTA block */
+    .cta-block {
+      width: 240px;
+      background: var(--color-primary);
+      color: #fff;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--radius-md);
+      text-align: center;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    /* Alignment demo box */
+    .align-box {
+      background: var(--color-neutral-50);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      margin-bottom: var(--space-sm);
+    }
+    .align-box p { margin: 0; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+    .align-note {
+      font-size: var(--font-size-xs);
+      font-family: monospace;
+      color: var(--color-text-muted);
+      margin-bottom: 6px;
+    }
+
+    /* Gap demo */
+    .gap-bar {
+      height: 40px;
+      background: var(--color-primary);
+      opacity: 0.65;
+      border-radius: var(--radius-sm);
+      flex: 1;
+    }
+    .gap-row { margin-bottom: 12px; }
+    .gap-row-label {
+      font-size: var(--font-size-xs);
+      font-family: monospace;
+      color: var(--color-text-muted);
+      margin-bottom: 6px;
+    }
+
+    /* flex-center demo container */
+    .flex-center-box {
+      height: 120px;
+      background: var(--color-neutral-50);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: var(--radius-md);
+    }
+
+    /* Row highlight demo */
+    .row-demo {
+      background: var(--color-neutral-50);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <h1>Utility Classes — Inclusive Prehabilitation for People with Cancer</h1>
+    <p>Reference for layout utility classes defined in custom.css &middot; v1.0.0 &middot; 2026-03-07</p>
+  </header>
+
+  <main class="container">
+
+    <!-- ════════════════════════════════════════════════════
+         TEXT ALIGNMENT
+         ════════════════════════════════════════════════════ -->
+    <section>
+      <h2 class="section-title">Text Alignment</h2>
+
+      <div class="demo-block">
+        <div class="demo-label">Live demo</div>
+
+        <p class="align-note"><span class="pill">.text-left</span></p>
+        <div class="align-box text-left">
+          <p>Exercise before surgery helps your body cope better with the demands of treatment and recovery.</p>
+        </div>
+
+        <p class="align-note"><span class="pill">.text-center</span></p>
+        <div class="align-box text-center">
+          <p>Exercise before surgery helps your body cope better with the demands of treatment and recovery.</p>
+        </div>
+
+        <p class="align-note"><span class="pill">.text-right</span></p>
+        <div class="align-box text-right">
+          <p>Exercise before surgery helps your body cope better with the demands of treatment and recovery.</p>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="c">&lt;!-- centre a block of text --&gt;</span>
+<span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-center"</span><span class="t">&gt;</span>
+  &lt;p&gt;Your text here&lt;/p&gt;
+<span class="t">&lt;/div&gt;</span></pre>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         CENTERING
+         ════════════════════════════════════════════════════ -->
+    <section>
+      <h2 class="section-title">Centering</h2>
+
+      <div class="demo-block">
+        <div class="demo-label"><span class="pill">.mx-auto</span> — centre a fixed-width block horizontally</div>
+        <div class="cta-block mx-auto">Start your prehab journey</div>
+      </div>
+
+<pre class="code-block"><span class="c">&lt;!-- block must have a set width --&gt;</span>
+<span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"mx-auto"</span> <span class="a">style</span>=<span class="v">"width: 240px;"</span><span class="t">&gt;</span>
+  Centred content
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <div class="demo-block">
+        <div class="demo-label"><span class="pill">.flex-center</span> — centre a child on both axes</div>
+        <div class="flex-center-box flex-center">
+          <div class="cta-block">Centred on both axes</div>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="c">&lt;!-- parent needs a height --&gt;</span>
+<span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"flex-center"</span> <span class="a">style</span>=<span class="v">"height: 160px;"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div&gt;</span>Centred child<span class="t">&lt;/div&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         FLEXBOX
+         ════════════════════════════════════════════════════ -->
+    <section>
+      <h2 class="section-title">Flexbox</h2>
+
+      <!-- Icon + text row -->
+      <div class="demo-block">
+        <div class="demo-label">
+          <span class="pill">.flex</span>
+          <span class="pill">.items-center</span>
+          <span class="pill">.gap-md</span>
+          — icon + text row
+        </div>
+        <div class="flex items-center gap-md row-demo">
+          <div class="card__icon" style="margin-bottom:0;">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:600; color:var(--color-text-heading); font-size:var(--font-size-sm);">Improved fitness</div>
+            <div style="font-size:var(--font-size-sm); color:var(--color-text-secondary);">Strengthens the body ahead of surgery or treatment.</div>
+          </div>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"flex items-center gap-md"</span><span class="t">&gt;</span>
+  <span class="t">&lt;img</span> <span class="a">src</span>=<span class="v">"icon.png"</span> <span class="a">alt</span>=<span class="v">""</span> <span class="a">style</span>=<span class="v">"width:40px;"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div&gt;</span>
+    <span class="t">&lt;strong&gt;</span>Improved fitness<span class="t">&lt;/strong&gt;</span>
+    <span class="t">&lt;p&gt;</span>Strengthens the body ahead of surgery.<span class="t">&lt;/p&gt;</span>
+  <span class="t">&lt;/div&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- justify-between -->
+      <div class="demo-block">
+        <div class="demo-label">
+          <span class="pill">.flex</span>
+          <span class="pill">.justify-between</span>
+          <span class="pill">.items-center</span>
+          — label + badge
+        </div>
+        <div class="flex justify-between items-center row-demo">
+          <span style="font-weight:600; font-size:var(--font-size-sm);">Module 1: Introduction to Prehabilitation</span>
+          <span style="background:var(--color-success-light); color:var(--color-success); border-radius:var(--radius-pill); padding:4px 12px; font-size:var(--font-size-xs); font-weight:600; white-space:nowrap; margin-left:16px;">Completed</span>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"flex justify-between items-center"</span><span class="t">&gt;</span>
+  <span class="t">&lt;span&gt;</span>Module 1: Introduction<span class="t">&lt;/span&gt;</span>
+  <span class="t">&lt;span&gt;</span>Completed<span class="t">&lt;/span&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- flex-col stacked list -->
+      <div class="demo-block">
+        <div class="demo-label">
+          <span class="pill">.flex</span>
+          <span class="pill">.flex-col</span>
+          <span class="pill">.gap-sm</span>
+          — stacked checklist
+        </div>
+        <div class="flex flex-col gap-sm">
+          <div class="flex items-center gap-md row-demo">
+            <span style="color:var(--color-primary); font-size:1.1em; flex-shrink:0;">&#10003;</span>
+            <span style="font-size:var(--font-size-sm);">What is cancer prehabilitation and does it work?</span>
+          </div>
+          <div class="flex items-center gap-md row-demo">
+            <span style="color:var(--color-primary); font-size:1.1em; flex-shrink:0;">&#10003;</span>
+            <span style="font-size:var(--font-size-sm);">What factors help and hinder people taking up prehab?</span>
+          </div>
+          <div class="flex items-center gap-md row-demo">
+            <span style="color:var(--color-primary); font-size:1.1em; flex-shrink:0;">&#10003;</span>
+            <span style="font-size:var(--font-size-sm);">What could help as many people as possible to take up prehab?</span>
+          </div>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"flex flex-col gap-sm"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"flex items-center gap-md"</span><span class="t">&gt;</span>
+    <span class="t">&lt;span&gt;</span>&#10003;<span class="t">&lt;/span&gt;</span>
+    <span class="t">&lt;span&gt;</span>List item one<span class="t">&lt;/span&gt;</span>
+  <span class="t">&lt;/div&gt;</span>
+  <span class="c">&lt;!-- repeat for each item --&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- flex-wrap -->
+      <div class="demo-block">
+        <div class="demo-label">
+          <span class="pill">.flex</span>
+          <span class="pill">.flex-wrap</span>
+          <span class="pill">.gap-sm</span>
+          — wrapping tags / badges
+        </div>
+        <div class="flex flex-wrap gap-sm">
+          <span class="topic-tag">Exercise</span>
+          <span class="topic-tag">Nutrition</span>
+          <span class="topic-tag">Mental health</span>
+          <span class="topic-tag">Sleep</span>
+          <span class="topic-tag">Smoking cessation</span>
+          <span class="topic-tag">Alcohol reduction</span>
+          <span class="topic-tag">Social support</span>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"flex flex-wrap gap-sm"</span><span class="t">&gt;</span>
+  <span class="t">&lt;span&gt;</span>Exercise<span class="t">&lt;/span&gt;</span>
+  <span class="t">&lt;span&gt;</span>Nutrition<span class="t">&lt;/span&gt;</span>
+  <span class="c">&lt;!-- items wrap naturally --&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- Gap scale -->
+      <div class="demo-block">
+        <div class="demo-label">Gap scale — works with both flex and grid</div>
+        <div class="gap-row">
+          <div class="gap-row-label">.gap-xs — 4px</div>
+          <div class="flex gap-xs"><div class="gap-bar"></div><div class="gap-bar"></div><div class="gap-bar"></div></div>
+        </div>
+        <div class="gap-row">
+          <div class="gap-row-label">.gap-sm — 8px</div>
+          <div class="flex gap-sm"><div class="gap-bar"></div><div class="gap-bar"></div><div class="gap-bar"></div></div>
+        </div>
+        <div class="gap-row">
+          <div class="gap-row-label">.gap-md — 16px</div>
+          <div class="flex gap-md"><div class="gap-bar"></div><div class="gap-bar"></div><div class="gap-bar"></div></div>
+        </div>
+        <div class="gap-row">
+          <div class="gap-row-label">.gap-lg — 24px</div>
+          <div class="flex gap-lg"><div class="gap-bar"></div><div class="gap-bar"></div><div class="gap-bar"></div></div>
+        </div>
+        <div class="gap-row">
+          <div class="gap-row-label">.gap-xl — 32px</div>
+          <div class="flex gap-xl"><div class="gap-bar"></div><div class="gap-bar"></div><div class="gap-bar"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         GRID
+         ════════════════════════════════════════════════════ -->
+    <section>
+      <h2 class="section-title">Grid</h2>
+
+      <!-- grid-2 -->
+      <div class="demo-block">
+        <div class="demo-label">
+          <span class="pill">.grid-2</span>
+          — 2 equal columns &bull; stacks to 1 below 480 px
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div class="card__title">Physical benefits</div>
+            <div class="card__body">Improved cardiovascular fitness, muscle strength, and reduced risk of post-surgical complications.</div>
+          </div>
+          <div class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div class="card__title">Psychological benefits</div>
+            <div class="card__body">Reduced anxiety and depression, greater sense of control, and improved overall wellbeing.</div>
+          </div>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"grid-2"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div&gt;</span>Column one<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div&gt;</span>Column two<span class="t">&lt;/div&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- grid-3 -->
+      <div class="demo-block">
+        <div class="demo-label">
+          <span class="pill">.grid-3</span>
+          — 3 equal columns &bull; 2 cols below 768 px &bull; 1 col below 480 px
+        </div>
+        <div class="grid-3">
+          <div class="step-card">
+            <div class="step-card__num">1</div>
+            <div class="step-card__title">Assess</div>
+            <div class="step-card__body">Identify barriers and enablers for each individual through a structured conversation.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-card__num">2</div>
+            <div class="step-card__title">Plan</div>
+            <div class="step-card__body">Co-create a personalised prehab plan that fits the patient's life and circumstances.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-card__num">3</div>
+            <div class="step-card__title">Support</div>
+            <div class="step-card__body">Provide ongoing encouragement and adjust the plan as needs and circumstances change.</div>
+          </div>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"grid-3"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div&gt;</span>Column one<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div&gt;</span>Column two<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div&gt;</span>Column three<span class="t">&lt;/div&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- grid-4 -->
+      <div class="demo-block">
+        <div class="demo-label">
+          <span class="pill">.grid-4</span>
+          — 4 equal columns &bull; 2 cols below 960 px &bull; 1 col below 480 px
+        </div>
+        <div class="grid-4">
+          <div class="stat-card">
+            <div class="stat-card__number">72%</div>
+            <div class="stat-card__label">Uptake improvement</div>
+          </div>
+          <div class="stat-card" style="background:var(--color-accent);">
+            <div class="stat-card__number">3&times;</div>
+            <div class="stat-card__label">Better outcomes</div>
+          </div>
+          <div class="stat-card" style="background:var(--color-primary-dark);">
+            <div class="stat-card__number">6 wk</div>
+            <div class="stat-card__label">Average programme</div>
+          </div>
+          <div class="stat-card" style="background:var(--color-accent-dark);">
+            <div class="stat-card__number">4</div>
+            <div class="stat-card__label">Core modules</div>
+          </div>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"grid-4"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div&gt;</span>Col 1<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div&gt;</span>Col 2<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div&gt;</span>Col 3<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div&gt;</span>Col 4<span class="t">&lt;/div&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- grid-auto -->
+      <div class="demo-block">
+        <div class="demo-label">
+          <span class="pill">.grid-auto</span>
+          — auto-fill columns, min 180 px each &bull; always responsive
+        </div>
+        <div class="grid-auto">
+          <div class="topic-tag">Exercise</div>
+          <div class="topic-tag">Nutrition</div>
+          <div class="topic-tag">Mental health</div>
+          <div class="topic-tag">Sleep</div>
+          <div class="topic-tag">Smoking cessation</div>
+          <div class="topic-tag">Alcohol reduction</div>
+          <div class="topic-tag">Social support</div>
+          <div class="topic-tag">Fatigue management</div>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"grid-auto"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div&gt;</span>Item<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div&gt;</span>Item<span class="t">&lt;/div&gt;</span>
+  <span class="c">&lt;!-- add as many items as needed --&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- col-span -->
+      <div class="demo-block">
+        <div class="demo-label">
+          <span class="pill">.col-span-2</span>
+          — span 2 columns inside a grid (use inside .grid-3 or wider)
+        </div>
+        <div class="grid-3">
+          <div class="card col-span-2" style="background:var(--color-neutral-50);">
+            <div class="card__title">Key finding — spans 2 columns</div>
+            <div class="card__body">People from lower socioeconomic backgrounds are significantly less likely to receive prehabilitation referrals, despite often having higher surgical risk.</div>
+          </div>
+          <div class="card">
+            <div class="card__title">Action required</div>
+            <div class="card__body">Targeted outreach and supported pathways for underserved populations.</div>
+          </div>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"grid-3"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"col-span-2"</span><span class="t">&gt;</span>Wide content<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div&gt;</span>Narrow aside<span class="t">&lt;/div&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         COMBINING CLASSES
+         ════════════════════════════════════════════════════ -->
+    <section>
+      <h2 class="section-title">Combining Classes</h2>
+
+      <div class="demo-block">
+        <div class="demo-label">
+          <span class="pill">.grid-2</span>
+          <span class="pill">.gap-xl</span>
+          &mdash; override the default gap
+        </div>
+        <div class="grid-2 gap-xl">
+          <div class="card">
+            <div class="card__title">Enablers</div>
+            <div class="card__body">Strong social support, clear information, accessible facilities, and a confident referrer all increase uptake.</div>
+          </div>
+          <div class="card">
+            <div class="card__title">Barriers</div>
+            <div class="card__body">Transport difficulties, fatigue, anxiety, lack of time, and low self-efficacy are common obstacles.</div>
+          </div>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="c">&lt;!-- Override the default gap with a gap utility --&gt;</span>
+<span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"grid-2 gap-xl"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div&gt;</span>Enablers<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div&gt;</span>Barriers<span class="t">&lt;/div&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <div class="demo-block">
+        <div class="demo-label">
+          <span class="pill">.flex</span>
+          <span class="pill">.flex-wrap</span>
+          <span class="pill">.gap-lg</span>
+          <span class="pill">.justify-center</span>
+          &mdash; centred wrapping row of cards
+        </div>
+        <div class="flex flex-wrap gap-lg justify-center">
+          <div class="card" style="width:200px;">
+            <div class="card__title">Assess</div>
+            <div class="card__body">Structured conversation to understand the patient's situation.</div>
+          </div>
+          <div class="card" style="width:200px;">
+            <div class="card__title">Plan</div>
+            <div class="card__body">A personalised programme built around the individual.</div>
+          </div>
+          <div class="card" style="width:200px;">
+            <div class="card__title">Support</div>
+            <div class="card__body">Ongoing encouragement and plan adjustment over time.</div>
+          </div>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"flex flex-wrap gap-lg justify-center"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">style</span>=<span class="v">"width: 200px;"</span><span class="t">&gt;</span>Assess<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">style</span>=<span class="v">"width: 200px;"</span><span class="t">&gt;</span>Plan<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">style</span>=<span class="v">"width: 200px;"</span><span class="t">&gt;</span>Support<span class="t">&lt;/div&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+    </section>
+
+  </main>
+</body>
+</html>

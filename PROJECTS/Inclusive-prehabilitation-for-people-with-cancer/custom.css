@@ -626,3 +626,120 @@ p               { color: var(--color-text-primary); }
   color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
 }
+
+
+/* ============================================================
+   UTILITY CLASSES — Layout helpers for page authors
+   Add these class names to <div> elements in the Xerte
+   HTML editor (Source / HTML view).
+
+   CENTERING
+     .text-left  .text-center  .text-right
+     .mx-auto    .flex-center
+
+   FLEXBOX
+     .flex           .flex-col       .flex-wrap     .flex-nowrap
+     .items-start    .items-center   .items-end     .items-stretch
+     .justify-start  .justify-center .justify-end
+     .justify-between .justify-around
+     .gap-xs  .gap-sm  .gap-md  .gap-lg  .gap-xl
+
+   GRID
+     .grid-2  .grid-3  .grid-4  .grid-auto
+     .col-span-2  .col-span-3
+   ============================================================ */
+
+/* ── Text alignment ─────────────────────────────────────── */
+.text-left   { text-align: left; }
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+
+/* ── Block centering (horizontal) ───────────────────────── */
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Flexbox ─────────────────────────────────────────────── */
+.flex        { display: flex; }
+.flex-col    { flex-direction: column; }
+.flex-wrap   { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+
+/* Align items (cross axis) */
+.items-start   { align-items: flex-start; }
+.items-center  { align-items: center; }
+.items-end     { align-items: flex-end; }
+.items-stretch { align-items: stretch; }
+
+/* Justify content (main axis) */
+.justify-start   { justify-content: flex-start; }
+.justify-center  { justify-content: center; }
+.justify-end     { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-around  { justify-content: space-around; }
+
+/* Shorthand: centre on both axes */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gap utilities */
+.gap-xs { gap: var(--space-xs); }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-lg { gap: var(--space-lg); }
+.gap-xl { gap: var(--space-xl); }
+
+/* ── Grid ────────────────────────────────────────────────── */
+
+/* 2-column grid */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+/* 3-column grid */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+/* 4-column grid */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+/* Responsive auto-fill — items min 180px, inherently fluid */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* Column spanning */
+.col-span-2 { grid-column: span 2; }
+.col-span-3 { grid-column: span 3; }
+
+/* ── Responsive breakpoints ──────────────────────────────── */
+@media (max-width: 960px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .grid-2,
+  .grid-3,
+  .grid-4      { grid-template-columns: 1fr; }
+  .col-span-2,
+  .col-span-3  { grid-column: span 1; }
+}
