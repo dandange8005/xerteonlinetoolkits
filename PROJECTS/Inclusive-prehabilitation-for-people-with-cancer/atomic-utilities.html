@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atomic Utilities — I-Prehab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Design tokens (mirrored from custom.css) ── */
+    :root {
+      --color-primary:        #256a91;
+      --color-primary-light:  #4a8fb5;
+      --color-primary-dark:   #1a4f6e;
+      --color-accent:         #0f6b99;
+      --color-accent-dark:    #0b4f74;
+      --color-interactive:    #0a6dc2;
+      --color-highlight:      #f5c200;
+      --color-neutral-50:     #f8f9fa;
+      --color-neutral-100:    #f0f2f4;
+      --color-neutral-200:    #e5e8eb;
+      --color-neutral-300:    #d0d5da;
+      --color-neutral-400:    #adb4bc;
+      --color-neutral-500:    #87919b;
+      --color-neutral-600:    #636d78;
+      --color-neutral-700:    #4a525b;
+      --color-neutral-800:    #333a42;
+      --color-neutral-900:    #1a1e24;
+      --color-text-primary:   #333333;
+      --color-text-secondary: #666666;
+      --color-text-muted:     #909090;
+      --color-text-on-dark:   #ffffff;
+      --color-text-heading:   #0f6b99;
+      --color-text-link:      #0a6dc2;
+      --color-bg-page:        #ffffff;
+      --color-bg-surface:     #f8f9fa;
+      --color-bg-hero:        #256a91;
+      --color-success:        #2e7d32;
+      --color-success-light:  #e8f5e9;
+      --color-warning:        #e65100;
+      --color-warning-light:  #fff3e0;
+      --color-error:          #c62828;
+      --color-error-light:    #ffebee;
+      --color-info:           #1565c0;
+      --color-info-light:     #e3f2fd;
+      --font-family-base:     'Inter', Arial, Helvetica, sans-serif;
+      --font-size-h1:         2rem;
+      --font-size-h2:         1.625rem;
+      --font-size-h3:         1.375rem;
+      --font-size-h4:         1.125rem;
+      --font-size-body:       1.125rem;
+      --font-size-sm:         0.875rem;
+      --font-size-xs:         0.75rem;
+      --font-weight-regular:  400;
+      --font-weight-medium:   500;
+      --font-weight-semibold: 600;
+      --font-weight-bold:     700;
+      --line-height-tight:    1.2;
+      --line-height-normal:   1.5;
+      --line-height-relaxed:  1.7;
+      --letter-spacing-wide:  0.02em;
+      --letter-spacing-wider: 0.05em;
+      --space-xs:  4px;
+      --space-sm:  8px;
+      --space-md:  16px;
+      --space-lg:  24px;
+      --space-xl:  32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+      --radius-sm:   4px;
+      --radius-md:   8px;
+      --radius-lg:   12px;
+      --radius-xl:   16px;
+      --radius-pill: 100px;
+      --shadow-sm:   0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md:   0 4px 12px rgba(0,0,0,0.10);
+      --shadow-card: 0 2px 8px rgba(0,0,0,0.09);
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       ATOMIC UTILITY CLASSES (identical to custom.css)
+       ═══════════════════════════════════════════════════════ */
+
+    /* Backgrounds */
+    .bg-page          { background-color: var(--color-bg-page); }
+    .bg-surface       { background-color: var(--color-bg-surface); }
+    .bg-hero          { background-color: var(--color-bg-hero); }
+    .bg-primary       { background-color: var(--color-primary); }
+    .bg-primary-light { background-color: var(--color-primary-light); }
+    .bg-primary-dark  { background-color: var(--color-primary-dark); }
+    .bg-accent        { background-color: var(--color-accent); }
+    .bg-accent-dark   { background-color: var(--color-accent-dark); }
+    .bg-highlight     { background-color: var(--color-highlight); }
+    .bg-neutral-50    { background-color: var(--color-neutral-50); }
+    .bg-neutral-100   { background-color: var(--color-neutral-100); }
+    .bg-neutral-200   { background-color: var(--color-neutral-200); }
+    .bg-neutral-800   { background-color: var(--color-neutral-800); }
+    .bg-neutral-900   { background-color: var(--color-neutral-900); }
+    .bg-success-light { background-color: var(--color-success-light); }
+    .bg-warning-light { background-color: var(--color-warning-light); }
+    .bg-error-light   { background-color: var(--color-error-light); }
+    .bg-info-light    { background-color: var(--color-info-light); }
+
+    /* Text colour */
+    .text-primary   { color: var(--color-text-primary); }
+    .text-secondary { color: var(--color-text-secondary); }
+    .text-muted     { color: var(--color-text-muted); }
+    .text-on-dark   { color: var(--color-text-on-dark); }
+    .text-link      { color: var(--color-text-link); }
+    .text-heading   { color: var(--color-text-heading); }
+    .text-success   { color: var(--color-success); }
+    .text-warning   { color: var(--color-warning); }
+    .text-error     { color: var(--color-error); }
+    .text-info      { color: var(--color-info); }
+
+    /* Font size */
+    .text-xs   { font-size: var(--font-size-xs); }
+    .text-sm   { font-size: var(--font-size-sm); }
+    .text-body { font-size: var(--font-size-body); }
+    .text-h4   { font-size: var(--font-size-h4); }
+    .text-h3   { font-size: var(--font-size-h3); }
+    .text-h2   { font-size: var(--font-size-h2); }
+    .text-h1   { font-size: var(--font-size-h1); }
+
+    /* Font weight */
+    .font-regular  { font-weight: var(--font-weight-regular); }
+    .font-medium   { font-weight: var(--font-weight-medium); }
+    .font-semibold { font-weight: var(--font-weight-semibold); }
+    .font-bold     { font-weight: var(--font-weight-bold); }
+
+    /* Line height */
+    .leading-tight   { line-height: var(--line-height-tight); }
+    .leading-normal  { line-height: var(--line-height-normal); }
+    .leading-relaxed { line-height: var(--line-height-relaxed); }
+
+    /* Letter spacing */
+    .tracking-wide  { letter-spacing: var(--letter-spacing-wide); }
+    .tracking-wider { letter-spacing: var(--letter-spacing-wider); }
+
+    /* Text transform */
+    .uppercase  { text-transform: uppercase; }
+    .capitalize { text-transform: capitalize; }
+    .lowercase  { text-transform: lowercase; }
+
+    /* Text alignment */
+    .text-left   { text-align: left; }
+    .text-center { text-align: center; }
+    .text-right  { text-align: right; }
+
+    /* Padding */
+    .p-xs  { padding: var(--space-xs); }
+    .p-sm  { padding: var(--space-sm); }
+    .p-md  { padding: var(--space-md); }
+    .p-lg  { padding: var(--space-lg); }
+    .p-xl  { padding: var(--space-xl); }
+    .p-2xl { padding: var(--space-2xl); }
+    .p-3xl { padding: var(--space-3xl); }
+    .px-xs  { padding-left: var(--space-xs);  padding-right: var(--space-xs); }
+    .px-sm  { padding-left: var(--space-sm);  padding-right: var(--space-sm); }
+    .px-md  { padding-left: var(--space-md);  padding-right: var(--space-md); }
+    .px-lg  { padding-left: var(--space-lg);  padding-right: var(--space-lg); }
+    .px-xl  { padding-left: var(--space-xl);  padding-right: var(--space-xl); }
+    .px-2xl { padding-left: var(--space-2xl); padding-right: var(--space-2xl); }
+    .py-xs  { padding-top: var(--space-xs);  padding-bottom: var(--space-xs); }
+    .py-sm  { padding-top: var(--space-sm);  padding-bottom: var(--space-sm); }
+    .py-md  { padding-top: var(--space-md);  padding-bottom: var(--space-md); }
+    .py-lg  { padding-top: var(--space-lg);  padding-bottom: var(--space-lg); }
+    .py-xl  { padding-top: var(--space-xl);  padding-bottom: var(--space-xl); }
+    .py-2xl { padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); }
+    .pt-0   { padding-top: 0; }
+    .pt-xs  { padding-top: var(--space-xs); }
+    .pt-sm  { padding-top: var(--space-sm); }
+    .pt-md  { padding-top: var(--space-md); }
+    .pt-lg  { padding-top: var(--space-lg); }
+    .pt-xl  { padding-top: var(--space-xl); }
+    .pt-2xl { padding-top: var(--space-2xl); }
+    .pb-0   { padding-bottom: 0; }
+    .pb-xs  { padding-bottom: var(--space-xs); }
+    .pb-sm  { padding-bottom: var(--space-sm); }
+    .pb-md  { padding-bottom: var(--space-md); }
+    .pb-lg  { padding-bottom: var(--space-lg); }
+    .pb-xl  { padding-bottom: var(--space-xl); }
+    .pb-2xl { padding-bottom: var(--space-2xl); }
+
+    /* Margin */
+    .m-0   { margin: 0; }
+    .m-xs  { margin: var(--space-xs); }
+    .m-sm  { margin: var(--space-sm); }
+    .m-md  { margin: var(--space-md); }
+    .m-lg  { margin: var(--space-lg); }
+    .m-xl  { margin: var(--space-xl); }
+    .mt-0   { margin-top: 0; }
+    .mt-xs  { margin-top: var(--space-xs); }
+    .mt-sm  { margin-top: var(--space-sm); }
+    .mt-md  { margin-top: var(--space-md); }
+    .mt-lg  { margin-top: var(--space-lg); }
+    .mt-xl  { margin-top: var(--space-xl); }
+    .mt-2xl { margin-top: var(--space-2xl); }
+    .mt-3xl { margin-top: var(--space-3xl); }
+    .mb-0   { margin-bottom: 0; }
+    .mb-xs  { margin-bottom: var(--space-xs); }
+    .mb-sm  { margin-bottom: var(--space-sm); }
+    .mb-md  { margin-bottom: var(--space-md); }
+    .mb-lg  { margin-bottom: var(--space-lg); }
+    .mb-xl  { margin-bottom: var(--space-xl); }
+    .mb-2xl { margin-bottom: var(--space-2xl); }
+    .mb-3xl { margin-bottom: var(--space-3xl); }
+    .my-xs  { margin-top: var(--space-xs);  margin-bottom: var(--space-xs); }
+    .my-sm  { margin-top: var(--space-sm);  margin-bottom: var(--space-sm); }
+    .my-md  { margin-top: var(--space-md);  margin-bottom: var(--space-md); }
+    .my-lg  { margin-top: var(--space-lg);  margin-bottom: var(--space-lg); }
+    .my-xl  { margin-top: var(--space-xl);  margin-bottom: var(--space-xl); }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .mx-xs  { margin-left: var(--space-xs);  margin-right: var(--space-xs); }
+    .mx-sm  { margin-left: var(--space-sm);  margin-right: var(--space-sm); }
+    .mx-md  { margin-left: var(--space-md);  margin-right: var(--space-md); }
+    .mx-lg  { margin-left: var(--space-lg);  margin-right: var(--space-lg); }
+    .mx-xl  { margin-left: var(--space-xl);  margin-right: var(--space-xl); }
+
+    /* Border */
+    .border        { border: 1px solid var(--color-neutral-200); }
+    .border-top    { border-top: 1px solid var(--color-neutral-200); }
+    .border-bottom { border-bottom: 1px solid var(--color-neutral-200); }
+    .border-left   { border-left: 1px solid var(--color-neutral-200); }
+    .border-right  { border-right: 1px solid var(--color-neutral-200); }
+    .border-none   { border: none; }
+    .border-primary { border-color: var(--color-primary); }
+    .border-accent  { border-color: var(--color-accent); }
+    .border-success { border-color: var(--color-success); }
+    .border-warning { border-color: var(--color-warning); }
+    .border-error   { border-color: var(--color-error); }
+    .border-info    { border-color: var(--color-info); }
+    .border-l-primary { border-left: 4px solid var(--color-primary); }
+    .border-l-accent  { border-left: 4px solid var(--color-accent); }
+    .border-l-success { border-left: 4px solid var(--color-success); }
+    .border-l-warning { border-left: 4px solid var(--color-warning); }
+    .border-l-error   { border-left: 4px solid var(--color-error); }
+    .border-l-info    { border-left: 4px solid var(--color-info); }
+
+    /* Border radius */
+    .rounded-none { border-radius: 0; }
+    .rounded-sm   { border-radius: var(--radius-sm); }
+    .rounded-md   { border-radius: var(--radius-md); }
+    .rounded-lg   { border-radius: var(--radius-lg); }
+    .rounded-xl   { border-radius: var(--radius-xl); }
+    .rounded-pill { border-radius: var(--radius-pill); }
+    .rounded-full { border-radius: 50%; }
+
+    /* Shadow */
+    .shadow-none { box-shadow: none; }
+    .shadow-sm   { box-shadow: var(--shadow-sm); }
+    .shadow-md   { box-shadow: var(--shadow-md); }
+    .shadow-card { box-shadow: var(--shadow-card); }
+
+    /* Flexbox */
+    .flex        { display: flex; }
+    .flex-col    { flex-direction: column; }
+    .flex-wrap   { flex-wrap: wrap; }
+    .flex-nowrap { flex-wrap: nowrap; }
+    .flex-center { display: flex; align-items: center; justify-content: center; }
+    .items-start   { align-items: flex-start; }
+    .items-center  { align-items: center; }
+    .items-end     { align-items: flex-end; }
+    .items-stretch { align-items: stretch; }
+    .justify-start   { justify-content: flex-start; }
+    .justify-center  { justify-content: center; }
+    .justify-end     { justify-content: flex-end; }
+    .justify-between { justify-content: space-between; }
+    .justify-around  { justify-content: space-around; }
+    .gap-xs { gap: var(--space-xs); }
+    .gap-sm { gap: var(--space-sm); }
+    .gap-md { gap: var(--space-md); }
+    .gap-lg { gap: var(--space-lg); }
+    .gap-xl { gap: var(--space-xl); }
+
+    /* Grid */
+    .grid-2    { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); }
+    .grid-3    { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
+    .grid-4    { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
+    .grid-auto { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--space-lg); }
+    .col-span-2 { grid-column: span 2; }
+    .col-span-3 { grid-column: span 3; }
+
+    /* Sizing */
+    .w-full        { width: 100%; }
+    .w-auto        { width: auto; }
+    .max-w-sm      { max-width: 320px; }
+    .max-w-md      { max-width: 480px; }
+    .max-w-lg      { max-width: 640px; }
+    .max-w-content { max-width: 720px; }
+
+    /* Display */
+    .block        { display: block; }
+    .inline       { display: inline; }
+    .inline-block { display: inline-block; }
+    .inline-flex  { display: inline-flex; }
+    .hidden       { display: none; }
+
+    /* Overflow / Position */
+    .overflow-hidden { overflow: hidden; }
+    .relative        { position: relative; }
+
+    /* ── Page chrome ── */
+    body {
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-normal);
+      color: var(--color-text-primary);
+      background: var(--color-bg-surface);
+    }
+
+    .page-header {
+      background: var(--color-bg-hero);
+      color: #fff;
+      padding: 40px 24px;
+    }
+    .page-header h1 {
+      font-size: var(--font-size-h2);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: 8px;
+    }
+    .page-header p { opacity: 0.85; font-size: var(--font-size-sm); }
+    .page-header nav { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .page-header nav a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: 0.03em;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .page-header nav a:hover { color: #fff; border-bottom-color: #fff; }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
+
+    .section-title {
+      font-size: var(--font-size-h3);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--color-neutral-200);
+      margin-bottom: 24px;
+    }
+    .section-intro {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: 20px;
+      line-height: var(--line-height-relaxed);
+    }
+
+    /* Demo wrapper */
+    .demo-block {
+      background: var(--color-bg-page);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 12px;
+    }
+    .demo-label {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    /* Code */
+    .code-block {
+      background: var(--color-neutral-900);
+      color: #e5e8eb;
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: var(--font-size-sm);
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      white-space: pre;
+    }
+    .t { color: #7dd3fc; }
+    .a { color: #86efac; }
+    .v { color: #fca5a5; }
+    .c { color: #94a3b8; }
+    .k { color: #f9a8d4; }
+
+    /* Swatch grid */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+    }
+    .swatch {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--color-neutral-200);
+    }
+    .swatch__color { height: 48px; }
+    .swatch__label {
+      padding: 6px 10px;
+      font-size: 11px;
+      font-family: monospace;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      background: var(--color-bg-page);
+      border-top: 1px solid var(--color-neutral-200);
+    }
+
+    /* Class pill */
+    .pill {
+      display: inline-block;
+      background: #e3f2fd;
+      color: #1565c0;
+      border-radius: var(--radius-pill);
+      padding: 2px 10px;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      font-family: monospace;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+    /* Spacing ruler */
+    .space-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+    .space-bar {
+      background: var(--color-primary);
+      opacity: 0.6;
+      height: 24px;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+    .space-label {
+      font-size: 11px;
+      font-family: monospace;
+      color: var(--color-text-muted);
+      white-space: nowrap;
+    }
+
+    /* Shadow swatch */
+    .shadow-swatch {
+      background: var(--color-bg-page);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+      font-family: monospace;
+    }
+
+    /* Radius swatch */
+    .radius-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
+    .radius-box {
+      width: 64px; height: 64px;
+      background: var(--color-primary);
+      opacity: 0.75;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .radius-box span {
+      font-size: 10px;
+      font-family: monospace;
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    @media (max-width: 960px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .col-span-2, .col-span-3  { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <h1>Atomic Utilities — Inclusive Prehabilitation for People with Cancer</h1>
+    <p>Single-purpose utility classes from custom.css &middot; v2.0.0 &middot; 2026-03-09<br>
+       Compose these classes in the Xerte HTML editor to build any component without writing custom CSS.</p>
+    <nav>
+      <a href="#backgrounds">Backgrounds</a>
+      <a href="#text-colour">Text colour</a>
+      <a href="#typography">Typography</a>
+      <a href="#spacing">Spacing</a>
+      <a href="#border-radius">Border &amp; Radius</a>
+      <a href="#shadow">Shadow</a>
+      <a href="#sizing">Sizing</a>
+      <a href="#display">Display</a>
+      <a href="#composition">Composition</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- ════════════════════════════════════════════════════
+         BACKGROUNDS
+         ════════════════════════════════════════════════════ -->
+    <section id="backgrounds">
+      <h2 class="section-title">Backgrounds</h2>
+      <p class="section-intro">Apply a background fill using a single class. Pair with text-colour utilities to ensure legibility.</p>
+
+      <div class="demo-block">
+        <div class="demo-label">Page &amp; surface</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch__color bg-page" style="border-bottom:1px solid #e5e8eb;"></div><div class="swatch__label">.bg-page</div></div>
+          <div class="swatch"><div class="swatch__color bg-surface"></div><div class="swatch__label">.bg-surface</div></div>
+          <div class="swatch"><div class="swatch__color bg-hero"></div><div class="swatch__label">.bg-hero</div></div>
+        </div>
+      </div>
+
+      <div class="demo-block">
+        <div class="demo-label">Brand colours</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch__color bg-primary"></div><div class="swatch__label">.bg-primary</div></div>
+          <div class="swatch"><div class="swatch__color bg-primary-light"></div><div class="swatch__label">.bg-primary-light</div></div>
+          <div class="swatch"><div class="swatch__color bg-primary-dark"></div><div class="swatch__label">.bg-primary-dark</div></div>
+          <div class="swatch"><div class="swatch__color bg-accent"></div><div class="swatch__label">.bg-accent</div></div>
+          <div class="swatch"><div class="swatch__color bg-accent-dark"></div><div class="swatch__label">.bg-accent-dark</div></div>
+          <div class="swatch"><div class="swatch__color bg-highlight"></div><div class="swatch__label">.bg-highlight</div></div>
+        </div>
+      </div>
+
+      <div class="demo-block">
+        <div class="demo-label">Neutrals</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch__color bg-neutral-50"></div><div class="swatch__label">.bg-neutral-50</div></div>
+          <div class="swatch"><div class="swatch__color bg-neutral-100"></div><div class="swatch__label">.bg-neutral-100</div></div>
+          <div class="swatch"><div class="swatch__color bg-neutral-200"></div><div class="swatch__label">.bg-neutral-200</div></div>
+          <div class="swatch"><div class="swatch__color bg-neutral-800"></div><div class="swatch__label">.bg-neutral-800</div></div>
+          <div class="swatch"><div class="swatch__color bg-neutral-900"></div><div class="swatch__label">.bg-neutral-900</div></div>
+        </div>
+      </div>
+
+      <div class="demo-block">
+        <div class="demo-label">Semantic — use for callouts and alerts</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch__color bg-success-light"></div><div class="swatch__label">.bg-success-light</div></div>
+          <div class="swatch"><div class="swatch__color bg-warning-light"></div><div class="swatch__label">.bg-warning-light</div></div>
+          <div class="swatch"><div class="swatch__color bg-error-light"></div><div class="swatch__label">.bg-error-light</div></div>
+          <div class="swatch"><div class="swatch__color bg-info-light"></div><div class="swatch__label">.bg-info-light</div></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════
+         TEXT COLOUR
+         ════════════════════════════════════════════════════ -->
+    <section id="text-colour">
+      <h2 class="section-title">Text Colour</h2>
+      <p class="section-intro">Applies only the <code>color</code> property. Compose with font-size and weight classes to style any text element.</p>
+
+      <div class="demo-block">
+        <div class="demo-label">Live preview</div>
+        <div class="flex flex-col gap-sm">
+          <div class="flex items-center gap-lg">
+            <span style="width:160px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.text-primary</span>
+            <span class="text-primary text-body font-medium">The quick brown fox</span>
+          </div>
+          <div class="flex items-center gap-lg">
+            <span style="width:160px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.text-secondary</span>
+            <span class="text-secondary text-body">The quick brown fox</span>
+          </div>
+          <div class="flex items-center gap-lg">
+            <span style="width:160px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.text-muted</span>
+            <span class="text-muted text-body">The quick brown fox</span>
+          </div>
+          <div class="flex items-center gap-lg">
+            <span style="width:160px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.text-heading</span>
+            <span class="text-heading text-body font-semibold">The quick brown fox</span>
+          </div>
+          <div class="flex items-center gap-lg">
+            <span style="width:160px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.text-link</span>
+            <span class="text-link text-body">The quick brown fox</span>
+          </div>
+          <div class="flex items-center gap-lg">
+            <span style="width:160px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.text-success</span>
+            <span class="text-success text-body font-medium">Completed successfully</span>
+          </div>
+          <div class="flex items-center gap-lg">
+            <span style="width:160px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.text-warning</span>
+            <span class="text-warning text-body font-medium">Please take note</span>
+          </div>
+          <div class="flex items-center gap-lg">
+            <span style="width:160px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.text-error</span>
+            <span class="text-error text-body font-medium">Something went wrong</span>
+          </div>
+          <div class="flex items-center gap-lg">
+            <span style="width:160px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.text-info</span>
+            <span class="text-info text-body font-medium">Did you know?</span>
+          </div>
+          <div class="flex items-center gap-lg">
+            <span style="width:160px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.text-on-dark</span>
+            <span class="bg-primary rounded-sm px-sm py-xs text-on-dark text-body">White text on dark</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════
+         TYPOGRAPHY
+         ════════════════════════════════════════════════════ -->
+    <section id="typography">
+      <h2 class="section-title">Typography</h2>
+      <p class="section-intro">Size, weight, line-height, letter-spacing, and transform classes — all sourced from your font tokens.</p>
+
+      <div class="demo-block">
+        <div class="demo-label">Font size scale</div>
+        <div class="flex flex-col gap-sm">
+          <div class="flex items-baseline gap-md">
+            <span style="width:80px; font-size:11px; font-family:monospace; color:var(--color-text-muted); flex-shrink:0;">.text-h1</span>
+            <span class="text-h1 text-heading font-bold leading-tight">Prehabilitation</span>
+          </div>
+          <div class="flex items-baseline gap-md">
+            <span style="width:80px; font-size:11px; font-family:monospace; color:var(--color-text-muted); flex-shrink:0;">.text-h2</span>
+            <span class="text-h2 text-heading font-semibold leading-tight">Prehabilitation</span>
+          </div>
+          <div class="flex items-baseline gap-md">
+            <span style="width:80px; font-size:11px; font-family:monospace; color:var(--color-text-muted); flex-shrink:0;">.text-h3</span>
+            <span class="text-h3 text-heading font-semibold">Prehabilitation</span>
+          </div>
+          <div class="flex items-baseline gap-md">
+            <span style="width:80px; font-size:11px; font-family:monospace; color:var(--color-text-muted); flex-shrink:0;">.text-h4</span>
+            <span class="text-h4 text-heading font-semibold">Prehabilitation</span>
+          </div>
+          <div class="flex items-baseline gap-md">
+            <span style="width:80px; font-size:11px; font-family:monospace; color:var(--color-text-muted); flex-shrink:0;">.text-body</span>
+            <span class="text-body">Prehabilitation</span>
+          </div>
+          <div class="flex items-baseline gap-md">
+            <span style="width:80px; font-size:11px; font-family:monospace; color:var(--color-text-muted); flex-shrink:0;">.text-sm</span>
+            <span class="text-sm">Prehabilitation</span>
+          </div>
+          <div class="flex items-baseline gap-md">
+            <span style="width:80px; font-size:11px; font-family:monospace; color:var(--color-text-muted); flex-shrink:0;">.text-xs</span>
+            <span class="text-xs">Prehabilitation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block">
+        <div class="demo-label">Font weight</div>
+        <div class="flex flex-col gap-sm">
+          <div class="flex items-center gap-md">
+            <span style="width:140px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.font-regular</span>
+            <span class="text-body font-regular">Exercise before surgery</span>
+          </div>
+          <div class="flex items-center gap-md">
+            <span style="width:140px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.font-medium</span>
+            <span class="text-body font-medium">Exercise before surgery</span>
+          </div>
+          <div class="flex items-center gap-md">
+            <span style="width:140px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.font-semibold</span>
+            <span class="text-body font-semibold">Exercise before surgery</span>
+          </div>
+          <div class="flex items-center gap-md">
+            <span style="width:140px; font-size:11px; font-family:monospace; color:var(--color-text-muted);">.font-bold</span>
+            <span class="text-body font-bold">Exercise before surgery</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block">
+        <div class="demo-label">Line height &amp; letter spacing</div>
+        <div class="grid-3 gap-md">
+          <div>
+            <div style="font-size:11px; font-family:monospace; color:var(--color-text-muted); margin-bottom:8px;">.leading-tight</div>
+            <p class="text-sm leading-tight">Cancer prehabilitation is a process that begins at diagnosis and helps people prepare for treatment.</p>
+          </div>
+          <div>
+            <div style="font-size:11px; font-family:monospace; color:var(--color-text-muted); margin-bottom:8px;">.leading-normal</div>
+            <p class="text-sm leading-normal">Cancer prehabilitation is a process that begins at diagnosis and helps people prepare for treatment.</p>
+          </div>
+          <div>
+            <div style="font-size:11px; font-family:monospace; color:var(--color-text-muted); margin-bottom:8px;">.leading-relaxed</div>
+            <p class="text-sm leading-relaxed">Cancer prehabilitation is a process that begins at diagnosis and helps people prepare for treatment.</p>
+          </div>
+        </div>
+        <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--color-neutral-100);">
+          <div style="font-size:11px; font-family:monospace; color:var(--color-text-muted); margin-bottom:12px;">Letter spacing + transforms</div>
+          <div class="flex flex-col gap-sm">
+            <span class="text-xs uppercase tracking-wider text-muted">.uppercase .tracking-wider — Section label</span>
+            <span class="text-sm tracking-wide text-secondary">.tracking-wide — Subtle spacing on body text</span>
+            <span class="text-sm capitalize text-primary font-medium">.capitalize — inclusive prehabilitation for people with cancer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════
+         SPACING
+         ════════════════════════════════════════════════════ -->
+    <section id="spacing">
+      <h2 class="section-title">Spacing — Padding &amp; Margin</h2>
+      <p class="section-intro">All spacing tokens available as padding (<code>p-</code>, <code>px-</code>, <code>py-</code>, <code>pt-</code>, <code>pb-</code>) and margin (<code>m-</code>, <code>mt-</code>, <code>mb-</code>, <code>my-</code>, <code>mx-</code>) classes.</p>
+
+      <div class="demo-block">
+        <div class="demo-label">Spacing scale</div>
+        <div class="flex flex-col gap-xs">
+          <div class="space-row"><div class="space-bar" style="width:4px;"></div><span class="space-label">xs — 4px &nbsp; .p-xs .m-xs .pt-xs .mb-xs &hellip;</span></div>
+          <div class="space-row"><div class="space-bar" style="width:8px;"></div><span class="space-label">sm — 8px &nbsp; .p-sm .m-sm .pt-sm .mb-sm &hellip;</span></div>
+          <div class="space-row"><div class="space-bar" style="width:16px;"></div><span class="space-label">md — 16px  .p-md .m-md .pt-md .mb-md &hellip;</span></div>
+          <div class="space-row"><div class="space-bar" style="width:24px;"></div><span class="space-label">lg — 24px  .p-lg .m-lg .pt-lg .mb-lg &hellip;</span></div>
+          <div class="space-row"><div class="space-bar" style="width:32px;"></div><span class="space-label">xl — 32px  .p-xl .m-xl .pt-xl .mb-xl &hellip;</span></div>
+          <div class="space-row"><div class="space-bar" style="width:48px;"></div><span class="space-label">2xl — 48px .p-2xl .mt-2xl .mb-2xl &hellip;</span></div>
+          <div class="space-row"><div class="space-bar" style="width:64px;"></div><span class="space-label">3xl — 64px .p-3xl .mt-3xl .mb-3xl &hellip;</span></div>
+        </div>
+      </div>
+
+      <div class="demo-block">
+        <div class="demo-label">Padding in action</div>
+        <div class="flex flex-wrap gap-sm items-end">
+          <div class="bg-primary-light rounded-md p-xs text-on-dark text-xs font-mono" style="font-family:monospace;">.p-xs</div>
+          <div class="bg-primary-light rounded-md p-sm text-on-dark text-xs font-mono" style="font-family:monospace;">.p-sm</div>
+          <div class="bg-primary-light rounded-md p-md text-on-dark text-xs font-mono" style="font-family:monospace;">.p-md</div>
+          <div class="bg-primary-light rounded-md p-lg text-on-dark text-xs font-mono" style="font-family:monospace;">.p-lg</div>
+          <div class="bg-primary-light rounded-md p-xl text-on-dark text-xs font-mono" style="font-family:monospace;">.p-xl</div>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="c">&lt;!-- Full padding --&gt;</span>
+<span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"p-lg"</span><span class="t">&gt;</span>...<span class="t">&lt;/div&gt;</span>
+
+<span class="c">&lt;!-- Horizontal padding only --&gt;</span>
+<span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"px-xl py-md"</span><span class="t">&gt;</span>...<span class="t">&lt;/div&gt;</span>
+
+<span class="c">&lt;!-- Top + bottom margin --&gt;</span>
+<span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"mt-xl mb-md"</span><span class="t">&gt;</span>...<span class="t">&lt;/div&gt;</span>
+
+<span class="c">&lt;!-- Reset margin --&gt;</span>
+<span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"mt-0 mb-sm"</span><span class="t">&gt;</span>...<span class="t">&lt;/div&gt;</span></pre>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════
+         BORDER & RADIUS
+         ════════════════════════════════════════════════════ -->
+    <section id="border-radius">
+      <h2 class="section-title">Border &amp; Radius</h2>
+      <p class="section-intro">Border utilities for edges, border-colour modifiers (combine with <span class="pill">.border</span>), accent left-border strips, and radius classes.</p>
+
+      <div class="demo-block">
+        <div class="demo-label">Border edges</div>
+        <div class="grid-2 gap-md">
+          <div class="p-md text-sm text-secondary border rounded-md">.border — all sides (neutral)</div>
+          <div class="p-md text-sm text-secondary border-top" style="padding-top:16px;">.border-top</div>
+          <div class="p-md text-sm text-secondary border-bottom">.border-bottom</div>
+          <div class="p-md text-sm text-secondary border-left" style="padding-left:16px;">.border-left</div>
+        </div>
+      </div>
+
+      <div class="demo-block">
+        <div class="demo-label">Border colour — pair with .border</div>
+        <div class="flex flex-col gap-sm">
+          <div class="border border-primary rounded-md px-md py-sm text-sm text-secondary">.border .border-primary</div>
+          <div class="border border-accent rounded-md px-md py-sm text-sm text-secondary">.border .border-accent</div>
+          <div class="border border-success rounded-md px-md py-sm text-sm text-secondary">.border .border-success</div>
+          <div class="border border-warning rounded-md px-md py-sm text-sm text-secondary">.border .border-warning</div>
+          <div class="border border-error rounded-md px-md py-sm text-sm text-secondary">.border .border-error</div>
+          <div class="border border-info rounded-md px-md py-sm text-sm text-secondary">.border .border-info</div>
+        </div>
+      </div>
+
+      <div class="demo-block">
+        <div class="demo-label">Left-border strip — .border-l-* (callout pattern)</div>
+        <div class="flex flex-col gap-sm">
+          <div class="border-l-primary bg-neutral-50 rounded-md px-md py-sm text-sm text-secondary">.border-l-primary</div>
+          <div class="border-l-success bg-success-light rounded-md px-md py-sm text-sm text-success">.border-l-success + .bg-success-light</div>
+          <div class="border-l-warning bg-warning-light rounded-md px-md py-sm text-sm text-warning">.border-l-warning + .bg-warning-light</div>
+          <div class="border-l-error bg-error-light rounded-md px-md py-sm text-sm text-error">.border-l-error + .bg-error-light</div>
+          <div class="border-l-info bg-info-light rounded-md px-md py-sm text-sm text-info">.border-l-info + .bg-info-light</div>
+        </div>
+      </div>
+
+      <div class="demo-block">
+        <div class="demo-label">Border radius</div>
+        <div class="radius-row">
+          <div class="radius-box" style="border-radius:0;"><span>.rounded-none</span></div>
+          <div class="radius-box rounded-sm"><span>.rounded-sm</span></div>
+          <div class="radius-box rounded-md"><span>.rounded-md</span></div>
+          <div class="radius-box rounded-lg"><span>.rounded-lg</span></div>
+          <div class="radius-box rounded-xl"><span>.rounded-xl</span></div>
+          <div class="radius-box rounded-pill" style="width:80px; height:40px;"><span>.rounded-pill</span></div>
+          <div class="radius-box rounded-full" style="width:64px; height:64px;"><span>.rounded-full</span></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════
+         SHADOW
+         ════════════════════════════════════════════════════ -->
+    <section id="shadow">
+      <h2 class="section-title">Shadow / Elevation</h2>
+      <p class="section-intro">Three shadow levels matched to surface tokens. Use <span class="pill">.shadow-card</span> for most card elements.</p>
+
+      <div class="demo-block">
+        <div class="grid-4 gap-lg">
+          <div class="shadow-swatch shadow-none border rounded-md">.shadow-none</div>
+          <div class="shadow-swatch shadow-sm rounded-md">.shadow-sm</div>
+          <div class="shadow-swatch shadow-card rounded-md">.shadow-card</div>
+          <div class="shadow-swatch shadow-md rounded-md">.shadow-md</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════
+         SIZING
+         ════════════════════════════════════════════════════ -->
+    <section id="sizing">
+      <h2 class="section-title">Sizing</h2>
+      <p class="section-intro">Width and max-width constraints. <span class="pill">.max-w-content</span> matches the 720 px reading column used by the page grid.</p>
+
+      <div class="demo-block">
+        <div class="demo-label">Max-width scale</div>
+        <div class="flex flex-col gap-sm">
+          <div>
+            <div style="font-size:11px; font-family:monospace; color:var(--color-text-muted); margin-bottom:6px;">.max-w-sm — 320px</div>
+            <div class="max-w-sm bg-primary-light rounded-md py-sm px-md text-on-dark text-xs" style="font-family:monospace;">.max-w-sm</div>
+          </div>
+          <div>
+            <div style="font-size:11px; font-family:monospace; color:var(--color-text-muted); margin-bottom:6px;">.max-w-md — 480px</div>
+            <div class="max-w-md bg-primary-light rounded-md py-sm px-md text-on-dark text-xs" style="font-family:monospace;">.max-w-md</div>
+          </div>
+          <div>
+            <div style="font-size:11px; font-family:monospace; color:var(--color-text-muted); margin-bottom:6px;">.max-w-lg — 640px</div>
+            <div class="max-w-lg bg-primary-light rounded-md py-sm px-md text-on-dark text-xs" style="font-family:monospace;">.max-w-lg</div>
+          </div>
+          <div>
+            <div style="font-size:11px; font-family:monospace; color:var(--color-text-muted); margin-bottom:6px;">.max-w-content — 720px (reading column)</div>
+            <div class="max-w-content bg-primary rounded-md py-sm px-md text-on-dark text-xs" style="font-family:monospace;">.max-w-content</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════
+         DISPLAY
+         ════════════════════════════════════════════════════ -->
+    <section id="display">
+      <h2 class="section-title">Display &amp; Overflow</h2>
+      <p class="section-intro">Control rendering context. Most useful for toggling visibility or making inline elements stretch full-width.</p>
+
+      <div class="demo-block">
+        <div class="demo-label">Common display values</div>
+        <div class="flex flex-col gap-sm">
+          <div>
+            <span style="font-size:11px; font-family:monospace; color:var(--color-text-muted);">.block</span>
+            &nbsp;
+            <span class="block bg-neutral-100 rounded-sm px-md py-xs text-sm text-secondary" style="max-width:240px;">Block — fills container width</span>
+          </div>
+          <div>
+            <span style="font-size:11px; font-family:monospace; color:var(--color-text-muted);">.inline-block</span>
+            &nbsp;
+            <span class="inline-block bg-neutral-100 rounded-sm px-md py-xs text-sm text-secondary">Inline-block — shrinks to content</span>
+          </div>
+          <div>
+            <span style="font-size:11px; font-family:monospace; color:var(--color-text-muted);">.inline-flex</span>
+            &nbsp;
+            <span class="inline-flex items-center gap-xs bg-neutral-100 rounded-sm px-md py-xs text-sm text-secondary">
+              <span style="width:8px; height:8px; border-radius:50%; background:var(--color-primary); flex-shrink:0;"></span>
+              Inline-flex with gap
+            </span>
+          </div>
+        </div>
+      </div>
+
+<pre class="code-block"><span class="c">&lt;!-- Make a span full-width --&gt;</span>
+<span class="t">&lt;span</span> <span class="a">class</span>=<span class="v">"block w-full"</span><span class="t">&gt;</span>...<span class="t">&lt;/span&gt;</span>
+
+<span class="c">&lt;!-- Inline badge with icon --&gt;</span>
+<span class="t">&lt;span</span> <span class="a">class</span>=<span class="v">"inline-flex items-center gap-xs"</span><span class="t">&gt;</span>
+  <span class="t">&lt;img</span> <span class="a">src</span>=<span class="v">"icon.svg"</span> <span class="a">alt</span>=<span class="v">""</span><span class="t">&gt;</span> Label
+<span class="t">&lt;/span&gt;</span>
+
+<span class="c">&lt;!-- Overflow clip on a fixed-height element --&gt;</span>
+<span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"overflow-hidden rounded-lg"</span><span class="t">&gt;</span>...<span class="t">&lt;/div&gt;</span></pre>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════
+         COMPOSITION EXAMPLES
+         ════════════════════════════════════════════════════ -->
+    <section id="composition">
+      <h2 class="section-title">Composition Examples</h2>
+      <p class="section-intro">No custom CSS needed — each example below is built entirely from atomic utility classes.</p>
+
+      <!-- Plain card -->
+      <div class="demo-block">
+        <div class="demo-label">Plain card</div>
+        <div class="bg-page border rounded-lg p-lg shadow-card" style="max-width:400px;">
+          <div class="text-xs uppercase tracking-wider text-muted mb-sm">Key fact</div>
+          <div class="text-h4 font-semibold text-heading mb-sm">Physical benefits of prehab</div>
+          <p class="text-sm text-secondary leading-relaxed mb-0">Improved cardiovascular fitness, muscle strength, and a reduced risk of post-surgical complications.</p>
+        </div>
+      </div>
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"bg-page border rounded-lg p-lg shadow-card"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-xs uppercase tracking-wider text-muted mb-sm"</span><span class="t">&gt;</span>Key fact<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-h4 font-semibold text-heading mb-sm"</span><span class="t">&gt;</span>Physical benefits<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;p</span> <span class="a">class</span>=<span class="v">"text-sm text-secondary leading-relaxed mb-0"</span><span class="t">&gt;</span>...<span class="t">&lt;/p&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- Elevated card -->
+      <div class="demo-block">
+        <div class="demo-label">Elevated card with left accent</div>
+        <div class="bg-page border-l-primary rounded-lg p-lg shadow-md" style="max-width:400px;">
+          <div class="text-h4 font-semibold text-heading mb-sm">Did you know?</div>
+          <p class="text-sm text-secondary leading-relaxed mb-0">People who complete prehab are up to 50% less likely to experience major surgical complications.</p>
+        </div>
+      </div>
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"bg-page border-l-primary rounded-lg p-lg shadow-md"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-h4 font-semibold text-heading mb-sm"</span><span class="t">&gt;</span>Did you know?<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;p</span> <span class="a">class</span>=<span class="v">"text-sm text-secondary leading-relaxed mb-0"</span><span class="t">&gt;</span>...<span class="t">&lt;/p&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- Callout boxes -->
+      <div class="demo-block">
+        <div class="demo-label">Callout boxes — four semantic variants</div>
+        <div class="flex flex-col gap-md">
+          <div class="bg-info-light border-l-info rounded-md px-lg py-md">
+            <div class="text-sm font-semibold text-info mb-xs">Information</div>
+            <p class="text-sm text-secondary leading-relaxed mb-0">Prehabilitation is most effective when started 4–6 weeks before surgery.</p>
+          </div>
+          <div class="bg-success-light border-l-success rounded-md px-lg py-md">
+            <div class="text-sm font-semibold text-success mb-xs">Good to know</div>
+            <p class="text-sm text-secondary leading-relaxed mb-0">Even modest improvements in fitness before surgery can significantly reduce recovery time.</p>
+          </div>
+          <div class="bg-warning-light border-l-warning rounded-md px-lg py-md">
+            <div class="text-sm font-semibold text-warning mb-xs">Important</div>
+            <p class="text-sm text-secondary leading-relaxed mb-0">Always consult your clinical team before starting any new exercise programme.</p>
+          </div>
+          <div class="bg-error-light border-l-error rounded-md px-lg py-md">
+            <div class="text-sm font-semibold text-error mb-xs">Stop and seek advice</div>
+            <p class="text-sm text-secondary leading-relaxed mb-0">If you experience chest pain, dizziness, or severe breathlessness, stop exercising and contact your care team.</p>
+          </div>
+        </div>
+      </div>
+<pre class="code-block"><span class="c">&lt;!-- Info callout --&gt;</span>
+<span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"bg-info-light border-l-info rounded-md px-lg py-md"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-sm font-semibold text-info mb-xs"</span><span class="t">&gt;</span>Information<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;p</span> <span class="a">class</span>=<span class="v">"text-sm text-secondary leading-relaxed mb-0"</span><span class="t">&gt;</span>...<span class="t">&lt;/p&gt;</span>
+<span class="t">&lt;/div&gt;</span>
+
+<span class="c">&lt;!-- Swap bg-* border-l-* text-* for other variants --&gt;</span>
+<span class="c">&lt;!-- success: bg-success-light border-l-success text-success --&gt;</span>
+<span class="c">&lt;!-- warning: bg-warning-light border-l-warning text-warning --&gt;</span>
+<span class="c">&lt;!-- error:   bg-error-light   border-l-error   text-error   --&gt;</span></pre>
+
+      <!-- Stat block -->
+      <div class="demo-block">
+        <div class="demo-label">Stat / number block</div>
+        <div class="grid-4 gap-md">
+          <div class="bg-primary rounded-xl p-lg text-center text-on-dark">
+            <div class="text-h1 font-bold leading-tight">72%</div>
+            <div class="text-xs uppercase tracking-wider mt-xs" style="opacity:0.85;">Uptake improvement</div>
+          </div>
+          <div class="bg-accent rounded-xl p-lg text-center text-on-dark">
+            <div class="text-h1 font-bold leading-tight">3&times;</div>
+            <div class="text-xs uppercase tracking-wider mt-xs" style="opacity:0.85;">Better outcomes</div>
+          </div>
+          <div class="bg-primary-dark rounded-xl p-lg text-center text-on-dark">
+            <div class="text-h1 font-bold leading-tight">6 wk</div>
+            <div class="text-xs uppercase tracking-wider mt-xs" style="opacity:0.85;">Avg programme</div>
+          </div>
+          <div class="bg-accent-dark rounded-xl p-lg text-center text-on-dark">
+            <div class="text-h1 font-bold leading-tight">4</div>
+            <div class="text-xs uppercase tracking-wider mt-xs" style="opacity:0.85;">Core modules</div>
+          </div>
+        </div>
+      </div>
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"grid-4 gap-md"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"bg-primary rounded-xl p-lg text-center text-on-dark"</span><span class="t">&gt;</span>
+    <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-h1 font-bold leading-tight"</span><span class="t">&gt;</span>72%<span class="t">&lt;/div&gt;</span>
+    <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-xs uppercase tracking-wider mt-xs"</span><span class="t">&gt;</span>Uptake improvement<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;/div&gt;</span>
+  <span class="c">&lt;!-- repeat, swapping bg-accent / bg-primary-dark / bg-accent-dark --&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- Icon + text row (feature list) -->
+      <div class="demo-block">
+        <div class="demo-label">Feature list — icon + text rows</div>
+        <div class="bg-surface rounded-xl p-xl shadow-card" style="max-width:480px;">
+          <div class="text-h3 font-semibold text-heading mb-lg">Why prehabilitation works</div>
+          <div class="flex flex-col gap-md">
+            <div class="flex items-start gap-md">
+              <div class="bg-primary rounded-md p-sm flex-center" style="width:36px; height:36px; flex-shrink:0;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-heading mb-xs">Builds physical resilience</div>
+                <p class="text-sm text-secondary leading-relaxed mb-0">Strengthens the body to cope with the demands of surgery and recovery.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-md">
+              <div class="bg-primary rounded-md p-sm flex-center" style="width:36px; height:36px; flex-shrink:0;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-heading mb-xs">Reduces anxiety</div>
+                <p class="text-sm text-secondary leading-relaxed mb-0">Gives patients an active role, improving confidence and mental wellbeing.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-md">
+              <div class="bg-primary rounded-md p-sm flex-center" style="width:36px; height:36px; flex-shrink:0;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-heading mb-xs">Faster recovery</div>
+                <p class="text-sm text-secondary leading-relaxed mb-0">Better pre-operative fitness correlates with shorter hospital stays.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"bg-surface rounded-xl p-xl shadow-card"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-h3 font-semibold text-heading mb-lg"</span><span class="t">&gt;</span>Why it works<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"flex flex-col gap-md"</span><span class="t">&gt;</span>
+
+    <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"flex items-start gap-md"</span><span class="t">&gt;</span>
+      <span class="t">&lt;img</span> <span class="a">class</span>=<span class="v">"bg-primary rounded-md p-sm"</span>
+           <span class="a">src</span>=<span class="v">"icon.svg"</span> <span class="a">alt</span>=<span class="v">""</span> <span class="a">style</span>=<span class="v">"width:36px;"</span><span class="t">&gt;</span>
+      <span class="t">&lt;div&gt;</span>
+        <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-sm font-semibold text-heading mb-xs"</span><span class="t">&gt;</span>Title<span class="t">&lt;/div&gt;</span>
+        <span class="t">&lt;p</span> <span class="a">class</span>=<span class="v">"text-sm text-secondary leading-relaxed mb-0"</span><span class="t">&gt;</span>Body.<span class="t">&lt;/p&gt;</span>
+      <span class="t">&lt;/div&gt;</span>
+    <span class="t">&lt;/div&gt;</span>
+
+  <span class="t">&lt;/div&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- Dark hero banner -->
+      <div class="demo-block">
+        <div class="demo-label">Dark hero / highlight banner</div>
+        <div class="bg-hero rounded-xl px-2xl py-xl text-on-dark text-center shadow-md">
+          <div class="text-xs uppercase tracking-wider mb-sm" style="opacity:0.7;">Module 1</div>
+          <div class="text-h2 font-bold leading-tight mb-md">Introduction to Prehabilitation</div>
+          <p class="text-sm leading-relaxed mb-0 max-w-md mx-auto" style="opacity:0.85;">Understanding what cancer prehabilitation is, who it helps, and the evidence that supports it.</p>
+        </div>
+      </div>
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"bg-hero rounded-xl px-2xl py-xl text-on-dark text-center shadow-md"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-xs uppercase tracking-wider mb-sm"</span><span class="t">&gt;</span>Module 1<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-h2 font-bold leading-tight mb-md"</span><span class="t">&gt;</span>Introduction<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;p</span> <span class="a">class</span>=<span class="v">"text-sm leading-relaxed mb-0 max-w-md mx-auto"</span><span class="t">&gt;</span>...<span class="t">&lt;/p&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+      <!-- Pill badges -->
+      <div class="demo-block">
+        <div class="demo-label">Tags / badges — inline-flex + rounded-pill</div>
+        <div class="flex flex-wrap gap-sm">
+          <span class="inline-flex items-center bg-neutral-100 border rounded-pill px-md py-xs text-xs font-medium text-secondary">Exercise</span>
+          <span class="inline-flex items-center bg-neutral-100 border rounded-pill px-md py-xs text-xs font-medium text-secondary">Nutrition</span>
+          <span class="inline-flex items-center bg-neutral-100 border rounded-pill px-md py-xs text-xs font-medium text-secondary">Mental health</span>
+          <span class="inline-flex items-center bg-info-light border border-info rounded-pill px-md py-xs text-xs font-medium text-info">New</span>
+          <span class="inline-flex items-center bg-success-light border border-success rounded-pill px-md py-xs text-xs font-medium text-success">Completed</span>
+          <span class="inline-flex items-center bg-warning-light border border-warning rounded-pill px-md py-xs text-xs font-medium text-warning">In progress</span>
+          <span class="inline-flex items-center bg-primary rounded-pill px-md py-xs text-xs font-semibold text-on-dark">Featured</span>
+        </div>
+      </div>
+<pre class="code-block"><span class="c">&lt;!-- Neutral tag --&gt;</span>
+<span class="t">&lt;span</span> <span class="a">class</span>=<span class="v">"inline-flex items-center bg-neutral-100 border rounded-pill px-md py-xs text-xs font-medium text-secondary"</span><span class="t">&gt;</span>
+  Exercise
+<span class="t">&lt;/span&gt;</span>
+
+<span class="c">&lt;!-- Coloured status badge --&gt;</span>
+<span class="t">&lt;span</span> <span class="a">class</span>=<span class="v">"inline-flex items-center bg-success-light border border-success rounded-pill px-md py-xs text-xs font-medium text-success"</span><span class="t">&gt;</span>
+  Completed
+<span class="t">&lt;/span&gt;</span>
+
+<span class="c">&lt;!-- Solid badge --&gt;</span>
+<span class="t">&lt;span</span> <span class="a">class</span>=<span class="v">"inline-flex items-center bg-primary rounded-pill px-md py-xs text-xs font-semibold text-on-dark"</span><span class="t">&gt;</span>
+  Featured
+<span class="t">&lt;/span&gt;</span></pre>
+
+      <!-- Module row -->
+      <div class="demo-block">
+        <div class="demo-label">Module list row — flex + justify-between</div>
+        <div class="flex flex-col gap-sm">
+          <div class="bg-page border rounded-lg px-lg py-md shadow-sm flex items-center justify-between gap-md">
+            <div>
+              <div class="text-sm font-semibold text-heading mb-xs">Module 1: Introduction to Prehabilitation</div>
+              <div class="text-xs text-muted">3 sections &middot; 15 min</div>
+            </div>
+            <span class="inline-flex items-center bg-success-light border border-success rounded-pill px-md py-xs text-xs font-medium text-success" style="white-space:nowrap;">Completed</span>
+          </div>
+          <div class="bg-page border rounded-lg px-lg py-md shadow-sm flex items-center justify-between gap-md">
+            <div>
+              <div class="text-sm font-semibold text-heading mb-xs">Module 2: Exercise &amp; Physical Activity</div>
+              <div class="text-xs text-muted">5 sections &middot; 20 min</div>
+            </div>
+            <span class="inline-flex items-center bg-info-light border border-info rounded-pill px-md py-xs text-xs font-medium text-info" style="white-space:nowrap;">In progress</span>
+          </div>
+          <div class="bg-page border rounded-lg px-lg py-md shadow-sm flex items-center justify-between gap-md" style="opacity:0.6;">
+            <div>
+              <div class="text-sm font-semibold text-heading mb-xs">Module 3: Nutrition &amp; Diet</div>
+              <div class="text-xs text-muted">4 sections &middot; 18 min</div>
+            </div>
+            <span class="inline-flex items-center bg-neutral-100 border rounded-pill px-md py-xs text-xs font-medium text-muted" style="white-space:nowrap;">Not started</span>
+          </div>
+        </div>
+      </div>
+<pre class="code-block"><span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"bg-page border rounded-lg px-lg py-md shadow-sm flex items-center justify-between gap-md"</span><span class="t">&gt;</span>
+  <span class="t">&lt;div&gt;</span>
+    <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-sm font-semibold text-heading mb-xs"</span><span class="t">&gt;</span>Module title<span class="t">&lt;/div&gt;</span>
+    <span class="t">&lt;div</span> <span class="a">class</span>=<span class="v">"text-xs text-muted"</span><span class="t">&gt;</span>3 sections &middot; 15 min<span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;/div&gt;</span>
+  <span class="t">&lt;span</span> <span class="a">class</span>=<span class="v">"inline-flex items-center bg-success-light border border-success rounded-pill px-md py-xs text-xs font-medium text-success"</span><span class="t">&gt;</span>
+    Completed
+  <span class="t">&lt;/span&gt;</span>
+<span class="t">&lt;/div&gt;</span></pre>
+
+    </section>
+
+  </main>
+</body>
+</html>

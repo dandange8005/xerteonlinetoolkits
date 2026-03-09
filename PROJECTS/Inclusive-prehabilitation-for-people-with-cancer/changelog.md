@@ -85,10 +85,41 @@ Content headings (h1–h4 in the page body) remain in the brand teal (`#0f6b99`)
 
 ---
 
+## 2026-03-09
+
+### Atomic utility classes (v2.0.0)
+Added a full set of Tailwind-style single-purpose atomic utility classes to `custom.css`. All values are sourced from existing CSS custom properties — no new tokens introduced.
+
+**Categories added:**
+
+- **Backgrounds** — `.bg-page`, `.bg-surface`, `.bg-hero`, `.bg-primary`, `.bg-primary-light`, `.bg-primary-dark`, `.bg-accent`, `.bg-accent-dark`, `.bg-highlight`, `.bg-neutral-50/100/200/800/900`, `.bg-success-light`, `.bg-warning-light`, `.bg-error-light`, `.bg-info-light`
+- **Text colour** — `.text-primary`, `.text-secondary`, `.text-muted`, `.text-on-dark`, `.text-link`, `.text-heading`, `.text-success`, `.text-warning`, `.text-error`, `.text-info`
+- **Font size** — `.text-xs` through `.text-h1`
+- **Font weight** — `.font-regular`, `.font-medium`, `.font-semibold`, `.font-bold`
+- **Line height** — `.leading-tight`, `.leading-normal`, `.leading-relaxed`
+- **Letter spacing** — `.tracking-wide`, `.tracking-wider`
+- **Text transform** — `.uppercase`, `.capitalize`, `.lowercase`
+- **Padding** — full (`p-*`), horizontal (`px-*`), vertical (`py-*`), top (`pt-*`), bottom (`pb-*`) — all spacing tokens
+- **Margin** — full (`m-*`), top (`mt-*`), bottom (`mb-*`), vertical (`my-*`), horizontal (`mx-*`) — all spacing tokens, plus `*-0` resets
+- **Border** — `.border`, `.border-top/bottom/left/right`, `.border-none`; colour modifiers `.border-primary/accent/success/warning/error/info` (combine with `.border`); left-accent strips `.border-l-primary/accent/success/warning/error/info` (4px, callout pattern)
+- **Border radius** — `.rounded-none/sm/md/lg/xl/pill/full`
+- **Shadow** — `.shadow-none`, `.shadow-sm`, `.shadow-md`, `.shadow-card`
+- **Sizing** — `.w-full`, `.w-auto`, `.max-w-sm` (320px), `.max-w-md` (480px), `.max-w-lg` (640px), `.max-w-content` (720px)
+- **Display** — `.block`, `.inline`, `.inline-block`, `.inline-flex`, `.hidden`
+- **Overflow / position** — `.overflow-hidden`, `.relative`
+
+### New demo page
+Created `atomic-utilities.html` — a standalone reference page with live previews and copy-paste HTML snippets for every atomic class. Composition examples show how to build common components from atomics only (no custom CSS): plain card, elevated card with left accent, info/success/warning/error callouts, stat blocks, feature list rows, dark hero banner, pill badges, and module list rows.
+
+---
+
 ## Files
 | File | Purpose |
 |------|---------|
 | `custom.css` | Main custom stylesheet — paste into Xerte project Styles field and publish |
 | `design.json` | Design token source — colours, typography, spacing, components |
+| `utility-classes.html` | Reference for layout utility classes (flex, grid, alignment, gap) |
+| `atomic-utilities.html` | Reference for atomic utility classes (bg, text, spacing, border, shadow, etc.) |
+| `design-tokens.html` | Visual reference for all design tokens |
 | `my-plan.md` | Project brief and localhost setup notes |
 | `changelog.md` | This file |
