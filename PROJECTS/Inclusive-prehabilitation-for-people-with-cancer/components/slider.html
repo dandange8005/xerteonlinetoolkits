@@ -1,0 +1,229 @@
+<!-- ============================================================
+     Slider Component
+     Project: Inclusive Prehabilitation for People with Cancer
+
+     USAGE: Paste the full block into the Xerte HTML editor.
+            Add as many .ippc-slider-slide <div>s as you need.
+            Safe to paste multiple times on the same page.
+     ============================================================ -->
+
+<style id="ippc-slider-styles">
+
+  .ippc-slider {
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  /* ── Slides ─────────────────────────────────────────────── */
+  .ippc-slider-track {
+    padding: var(--space-xl) var(--space-xl) var(--space-lg);
+  }
+
+  .ippc-slider-slide {
+    display: none;
+    animation: ippcSliderFade 0.25s ease;
+  }
+
+  .ippc-slider-slide.active {
+    display: block;
+  }
+
+  @keyframes ippcSliderFade {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Remove default margins from first/last children inside slides
+     so padding on the track controls spacing consistently */
+  .ippc-slider-slide > *:first-child { margin-top: 0; }
+  .ippc-slider-slide > *:last-child  { margin-bottom: 0; }
+
+  /* ── Bottom nav bar ─────────────────────────────────────── */
+  .ippc-slider-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    border-top: 1px solid var(--color-neutral-200);
+    background-color: var(--color-bg-page);
+  }
+
+  /* ── Arrow buttons ──────────────────────────────────────── */
+  .ippc-slider-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--color-primary);
+    transition: background-color 0.15s ease, color 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .ippc-slider-arrow:hover:not(:disabled) {
+    background-color: var(--color-neutral-100);
+  }
+
+  .ippc-slider-arrow:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .ippc-slider-arrow:disabled {
+    color: var(--color-neutral-300);
+    cursor: default;
+  }
+
+  /* ── Dots ───────────────────────────────────────────────── */
+  .ippc-slider-dots {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .ippc-slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background-color: var(--color-neutral-300);
+    transition: background-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .ippc-slider-dot.active {
+    background-color: var(--color-primary);
+    transform: scale(1.25);
+  }
+
+  .ippc-slider-dot:hover:not(.active) {
+    background-color: var(--color-neutral-400);
+  }
+
+  .ippc-slider-dot:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+</style>
+
+<script>
+  (function () {
+    // Keep only the newest style tag — remove all earlier duplicates
+    var existing = document.querySelectorAll('#ippc-slider-styles');
+    for (var s = 0; s < existing.length - 1; s++) existing[s].remove();
+
+    function buildSlider(container) {
+      if (container.dataset.ippcBuilt) return;
+      container.dataset.ippcBuilt = 'true';
+
+      var slides = Array.from(container.querySelectorAll('.ippc-slider-slide'));
+      var total   = slides.length;
+      var current = 0;
+
+      if (total === 0) return;
+
+      // Wrap slides in a track div
+      var track = document.createElement('div');
+      track.className = 'ippc-slider-track';
+      slides.forEach(function (slide) { track.appendChild(slide); });
+      container.appendChild(track);
+
+      // Nav bar
+      var nav = document.createElement('div');
+      nav.className = 'ippc-slider-nav';
+
+      // Prev button
+      var prevBtn = document.createElement('button');
+      prevBtn.className = 'ippc-slider-arrow';
+      prevBtn.setAttribute('aria-label', 'Previous slide');
+      prevBtn.innerHTML = '<i class="fas fa-chevron-left" aria-hidden="true"></i>';
+
+      // Dots
+      var dotsWrapper = document.createElement('div');
+      dotsWrapper.className = 'ippc-slider-dots';
+      dotsWrapper.setAttribute('role', 'tablist');
+      dotsWrapper.setAttribute('aria-label', 'Slides');
+
+      var dots = slides.map(function (_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'ippc-slider-dot';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1) + ' of ' + total);
+        dot.addEventListener('click', function () { goTo(i); });
+        dotsWrapper.appendChild(dot);
+        return dot;
+      });
+
+      // Next button
+      var nextBtn = document.createElement('button');
+      nextBtn.className = 'ippc-slider-arrow';
+      nextBtn.setAttribute('aria-label', 'Next slide');
+      nextBtn.innerHTML = '<i class="fas fa-chevron-right" aria-hidden="true"></i>';
+
+      nav.appendChild(prevBtn);
+      nav.appendChild(dotsWrapper);
+      nav.appendChild(nextBtn);
+      container.appendChild(nav);
+
+      function goTo(index) {
+        if (index < 0 || index >= total) return;
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        dots[current].setAttribute('aria-selected', 'false');
+
+        current = index;
+
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        dots[current].setAttribute('aria-selected', 'true');
+
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === total - 1;
+      }
+
+      // Keyboard: left/right arrow keys
+      container.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft')  goTo(current - 1);
+        if (e.key === 'ArrowRight') goTo(current + 1);
+      });
+
+      prevBtn.addEventListener('click', function () { goTo(current - 1); });
+      nextBtn.addEventListener('click', function () { goTo(current + 1); });
+
+      goTo(0);
+    }
+
+    // Always build any uninitialised sliders on this paste
+    document.querySelectorAll('.ippc-slider').forEach(buildSlider);
+
+  }());
+</script>
+
+<!-- EDIT: add or remove .ippc-slider-slide <div>s as needed -->
+<div class="ippc-slider">
+
+  <div class="ippc-slider-slide">
+    <h3>EDIT: Slide one title</h3>
+    <p>EDIT: Slide one content goes here.</p>
+  </div>
+
+  <div class="ippc-slider-slide">
+    <h3>EDIT: Slide two title</h3>
+    <p>EDIT: Slide two content goes here.</p>
+  </div>
+
+  <div class="ippc-slider-slide">
+    <h3>EDIT: Slide three title</h3>
+    <p>EDIT: Slide three content goes here.</p>
+  </div>
+
+</div>

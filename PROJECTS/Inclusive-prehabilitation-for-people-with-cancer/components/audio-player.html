@@ -1,0 +1,164 @@
+<!-- ============================================================
+     Audio Player Component
+     Project: Inclusive Prehabilitation for People with Cancer
+
+     USAGE: Paste the full block below into the Xerte HTML editor.
+            Edit the three values marked EDIT.
+            Safe to paste multiple times on the same page —
+            the <style> and <script> only apply once.
+     ============================================================ -->
+
+<style id="ippc-audio-player-styles">
+  /* Only injected once — subsequent pastes skip if ID exists */
+
+  .ippc-audio-player {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-md);
+  }
+
+  .ippc-audio-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .ippc-audio-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .ippc-audio-title {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-heading);
+    font-size: var(--font-size-body);
+  }
+
+  .ippc-audio-size {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .ippc-audio-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: var(--color-text-on-dark);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color 0.15s ease;
+  }
+
+  .ippc-audio-btn:hover {
+    background-color: var(--color-primary-dark);
+  }
+
+  .ippc-audio-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+</style>
+
+<script>
+  (function () {
+    // Keep only the newest style tag — remove all earlier duplicates
+    var existing = document.querySelectorAll('#ippc-audio-player-styles');
+    for (var s = 0; s < existing.length - 1; s++) existing[s].remove();
+
+    function buildPlayer(card) {
+      if (card.dataset.ippcBuilt) return;
+      card.dataset.ippcBuilt = 'true';
+
+      var titleEl = card.querySelector('.ippc-audio-title');
+      var sizeEl  = card.querySelector('.ippc-audio-size');
+      var audio   = card.querySelector('.ippc-audio');
+
+      // Icon
+      var iconWrapper = document.createElement('div');
+      iconWrapper.className = 'ippc-audio-icon';
+      iconWrapper.innerHTML = '<i class="fas fa-headphones fa-2x" aria-hidden="true"></i>';
+      card.insertBefore(iconWrapper, card.firstChild);
+
+      // Info wrapper
+      var infoWrapper = document.createElement('div');
+      infoWrapper.className = 'ippc-audio-info';
+      card.insertBefore(infoWrapper, titleEl);
+      infoWrapper.appendChild(titleEl);
+      if (sizeEl) infoWrapper.appendChild(sizeEl);
+
+      // Play/pause button
+      var btn = document.createElement('button');
+      btn.className = 'ippc-audio-btn';
+      btn.setAttribute('aria-label', 'Play audio');
+      btn.innerHTML = '<i class="fas fa-play" aria-hidden="true"></i>';
+      card.insertBefore(btn, audio);
+    }
+
+    // Always build any uninitialised players on this paste
+    document.querySelectorAll('.ippc-audio-player').forEach(buildPlayer);
+
+    // Register global event listeners only once
+    if (!window.ippcAudioPlayerInit) {
+      window.ippcAudioPlayerInit = true;
+
+      function setPlayState(btn, playing) {
+        btn.querySelector('i').className = playing ? 'fas fa-pause' : 'fas fa-play';
+        btn.setAttribute('aria-label', playing ? 'Pause audio' : 'Play audio');
+      }
+
+      // Play / pause — pause all others first
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest('.ippc-audio-btn');
+        if (!btn) return;
+
+        var card  = btn.closest('.ippc-audio-player');
+        var audio = card.querySelector('.ippc-audio');
+        if (!audio) return;
+
+        if (audio.paused) {
+          // Pause any other playing audio and reset its button
+          document.querySelectorAll('.ippc-audio').forEach(function (a) {
+            if (a !== audio && !a.paused) {
+              a.pause();
+              setPlayState(a.closest('.ippc-audio-player').querySelector('.ippc-audio-btn'), false);
+            }
+          });
+          audio.play();
+          setPlayState(btn, true);
+        } else {
+          audio.pause();
+          setPlayState(btn, false);
+        }
+      });
+
+      // Reset on end (capture — ended doesn't bubble)
+      document.addEventListener('ended', function (e) {
+        if (!e.target.classList.contains('ippc-audio')) return;
+        var card = e.target.closest('.ippc-audio-player');
+        if (!card) return;
+        setPlayState(card.querySelector('.ippc-audio-btn'), false);
+      }, true);
+    }
+
+  }());
+</script>
+
+<!-- EDIT: title, file size, and src -->
+<div class="ippc-audio-player">
+  <span class="ippc-audio-title">EDIT: Audio title goes here</span>
+  <span class="ippc-audio-size">EDIT: 0.0 MB</span>
+  <audio class="ippc-audio" src="EDIT-path-to-audio-file.mp3" preload="none" hidden></audio>
+</div>

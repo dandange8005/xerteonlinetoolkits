@@ -1030,3 +1030,54 @@ p               { color: var(--color-text-primary); }
 /* ── Overflow / Position ─────────────────────────────────── */
 .overflow-hidden { overflow: hidden; }
 .relative        { position: relative; }
+
+
+/* ============================================================
+   BLOCKQUOTE — override Xerte editor defaults
+   ============================================================ */
+blockquote {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+
+  background-color: var(--color-bg-surface);
+  border: none;
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+
+  margin: var(--space-lg) 0;
+  padding: var(--space-md) var(--space-lg);
+
+  quotes: none;
+}
+
+/* Remove auto-generated quote marks from Xerte editor default */
+blockquote::before,
+blockquote::after {
+  content: none;
+}
+
+/* Lists inside blockquote */
+blockquote ol,
+blockquote ul {
+  padding-left: var(--space-lg);
+  margin: 0;
+}
+
+blockquote li {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+  padding: 0;
+}
+
+blockquote li:last-child {
+  margin-bottom: 0;
+}
+
+/* Paragraphs inside list items — collapse extra spacing */
+blockquote li p {
+  margin: 0;
+}
