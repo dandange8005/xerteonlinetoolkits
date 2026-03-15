@@ -1081,3 +1081,178 @@ blockquote li:last-child {
 blockquote li p {
   margin: 0;
 }
+
+
+/* ============================================================
+   COMPONENT: Audio Player (.ippc-audio-player)
+   ============================================================ */
+
+.ippc-audio-player {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+}
+
+.ippc-audio-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.ippc-audio-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ippc-audio-title {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-heading);
+  font-size: var(--font-size-body);
+}
+
+.ippc-audio-size {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.ippc-audio-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease;
+}
+
+.ippc-audio-btn:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.ippc-audio-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.ippc-audio-progress {
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-neutral-200);
+  border-radius: var(--radius-pill);
+  margin-top: var(--space-sm);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ippc-audio-progress__fill {
+  height: 100%;
+  width: 0%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-pill);
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   COMPONENT: Flexible Card (.ippc-card)
+   ============================================================ */
+
+.ippc-card {
+  display: flex;
+  align-items: stretch;
+  background: #ffffff;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin-bottom: var(--space-xl);
+}
+
+.ippc-card:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Modifier: flip image to the right */
+.ippc-card--flip {
+  flex-direction: row-reverse;
+}
+
+.ippc-card__image {
+  flex: 0 0 42%;
+  position: relative;
+  min-height: 240px;
+}
+
+.ippc-card__image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ippc-card__body {
+  flex: 1;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 4px solid var(--color-primary);
+}
+
+/* Flip: accent border moves to the right side of the body */
+.ippc-card--flip .ippc-card__body {
+  border-left: none;
+  border-right: 4px solid var(--color-primary);
+}
+
+.ippc-card__heading {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-heading);
+  line-height: var(--line-height-tight);
+  margin: 0 0 var(--space-md) 0;
+}
+
+.ippc-card__body p {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .ippc-card,
+  .ippc-card--flip {
+    flex-direction: column;
+  }
+
+  .ippc-card__image {
+    flex: 0 0 auto;
+    height: 220px;
+    min-height: unset;
+  }
+
+  .ippc-card__body,
+  .ippc-card--flip .ippc-card__body {
+    border-left: 4px solid var(--color-primary);
+    border-right: none;
+  }
+}

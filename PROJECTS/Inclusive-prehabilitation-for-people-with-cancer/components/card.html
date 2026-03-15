@@ -1,0 +1,175 @@
+<!-- ============================================================
+     Flexible Card Component
+     Project: Inclusive Prehabilitation for People with Cancer
+
+     USAGE: Paste the <style> block ONCE per page, then paste
+            as many <div class="ippc-card ..."> blocks as needed.
+
+     VARIANTS (mix and match via modifier classes):
+       Default          — image left,  heading + text
+       ippc-card--flip  — image right, heading + text
+       (no image div)   — text-only card
+       (no h3 element)  — image + text, no heading
+
+     Styles → custom.css  (Xerte project properties → Styles)
+     No script needed for cards.
+     ============================================================ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexible Card Component — Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Preview scaffolding (NOT for Xerte) ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #f0f2f4;
+      padding: 40px 24px;
+      margin: 0;
+    }
+    .preview-section {
+      max-width: 760px;
+      margin: 0 auto 56px;
+    }
+    .preview-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #87919b;
+      margin: 0 0 12px;
+    }
+    .preview-hint {
+      font-size: 0.8rem;
+      color: #adb4bc;
+      margin: 8px 0 0;
+      font-family: 'Consolas', monospace;
+    }
+
+    /* ── Design tokens (mirrors custom.css) ── */
+    :root {
+      --color-primary:       #256a91;
+      --color-neutral-200:   #e5e8eb;
+      --color-text-primary:  #333333;
+      --color-text-secondary:#666666;
+      --color-text-heading:  #0f6b99;
+      --font-family-base:    'Inter', Arial, Helvetica, sans-serif;
+      --font-size-h3:        1.375rem;
+      --font-size-body:      1.125rem;
+      --font-size-sm:        0.875rem;
+      --font-weight-semibold: 600;
+      --font-weight-bold:    700;
+      --line-height-tight:   1.2;
+      --line-height-relaxed: 1.7;
+      --space-sm:  8px;
+      --space-md:  16px;
+      --space-lg:  24px;
+      --space-xl:  32px;
+      --space-2xl: 48px;
+      --radius-xl: 16px;
+      --shadow-card: 0 2px 8px rgba(0,0,0,0.09);
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- Styles live in custom.css — no style block needed here -->
+
+
+<!-- ============================================================
+     VARIANT 1 — Image left (default)
+     ============================================================ -->
+<div class="preview-section">
+  <p class="preview-label">Variant 1 — Image left (default)</p>
+  <p class="preview-hint">&lt;div class="ippc-card"&gt;</p>
+
+  <!-- ✂ PASTE START — Variant 1 -->
+  <div class="ippc-card">
+    <div class="ippc-card__image">
+      <img
+        src="https://ytydysgu.heiw.wales/api/storage/a5379d92-c458-4156-a753-bd2621de1a4d/Module_5_-_Services_8.webp?width=1024"
+        alt="EDIT: describe the image"
+      >
+    </div>
+    <div class="ippc-card__body">
+      <h3 class="ippc-card__heading">Accessible language</h3>
+      <p>is a cornerstone of health literacy — peoples' abilities to obtain, understand, and use health information to make informed decisions.</p>
+    </div>
+  </div>
+  <!-- ✂ PASTE END — Variant 1 -->
+</div>
+
+
+<!-- ============================================================
+     VARIANT 2 — Image right (--flip)
+     ============================================================ -->
+<div class="preview-section">
+  <p class="preview-label">Variant 2 — Image right (--flip)</p>
+  <p class="preview-hint">&lt;div class="ippc-card ippc-card--flip"&gt;</p>
+
+  <!-- ✂ PASTE START — Variant 2 -->
+  <div class="ippc-card ippc-card--flip">
+    <div class="ippc-card__image">
+      <img
+        src="https://ytydysgu.heiw.wales/api/storage/52d65026-47e4-43b6-9d2b-3f62ac09a86e/Module_5_-_Services_14.webp?width=1024"
+        alt="EDIT: describe the image"
+      >
+    </div>
+    <div class="ippc-card__body">
+      <h3 class="ippc-card__heading">Use plain language</h3>
+      <p>Words and phrases can vary across cultures. Different communities may face language barriers.</p>
+    </div>
+  </div>
+  <!-- ✂ PASTE END — Variant 2 -->
+</div>
+
+
+<!-- ============================================================
+     VARIANT 3 — Text only (no image slot)
+     ============================================================ -->
+<div class="preview-section">
+  <p class="preview-label">Variant 3 — Text only (no image)</p>
+  <p class="preview-hint">&lt;div class="ippc-card"&gt; — omit the image div</p>
+
+  <!-- ✂ PASTE START — Variant 3 -->
+  <div class="ippc-card">
+    <div class="ippc-card__body">
+      <h3 class="ippc-card__heading">Accessible language</h3>
+      <p>is a cornerstone of health literacy — peoples' abilities to obtain, understand, and use health information to make informed decisions.</p>
+    </div>
+  </div>
+  <!-- ✂ PASTE END — Variant 3 -->
+</div>
+
+
+<!-- ============================================================
+     VARIANT 4 — Image left, no heading
+     ============================================================ -->
+<div class="preview-section">
+  <p class="preview-label">Variant 4 — Image left, no heading</p>
+  <p class="preview-hint">&lt;div class="ippc-card"&gt; — omit the &lt;h3&gt;</p>
+
+  <!-- ✂ PASTE START — Variant 4 -->
+  <div class="ippc-card">
+    <div class="ippc-card__image">
+      <img
+        src="https://ytydysgu.heiw.wales/api/storage/a5379d92-c458-4156-a753-bd2621de1a4d/Module_5_-_Services_8.webp?width=1024"
+        alt="EDIT: describe the image"
+      >
+    </div>
+    <div class="ippc-card__body">
+      <p>is a cornerstone of health literacy — peoples' abilities to obtain, understand, and use health information to make informed decisions.</p>
+    </div>
+  </div>
+  <!-- ✂ PASTE END — Variant 4 -->
+</div>
+
+
+</body>
+</html>
