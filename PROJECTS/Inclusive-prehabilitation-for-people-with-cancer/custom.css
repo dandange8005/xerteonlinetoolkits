@@ -1096,6 +1096,7 @@ blockquote li p {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   padding: var(--space-md);
+  margin-block: var(--space-sm);
 }
 
 .ippc-audio-icon {
@@ -1164,6 +1165,110 @@ blockquote li p {
   border-radius: var(--radius-pill);
   transition: width 0.1s linear;
   pointer-events: none;
+}
+
+
+/* ============================================================
+   COMPONENT: Slider (.ippc-slider)
+   ============================================================ */
+
+.ippc-slider {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin-block: var(--space-lg);
+}
+
+.ippc-slider-track {
+  padding: var(--space-xl) var(--space-xl) var(--space-lg);
+}
+
+.ippc-slider-slide {
+  display: none;
+  animation: ippcSliderFade 0.25s ease;
+}
+
+.ippc-slider-slide.active {
+  display: block;
+}
+
+@keyframes ippcSliderFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ippc-slider-slide > *:first-child { margin-top: 0; }
+.ippc-slider-slide > *:last-child  { margin-bottom: 0; }
+.ippc-slider-slide h3 { margin-top: 0 !important; }
+
+.ippc-slider-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--color-neutral-200);
+  background-color: var(--color-bg-surface);
+}
+
+.ippc-slider-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  transition: background-color 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.ippc-slider-arrow:hover:not(:disabled) {
+  background-color: var(--color-neutral-100);
+}
+
+.ippc-slider-arrow:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.ippc-slider-arrow:disabled {
+  color: var(--color-neutral-300);
+  cursor: default;
+}
+
+.ippc-slider-dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.ippc-slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  background-color: var(--color-neutral-300);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.ippc-slider-dot.active {
+  background-color: var(--color-primary);
+  transform: scale(1.25);
+}
+
+.ippc-slider-dot:hover:not(.active) {
+  background-color: var(--color-neutral-400);
+}
+
+.ippc-slider-dot:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 

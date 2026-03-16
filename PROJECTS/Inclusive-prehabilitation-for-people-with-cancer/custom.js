@@ -97,6 +97,115 @@
     subtree: true
   });
 
+  /* ----------------------------------------------------------
+     Slider (.ippc-slider)
+     Builds prev/next arrows and dot navigation for every
+     .ippc-slider element. Add .ippc-slider-slide <div>s as
+     direct children of .ippc-slider in the page HTML.
+  ---------------------------------------------------------- */
+
+  function buildSlider(container) {
+    if (container.dataset.ippcBuilt) return;
+    container.dataset.ippcBuilt = 'true';
+
+    var slides = Array.from(container.querySelectorAll('.ippc-slider-slide'));
+    var total  = slides.length;
+    var current = 0;
+
+    if (total === 0) return;
+
+    var track = document.createElement('div');
+    track.className = 'ippc-slider-track';
+    slides.forEach(function (slide) { track.appendChild(slide); });
+    container.appendChild(track);
+
+    var nav = document.createElement('div');
+    nav.className = 'ippc-slider-nav';
+
+    var prevBtn = document.createElement('button');
+    prevBtn.className = 'ippc-slider-arrow';
+    prevBtn.setAttribute('aria-label', 'Previous slide');
+    prevBtn.innerHTML = '<i class="fas fa-chevron-left" aria-hidden="true"></i>';
+
+    var dotsWrapper = document.createElement('div');
+    dotsWrapper.className = 'ippc-slider-dots';
+    dotsWrapper.setAttribute('role', 'tablist');
+    dotsWrapper.setAttribute('aria-label', 'Slides');
+
+    var dots = slides.map(function (_, i) {
+      var dot = document.createElement('button');
+      dot.className = 'ippc-slider-dot';
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1) + ' of ' + total);
+      dot.addEventListener('click', function () { goTo(i); });
+      dotsWrapper.appendChild(dot);
+      return dot;
+    });
+
+    var nextBtn = document.createElement('button');
+    nextBtn.className = 'ippc-slider-arrow';
+    nextBtn.setAttribute('aria-label', 'Next slide');
+    nextBtn.innerHTML = '<i class="fas fa-chevron-right" aria-hidden="true"></i>';
+
+    nav.appendChild(prevBtn);
+    nav.appendChild(dotsWrapper);
+    nav.appendChild(nextBtn);
+    container.appendChild(nav);
+
+    function goTo(index) {
+      if (index < 0 || index >= total) return;
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      dots[current].setAttribute('aria-selected', 'false');
+      current = index;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      dots[current].setAttribute('aria-selected', 'true');
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === total - 1;
+    }
+
+    container.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+
+    prevBtn.addEventListener('click', function () { goTo(current - 1); });
+    nextBtn.addEventListener('click', function () { goTo(current + 1); });
+
+    goTo(0);
+  }
+
+  function initSliders() {
+    document.querySelectorAll('.ippc-slider').forEach(buildSlider);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSliders);
+  } else {
+    initSliders();
+  }
+
+  // Watch for sliders added dynamically by Xerte's page renderer
+  var sliderObserver = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (node) {
+        if (node.nodeType !== 1) return;
+        if (node.classList && node.classList.contains('ippc-slider')) {
+          buildSlider(node);
+        }
+        if (node.querySelectorAll) {
+          node.querySelectorAll('.ippc-slider').forEach(buildSlider);
+        }
+      });
+    });
+  });
+
+  sliderObserver.observe(document.body || document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+
   // Global event listeners — registered once
   // Play / pause button + seek on progress bar click
   document.addEventListener('click', function (e) {
