@@ -76,6 +76,7 @@
   --font-size-h3:   1.375rem;
   --font-size-h4:   1.125rem;
   --font-size-body: 1.125rem;
+  --font-size-md:  1rem;
   --font-size-sm:   0.875rem;
   --font-size-xs:   0.75rem;
 
@@ -829,6 +830,7 @@ hr {
 /* ── Font size ───────────────────────────────────────────── */
 .text-xs   { font-size: var(--font-size-xs); }
 .text-sm   { font-size: var(--font-size-sm); }
+.text-md   { font-size: var(--font-size-md); }
 .text-body { font-size: var(--font-size-body); }
 .text-h4   { font-size: var(--font-size-h4); }
 .text-h3   { font-size: var(--font-size-h3); }
@@ -1235,6 +1237,14 @@ blockquote li p {
   margin-block: var(--space-lg);
 }
 
+.ippc-slider-instruction {
+  margin-bottom: 0;
+    font-size: var(--font-size-sm);
+    text-align: center;
+    margin-top: var(--space-sm)!important;
+    color: var(--color-text-muted);
+}
+
 .ippc-slider-track {
   padding: var(--space-xl) var(--space-xl) var(--space-lg);
 }
@@ -1416,74 +1426,90 @@ blockquote li p {
   }
 }
 
-/* ── Banner Card ── */
-    .ippc-banner-card {
-      position: relative;
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-md);
-      overflow: hidden;
-      min-height: 320px;
-      display: flex;
-      align-items: flex-end;
-    }
+/* ============================================================
+   COMPONENT: Banner Card (.ippc-banner-card)
 
-    .ippc-banner-card__image {
-      position: absolute;
-      inset: 0;
-    }
+   <div class="ippc-banner-card">
+    <div class="ippc-banner-card__image">
+      <img
+        src="https://ytydysgu.heiw.wales/api/storage/a5379d92-c458-4156-a753-bd2621de1a4d/Module_5_-_Services_8.webp?width=1024"
+        alt="Healthcare professional having an accessible conversation with a patient"
+      >
+    </div>
+    <div class="ippc-banner-card__body">
+      <h3 class="ippc-banner-card__heading">Accessible language</h3>
+      <p>is a cornerstone of health literacy — peoples' abilities to obtain, understand, and use health information to make informed decisions.</p>
+    </div>
+  </div>
+   ============================================================ */
 
-    .ippc-banner-card__image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+  .ippc-banner-card {
+    position: relative;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    min-height: 320px;
+    display: flex;
+    align-items: flex-end;
+  }
 
-    /* Gradient overlay — dark at bottom for legibility */
-    .ippc-banner-card__image::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(15, 40, 65, 0.10) 0%,
-        rgba(15, 40, 65, 0.70) 40%,
-        rgba(15, 40, 65, 0.90) 100%
-      );
-    }
+  .ippc-banner-card__image {
+    position: absolute;
+    inset: 0;
+  }
 
-    .ippc-banner-card__body {
-      position: relative;
-      z-index: 1;
-      padding: var(--space-2xl) var(--space-xl) var(--space-xl);
-      width: 100%;
-    }
+  .ippc-banner-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 
-    /* Yellow accent bar above heading */
-    .ippc-banner-card__body::before {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 4px;
-      background: var(--color-highlight);
-      border-radius: 2px;
-      margin-bottom: var(--space-md);
-    }
+  /* Gradient overlay — dark at bottom for legibility */
+  .ippc-banner-card__image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 40, 65, 0.10) 0%,
+      rgba(15, 40, 65, 0.70) 40%,
+      rgba(15, 40, 65, 0.90) 100%
+    );
+  }
 
-    .ippc-banner-card__heading {
-      font-family: var(--font-family-base);
-      font-size: var(--font-size-h3);
-      font-weight: var(--font-weight-bold);
-      color: #ffffff;
-      line-height: var(--line-height-tight);
-      margin: 0 0 var(--space-sm) 0;
-    }
+  .ippc-banner-card__body {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-2xl) var(--space-xl) var(--space-xl);
+    width: 100%;
+  }
 
-    .ippc-banner-card__body p {
-      font-family: var(--font-family-base);
-      font-size: var(--font-size-body);
-      line-height: var(--line-height-relaxed);
-      color: rgba(255, 255, 255, 0.90);
-      margin: 0;
-      max-width: 560px;
-    }
+  /* Yellow accent bar above heading */
+  .ippc-banner-card__body::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: var(--color-highlight);
+    border-radius: 2px;
+    margin-bottom: var(--space-md);
+  }
+
+  .ippc-banner-card__heading {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+    color: #ffffff;
+    line-height: var(--line-height-tight);
+    margin: 0 0 var(--space-sm) 0;
+  }
+
+  .ippc-banner-card__body p {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.90);
+    margin: 0;
+    max-width: 560px;
+  }
