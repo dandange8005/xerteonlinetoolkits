@@ -1369,9 +1369,10 @@ blockquote li p {
 .ippc-card__image img {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 0 !important;
   display: block;
 }
 
@@ -1401,13 +1402,13 @@ blockquote li p {
 
 .ippc-card__body p {
   font-family: var(--font-family-base);
-  font-size: var(--font-size-body);
+  font-size: 1rem;
   line-height: var(--line-height-relaxed);
   color: var(--color-text-primary);
   margin: 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .ippc-card,
   .ippc-card--flip {
     flex-direction: column;
