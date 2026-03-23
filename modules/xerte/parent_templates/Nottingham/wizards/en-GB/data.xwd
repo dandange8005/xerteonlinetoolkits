@@ -14584,12 +14584,17 @@
     <txt label="Text" type="TextArea" height="300" placeholder="Enter text for the page here"/>
 	<align label="Align Text" options="Left,Right,Top,Bottom" type="ComboBox" data="Left,Right,Top,Bottom" defaultValue="Right" width="100"/>
     <src label="Sound" type="media" placeholder="Select an audio file"/>
-	<mediaW label="Image Size" options="Small,Medium,Large,Full" type="ComboBox" data="Small,Medium,Large,Full" defaultValue="Medium" width="100"/>
+	<mediaW label="Media Size" options="Small,Medium,Large,Full" type="ComboBox" data="Small,Medium,Large,Full" defaultValue="Medium" width="100"/>
 	
 	<imgInfo type="group" label="Image" optional="true" tooltip="Customise the image accompanying the audio player. By default it will use a generic audio icon.">
 		<img label="Image" type="media" optional="true" defaultValue="" placeholder="Select an image"/>
 		<tooltip label="Description" type="TextInput" optional="true" defaultValue="" placeholder="Enter a description for accessibility"/>
 	</imgInfo>
+
+    <thumbnail type="group" label="Thumbnail" tooltip="Use this optional property to use a different image on the thumbnail bar, e.g. a simplified version." optional="true">
+        <thumbSrc label="Image" type="media" defaultValue="" placeholder="Select an image" optional="true"/>
+        <thumbTooltip label="Description" type="TextInput" defaultValue="" placeholder="Enter a description for accessibility" optional="true"/>
+    </thumbnail>
 
     <AIGroup type="group" label="AI" optional="true" lightbox="form" subgroup="assistant" condition="(vendor_is_available('ai', 'all')) &amp;&amp; (hasrole('aiuser'))">
         <subject verification="^.+$" label="Subject" type="TextInput" placeholder="Enter a subject here..." tooltip="This determines which area or subject the generated questions and possible answers will follow. More complex subjects may result in less consistent content. Examples: 'bird migration habits', 'migration habits of birds native to The Netherlands'." optional="true"/>
@@ -14667,6 +14672,11 @@
 		<tooltip label="Description" type="TextInput" placeholder="Enter a description for accessibility"/>
 		<mediaW label="Size" options="Small,Medium,Large,Full" type="ComboBox" data="Small,Medium,Large,Full" defaultValue="Medium" width="100"/>
 	</imageGroup>
+
+    <thumbnail type="group" label="Thumbnail" tooltip="By default the main image for this item will be used on the thumbnail bar. Use this optional property to use a different image on the thumbnail bar, e.g. a simplified version." optional="true">
+        <thumbSrc label="Image" type="media" defaultValue="" placeholder="Select an image" optional="true"/>
+        <thumbTooltip label="Description" type="TextInput" defaultValue="" placeholder="Enter a description for accessibility" optional="true"/>
+    </thumbnail>
 	
 	<linkInfo type="group" label="Page Link" optional="true" tooltip="Include a Xerte page link after the text for this item">
 		<pageLink label="Page" type="pageList" optional="true"/>

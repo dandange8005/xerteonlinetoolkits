@@ -1079,7 +1079,8 @@ var EDITOR = (function ($, parent) {
                         button.attr('title', sorted_options['optional'][i].value.tooltip);
                     }
                     // If group, see if any of the individual items have a tooltip
-                    if (sorted_options['optional'][i].value.type == 'group') {
+                    // 19/03/26 agreed to turn this off as the compiled tooltips can get confusing quickly
+                    /*if (sorted_options['optional'][i].value.type == 'group') {
                         var tooltip_txt = "";
                         for (var j = 0; j < sorted_options['optional'][i].value.children.length; j++) {
                             if (sorted_options['optional'][i].value.children[j].value.tooltip) {
@@ -1097,7 +1098,7 @@ var EDITOR = (function ($, parent) {
                                 button.attr('title', tooltip_txt);
                             }
                         }
-                    }
+                    }*/
                     button.append(label);
 
 
@@ -2104,6 +2105,11 @@ img_search_and_help = function(query, api, url, interpretPrompt, overrideSetting
                 allChildPages.splice($.inArray("chapter", allChildPages), 1);
             } else if (page_name == "chapter" && allChildPages.length > 0) {
                 lchildren = allChildPages;
+            }
+
+            // pages that now use flexhotspots should also allow hotspots for backwards compatibility
+            if ($.inArray("flexhotspot", lchildren) > -1 && $.inArray("hotspot", lchildren) === -1) {
+                lchildren.push("hotspot");
             }
 
             return {

@@ -97,6 +97,10 @@ a {
 	padding:	10px;
 }
 
+.innerPage {
+	visibility: hidden;
+}
+
 #x_headerBlock img {
 	max-height: 200px;
 }
@@ -660,6 +664,10 @@ button.ui-button-icon-only .ui-icon[class*=" fa-"] {
 	height: auto;
 	margin-left: -0.3em;
 	margin-top: -0.45em;
+}
+
+button.ui-button-icon-only .ui-icon.fa-x-refresh {
+	margin-left: -0.5em;
 }
 
 /*styling for optional show/hider footer tools*/
