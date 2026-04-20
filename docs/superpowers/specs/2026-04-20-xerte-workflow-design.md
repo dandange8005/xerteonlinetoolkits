@@ -7,14 +7,16 @@
 
 ## Goal
 
-A single markdown document (`PROJECTS/XERTE-WORKFLOW.md`) that serves as both an onboarding checklist at the start of each Xerte project and an ongoing platform reference throughout development. Audience: the author only (and Claude when handed at project start).
+A single markdown document (`PROJECTS/XOT-DEV-WORKFLOW.md`) that serves as both an onboarding checklist at the start of each Xerte project and an ongoing platform reference throughout development. Audience: the author only (and Claude when handed at project start).
+
+**Scope:** This workflow applies to the **XOT project template only** (XOT1 / Modern Nottingham theme). The Bootstrap template has a different file structure and DOM layout and is out of scope for this document.
 
 ---
 
 ## Output File
 
 ```
-PROJECTS/XERTE-WORKFLOW.md
+PROJECTS/XOT-DEV-WORKFLOW.md
 ```
 
 Sits above individual project folders so it is easy to locate and reference across projects.
@@ -80,6 +82,7 @@ All reference content is extracted from the I-Prehab project:
 
 ## Constraints
 
+- Scope is XOT template only — Bootstrap template has different file/DOM structure and is not covered
 - No new technical content — everything in the document must already exist in the source material above
 - Plain markdown only — no HTML, no embedded scripts
 - Short entries in the reference section — enough to remind, not enough to teach from scratch
