@@ -77,25 +77,6 @@
     initAudioPlayers();
   }
 
-  // Watch for players added dynamically by Xerte's page renderer
-  var observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
-      mutation.addedNodes.forEach(function (node) {
-        if (node.nodeType !== 1) return;
-        if (node.classList && node.classList.contains('ippc-audio-player')) {
-          buildPlayer(node);
-        }
-        if (node.querySelectorAll) {
-          node.querySelectorAll('.ippc-audio-player').forEach(buildPlayer);
-        }
-      });
-    });
-  });
-
-  observer.observe(document.body || document.documentElement, {
-    childList: true,
-    subtree: true
-  });
 
   /* ----------------------------------------------------------
      Slider (.ippc-slider)
@@ -186,22 +167,24 @@
     initSliders();
   }
 
-  // Watch for sliders added dynamically by Xerte's page renderer
-  var sliderObserver = new MutationObserver(function (mutations) {
+  // Watch for components added dynamically by Xerte's page renderer
+  var domObserver = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
       mutation.addedNodes.forEach(function (node) {
         if (node.nodeType !== 1) return;
-        if (node.classList && node.classList.contains('ippc-slider')) {
-          buildSlider(node);
+        if (node.classList) {
+          if (node.classList.contains('ippc-audio-player')) buildPlayer(node);
+          if (node.classList.contains('ippc-slider')) buildSlider(node);
         }
         if (node.querySelectorAll) {
+          node.querySelectorAll('.ippc-audio-player').forEach(buildPlayer);
           node.querySelectorAll('.ippc-slider').forEach(buildSlider);
         }
       });
     });
   });
 
-  sliderObserver.observe(document.body || document.documentElement, {
+  domObserver.observe(document.body || document.documentElement, {
     childList: true,
     subtree: true
   });
@@ -235,10 +218,11 @@
       document.querySelectorAll('.ippc-audio').forEach(function (a) {
         if (a !== audio && !a.paused) {
           a.pause();
-          setPlayState(a.closest('.ippc-audio-player').querySelector('.ippc-audio-btn'), false);
+          var otherBtn = a.closest('.ippc-audio-player').querySelector('.ippc-audio-btn');
+          if (otherBtn) setPlayState(otherBtn, false);
         }
       });
-      audio.play();
+      audio.play().catch(function () { setPlayState(btn, false); });
       setPlayState(btn, true);
     } else {
       audio.pause();
