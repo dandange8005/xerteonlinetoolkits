@@ -891,6 +891,9 @@ function x_setUpThemeBtns(themeInfo, themeChg) {
 			if (btnIcon.customised == true) { $x_menuBtn.addClass("customIconBtn"); } else { $x_menuBtn.removeClass("customIconBtn");  };
 			if (btnIcon.btnImgs == true) { $x_menuBtn.addClass("imgIconBtn"); } else { $x_menuBtn.removeClass("imgIconBtn"); };
 		}
+
+		// header / footer bar may have changed height with theme change
+		x_updateCss();
 	}
 }
 
@@ -1245,24 +1248,23 @@ function x_desktopSetUp() {
 
 function x_cssSetUp(param) {
 	param = (typeof param !== 'undefined') ?  param : "language";
-
 	switch(param) {
         case "language":
 			if (x_params.kblanguage != undefined) {
-				x_insertCSS(x_templateLocation + "models_html5/language.css", function() {x_cssSetUp("glossary")});
+				x_insertCSS(x_templateLocation + "models_html5/language.css?version=" + x_Version, function() {x_cssSetUp("glossary")});
 			} else {
 				x_cssSetUp("glossary");
 			}
             break;
         case "glossary":
 			if (x_params.glossary != undefined) {
-				x_insertCSS(x_templateLocation + "models_html5/glossary.css", function() {x_cssSetUp("saveSession")});
+				x_insertCSS(x_templateLocation + "models_html5/glossary.css?version=" + x_Version, function() {x_cssSetUp("saveSession")});
 			} else {
 				x_cssSetUp("saveSession");
 			}
             break;
 		case "saveSession":
-			x_insertCSS(x_templateLocation + "models_html5/saveSession.css", function() {x_cssSetUp("responsive")});
+			x_insertCSS(x_templateLocation + "models_html5/saveSession.css?version=" + x_Version, function() {x_cssSetUp("responsive")});
 			break;
 		case "responsive":
             if (x_params.responsive == "true") {
@@ -2766,7 +2768,7 @@ function x_changePageApproved(x_gotoPage, addHistory) {
 
 			$x_mainHolder.addClass("x_" + modelfile + "_page");
 
-			x_insertCSS(x_templateLocation + "models_html5/" + modelfile + ".css", function () {
+			x_insertCSS(x_templateLocation + "models_html5/" + modelfile + ".css?version=" + x_Version, function () {
 				x_changePageStep2(x_gotoPage);
 			}, false, "page_model_css");
 		}
@@ -3069,7 +3071,6 @@ function x_passwordPage(pswds) {
 			$(document).prop('title', $('<p>' + pageTitle +' - ' + x_params.name + '</p>').text());
 
 			x_updateCss(false);
-
 			$("#x_pageDiv").show();
 			$x_pageDiv.css("height", "100%");
 			let paddingBlock = $x_pageDiv.innerHeight() - $x_pageDiv.height(); // padding top and bottom
@@ -3317,7 +3318,7 @@ function x_changePageStep3() {
 				x_loadPage("", "success", "");
 			}
 			else {
-				$("#x_page" + x_currentPage).load(x_templateLocation + "models_html5/" + modelfile + ".html", x_loadPage);
+				$("#x_page" + x_currentPage).load(x_templateLocation + "models_html5/" + modelfile + ".html?version=" + x_Version, x_loadPage);
 			}
 		}
 
@@ -4144,7 +4145,7 @@ function x_openDialog(type, title, close, position, load, onclose) {
                     }
                     else
                     {
-                        $x_popupDialog.load(x_templateLocation + "models_html5/" + type + ".html", function () {
+                        $x_popupDialog.load(x_templateLocation + "models_html5/" + type + ".html?version=" + x_Version, function () {
                             x_setDialogSize($x_popupDialog, position);
                         });
                     }
@@ -4481,7 +4482,7 @@ function x_checkDecimalSeparator(value, forcePeriod) {
 // function called from model pages to scale images - scale, firstScale & setH are optional
 function x_scaleImg(img, maxW, maxH, scale, firstScale, setH, enlarge) {
     var $img = $(img);
-    if (scale != false && $img.width() > 0 && $img.height() > 0) {
+    if (scale != false && ($img.data("origSize") != undefined || ($img.width() > 0 && $img.height() > 0))) {
         var imgW = $img.width(),
             imgH = $img.height();
 
@@ -4589,7 +4590,6 @@ function x_getAvailableHeight(excludePadding, excludeHeight, mobile) {
 	// starting height is the whole page height - excluding margins, borders & padding on parents
 	if (x_browserInfo.mobile === false) {
 		availableH = Math.floor($x_pageHolder.get(0).getBoundingClientRect().height - ($x_pageDiv.outerHeight(true) - $x_pageDiv.height()));
-
 	} else if (mobile === true) {
 		// often height on mobiles will be auto so only return a height for mobile view when requested
 		availableH = $x_mobileScroll.height() - $x_headerBlock.outerHeight(true) - $x_footerBlock.outerHeight(true) - ($x_pageDiv.outerHeight(true) - $x_pageDiv.height());
@@ -4619,7 +4619,6 @@ function x_getAvailableHeight(excludePadding, excludeHeight, mobile) {
 				}
 			}
 		}
-
 		availableH = Math.floor(availableH);
 	}
 
@@ -5527,7 +5526,7 @@ var XENITH = (function ($, parent) { var self = parent.GLOSSARY = {};
 
 						$.featherlight($(), {
 							contentFilters: 'ajax',
-							ajax: x_templateLocation + 'models_html5/glossary.html',
+							ajax: x_templateLocation + 'models_html5/glossary.html?version=' + x_Version,
 							variant: 'lightbox' + (x_browserInfo.mobile != true ? 'Medium' : 'Auto' )
 						});
 						
@@ -7261,8 +7260,8 @@ var XENITH = (function ($, parent) { var self = parent.ACCESSIBILITY = {};
 
 		for (let i=0; i<filterMap.length; i++) {
 			const $radio = $('<div class="optionGroup"></div>');
-			$radio.append('<input type="radio" name="colourChangerRadios" id="option' + i + '" value="' + i + '"' + (i===checked ? ' checked="checked"' : '') + '>');
-			$radio.append('<label for="option' + i + '"><p>' + x_getLangInfo(x_languageData.find("colourChanger").find(filterMap[i].name)[0], "label", filterMap[i].default) + '</p></label>');
+			$radio.append('<input type="radio" name="colourChangerRadios" id="colourChanger_option' + i + '" value="' + i + '"' + (i===checked ? ' checked="checked"' : '') + '>');
+			$radio.append('<label for="colourChanger_option' + i + '"><p>' + x_getLangInfo(x_languageData.find("colourChanger").find(filterMap[i].name)[0], "label", filterMap[i].default) + '</p></label>');
 			$colourChangerOptions.append($radio);
 		}
 
@@ -7294,7 +7293,7 @@ var XENITH = (function ($, parent) { var self = parent.ACCESSIBILITY = {};
 			// refresh (trigger pageChanged function) or completely rebuild pages of these types
 			// as they involve things like writing text on a canvas (text might not be an appropriate colour after the theme change)
 			const pageTypesRequiringRebuild = ['chart', 'textDrawing'];
-			const pageTypesRequiringRefresh = ['opinion'];
+			const pageTypesRequiringRefresh = ['opinion', 'inventory'];
 
 			// flag built pages of these types as not built yet, so they will be rebuilt when next viewed
 			for (let i=0, len=x_pageInfo.length; i<len; i++) {
@@ -7335,6 +7334,7 @@ var XENITH = (function ($, parent) { var self = parent.ACCESSIBILITY = {};
 		const $special_theme_responsive_css = $("#special_theme_responsive_css");
 		const $theme_css = $("#theme_css");
 		const $theme_responsive_css = $("#theme_responsive_css");
+		const $custom_special_theme_css = $("#custom_special_theme_css");
 
 		if (theme !== x_params.theme) {
 			// custom theme in use
@@ -7349,6 +7349,27 @@ var XENITH = (function ($, parent) { var self = parent.ACCESSIBILITY = {};
 				$special_theme_responsive_css.prop("disabled", false);
 			}
 
+			// themes can contain css files only used when a special theme is in use
+			// e.g. when the theme changes layout and the special theme needs to keep these changes
+			const thisAccessibleTheme = x_themePath + x_params.theme + '/accessibility/' + theme + '.css';
+			function fileExists(url) {
+				return fetch(url, { method: "HEAD" })
+					.then(res => res.ok)
+					.catch(() => false);
+			}
+
+			fileExists(thisAccessibleTheme).then(exists => {
+				if (exists) {
+					if ($custom_special_theme_css.length > 0) {
+						$custom_special_theme_css.attr("href", thisAccessibleTheme);
+						$custom_special_theme_css.prop("disabled", false);
+					} else {
+						x_insertCSS(thisAccessibleTheme, function () {
+						}, false, "custom_special_theme_css", true);
+					}
+				}
+			});
+
 		} else {
 			// default theme in use
 			$special_theme_css.prop("disabled", true);
@@ -7358,6 +7379,11 @@ var XENITH = (function ($, parent) { var self = parent.ACCESSIBILITY = {};
 			// only enable responsive text css files if needed responsive text is currently on
 			if (checkResponsiveTxt()) {
 				$theme_responsive_css.prop("disabled", false);
+			}
+
+			// disable any theme css files that are only used when a special theme is in use
+			if ($custom_special_theme_css.length > 0) {
+				$custom_special_theme_css.prop("disabled", true);
 			}
 		}
 
@@ -7409,7 +7435,7 @@ var XENITH = (function ($, parent) { var self = parent.ACCESSIBILITY = {};
 
 		x_setProjectTxtSize();
 
-		// trigger recalculation of interface & page elements with heights / margins etc. that might be affected by turning repsonsive text on / off
+		// trigger recalculation of interface & page elements with heights / margins etc. that might be affected by turning responsive text on / off
 		x_updateCss2();
 	}
 
@@ -7496,7 +7522,10 @@ var XENITH = (function ($, parent) { var self = parent.RESOURCES = {};
 								}
 							}
 
-							if (resource.endsWith(".mp3")) {
+							if (resource.startsWith("http")) {
+								// URL
+								return "url";
+							} else if (resource.endsWith(".mp3")) {
 								// audio
 								return "audio";
 							} else if (resource.endsWith(".png") || resource.endsWith(".jpg") || resource.endsWith(".jpeg") || resource.endsWith(".gif") || resource.endsWith(".svg")) {
@@ -7511,9 +7540,6 @@ var XENITH = (function ($, parent) { var self = parent.RESOURCES = {};
 							} else if (x_isYouTubeVimeo(resource) !== false) {
 								// youtube or vimeo
 								return "videoEmbed";
-							} else if (resource.startsWith("http")) {
-								// URL
-								return "url";
 							} else if (resource.startsWith("<iframe")) {
 								return "iframe";
 							} else {
@@ -7569,9 +7595,9 @@ var XENITH = (function ($, parent) { var self = parent.RESOURCES = {};
 			// add resources btn to the header bar - this might be moved to side bar later if that's where it's supposed to be
 			$x_pageResourcesBtn = $('<button id="x_pageResourcesBtn"></button>').appendTo($('#x_headerBlock h2'));
 
-			let btnLabel = !trackCompletion ? x_getLangInfo(x_languageData.find("resources")[0], "text", "{x} Resources Available") : x_getLangInfo(x_languageData.find("resources")[0], "completeText", "{y}/{x} Resources Complete");
+			let btnLabel = !trackCompletion ? '<span class="multiResource">' + x_getLangInfo(x_languageData.find("resources")[0], "text", "{x} Resources Available") + '</span>' + (x_getLangInfo(x_languageData.find("resources")[0], "textSingle") == undefined ? "" : '<span class="singleResource">' + x_getLangInfo(x_languageData.find("resources")[0], "textSingle") + '</span>') : x_getLangInfo(x_languageData.find("resources")[0], "completeText", "{y}/{x} Resources Complete");
 			btnLabel = btnLabel
-				.replace("{x}", "<span class='totalResourcesNum'></span>")
+				.replace(/{x}/g,"<span class='totalResourcesNum'></span>")
 				.replace("{y}", "<span class='completedResourcesNum'></span>");
 			btnLabel += " <span class='x_resourcesClickTxt'><span class='sr-only'>" + x_params.dialogTxt + "</span></span>";
 
@@ -7845,12 +7871,25 @@ var XENITH = (function ($, parent) { var self = parent.RESOURCES = {};
 			$x_pageResourcesBtn.show();
 			// update the no. resources & no. completed resources
 			$x_pageResourcesBtn.find(".totalResourcesNum").html(resourcesInfo[x_currentPage].length);
+			let title = $x_pageResourcesBtn.find(".ui-button-text").text();
+			if (resourcesInfo[x_currentPage].length == 1 && $x_pageResourcesBtn.find(".singleResource").length > 0) {
+				$x_pageResourcesBtn.find(".singleResource").show();
+				$x_pageResourcesBtn.find(".multiResource").hide();
+				title = $x_pageResourcesBtn.find(".singleResource").text();
+			} else if ($x_pageResourcesBtn.find(".multiResource").length > 0) {
+				$x_pageResourcesBtn.find(".singleResource").hide();
+				$x_pageResourcesBtn.find(".multiResource").show();
+				title = $x_pageResourcesBtn.find(".multiResource").text();
+			}
 			$x_pageResourcesBtn.find(".completedResourcesNum").html(resourcesInfo[x_currentPage].filter((obj) => obj.complete === true).length);
 			$x_pageResourcesBtn.find(".resourceNumberTxt").html(resourcesInfo[x_currentPage].length);
 
 			// button has icon only - need to adjust the button title
 			if (x_params.resourceBtn != "text") {
-				$x_pageResourcesBtn.attr("title", $x_pageResourcesBtn.find(".ui-button-text").text());
+				if ($x_pageResourcesBtn.find(".completedResourcesNum").length > 0) {
+					title = $x_pageResourcesBtn.find(".ui-button-text").text(); // refresh now num completed has been set
+				}
+				$x_pageResourcesBtn.attr("title", title);
 			}
 		} else if (resources == true) {
 			$x_pageResourcesBtn.hide();
