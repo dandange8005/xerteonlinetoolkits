@@ -474,7 +474,7 @@
 	  resetImageTip="Reset Image"
 	  toggleScreenTip="Toggle Full Screen"
 	  ></imageViewer>]]></imageViewer><interactiveTable><![CDATA[<interactiveTable name="Enter Page Title" text="" align="Left" data="1|2|3" panelWidth="auto" submitLabel="Submit" continueLabel="Continue" correctTxt="Your answer is correct" incorrectTxt="Your answer is incorrect" correctFbTxt="The correct answer is" srCorrectTxt="Incorrect submitted answer" srIncorrectTxt="Correct answer" incomplete="Complete the exercise"/>]]></interactiveTable><interactiveText><![CDATA[<interactiveText name="Enter Page Title" text="" passage="" interactivity="explore" findShowNum="true" highlight="false" panelWidth="medium" exploreTxt="Explore the text. Click on the various parts to learn more." showMeTxt2="Click a group to learn more." showMeTxt="Click the arrow buttons to learn more." showBtnTxt="Show All" nextTxt="Next" prevTxt="Previous" findTxt="Click a group to begin, then click the text to find all examples." findTxt3="Can you find all of the examples?" findFeedback="You have completed this activity." find2Feedback="You have selected the the correct number of items, please click the button to check your answers." findTxt2="You have found {i} of {n}" findTxt22="You have selected {i} of {n}" findCheckTxt="Check" feedbackTxt="Feedback" groupTxt="Group"  yourAnswerTxt="Your Answer" correctAnswerTxt="Correct Answer" incorrectAnswerTxt="Incorrect Answer" passedQuestionTxt="You passed the question" failedQuestionTxt="Not all answers are correct" passedFindTxt="All selections are correct" failedFindTxt="You still have incorrect selections" mcqText="What is highlighted in the text? Choose from the following options:" mcqQuesCount="Question {i} of {n}" mcqCorrect="That's right." mcqWrong="No, the correct answer is {i}." mcqFeedback="You have completed the quiz." mcqMore="More Information" mcqScore="You scored {i} / {n}" mcqBtnTxt="Check" mcqBtnTxt2="Next" mcqBtnTxt3="Restart" delimiterErrorMsg="Error: The delimiters {n} and {m} are not allowed." delimiterErrorMsg2="Error: The delimiter {n} is not allowed."/>]]></interactiveText><interactiveVideo><![CDATA[<interactiveVideo name="Enter Page Title" supportStart="start" supportEnd="end" supportSkip="skip" supportPage="page"><ivMediaPanel name="Enter Panel Title" media="" tip="" autoplay="false" transcriptBtnTxt="Transcript"/><ivOverlayPanel name="Overlay"/></interactiveVideo>]]></interactiveVideo><inventory><![CDATA[<inventory name="Enter Page Title" instructions="" feedback="" order="random" classes="" scoreType="absolute"
-       chartHide="false" chartTitle="" chartType="bar" chartColourToggle="false" chartColour="0x000000"
+       chartHide="false" chartTitle="" chartType="bar" chartBarType="vertical" chartColourToggle="false" chartColour="0x000000"
        chartAxisTitle="true" chartAxisXTitle="Class" chartAxisYTitle="Score" chartAxisYTitle2="Score (%)"
       panelWidth="Medium" panelWidthCustom="50" align="left" panelStyle="false" removeTxt="false"
 	  quesCount="Question {i} of {n}" feedbackLabel="Feedback" 
@@ -498,7 +498,8 @@
       panelWidth="Medium" panelWidthCustom="50" panelHeight="fill" align="Left" panelStyle="false" removeTxt="false"
 	  feedbackBtnTxt="Submit" pageTxt="Page" questionTxt="Question" responseHeaderTxt="Your response:"
 	  noAnswerHeaderTxt="No response submitted" exampleHeaderTxt="Feedback:" feedbackTxt="Page feedback"
-	  copyBtn2Label="Copy" copyShortcutTxt="Press Ctrl+C to copy" downloadTxt="Download" answerFieldLabel="Answer"><modelAnswerField name="Text Area" prompt="" rows="5"/></modelAnswer>]]></modelAnswer><modelAnswerResults><![CDATA[<modelAnswerResults name="Enter Page Title" text=""
+	  copyBtn2Label="Copy" copyShortcutTxt="Press Ctrl+C to copy" downloadTxt="Download" downloadSubmitTxt="Submit &amp; Download" downloadWarningTxt1="You have not downloaded your responses. Do you want to download them now?" downloadWarningTxt2="You have not submitted and downloaded your current responses. Make sure you return and complete this activity or you will lose your work."
+	  answerFieldLabel="Answer"><modelAnswerField name="Text Area" prompt="" rows="5"/></modelAnswer>]]></modelAnswer><modelAnswerResults><![CDATA[<modelAnswerResults name="Enter Page Title" text=""
      modelAnswerPage="true" highlightPage="false" documentationPage="false" dataPageLink="true"
       panelWidth="Medium" panelWidthCustom="50" panelHeight="fill" align="Right" panelStyle="false" removeTxt="false"
 	  copyBtn2Label="Copy" downloadTxt="Download" pageTxt="Page" notViewed="Page not viewed"
@@ -570,7 +571,10 @@
 		panelWidth="Medium" panelWidthCustom="50"
 		selectBtn="Highlight" 
 		noteBtn="Copy to Notes" 
-		downloadBtn="Download" 
+		downloadBtn="Download"
+		downloadSubmitBtn="Submit &amp; Download"
+		downloadWarningTxt1="You have not downloaded your response. Do you want to download now?"
+		downloadWarningTxt2="You have not submitted and downloaded your current response. Make sure you return and complete this activity or you will lose your work."
 		checkBtn="Submit"
 		clearBtn="Clear" 
 		resetBtn="Reset"
@@ -9764,6 +9768,7 @@
     <chart type="group" label="Chart Options">
       <chartHide label="Hide Chart" type="CheckBox" defaultValue="false" conditionTrigger="true" mandatory="true"/>
       <chartType label="Type" options="Bar,Pie,Line,Polar,Doughnut,Radar" type="ComboBox" data="bar,pie,line,polar,doughnut,radar" defaultValue="bar" condition="chartHide!='true'" conditionTrigger="true"/>
+      <chartBarType label="Alignment" options="Horizontal,Vertical" type="ComboBox" data="horizontal,vertical" defaultValue="vertical" condition="chartHide!='true'&amp;&amp;chartType=='bar'" mandatory="true"/>
       <chartTitle label="Title" type="TextInput" wysiwyg="true" condition="chartHide!='true'"/>
       <chartAxisGroup label="Axis Titles" type="group" mandatory="true" condition="chartHide!='true'&amp;&amp;(chartType=='bar'||chartType=='line')">
         <chartAxisTitle label="Show Titles" type="CheckBox" defaultValue="false" condition="chartHide!='true'&amp;&amp;(chartType=='bar'||chartType=='line')" conditionTrigger="true" mandatory="true"/>
@@ -12637,10 +12642,13 @@
 
     <copyPaste label="Copy Button" type="CheckBox" defaultValue="true" optional="true" tooltip="Include a button that allows users to easily select &amp; copy their responses"/>
 
-    <downloadGroup label="Download Button" type="group" optional="true" tooltip="Include a button that allows users to download a copy their responses">
-        <showDownload label="Include button" type="CheckBox" optional="true" defaultValue="true" conditionTrigger="true"/>
-        <filename condition="showDownload!='false'" label="Filename (without extension)" type="TextInput" defaultValue="model_answer" optional="true"/>
-        <fileOrientation condition="showDownload!='false'" label="File orientation" data="portrait,landscape" type="ComboBox" options="Portrait,Landscape" width="120" defaultValue="portrait" optional="true" tooltip="Orientation of downloaded file"/>
+    <downloadGroup label="Download responses" type="group" optional="true" tooltip="Allows users to download a copy their responses as a Word document">
+        <showDownload label="Allow Download" type="ComboBox" options="Separate download button,Download on submit,No download" data="true,submit,false" optional="true" defaultValue="true" conditionTrigger="true"/>
+        <downloadWarning label="Warn if Not Downloaded" type="CheckBox" defaultValue="false" condition="showDownload!='false'" optional="true" mandatory="true" tooltip="Warn students if they have not downloaded their work after making changes. This warning will only be shown for this page."/>
+        <fileGroup label="File Settings" type="group" optional="true" condition="showDownload!='false'">
+          <filename label="Filename (without extension)" condition="showDownload!='false'" type="TextInput" defaultValue="model_answer" optional="true"/>
+          <fileOrientation label="Orientation" condition="showDownload!='false'" data="portrait,landscape" type="ComboBox" options="Portrait,Landscape" width="120" defaultValue="portrait" optional="true" tooltip="Orientation of downloaded file"/>
+        </fileGroup>
     </downloadGroup>
 
     <copypasteinfo2 label="Copy &amp; Paste Info" defaultValue="Note: Click the 'Select Text' button to highlight the instruction, question, your response and the feedback and then Ctrl + C to copy this text to the clipboard. You can then paste (Ctrl + V) into another application such as Open Office, Word or an email to save for future reference." type="TextArea" height="50" optional="true" deprecated="This property is deprecated - use the 'Copy Button' optional property to add a button that copies responses to the clipboard"/>
@@ -12659,10 +12667,13 @@
     <noAnswerHeaderTxt label="No Answer Text" type="TextInput" wysiwyg="true" language="true"/>
     <exampleHeaderTxt label="Feedback Text" type="TextInput" wysiwyg="true" language="true"/>
     <feedbackTxt label="Main Feedback Text" type="TextInput" wysiwyg="true" language="true" mandatory="true" defaultValue="Page feedback"/>
-    <feedbackBtnTxt label="Check Button Label" type="TextInput" wysiwyg="true" language="true"/>
+    <feedbackBtnTxt label="Submit Button Label" type="TextInput" condition="showDownload!='true'&amp;&amp;showDownload!='submit'" wysiwyg="true" language="true"/>
+    <downloadTxt label="Download Button Label" type="TextInput" condition="showDownload=='true'" mandatory="true" wysiwyg="true" language="true" defaultValue="Download"/>
+    <downloadSubmitTxt label="Submit &amp; Download Button Label" type="TextInput" condition="showDownload=='submit'" mandatory="true" wysiwyg="true" language="true" defaultValue="Submit &amp; Download"/>
+    <downloadWarningTxt1 label="Download Warning Text 1" type="TextInput" condition="showDownload=='true'||showDownload=='submit'" mandatory="true" language="true" defaultValue="You have not downloaded your responses. Do you want to download them now?"/>
+    <downloadWarningTxt2 label="Download Warning Text 2" type="TextInput" condition="showDownload=='true'||showDownload=='submit'" mandatory="true" language="true" defaultValue="You have not submitted and downloaded your current responses. Make sure you return and complete this activity or you will lose your work."/>
     <copyBtn2Label label="Copy Button Label" type="TextInput" wysiwyg="true" language="true" mandatory="true" defaultValue="Copy"/>
     <copyShortcutTxt label="Copy Shortcut Text" type="TextInput" wysiwyg="true" language="true"/>
-    <downloadTxt label="Download Button Label" type="TextInput" condition="showDownload!='false'" mandatory="true" language="true" defaultValue="Download"/>
     <answerFieldLabel label="Answer Field Hidden Aria-Label" type="TextInput" wysiwyg="false" language="true" mandatory="true" defaultValue="Answer" tooltip="This is a hidden label specifically for screen reader users so that the text field where they should respond is labelled and the label is spoken to the screenreader user. e.g. Answer."/>
 
     <copyBtnLabel label="Select Button Label" type="TextInput" wysiwyg="true" language="true" deprecated="This property is no longer required"/>
@@ -17812,28 +17823,34 @@
     </AIGroup>
 
 	<notesText label="Notes Placeholder Text" type="TextArea" height="100" defaultValue="" condition="mode=='Notes'" optional="true" tooltip="When in note taking mode this text will appear in the notes area by default"/>
-	
-	<downloadGroup type="group" label="Download Notes" optional="true" tooltip="Allow text on the page to be downloaded as a Word document">
-		<download label="Allow Download" type="CheckBox" defaultValue="true" conditionTrigger="true" optional="true"/>
-		<filename label="Filename (without extension)" type="TextInput" defaultValue="textHighlight" condition="download=='true'" optional="true"/>
-		<fileOrientation label="File Orientation" data="portrait,landscape" type="ComboBox" options="Portrait,Landscape" width="120" defaultValue="portrait" condition="download=='true'" optional="true"/>
-		
-		<fontSize type="group" label="Font Size" optional="true" tooltip="Customise the font sizes used in the downloaded document">
-			<h1 label="h1" type="TextInput" defaultValue="20" width="100" optional="true"/>
-			<h2 label="h2" type="TextInput" defaultValue="18" width="100" optional="true"/>
-			<h3 label="h3" type="TextInput" defaultValue="16" width="100" optional="true"/>
-			<p label="p" type="TextInput" defaultValue="15" width="100" optional="true"/>
-		</fontSize>
+
+	<downloadGroup label="Download Notes" type="group" optional="true" tooltip="Allow text on the page to be downloaded as a Word document">
+		<download label="Allow Download" type="ComboBox" options="Separate download button,Download on submit,No download" data="true,submit,false" optional="true" defaultValue="true" conditionTrigger="true"/>
+		<downloadWarning label="Warn if Not Downloaded" type="CheckBox" defaultValue="false" condition="download!='false'" optional="true" mandatory="true" tooltip="Warn students if they have not downloaded their work after making changes. This warning will only be shown for this page."/>
+
+		<fileGroup label="File Settings" type="group" optional="true" condition="download!='false'">
+			<filename label="Filename (without extension)" type="TextInput" defaultValue="textHighlight" condition="download!='false'" optional="true"/>
+			<fileOrientation label="Orientation" data="portrait,landscape" type="ComboBox" options="Portrait,Landscape" width="120" defaultValue="portrait" condition="download!='false'" optional="true" tooltip="Orientation of downloaded file"/>
+			<fontSize type="group" label="Font Size" optional="true" tooltip="Customise the font sizes used in the downloaded document" condition="download!='false'">
+				<h1 label="h1" type="TextInput" defaultValue="20" width="100" optional="true" condition="download!='false'"/>
+				<h2 label="h2" type="TextInput" defaultValue="18" width="100" optional="true" condition="download!='false'"/>
+				<h3 label="h3" type="TextInput" defaultValue="16" width="100" optional="true" condition="download!='false'"/>
+				<p label="p" type="TextInput" defaultValue="15" width="100" optional="true" condition="download!='false'"/>
+			</fontSize>
+		</fileGroup>
 	</downloadGroup>
 	
 	<allowTyping label="Allow Typing" type="CheckBox" optional="true" condition="mode=='Notes'&amp;&amp;initialBtn!='false'" defaultValue="true" tooltip="Allow typing directly in notes area (on by default)"/>
-	<required label="Answer Required Before Feedback" type="CheckBox" optional="true" defaultValue="true"/>
+	<required label="Require Answer" type="CheckBox" optional="true" defaultValue="true" tooltip="Require at attempt to be made before a response can be submitted for feedback"/>
 	<forceTabs label="Panels to Tabs" type="CheckBox" optional="true" defaultValue="true" tooltip="Force all panels to be shown as tabbed navigators, even when they contain just one pane of information"/>
 
     <selectBtn label="Select Button Label" type="TextInput" wysiwyg="true" divider="true" language="true"/>
     <noteBtn label="Notes Button Label" type="TextInput" wysiwyg="true" divider="true" language="true"/>
-    <downloadBtn label="Download Button Label" type="TextInput" wysiwyg="true" language="true"/>
-    <checkBtn label="Check Button Label" type="TextInput" wysiwyg="true" language="true"/>
+    <downloadBtn label="Download Button Label" type="TextInput" wysiwyg="true" condition="download=='submit'||download=='true'" language="true"/>
+	<downloadSubmitBtn label="Submit &amp; Download Button Label" type="TextInput" condition="download=='submit'" mandatory="true" wysiwyg="true" language="true" defaultValue="Submit &amp; Download"/>
+	<downloadWarningTxt1 label="Download Warning Text 1" type="TextInput" condition="download=='submit'||download=='true'" mandatory="true" language="true" defaultValue="You have not downloaded your response. Do you want to download now?"/>
+	<downloadWarningTxt2 label="Download Warning Text 2" type="TextInput" condition="download=='submit'||download=='true'" mandatory="true" language="true" defaultValue="You have not submitted and downloaded your current response. Make sure you return and complete this activity or you will lose your work."/>
+	<checkBtn label="Check Button Label" type="TextInput" wysiwyg="true" language="true"/>
     <clearBtn label="Clear Button Label" type="TextInput" wysiwyg="true" language="true"/>
     <resetBtn label="Reset Button Label" type="TextInput" wysiwyg="true" language="true"/>
     <errorTxt label="Selection Error" type="TextInput" language="true"/>
