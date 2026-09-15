@@ -74,7 +74,7 @@ For every broken page: removed the stray font-size spans, rebuilt each audio pla
 | 60 | How resources are delivered | Both players wrapped → 0/2 built; same sizing issue on both banner cards. | Rebuilt both players; removed the font-size spans from the banner cards. |
 | 61 | Adapting resources to individuals' daily lives | Both players wrapped → 0/2 built. | Rebuilt both players in place. |
 
-**Welsh** (`Welsh/pageN.html`) — 11 pages. Same faults as the English pages, replicated as Shea's email said, plus two pages that are Welsh-only:
+**Welsh** (`Welsh/pageN.html`) — 12 pages. Same faults as the English pages, replicated as Shea's email said, plus two pages that are Welsh-only:
 
 | Page | Title | Fault | Fix |
 |---|---|---|---|
@@ -82,6 +82,7 @@ For every broken page: removed the stray font-size spans, rebuilt each audio pla
 | 19 | Ffactorau sy'n effeithio ar fynediad unigolyn… | Same as English 19. | Same fix; titles use the Welsh half of the HEIW bilingual titles. |
 | 25 | Dyma rai cwestiynau i'ch helpu i ddeall yr unigolyn | Welsh-only fault: "Cyfle" and "Cymhelliant" had become headings *inside* the "Gallu" slide instead of starting their own slides — the slider had 2 slides instead of 4. | Split into 4 slides, matching the English page. No audio on this page. |
 | 36 | Technegau newid ymddygiad iechyd | Welsh-only: the audio had been lost entirely, and the "Hunan-fonitro:" heading had been turned into an empty, audio-less player. | Restored the heading; added the same 5-player layout as English page 36, titled from the page's own Welsh wording (HEIW had no Welsh titles for this page). |
+| 34 | (banner cards on accessible language) | Added later, not in Shea's list. Player wrapped in a font-size span → `NotFoundError`, 0/1 built; English prompt text and a `kB` size; font-size spans overriding both banner cards; images/audio linked to another project (25062). | Rebuilt the player with the Welsh prompt; removed the font-size spans; cards put in `.grid-2` (as page 60); links moved to the 24449 media folder. Banner card 2's image (`Module_5_-_Services_14`) isn't in any Xerte media folder, so it still loads from HEIW. |
 | 43, 50–53, 60, 61 | (as English) | Same wrapped-title fault as their English equivalents. | Same fix as the English pages, including the card cleanup on 51–53 and 60. |
 
 ### Media links
@@ -105,6 +106,7 @@ Content questions for Shea, left alone rather than guessed at:
 - **English 51/52** — card 4 (page 51) and card 3 (page 52) repeat a sentence that doesn't fit their heading — looks like a copy-paste slip from Shea's edit.
 - **Welsh 19** — slide order and a couple of merged quotes differ slightly from the English page.
 - **Welsh 52** — missing a "Click here" link and has an English-language heading, where the English page has both.
+- **Welsh 34** — banner card 2's image is hotlinked from HEIW; upload `Module_5_-_Services_14` to the 24449 media folder if that link should not be relied on.
 - **Welsh 8/61** — still carry some leftover Word-paste formatting (line-height/font-family spans) beyond the `aptos=""` fix; harmless but not cleaned up.
 
 
