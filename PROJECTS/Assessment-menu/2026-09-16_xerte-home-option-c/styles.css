@@ -1,0 +1,87 @@
+/* ===== Assessment Menu: Home page (option C) =====
+   Paste into Project > Optional properties > Styles.
+   Everything is prefixed "am-" or scoped to the Home section IDs,
+   so it won't affect the category pages. */
+:root {
+  --am-red: #C21F16;
+  --am-red-bright: #E4251B;
+  --am-tint: #FFF5F5;
+  --am-ink: #121212;
+  --am-muted: #666666;
+  --am-line: #CCCCCC;
+  --am-lane1-on-dark: #9cc7ea;
+  --am-lane2-on-dark: #9ad6b1;
+}
+
+/* Intro */
+#intro { padding-top: 1.5rem; }
+.am-lead { font-size: 1.2rem; line-height: 1.6; max-width: 62ch; margin: 0 auto; text-align: center; }
+
+/* "Where would you like to start?" */
+#start .page-header { text-align: center; border-bottom: 0; }
+.am-paths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.am-path { display: flex; flex-direction: column; gap: .75rem; padding: 1.5rem; background: #fff; border: 2px solid var(--am-line); border-radius: 16px; }
+.am-path:hover, .am-path:focus-within { border-color: var(--am-ink); box-shadow: 0 12px 28px rgba(0,0,0,.1); }
+.am-path--lead { border-color: var(--am-red); background: var(--am-tint); }
+.am-step { width: 44px; height: 44px; border-radius: 50%; background: var(--am-red); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 1.25rem; }
+.am-path h3 { margin: 0; font-size: 1.4rem; line-height: 1.25; }
+.am-path p { margin: 0; color: var(--am-muted); }
+.am-go { margin-top: auto; font-weight: 700; }
+.am-chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.am-chips li { margin: 0; }
+.am-chips a { display: inline-block; padding: 4px 12px; border: 1.5px solid var(--am-line); border-radius: 999px; background: #fff; text-decoration: none; color: var(--am-ink); font-weight: 600; font-size: .95rem; }
+.am-chips a:hover { border-color: var(--am-ink); }
+.am-policy { text-align: center; max-width: 70ch; margin: 1.5rem auto 0; color: var(--am-muted); }
+.am-policy strong { color: var(--am-ink); }
+
+/* Type search (needs the project Script) */
+.am-search { position: relative; }
+.am-search input[type="search"] { width: 100%; height: auto; min-height: 48px; box-sizing: border-box; margin: 0; padding: 10px 14px; font-size: 1.05rem; border: 2px solid var(--am-line); border-radius: 6px; box-shadow: none; }
+.am-search input[type="search"]:focus { border-color: var(--am-ink); }
+.am-results { position: absolute; left: 0; right: 0; top: 100%; z-index: 20; list-style: none; margin: 0; padding: 0; background: #fff; border: 1px solid var(--am-line); border-radius: 0 0 6px 6px; box-shadow: 0 10px 24px rgba(0,0,0,.14); max-height: 300px; overflow-y: auto; }
+.am-results[hidden] { display: none; }
+.am-results li { margin: 0; }
+.am-results a { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-top: 1px solid #e5e5e5; color: var(--am-ink); text-decoration: none; }
+.am-results a:hover, .am-results a:focus { background: var(--am-tint); }
+.am-results .am-cat { color: var(--am-muted); font-size: .9rem; white-space: nowrap; }
+.am-results .am-none { display: block; padding: 10px 14px; color: var(--am-muted); }
+
+/* Six questions */
+.am-questions { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.75rem 1.5rem; counter-reset: amq; }
+.am-questions li { counter-increment: amq; position: relative; min-height: 48px; margin: 0; padding-left: 62px; font-size: 1.1rem; font-weight: 600; line-height: 1.4; }
+.am-questions li::before { content: counter(amq); position: absolute; left: 0; top: 0; width: 48px; height: 48px; box-sizing: border-box; display: grid; place-items: center; border-radius: 50%; background: #fff; border: 3px solid var(--am-red-bright); color: var(--am-ink); font-weight: 700; }
+.am-hint { display: block; margin-top: 6px; font-size: .95rem; font-weight: 400; color: var(--am-muted); }
+.am-hint strong { color: var(--am-ink); }
+
+/* "What shapes the menu" dark panel */
+.am-briefs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--am-ink); color: #fff; border-radius: 16px; overflow: hidden; }
+.am-brief { display: flex; flex-direction: column; padding: 1.75rem; border-left: 1px solid #333; }
+.am-brief:first-child { border-left: 0; }
+.am-brief h3 { margin-top: 0; color: #fff; font-size: 1.4rem; }
+.am-brief p { color: #eee; }
+.am-brief a { color: #fff; }
+.am-brief a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.am-lane { display: block; margin: .5rem 0; padding-left: 12px; border-left: 4px solid; color: #eee; }
+.am-lane--1 { border-color: var(--am-lane1-on-dark); }
+.am-lane--1 strong { color: var(--am-lane1-on-dark); }
+.am-lane--2 { border-color: var(--am-lane2-on-dark); }
+.am-lane--2 strong { color: var(--am-lane2-on-dark); }
+.am-more { margin: auto 0 0; padding-top: 1rem; }
+.am-more a { display: inline-block; margin-right: 1rem; font-weight: 700; }
+
+/* "Use this menu alongside" */
+.am-alongside { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2.5rem; padding: 2rem; background: #F2F2F2; border-radius: 12px; }
+.am-alongside h3 { margin-top: 0; }
+.am-alongside ul { list-style: none; margin: 0; padding: 0; }
+.am-alongside li { margin: 0; padding: .5rem 0; border-bottom: 1px solid var(--am-line); }
+.am-alongside .am-ref { font-size: .95rem; }
+
+@media (max-width: 979px) {
+  .am-paths, .am-questions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .am-briefs, .am-alongside { grid-template-columns: 1fr; }
+  .am-brief { border-left: 0; border-top: 1px solid #333; }
+  .am-brief:first-child { border-top: 0; }
+}
+@media (max-width: 640px) {
+  .am-paths, .am-questions { grid-template-columns: 1fr; }
+}

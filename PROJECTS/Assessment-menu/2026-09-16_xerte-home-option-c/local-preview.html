@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="http://localhost:8080/modules/site/parent_templates/site/common/js/jquery-1.9.1.min.js"></script>
+<link href="http://localhost:8080/modules/site/parent_templates/site/common/css/bootstrap.css" rel="stylesheet"><link href="http://localhost:8080/modules/site/parent_templates/site/common/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="http://localhost:8080/modules/site/parent_templates/site/common/css/fonts.css" rel="stylesheet"><link href="http://localhost:8080/modules/site/parent_templates/site/common/css/custom.css" rel="stylesheet">
+<link href="http://localhost:8080/themes/site/cardiffuni-v2/cardiffuni-v2.css" rel="stylesheet">
+<style>/* ===== Assessment Menu: Home page (option C) =====
+   Paste into Project > Optional properties > Styles.
+   Everything is prefixed "am-" or scoped to the Home section IDs,
+   so it won't affect the category pages. */
+:root {
+  --am-red: #C21F16;
+  --am-red-bright: #E4251B;
+  --am-tint: #FFF5F5;
+  --am-ink: #121212;
+  --am-muted: #666666;
+  --am-line: #CCCCCC;
+  --am-lane1-on-dark: #9cc7ea;
+  --am-lane2-on-dark: #9ad6b1;
+}
+
+/* Intro */
+#intro { padding-top: 1.5rem; }
+.am-lead { font-size: 1.2rem; line-height: 1.6; max-width: 62ch; margin: 0 auto; text-align: center; }
+
+/* "Where would you like to start?" */
+#start .page-header { text-align: center; border-bottom: 0; }
+.am-paths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.am-path { display: flex; flex-direction: column; gap: .75rem; padding: 1.5rem; background: #fff; border: 2px solid var(--am-line); border-radius: 16px; }
+.am-path:hover, .am-path:focus-within { border-color: var(--am-ink); box-shadow: 0 12px 28px rgba(0,0,0,.1); }
+.am-path--lead { border-color: var(--am-red); background: var(--am-tint); }
+.am-step { width: 44px; height: 44px; border-radius: 50%; background: var(--am-red); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 1.25rem; }
+.am-path h3 { margin: 0; font-size: 1.4rem; line-height: 1.25; }
+.am-path p { margin: 0; color: var(--am-muted); }
+.am-go { margin-top: auto; font-weight: 700; }
+.am-chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.am-chips li { margin: 0; }
+.am-chips a { display: inline-block; padding: 4px 12px; border: 1.5px solid var(--am-line); border-radius: 999px; background: #fff; text-decoration: none; color: var(--am-ink); font-weight: 600; font-size: .95rem; }
+.am-chips a:hover { border-color: var(--am-ink); }
+.am-policy { text-align: center; max-width: 70ch; margin: 1.5rem auto 0; color: var(--am-muted); }
+.am-policy strong { color: var(--am-ink); }
+
+/* Type search (needs the project Script) */
+.am-search { position: relative; }
+.am-search input[type="search"] { width: 100%; height: auto; min-height: 48px; box-sizing: border-box; margin: 0; padding: 10px 14px; font-size: 1.05rem; border: 2px solid var(--am-line); border-radius: 6px; box-shadow: none; }
+.am-search input[type="search"]:focus { border-color: var(--am-ink); }
+.am-results { position: absolute; left: 0; right: 0; top: 100%; z-index: 20; list-style: none; margin: 0; padding: 0; background: #fff; border: 1px solid var(--am-line); border-radius: 0 0 6px 6px; box-shadow: 0 10px 24px rgba(0,0,0,.14); max-height: 300px; overflow-y: auto; }
+.am-results[hidden] { display: none; }
+.am-results li { margin: 0; }
+.am-results a { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-top: 1px solid #e5e5e5; color: var(--am-ink); text-decoration: none; }
+.am-results a:hover, .am-results a:focus { background: var(--am-tint); }
+.am-results .am-cat { color: var(--am-muted); font-size: .9rem; white-space: nowrap; }
+.am-results .am-none { display: block; padding: 10px 14px; color: var(--am-muted); }
+
+/* Six questions */
+.am-questions { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.75rem 1.5rem; counter-reset: amq; }
+.am-questions li { counter-increment: amq; position: relative; min-height: 48px; margin: 0; padding-left: 62px; font-size: 1.1rem; font-weight: 600; line-height: 1.4; }
+.am-questions li::before { content: counter(amq); position: absolute; left: 0; top: 0; width: 48px; height: 48px; box-sizing: border-box; display: grid; place-items: center; border-radius: 50%; background: #fff; border: 3px solid var(--am-red-bright); color: var(--am-ink); font-weight: 700; }
+.am-hint { display: block; margin-top: 6px; font-size: .95rem; font-weight: 400; color: var(--am-muted); }
+.am-hint strong { color: var(--am-ink); }
+
+/* "What shapes the menu" dark panel */
+.am-briefs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--am-ink); color: #fff; border-radius: 16px; overflow: hidden; }
+.am-brief { display: flex; flex-direction: column; padding: 1.75rem; border-left: 1px solid #333; }
+.am-brief:first-child { border-left: 0; }
+.am-brief h3 { margin-top: 0; color: #fff; font-size: 1.4rem; }
+.am-brief p { color: #eee; }
+.am-brief a { color: #fff; }
+.am-brief a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.am-lane { display: block; margin: .5rem 0; padding-left: 12px; border-left: 4px solid; color: #eee; }
+.am-lane--1 { border-color: var(--am-lane1-on-dark); }
+.am-lane--1 strong { color: var(--am-lane1-on-dark); }
+.am-lane--2 { border-color: var(--am-lane2-on-dark); }
+.am-lane--2 strong { color: var(--am-lane2-on-dark); }
+.am-more { margin: auto 0 0; padding-top: 1rem; }
+.am-more a { display: inline-block; margin-right: 1rem; font-weight: 700; }
+
+/* "Use this menu alongside" */
+.am-alongside { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2.5rem; padding: 2rem; background: #F2F2F2; border-radius: 12px; }
+.am-alongside h3 { margin-top: 0; }
+.am-alongside ul { list-style: none; margin: 0; padding: 0; }
+.am-alongside li { margin: 0; padding: .5rem 0; border-bottom: 1px solid var(--am-line); }
+.am-alongside .am-ref { font-size: .95rem; }
+
+@media (max-width: 979px) {
+  .am-paths, .am-questions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .am-briefs, .am-alongside { grid-template-columns: 1fr; }
+  .am-brief { border-left: 0; border-top: 1px solid #333; }
+  .am-brief:first-child { border-top: 0; }
+}
+@media (max-width: 640px) {
+  .am-paths, .am-questions { grid-template-columns: 1fr; }
+}
+</style><script>/* ===== Assessment Menu: type search on the Home page =====
+   Paste into Project > Optional properties > Script.
+   Each row: [type name, category name, page ID, section ID].
+   Page and section IDs must match the IDs set in Xerte. */
+(function ($) {
+  var AM_TYPES = [
+    ['In-person, invigilated exam', 'Exams', 'exams', 'in-person-invigilated-exam'],
+    ['Open-book exam', 'Exams', 'exams', 'open-book-exam'],
+    ['Timed in-class knowledge test', 'Class tests', 'class-tests', 'timed-in-class-knowledge-test'],
+    ['Application-based problem test', 'Class tests', 'class-tests', 'application-based-problem-test'],
+    ['Mentimeter conceptual understanding check', 'Class tests', 'class-tests', 'mentimeter-conceptual-understanding-check'],
+    ['Reflective portfolio', 'Portfolios', 'portfolios', 'reflective-portfolio'],
+    ['Annotated bibliography', 'Portfolios', 'portfolios', 'annotated-bibliography'],
+    ['Professional portfolio', 'Portfolios', 'portfolios', 'professional-portfolio'],
+    ['Artefacts', 'Multimedia assessments', 'multimedia', 'artefacts'],
+    ['Posters', 'Multimedia assessments', 'multimedia', 'posters'],
+    ['Blog/vlog', 'Multimedia assessments', 'multimedia', 'blog-vlog'],
+    ['Assessed seminars', 'Oral and spoken', 'oral', 'assessed-seminars'],
+    ['Presentation', 'Oral and spoken', 'oral', 'presentation'],
+    ['Viva voce', 'Oral and spoken', 'oral', 'viva-voce'],
+    ['OSCEs and ISCEs', 'Practical based', 'practical', 'osces-and-isces'],
+    ['Essay', 'Written assessments', 'written', 'essay'],
+    ['Report', 'Written assessments', 'written', 'report']
+  ];
+
+  function esc(s) { return $('<div/>').text(s).html(); }
+
+  function close($box) {
+    $box.find('.am-results').attr('hidden', 'hidden');
+    $box.find('input').attr('aria-expanded', 'false');
+  }
+
+  // Delegated events: the Home page content is added after this script runs
+  $(document).on('input', '.am-search input', function () {
+    var $input = $(this), $box = $input.closest('.am-search'), $list = $box.find('.am-results');
+    var q = $.trim($input.val()).toLowerCase();
+    if (!q) { close($box); return; }
+    var html = '';
+    $.each(AM_TYPES, function (i, t) {
+      if (t[0].toLowerCase().indexOf(q) > -1 || t[1].toLowerCase().indexOf(q) > -1) {
+        html += '<li><a href="#' + t[2] + '|' + t[3] + '"><span>' + esc(t[0]) + '</span><span class="am-cat">' + esc(t[1]) + '</span></a></li>';
+      }
+    });
+    $list.html(html || '<li><span class="am-none">No match. <a href="#browse">Browse all types</a></span></li>').removeAttr('hidden');
+    $input.attr('aria-expanded', 'true');
+  });
+
+  $(document).on('keydown', '.am-search input', function (e) {
+    var $box = $(this).closest('.am-search');
+    if (e.key === 'Escape') { close($box); }
+    if (e.key === 'ArrowDown') {
+      var $first = $box.find('.am-results a').first();
+      if ($first.length && !$box.find('.am-results').is('[hidden]')) { e.preventDefault(); $first.focus(); }
+    }
+  });
+
+  $(document).on('keydown', '.am-results a', function (e) {
+    var $box = $(this).closest('.am-search'), $links = $box.find('.am-results a'), i = $links.index(this);
+    if (e.key === 'ArrowDown' && i < $links.length - 1) { e.preventDefault(); $links.eq(i + 1).focus(); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); if (i > 0) { $links.eq(i - 1).focus(); } else { $box.find('input').focus(); } }
+    if (e.key === 'Escape') { close($box); $box.find('input').focus(); }
+  });
+
+  // Close the list after choosing a result or clicking elsewhere
+  $(document).on('click', function (e) {
+    $('.am-search').each(function () {
+      if (!$.contains(this, e.target) || $(e.target).closest('.am-results a').length) { close($(this)); }
+    });
+  });
+})(jQuery);
+</script></head>
+<body><div id="aboveFooter">
+<div class="navbar navbar-inverse" id="topnav"><div class="navbar-inner"><div class="container"><div class="nav-collapse collapse"><ul class="nav" id="nav"><li class="active"><a href="#home">Home</a></li><li><a href="#browse">Browse all</a></li><li><a href="#exams">Exams</a></li><li><a href="#class-tests">Class tests</a></li><li><a href="#portfolios">Portfolios</a></li><li><a href="#multimedia">Multimedia</a></li><li><a href="#oral">Oral and spoken</a></li><li><a href="#practical">Practical</a></li><li><a href="#written">Written</a></li><li><a href="#help">Help</a></li></ul></div></div></div></div>
+<header class="jumbotron" id="overview"><div class="container"><div class="titles"><h1 id="pageTitle">Assessment Menu</h1><p id="pageSubTitle">Designing meaningful, inclusive and future-focused assessment</p></div></div></header>
+<div class="container"><div class="row-fluid"><div class="span3 bs-docs-sidebar hideSectionMenu expandMain" id="contentTable"><ul class="nav nav-list bs-docs-sidenav affix" id="toc"></ul></div>
+<div class="span9 expandMain" id="mainContent" role="main">
+<section id="intro"><p class="am-lead">At Cardiff University, assessment should let students show they have achieved their programme learning outcomes, through tasks that are authentic, inclusive and aligned with what we want our graduates to develop. This menu is a design tool, not a list of recommended assessment replacements.</p>
+</section>
+<section id="start"><div class="page-header"><h2 id="start_title" class="sectionTitle">Where would you like to start?</h2></div><div class="am-paths">
+  <div class="am-path am-path--lead">
+    <span class="am-step" aria-hidden="true">1</span>
+    <h3>I'm designing or reviewing an assessment</h3>
+    <p>Work through six questions, then compare the types that fit.</p>
+    <a class="am-go" href="#home|questions">Start with the six questions</a>
+  </div>
+  <div class="am-path">
+    <span class="am-step" aria-hidden="true">2</span>
+    <h3>I know the assessment type</h3>
+    <p>Go straight to what it looks like in Lane 1 and Lane 2.</p>
+    <div class="am-search">
+      <label for="amSearch" class="sr-only">Search assessment types</label>
+      <input id="amSearch" type="search" placeholder="e.g. viva, essay" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="amResults" aria-autocomplete="list">
+      <ul class="am-results" id="amResults" hidden></ul>
+    </div>
+  </div>
+  <div class="am-path">
+    <span class="am-step" aria-hidden="true">3</span>
+    <h3>I want to see the options</h3>
+    <p>Browse 17 types by category.</p>
+    <ul class="am-chips">
+      <li><a href="#exams">Exams</a></li>
+      <li><a href="#class-tests">Class tests</a></li>
+      <li><a href="#portfolios">Portfolios</a></li>
+      <li><a href="#multimedia">Multimedia</a></li>
+      <li><a href="#oral">Oral and spoken</a></li>
+      <li><a href="#practical">Practical based</a></li>
+      <li><a href="#written">Written</a></li>
+    </ul>
+    <a class="am-go" href="#browse">Browse all types</a>
+  </div>
+</div>
+<p class="am-policy"><strong>Guidance, not policy.</strong> Decisions about assessment types and lanes sit with module and programme teams, based on the learning outcomes.</p>
+</section>
+<section id="questions"><div class="page-header"><h2 id="questions_title" class="sectionTitle">Six questions to design with</h2></div><p>Rather than asking "What assessment should I use?", ask:</p>
+<ol class="am-questions">
+  <li>What do students need to demonstrate?<span class="am-hint">Start from your learning outcomes</span></li>
+  <li>Why is this assessment the most appropriate way of evidencing learning?<span class="am-hint">In each entry: <strong>What is it?</strong> · <strong>What's it for?</strong></span></li>
+  <li>How authentic is the task to the discipline, profession, or wider context?<span class="am-hint">In each entry: <strong>Authenticity</strong></span></li>
+  <li>How can barriers to participation and success be reduced?<span class="am-hint">In each entry: <strong>Inclusive design and reasonable adjustments</strong></span></li>
+  <li>What role, if any, should GenAI play in the assessment process?<span class="am-hint">In each entry: <strong>AI considerations</strong> · <strong>Lane 1 and Lane 2</strong></span></li>
+  <li>How does this assessment contribute to the wider programme assessment journey?<span class="am-hint">See <a href="#home|in-brief">Thinking at programme level</a></span></li>
+</ol>
+</section>
+<section id="in-brief"><div class="page-header"><h2 id="in-brief_title" class="sectionTitle">What shapes the menu</h2></div><div class="am-briefs">
+  <div class="am-brief">
+    <h3>Understanding the two-lane approach</h3>
+    <p>AI use can't be reliably detected, so Cardiff uses a two-lane approach, first developed at the University of Sydney. Assessment has two complementary purposes:</p>
+    <span class="am-lane am-lane--1"><strong>Lane 1 · Secure assurance of learning.</strong> Trustworthy evidence of what students have achieved.</span>
+    <span class="am-lane am-lane--2"><strong>Lane 2 · Open assessment for and as learning.</strong> Supports learning in open settings, including responsible use of AI.</span>
+    <p>What you're assessing decides the lane, not the assessment type.</p>
+    <p class="am-more"><a href="https://sites.cardiff.ac.uk/education-development-toolkit/generative-ai-in-learning-and-teaching/#cardiff-position" target="_blank" rel="noopener">Cardiff's two-lane approach →</a> <a href="https://educational-innovation.sydney.edu.au/teaching@sydney/program-level-assessment-two-lane/" target="_blank" rel="noopener">Where it comes from (Sydney)</a></p>
+  </div>
+  <div class="am-brief">
+    <h3>AI, inclusion and student choice</h3>
+    <p>The two-lane approach doesn't assume students must use generative AI. Learning outcomes should stay achievable without it, and students shouldn't be disadvantaged if they choose not to use it, for ethical, environmental, personal, accessibility or academic reasons. Where AI is allowed, the brief should say whether it's optional or part of the task.</p>
+    <p class="am-more"><a href="https://sites.cardiff.ac.uk/education-development-toolkit/generative-ai-in-learning-and-teaching/#assessment-design" target="_blank" rel="noopener">GenAI and assessment design →</a></p>
+  </div>
+  <div class="am-brief">
+    <h3>Thinking at programme level</h3>
+    <p>Students experience assessment as a programme, not a series of separate modules. Look across the programme for a balance of assessment types, manageable deadlines, progression, and consistent expectations about AI.</p>
+    <p class="am-more"><a href="https://sites.cardiff.ac.uk/education-development-toolkit/generative-ai-in-learning-and-teaching/#assessment-design" target="_blank" rel="noopener">Programme-level assessment design →</a></p>
+  </div>
+</div>
+</section>
+<section id="alongside"><div class="page-header"><h2 id="alongside_title" class="sectionTitle">Use this menu alongside</h2></div><div class="am-alongside">
+  <div>
+    <ul>
+      <li>Cardiff's assessment principles (link to follow)</li>
+      <li>Programme approval process (link to follow)</li>
+      <li><a href="https://sites.cardiff.ac.uk/education-development-toolkit/generative-ai-in-learning-and-teaching/" target="_blank" rel="noopener">Generative AI in Learning and Teaching</a> (Education Development Toolkit)</li>
+      <li><a href="https://sites.cardiff.ac.uk/education-development-toolkit/key-principles/principle-5-assessment-as-learning/assessment-compendium/" target="_blank" rel="noopener">Assessment as learning and the Assessment Compendium</a> (Education Development Toolkit)</li>
+    </ul>
+  </div>
+  <div class="am-ref">
+    <h3>Further reading</h3>
+    <p>Rutherford, S., Pritchard, C. and Francis, N. (2024) 'Assessment IS learning: developing a student-centred approach for assessment in Higher Education', <em>FEBS Open Bio</em>, 15(1), pp. 21–34. <a href="https://doi.org/10.1002/2211-5463.13921" target="_blank" rel="noopener">doi:10.1002/2211-5463.13921</a></p>
+    <p>Need help? Contact the Learning and Teaching Academy: <a href="mailto:LTAcademy@cardiff.ac.uk">LTAcademy@cardiff.ac.uk</a></p>
+  </div>
+</div>
+</section>
+</div></div></div></div>
+<footer class="footer"><div class="container"><div class="row-fluid"><p>Developed by the Digital Education Team, Learning and Teaching Academy, Cardiff University · <a href="#">Give feedback on this menu</a></p></div></div></footer>
+</body></html>
