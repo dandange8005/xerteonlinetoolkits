@@ -1,0 +1,58 @@
+/**
+ * Custom Components
+ *
+ * PURPOSE: Forward all custom component modules for Cardiff University theme
+ *
+ * This file imports all custom-built components from the components/ folder.
+ * Components are organized into logical categories:
+ *
+ * CONTENT COMPONENTS:
+ * - Boxes       - Simple container component with borders and shadows
+ * - Cards       - Content cards with images and metadata
+ * - Callout     - Alert/notice boxes with semantic color variants
+ * - Quotes      - Styled blockquotes with optional imagery
+ *
+ * INTERACTIVE COMPONENTS:
+ * - Buttons     - Button styles for links and button elements
+ * - Details     - Native <details> disclosure widget styling
+ * - Language    - Language switcher toggle
+ *
+ * LIST COMPONENTS:
+ * - Dos & Don'ts - Visual lists showing best practices
+ *
+ * UTILITY COMPONENTS:
+ * - Links       - Specialized link styles (action, external, asset)
+ * - Project Info - Project metadata display
+ *
+ * NOTE: These components use Cardiff University design tokens defined in _allvariables.scss
+ */
+
+// =============================================================================
+// CONTENT COMPONENTS
+// =============================================================================
+
+@forward "components/boxes";
+@forward "components/cards";
+@forward "components/callout";
+@forward "components/quotes";
+
+// =============================================================================
+// INTERACTIVE COMPONENTS
+// =============================================================================
+
+@forward "components/buttons";
+@forward "components/details";
+@forward "components/language";
+
+// =============================================================================
+// LIST COMPONENTS
+// =============================================================================
+
+@forward "components/dosanddonts";
+
+// =============================================================================
+// UTILITY COMPONENTS
+// =============================================================================
+
+@forward "components/links";
+@forward "components/projectInfo";

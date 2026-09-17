@@ -1,0 +1,391 @@
+/**
+ * Medr (Commission for Tertiary Education and Research) Theme
+ * ============================================================
+ * 
+ * Runtime theme override for cardiffuni-v2 using Medr/Welsh Government branding.
+ * Based on: Medr Design System.json
+ * 
+ * Load this CSS AFTER cardiffuni-v2.css:
+ * <link rel="stylesheet" href="cardiffuni-v2.css">
+ * <link rel="stylesheet" href="themes/medr-theme.css">
+ * 
+ * Brand: Welsh Government Green (#00703C)
+ * Style: GOV.UK Design System compatible, accessibility-first
+ */
+
+/* ============================================================================
+   MEDR BRAND TOKENS
+   Based on Welsh Government Design System standards
+   ============================================================================ */
+
+:root,
+[data-theme="medr"] {
+    /* =========================================================================
+       BRAND COLORS
+       ========================================================================= */
+
+    --color-brand-primary: #00703C;
+    /* Welsh Government Green */
+    --color-brand-secondary: #0B0C0C;
+    /* Near black */
+
+    /* Brand shades */
+    --color-brand-primary-light: #00A551;
+    --color-brand-primary-dark: #004D2A;
+    --color-brand-primary-lighter: color-mix(in srgb, var(--color-brand-primary) 20%, white);
+    --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 70%, black);
+
+    /* =========================================================================
+       NEUTRAL COLORS (Grey scale)
+       ========================================================================= */
+
+    --color-white: #FFFFFF;
+    --color-light: #F3F4F6;
+
+    --color-gray-10: #FAFAFA;
+    --color-gray-20: #F5F5F5;
+    --color-gray-30: #E5E5E5;
+    --color-gray-40: #D4D4D4;
+    --color-gray-50: #A3A3A3;
+    --color-gray-60: #737373;
+    --color-gray-70: #525252;
+    --color-gray-80: #404040;
+    --color-gray-90: #262626;
+
+    /* =========================================================================
+       SEMANTIC COLORS
+       ========================================================================= */
+
+    /* Text hierarchy */
+    --color-text-primary: #0B0C0C;
+    --color-text-secondary: #505A5F;
+    --color-text-tertiary: #6F777B;
+    --color-text-disabled: #B1B4B6;
+    --color-text-inverse: #FFFFFF;
+    --color-text-brand: var(--color-brand-primary);
+    --color-text-on-brand: #FFFFFF;
+
+    /* Links (GOV.UK blue) */
+    --color-link-default: #1D70B8;
+    --color-link-hover: #003078;
+    --color-link-visited: #4C2C92;
+    --color-link-active: #0B0C0C;
+
+    /* Backgrounds */
+    --color-bg-body: #FFFFFF;
+    --color-bg-page: #FFFFFF;
+    --color-bg-subtle: #F3F4F6;
+    --color-bg-muted: #F5F5F5;
+    --color-bg-elevated: #FFFFFF;
+    --color-bg-brand: var(--color-brand-primary);
+    --color-bg-dark: #0B0C0C;
+
+    /* Borders */
+    --color-border-default: #B1B4B6;
+    --color-border-light: #D4D4D4;
+    --color-border-dark: #505A5F;
+    --color-border-focus: #FFBF47;
+    --color-border-brand: var(--color-brand-primary);
+
+    /* Status colors */
+    --color-status-success: #00703C;
+    --color-status-warning: #FFBF47;
+    --color-status-error: #D4351C;
+    --color-status-info: #1D70B8;
+
+    /* Accent colors */
+    --color-accent-green: #00703C;
+    --color-accent-yellow: #FFBF47;
+    --color-accent-orange: #F47738;
+    --color-accent-blue: #1D70B8;
+    --color-accent-red: #D4351C;
+
+    /* =========================================================================
+       TYPOGRAPHY (GOV.UK/Welsh Gov standards)
+       ========================================================================= */
+
+    --font-family-primary: "GDS Transport", Arial, sans-serif;
+    --font-family-secondary: Arial, sans-serif;
+
+    /* Larger base font for government accessibility */
+    --font-size-base: 19px;
+    --font-size-sm: 16px;
+    --font-size-xs: 14px;
+    --font-size-lg: 24px;
+    --font-size-xl: 27px;
+    --font-size-2xl: 36px;
+    --font-size-3xl: 48px;
+
+    /* Heading sizes (fixed, not fluid - for government consistency) */
+    --h1-font-size: 48px;
+    --h2-font-size: 36px;
+    --h3-font-size: 27px;
+    --h4-font-size: 24px;
+    --h5-font-size: 19px;
+    --h6-font-size: 16px;
+
+    /* Line heights for readability */
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.6;
+    --line-height-loose: 1.75;
+
+    /* =========================================================================
+       SPACING (8px base unit)
+       ========================================================================= */
+
+    --spacing-1: 4px;
+    --spacing-2: 8px;
+    --spacing-3: 12px;
+    --spacing-4: 16px;
+    --spacing-6: 24px;
+    --spacing-8: 32px;
+    --spacing-12: 48px;
+    --spacing-16: 64px;
+    --spacing-20: 80px;
+
+    /* =========================================================================
+       BORDERS & RADIUS (Minimal - government style)
+       ========================================================================= */
+
+    --radius-none: 0;
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+
+    /* Government sites typically use minimal/no rounding */
+    --radius-card: 0;
+    --radius-input: 0;
+    --radius-image: 0;
+    --btn-border-radius: 0;
+
+    /* =========================================================================
+       FOCUS STATES (Yellow - GOV.UK standard)
+       ========================================================================= */
+
+    --focus-ring-color: #FFBF47;
+    --focus-ring-width: 3px;
+    --focus-ring-offset: 0;
+    --focus-ring: 3px solid #FFBF47;
+
+    /* =========================================================================
+       BUTTONS
+       ========================================================================= */
+
+    /* Primary Button (Green) */
+    --btn-primary-bg: var(--color-brand-primary);
+    --btn-primary-text: #FFFFFF;
+    --btn-primary-hover-bg: #004D2A;
+    --btn-primary-active-bg: #003D21;
+    --btn-primary-disabled-bg: #D4D4D4;
+    --btn-primary-disabled-text: #B1B4B6;
+
+    /* Secondary Button (Outline) */
+    --btn-secondary-bg: transparent;
+    --btn-secondary-text: var(--color-brand-primary);
+    --btn-secondary-hover-bg: var(--color-brand-primary);
+    --btn-secondary-hover-text: #FFFFFF;
+    --btn-secondary-disabled-bg: transparent;
+    --btn-secondary-disabled-text: #B1B4B6;
+
+    /* Outline buttons */
+    --btn-primary-outline-text: var(--color-brand-primary);
+    --btn-primary-outline-border: var(--color-brand-primary);
+    --btn-primary-outline-hover-bg: var(--color-brand-primary);
+
+    /* Ghost button */
+    --btn-ghost-text: #1D70B8;
+    --btn-ghost-hover-bg: rgba(29, 112, 184, 0.1);
+    --btn-ghost-hover-text: #003078;
+
+    /* Button sizing */
+    --btn-font-size: 19px;
+    --btn-font-weight: 700;
+    --btn-padding-x: 24px;
+    --btn-padding-y: 12px;
+    --btn-border-width: 2px;
+
+    /* =========================================================================
+       SHADOWS (Subtle - government style)
+       ========================================================================= */
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    --shadow-focus: 0 0 0 4px rgba(255, 191, 71, 0.5);
+}
+
+/* ============================================================================
+   COMPONENT OVERRIDES
+   ============================================================================ */
+
+/* Header with Welsh Government green */
+[data-theme="medr"] .jumbotron,
+:root .jumbotron {
+    background: var(--color-brand-primary);
+    background-image: none;
+}
+
+[data-theme="medr"] .jumbotron::before,
+:root .jumbotron::before {
+    background-color: transparent;
+}
+
+/* Footer - Black (GOV.UK style) */
+[data-theme="medr"] .footer,
+:root .footer {
+    background-color: #0B0C0C;
+}
+
+/* Navbar styling */
+[data-theme="medr"] .navbar-inverse .navbar-inner,
+:root .navbar-inverse .navbar-inner {
+    background: #F3F4F6;
+    border: none;
+}
+
+[data-theme="medr"] .navbar .nav>li.activePage>a,
+:root .navbar .nav>li.activePage>a {
+    color: var(--color-brand-primary);
+    box-shadow: inset 0 -3px 0 0 var(--color-brand-primary);
+}
+
+/* Remove border-radius from buttons (government style) */
+[data-theme="medr"] .btn,
+[data-theme="medr"] button,
+:root .btn,
+:root button {
+    border-radius: 0;
+}
+
+/* Alert styling with left border accent */
+[data-theme="medr"] .alert,
+:root .alert {
+    border-radius: 0;
+    border-left-width: 4px;
+}
+
+[data-theme="medr"] .alert-success,
+:root .alert-success {
+    background-color: #D1E7DD;
+    border-left-color: #00703C;
+    color: #0F5132;
+}
+
+[data-theme="medr"] .alert-warning,
+:root .alert-warning {
+    background-color: #FFF3CD;
+    border-left-color: #FFBF47;
+    color: #664D03;
+}
+
+[data-theme="medr"] .alert-danger,
+[data-theme="medr"] .alert-error,
+:root .alert-danger,
+:root .alert-error {
+    background-color: #F8D7DA;
+    border-left-color: #D4351C;
+    color: #842029;
+}
+
+[data-theme="medr"] .alert-info,
+:root .alert-info {
+    background-color: #CFF4FC;
+    border-left-color: #1D70B8;
+    color: #055160;
+}
+
+/* Form inputs - no border radius, thicker border on focus */
+[data-theme="medr"] input,
+[data-theme="medr"] textarea,
+[data-theme="medr"] select,
+:root input,
+:root textarea,
+:root select {
+    border-radius: 0;
+    border-width: 2px;
+}
+
+[data-theme="medr"] input:focus,
+[data-theme="medr"] textarea:focus,
+[data-theme="medr"] select:focus,
+:root input:focus,
+:root textarea:focus,
+:root select:focus {
+    border-color: #0B0C0C;
+    outline: 3px solid #FFBF47;
+    outline-offset: 0;
+    box-shadow: none;
+}
+
+/* Accordion - no border radius */
+[data-theme="medr"] .accordion-group,
+:root .accordion-group {
+    border-radius: 0;
+}
+
+/* Tabs - underline style */
+[data-theme="medr"] .nav-tabs>.active>a,
+:root .nav-tabs>.active>a {
+    border-bottom-color: var(--color-brand-primary);
+}
+
+/* Cards - no border radius (government style) */
+[data-theme="medr"] .card,
+[data-theme="medr"] .well,
+:root .card,
+:root .well {
+    border-radius: 0;
+}
+
+/* Progress bars */
+[data-theme="medr"] .bar,
+[data-theme="medr"] .progress-bar,
+:root .bar,
+:root .progress-bar {
+    background-color: var(--color-brand-primary);
+}
+
+[data-theme="medr"] .progress,
+:root .progress {
+    border-radius: 0;
+}
+
+/* Badges */
+[data-theme="medr"] .badge-success,
+[data-theme="medr"] .label-success,
+:root .badge-success,
+:root .label-success {
+    background-color: var(--color-brand-primary);
+}
+
+/* Focus visible state (yellow ring) */
+[data-theme="medr"] a:focus-visible,
+[data-theme="medr"] button:focus-visible,
+[data-theme="medr"] input:focus-visible,
+:root a:focus-visible,
+:root button:focus-visible,
+:root input:focus-visible {
+    outline: 3px solid #FFBF47;
+    outline-offset: 0;
+    background-color: #FFBF47;
+    color: #0B0C0C;
+    box-shadow: none;
+}
+
+/* ============================================================================
+   TYPOGRAPHY ADJUSTMENTS
+   Government sites use larger, more readable text
+   ============================================================================ */
+
+[data-theme="medr"] body,
+:root body {
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+[data-theme="medr"] p,
+:root p {
+    font-size: 19px;
+    margin-bottom: 1.5em;
+}

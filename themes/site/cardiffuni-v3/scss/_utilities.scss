@@ -1,0 +1,676 @@
+/**
+ * Utility Classes
+ * =============================================================================
+ * Reusable utility classes generated from design tokens.
+ */
+
+// @use "tokens" as *;
+
+// =============================================================================
+// ACCESSIBILITY
+// =============================================================================
+
+// Screen reader only
+.sr-only,
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+// Focus visible wrapper (for ensuring focus rings show when needed)
+.focus-visible:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+}
+
+// Skip link helper
+.skip-link {
+    position: absolute;
+    top: -9999px;
+    left: 1rem;
+    z-index: var(--z-index-toast);
+    padding: var(--spacing-4);
+    background: var(--color-bg-brand);
+    color: var(--color-text-on-brand);
+    text-decoration: none;
+    font-weight: var(--font-weight-bold);
+
+    &:focus {
+        top: 1rem;
+        outline: var(--focus-ring);
+    }
+}
+
+// =============================================================================
+// LAYOUT & DISPLAY
+// =============================================================================
+
+// Display
+.block {
+    display: block !important;
+}
+
+.inline-block {
+    display: inline-block !important;
+}
+
+.inline {
+    display: inline !important;
+}
+
+.flex {
+    display: flex !important;
+}
+
+.inline-flex {
+    display: inline-flex !important;
+}
+
+.grid {
+    display: grid !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+// Positioning
+.relative {
+    position: relative !important;
+}
+
+.absolute {
+    position: absolute !important;
+}
+
+.fixed {
+    position: fixed !important;
+}
+
+.sticky {
+    position: sticky !important;
+}
+
+// Overflow
+.overflow-auto {
+    overflow: auto !important;
+}
+
+.overflow-hidden {
+    overflow: hidden !important;
+}
+
+.overflow-visible {
+    overflow: visible !important;
+}
+
+.overflow-scroll {
+    overflow: scroll !important;
+}
+
+// Z-Index
+.z-0 {
+    z-index: 0 !important;
+}
+
+.z-10 {
+    z-index: 10 !important;
+}
+
+.z-50 {
+    z-index: 50 !important;
+}
+
+.z-100 {
+    z-index: 100 !important;
+}
+
+// =============================================================================
+// FLEXBOX
+// =============================================================================
+
+// Direction
+.flex-row {
+    flex-direction: row !important;
+}
+
+.flex-row-reverse {
+    flex-direction: row-reverse !important;
+}
+
+.flex-col {
+    flex-direction: column !important;
+}
+
+.flex-col-reverse {
+    flex-direction: column-reverse !important;
+}
+
+// Wrap
+.flex-wrap {
+    flex-wrap: wrap !important;
+}
+
+.flex-nowrap {
+    flex-wrap: nowrap !important;
+}
+
+// Alignment
+.items-start {
+    align-items: flex-start !important;
+}
+
+.items-end {
+    align-items: flex-end !important;
+}
+
+.items-center {
+    align-items: center !important;
+}
+
+.items-baseline {
+    align-items: baseline !important;
+}
+
+.items-stretch {
+    align-items: stretch !important;
+}
+
+.justify-start {
+    justify-content: flex-start !important;
+}
+
+.justify-end {
+    justify-content: flex-end !important;
+}
+
+.justify-center {
+    justify-content: center !important;
+}
+
+.justify-between {
+    justify-content: space-between !important;
+}
+
+.justify-around {
+    justify-content: space-around !important;
+}
+
+// Grow/Shrink
+.flex-1 {
+    flex: 1 1 0% !important;
+}
+
+.flex-auto {
+    flex: 1 1 auto !important;
+}
+
+.flex-none {
+    flex: none !important;
+}
+
+.grow {
+    flex-grow: 1 !important;
+}
+
+.grow-0 {
+    flex-grow: 0 !important;
+}
+
+// Flex Basis utilities
+// These create responsive columns: items have a minimum width but grow to fill space
+// Usage: <div class="flex flex-wrap gap-md"><div class="flex-200">Sidebar</div><div class="flex-400">Main</div></div>
+.flex-100 {
+    flex: 1 1 100px !important;
+}
+
+.flex-150 {
+    flex: 1 1 150px !important;
+}
+
+.flex-200 {
+    flex: 1 1 200px !important;
+}
+
+.flex-250 {
+    flex: 1 1 250px !important;
+}
+
+.flex-300 {
+    flex: 1 1 300px !important;
+}
+
+.flex-350 {
+    flex: 1 1 350px !important;
+}
+
+.flex-400 {
+    flex: 1 1 400px !important;
+}
+
+.flex-500 {
+    flex: 1 1 500px !important;
+}
+
+.flex-600 {
+    flex: 1 1 600px !important;
+}
+
+// Gap utilities
+.gap-0 {
+    gap: 0 !important;
+}
+
+.gap-xs {
+    gap: var(--spacing-xs) !important;
+}
+
+.gap-sm {
+    gap: var(--spacing-sm) !important;
+}
+
+.gap-md {
+    gap: var(--spacing-md) !important;
+}
+
+.gap-lg {
+    gap: var(--spacing-lg) !important;
+}
+
+.gap-xl {
+    gap: var(--spacing-xl) !important;
+}
+
+.gap-2xl {
+    gap: var(--spacing-2xl) !important;
+}
+
+// Flex child heading spacing
+// Remove excessive top margin from headings in flex children
+// Common pattern: image/media followed by heading
+[class*="flex-"] {
+
+    >h1,
+    >h2,
+    >h3,
+    >h4,
+    >h5,
+    >h6 {
+        margin-top: var(--spacing-md) !important;
+
+        &:first-child {
+            margin-top: 0 !important;
+        }
+    }
+}
+
+
+// =============================================================================
+// SPACING (Margins & Padding)
+// =============================================================================
+
+// Generates: m-0, p-4, mt-2, px-6, etc.
+$spacing-map: (
+    0: 0,
+    1: var(--spacing-1),
+    2: var(--spacing-2),
+    3: var(--spacing-3),
+    4: var(--spacing-4),
+    5: var(--spacing-5),
+    6: var(--spacing-6),
+    8: var(--spacing-8),
+    10: var(--spacing-10),
+    12: var(--spacing-12),
+    16: var(--spacing-16)
+);
+
+@each $name, $value in $spacing-map {
+
+    // Margin
+    .m-#{$name} {
+        margin: $value !important;
+    }
+
+    .mt-#{$name} {
+        margin-top: $value !important;
+    }
+
+    .mr-#{$name} {
+        margin-right: $value !important;
+    }
+
+    .mb-#{$name} {
+        margin-bottom: $value !important;
+    }
+
+    .ml-#{$name} {
+        margin-left: $value !important;
+    }
+
+    .mx-#{$name} {
+        margin-left: $value !important;
+        margin-right: $value !important;
+    }
+
+    .my-#{$name} {
+        margin-top: $value !important;
+        margin-bottom: $value !important;
+    }
+
+    // Padding
+    .p-#{$name} {
+        padding: $value !important;
+    }
+
+    .pt-#{$name} {
+        padding-top: $value !important;
+    }
+
+    .pr-#{$name} {
+        padding-right: $value !important;
+    }
+
+    .pb-#{$name} {
+        padding-bottom: $value !important;
+    }
+
+    .pl-#{$name} {
+        padding-left: $value !important;
+    }
+
+    .px-#{$name} {
+        padding-left: $value !important;
+        padding-right: $value !important;
+    }
+
+    .py-#{$name} {
+        padding-top: $value !important;
+        padding-bottom: $value !important;
+    }
+}
+
+.m-auto {
+    margin: auto !important;
+}
+
+.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+// =============================================================================
+// SIZING
+// =============================================================================
+
+// Widths
+.w-full {
+    width: 100% !important;
+}
+
+.w-screen {
+    width: 100vw !important;
+}
+
+.w-auto {
+    width: auto !important;
+}
+
+.w-1\/2 {
+    width: 50% !important;
+}
+
+.w-1\/3 {
+    width: 33.333333% !important;
+}
+
+.w-1\/4 {
+    width: 25% !important;
+}
+
+// Heights
+.h-full {
+    height: 100% !important;
+}
+
+.h-screen {
+    height: 100vh !important;
+}
+
+.h-auto {
+    height: auto !important;
+}
+
+// Max Widths (Containers)
+.max-w-sm {
+    max-width: 640px !important;
+}
+
+.max-w-md {
+    max-width: 768px !important;
+}
+
+.max-w-lg {
+    max-width: 1024px !important;
+}
+
+.max-w-xl {
+    max-width: 1280px !important;
+}
+
+// =============================================================================
+// TYPOGRAPHY
+// =============================================================================
+
+// Font Size
+.text-xs {
+    font-size: var(--font-size-xs) !important;
+}
+
+.text-sm {
+    font-size: var(--font-size-sm) !important;
+}
+
+.text-base {
+    font-size: var(--font-size-base) !important;
+}
+
+.text-lg {
+    font-size: var(--font-size-lg) !important;
+}
+
+.text-xl {
+    font-size: var(--font-size-xl) !important;
+}
+
+.text-2xl {
+    font-size: var(--font-size-2xl) !important;
+}
+
+.text-3xl {
+    font-size: var(--font-size-3xl) !important;
+}
+
+.text-4xl {
+    font-size: var(--font-size-4xl) !important;
+}
+
+// Font Weight
+.font-light {
+    font-weight: var(--font-weight-light) !important;
+}
+
+.font-normal {
+    font-weight: var(--font-weight-regular) !important;
+}
+
+.font-medium {
+    font-weight: var(--font-weight-medium) !important;
+}
+
+.font-semibold {
+    font-weight: var(--font-weight-semibold) !important;
+}
+
+.font-bold {
+    font-weight: var(--font-weight-bold) !important;
+}
+
+// Alignment
+.text-left {
+    text-align: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-justify {
+    text-align: justify !important;
+}
+
+// Transform
+.uppercase {
+    text-transform: uppercase !important;
+}
+
+.lowercase {
+    text-transform: lowercase !important;
+}
+
+.capitalize {
+    text-transform: capitalize !important;
+}
+
+// =============================================================================
+// COLORS
+// =============================================================================
+
+// Text Colors
+.text-primary {
+    color: var(--color-text-primary) !important;
+}
+
+.text-secondary {
+    color: var(--color-text-secondary) !important;
+}
+
+.text-brand {
+    color: var(--color-brand-primary) !important;
+}
+
+.text-white {
+    color: var(--color-white) !important;
+}
+
+.text-success {
+    color: var(--color-status-success) !important;
+}
+
+.text-error {
+    color: var(--color-status-error) !important;
+}
+
+.text-warning {
+    color: var(--color-status-warning) !important;
+}
+
+// Background Colors
+.bg-white {
+    background-color: var(--color-white) !important;
+}
+
+.bg-light {
+    background-color: var(--color-bg-subtle) !important;
+}
+
+.bg-brand {
+    background-color: var(--color-brand-primary) !important;
+}
+
+.bg-dark {
+    background-color: var(--color-brand-secondary) !important;
+}
+
+// =============================================================================
+// BORDERS & EFFECTS
+// =============================================================================
+
+// Border Radius
+.rounded-none {
+    border-radius: 0 !important;
+}
+
+.rounded-sm {
+    border-radius: var(--radius-sm) !important;
+}
+
+.rounded {
+    border-radius: var(--radius-md) !important;
+}
+
+.rounded-md {
+    border-radius: var(--radius-md) !important;
+}
+
+.rounded-lg {
+    border-radius: var(--radius-lg) !important;
+}
+
+.rounded-full {
+    border-radius: 9999px !important;
+}
+
+// Shadows
+.shadow-none {
+    box-shadow: none !important;
+}
+
+.shadow-sm {
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.shadow {
+    box-shadow: var(--shadow-md) !important;
+}
+
+.shadow-md {
+    box-shadow: var(--shadow-md) !important;
+}
+
+.shadow-lg {
+    box-shadow: var(--shadow-lg) !important;
+}
+
+// =============================================================================
+// INTERACTIVITY
+// =============================================================================
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed !important;
+}
+
+.pointer-events-none {
+    pointer-events: none !important;
+}
+
+.pointer-events-auto {
+    pointer-events: auto !important;
+}
+
+// =============================================================================
+// End of utilities

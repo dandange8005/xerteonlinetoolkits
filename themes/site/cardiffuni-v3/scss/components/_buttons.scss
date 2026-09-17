@@ -1,0 +1,530 @@
+/**
+ * Button Component - Cardiff University Design System
+ *
+ * PURPOSE: Comprehensive button system with multiple variants and states
+ *
+ * TOKENS: All button design tokens are defined in _allvariables.scss
+ * This component references those centralized tokens for easy theming.
+ *
+ * USAGE:
+ * - Filled buttons:
+ *   <button class="button button-primary">Primary</button>
+ *   <button class="button button-secondary">Secondary</button>
+ *   <button class="button button-success">Success</button>
+ *   <button class="button button-reverse">Reverse</button>
+ *
+ * - Outline buttons:
+ *   <button class="button button-primary-outline">Primary Outline</button>
+ *   <button class="button button-secondary-outline">Secondary Outline</button>
+ *   <button class="button button-success-outline">Success Outline</button>
+ *   <button class="button button-reverse-outline">Reverse Outline</button>
+ *
+ * - Ghost button:
+ *   <button class="button button-ghost">Ghost</button>
+ *
+ * - With icons:
+ *   <button class="button button-primary button-icon-right">
+ *     Next <span class="button__icon"><i class="fas fa-arrow-right"></i></span>
+ *   </button>
+ *
+ * - Icon only:
+ *   <button class="button button-primary button-icon-only">
+ *     <span class="button__icon"><i class="fas fa-search"></i></span>
+ *   </button>
+ *
+ * - Sizes:
+ *   <button class="button button-primary button-sm">Small</button>
+ *   <button class="button button-primary button-lg">Large</button>
+ *
+ * - Legacy styles (preserved for backward compatibility):
+ *   <a href="#" class="button button--outline">Outline</a>
+ *   <button class="btn-mini"><i class="fas fa-arrow-up"></i></button>
+ *
+ * VARIANTS:
+ * Filled: .button-primary, .button-secondary, .button-success, .button-reverse
+ * Outline: .button-primary-outline, .button-secondary-outline, .button-success-outline, .button-reverse-outline
+ * Ghost: .button-ghost
+ * Sizes: .button-sm, .button-lg
+ * Icons: .button-icon-left, .button-icon-right, .button-icon-only
+ * Legacy: .button--outline, .button--small, .button--block, .btn-mini
+ */
+
+// =============================================================================
+// BASE BUTTON STYLES
+// =============================================================================
+
+// Reset styles for links and button elements
+// IMPORTANT: Override Bootstrap's a:hover styles that would change text to blue
+a.button,
+a.button:link,
+a.button:visited,
+a.button:hover,
+a.button:active,
+a.button:focus {
+    text-decoration: none !important;
+}
+
+.button {
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+
+    @media screen and (-ms-high-contrast: active) {
+        border: 2px solid currentColor;
+    }
+}
+
+// Base button styles
+a.button,
+.button {
+    // Layout
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--btn-gap);
+    align-self: start;
+
+    // ACCESSIBILITY: Minimum touch target size (WCAG 2.1 - 44x44px)
+    min-height: var(--btn-min-height);
+    min-width: var(--btn-min-width);
+
+    // Spacing
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+
+    // Visual
+    border-radius: var(--btn-border-radius);
+    box-sizing: border-box;
+
+    // Typography
+    font-family: var(--btn-font-family);
+    font-size: var(--btn-font-size);
+    font-weight: var(--btn-font-weight);
+    line-height: var(--btn-line-height);
+    text-align: center;
+    white-space: nowrap;
+
+    // Interaction
+    cursor: pointer;
+    transition: var(--btn-transition);
+    transition-property: background-color, color, border-color, box-shadow, transform;
+
+    // Focus state
+    &:focus {
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline: var(--focus-ring);
+        outline-offset: var(--focus-ring-offset);
+    }
+
+    // Active state
+    &:active {
+        transform: translateY(1px);
+    }
+
+    // Disabled state
+    &:disabled,
+    &.disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        opacity: 0.7;
+    }
+
+    // Icon wrapper
+    .button__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--btn-icon-size);
+        height: var(--btn-icon-size);
+        font-size: var(--btn-icon-size);
+        line-height: 1;
+    }
+}
+
+// Size variants
+.button-sm {
+    padding: var(--btn-padding-y-sm) var(--btn-padding-x-sm);
+    font-size: var(--btn-font-size-sm);
+
+    .button__icon {
+        width: var(--btn-icon-size-sm);
+        height: var(--btn-icon-size-sm);
+        font-size: var(--btn-icon-size-sm);
+    }
+}
+
+.button-lg {
+    padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
+}
+
+// =============================================================================
+// FILLED BUTTON VARIANTS
+// =============================================================================
+
+// Primary Button (brand color)
+.button-primary,
+a.button-primary,
+a.button-primary:link,
+a.button-primary:visited,
+a.button-primary:hover,
+a.button-primary:active,
+a.button-primary:focus {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text) !important; // !important to override Bootstrap a:hover
+}
+
+.button-primary {
+    &:hover:not(:disabled):not(.disabled) {
+        background-color: var(--btn-primary-hover-bg);
+    }
+
+    &:active:not(:disabled):not(.disabled) {
+        background-color: var(--btn-primary-active-bg);
+    }
+
+    &:disabled,
+    &.disabled {
+        background-color: var(--btn-primary-disabled-bg);
+        color: var(--btn-primary-disabled-text) !important;
+    }
+}
+
+// Secondary Button (dark/black)
+.button-secondary,
+a.button-secondary,
+a.button-secondary:link,
+a.button-secondary:visited,
+a.button-secondary:hover,
+a.button-secondary:active,
+a.button-secondary:focus {
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text) !important;
+}
+
+.button-secondary {
+    &:hover:not(:disabled):not(.disabled) {
+        background-color: var(--btn-secondary-hover-bg);
+    }
+
+    &:active:not(:disabled):not(.disabled) {
+        background-color: var(--btn-secondary-active-bg);
+    }
+
+    &:disabled,
+    &.disabled {
+        background-color: var(--btn-secondary-disabled-bg);
+        color: var(--btn-secondary-disabled-text) !important;
+    }
+}
+
+// Success Button (green)
+.button-success,
+a.button-success,
+a.button-success:link,
+a.button-success:visited,
+a.button-success:hover,
+a.button-success:active,
+a.button-success:focus {
+    background-color: var(--btn-success-bg);
+    color: var(--btn-success-text) !important;
+}
+
+.button-success {
+    &:hover:not(:disabled):not(.disabled) {
+        background-color: var(--btn-success-hover-bg);
+    }
+
+    &:active:not(:disabled):not(.disabled) {
+        background-color: var(--btn-success-active-bg);
+    }
+
+    &:disabled,
+    &.disabled {
+        background-color: var(--btn-success-disabled-bg);
+        color: var(--btn-success-disabled-text) !important;
+    }
+}
+
+// Reverse Button (light - for dark backgrounds)
+.button-reverse,
+a.button-reverse,
+a.button-reverse:link,
+a.button-reverse:visited,
+a.button-reverse:hover,
+a.button-reverse:active,
+a.button-reverse:focus {
+    background-color: var(--btn-reverse-bg);
+    color: var(--btn-reverse-text) !important;
+}
+
+.button-reverse {
+    &:hover:not(:disabled):not(.disabled) {
+        background-color: var(--btn-reverse-hover-bg);
+    }
+
+    &:active:not(:disabled):not(.disabled) {
+        background-color: var(--btn-reverse-active-bg);
+    }
+
+    &:disabled,
+    &.disabled {
+        background-color: var(--btn-reverse-disabled-bg);
+        color: var(--btn-reverse-disabled-text) !important;
+    }
+}
+
+// =============================================================================
+// OUTLINE BUTTON VARIANTS
+// =============================================================================
+
+// Primary Outline
+.button-primary-outline,
+a.button-primary-outline,
+a.button-primary-outline:link,
+a.button-primary-outline:visited,
+a.button-primary-outline:hover,
+a.button-primary-outline:active,
+a.button-primary-outline:focus {
+    background-color: transparent;
+    color: var(--btn-primary-outline-text) !important;
+    box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-primary-outline-border);
+}
+
+.button-primary-outline {
+    &:hover:not(:disabled):not(.disabled) {
+        background-color: var(--btn-primary-outline-hover-bg);
+    }
+
+    &:active:not(:disabled):not(.disabled) {
+        background-color: var(--btn-primary-outline-active-bg);
+    }
+
+    &:disabled,
+    &.disabled {
+        background-color: transparent;
+    }
+}
+
+// Secondary Outline
+.button-secondary-outline,
+a.button-secondary-outline,
+a.button-secondary-outline:link,
+a.button-secondary-outline:visited,
+a.button-secondary-outline:hover,
+a.button-secondary-outline:active,
+a.button-secondary-outline:focus {
+    background-color: transparent;
+    color: var(--btn-secondary-outline-text) !important;
+    box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-secondary-outline-border);
+}
+
+.button-secondary-outline {
+    &:hover:not(:disabled):not(.disabled) {
+        background-color: var(--btn-secondary-outline-hover-bg);
+    }
+
+    &:active:not(:disabled):not(.disabled) {
+        background-color: var(--btn-secondary-outline-active-bg);
+    }
+
+    &:disabled,
+    &.disabled {
+        background-color: transparent;
+    }
+}
+
+// Success Outline
+.button-success-outline,
+a.button-success-outline,
+a.button-success-outline:link,
+a.button-success-outline:visited,
+a.button-success-outline:hover,
+a.button-success-outline:active,
+a.button-success-outline:focus {
+    background-color: transparent;
+    color: var(--btn-success-outline-text) !important;
+    box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-success-outline-border);
+}
+
+.button-success-outline {
+    &:hover:not(:disabled):not(.disabled) {
+        background-color: var(--btn-success-outline-hover-bg);
+    }
+
+    &:active:not(:disabled):not(.disabled) {
+        background-color: var(--btn-success-outline-active-bg);
+    }
+
+    &:disabled,
+    &.disabled {
+        background-color: transparent;
+    }
+}
+
+// Reverse Outline (for dark backgrounds)
+.button-reverse-outline,
+a.button-reverse-outline,
+a.button-reverse-outline:link,
+a.button-reverse-outline:visited,
+a.button-reverse-outline:hover,
+a.button-reverse-outline:active,
+a.button-reverse-outline:focus {
+    background-color: transparent;
+    color: var(--btn-reverse-outline-text) !important;
+    box-shadow: inset 0 0 0 var(--btn-border-width) var(--btn-reverse-outline-border);
+}
+
+.button-reverse-outline {
+    &:hover:not(:disabled):not(.disabled) {
+        background-color: var(--btn-reverse-outline-hover-bg);
+    }
+
+    &:active:not(:disabled):not(.disabled) {
+        background-color: var(--btn-reverse-outline-active-bg);
+    }
+
+    &:disabled,
+    &.disabled {
+        background-color: transparent;
+    }
+}
+
+// =============================================================================
+// GHOST BUTTON
+// =============================================================================
+
+.button-ghost,
+a.button-ghost,
+a.button-ghost:link,
+a.button-ghost:visited,
+a.button-ghost:hover,
+a.button-ghost:active,
+a.button-ghost:focus {
+    background-color: transparent;
+    color: var(--btn-ghost-text) !important;
+    border: none;
+}
+
+.button-ghost {
+    &:hover:not(:disabled):not(.disabled) {
+        background-color: var(--btn-ghost-hover-bg);
+    }
+
+    &:active:not(:disabled):not(.disabled) {
+        background-color: var(--btn-ghost-hover-bg);
+    }
+
+    &:disabled,
+    &.disabled {
+        color: var(--btn-ghost-disabled-text) !important;
+    }
+}
+
+// =============================================================================
+// ICON POSITIONING & ICON-ONLY BUTTONS
+// =============================================================================
+
+// Icon-only button
+.button-icon-only {
+    padding: var(--btn-padding-y);
+    aspect-ratio: 1;
+}
+
+// Icon left (default flow)
+.button-icon-left {
+    flex-direction: row;
+}
+
+// Icon right
+.button-icon-right {
+    flex-direction: row;
+
+    .button__icon {
+        order: 2;
+    }
+}
+
+// =============================================================================
+// LEGACY BUTTON STYLES (PRESERVED FOR BACKWARD COMPATIBILITY)
+// =============================================================================
+
+a.button,
+button.button {
+
+    // Legacy outline variant
+    &--outline {
+        background-color: var(--color-white);
+        color: var(--color-brand-secondary);
+        border: 2px solid currentColor;
+        box-shadow: var(--shadow-sm);
+
+        &:hover {
+            background-color: var(--color-brand-secondary);
+            color: var(--color-white);
+            border-color: var(--color-brand-secondary);
+        }
+
+        &:focus {
+            outline-style: solid;
+            outline-color: transparent;
+            box-shadow: 0 0 0 4px var(--color-brand-secondary-light);
+        }
+    }
+
+    // Legacy small variant
+    &--small {
+        font-size: var(--btn-font-size-sm);
+        padding: var(--btn-padding-y-sm) var(--btn-padding-x-sm);
+    }
+
+    // Legacy full-width block variant
+    &--block {
+        width: 100%;
+    }
+}
+
+// =============================================================================
+// MINI ROUND BUTTON (LEGACY - e.g., back to top button)
+// =============================================================================
+
+.btn-mini {
+    font-size: var(--btn-font-size-sm);
+    color: var(--btn-primary-text);
+    background: var(--btn-primary-bg);
+    text-decoration: none !important;
+    text-shadow: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius-full);
+    margin-bottom: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow-md);
+    transition: var(--btn-transition);
+    transition-property: background-color, transform, box-shadow;
+    transform: scale(0.9);
+    z-index: var(--z-index-raised);
+
+    &:hover,
+    &:focus {
+        background: var(--btn-primary-hover-bg);
+        color: var(--btn-primary-text);
+        transform: scale(1);
+    }
+
+    &:focus-visible {
+        outline: var(--focus-ring);
+        outline-offset: var(--focus-ring-offset);
+    }
+
+    &:active {
+        box-shadow: var(--shadow-lg);
+        transform: scale(0.9);
+    }
+}
