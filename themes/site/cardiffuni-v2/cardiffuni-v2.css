@@ -1268,8 +1268,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   width: var(--carousel-control-size);
   height: var(--carousel-control-size);
   background-color: var(--carousel-control-bg);
-  -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   font-size: var(--carousel-control-icon-size) !important;
   border-radius: 50%;
   top: 50%;

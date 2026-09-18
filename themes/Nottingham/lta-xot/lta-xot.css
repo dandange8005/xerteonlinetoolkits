@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * LTA XOT Theme - Main Entry Point
  *
@@ -198,6 +199,25 @@ Author: Nan Zhang
    ========================================================================== */
 /* ==========================================================================
    OVERALL RESET
+
+   Elements styled:
+   - *, *::before, *::after      — box-sizing: border-box
+   - *                            — text-wrap: pretty
+   - html, body, h1–h6, p,
+     figure, blockquote, dl, dd   — remove default margin & padding
+   - html                         — smooth scroll, text-size-adjust
+   - body                         — text-rendering, line-height, font smoothing
+   - img, picture, video,
+     canvas, svg                  — block display, max-width: 100%
+   - input, button, textarea,
+     select                       — font: inherit
+   - p, h1–h6                    — overflow-wrap, hyphens
+   - h1–h6                       — text-wrap: balance
+   - #root, #__next               — isolation: isolate
+   - ul[role='list'],
+     ol[role='list']              — list-style: none
+   - a:not([class])               — text-decoration-skip-ink
+   - @media prefers-reduced-motion — disable animations & transitions
    ========================================================================== */
 *,
 *::before,
@@ -264,8 +284,7 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
-  -webkit-hyphens: auto;
-          hyphens: auto;
+  hyphens: auto;
 }
 
 h1,
@@ -893,6 +912,48 @@ li ul {
    - components/_boxes.scss
    - components/_cards.scss
    - components/_sidebar.scss
+
+   Components in this file:
+   ──────────────────────────────────────────────────────────────────────────
+
+   BUTTONS
+   - a.btn, button.btn             — reset link/button defaults
+   - .btn                          — base button styles
+   - .btn-primary                  — primary colour button (+hover, focus, active)
+   - .btn-secondary                — secondary colour button (+hover, focus, active, disabled)
+   - .btn-outline                  — transparent outline button (+hover)
+   - .btn-success                  — green success button (+hover, focus, active, disabled)
+   - .btn-warning                  — yellow warning button (+hover, focus, active, disabled)
+   - .btn-light                    — light background button (+hover, focus, active, disabled)
+   - .btn-dark                     — dark background button (+hover, focus, active, disabled)
+   - .btn-lg, .btn-sm, .btn-block  — size & layout variants
+   - .btn-group                    — inline button grouping
+
+   FORMS
+   - input[type=text], textarea    — remove browser appearance
+   - input, textarea               — base input styles
+   - textarea                      — min-height & max-width
+   - ::placeholder                 — placeholder text colour
+   - input[type="checkbox"]        — custom checkbox with FA icon
+   - input[type="radio"]           — custom radio with dot indicator
+   - .optionGroup                  — flex wrapper for options
+   - :focus states                 — focus ring for inputs, checkboxes
+
+   ALERTS
+   - .alert                        — base alert box with FA icon
+   - .alert-info                   — blue info icon
+   - .alert-success                — green success icon
+   - .alert-warning                — orange warning icon
+   - .alert-danger                 — red danger icon
+
+   BOXES
+   - .box                          — bordered content box with spacing
+
+   CARDS
+   - (placeholder — no styles yet)
+
+   SIDEBAR
+   - (commented out — kept for reference)
    ========================================================================== */
 /* ==========================================================================
    BUTTONS
@@ -1396,6 +1457,48 @@ input[type=checkbox]:focus {
    - layouts/_flex.scss
    - layouts/_grid.scss
    - layouts/_contentMenu.scss
+
+   Layouts in this file:
+   ──────────────────────────────────────────────────────────────────────────
+
+   FLEXBOX SYSTEM
+   - .flex, .flex-inline            — core flex containers
+   - .flex-row, .flex-row-reverse,
+     .flex-col, .flex-col-reverse   — direction utilities
+   - .flex-wrap, .flex-wrap-reverse,
+     .flex-no-wrap                  — wrap utilities
+   - .flex-1, .flex-initial,
+     .flex-auto, .flex-none         — grow/shrink behaviours
+   - .flex-100 … .flex-600          — predefined base widths (100–600px)
+   - .flex-center-x, .flex-center-y,
+     .flex-center                   — alignment utilities
+
+   PERCENTAGE-BASED FLEX SYSTEM
+   - .flexContainer                 — wrapper with flex-wrap & margin
+   - .flexItem                      — base flex child (full-width mobile)
+   - .c10 … .c80                   — responsive percentage widths (≥768px)
+   - .flex-row-reverse .flexItem    — reverse-direction spacing
+
+   GRID SYSTEM
+   - .grid                          — base grid container
+   - .grid-cols-1 … .grid-cols-12  — column template definitions
+   - .col-auto                      — auto-placed column
+   - .col-span-1 … .col-span-12   — column span utilities
+   - .col-span-full                 — full-width span (1 / -1)
+
+   TABLE OF CONTENT MENU (Dialog)
+   - .ui-dialog                     — dialog container styling
+   - #menuItems                     — menu list background
+   - #menuItems .menuItem           — individual menu item
+   - #menuItems .sectionHeader      — section divider label
+   - .ui-dialog .ui-widget-header   — dialog title bar
+   - .ui-widget-header
+     .ui-state-default/hover        — title bar button states
+   - #menuItems .menuItem.current   — active/current page highlight
+   - .ui-dialog-titlebar-close      — close button reset
+   - #menuItems .ui-state-hover     — menu item hover state
+   - .ui-button-icon-primary
+     .fa-x-close                    — close icon colour
    ========================================================================== */
 /* ==========================================================================
    FLEXBOX SYSTEM
@@ -2329,8 +2432,7 @@ table.glossary tr td:first-child {
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
-  -webkit-hyphens: auto;
-          hyphens: auto;
+  hyphens: auto;
 }
 
 /* ==========================================================================
@@ -2339,6 +2441,50 @@ table.glossary tr td:first-child {
    Consolidated from:
    - vendors/_jquery-ui.scss
    - vendors/_jquery-ui-theme.scss
+
+   jQuery UI overrides in this file:
+   ──────────────────────────────────────────────────────────────────────────
+
+   JQUERY UI THEME (base states)
+   - .ui-state-default              — default state (border, bg, color)
+   - .ui-state-hover / .ui-state-focus — hover & focus states
+   - .ui-visual-focus               — keyboard focus ring
+   - .ui-state-active               — active/selected state
+   - .ui-icon-background            — icon background colours
+   - .ui-widget-content             — content container border
+
+   JQUERY UI CUSTOMIZATION (theme-specific)
+   - .ui-state-default              — themed default state
+   - .ui-state-default.ui-state-hover — themed hover (excludes accordion/tabs)
+   - .ui-state-active/default links — themed link colours
+   - .ui-widget-content             — themed content border
+
+   TABS
+   - .ui-tabs                       — tab container reset
+   - .ui-tabs .ui-widget-header     — tab header bar reset
+   - .ui-tabs .ui-tabs-nav          — tab navigation list
+   - .tabHeader, .navChildTitle     — individual tab styling
+   - .ui-state-active tab           — active tab highlight
+   - #paneHolder, .paneHolder       — tab content panel
+
+   ACCORDION
+   - .ui-accordion-header           — accordion header spacing
+   - .ui-accordion .ui-icon         — expand/collapse icon colour
+   - .ui-accordion-header:hover     — header hover icon colour
+   - .ui-accordion-content          — content panel border
+
+   BUTTON / BUTTONSET
+   - (placeholder — add overrides as needed)
+
+   SLIDER
+   - (placeholder — add overrides as needed)
+
+   DRAGGABLE / DROPPABLE
+   - (placeholder — add overrides as needed)
+
+   NAVIGATION PAGE
+   - .x_nav_page button states      — button/slide navigation overrides
+   - #btnHolder                     — slide nav border
    ========================================================================== */
 /* ==========================================================================
    JQUERY UI THEME
@@ -2544,6 +2690,21 @@ a.ui-button:active,
   border-top: 1px solid var(--clr-border);
 }
 
+/* ==========================================================================
+   BUTTON / BUTTONSET
+   Used by: buttonNav, mcq, gapFill, imageViewer, dialog pages
+   jQuery UI classes: .ui-button, .ui-buttonset, .ui-button-text
+   ========================================================================== */
+/* ==========================================================================
+   SLIDER
+   Used by: imageSequence page
+   jQuery UI classes: .ui-slider, .ui-slider-handle, .ui-slider-range
+   ========================================================================== */
+/* ==========================================================================
+   DRAGGABLE / DROPPABLE
+   Used by: dragDropLabel, textMatch pages
+   jQuery UI classes: .ui-draggable, .ui-droppable, .ui-draggable-dragging
+   ========================================================================== */
 /* ==========================================================================
    NAVIGATION PAGE
    ========================================================================== */
