@@ -20,6 +20,9 @@ CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 # (group, name, JavaScript expression evaluated in the fixture, expected string)
 CHECKS = [
     ("smoke", "theme loaded: body copy is 18px", "cs('body','fontSize')", "18px"),
+    ("tokens", "--cu-action is dark Cardiff red", "v('var(--cu-action)')", "rgb(194, 31, 22)"),
+    ("tokens", "--cu-callout-tip is Cadet", "v('var(--cu-callout-tip)')", "rgb(94, 185, 155)"),
+    ("tokens", "--cu-space-6 is 24px", "v('var(--cu-space-6)','paddingTop')", "24px"),
 ]
 
 
