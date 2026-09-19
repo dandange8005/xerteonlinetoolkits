@@ -1,98 +1,69 @@
 /**
- * Callout Component
+ * Callouts (Cardiff Resource Design System v1.3, seven types)
  *
- * PURPOSE: Alert/notice box with icon and color variants for different message types
+ * Paste in a Text element's Source view:
+ * <div class="cu-callout cu-callout-tip">
+ *   <span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-lightbulb fa-stack-1x"></i></span>
+ *   <div><strong class="cu-callout-title">Tip</strong><p>...</p></div>
+ * </div>
  *
- * USAGE:
- * - Basic callout:
- *   <div class="callout">Default callout message</div>
+ * Type (class)                        glyph               use
+ * Information   .cu-callout-info       fa-info             extra context
+ * Tip           .cu-callout-tip        fa-lightbulb        recommendation
+ * Good practice .cu-callout-good       fa-check            preferred approach
+ * Important     .cu-callout-important  fa-exclamation      something requiring attention
+ * Warning       .cu-callout-warning    fa-minus            risk or problem
+ * Example       .cu-callout-example    fa-graduation-cap   worked example
+ * Key point     .cu-callout-key or no modifier   fa-star   main takeaway
  *
- * - Callout with custom emoji:
- *   <div class="callout" emoji-data="🎯">Message with custom icon</div>
- *
- * - Callout with variants:
- *   <div class="callout warning">Warning message</div>
- *   <div class="callout success">Success message</div>
- *   <div class="callout danger">Error message</div>
- *   <div class="callout info">Information message</div>
- *
- * VARIANTS:
- * - .callout         - Base callout style (neutral gray)
- * - .callout.warning - Yellow warning style with ⚠️ icon
- * - .callout.success - Green success style with ✅ icon
- * - .callout.danger  - Red error style with ⛔ icon
- * - .callout.info    - Blue info style with ℹ️ icon
+ * The title carries the meaning; colour and icon support it. One or two per screen.
+ * Font Awesome 6.6.0 is loaded by the Xerte player; the theme does not bundle it.
  */
+.cu-callout {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--cu-space-4);
+    align-items: start;
+    margin-top: var(--cu-space-6);
+    padding: var(--cu-space-5) var(--cu-space-6);
+    background: var(--cu-surface);
+    color: var(--cu-ink);
+    border-left: 4px solid var(--cu-callout, var(--cu-callout-key));
 
-// =============================================================================
-// CALLOUT COMPONENT
-// Alert/notice box with icon and semantic color variants
-// =============================================================================
+    p {
+        margin-top: var(--cu-space-1);
+    }
+}
 
-.callout {
-    background: var(--color-gray-10);
-    padding: var(--spacing-md);
-    padding-left: var(--spacing-2xl);
-    border-radius: var(--radius-md);
-    font-size: var(--font-size-base);
-    color: var(--color-text-primary);
-    position: relative;
+.cu-callout-icon {
+    font-size: 14px;
+    width: 2em;
+    margin-top: -2px;
 
-    // Emoji icon using custom attribute or variant-specific emoji
-    &::before {
-        content: attr(emoji-data);
-        font-family: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji,
-            "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
-        position: absolute;
-        top: var(--spacing-md);
-        left: var(--spacing-md);
-        font-size: var(--font-size-lg);
+    .fa-stack-2x {
+        color: var(--cu-callout, var(--cu-callout-key));
     }
 
-    // Callout heading
-    h4 {
-        font-size: var(--font-size-base);
-        margin-top: 0;
-        margin-bottom: var(--spacing-sm);
+    .fa-stack-1x {
+        color: var(--cu-callout-on, var(--cu-callout-key-on));
     }
+}
 
-    // Warning variant (yellow)
-    &.warning {
-        // background-color: #fffbea;
-        // border: 1px solid #f7e07d;
+.cu-callout-title {
+    display: block;
+    font-weight: var(--cu-weight-bold);
+}
 
-        &::before {
-            content: '⚠️';
-        }
-    }
+.cu-callout-info { --cu-callout: var(--cu-callout-info); --cu-callout-on: var(--cu-callout-info-on); }
+.cu-callout-tip { --cu-callout: var(--cu-callout-tip); --cu-callout-on: var(--cu-callout-tip-on); }
+.cu-callout-good { --cu-callout: var(--cu-callout-good); --cu-callout-on: var(--cu-callout-good-on); }
+.cu-callout-important { --cu-callout: var(--cu-callout-important); --cu-callout-on: var(--cu-callout-important-on); }
+.cu-callout-warning { --cu-callout: var(--cu-callout-warning); --cu-callout-on: var(--cu-callout-warning-on); }
+.cu-callout-example { --cu-callout: var(--cu-callout-example); --cu-callout-on: var(--cu-callout-example-on); }
+.cu-callout-key { --cu-callout: var(--cu-callout-key); --cu-callout-on: var(--cu-callout-key-on); }
 
-    // Success variant (green)
-    &.success {
-        // background-color: var(--color-accent-green-light);
-        // border: 1px solid #7ab87a;
-
-        &::before {
-            content: '✅';
-        }
-    }
-
-    // Danger variant (red)
-    &.danger {
-        // background-color: #fee;
-        // border: 1px solid #fbb;
-
-        &::before {
-            content: '⛔️';
-        }
-    }
-
-    // Info variant (blue)
-    &.info {
-        // background-color: #e6f4ff;
-        // border: 1px solid #91caff;
-
-        &::before {
-            content: 'ℹ️';
-        }
+@media (max-width: 480px) {
+    .cu-callout {
+        padding: var(--cu-space-4);
     }
 }

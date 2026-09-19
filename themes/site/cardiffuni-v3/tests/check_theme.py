@@ -39,6 +39,19 @@ CHECKS = [
     ("rules", "strong rule is 2px", "cs('#rule-strong','borderTopWidth')", "2px"),
     ("rules", "strong rule is ink", "cs('#rule-strong','borderTopColor')", "rgb(18, 18, 18)"),
     ("rules", "rule has 32px space above", "cs('#rule','marginTop')", "32px"),
+    ("callouts", "grey surface", "cs('#callout-tip','backgroundColor')", "rgb(242, 242, 242)"),
+    ("callouts", "4px left rule", "cs('#callout-tip','borderLeftWidth')", "4px"),
+    ("callouts", "tip rule is Cadet", "cs('#callout-tip','borderLeftColor')", "rgb(94, 185, 155)"),
+    ("callouts", "tip disc is Cadet", "cs('#callout-tip .fa-stack-2x','color')", "rgb(94, 185, 155)"),
+    ("callouts", "tip glyph is black", "cs('#callout-tip .fa-stack-1x','color')", "rgb(18, 18, 18)"),
+    ("callouts", "no modifier = key point, black rule", "cs('#callout-key','borderLeftColor')", "rgb(18, 18, 18)"),
+    ("callouts", "key point glyph is white", "cs('#callout-key .fa-stack-1x','color')", "rgb(255, 255, 255)"),
+    ("callouts", "warning rule is brand red", "cs('#callout-warning','borderLeftColor')", "rgb(228, 37, 27)"),
+    ("callouts", "good practice rule is Forest Green", "cs('#callout-good','borderLeftColor')", "rgb(7, 135, 62)"),
+    ("callouts", "title is bold", "cs('#callout-tip .cu-callout-title','fontWeight')", "700"),
+    ("callouts", "icon and text sit in a grid", "cs('#callout-tip','display')", "grid"),
+    ("callouts", "square corners", "cs('#callout-tip','borderTopLeftRadius')", "0px"),
+    ("callouts", "old v2 callout no longer styled", "cs('#old-callout','borderLeftWidth')", "0px"),
 ]
 
 

@@ -395,45 +395,17 @@
             <h2><i class="fa-solid fa-bullhorn"></i> Callouts</h2>
 
             <div class="demo-block">
-                <div class="demo-block__title">Callout Variants</div>
+                <div class="demo-block__title">Seven callout types (design system v1.3)</div>
 
-                <div class="callout" style="margin-bottom: 1rem;">
-                    <h4>Default Callout</h4>
-                    <p>This is a neutral callout without a specific semantic meaning.</p>
-                </div>
+                <div class="cu-callout cu-callout-info"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-info fa-stack-1x"></i></span><div><strong class="cu-callout-title">Information</strong><p>Extra context.</p></div></div>
+                <div class="cu-callout cu-callout-tip"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-lightbulb fa-stack-1x"></i></span><div><strong class="cu-callout-title">Tip</strong><p>A recommendation.</p></div></div>
+                <div class="cu-callout cu-callout-good"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-check fa-stack-1x"></i></span><div><strong class="cu-callout-title">Good practice</strong><p>The preferred approach.</p></div></div>
+                <div class="cu-callout cu-callout-important"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-exclamation fa-stack-1x"></i></span><div><strong class="cu-callout-title">Important</strong><p>Something requiring attention.</p></div></div>
+                <div class="cu-callout cu-callout-warning"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-minus fa-stack-1x"></i></span><div><strong class="cu-callout-title">Warning</strong><p>A risk or problem.</p></div></div>
+                <div class="cu-callout cu-callout-example"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-graduation-cap fa-stack-1x"></i></span><div><strong class="cu-callout-title">Example</strong><p>A worked example.</p></div></div>
+                <div class="cu-callout"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-star fa-stack-1x"></i></span><div><strong class="cu-callout-title">Key point</strong><p>The main takeaway (default when no type class is given).</p></div></div>
 
-                <div class="callout info" style="margin-bottom: 1rem;">
-                    <h4>Information</h4>
-                    <p>This callout provides helpful information to the user.</p>
-                </div>
-
-                <div class="callout success" style="margin-bottom: 1rem;">
-                    <h4>Success</h4>
-                    <p>This callout indicates a successful action or positive outcome.</p>
-                </div>
-
-                <div class="callout warning" style="margin-bottom: 1rem;">
-                    <h4>Warning</h4>
-                    <p>This callout warns the user about something important.</p>
-                </div>
-
-                <div class="callout danger">
-                    <h4>Danger</h4>
-                    <p>This callout alerts the user to an error or critical issue.</p>
-                </div>
-
-                <code class="code-label">.callout | .callout.info | .callout.success | .callout.warning | .callout.danger</code>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Callout with Custom Emoji</div>
-
-                <div class="callout" emoji-data="&#127891;">
-                    <h4>Did You Know?</h4>
-                    <p>You can customize the callout icon using the <code>emoji-data</code> attribute.</p>
-                </div>
-
-                <code class="code-label">.callout[emoji-data="&#127891;"]</code>
+                <code class="code-label">.cu-callout | -info | -tip | -good | -important | -warning | -example | -key (default)</code>
             </div>
         </section>
 
