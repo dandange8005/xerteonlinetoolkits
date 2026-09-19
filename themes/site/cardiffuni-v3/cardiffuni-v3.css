@@ -2052,7 +2052,6 @@ a.glossary:active {
 .cu-callout-icon {
   font-size: 14px;
   width: 2em;
-  margin-top: -2px;
 }
 .cu-callout-icon .fa-stack-2x {
   color: var(--cu-callout, var(--cu-callout-key));
@@ -2064,6 +2063,7 @@ a.glossary:active {
 .cu-callout-title {
   display: block;
   font-weight: var(--cu-weight-bold);
+  line-height: 28px;
 }
 
 .cu-callout-info {

@@ -37,8 +37,7 @@
 
 .cu-callout-icon {
     font-size: 14px;
-    width: 2em;
-    margin-top: -2px;
+    width: 2em; // 28px disc
 
     .fa-stack-2x {
         color: var(--cu-callout, var(--cu-callout-key));
@@ -52,6 +51,7 @@
 .cu-callout-title {
     display: block;
     font-weight: var(--cu-weight-bold);
+    line-height: 28px; // same as the icon disc, so disc and title share one line box in any host
 }
 
 .cu-callout-info { --cu-callout: var(--cu-callout-info); --cu-callout-on: var(--cu-callout-info-on); }

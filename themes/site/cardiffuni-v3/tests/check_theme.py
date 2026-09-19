@@ -52,6 +52,10 @@ CHECKS = [
     ("callouts", "icon and text sit in a grid", "cs('#callout-tip','display')", "grid"),
     ("callouts", "square corners", "cs('#callout-tip','borderTopLeftRadius')", "0px"),
     ("callouts", "old v2 callout no longer styled", "cs('#old-callout','borderLeftWidth')", "0px"),
+    ("callouts", "icon disc centred on the title's first line (within 1px)",
+     "(function(){var i=document.querySelector('#callout-tip .cu-callout-icon').getBoundingClientRect(),"
+     "t=document.querySelector('#callout-tip .cu-callout-title').getBoundingClientRect();"
+     "return String(Math.abs((i.top+i.height/2)-(t.top+t.height/2))<=1)})()", "true"),
     ("header", "white background", "cs('#overview','backgroundColor')", "rgb(255, 255, 255)"),
     ("header", "no gradient", "cs('#overview','backgroundImage')", "none"),
     ("header", "no overlay", "ps('#overview','::before','content')", "none"),
