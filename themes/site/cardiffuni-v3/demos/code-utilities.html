@@ -17,14 +17,15 @@
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
-                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
-                    alt="Cardiff University Logo">
+                    src="../logo_left.svg"
+                    alt="Cardiff University / Prifysgol Caerdydd">
             </div>
 
             <div class="titles">
                 <h1 id="pageTitle" aria-live="polite">Code & Utilities</h1>
                 <p id="pageSubTitle" aria-live="polite">Code Blocks & Utility Classes</p>
             </div>
+        </div>
     </header>
 
     <div id="pageLinks">
@@ -59,7 +60,7 @@
         </div>
     </div>
 
-    <main>
+    <main class="container">
         <!-- Inline Code -->
         <section class="demo-section">
             <h2>Inline Code</h2>
@@ -130,7 +131,7 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
                 <pre><code>.button {
     display: inline-block;
     padding: var(--spacing-md) var(--spacing-lg);
-    background: var(--cu-primary-red);
+    background: var(--cu-action);
     color: white;
     border: none;
     border-radius: 4px;
@@ -140,7 +141,7 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
 }
 
 .button:hover {
-    background: var(--cu-dark-red);
+    background: var(--cu-action-hover);
 }</code></pre>
             </div>
         </section>
@@ -496,7 +497,7 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
                 <pre><code>.my-element {
     padding: var(--spacing-md);
     font-size: var(--font-size-lg);
-    color: var(--cu-primary-red);
+    color: var(--cu-brand-red);
     margin-bottom: var(--spacing-xl);
 }</code></pre>
             </div>

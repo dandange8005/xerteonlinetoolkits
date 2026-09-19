@@ -19,14 +19,15 @@
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
-                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
-                    alt="Cardiff University Logo">
+                    src="../logo_left.svg"
+                    alt="Cardiff University / Prifysgol Caerdydd">
             </div>
 
             <div class="titles">
                 <h1 id="pageTitle" aria-live="polite">Components</h1>
                 <p id="pageSubTitle" aria-live="polite">UI Components Library</p>
             </div>
+        </div>
     </header>
 
     <div id="pageLinks">
@@ -61,7 +62,7 @@
         </div>
     </div>
 
-    <main>
+    <main class="container">
         <!-- Table of Contents -->
         <section class="demo-section">
             <h2>Component Index</h2>
@@ -73,6 +74,7 @@
                 <a href="#breadcrumbs" class="button button-secondary-outline button--small"><i class="fa-solid fa-sitemap"></i> Breadcrumbs</a>
                 <a href="#cards" class="button button-secondary-outline button--small"><i class="fa-solid fa-id-card"></i> Cards</a>
                 <a href="#callouts" class="button button-secondary-outline button--small"><i class="fa-solid fa-bullhorn"></i> Callouts</a>
+                <a href="#rules" class="button button-secondary-outline button--small"><i class="fa-solid fa-grip-lines"></i> Rules</a>
                 <a href="#tabs" class="button button-secondary-outline button--small"><i class="fa-solid fa-folder"></i> Tabs</a>
                 <a href="#accordions" class="button button-secondary-outline button--small"><i class="fa-solid fa-list"></i> Accordions</a>
             </div>
@@ -406,6 +408,22 @@
                 <div class="cu-callout"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-star fa-stack-1x"></i></span><div><strong class="cu-callout-title">Key point</strong><p>The main takeaway (default when no type class is given).</p></div></div>
 
                 <code class="code-label">.cu-callout | -info | -tip | -good | -important | -warning | -example | -key (default)</code>
+            </div>
+        </section>
+
+        <!-- ==================== RULES ==================== -->
+        <section class="demo-section" id="rules">
+            <h2><i class="fa-solid fa-grip-lines"></i> Rules</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Neutral and strong rules (design system v1.3)</div>
+                <p>A 1px neutral rule separates repeated entries or quiet sections.</p>
+                <hr class="cu-rule">
+                <p>A 2px charcoal rule marks a major boundary.</p>
+                <hr class="cu-rule cu-rule-strong">
+                <p>Both rules have 32px of space above and below.</p>
+
+                <code class="code-label">&lt;hr class="cu-rule"&gt; | &lt;hr class="cu-rule cu-rule-strong"&gt;</code>
             </div>
         </section>
 
