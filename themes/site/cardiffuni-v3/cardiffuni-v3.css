@@ -161,7 +161,7 @@
 
 /**
  * Cardiff University Theme v3 - Semantic Design Tokens
- * Aligned with Cardiff Resource Design System v1.1
+ * Aligned with Cardiff Resource Design System v1.3
  * ==================================================
  *
  * HYBRID APPROACH:
@@ -194,7 +194,7 @@
  * 2. Reference primitives: t.$token-color-brand-primary
  * 3. Build semantic tokens in _allvariables.scss using these primitives
  *
- * v3 SOURCE: Cardiff Resource Design System v1.1 (codex/DESIGN.md, design-system/v1/tokens.css).
+ * Colours and font families come from the design system tokens (scss/_cu-tokens.scss, generated). This file keeps only non-colour primitives used at compile time.
  * Values marked [DS] come from that specification. Keep the two aligned when versioning.
  *
  * FOR NEW THEMES:
@@ -202,46 +202,46 @@
  * The semantic layer (_allvariables.scss) can remain largely unchanged.
  */
 :root {
-  --color-brand-primary: #E4251B;
-  --color-brand-secondary: #121212;
-  --color-white: #FFFFFF;
-  --color-light: #FFFFFF;
-  --color-action: #C21F16;
-  --color-action-hover: #A11A12;
+  --color-brand-primary: var(--cu-brand-red);
+  --color-brand-secondary: var(--cu-black);
+  --color-white: var(--cu-white);
+  --color-light: var(--cu-bg);
+  --color-action: var(--cu-action);
+  --color-action-hover: var(--cu-action-hover);
   --color-tint: #F8DADA;
-  --color-focus: #7F140E;
-  --color-warning: #65501c;
-  --color-warning-bg: #faf3dd;
-  --color-on-dark: var(--color-white);
-  --color-on-dark-muted: #CCCCCC;
-  --color-gray-10: #F2F2F2;
-  --color-gray-20: #E5E5E5;
-  --color-gray-30: #CCCCCC;
-  --color-gray-40: #B3B3B3;
-  --color-gray-50: #999999;
-  --color-gray-60: #808080;
-  --color-gray-70: #666666;
-  --color-gray-80: #4C4C4C;
-  --color-gray-90: #333333;
-  --color-accent-green: #07873E;
-  --color-accent-teal: #5EB99B;
-  --color-accent-stone: #C9C2BA;
-  --color-accent-blue: #1E90FF;
-  --color-accent-royal: #4A42FF;
-  --color-accent-navy: #273573;
-  --color-accent-purple: #26192C;
-  --color-accent-orange: #E9761E;
-  --color-accent-yellow: #FFB300;
-  --color-accent-lime: #85C041;
-  --color-accent-indigo: #570185;
-  --color-accent-violet: #D401C5;
+  --color-focus: var(--cu-focus);
+  --color-warning: var(--cu-draft);
+  --color-warning-bg: var(--cu-draft-bg);
+  --color-on-dark: var(--cu-on-dark);
+  --color-on-dark-muted: var(--cu-on-dark-muted);
+  --color-gray-10: var(--cu-grey-10);
+  --color-gray-20: var(--cu-grey-20);
+  --color-gray-30: var(--cu-grey-30);
+  --color-gray-40: var(--cu-grey-40);
+  --color-gray-50: var(--cu-grey-50);
+  --color-gray-60: var(--cu-grey-60);
+  --color-gray-70: var(--cu-grey-70);
+  --color-gray-80: var(--cu-grey-80);
+  --color-gray-90: var(--cu-grey-90);
+  --color-accent-green: var(--cu-accent-forest-green);
+  --color-accent-teal: var(--cu-accent-cadet);
+  --color-accent-stone: var(--cu-accent-stone);
+  --color-accent-blue: var(--cu-accent-light-blue);
+  --color-accent-royal: var(--cu-accent-royal-blue);
+  --color-accent-navy: var(--cu-accent-midnight-blue);
+  --color-accent-purple: var(--cu-accent-midnight-purple);
+  --color-accent-orange: var(--cu-accent-orange);
+  --color-accent-yellow: var(--cu-accent-yellow);
+  --color-accent-lime: var(--cu-accent-yellow-green);
+  --color-accent-indigo: var(--cu-accent-indigo);
+  --color-accent-violet: var(--cu-accent-dark-violet);
   --color-text-primary: var(--color-brand-secondary);
   --color-text-secondary: var(--color-gray-70);
-  --color-text-tertiary: var(--color-gray-50);
+  --color-text-tertiary: var(--cu-text-tertiary);
   --color-text-inverse: var(--color-white);
   --color-text-brand: var(--color-action);
   --color-text-on-brand: var(--color-white);
-  --color-link-default: #045bc6;
+  --color-link-default: var(--cu-link);
   --color-link-hover: color-mix(in srgb, var(--color-link-default) 70%, black 30%);
   --color-link-visited: var(--color-link-default);
   --color-link-active: color-mix(in srgb, var(--color-link-default) 50%, black 50%);
@@ -260,7 +260,7 @@
   --color-status-success: var(--color-accent-green);
   --color-status-warning: var(--color-warning);
   --color-status-warning-bg: var(--color-warning-bg);
-  --color-status-error: var(--color-action-hover);
+  --color-status-error: var(--cu-error);
   --color-status-info: var(--color-link-default);
   --color-nav-accent: var(--color-brand-secondary);
   --color-nav-accent-dark: var(--color-brand-secondary-dark);
@@ -328,9 +328,9 @@
   --btn-icon-size: 20px;
   --btn-icon-size-sm: 16px;
   --btn-transition: var(--transition-fast);
-  --font-family-primary: system-ui, -apple-system, Segoe UI, sans-serif;
-  --font-family-display: Franklin Gothic Heavy, Franklin Gothic, system-ui, sans-serif;
-  --font-family-secondary: ui-serif, Georgia, Times New Roman, serif;
+  --font-family-primary: var(--cu-body);
+  --font-family-display: var(--cu-display);
+  --font-family-secondary: var(--cu-serif);
   --font-size-xs: 16px;
   --font-size-sm: 16px;
   --font-size-base: 16px;

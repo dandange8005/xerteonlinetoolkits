@@ -14,7 +14,7 @@
  * 2. Reference primitives: t.$token-color-brand-primary
  * 3. Build semantic tokens in _allvariables.scss using these primitives
  *
- * v3 SOURCE: Cardiff Resource Design System v1.1 (codex/DESIGN.md, design-system/v1/tokens.css).
+ * Colours and font families come from the design system tokens (scss/_cu-tokens.scss, generated). This file keeps only non-colour primitives used at compile time.
  * Values marked [DS] come from that specification. Keep the two aligned when versioning.
  *
  * FOR NEW THEMES:
@@ -27,57 +27,14 @@
 // The official brand color palette. These are the source of truth.
 // =============================================================================
 
-// Primary Brand Colors
-$token-color-brand-primary: #E4251B;    // Cardiff Red - PMS 485 C
-$token-color-brand-secondary: #121212;  // Cardiff Black
-$token-color-brand-white: #FFFFFF;
-$token-color-brand-light: #FFFFFF;      // [DS] bg - main paper (v2 used off-white #f9fafb)
-
-// Action & interaction colours [DS]
-$token-color-action: #C21F16;           // Primary button fill - stronger small-text contrast than brand red
-$token-color-action-hover: #A11A12;     // Primary hover; error text paired with an explanation
-$token-color-tint: #F8DADA;             // Optional restrained red highlight
-$token-color-link: #045bc6;             // Underlined body links on light surfaces
-$token-color-focus: #7F140E;            // Keyboard outline on light surfaces
-$token-color-warning: #65501c;          // Draft/proposed label text
-$token-color-warning-bg: #faf3dd;       // Draft/proposed label background
-$token-color-on-dark-muted: #CCCCCC;    // Supporting text on charcoal
-
-// Grayscale (10% increments)
-$token-color-gray-10: #F2F2F2;
-$token-color-gray-20: #E5E5E5;
-$token-color-gray-30: #CCCCCC;
-$token-color-gray-40: #B3B3B3;
-$token-color-gray-50: #999999;
-$token-color-gray-60: #808080;
-$token-color-gray-70: #666666;
-$token-color-gray-80: #4C4C4C;
-$token-color-gray-90: #333333;
-
-// Accent Colors (use sparingly)
-$token-color-accent-forest-green: #07873E;
-$token-color-accent-cadet: #5EB99B;
-$token-color-accent-stone: #C9C2BA;
-$token-color-accent-light-blue: #1E90FF;
-$token-color-accent-royal-blue: #4A42FF;
-$token-color-accent-midnight-blue: #273573;
-$token-color-accent-midnight-purple: #26192C;
-$token-color-accent-orange: #E9761E;
-$token-color-accent-yellow: #FFB300;
-$token-color-accent-yellow-green: #85C041;
-$token-color-accent-indigo: #570185;
-$token-color-accent-dark-violet: #D401C5;
+$token-color-tint: #F8DADA;             // Not in the design system; kept for outline-button hover until Red Usage Decisions
 
 // =============================================================================
 // TYPOGRAPHY - PRIMITIVES
 // Base typographic values. Combine these in _allvariables.scss for headings.
 // =============================================================================
 
-// Font Families
-// [DS] Prototype fallbacks for Marr Sans / Darby Serif - not the licensed brand fonts.
-$token-font-family-primary: system-ui, -apple-system, 'Segoe UI', sans-serif;                // Body/UI
-$token-font-family-display: 'Franklin Gothic Heavy', 'Franklin Gothic', system-ui, sans-serif; // Headings
-$token-font-family-secondary: ui-serif, Georgia, 'Times New Roman', serif;                   // Rare numerical accent
+// Font families come from the design system tokens (--cu-display, --cu-body, --cu-serif).
 
 // Font Weights
 $token-font-weight-light: 300;

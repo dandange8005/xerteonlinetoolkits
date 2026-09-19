@@ -1,6 +1,6 @@
 /**
  * Cardiff University Theme v3 - Semantic Design Tokens
- * Aligned with Cardiff Resource Design System v1.1
+ * Aligned with Cardiff Resource Design System v1.3
  * ==================================================
  *
  * HYBRID APPROACH:
@@ -26,56 +26,56 @@
     // Change these to rebrand the entire theme
     // =========================================================================
 
-    --color-brand-primary: #{t.$token-color-brand-primary};
-    --color-brand-secondary: #{t.$token-color-brand-secondary};
+    --color-brand-primary: var(--cu-brand-red);
+    --color-brand-secondary: var(--cu-black);
 
     // =========================================================================
     // NEUTRAL COLORS
     // =========================================================================
 
-    --color-white: #{t.$token-color-brand-white};
-    --color-light: #{t.$token-color-brand-light};
+    --color-white: var(--cu-white);
+    --color-light: var(--cu-bg);
 
     // =========================================================================
-    // ACTION & INTERACTION COLORS (Design System v1.1)
-    // Red discipline: brand red is a rare signal; primary actions use --color-action.
+    // ACTION & INTERACTION COLORS (Design System v1.3)
+    // Values come from the design system tokens (--cu-*). Red usage is decided separately.
     // =========================================================================
 
-    --color-action: #{t.$token-color-action};
-    --color-action-hover: #{t.$token-color-action-hover};
-    --color-tint: #{t.$token-color-tint};
-    --color-focus: #{t.$token-color-focus};
-    --color-warning: #{t.$token-color-warning};
-    --color-warning-bg: #{t.$token-color-warning-bg};
-    --color-on-dark: var(--color-white);
-    --color-on-dark-muted: #{t.$token-color-on-dark-muted};
+    --color-action: var(--cu-action);
+    --color-action-hover: var(--cu-action-hover);
+    --color-tint: #{t.$token-color-tint}; // not in the design system; see Red Usage Decisions
+    --color-focus: var(--cu-focus);
+    --color-warning: var(--cu-draft);
+    --color-warning-bg: var(--cu-draft-bg);
+    --color-on-dark: var(--cu-on-dark);
+    --color-on-dark-muted: var(--cu-on-dark-muted);
 
-    --color-gray-10: #{t.$token-color-gray-10};
-    --color-gray-20: #{t.$token-color-gray-20};
-    --color-gray-30: #{t.$token-color-gray-30};
-    --color-gray-40: #{t.$token-color-gray-40};
-    --color-gray-50: #{t.$token-color-gray-50};
-    --color-gray-60: #{t.$token-color-gray-60};
-    --color-gray-70: #{t.$token-color-gray-70};
-    --color-gray-80: #{t.$token-color-gray-80};
-    --color-gray-90: #{t.$token-color-gray-90};
+    --color-gray-10: var(--cu-grey-10);
+    --color-gray-20: var(--cu-grey-20);
+    --color-gray-30: var(--cu-grey-30);
+    --color-gray-40: var(--cu-grey-40);
+    --color-gray-50: var(--cu-grey-50);
+    --color-gray-60: var(--cu-grey-60);
+    --color-gray-70: var(--cu-grey-70);
+    --color-gray-80: var(--cu-grey-80);
+    --color-gray-90: var(--cu-grey-90);
 
     // =========================================================================
     // ACCENT COLORS
     // =========================================================================
 
-    --color-accent-green: #{t.$token-color-accent-forest-green};
-    --color-accent-teal: #{t.$token-color-accent-cadet};
-    --color-accent-stone: #{t.$token-color-accent-stone};
-    --color-accent-blue: #{t.$token-color-accent-light-blue};
-    --color-accent-royal: #{t.$token-color-accent-royal-blue};
-    --color-accent-navy: #{t.$token-color-accent-midnight-blue};
-    --color-accent-purple: #{t.$token-color-accent-midnight-purple};
-    --color-accent-orange: #{t.$token-color-accent-orange};
-    --color-accent-yellow: #{t.$token-color-accent-yellow};
-    --color-accent-lime: #{t.$token-color-accent-yellow-green};
-    --color-accent-indigo: #{t.$token-color-accent-indigo};
-    --color-accent-violet: #{t.$token-color-accent-dark-violet};
+    --color-accent-green: var(--cu-accent-forest-green);
+    --color-accent-teal: var(--cu-accent-cadet);
+    --color-accent-stone: var(--cu-accent-stone);
+    --color-accent-blue: var(--cu-accent-light-blue);
+    --color-accent-royal: var(--cu-accent-royal-blue);
+    --color-accent-navy: var(--cu-accent-midnight-blue);
+    --color-accent-purple: var(--cu-accent-midnight-purple);
+    --color-accent-orange: var(--cu-accent-orange);
+    --color-accent-yellow: var(--cu-accent-yellow);
+    --color-accent-lime: var(--cu-accent-yellow-green);
+    --color-accent-indigo: var(--cu-accent-indigo);
+    --color-accent-violet: var(--cu-accent-dark-violet);
 
     // =========================================================================
     // SEMANTIC COLORS
@@ -84,13 +84,13 @@
     // Text
     --color-text-primary: var(--color-brand-secondary);
     --color-text-secondary: var(--color-gray-70);
-    --color-text-tertiary: var(--color-gray-50);
+    --color-text-tertiary: var(--cu-text-tertiary);
     --color-text-inverse: var(--color-white);
     --color-text-brand: var(--color-action); // brand red is too light for small text
     --color-text-on-brand: var(--color-white);
 
     // Links (blue, underlined)
-    --color-link-default: #{t.$token-color-link};
+    --color-link-default: var(--cu-link);
     --color-link-hover: color-mix(in srgb, var(--color-link-default) 70%, black 30%);
     --color-link-visited: var(--color-link-default); // DS defines no separate visited colour
     --color-link-active: color-mix(in srgb, var(--color-link-default) 50%, black 50%);
@@ -115,7 +115,7 @@
     --color-status-success: var(--color-accent-green);
     --color-status-warning: var(--color-warning);
     --color-status-warning-bg: var(--color-warning-bg);
-    --color-status-error: var(--color-action-hover);
+    --color-status-error: var(--cu-error);
     --color-status-info: var(--color-link-default);
 
     // Navigation
@@ -227,9 +227,9 @@
     // =========================================================================
 
     // Font Families
-    --font-family-primary: #{t.$token-font-family-primary};
-    --font-family-display: #{t.$token-font-family-display};
-    --font-family-secondary: #{t.$token-font-family-secondary};
+    --font-family-primary: var(--cu-body);
+    --font-family-display: var(--cu-display);
+    --font-family-secondary: var(--cu-serif);
 
     // Font Sizes
     // DS: controls/labels/captions 16px minimum; reading copy 18px; lead 20px.
