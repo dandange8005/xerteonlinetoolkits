@@ -13,6 +13,32 @@ A modern, accessible theme for Xerte Online Toolkits featuring Cardiff Universit
 - ✅ **Fluid Typography** — Responsive font sizes without media queries
 - ✅ **Runtime Theming** — Change colors via CSS variables without recompiling
 
+## Relationship to the original `cardiffuni` theme
+
+This theme is a separate copy of `themes/site/cardiffuni`, not an update to it. Both themes are installed and enabled, and projects are using each of them.
+
+**Timeline:** `cardiffuni` was built between October 2025 and January 2026. `cardiffuni-v2` was branched from it on 23 January 2026 and developed until April 2026. Since the branch, `cardiffuni` has had no styling changes.
+
+**Why a copy rather than an update:** v2 renames classes and CSS variables that pages built on v1 already use, so upgrading in place would have changed the look of published projects. Copying kept v1 stable for existing content while v2 was reworked.
+
+### What changed in v2
+
+| | `cardiffuni` (v1) | `cardiffuni-v2` |
+|---|---|---|
+| CSS variables | `--cu-*` (e.g. `--cu-blue`, `--cu-gray-40`) | `--color-*` (e.g. `--color-brand-primary`, `--color-accent-blue`) |
+| Colour utilities | Per-brand-colour classes (`.bg-cu-blue`, `.text-cu-stone`, `.bg-gray-50`) | Role-based classes (`.bg-brand`, `.bg-light`, `.bg-dark`, `.bg-white`) |
+| Forms | Not styled without classes | Zero-config styling for inputs, selects and textareas |
+| Bootstrap coverage | Tabs, accordions and core components | Adds alerts, badges, labels, breadcrumbs and progress bars |
+| Components | Single `_custom-components.scss` | Split into `scss/components/` (buttons, boxes, callouts, cards, details, dos-and-donts, language toggle, links, project info, quotes) |
+| Accessibility | Basic | Visible focus states, 44px touch targets, underlined links |
+| Re-branding | Recompile the SCSS | Override CSS variables at runtime — see `themes/medr-theme.css` |
+| Legacy support | n/a | `_legacy.scss` keeps the older `.flexContainer` / `.flexItem` layout classes working |
+
+### Which one to use
+
+- **New projects:** use `cardiffuni-v2`.
+- **Existing v1 projects:** leave them on `cardiffuni` unless you can check the pages afterwards. Switching a project to v2 will drop any `--cu-*` variables, `.bg-cu-*` / `.text-cu-*` colour classes, and `.flex-initial`, `.flex-wrap-reverse` or `.image-*` classes the pages rely on, because v2 does not define them.
+
 ## Quick Start
 
 ### Installation
@@ -67,14 +93,21 @@ cardiffuni-v2/
 │   ├── _utilities.scss         # Utility classes
 │   ├── _enhancements.scss      # Modern CSS features
 │   ├── _editorstyles.scss      # CKEditor styles
+│   ├── _webkitCustoms.scss     # WebKit-specific fixes
+│   ├── _legacy.scss            # Older .flexContainer / .flexItem support
 │   └── components/             # Individual components
-│       ├── _buttons.scss
 │       ├── _boxes.scss
+│       ├── _buttons.scss
 │       ├── _callout.scss
 │       ├── _cards.scss
 │       ├── _details.scss
+│       ├── _dosanddonts.scss
+│       ├── _language.scss      # Language toggle
 │       ├── _links.scss
+│       ├── _projectInfo.scss
 │       └── _quotes.scss
+├── themes/
+│   └── medr-theme.css          # Medr re-brand, loaded after the theme CSS
 └── demos/                      # Component demonstrations
     ├── index.html
     ├── typography.html
@@ -82,7 +115,11 @@ cardiffuni-v2/
     ├── lists-tables.html
     ├── forms.html
     ├── components.html
-    └── colors.html
+    ├── colors.html
+    ├── code-utilities.html
+    ├── flexbox.html
+    ├── images-media.html
+    └── patterns.html
 ```
 
 ## Customization

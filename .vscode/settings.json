@@ -11,6 +11,7 @@
   // Only compile these specific SCSS files (ignores partials starting with _)
   "liveSassCompile.settings.includeItems": [
     "/themes/site/cardiffuni-v2/cardiffuni-v2.scss",
+    "/themes/site/cardiffuni-v3/cardiffuni-v3.scss",
     "/themes/Nottingham/lta-xot/lta-xot.scss"
   ],
 
