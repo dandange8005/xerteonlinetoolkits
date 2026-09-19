@@ -52,6 +52,17 @@ CHECKS = [
     ("callouts", "icon and text sit in a grid", "cs('#callout-tip','display')", "grid"),
     ("callouts", "square corners", "cs('#callout-tip','borderTopLeftRadius')", "0px"),
     ("callouts", "old v2 callout no longer styled", "cs('#old-callout','borderLeftWidth')", "0px"),
+    ("header", "white background", "cs('#overview','backgroundColor')", "rgb(255, 255, 255)"),
+    ("header", "no gradient", "cs('#overview','backgroundImage')", "none"),
+    ("header", "no overlay", "ps('#overview','::before','content')", "none"),
+    ("header", "red top edge is 4px", "cs('#overview','borderTopWidth')", "4px"),
+    ("header", "red top edge is brand red", "cs('#overview','borderTopColor')", "rgb(228, 37, 27)"),
+    ("header", "1px rule below", "cs('#overview','borderBottomColor')", "rgb(204, 204, 204)"),
+    ("header", "no shadow", "cs('#overview','boxShadow')", "none"),
+    ("header", "title is ink", "cs('#pageTitle','color')", "rgb(18, 18, 18)"),
+    ("header", "subtitle is muted", "cs('#pageSubTitle','color')", "rgb(102, 102, 102)"),
+    ("header", "logo file present and loaded", "String(document.querySelector('.logo.logoL').naturalWidth > 0)", "true"),
+    ("header", "logo at least 60px wide", "String(parseFloat(cs('.logo.logoL','width')) >= 60)", "true"),
 ]
 
 

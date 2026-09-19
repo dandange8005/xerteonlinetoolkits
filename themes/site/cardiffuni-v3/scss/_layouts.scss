@@ -13,22 +13,19 @@
 // HEADER & JUMBOTRON
 // =============================================================================
 
+// White header: thin brand-red top edge, official red logo top left, no gradient, overlay or shadow.
 .jumbotron {
-  background: var(--color-gray-90);
-  background-image: linear-gradient(135deg, var(--color-gray-80) 0%, var(--color-gray-90) 100%);
-  padding: var(--spacing-lg) var(--spacing-2xl);
-  background-size: cover;
-  color: var(--color-white);
-  position: relative;
-  isolation: isolate;
+  background: var(--cu-bg);
+  background-image: none;
+  color: var(--cu-ink);
+  border-top: 4px solid var(--cu-red);
+  border-bottom: 1px solid var(--cu-border);
+  box-shadow: none;
+  padding: var(--cu-space-8) 0;
+  text-shadow: none;
 
-  // Transparent overlay above background
   &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5); // 50% black overlay - adjust opacity as needed
-    z-index: -1;
+    content: none;
   }
 }
 
@@ -37,18 +34,19 @@
   margin-top: 0;
 }
 
-// Logo image sizing
+// Logo: brand minimums 60px at 375px, 70px at 414px, 80px from 480px (--cu-logo-width). Never shrink in the flex row.
 .logo.logoL.themeLogo {
-  max-width: 90px;
-  width: 100%;
+  width: var(--cu-logo-width);
+  max-width: none;
   height: auto;
+  flex: none;
 }
 
-// Flex container for logo and titles
+// Logo and titles in one row
 #overview.logoL .container {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
+  gap: var(--cu-space-6);
 }
 
 .titles {
@@ -56,22 +54,21 @@
 }
 
 #pageTitle {
-  font-family: var(--font-family-primary);
-  color: var(--color-text-inverse);
-  line-height: var(--line-height-tight);
-  letter-spacing: 1px;
-  margin-bottom: var(--spacing-md);
+  font-family: var(--cu-display);
+  font-weight: var(--cu-weight-section);
+  letter-spacing: var(--cu-tracking-heading);
+  line-height: var(--cu-leading-heading);
+  color: var(--cu-ink);
   font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  margin-top: 0;
+  margin: 0 0 var(--cu-space-2);
 }
 
 #pageSubTitle {
-  font-weight: var(--font-weight-regular);
-  color: var(--color-text-inverse);
-  padding-top: var(--spacing-xs);
+  font-weight: var(--cu-weight-regular);
+  color: var(--cu-muted);
   font-size: var(--font-size-lg);
-  line-height: var(--line-height-tight);
+  line-height: var(--cu-leading-lead);
+  padding-top: 0;
   margin-bottom: 0;
 }
 
