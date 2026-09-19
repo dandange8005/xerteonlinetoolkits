@@ -63,6 +63,18 @@ CHECKS = [
     ("header", "subtitle is muted", "cs('#pageSubTitle','color')", "rgb(102, 102, 102)"),
     ("header", "logo file present and loaded", "String(document.querySelector('.logo.logoL').naturalWidth > 0)", "true"),
     ("header", "logo at least 60px wide", "String(parseFloat(cs('.logo.logoL','width')) >= 60)", "true"),
+    ("frame", "navbar has no shadow", "cs('#topnav','boxShadow')", "none"),
+    ("frame", "navbar is white", "cs('#topnav .navbar-inner','backgroundColor')", "rgb(255, 255, 255)"),
+    ("frame", "navbar has a 1px rule below", "cs('#topnav .navbar-inner','borderBottomWidth')", "1px"),
+    ("frame", "navbar rule is grey-30", "cs('#topnav .navbar-inner','borderBottomColor')", "rgb(204, 204, 204)"),
+    ("frame", "navbar links are ink", "cs('#nav li:not(.activePage) a','color')", "rgb(18, 18, 18)"),
+    ("frame", "sidebar is square", "cs('#toc','borderTopLeftRadius')", "0px"),
+    ("frame", "sidebar has no shadow", "cs('#toc','boxShadow')", "none"),
+    ("frame", "first sidebar item is square", "cs('#toc > li:first-child > a','borderTopLeftRadius')", "0px"),
+    ("frame", "sidebar items have a 1px rule below", "cs('#toc > li:nth-child(2) > a','borderBottomWidth')", "1px"),
+    ("frame", "sidebar item rule is grey-20", "cs('#toc > li:nth-child(2) > a','borderBottomColor')", "rgb(229, 229, 229)"),
+    ("frame", "sidebar items have no side borders", "cs('#toc > li:nth-child(2) > a','borderLeftWidth')", "0px"),
+    ("frame", "active sidebar item keeps its current (red) background", "cs('#toc > li.active > a','backgroundColor')", "rgb(228, 37, 27)"),
 ]
 
 
