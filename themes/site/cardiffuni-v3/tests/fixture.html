@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>cardiffuni-v3 checks</title>
+<link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/css/bootstrap.css">
+<link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/css/bootstrap-responsive.css">
+<link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/css/custom.css">
+<link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/fontawesome-6.6.0/css/all.min.css">
+<link rel="stylesheet" href="../cardiffuni-v3.css">
+</head>
+<body>
+<div class="navbar navbar-inverse" id="topnav" role="navigation"><div class="navbar-inner"><div class="container"><div class="nav-collapse collapse">
+  <ul class="nav" id="nav"><li class="activePage"><a href="#">Home</a></li><li><a href="#">Exams</a></li></ul>
+</div></div></div></div>
+
+<header class="jumbotron logoL" id="overview"><div class="container">
+  <div class="logoL"><img class="logo logoL themeLogo" src="../logo_left.svg" alt="Cardiff University / Prifysgol Caerdydd"></div>
+  <div class="titles"><h1 id="pageTitle">Assessment Menu</h1><p id="pageSubTitle">Designing meaningful, inclusive and future-focused assessment</p></div>
+</div></header>
+
+<div class="container"><div class="row-fluid">
+  <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation">
+    <ul class="nav nav-list bs-docs-sidenav" id="toc">
+      <li class="active"><a href="#">About this category</a></li><li><a href="#">Essay</a></li><li><a href="#">Report</a></li>
+    </ul>
+  </div>
+  <div class="span9" id="mainContent" role="main">
+    <p>Reading copy.</p>
+    <button class="button button-primary" type="button">Primary</button>
+    <!--@MARKUP@-->
+  </div>
+</div></div>
+
+<pre id="results"></pre>
+<script>
+/*@CHECKS@*/
+function cs(selector, property) {
+  var el = document.querySelector(selector);
+  return el ? getComputedStyle(el)[property] : 'MISSING';
+}
+function v(value, property) {
+  property = property || 'color';
+  var probe = document.createElement('div');
+  document.body.appendChild(probe);
+  probe.style[property] = value;
+  var out = getComputedStyle(probe)[property];
+  probe.remove();
+  return out;
+}
+function ps(selector, pseudo, property) {
+  var el = document.querySelector(selector);
+  return el ? getComputedStyle(el, pseudo)[property] : 'MISSING';
+}
+window.addEventListener('load', function () {
+  var results = {};
+  Object.keys(CHECKS).forEach(function (key) {
+    try { results[key] = String(new Function('cs', 'v', 'ps', 'return ' + CHECKS[key])(cs, v, ps)); }
+    catch (e) { results[key] = 'ERROR: ' + e.message; }
+  });
+  document.getElementById('results').textContent = JSON.stringify(results);
+});
+</script>
+</body>
+</html>

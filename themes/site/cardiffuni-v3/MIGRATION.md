@@ -6,7 +6,7 @@ Written 17 September 2026. Update it as the work proceeds.
 ## Goal
 
 `cardiffuni-v3` is a fork of `cardiffuni-v2` restyled to follow the **Cardiff Resource
-Design System v1.1**. Xerte keeps its own page structure — top navbar, header banner,
+Design System v1.3**. Xerte keeps its own page structure — top navbar, header banner,
 sidebar contents list, sections, footer. Only the visual language changes: colour roles,
 typography, controls, spacing, rules and restrained red.
 
@@ -17,12 +17,14 @@ language applied to one page.
 
 | What | Where |
 |---|---|
-| Specification | `codex/DESIGN.md` in the Cardiff University Design System vault project |
-| Tokens and component CSS | `codex/design-system/v1/tokens.css`, `components.css` |
-| Implementation and host notes | `codex/Implementation.md` |
-| Visual reference | `codex/2026-09-17_cardiff-resource-design-guide-v1.html` |
+| Specification | `design-system/DESIGN.md` (spec v1.3) in the Cardiff University Design System vault project |
+| Tokens and component CSS | `design-system/v1/tokens.css`, `components.css` |
+| Implementation and host notes | `design-system/Implementation.md` |
+| Visual reference | `design-system/cardiff-resource-design-guide.html` |
+| Theme audit and task list | `design-system/cardiffuni-v3 Mapping.md` |
+| Phase 1 plan | `docs/plans/2026-09-19-phase1-theme-slice.md` (this repo) |
 
-Vault path: `10 Projects 📋/11 Work Projects/🎨 Cardiff University Design System/codex/`
+Vault path: `10 Projects 📋/11 Work Projects/🎨 Cardiff University Design System/design-system/`
 
 The design system is Nan's prototype system. It is not an approved institutional brand
 standard, and its font stacks are fallbacks, not licensed Marr Sans / Darby Serif.

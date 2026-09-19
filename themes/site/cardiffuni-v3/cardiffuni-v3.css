@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * Cardiff University Theme v3 - Main Entry Point
- * Aligned with Cardiff Resource Design System v1.1
+ * Aligned with Cardiff Resource Design System v1.3
  *
  * This file orchestrates the theme by importing modular SCSS components.
  * Each module serves a specific purpose:
@@ -838,10 +838,6 @@ textarea {
   border-radius: var(--radius-md);
   transition: border-color var(--duration-fast) var(--easing-default), box-shadow var(--duration-fast) var(--easing-default);
 }
-input[type=text]::-moz-placeholder, input[type=email]::-moz-placeholder, input[type=password]::-moz-placeholder, input[type=search]::-moz-placeholder, input[type=tel]::-moz-placeholder, input[type=url]::-moz-placeholder, input[type=number]::-moz-placeholder, input[type=date]::-moz-placeholder, input[type=time]::-moz-placeholder, input[type=datetime-local]::-moz-placeholder, input[type=month]::-moz-placeholder, input[type=week]::-moz-placeholder, textarea::-moz-placeholder {
-  color: var(--color-gray-50);
-  opacity: 1;
-}
 input[type=text]::placeholder,
 input[type=email]::placeholder,
 input[type=password]::placeholder,
@@ -929,9 +925,7 @@ select {
   background-position: right var(--spacing-sm) center;
   border: 2px solid var(--color-border-default);
   border-radius: var(--radius-md);
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   cursor: pointer;
 }
 select:hover:not(:disabled) {
@@ -976,10 +970,6 @@ legend {
   color: var(--color-text-primary);
 }
 
-input:invalid:not(:-moz-placeholder), textarea:invalid:not(:-moz-placeholder) {
-  border-color: var(--color-brand-primary);
-}
-
 input:invalid:not(:placeholder-shown),
 textarea:invalid:not(:placeholder-shown),
 select:invalid {
@@ -1001,7 +991,6 @@ img.pull-left {
 }
 
 figure {
-  max-width: -moz-max-content;
   max-width: max-content;
 }
 
@@ -1113,8 +1102,7 @@ ul.nav-tabs {
   display: flex;
   flex-wrap: wrap;
   row-gap: var(--spacing-sm);
-  -moz-column-gap: 0;
-       column-gap: 0;
+  column-gap: 0;
   margin-bottom: 0;
   padding-inline: 0;
   list-style: none;
@@ -1857,8 +1845,7 @@ a.glossary:active {
   overflow: hidden;
   width: 100%;
   aspect-ratio: var(--ratio-widescreen);
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   transition: transform var(--duration-normal) var(--easing-default);
 }
 .card--clickable {
@@ -2910,6 +2897,8 @@ a.link-external:hover::after {
 }
 .bs-docs-sidenav > .active > a {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
   box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
 }
 .bs-docs-sidenav > li > a:hover {
@@ -4215,7 +4204,6 @@ This is where you can define styles that will be available
 }
 .flexItem img {
   width: 100%;
-  max-width: -moz-max-content;
   max-width: max-content;
   display: block;
   margin: 0 auto;
@@ -4277,4 +4265,6 @@ This is where you can define styles that will be available
   color: var(--color-brand-secondary) !important;
 }
 
-/* v3: no web font import - Design System v1.1 uses system/Franklin Gothic fallback stacks *//*# sourceMappingURL=cardiffuni-v3.css.map */
+/* v3: no web font - Design System v1.3 uses the Franklin Gothic stack with system fallbacks */
+
+/*# sourceMappingURL=cardiffuni-v3.css.map */

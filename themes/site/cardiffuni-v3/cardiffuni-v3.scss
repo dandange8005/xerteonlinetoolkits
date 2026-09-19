@@ -1,6 +1,6 @@
 /**
  * Cardiff University Theme v3 - Main Entry Point
- * Aligned with Cardiff Resource Design System v1.1
+ * Aligned with Cardiff Resource Design System v1.3
  *
  * This file orchestrates the theme by importing modular SCSS components.
  * Each module serves a specific purpose:
@@ -37,4 +37,4 @@
 @use "scss/utilities"; // Utility classes
 @use "scss/legacy"; // Legacy System 2 support
 
-/* v3: no web font import - Design System v1.1 uses system/Franklin Gothic fallback stacks */
+/* v3: no web font - Design System v1.3 uses the Franklin Gothic stack with system fallbacks */
