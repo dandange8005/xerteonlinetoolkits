@@ -2074,6 +2074,22 @@ a.glossary:active {
 }
 
 /**
+ * Rules (Cardiff Resource Design System v1.3)
+ * <hr class="cu-rule">                  1px neutral rule between repeated entries or quiet sections
+ * <hr class="cu-rule cu-rule-strong">   2px charcoal rule for a major boundary
+ */
+.cu-rule {
+  height: 0;
+  border: 0;
+  border-top: 1px solid var(--cu-border);
+  margin-block: var(--cu-space-8);
+}
+
+.cu-rule-strong {
+  border-top: 2px solid var(--cu-ink);
+}
+
+/**
  * Quote Component
  *
  * PURPOSE: Advanced quotation block styles with optional images

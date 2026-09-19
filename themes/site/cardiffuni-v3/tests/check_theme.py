@@ -34,6 +34,11 @@ CHECKS = [
     ("roles", "brand red unchanged", "v('var(--color-brand-primary)')", "rgb(228, 37, 27)"),
     ("roles", "heading font is the Franklin Gothic stack", "cs('#pageTitle','fontFamily').split(',')[0].trim()", '"Franklin Gothic Heavy"'),
     ("roles", "primary button still dark red", "cs('.button.button-primary','backgroundColor')", "rgb(194, 31, 22)"),
+    ("rules", "rule is 1px", "cs('#rule','borderTopWidth')", "1px"),
+    ("rules", "rule is neutral grey-30", "cs('#rule','borderTopColor')", "rgb(204, 204, 204)"),
+    ("rules", "strong rule is 2px", "cs('#rule-strong','borderTopWidth')", "2px"),
+    ("rules", "strong rule is ink", "cs('#rule-strong','borderTopColor')", "rgb(18, 18, 18)"),
+    ("rules", "rule has 32px space above", "cs('#rule','marginTop')", "32px"),
 ]
 
 
