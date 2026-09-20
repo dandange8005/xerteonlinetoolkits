@@ -3149,6 +3149,7 @@ a.link-external:hover::after {
 section {
   overflow: visible;
   display: flow-root;
+  scroll-margin-top: calc(var(--cu-sticky-nav, 0px) + var(--cu-space-4));
 }
 
 .nav-list > .active > a,
@@ -3204,6 +3205,11 @@ section {
 }
 .bs-docs-sidenav > li > a:hover {
   background-color: var(--cu-surface);
+}
+.bs-docs-sidenav.affix {
+  top: calc(var(--cu-sticky-nav, 0px) + var(--cu-space-6));
+  max-height: calc(100vh - var(--cu-sticky-nav, 0px) - var(--cu-space-12));
+  overflow-y: auto;
 }
 .bs-docs-sidenav a:hover .icon-chevron-right {
   opacity: 0.5;

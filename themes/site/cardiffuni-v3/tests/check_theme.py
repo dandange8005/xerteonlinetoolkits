@@ -117,6 +117,11 @@ CHECKS = [
      "(function(){var b=document.querySelector('#pageNavBtn');b.style.display='block';b.style.minHeight='64px';"
      "var r=b.getBoundingClientRect(),bar=document.querySelector('#topnav .navbar-inner').getBoundingClientRect();"
      "var ok=r.bottom<=bar.bottom+0.5&&r.top>=bar.top-0.5;b.style.display='';b.style.minHeight='';return String(ok)})()", "true"),
+    # cardiffuni-v3.js publishes --cu-sticky-nav (the sticky page menu's height). These assert
+    # the fallbacks that apply when it is absent or the bar is not sticky.
+    ("focus", "sections carry a scroll margin for the sticky page menu", "cs('#test-section','scrollMarginTop')", "16px"),
+    ("frame", "affixed section menu clears the top of the viewport", "cs('#toc-affixed','top')", "24px"),
+    ("frame", "affixed section menu scrolls instead of being cut off", "cs('#toc-affixed','overflowY')", "auto"),
 ]
 
 
