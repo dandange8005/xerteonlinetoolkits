@@ -237,10 +237,11 @@
                     <span class="badge badge-success">Success</span>
                     <span class="badge badge-warning">Warning</span>
                     <span class="badge badge-important">Important</span>
+                    <span class="badge badge-danger">Danger</span>
                     <span class="badge badge-info">Info</span>
                     <span class="badge badge-inverse">Inverse</span>
                 </div>
-                <code class="code-label">.badge .badge-success | .badge-warning | .badge-important | .badge-info | .badge-inverse</code>
+                <code class="code-label">.badge .badge-success | .badge-warning | .badge-important | .badge-danger | .badge-info | .badge-inverse</code>
             </div>
 
             <div class="demo-block">
@@ -250,10 +251,11 @@
                     <span class="label label-success">Success</span>
                     <span class="label label-warning">Warning</span>
                     <span class="label label-important">Important</span>
+                    <span class="label label-danger">Danger</span>
                     <span class="label label-info">Info</span>
                     <span class="label label-inverse">Inverse</span>
                 </div>
-                <code class="code-label">.label .label-success | .label-warning | .label-important | .label-info | .label-inverse</code>
+                <code class="code-label">.label .label-success | .label-warning | .label-important | .label-danger | .label-info | .label-inverse</code>
             </div>
 
             <div class="demo-block">
@@ -418,7 +420,7 @@
                 <div class="cu-callout cu-callout-example"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-graduation-cap fa-stack-1x"></i></span><div><strong class="cu-callout-title">Example</strong><p>A worked example.</p></div></div>
                 <div class="cu-callout"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-star fa-stack-1x"></i></span><div><strong class="cu-callout-title">Key point</strong><p>The main takeaway (default when no type class is given).</p></div></div>
 
-                <code class="code-label">.cu-callout | -info | -tip | -good | -important | -warning | -example | -key (default)</code>
+                <code class="code-label">.cu-callout | -info | -tip | -good | -important | -warning | -example | -key (or no type class at all)</code>
             </div>
 
             <div class="demo-block">
@@ -431,7 +433,7 @@
                 <div class="cu-callout cu-callout-important"><strong class="cu-callout-title">Important</strong><p>Something requiring attention.</p></div>
                 <div class="cu-callout cu-callout-warning"><strong class="cu-callout-title">Warning</strong><p>A risk or problem.</p></div>
                 <div class="cu-callout cu-callout-example"><strong class="cu-callout-title">Example</strong><p>A worked example.</p></div>
-                <div class="cu-callout"><strong class="cu-callout-title">Key point</strong><p>The main takeaway (default when no type class is given).</p></div>
+                <div class="cu-callout cu-callout-key"><strong class="cu-callout-title">Key point</strong><p>The main takeaway. Written out as <code>.cu-callout-key</code> here; leaving the type class off does the same.</p></div>
 
                 <code class="code-label">&lt;div class="cu-callout cu-callout-tip"&gt;&lt;strong class="cu-callout-title"&gt;Tip&lt;/strong&gt;&lt;p&gt;…&lt;/p&gt;&lt;/div&gt;</code>
             </div>
@@ -464,13 +466,13 @@
                     <p>A simple container for grouping related content.</p>
                 </div>
                 <div class="box box-icon" style="margin-top: 1rem;">
-                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                    <svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><circle cx="12" cy="12" r="10"></circle></svg>
                     <div>
                         <div class="box__title">Box with an icon</div>
                         <p>The icon sits beside the content.</p>
                     </div>
                 </div>
-                <code class="code-label">.box | .box.box-icon | .box__title</code>
+                <code class="code-label">.box | .box.box-icon | .box__title | .svg-icon (sizes an inline SVG inside a box)</code>
             </div>
         </section>
 
