@@ -106,11 +106,30 @@
 .navbar-inverse .navbar-inner {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  background: var(--cu-bg);
+  background: var(--cu-ink);
   background-image: none;
   border: 0;
-  border-bottom: 1px solid var(--cu-border);
   box-shadow: none;
+}
+
+// The author can place the navbar below the header (navbarPos=below; application.js moves
+// #topnav into #pageLinks). There the red rule separates it from the page content. Above the
+// header, the header's own red top edge already draws that line, so the bar carries none.
+#pageLinks .navbar-inverse .navbar-inner {
+  border-bottom: 4px solid var(--cu-red);
+}
+
+// Toggle button on the dark bar (mobile)
+.navbar-inverse .btn-navbar {
+  background: transparent;
+  background-image: none;
+  border: 1px solid var(--cu-grey-70);
+  box-shadow: none;
+
+  .icon-bar {
+    background-color: var(--cu-on-dark);
+    box-shadow: none;
+  }
 }
 
 // Navbar collapse (for mobile)
@@ -119,7 +138,7 @@
 .navbar-inverse .nav-collapse .dropdown-menu a,
 .navbar-inverse .brand,
 .navbar-inverse .nav>li>a {
-  color: var(--cu-ink);
+  color: var(--cu-on-dark);
   text-shadow: none;
   border-radius: 0;
   transition: 0.25s ease-in-out;
@@ -132,18 +151,26 @@
 .navbar-inverse .nav-collapse .dropdown-menu a:focus,
 .navbar-inverse .brand:hover,
 .navbar-inverse .nav>li>a:hover {
-  background-color: var(--color-white);
-  color: var(--color-brand-primary);
+  background-color: var(--cu-grey-90);
+  color: var(--cu-on-dark);
   box-sizing: border-box;
+}
+
+// Keyboard focus must be visible on the dark bar, where the black ring would not be.
+.navbar-inverse .nav-collapse .nav>li>a:focus-visible,
+.navbar-inverse .nav>li>a:focus-visible,
+.navbar-inverse .btn-navbar:focus-visible {
+  outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color-on-dark);
+  outline-offset: -4px;
 }
 
 // Active nav item styling
 .navbar .nav>li.activePage>a,
 .navbar .nav>li.activePage>a:hover {
-  background-color: var(--color-white);
+  background-color: var(--cu-grey-90);
   text-decoration: none;
-  color: var(--color-brand-primary);
-  box-shadow: inset 0 -2px 0 0 var(--color-brand-primary);
+  color: var(--cu-on-dark);
+  box-shadow: inset 0 -3px 0 0 var(--cu-red);
 }
 
 // Navbar on top
@@ -156,11 +183,14 @@
 // SIDE NAVIGATION
 // =============================================================================
 
+// Selected item: a red left rule and a pale red wash, not a solid red block.
 .nav-list>.active>a,
 .nav-list>.active>a:hover,
 .nav-list>.active>a:focus {
-  background: var(--color-brand-primary);
-  background-color: var(--color-brand-primary);
+  background: var(--color-selected-bg);
+  background-color: var(--color-selected-bg);
+  color: var(--cu-ink);
+  font-weight: var(--cu-weight-bold);
 }
 
 .nav-list>li>a {
@@ -173,20 +203,21 @@
   text-shadow: none;
 }
 
-// Table of Contents (Sidebar): square, flat, 1px rules between items.
+// Table of Contents (Sidebar): square and flat, a 1px frame, 1px rules between items and a
+// red left rule on the selected item.
 // Overrides the base template's 6px radius and shadow (modules/site/parent_templates/site/common/css/custom.css).
-// Active and hover colours are unchanged here; they follow Red Usage Decisions.
 .bs-docs-sidenav {
   background-color: var(--cu-bg);
+  border: 1px solid var(--cu-border);
   border-radius: 0;
   box-shadow: none;
-  border-top: 1px solid var(--cu-line);
 
   >li>a {
     color: var(--color-text-primary);
     margin: 0;
     border: 0;
     border-bottom: 1px solid var(--cu-line);
+    border-left: 4px solid transparent;
   }
 
   >li:first-child>a,
@@ -194,13 +225,27 @@
     border-radius: 0;
   }
 
-  >.active>a {
+  // The base template sets `border: 0` and a wider padding on the selected item
+  // (custom.css), so restore both here rather than only recolouring the left edge.
+  >.active>a,
+  >.active>a:hover,
+  >.active>a:focus {
+    padding: 8px 14px;
+    border: 0;
+    border-bottom: 1px solid var(--cu-line);
+    border-left: 4px solid var(--cu-red);
+    color: var(--cu-ink);
     text-shadow: none;
     box-shadow: none;
   }
 
+  >li:last-child>a,
+  >li:last-child.active>a {
+    border-bottom: 0;
+  }
+
   >li>a:hover {
-    background-color: var(--color-bg-subtle);
+    background-color: var(--cu-surface);
   }
 
   a:hover .icon-chevron-right {

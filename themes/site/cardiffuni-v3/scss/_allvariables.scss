@@ -44,6 +44,7 @@
     --color-action: var(--cu-action);
     --color-action-hover: var(--cu-action-hover);
     --color-tint: #{t.$token-color-tint}; // not in the design system; see Red Usage Decisions
+    --color-selected-bg: color-mix(in srgb, var(--cu-red) 6%, var(--cu-bg)); // selected nav item wash; not in the design system, see Red Usage Decisions
     --color-focus: var(--cu-focus);
     --color-warning: var(--cu-draft);
     --color-warning-bg: var(--cu-draft-bg);
