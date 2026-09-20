@@ -75,6 +75,12 @@
                 <a href="#cards" class="button button-secondary-outline button--small"><i class="fa-solid fa-id-card"></i> Cards</a>
                 <a href="#callouts" class="button button-secondary-outline button--small"><i class="fa-solid fa-bullhorn"></i> Callouts</a>
                 <a href="#rules" class="button button-secondary-outline button--small"><i class="fa-solid fa-grip-lines"></i> Rules</a>
+                <a href="#boxes" class="button button-secondary-outline button--small"><i class="fa-solid fa-square"></i> Boxes</a>
+                <a href="#quotes" class="button button-secondary-outline button--small"><i class="fa-solid fa-quote-left"></i> Quotes</a>
+                <a href="#links" class="button button-secondary-outline button--small"><i class="fa-solid fa-link"></i> Links</a>
+                <a href="#details" class="button button-secondary-outline button--small"><i class="fa-solid fa-caret-down"></i> Details</a>
+                <a href="#dosdonts" class="button button-secondary-outline button--small"><i class="fa-solid fa-list-check"></i> Do's &amp; Don'ts</a>
+                <a href="#projectinfo" class="button button-secondary-outline button--small"><i class="fa-solid fa-circle-info"></i> Project info</a>
                 <a href="#tabs" class="button button-secondary-outline button--small"><i class="fa-solid fa-folder"></i> Tabs</a>
                 <a href="#accordions" class="button button-secondary-outline button--small"><i class="fa-solid fa-list"></i> Accordions</a>
             </div>
@@ -132,11 +138,15 @@
             <div class="demo-block">
                 <div class="demo-block__title">Button Sizes</div>
                 <div class="demo-inline" style="align-items: center;">
-                    <button class="button button--small button-primary">Small</button>
+                    <button class="button button-primary button-sm">Small (.button-sm)</button>
                     <button class="button button-primary">Default</button>
+                    <button class="button button-primary button-lg">Large (.button-lg)</button>
+                </div>
+                <div class="demo-inline" style="align-items: center; margin-top: 1rem;">
+                    <button class="button button--small button-primary">Compact (.button--small)</button>
                     <button class="button button-primary button--block" style="max-width: 200px;">Block</button>
                 </div>
-                <code class="code-label">.button--small | .button--block</code>
+                <code class="code-label">.button-sm | .button-lg | .button--small | .button--block</code>
             </div>
 
             <!-- Buttons with Icons -->
@@ -440,6 +450,140 @@
                 <p>Both rules have 32px of space above and below.</p>
 
                 <code class="code-label">&lt;hr class="cu-rule"&gt; | &lt;hr class="cu-rule cu-rule-strong"&gt;</code>
+            </div>
+        </section>
+
+        <!-- ==================== BOXES ==================== -->
+        <section class="demo-section" id="boxes">
+            <h2><i class="fa-solid fa-square"></i> Boxes</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Box and box with icon</div>
+                <div class="box">
+                    <div class="box__title">Plain box</div>
+                    <p>A simple container for grouping related content.</p>
+                </div>
+                <div class="box box-icon" style="margin-top: 1rem;">
+                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                    <div>
+                        <div class="box__title">Box with an icon</div>
+                        <p>The icon sits beside the content.</p>
+                    </div>
+                </div>
+                <code class="code-label">.box | .box.box-icon | .box__title</code>
+            </div>
+        </section>
+
+        <!-- ==================== QUOTES ==================== -->
+        <section class="demo-section" id="quotes">
+            <h2><i class="fa-solid fa-quote-left"></i> Quotes</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Quote, with and without an image</div>
+                <blockquote class="quote">
+                    <p>Assessment shapes what students pay attention to, and how they spend their time.</p>
+                    <p class="quote-author">&mdash; Programme lead, School of Medicine</p>
+                </blockquote>
+                <blockquote class="quote with-image">
+                    <img src="https://placehold.co/96x96/121212/FFFFFF?text=CU" alt="" class="quote-image">
+                    <p>The clearer the criteria, the more useful the feedback becomes.</p>
+                    <p class="quote-author">&mdash; Module convenor, School of Law</p>
+                </blockquote>
+                <code class="code-label">.quote | .quote.with-image | .quote-author | .quote-image</code>
+            </div>
+        </section>
+
+        <!-- ==================== LINKS ==================== -->
+        <section class="demo-section" id="links">
+            <h2><i class="fa-solid fa-link"></i> Links</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Action and external links</div>
+                <p><a href="#links" class="link-action">Start the assessment planner</a></p>
+                <p><a href="https://www.cardiff.ac.uk" class="link-external">Cardiff University website</a></p>
+                <code class="code-label">.link-action | .link-external</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Asset link (file download)</div>
+                <a href="#links" class="link-asset">
+                    <i class="fa-solid fa-file-pdf link-asset__icon" aria-hidden="true"></i>
+                    <div>
+                        <div class="link-asset__name">Assessment design checklist</div>
+                        <div class="link-asset__label">PDF, 240 KB</div>
+                    </div>
+                </a>
+                <code class="code-label">.link-asset | .link-asset__icon | .link-asset__name | .link-asset__label</code>
+            </div>
+        </section>
+
+        <!-- ==================== DETAILS ==================== -->
+        <section class="demo-section" id="details">
+            <h2><i class="fa-solid fa-caret-down"></i> Details</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Native disclosure widget</div>
+                <details class="details">
+                    <summary class="details__summary">What counts as secure assessment?</summary>
+                    <div class="details__text">
+                        <p>Anything where the awarding decision depends on work we can attribute to the student with confidence.</p>
+                    </div>
+                </details>
+                <details class="details">
+                    <summary class="details__summary">When should I use open assessment?</summary>
+                    <div class="details__text">
+                        <p>When the learning outcome is the process rather than the recall, and feedback matters more than control.</p>
+                    </div>
+                </details>
+                <code class="code-label">.details | .details__summary | .details__text</code>
+            </div>
+        </section>
+
+        <!-- ==================== DO'S AND DON'TS ==================== -->
+        <section class="demo-section" id="dosdonts">
+            <h2><i class="fa-solid fa-list-check"></i> Do's &amp; Don'ts</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Paired guidance lists</div>
+                <div class="flex flex-wrap gap-lg">
+                    <div class="do-dont-list flex-300">
+                        <h3 class="do-dont-list__label">Do</h3>
+                        <ul class="list--tick">
+                            <li><i class="fa-solid fa-check" aria-hidden="true" style="color: var(--color-status-success); margin-right: 0.5rem;"></i>Give the criteria before the work starts</li>
+                            <li><i class="fa-solid fa-check" aria-hidden="true" style="color: var(--color-status-success); margin-right: 0.5rem;"></i>Keep feedback specific and actionable</li>
+                        </ul>
+                    </div>
+                    <div class="do-dont-list flex-300">
+                        <h3 class="do-dont-list__label">Don't</h3>
+                        <ul class="list--cross">
+                            <li><i class="fa-solid fa-xmark" aria-hidden="true" style="color: var(--color-status-error); margin-right: 0.5rem;"></i>Rely on colour alone to carry meaning</li>
+                            <li><i class="fa-solid fa-xmark" aria-hidden="true" style="color: var(--color-status-error); margin-right: 0.5rem;"></i>Add a second assessment to fix a design problem</li>
+                        </ul>
+                    </div>
+                </div>
+                <code class="code-label">.do-dont-list | .do-dont-list__label | .list--tick | .list--cross</code>
+                <p class="demo-block__description">Icons here are Font Awesome, as the design system specifies. The component also positions an inline <code>&lt;svg class="icon"&gt;</code> per item.</p>
+            </div>
+        </section>
+
+        <!-- ==================== PROJECT INFO ==================== -->
+        <section class="demo-section" id="projectinfo">
+            <h2><i class="fa-solid fa-circle-info"></i> Project info</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Metadata row</div>
+                <div id="project-info">
+                    <span>Version 1.0</span>
+                    <span>Last updated: September 2026</span>
+                    <span>Cardiff University</span>
+                </div>
+                <code class="code-label">#project-info</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Language toggle</div>
+                <p class="demo-block__description">The theme also styles a language switcher, <code>#language-toggle</code>, which the player positions in the top right of the header. It is not shown here because it is placed by the page frame rather than by page content.</p>
+                <code class="code-label">#language-toggle | .language-toggle-text</code>
             </div>
         </section>
 

@@ -494,41 +494,41 @@
             <div class="demo-block-title">Flexbox Utilities - Basic Layout</div>
 
             <h4>Two Column Layout</h4>
-            <code class="code-label">.flex .flex-wrap</code>
-            <div class="flex flex-wrap">
-                <div class="w-md-50" style="background: var(--cu-grey-20); padding: 1rem;">
+            <code class="code-label">.flex .flex-wrap .gap-lg with .flex-300</code>
+            <div class="flex flex-wrap gap-lg">
+                <div class="flex-300" style="background: var(--cu-grey-20); padding: 1rem;">
                     <h5 style="margin-top: 0;">Column 1</h5>
-                    <p>This is a 50% width column on desktop, full width on mobile.</p>
+                    <p>This column is at least 300px wide and wraps to full width when there is no room.</p>
                 </div>
-                <div class="w-md-50" style="background: var(--cu-grey-20); padding: 1rem;">
+                <div class="flex-300" style="background: var(--cu-grey-20); padding: 1rem;">
                     <h5 style="margin-top: 0;">Column 2</h5>
                     <p>Automatically accounts for gap spacing between columns.</p>
                 </div>
             </div>
 
             <h4 style="margin-top: 2rem;">Three Column Layout</h4>
-            <code class="code-label">.flex .flex-wrap (with .w-md-33)</code>
+            <code class="code-label">.flex .flex-wrap .gap-lg with .flex-250</code>
             <div class="flex flex-wrap">
-                <div class="w-md-33" style="background: var(--cu-accent-light-blue); color: white; padding: 1rem;">
+                <div class="flex-250" style="background: var(--cu-accent-light-blue); color: white; padding: 1rem;">
                     <strong>Column 1</strong>
                 </div>
-                <div class="w-md-33" style="background: var(--cu-accent-royal-blue); color: white; padding: 1rem;">
+                <div class="flex-250" style="background: var(--cu-accent-royal-blue); color: white; padding: 1rem;">
                     <strong>Column 2</strong>
                 </div>
-                <div class="w-md-33" style="background: var(--cu-accent-midnight-blue); color: white; padding: 1rem;">
+                <div class="flex-250" style="background: var(--cu-accent-midnight-blue); color: white; padding: 1rem;">
                     <strong>Column 3</strong>
                 </div>
             </div>
 
             <h4 style="margin-top: 2rem;">Four Column Layout</h4>
-            <code class="code-label">.flex .flex-wrap (with .w-md-25)</code>
+            <code class="code-label">.flex .flex-wrap .gap-lg with .flex-200</code>
             <div class="flex flex-wrap">
-                <div class="w-md-25" style="background: var(--cu-accent-cadet); padding: 1rem; text-align: center;">25%</div>
-                <div class="w-md-25"
+                <div class="flex-200" style="background: var(--cu-accent-cadet); padding: 1rem; text-align: center;">25%</div>
+                <div class="flex-200"
                     style="background: var(--cu-accent-forest-green); color: white; padding: 1rem; text-align: center;">25%
                 </div>
-                <div class="w-md-25" style="background: var(--cu-accent-cadet); padding: 1rem; text-align: center;">25%</div>
-                <div class="w-md-25"
+                <div class="flex-200" style="background: var(--cu-accent-cadet); padding: 1rem; text-align: center;">25%</div>
+                <div class="flex-200"
                     style="background: var(--cu-accent-forest-green); color: white; padding: 1rem; text-align: center;">25%
                 </div>
             </div>
@@ -611,13 +611,13 @@
             <div class="demo-block-title">Image Utilities</div>
 
             <h4>Full Width Image</h4>
-            <code class="code-label">.image-full</code>
+            <code class="code-label">.w-full</code>
             <img src="https://placehold.co/1200x300/E4251B/FFFFFF?text=Full+Width+Image" alt="Full width"
-                class="image-full">
+                class="w-full">
 
             <h4 style="margin-top: 2rem;">Screenshot Style</h4>
             <code class="code-label">.image-screenshots</code>
-            <img src="https://placehold.co/800x400/5EB99B/FFFFFF?text=Screenshot+with+Border+and+Shadow"
+            <img src="https://placehold.co/800x400/5EB99B/FFFFFF?text=Screenshot+with+Border"
                 alt="Screenshot" class="image-screenshots" style="max-width: 100%;">
         </div>
 
@@ -627,17 +627,17 @@
             <code class="code-label">.flex .flex-wrap .gap-lg</code>
 
             <div class="flex flex-wrap gap-lg mt-3">
-                <div class="w-md-33"
+                <div class="flex-250"
                     style="background: white; border: 1px solid var(--cu-grey-30); padding: 1.5rem;">
                     <h4 style="margin-top: 0; color: var(--cu-brand-red);">Feature 1</h4>
                     <p>Responsive card that stacks on mobile and displays in a grid on desktop.</p>
                 </div>
-                <div class="w-md-33"
+                <div class="flex-250"
                     style="background: white; border: 1px solid var(--cu-grey-30); padding: 1.5rem;">
                     <h4 style="margin-top: 0; color: var(--cu-brand-red);">Feature 2</h4>
                     <p>Automatically handles gap spacing between items for perfect alignment.</p>
                 </div>
-                <div class="w-md-33"
+                <div class="flex-250"
                     style="background: white; border: 1px solid var(--cu-grey-30); padding: 1.5rem;">
                     <h4 style="margin-top: 0; color: var(--cu-brand-red);">Feature 3</h4>
                     <p>Uses Cardiff University design tokens for consistent styling.</p>

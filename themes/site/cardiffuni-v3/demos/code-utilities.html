@@ -309,27 +309,24 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
                         <tr>
                             <th>Class</th>
                             <th>Width</th>
-                            <th>Responsive</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>.w-md-25</code></td>
-                            <td>25% (1/4)</td>
-                            <td>Medium screens and up</td>
+                            <td><code>.w-full</code></td>
+                            <td>100% of the container</td>
                         </tr>
                         <tr>
-                            <td><code>.w-md-33</code></td>
-                            <td>33.33% (1/3)</td>
-                            <td>Medium screens and up</td>
+                            <td><code>.w-auto</code></td>
+                            <td>Sized by its content</td>
                         </tr>
                         <tr>
-                            <td><code>.w-md-50</code></td>
-                            <td>50% (1/2)</td>
-                            <td>Medium screens and up</td>
+                            <td><code>.w-screen</code></td>
+                            <td>100% of the viewport width</td>
                         </tr>
                     </tbody>
                 </table>
+                <p class="demo-block__description">For columns that share a row, use the flex basis classes below: they set a minimum width and wrap when there is no room, so no separate responsive width classes are needed.</p>
 
                 <h4 style="margin-top: 2rem;">Flex Basis Classes</h4>
                 <table>
@@ -376,12 +373,12 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
                             <td>Float image left with text wrapping</td>
                         </tr>
                         <tr>
-                            <td><code>.image-full</code></td>
+                            <td><code>.w-full</code></td>
                             <td>Full width image</td>
                         </tr>
                         <tr>
                             <td><code>.image-screenshots</code></td>
-                            <td>Screenshot style with border and shadow</td>
+                            <td>Screenshot style with a 1px border (v3 page content is flat, so no shadow)</td>
                         </tr>
                     </tbody>
                 </table>
