@@ -122,6 +122,15 @@ CHECKS = [
     ("focus", "sections carry a scroll margin for the sticky page menu", "cs('#test-section','scrollMarginTop')", "16px"),
     ("frame", "affixed section menu clears the top of the viewport", "cs('#toc-affixed','top')", "24px"),
     ("frame", "affixed section menu scrolls instead of being cut off", "cs('#toc-affixed','overflowY')", "auto"),
+    # Xerte marks a page section's heading with .sectionTitle; it should read as the design
+    # system's section heading (h2), not a lighter red variant of it.
+    ("headings", "section title is ink, not red", "cs('#section-title','color')", "rgb(18, 18, 18)"),
+    ("headings", "section title uses the display font", "cs('#section-title','fontFamily').split(',')[0].trim()", '"Franklin Gothic Heavy"'),
+    ("headings", "section title weight matches a section heading", "cs('#section-title','fontWeight')", "800"),
+    ("headings", "section title is the same size as a plain h2",
+     "String(cs('#section-title','fontSize')===cs('#plain-h2','fontSize'))", "true"),
+    ("headings", "section title keeps the heading's tight leading",
+     "String(cs('#section-title','lineHeight')===cs('#plain-h2','lineHeight'))", "true"),
 ]
 
 

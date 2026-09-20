@@ -151,12 +151,18 @@ h6:first-child {
     margin-top: 0;
 }
 
+// Xerte marks a page section's heading with .sectionTitle. It is the design system's
+// section heading, so it reads exactly like any other h2 rather than a lighter red variant.
+// The base template sets a 38.5px size here (custom.css), which this replaces.
 h2.sectionTitle {
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-light);
-    margin-bottom: var(--spacing-md);
-    color: var(--color-brand-primary);
+    font-family: var(--h2-font-family);
+    font-size: var(--h2-font-size);
+    font-weight: var(--h2-font-weight);
+    line-height: var(--h2-line-height);
+    letter-spacing: var(--h2-letter-spacing);
+    color: var(--cu-ink);
     margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
 
     p {
         margin-bottom: 0 !important;

@@ -708,11 +708,14 @@ h6:first-child {
 }
 
 h2.sectionTitle {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-light);
-  margin-bottom: var(--spacing-md);
-  color: var(--color-brand-primary);
+  font-family: var(--h2-font-family);
+  font-size: var(--h2-font-size);
+  font-weight: var(--h2-font-weight);
+  line-height: var(--h2-line-height);
+  letter-spacing: var(--h2-letter-spacing);
+  color: var(--cu-ink);
   margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
 }
 h2.sectionTitle p {
   margin-bottom: 0 !important;
