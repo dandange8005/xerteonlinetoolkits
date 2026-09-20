@@ -198,8 +198,10 @@
  * Values marked [DS] come from that specification. Keep the two aligned when versioning.
  *
  * FOR NEW THEMES:
- * Copy this file and update the primitive values to match your brand.
- * The semantic layer (_allvariables.scss) can remain largely unchanged.
+ * Brand values are no longer here: colours and font families come from the design system
+ * (v1/tokens.css, generated into scss/_cu-tokens.scss). To rebrand, change them there and
+ * run sync-theme.py. This file holds only the non-colour primitives Sass needs at compile
+ * time, which _allvariables.scss turns into CSS custom properties.
  */
 :root {
   --color-brand-primary: var(--cu-brand-red);
