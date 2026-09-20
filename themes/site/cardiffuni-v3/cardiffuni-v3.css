@@ -2016,11 +2016,18 @@ a.glossary:active {
 /**
  * Callouts (Cardiff Resource Design System v1.3, seven types)
  *
- * Paste in a Text element's Source view:
+ * Paste in a Text element's Source view (short form; the theme draws the icon):
+ * <div class="cu-callout cu-callout-tip">
+ *   <strong class="cu-callout-title">Tip</strong><p>...</p>
+ * </div>
+ *
+ * The design system's fa-stack markup also works and is unchanged:
  * <div class="cu-callout cu-callout-tip">
  *   <span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-lightbulb fa-stack-1x"></i></span>
  *   <div><strong class="cu-callout-title">Tip</strong><p>...</p></div>
  * </div>
+ * A callout containing .cu-callout-icon keeps the two-column grid; one without it gets the
+ * CSS disc. Override a single icon with style="--cu-callout-glyph: '\f0eb'".
  *
  * Type (class)                        glyph               use
  * Information   .cu-callout-info       fa-info             extra context
@@ -2035,10 +2042,7 @@ a.glossary:active {
  * Font Awesome 6.6.0 is loaded by the Xerte player; the theme does not bundle it.
  */
 .cu-callout {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--cu-space-4);
-  align-items: start;
+  display: block;
   margin-top: var(--cu-space-6);
   padding: var(--cu-space-5) var(--cu-space-6);
   background: var(--cu-surface);
@@ -2049,14 +2053,42 @@ a.glossary:active {
   margin-top: var(--cu-space-1);
 }
 
-.cu-callout-icon {
+.cu-callout:not(:has(.cu-callout-icon)) {
+  position: relative;
+  padding-left: calc(var(--cu-space-6) + 28px + var(--cu-space-4));
+}
+.cu-callout:not(:has(.cu-callout-icon))::before {
+  content: var(--cu-callout-glyph, "\f005")/"";
+  position: absolute;
+  top: var(--cu-space-5);
+  left: var(--cu-space-6);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--cu-callout, var(--cu-callout-key));
+  color: var(--cu-callout-on, var(--cu-callout-key-on));
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 28px;
+  text-align: center;
+}
+
+.cu-callout:has(.cu-callout-icon) {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--cu-space-4);
+  align-items: start;
+}
+
+.cu-callout .cu-callout-icon {
   font-size: 14px;
   width: 2em;
 }
-.cu-callout-icon .fa-stack-2x {
+.cu-callout .cu-callout-icon .fa-stack-2x {
   color: var(--cu-callout, var(--cu-callout-key));
 }
-.cu-callout-icon .fa-stack-1x {
+.cu-callout .cu-callout-icon .fa-stack-1x {
   color: var(--cu-callout-on, var(--cu-callout-key-on));
 }
 
@@ -2069,36 +2101,43 @@ a.glossary:active {
 .cu-callout-info {
   --cu-callout: var(--cu-callout-info);
   --cu-callout-on: var(--cu-callout-info-on);
+  --cu-callout-glyph: "\f129";
 }
 
 .cu-callout-tip {
   --cu-callout: var(--cu-callout-tip);
   --cu-callout-on: var(--cu-callout-tip-on);
+  --cu-callout-glyph: "\f0eb";
 }
 
 .cu-callout-good {
   --cu-callout: var(--cu-callout-good);
   --cu-callout-on: var(--cu-callout-good-on);
+  --cu-callout-glyph: "\f00c";
 }
 
 .cu-callout-important {
   --cu-callout: var(--cu-callout-important);
   --cu-callout-on: var(--cu-callout-important-on);
+  --cu-callout-glyph: "\21";
 }
 
 .cu-callout-warning {
   --cu-callout: var(--cu-callout-warning);
   --cu-callout-on: var(--cu-callout-warning-on);
+  --cu-callout-glyph: "\f068";
 }
 
 .cu-callout-example {
   --cu-callout: var(--cu-callout-example);
   --cu-callout-on: var(--cu-callout-example-on);
+  --cu-callout-glyph: "\f19d";
 }
 
 .cu-callout-key {
   --cu-callout: var(--cu-callout-key);
   --cu-callout-on: var(--cu-callout-key-on);
+  --cu-callout-glyph: "\f005";
 }
 
 @media (max-width: 480px) {

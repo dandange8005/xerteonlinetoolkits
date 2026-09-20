@@ -397,7 +397,8 @@
             <h2><i class="fa-solid fa-bullhorn"></i> Callouts</h2>
 
             <div class="demo-block">
-                <div class="demo-block__title">Seven callout types (design system v1.3)</div>
+                <div class="demo-block__title">Seven callout types — design system fa-stack markup</div>
+                <p class="demo-block__description">The markup used by the design system's own prototypes. Still supported, so prototype callouts paste in unchanged. For new Xerte content prefer the short markup below.</p>
 
                 <div class="cu-callout cu-callout-info"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-info fa-stack-1x"></i></span><div><strong class="cu-callout-title">Information</strong><p>Extra context.</p></div></div>
                 <div class="cu-callout cu-callout-tip"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-lightbulb fa-stack-1x"></i></span><div><strong class="cu-callout-title">Tip</strong><p>A recommendation.</p></div></div>
@@ -408,6 +409,21 @@
                 <div class="cu-callout"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-star fa-stack-1x"></i></span><div><strong class="cu-callout-title">Key point</strong><p>The main takeaway (default when no type class is given).</p></div></div>
 
                 <code class="code-label">.cu-callout | -info | -tip | -good | -important | -warning | -example | -key (default)</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Seven callout types — short markup (preferred)</div>
+                <p class="demo-block__description">Same seven types and the same result, three elements instead of five. The theme draws the disc and glyph in CSS, so there is less to paste into the Xerte editor and no empty tags for the editor to strip.</p>
+
+                <div class="cu-callout cu-callout-info"><strong class="cu-callout-title">Information</strong><p>Extra context.</p></div>
+                <div class="cu-callout cu-callout-tip"><strong class="cu-callout-title">Tip</strong><p>A recommendation.</p></div>
+                <div class="cu-callout cu-callout-good"><strong class="cu-callout-title">Good practice</strong><p>The preferred approach.</p></div>
+                <div class="cu-callout cu-callout-important"><strong class="cu-callout-title">Important</strong><p>Something requiring attention.</p></div>
+                <div class="cu-callout cu-callout-warning"><strong class="cu-callout-title">Warning</strong><p>A risk or problem.</p></div>
+                <div class="cu-callout cu-callout-example"><strong class="cu-callout-title">Example</strong><p>A worked example.</p></div>
+                <div class="cu-callout"><strong class="cu-callout-title">Key point</strong><p>The main takeaway (default when no type class is given).</p></div>
+
+                <code class="code-label">&lt;div class="cu-callout cu-callout-tip"&gt;&lt;strong class="cu-callout-title"&gt;Tip&lt;/strong&gt;&lt;p&gt;…&lt;/p&gt;&lt;/div&gt;</code>
             </div>
         </section>
 

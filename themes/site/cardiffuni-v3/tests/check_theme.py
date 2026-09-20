@@ -52,6 +52,20 @@ CHECKS = [
     ("callouts", "icon and text sit in a grid", "cs('#callout-tip','display')", "grid"),
     ("callouts", "square corners", "cs('#callout-tip','borderTopLeftRadius')", "0px"),
     ("callouts", "old v2 callout no longer styled", "cs('#old-callout','borderLeftWidth')", "0px"),
+    ("callouts", "simple markup: disc drawn in CSS, tip colour", "ps('#callout-tip-simple','::before','backgroundColor')", "rgb(94, 185, 155)"),
+    ("callouts", "simple markup: glyph colour on the disc", "ps('#callout-tip-simple','::before','color')", "rgb(18, 18, 18)"),
+    ("callouts", "simple markup: disc is 28px", "ps('#callout-tip-simple','::before','width')", "28px"),
+    ("callouts", "simple markup: no modifier = key point, black disc", "ps('#callout-key-simple','::before','backgroundColor')", "rgb(18, 18, 18)"),
+    ("callouts", "authored fa-stack markup draws no CSS disc", "ps('#callout-tip','::before','content')", "none"),
+    ("callouts", "both markup forms align their titles at the same x",
+     "(function(){var a=document.querySelector('#callout-tip .cu-callout-title').getBoundingClientRect(),"
+     "b=document.querySelector('#callout-tip-simple .cu-callout-title').getBoundingClientRect();"
+     "return String(Math.abs(a.left-b.left)<=0.5)})()", "true"),
+    ("callouts", "simple markup: disc centred on the title line (within 1px)",
+     "(function(){var c=document.querySelector('#callout-tip-simple'),s=getComputedStyle(c,'::before'),"
+     "r=c.getBoundingClientRect(),t=c.querySelector('.cu-callout-title').getBoundingClientRect();"
+     "var top=r.top+parseFloat(getComputedStyle(c).paddingTop);"
+     "return String(Math.abs((top+parseFloat(s.height)/2)-(t.top+t.height/2))<=1)})()", "true"),
     ("callouts", "icon disc centred on the title's first line (within 1px)",
      "(function(){var i=document.querySelector('#callout-tip .cu-callout-icon').getBoundingClientRect(),"
      "t=document.querySelector('#callout-tip .cu-callout-title').getBoundingClientRect();"
