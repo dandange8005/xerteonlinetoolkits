@@ -102,6 +102,15 @@ CHECKS = [
     ("frame", "selected sidebar item sits on a pale red wash", "cs('#toc > li.active > a','backgroundColor')", "color(srgb 0.993647 0.948706 0.946353)"),
     ("frame", "selected sidebar text is ink, not white on red", "cs('#toc > li.active > a','color')", "rgb(18, 18, 18)"),
     ("frame", "selected and unselected sidebar text line up", "(function(){var a=document.querySelector('#toc > li.active > a'),b=document.querySelector('#toc > li:nth-child(2) > a');return String(getComputedStyle(a).paddingLeft===getComputedStyle(b).paddingLeft&&getComputedStyle(a).borderLeftWidth===getComputedStyle(b).borderLeftWidth)})()", "true"),
+    # The base template clears floats with `section { overflow: auto }` (custom.css), which also
+    # clips a focus ring painted outside the section box - reported in test round 1.
+    ("focus", "sections do not clip what is painted outside them", "cs('#test-section','overflow')", "visible"),
+    ("focus", "sections still contain their floats", "cs('#test-section','display')", "flow-root"),
+    ("focus", "float containment still works (section is as tall as its float)",
+     "(function(){var s=document.querySelector('#test-section');return String(s.getBoundingClientRect().height>=60)})()", "true"),
+    ("focus", "focus ring is 2px, offset 4px, ink",
+     "(function(){var b=document.querySelector('#focus-btn');b.style.outline='var(--focus-ring)';b.style.outlineOffset='var(--focus-ring-offset)';"
+     "var s=getComputedStyle(b);return s.outlineWidth+' '+s.outlineOffset+' '+s.outlineColor})()", "2px 4px rgb(18, 18, 18)"),
 ]
 
 

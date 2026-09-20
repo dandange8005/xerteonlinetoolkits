@@ -3120,6 +3120,11 @@ a.link-external:hover::after {
   margin-bottom: 0;
 }
 
+section {
+  overflow: visible;
+  display: flow-root;
+}
+
 .nav-list > .active > a,
 .nav-list > .active > a:hover,
 .nav-list > .active > a:focus {

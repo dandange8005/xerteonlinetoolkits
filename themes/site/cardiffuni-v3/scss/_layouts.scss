@@ -180,6 +180,19 @@
 }
 
 // =============================================================================
+// PAGE SECTIONS
+// =============================================================================
+
+// The base template clears floats with `section { overflow: auto }`
+// (modules/site/parent_templates/site/common/css/custom.css). That also clips anything
+// painted outside the section box, so a focus ring on a control at the section's edge was
+// cut off (test round 1, 20 September 2026). flow-root contains floats without clipping.
+section {
+  overflow: visible;
+  display: flow-root;
+}
+
+// =============================================================================
 // SIDE NAVIGATION
 // =============================================================================
 
