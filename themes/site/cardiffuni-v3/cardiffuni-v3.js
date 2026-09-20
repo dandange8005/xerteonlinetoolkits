@@ -18,21 +18,47 @@
 
     var GAP = 16; // --cu-space-4: breathing room below the bar
 
+    // The player makes one of two elements sticky, depending on where the author put the page
+    // menu: #topnav itself when it sits above the header, or the #pageLinks wrapper it is moved
+    // into when the author sets navbarPos=below (application.js). Measure whichever one is
+    // actually sticky, not just #topnav, which is left static in the second case.
+    function stickyNav() {
+        var candidates = [document.getElementById('pageLinks'), document.getElementById('topnav')];
+        for (var i = 0; i < candidates.length; i++) {
+            var el = candidates[i];
+            if (!el || el.offsetHeight === 0) {
+                continue;
+            }
+            var position = window.getComputedStyle(el).position;
+            if (position === 'sticky' || position === 'fixed') {
+                return el;
+            }
+        }
+        return null; // the bar scrolls away with the page, so there is nothing to clear
+    }
+
     function stickyNavHeight() {
-        var nav = document.getElementById('topnav');
-        if (!nav || !nav.offsetParent && nav.offsetHeight === 0) {
-            return 0;
-        }
-        var position = window.getComputedStyle(nav).position;
-        if (position !== 'sticky' && position !== 'fixed') {
-            return 0; // the bar scrolls away with the page, so nothing to clear
-        }
-        return Math.round(nav.getBoundingClientRect().height);
+        var el = stickyNav();
+        return el ? Math.round(el.getBoundingClientRect().height) : 0;
     }
 
     function apply() {
         var height = stickyNavHeight();
         document.documentElement.style.setProperty('--cu-sticky-nav', height + 'px');
+
+        // A project with more than ten pages gets an inline `top: 65px` on the affixed section
+        // menu (application.js), and an inline style beats the stylesheet. Set our own inline
+        // value so the menu clears the bar whatever the project's size.
+        var menu = document.querySelector('.bs-docs-sidenav');
+        if (menu) {
+            if (height) {
+                menu.style.top = (height + GAP + 8) + 'px';
+                menu.setAttribute('data-cu-top', 'set');
+            } else if (menu.getAttribute('data-cu-top')) {
+                menu.style.top = '';
+                menu.removeAttribute('data-cu-top');
+            }
+        }
 
         var $ = window.jQuery;
         if (!$) {
@@ -64,4 +90,7 @@
     window.addEventListener('load', schedule);
     window.addEventListener('resize', schedule);
     window.addEventListener('hashchange', schedule); // the player swaps pages without reloading
+
+    // A host or a test can force a recalculation after changing the layout.
+    window.cardiffuniV3 = { apply: apply };
 })();

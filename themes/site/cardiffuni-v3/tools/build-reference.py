@@ -13,6 +13,7 @@ Usage (from the theme folder):
 
 Standard library only.
 """
+import html
 import re
 import sys
 from pathlib import Path
@@ -187,7 +188,8 @@ def render_tables(utils):
             continue
         used |= {c for c, _ in rows}
         body = "\n".join(
-            f"                            <tr><td><code>.{c}</code></td><td>{v}</td></tr>"
+            f"                            <tr><td><code>.{html.escape(c)}</code></td>"
+            f"<td>{html.escape(v)}</td></tr>"
             for c, v in rows)
         blocks.append(f"""            <div class="demo-block">
                 <div class="demo-block__title">{heading}</div>
@@ -202,7 +204,8 @@ def render_tables(utils):
                 </table>
             </div>""")
     legacy_rows = "\n".join(
-        f"                            <tr><td><code>.{c}</code></td><td>{why}</td></tr>"
+        f"                            <tr><td><code>.{html.escape(c)}</code></td>"
+        f"<td>{html.escape(why)}</td></tr>"
         for c, why in sorted(LEGACY.items()))
     blocks.append(f"""            <div class="demo-block demo-block--highlight">
                 <div class="demo-block__title">Legacy classes &mdash; do not use in new content</div>
@@ -251,8 +254,10 @@ def main():
     guide = GUIDE.read_text(encoding="utf-8")
     if START not in guide or END not in guide:
         sys.exit(f"ERROR: markers not found in {GUIDE}. Add {START} and {END} around the reference.")
+    # lambda, not a replacement string: a CSS escape such as \f0eb in a value would otherwise
+    # be read as a backreference and raise, or silently mangle the guide.
     fresh = re.sub(re.escape(START) + r".*?" + re.escape(END),
-                   START + "\n" + tables + "\n" + END, guide, flags=re.S)
+                   lambda _: START + "\n" + tables + "\n" + END, guide, flags=re.S)
     if fresh == guide:
         print(f"In sync: {GUIDE.name} matches the compiled theme ({len(documented)} classes documented).")
         return 0

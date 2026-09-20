@@ -2064,6 +2064,7 @@ a.glossary:active {
   padding-left: calc(var(--cu-space-6) + 28px + var(--cu-space-4));
 }
 .cu-callout:not(:has(.cu-callout-icon))::before {
+  content: var(--cu-callout-glyph, "\f005");
   content: var(--cu-callout-glyph, "\f005")/"";
   position: absolute;
   top: var(--cu-space-5);

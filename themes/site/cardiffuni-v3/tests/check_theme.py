@@ -137,6 +137,28 @@ CHECKS = [
      "title=document.querySelector('#pageTitle').getBoundingClientRect(),"
      "gap=parseFloat(getComputedStyle(document.querySelector('#overview.logoL .container')).columnGap);"
      "return String(Math.abs(title.left-(logo.right+gap))<=2)})()", "true"),
+    # cardiffuni-v3.js: the player makes #topnav sticky when the page menu sits above the header,
+    # and the #pageLinks wrapper sticky when the author puts it below. Measuring only #topnav
+    # left the second case at 0px, and with it the section menu's clearance and spy offset.
+    ("stickynav", "theme script is loaded and exposes its hook", "String(typeof window.cardiffuniV3 === 'object')", "true"),
+    ("stickynav", "no sticky page menu means no offset to clear",
+     "(function(){window.cardiffuniV3.apply();"
+     "return getComputedStyle(document.documentElement).getPropertyValue('--cu-sticky-nav').trim()})()", "0px"),
+    ("stickynav", "a sticky bar above the header is measured",
+     "(function(){var n=document.getElementById('topnav');n.style.position='sticky';n.style.top='0';"
+     "window.cardiffuniV3.apply();"
+     "var v=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cu-sticky-nav'));"
+     "n.style.position='';n.style.top='';window.cardiffuniV3.apply();return String(v>0)})()", "true"),
+    ("stickynav", "a sticky #pageLinks wrapper below the header is measured too",
+     "(function(){var w=document.getElementById('pageLinks');w.style.position='sticky';w.style.top='0';"
+     "window.cardiffuniV3.apply();"
+     "var v=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cu-sticky-nav'));"
+     "w.style.position='';w.style.top='';window.cardiffuniV3.apply();return String(v>0)})()", "true"),
+    ("stickynav", "the section menu gets an inline top that beats the player's",
+     "(function(){var w=document.getElementById('pageLinks'),m=document.querySelector('.bs-docs-sidenav');"
+     "m.style.top='65px';w.style.position='sticky';w.style.top='0';window.cardiffuniV3.apply();"
+     "var ok=m.style.top!=='65px'&&parseFloat(m.style.top)>0;"
+     "w.style.position='';w.style.top='';window.cardiffuniV3.apply();m.style.top='';return String(ok)})()", "true"),
 ]
 
 
