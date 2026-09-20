@@ -3069,7 +3069,17 @@ a.link-external:hover::after {
   border-bottom: 4px solid var(--cu-red);
 }
 
+.navbar-inverse .navbar-inner > .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: var(--cu-space-2);
+}
+
 .navbar-inverse .btn-navbar {
+  float: none;
+  order: 2;
+  margin: 0 0 0 auto;
   background: transparent;
   background-image: none;
   border: 1px solid var(--cu-grey-70);
@@ -3080,6 +3090,16 @@ a.link-external:hover::after {
   box-shadow: none;
 }
 
+.navbar-inverse .navbar-inner > .container > .nav-collapse {
+  order: 3;
+  flex: 1 0 100%;
+}
+
+@media (min-width: 980px) {
+  .navbar-inverse .navbar-inner > .container > .nav-collapse {
+    flex: 1 1 auto;
+  }
+}
 .navbar-inverse .nav-collapse .nav > li > a,
 .navbar-inverse .nav-collapse .dropdown-menu a,
 .navbar-inverse .brand,

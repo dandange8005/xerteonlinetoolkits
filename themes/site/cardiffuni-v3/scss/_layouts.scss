@@ -119,8 +119,22 @@
   border-bottom: 4px solid var(--cu-red);
 }
 
+// Lay the bar out as a row instead of relying on Bootstrap's floated toggle: a floated
+// button taller than the bar overflows it, and the header below paints over the overflow,
+// so the toggle looked cut off (test round 1, 20 September 2026). Wrapping lets the
+// expanded menu drop onto its own line and the bar grow with it.
+.navbar-inverse .navbar-inner > .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: var(--cu-space-2);
+}
+
 // Toggle button on the dark bar (mobile)
 .navbar-inverse .btn-navbar {
+  float: none;
+  order: 2;
+  margin: 0 0 0 auto;
   background: transparent;
   background-image: none;
   border: 1px solid var(--cu-grey-70);
@@ -129,6 +143,19 @@
   .icon-bar {
     background-color: var(--cu-on-dark);
     box-shadow: none;
+  }
+}
+
+// The menu keeps the full width of the bar, so it wraps below the toggle when open.
+.navbar-inverse .navbar-inner > .container > .nav-collapse {
+  order: 3;
+  flex: 1 0 100%;
+}
+
+@media (min-width: 980px) {
+  // Wide layout: the menu shares the row and the toggle is hidden by Bootstrap.
+  .navbar-inverse .navbar-inner > .container > .nav-collapse {
+    flex: 1 1 auto;
   }
 }
 

@@ -111,6 +111,12 @@ CHECKS = [
     ("focus", "focus ring is 2px, offset 4px, ink",
      "(function(){var b=document.querySelector('#focus-btn');b.style.outline='var(--focus-ring)';b.style.outlineOffset='var(--focus-ring-offset)';"
      "var s=getComputedStyle(b);return s.outlineWidth+' '+s.outlineOffset+' '+s.outlineColor})()", "2px 4px rgb(18, 18, 18)"),
+    # Test round 1: the toggle overflowed the bar and the header painted over the overflow.
+    # Forcing it taller than the bar proves the bar now grows to contain it.
+    ("frame", "navbar toggle stays inside the bar, even when taller than it",
+     "(function(){var b=document.querySelector('#pageNavBtn');b.style.display='block';b.style.minHeight='64px';"
+     "var r=b.getBoundingClientRect(),bar=document.querySelector('#topnav .navbar-inner').getBoundingClientRect();"
+     "var ok=r.bottom<=bar.bottom+0.5&&r.top>=bar.top-0.5;b.style.display='';b.style.minHeight='';return String(ok)})()", "true"),
 ]
 
 
