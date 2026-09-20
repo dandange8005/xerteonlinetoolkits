@@ -3073,9 +3073,14 @@ a.link-external:hover::after {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  row-gap: var(--cu-space-2);
+  row-gap: 0;
 }
 
+@media (max-width: 980px) {
+  .jumbotron {
+    margin-top: 0;
+  }
+}
 .navbar-inverse .btn-navbar {
   float: none;
   order: 2;
@@ -3104,6 +3109,7 @@ a.link-external:hover::after {
 .navbar-inverse .nav-collapse .dropdown-menu a,
 .navbar-inverse .brand,
 .navbar-inverse .nav > li > a {
+  padding: 8px 10px;
   color: var(--cu-on-dark);
   text-shadow: none;
   border-radius: 0;

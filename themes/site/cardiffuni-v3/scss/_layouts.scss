@@ -127,7 +127,17 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  row-gap: var(--cu-space-2);
+  row-gap: 0;
+}
+
+// The base template pulls the header up by 20px below 980px to cancel Bootstrap's
+// `.navbar { margin-bottom: 20px }` (custom.css). This theme sets that margin to 0, so the
+// offset instead drags the header over the bar and hides the menu toggle behind it
+// (test round 1, 20 September 2026).
+@media (max-width: 980px) {
+  .jumbotron {
+    margin-top: 0;
+  }
 }
 
 // Toggle button on the dark bar (mobile)
@@ -165,6 +175,9 @@
 .navbar-inverse .nav-collapse .dropdown-menu a,
 .navbar-inverse .brand,
 .navbar-inverse .nav>li>a {
+  // Tighter than Bootstrap's 10px 15px: keeps a 36px row and fits more page names on one
+  // line before the menu wraps onto a second row.
+  padding: 8px 10px;
   color: var(--cu-on-dark);
   text-shadow: none;
   border-radius: 0;
