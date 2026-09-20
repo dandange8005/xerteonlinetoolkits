@@ -33,14 +33,20 @@ standard, and its font stacks are fallbacks, not licensed Marr Sans / Darby Seri
 
 | Step | State |
 |---|---|
-| 1. Fork the theme and remap tokens | **Done** |
-| 2. Page layout: navbar, header, sidebar, sections, footer | Not started |
-| 3. Components: tabs, accordions, cards, callouts, alerts, tables | Not started |
-| 4. Test in Xerte, both languages, keyboard, zoom, narrow widths | Not started |
-| 5. Tidy docs, preview image and the Medr override | Not started |
+| 1. Fork the theme and remap tokens | **Done** (generated from the design system by `sync-theme.py`, 19 September 2026) |
+| 2. Page layout: navbar, header, sidebar, sections, footer | **Partly done**: header, navbar, sidebar and page sections (Phase 1); footer, feedback tab and back-to-top remain |
+| 3. Components: tabs, accordions, cards, callouts, alerts, tables | **Partly done**: rules and the seven callouts; other components remain (mapping T7, T9) |
+| 4. Test in Xerte, both languages, keyboard, zoom, narrow widths | **Round 1 done**, 20 September 2026: `docs/test-rounds/2026-09-phase1.md`. Welsh glyphs checked; a full second-language pass remains |
+| 5. Tidy docs, preview image and the Medr override | **Partly done**: the demos are now an author guide with a generated reference (`tools/build-reference.py`); preview image and the Medr override remain |
 
 Nothing outside `themes/site/cardiffuni-v3/` has been touched. `cardiffuni-v2` and any
-project using it are unaffected. The folder is still untracked in git.
+project using it are unaffected. The work lives on the branch
+`feature/cardiffuni-v3-ds-v1.3`, not yet merged into `develop`.
+
+Since v1.4 of the design system the theme also ships `cardiffuni-v3.js`. The Xerte site player
+requests `<theme>/<theme>.js` for every theme; this one publishes the sticky page menu's height
+as `--cu-sticky-nav` and gives the section menu's scroll spy the same offset, neither of which
+CSS can work out on its own.
 
 ---
 
