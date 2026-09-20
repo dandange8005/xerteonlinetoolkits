@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="assets/demo-styles.css">
 </head>
 
-<body>
-    <header class="jumbotron" id="overview">
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
@@ -61,7 +61,22 @@
     </div>
 
     <main class="container">
-        <section class="demo-section">
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#about-ui-patterns">About UI Patterns</a></li>
+                    <li><a href="#card-layouts">Card Layouts</a></li>
+                    <li><a href="#content-with-sidebar">Content with Sidebar</a></li>
+                    <li><a href="#call-to-action-sections">Call-to-Action Sections</a></li>
+                    <li><a href="#feature-grids">Feature Grids</a></li>
+                    <li><a href="#staff-profiles">Staff Profiles</a></li>
+                    <li><a href="#news-blog-layouts">News & Blog Layouts</a></li>
+                    <li><a href="#step-by-step-guides">Step-by-Step Guides</a></li>
+                </ul>
+            </div>
+
+            <div class="span9" id="mainContent">
+        <section class="demo-section" id="about-ui-patterns">
             <h2>About UI Patterns</h2>
             <p>This page demonstrates common UI patterns that combine multiple elements from the Cardiff University v3
                 theme. These patterns show real-world usage examples for building educational content and applications.
@@ -69,7 +84,7 @@
         </section>
 
         <!-- Card Pattern -->
-        <section class="demo-section">
+        <section class="demo-section" id="card-layouts">
             <h2>Card Layouts</h2>
 
             <div class="demo-block">
@@ -105,7 +120,7 @@
         </section>
 
         <!-- Content with Sidebar -->
-        <section class="demo-section">
+        <section class="demo-section" id="content-with-sidebar">
             <h2>Content with Sidebar</h2>
 
             <div class="demo-block">
@@ -162,7 +177,7 @@
         </section>
 
         <!-- Call to Action -->
-        <section class="demo-section">
+        <section class="demo-section" id="call-to-action-sections">
             <h2>Call-to-Action Sections</h2>
 
             <div class="demo-block">
@@ -201,7 +216,7 @@
         </section>
 
         <!-- Feature Grid -->
-        <section class="demo-section">
+        <section class="demo-section" id="feature-grids">
             <h2>Feature Grids</h2>
 
             <div class="demo-block">
@@ -236,7 +251,7 @@
         </section>
 
         <!-- Staff Profile -->
-        <section class="demo-section">
+        <section class="demo-section" id="staff-profiles">
             <h2>Staff Profiles</h2>
 
             <div class="demo-block">
@@ -274,7 +289,7 @@
         </section>
 
         <!-- News/Blog Layout -->
-        <section class="demo-section">
+        <section class="demo-section" id="news-blog-layouts">
             <h2>News & Blog Layouts</h2>
 
             <div class="demo-block">
@@ -315,7 +330,7 @@
         </section>
 
         <!-- Step-by-Step Guide -->
-        <section class="demo-section">
+        <section class="demo-section" id="step-by-step-guides">
             <h2>Step-by-Step Guides</h2>
 
             <div class="demo-block">
@@ -350,6 +365,8 @@
                 </ul>
             </div>
         </section>
+        </div>
+        </div>
     </main>
 
     <footer class="demo-footer">

@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="assets/demo-styles.css">
 </head>
 
-<body>
-    <header class="jumbotron" id="overview">
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
@@ -61,8 +61,19 @@
     </div>
 
     <main class="container">
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#inline-code">Inline Code</a></li>
+                    <li><a href="#code-blocks">Code Blocks</a></li>
+                    <li><a href="#utility-classes-reference">Utility Classes Reference</a></li>
+                    <li><a href="#css-custom-properties-design-tokens">CSS Custom Properties (Design Tokens)</a></li>
+                </ul>
+            </div>
+
+            <div class="span9" id="mainContent">
         <!-- Inline Code -->
-        <section class="demo-section">
+        <section class="demo-section" id="inline-code">
             <h2>Inline Code</h2>
 
             <div class="demo-block">
@@ -84,7 +95,7 @@
         </section>
 
         <!-- Code Blocks -->
-        <section class="demo-section">
+        <section class="demo-section" id="code-blocks">
             <h2>Code Blocks</h2>
 
             <div class="demo-block">
@@ -147,7 +158,7 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
         </section>
 
         <!-- Utility Classes Reference -->
-        <section class="demo-section">
+        <section class="demo-section" id="utility-classes-reference">
             <h2>Utility Classes Reference</h2>
             <p>Small classes you can add to any element in a Text element's <strong>Source</strong> view. This table is generated from the compiled theme by <code>tools/build-reference.py</code>, so every class listed here exists.</p>
 
@@ -575,7 +586,7 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
         </section>
 
         <!-- CSS Custom Properties -->
-        <section class="demo-section">
+        <section class="demo-section" id="css-custom-properties-design-tokens">
             <h2>CSS Custom Properties (Design Tokens)</h2>
 
             <div class="demo-block">
@@ -620,6 +631,8 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
 }</code></pre>
             </div>
         </section>
+        </div>
+        </div>
     </main>
 
     <footer class="demo-footer">

@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="assets/demo-styles.css">
 </head>
 
-<body>
-    <header class="jumbotron" id="overview">
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
@@ -61,8 +61,27 @@
     </div>
 
     <main class="container">
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#brand-colors">Brand Colors</a></li>
+                    <li><a href="#accent-colors">Accent Colors</a></li>
+                    <li><a href="#grayscale">Grayscale</a></li>
+                    <li><a href="#semantic-text-colors">Semantic Text Colors</a></li>
+                    <li><a href="#link-colors">Link Colors</a></li>
+                    <li><a href="#background-colors">Background Colors</a></li>
+                    <li><a href="#border-colors">Border Colors</a></li>
+                    <li><a href="#status-colors">Status Colors</a></li>
+                    <li><a href="#action-focus-and-draft-label">Action, Focus &amp; Draft Label</a></li>
+                    <li><a href="#color-usage-guidelines">Color Usage Guidelines</a></li>
+                    <li><a href="#accessibility-contrast">Accessibility & Contrast</a></li>
+                    <li><a href="#theming-with-css-custom-properties">Theming with CSS Custom Properties</a></li>
+                </ul>
+            </div>
+
+            <div class="span9" id="mainContent">
         <!-- Brand Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="brand-colors">
             <h2>Brand Colors</h2>
             <p>The core brand colors that define the Cardiff University visual identity.</p>
 
@@ -88,7 +107,7 @@
         </section>
 
         <!-- Accent Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="accent-colors">
             <h2>Accent Colors</h2>
             <p>A vibrant palette for emphasis, callouts, and visual variety.</p>
 
@@ -204,7 +223,7 @@
         </section>
 
         <!-- Grayscale -->
-        <section class="demo-section">
+        <section class="demo-section" id="grayscale">
             <h2>Grayscale</h2>
             <p>A comprehensive grayscale for text, borders, and backgrounds.</p>
 
@@ -315,7 +334,7 @@
         </section>
 
         <!-- Semantic Text Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="semantic-text-colors">
             <h2>Semantic Text Colors</h2>
             <p>Purpose-driven color tokens for consistent text styling.</p>
 
@@ -369,7 +388,7 @@
         </section>
 
         <!-- Link Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="link-colors">
             <h2>Link Colors</h2>
             <p>Accessible link colors for all interaction states.</p>
 
@@ -413,7 +432,7 @@
         </section>
 
         <!-- Background Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="background-colors">
             <h2>Background Colors</h2>
             <p>Semantic background tokens for layering and visual hierarchy.</p>
 
@@ -475,7 +494,7 @@
         </section>
 
         <!-- Border Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="border-colors">
             <h2>Border Colors</h2>
             <p>Consistent border tokens for dividers and outlines.</p>
 
@@ -519,7 +538,7 @@
         </section>
 
         <!-- Status Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="status-colors">
             <h2>Status Colors</h2>
             <p>Semantic colors for feedback and system states.</p>
 
@@ -563,7 +582,7 @@
         </section>
 
         <!-- Action, Focus and Draft Roles -->
-        <section class="demo-section">
+        <section class="demo-section" id="action-focus-and-draft-label">
             <h2>Action, Focus &amp; Draft Label</h2>
             <p>Roles introduced by the Cardiff Resource Design System v1.3. Filled buttons use the darker action red; keyboard focus is black; draft labels are black on Yellow.</p>
             <div class="demo-grid">
@@ -608,7 +627,7 @@
         </section>
 
         <!-- Color Usage Guidelines -->
-        <section class="demo-section">
+        <section class="demo-section" id="color-usage-guidelines">
             <h2>Color Usage Guidelines</h2>
 
             <div class="demo-block">
@@ -641,7 +660,7 @@
         </section>
 
         <!-- Accessibility -->
-        <section class="demo-section">
+        <section class="demo-section" id="accessibility-contrast">
             <h2>Accessibility & Contrast</h2>
 
             <div class="demo-block">
@@ -687,7 +706,7 @@
         </section>
 
         <!-- Theming -->
-        <section class="demo-section">
+        <section class="demo-section" id="theming-with-css-custom-properties">
             <h2>Theming with CSS Custom Properties</h2>
 
             <div class="demo-block">
@@ -713,6 +732,8 @@
 }</code></pre>
             </div>
         </section>
+        </div>
+        </div>
     </main>
 
     <footer class="demo-footer">

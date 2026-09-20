@@ -131,6 +131,12 @@ CHECKS = [
      "String(cs('#section-title','fontSize')===cs('#plain-h2','fontSize'))", "true"),
     ("headings", "section title keeps the heading's tight leading",
      "String(cs('#section-title','lineHeight')===cs('#plain-h2','lineHeight'))", "true"),
+    ("header", "title is left aligned, not centred in the header", "cs('.titles','textAlign')", "left"),
+    ("header", "title sits beside the logo, one gap away",
+     "(function(){var logo=document.querySelector('.logo.logoL').getBoundingClientRect(),"
+     "title=document.querySelector('#pageTitle').getBoundingClientRect(),"
+     "gap=parseFloat(getComputedStyle(document.querySelector('#overview.logoL .container')).columnGap);"
+     "return String(Math.abs(title.left-(logo.right+gap))<=2)})()", "true"),
 ]
 
 

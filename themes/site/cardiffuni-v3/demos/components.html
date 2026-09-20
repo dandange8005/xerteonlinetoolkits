@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/fontawesome-6.6.0/css/all.min.css">
 </head>
 
-<body>
-    <header class="jumbotron" id="overview">
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
@@ -63,29 +63,31 @@
     </div>
 
     <main class="container">
-        <!-- Table of Contents -->
-        <section class="demo-section">
-            <h2>Component Index</h2>
-            <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
-                <a href="#buttons" class="button button-secondary-outline button--small"><i class="fa-solid fa-hand-pointer"></i> Buttons</a>
-                <a href="#alerts" class="button button-secondary-outline button--small"><i class="fa-solid fa-bell"></i> Alerts</a>
-                <a href="#badges" class="button button-secondary-outline button--small"><i class="fa-solid fa-tag"></i> Badges & Labels</a>
-                <a href="#progress" class="button button-secondary-outline button--small"><i class="fa-solid fa-bars-progress"></i> Progress Bars</a>
-                <a href="#breadcrumbs" class="button button-secondary-outline button--small"><i class="fa-solid fa-sitemap"></i> Breadcrumbs</a>
-                <a href="#cards" class="button button-secondary-outline button--small"><i class="fa-solid fa-id-card"></i> Cards</a>
-                <a href="#callouts" class="button button-secondary-outline button--small"><i class="fa-solid fa-bullhorn"></i> Callouts</a>
-                <a href="#rules" class="button button-secondary-outline button--small"><i class="fa-solid fa-grip-lines"></i> Rules</a>
-                <a href="#boxes" class="button button-secondary-outline button--small"><i class="fa-solid fa-square"></i> Boxes</a>
-                <a href="#quotes" class="button button-secondary-outline button--small"><i class="fa-solid fa-quote-left"></i> Quotes</a>
-                <a href="#links" class="button button-secondary-outline button--small"><i class="fa-solid fa-link"></i> Links</a>
-                <a href="#details" class="button button-secondary-outline button--small"><i class="fa-solid fa-caret-down"></i> Details</a>
-                <a href="#dosdonts" class="button button-secondary-outline button--small"><i class="fa-solid fa-list-check"></i> Do's &amp; Don'ts</a>
-                <a href="#projectinfo" class="button button-secondary-outline button--small"><i class="fa-solid fa-circle-info"></i> Project info</a>
-                <a href="#tabs" class="button button-secondary-outline button--small"><i class="fa-solid fa-folder"></i> Tabs</a>
-                <a href="#accordions" class="button button-secondary-outline button--small"><i class="fa-solid fa-list"></i> Accordions</a>
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#buttons">Buttons</a></li>
+                    <li><a href="#alerts">Alerts</a></li>
+                    <li><a href="#badges">Badges & Labels</a></li>
+                    <li><a href="#progress">Progress Bars</a></li>
+                    <li><a href="#breadcrumbs">Breadcrumbs</a></li>
+                    <li><a href="#cards">Cards</a></li>
+                    <li><a href="#callouts">Callouts</a></li>
+                    <li><a href="#rules">Rules</a></li>
+                    <li><a href="#boxes">Boxes</a></li>
+                    <li><a href="#quotes">Quotes</a></li>
+                    <li><a href="#links">Links</a></li>
+                    <li><a href="#details">Details</a></li>
+                    <li><a href="#dosdonts">Do's &amp; Don'ts</a></li>
+                    <li><a href="#projectinfo">Project info</a></li>
+                    <li><a href="#tabs">Tabs</a></li>
+                    <li><a href="#accordions">Accordions</a></li>
+                    <li><a href="#component-usage-guidelines">Component Usage Guidelines</a></li>
+                </ul>
             </div>
-        </section>
 
+            <div class="span9" id="mainContent">
+        <!-- Table of Contents -->
         <!-- ==================== BUTTONS ==================== -->
         <section class="demo-section" id="buttons">
             <h2><i class="fa-solid fa-hand-pointer"></i> Buttons</h2>
@@ -678,7 +680,7 @@
         </section>
 
         <!-- ==================== USAGE GUIDELINES ==================== -->
-        <section class="demo-section">
+        <section class="demo-section" id="component-usage-guidelines">
             <h2><i class="fa-solid fa-book"></i> Component Usage Guidelines</h2>
 
             <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
@@ -722,6 +724,8 @@
                 </div>
             </div>
         </section>
+        </div>
+        </div>
     </main>
 
     <footer class="demo-footer">

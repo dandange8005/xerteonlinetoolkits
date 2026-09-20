@@ -50,8 +50,19 @@
   flex-wrap: nowrap;
 }
 
+// The base template centres the header text (custom.css `.jumbotron { text-align: center }`)
+// and indents the titles by 20px (`#overview.logoL .titles { padding: 20px 5px 20px 20px }`).
+// Headings in this theme are left aligned and sit one gap from the logo, so drop both. Matching
+// the base selector's specificity is what makes the padding reset stick.
 .titles {
   padding: 0;
+  text-align: left;
+}
+
+#overview.logoL .titles,
+#overview.logoR .titles {
+  padding: 0;
+  text-align: left;
 }
 
 // Keep the logo and titles in one row at narrow widths. The base player CSS

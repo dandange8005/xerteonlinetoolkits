@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/fontawesome-6.6.0/css/all.min.css">
 </head>
 
-<body>
-    <header class="jumbotron" id="overview">
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
@@ -63,8 +63,21 @@
     </div>
 
     <main class="container">
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#section-index">Section Index</a></li>
+                    <li><a href="#icons">Icon System (FontAwesome 6.6.0)</a></li>
+                    <li><a href="#images">Images</a></li>
+                    <li><a href="#video">Video</a></li>
+                    <li><a href="#audio">Audio</a></li>
+                    <li><a href="#best-practices">Best Practices</a></li>
+                </ul>
+            </div>
+
+            <div class="span9" id="mainContent">
         <!-- Section Index -->
-        <section class="demo-section">
+        <section class="demo-section" id="section-index">
             <h2>Section Index</h2>
             <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
                 <a href="#images" class="button button-secondary-outline button--small"><i class="fa-solid fa-image"></i> Images</a>
@@ -460,7 +473,7 @@
         </section>
 
         <!-- ==================== BEST PRACTICES ==================== -->
-        <section class="demo-section">
+        <section class="demo-section" id="best-practices">
             <h2><i class="fa-solid fa-lightbulb"></i> Best Practices</h2>
 
             <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
@@ -510,6 +523,8 @@
                 <p><small>Missing accessible label - screen readers won't know the button's purpose.</small></p>
             </div>
         </section>
+        </div>
+        </div>
     </main>
 
     <footer class="demo-footer">

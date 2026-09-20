@@ -64,8 +64,8 @@
     </style>
 </head>
 
-<body>
-    <header class="jumbotron" id="overview">
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
@@ -114,8 +114,25 @@
     </div>
 
     <main class="container">
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#introduction">Introduction</a></li>
+                    <li><a href="#basic-flex-container">Basic Flex Container</a></li>
+                    <li><a href="#flex-basis-utilities-recommended">Flex Basis Utilities (Recommended)</a></li>
+                    <li><a href="#three-column-layouts">Three Column Layouts</a></li>
+                    <li><a href="#four-column-card-grid">Four Column / Card Grid</a></li>
+                    <li><a href="#gap-utilities">Gap Utilities</a></li>
+                    <li><a href="#alignment-utilities">Alignment Utilities</a></li>
+                    <li><a href="#practical-examples">Practical Examples</a></li>
+                    <li><a href="#utility-class-reference">Utility Class Reference</a></li>
+                    <li><a href="#legacy-support-system-2">Legacy Support (System 2)</a></li>
+                </ul>
+            </div>
+
+            <div class="span9" id="mainContent">
         <!-- Introduction -->
-        <section class="demo-section">
+        <section class="demo-section" id="introduction">
             <h2>Introduction</h2>
             <div class="demo-block">
                 <div class="demo-block__description">
@@ -135,7 +152,7 @@
         </section>
 
         <!-- Basic Flex Container -->
-        <section class="demo-section">
+        <section class="demo-section" id="basic-flex-container">
             <h2>Basic Flex Container</h2>
 
             <div class="demo-block">
@@ -182,7 +199,7 @@
         </section>
 
         <!-- Flex Basis Utilities (Recommended) -->
-        <section class="demo-section">
+        <section class="demo-section" id="flex-basis-utilities-recommended">
             <h2>Flex Basis Utilities (Recommended)</h2>
 
             <div class="demo-block">
@@ -315,7 +332,7 @@
         </section>
 
         <!-- Three Column Layouts -->
-        <section class="demo-section">
+        <section class="demo-section" id="three-column-layouts">
             <h2>Three Column Layouts</h2>
 
             <div class="demo-block">
@@ -342,7 +359,7 @@
         </section>
 
         <!-- Four Column / Card Grid -->
-        <section class="demo-section">
+        <section class="demo-section" id="four-column-card-grid">
             <h2>Four Column / Card Grid</h2>
 
             <div class="demo-block">
@@ -396,7 +413,7 @@
         </section>
 
         <!-- Gap Utilities -->
-        <section class="demo-section">
+        <section class="demo-section" id="gap-utilities">
             <h2>Gap Utilities</h2>
 
             <div class="demo-block">
@@ -451,7 +468,7 @@
         </section>
 
         <!-- Alignment -->
-        <section class="demo-section">
+        <section class="demo-section" id="alignment-utilities">
             <h2>Alignment Utilities</h2>
 
             <div class="demo-block">
@@ -545,7 +562,7 @@
         </section>
 
         <!-- Practical Examples -->
-        <section class="demo-section">
+        <section class="demo-section" id="practical-examples">
             <h2>Practical Examples</h2>
 
             <div class="demo-block">
@@ -720,7 +737,7 @@
         </section>
 
         <!-- Utility Reference -->
-        <section class="demo-section">
+        <section class="demo-section" id="utility-class-reference">
             <h2>Utility Class Reference</h2>
 
             <div class="demo-block">
@@ -1057,7 +1074,7 @@
         </section>
 
         <!-- Legacy Support -->
-        <section class="demo-section">
+        <section class="demo-section" id="legacy-support-system-2">
             <h2>Legacy Support (System 2)</h2>
 
             <div class="demo-block">
@@ -1105,6 +1122,8 @@
                 </div>
             </div>
         </section>
+        </div>
+        </div>
     </main>
 
     <footer class="demo-footer">

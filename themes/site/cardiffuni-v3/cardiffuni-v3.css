@@ -3021,6 +3021,13 @@ a.link-external:hover::after {
 
 .titles {
   padding: 0;
+  text-align: left;
+}
+
+#overview.logoL .titles,
+#overview.logoR .titles {
+  padding: 0;
+  text-align: left;
 }
 
 @media (max-width: 980px) {
