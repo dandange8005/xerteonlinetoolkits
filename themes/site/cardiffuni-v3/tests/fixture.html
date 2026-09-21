@@ -57,9 +57,27 @@
       <div style="float:left;width:40px;height:60px;background:#eee" id="test-float">&nbsp;</div>
       <p><a class="button button-primary" id="focus-btn" href="#">Primary button</a></p>
     </section>
+    <p>A term with a <a class="glossary" id="glossary-term" href="#">glossary definition</a> in reading copy.</p>
+    <div id="glossaryHover" class="glossaryTip">Definition shown as a tooltip.</div>
+    <!-- application.js: topBtnRound=true appends this round button to each page section -->
+    <p><a class="topBtn btn btn-mini pull-right top-round" id="top-round" href="#skipLink"><span class="sr-only">Top</span><i class="fa fa-angle-up fa-2x" aria-hidden="true"></i></a></p>
     <!--@MARKUP@-->
   </div>
 </div></div>
+
+<!-- Not emitted by the player: projects add #feedback_button themselves (structure inferred from the v2 theme's CSS). -->
+<div id="feedback_button"><i class="fa-solid fa-comment" aria-hidden="true"></i><a href="#" id="feedback-link">Feedback</a></div>
+
+<!-- rloObject.htm footer; #customFooter is what application.js injects the author's HTML into. -->
+<footer class="footer" id="test-footer"><div class="container">
+  <div id="customFooter">
+    <div><p id="footer-note">Developed by the Digital Education Team</p></div>
+    <div><h2 id="footer-heading">Useful links</h2><ul><li><a href="#" id="footer-link">A link</a></li></ul></div>
+    <!-- footerPos=replace: application.js appends the WCAG link to #customFooter as a third child -->
+    <div class="wcagLink" id="footer-wcag"><a href="#">Accessibility statement</a></div>
+  </div>
+  <div class="row-fluid"><div class="wcagLink hidden"><a>WCAG</a></div></div>
+</div></footer>
 
 <pre id="results"></pre>
 <script>
@@ -106,6 +124,18 @@ function ps(selector, pseudo, property) {
   var el = document.querySelector(selector);
   if (!el) throw new Error('Missing fixture element: ' + selector);
   return getComputedStyle(el, pseudo)[property];
+}
+// WCAG contrast ratio between one element's text colour and another's background colour.
+function contrast(textSelector, backgroundSelector) {
+  function rgb(value) { return value.match(/[\d.]+/g).slice(0, 3).map(Number); }
+  function luminance(c) {
+    var l = c.map(function (x) { x /= 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+    return 0.2126 * l[0] + 0.7152 * l[1] + 0.0722 * l[2];
+  }
+  var text = document.querySelector(textSelector), back = document.querySelector(backgroundSelector);
+  if (!text || !back) throw new Error('Missing fixture element: ' + textSelector + ' / ' + backgroundSelector);
+  var a = luminance(rgb(getComputedStyle(text).color)), b = luminance(rgb(getComputedStyle(back).backgroundColor));
+  return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
 }
 // Each override check restores exactly the prior inline root declaration.
 function withRootTokens(overrides, check) {

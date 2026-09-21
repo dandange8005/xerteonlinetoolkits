@@ -245,6 +245,58 @@ CHECKS = [
      "withRootTokens({'--cu-fast':'240ms','--cu-ease':'linear'},()=>v('var(--transition-fast)','transition'))", "0.24s linear"),
     ("theming", "legacy component overrides still work",
      "withRootTokens({'--font-size-body':'23px'},()=>cs('body','fontSize'))", "23px"),
+    # Page chrome (21 September 2026). Colours follow the Red Usage Decisions log: the footer uses
+    # no red, the feedback tab is action red, back-to-top and the glossary tip are ink.
+    ("chrome", "footer sits on ink, not grey-80", "cs('#test-footer','backgroundColor')", "rgb(18, 18, 18)"),
+    ("chrome", "footer secondary text is grey-30", "cs('#footer-note','color')", "rgb(204, 204, 204)"),
+    ("chrome", "footer secondary text reads at 4.5:1 or better", "String(contrast('#footer-note','#test-footer')>=4.5)", "true"),
+    # An h2 in the footer would otherwise take the section-heading size and the ink heading colour.
+    ("chrome", "footer heading reads on the footer at 4.5:1 or better", "String(contrast('#footer-heading','#test-footer')>=4.5)", "true"),
+    ("chrome", "footer heading is no bigger than a component heading",
+     "String(parseFloat(cs('#footer-heading','fontSize'))<=parseFloat(v('var(--h3-font-size)','fontSize')))", "true"),
+    ("chrome", "footer links read on the footer at 4.5:1 or better", "String(contrast('#footer-link','#test-footer')>=4.5)", "true"),
+    # Measured by where the columns land: an auto-fit grid still lists its collapsed empty tracks.
+    ("chrome", "author's footer columns sit side by side",
+     "(function(){var k=document.querySelectorAll('#customFooter > div'),a=k[0].getBoundingClientRect(),b=k[1].getBoundingClientRect();"
+     "return String(Math.abs(a.top-b.top)<=1 && b.left>=a.right)})()", "true"),
+    ("chrome", "author's footer columns stack when the space is narrow",
+     "(function(){var f=document.getElementById('customFooter');f.style.width='300px';"
+     "var k=f.children,a=k[0].getBoundingClientRect(),b=k[1].getBoundingClientRect(),ok=b.top>=a.bottom-1&&Math.abs(a.left-b.left)<=1;"
+     "f.style.width='';return String(ok)})()", "true"),
+    ("chrome", "footer link list lines up with its heading (no bullet indent)",
+     "(function(){var h=document.querySelector('#footer-heading').getBoundingClientRect(),"
+     "a=document.querySelector('#footer-link').getBoundingClientRect();return String(Math.abs(a.left-h.left)<=1)})()", "true"),
+    # A full-width WCAG link stopped auto-fit collapsing the empty tracks, squeezing two columns to a quarter each.
+    ("chrome", "the two footer columns still share the width, WCAG link or not",
+     "(function(){var f=document.getElementById('customFooter').getBoundingClientRect(),"
+     "a=document.querySelector('#customFooter > div').getBoundingClientRect();return String(a.width>=f.width*0.4)})()", "true"),
+    ("chrome", "the player's appended WCAG link takes its own row, not a third column",
+     "(function(){var k=document.querySelectorAll('#customFooter > div'),col=k[1].getBoundingClientRect(),"
+     "w=document.querySelector('#footer-wcag').getBoundingClientRect();"
+     "return String(w.top>=col.bottom-1 && Math.abs(w.left-k[0].getBoundingClientRect().left)<=1)})()", "true"),
+    ("chrome", "feedback tab is action red", "cs('#feedback_button','backgroundColor')", "rgb(194, 31, 22)"),
+    ("chrome", "feedback tab has no shadow", "cs('#feedback_button','boxShadow')", "none"),
+    ("chrome", "feedback tab text reads at 4.5:1 or better", "String(contrast('#feedback-link','#feedback_button')>=4.5)", "true"),
+    ("chrome", "back-to-top is ink", "cs('#top-round','backgroundColor')", "rgb(18, 18, 18)"),
+    ("chrome", "back-to-top has no resting shadow", "cs('#top-round','boxShadow')", "none"),
+    ("chrome", "back-to-top has no hover halo", "ps('#top-round','::after','boxShadow')", "none"),
+    ("chrome", "back-to-top arrow reads at 4.5:1 or better", "String(contrast('#top-round','#top-round')>=4.5)", "true"),
+    # The player's .top-round sets `transition: all .3s !important`, so a reading taken the moment
+    # the button is focused is the start of the ring's fade-in, not the ring itself.
+    ("chrome", "back-to-top keeps a visible focus ring, offset from the ink",
+     "(function(){var b=document.querySelector('#top-round'),previous=document.activeElement;"
+     "b.style.setProperty('transition','none','important');b.focus({preventScroll:true});"
+     "var s=getComputedStyle(b),result=(document.activeElement===b && b.matches(':focus-visible'))+' '+s.outlineStyle+' '+s.outlineWidth+' '+s.outlineOffset;"
+     "b.style.removeProperty('transition');previous.focus({preventScroll:true});if(document.activeElement===b)b.blur();return result})()", "true solid 2px 4px"),
+    # The global focus ring is ink, which disappears on an ink footer.
+    ("chrome", "footer link focus ring is white, so it shows on the ink",
+     "(function(){var a=document.querySelector('#footer-link'),previous=document.activeElement;a.focus({preventScroll:true});"
+     "var s=getComputedStyle(a),result=(document.activeElement===a && a.matches(':focus-visible'))+' '+s.outlineStyle+' '+s.outlineWidth+' '+s.outlineColor;"
+     "previous.focus({preventScroll:true});if(document.activeElement===a)a.blur();return result})()", "true solid 2px rgb(255, 255, 255)"),
+    ("chrome", "glossary tip is ink", "cs('#glossaryHover','backgroundColor')", "rgb(18, 18, 18)"),
+    ("chrome", "glossary tip reads at 4.5:1 or better", "String(contrast('#glossaryHover','#glossaryHover')>=4.5)", "true"),
+    ("chrome", "glossary term is marked by more than colour",
+     "String(parseFloat(cs('#glossary-term','borderBottomWidth'))>=1 && cs('#glossary-term','borderBottomStyle')!=='none')", "true"),
 
 ]
 

@@ -1179,10 +1179,6 @@ section p:not(:last-child) {
   margin-bottom: var(--spacing-md);
 }
 
-.footer h3 {
-  margin-bottom: var(--spacing-md);
-}
-
 hr {
   background-color: var(--color-border-default);
   border: 0;
@@ -1798,17 +1794,21 @@ a.glossary:active {
 }
 
 .glossaryTip {
-  background-color: var(--color-brand-primary);
+  background-color: var(--color-brand-secondary);
   color: var(--color-white);
 }
 
-.top-round {
+.btn.topBtn {
   color: var(--color-white);
-  background: var(--color-brand-primary);
+  background: var(--color-brand-secondary);
 }
-.top-round:hover, .top-round:focus {
-  background: var(--color-brand-primary-dark);
+.btn.topBtn:hover, .btn.topBtn:focus {
+  background: var(--color-gray-90);
   color: var(--color-white);
+}
+
+.top-round::after {
+  box-shadow: none;
 }
 
 /**
@@ -2596,7 +2596,6 @@ button.button--block {
   outline-offset: var(--focus-ring-offset);
 }
 .btn-mini:active {
-  box-shadow: var(--shadow-lg);
   transform: scale(0.9);
 }
 
@@ -3198,14 +3197,28 @@ section {
 .footer {
   padding-block: var(--spacing-xl);
   position: relative;
-  background-color: var(--color-gray-80);
+  background-color: var(--color-brand-secondary);
   border: 0;
-  color: var(--color-white);
+  color: var(--color-gray-30);
 }
 .footer p {
   margin-bottom: 0;
-  text-align: center;
+  color: var(--color-gray-30);
+}
+.footer h2,
+.footer h3 {
+  margin-bottom: var(--spacing-sm);
   color: var(--color-white);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+}
+.footer ul {
+  margin: 0;
+  list-style: none;
+}
+.footer ul li {
+  padding-left: 0;
 }
 .footer a {
   color: var(--color-white);
@@ -3215,16 +3228,27 @@ section {
   text-decoration: none;
   color: var(--color-white);
 }
+.footer a:focus-visible {
+  outline-color: var(--color-white);
+}
+.footer #customFooter {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--spacing-xl);
+}
+.footer #customFooter > .wcagLink {
+  grid-column: 1;
+}
 
 .footer-logo {
   max-width: 250px;
   height: auto;
-  margin: auto;
+  margin: 0 0 var(--spacing-sm);
 }
 
 #feedback_button {
   writing-mode: vertical-lr;
-  background: var(--color-brand-primary);
+  background: var(--color-action);
   color: var(--color-white);
   padding-inline: 16px;
   padding-block: 4px;
@@ -3238,17 +3262,18 @@ section {
   transform: translateX(10px);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: transform 300ms ease-in-out;
-  box-shadow: -2px 9px 20px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 300ms ease-in-out, background-color 300ms ease-in-out;
   font-weight: var(--font-weight-bold);
 }
 #feedback_button:hover {
   transform: translateX(2px);
+  background: var(--color-action-hover);
 }
 #feedback_button i {
   transform: rotate(90deg);
   margin-inline-end: var(--spacing-xs);
 }
+#feedback_button a,
 #feedback_button a:hover {
   text-decoration: none;
   color: var(--color-white);

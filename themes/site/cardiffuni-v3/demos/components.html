@@ -80,6 +80,7 @@
                     <li><a href="#details">Details</a></li>
                     <li><a href="#dosdonts">Do's &amp; Don'ts</a></li>
                     <li><a href="#projectinfo">Project info</a></li>
+                    <li><a href="#pagechrome">Page chrome</a></li>
                     <li><a href="#tabs">Tabs</a></li>
                     <li><a href="#accordions">Accordions</a></li>
                     <li><a href="#component-usage-guidelines">Component Usage Guidelines</a></li>
@@ -588,6 +589,51 @@
                 <div class="demo-block__title">Language toggle</div>
                 <p class="demo-block__description">The theme also styles a language switcher, <code>#language-toggle</code>, which the player positions in the top right of the header. It is not shown here because it is placed by the page frame rather than by page content.</p>
                 <code class="code-label">#language-toggle | .language-toggle-text</code>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE CHROME ==================== -->
+        <section class="demo-section" id="pagechrome">
+            <h2><i class="fa-solid fa-window-maximize"></i> Page chrome</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Footer</div>
+                <p class="demo-block__description">An ink footer with no red. The player builds it from the project's <code>customFooter</code> HTML and puts it in <code>#customFooter</code>, so write only the columns: the theme lays them side by side and stacks them when the space is narrow. Set <code>footerPos</code> to replace the default footer. In that mode the player also appends its accessibility link, which the theme puts on its own row. For a logo, use an official white (reversed) version; the design system says never to recolour it.</p>
+
+                <div class="footer" style="margin-top: 0; padding-inline: 20px;">
+                    <div id="customFooter">
+                        <div>
+                            <p>Developed by the Digital Education Team<br>Learning and Teaching Academy<br>Cardiff University</p>
+                        </div>
+                        <div>
+                            <h2>Useful links</h2>
+                            <ul>
+                                <li><a href="index.html">Author guide home</a></li>
+                                <li><a href="patterns.html">UI patterns</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <code class="code-label">&lt;div&gt;&lt;p&gt;…&lt;/p&gt;&lt;/div&gt; &lt;div&gt;&lt;h2&gt;Useful links&lt;/h2&gt;&lt;ul&gt;…&lt;/ul&gt;&lt;/div&gt;</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Back to top</div>
+                <p class="demo-block__description">The player adds one to each page section: the round arrow when <code>topBtnRound</code> is on, otherwise the text button. Both are ink with a white label and carry no shadow. Colours an author sets for the round button in the project's settings still override these defaults.</p>
+
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <a class="topBtn btn btn-mini top-round" href="#pageTitle"><span class="sr-only">Top</span><i class="fa fa-angle-up fa-2x" aria-hidden="true"></i></a>
+                    <a class="topBtn btn btn-mini" href="#pageTitle">Top</a>
+                </div>
+
+                <code class="code-label">.topBtn | .top-round</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Feedback tab and glossary</div>
+                <p class="demo-block__description">Neither is shown here: the feedback tab is fixed to the edge of the window, and the player places a glossary definition at the pointer. The feedback tab is action red with white text and no shadow. The player does not create it, so a project adds an element with <code>id="feedback_button"</code> holding an icon and a link. A glossary term is marked with a dotted underline as well as its colour, and its definition (<code>.glossaryTip</code>) is ink with white text.</p>
+                <code class="code-label">#feedback_button | a.glossary | .glossaryTip</code>
             </div>
         </section>
 
