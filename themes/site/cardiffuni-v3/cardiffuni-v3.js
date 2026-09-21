@@ -83,21 +83,104 @@
         }
     }
 
+    // A link to a section jumps before the images above it have finished loading. They then push
+    // the target down, leaving the page short of it - far enough on an image-heavy page to leave
+    // the section menu highlighting a section or two earlier. Keep putting the target where it
+    // belongs until the layout stops moving, and stop the moment the reader scrolls themselves.
+    var attemptsLeft = 0;
+    var targetTimer = null;
+    var readerMoved = false;
+    var ourScroll = false;
+
+    function wantedScrollTop(target) {
+        var top = window.pageYOffset + target.getBoundingClientRect().top;
+        return Math.max(0, Math.round(top - (stickyNavHeight() + GAP)));
+    }
+
+    function settleOnTarget() {
+        var id = window.location.hash.slice(1);
+        var target = id ? document.getElementById(id) : null;
+        if (!target || !target.offsetHeight) {
+            return;
+        }
+        var wanted = wantedScrollTop(target);
+        if (Math.abs(window.pageYOffset - wanted) > 2) {
+            ourScroll = true;
+            // The theme scrolls smoothly, and both scrollTo() and its 'auto' behaviour defer to
+            // that, which would start a second animation on top of the one just finishing. Turn
+            // smoothing off for this correction so the page simply arrives.
+            var scroller = document.scrollingElement || document.documentElement;
+            var previous = scroller.style.scrollBehavior;
+            scroller.style.scrollBehavior = 'auto';
+            window.scrollTo(0, wanted);
+            scroller.style.scrollBehavior = previous;
+            window.setTimeout(function () { ourScroll = false; }, 60);
+        }
+        apply();
+    }
+
+    // The theme scrolls smoothly, so a jump takes a moment to arrive and the position keeps
+    // changing while it does. Correcting mid-flight would fight the animation, so wait for the
+    // page to hold still, then put the target where it belongs.
+    var lastSeenY = -1;
+
+    function tick() {
+        if (readerMoved || attemptsLeft <= 0) {
+            return;
+        }
+        attemptsLeft -= 1;
+        var y = Math.round(window.pageYOffset);
+        if (Math.abs(y - lastSeenY) > 1) {
+            lastSeenY = y;           // still moving: let the animation finish
+        } else {
+            settleOnTarget();
+            lastSeenY = Math.round(window.pageYOffset);
+        }
+        targetTimer = window.setTimeout(tick, 200);
+    }
+
+    function startSettling() {
+        readerMoved = false;
+        lastSeenY = -1;
+        attemptsLeft = 25; // about five seconds, long enough for a page of screenshots to load
+        window.clearTimeout(targetTimer);
+        tick();
+    }
+
+    function readerTookOver() {
+        if (!ourScroll) {
+            readerMoved = true;
+            window.clearTimeout(targetTimer);
+        }
+    }
+
+    window.addEventListener('wheel', readerTookOver, { passive: true });
+    window.addEventListener('touchstart', readerTookOver, { passive: true });
+    window.addEventListener('keydown', readerTookOver);
+
     var pending = null;
     function schedule() {
         window.clearTimeout(pending);
         pending = window.setTimeout(apply, 150);
     }
 
+
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', schedule);
     } else {
         schedule();
     }
-    window.addEventListener('load', schedule);
+    window.addEventListener('load', function () {
+        schedule();
+        startSettling(); // a link followed on load lands properly once the images are in
+    });
     window.addEventListener('resize', schedule);
-    window.addEventListener('hashchange', schedule); // the player swaps pages without reloading
+    window.addEventListener('hashchange', function () {
+        schedule();       // the player swaps pages without reloading
+        startSettling();
+    });
 
     // A host or a test can force a recalculation after changing the layout.
-    window.cardiffuniV3 = { apply: apply };
+    window.cardiffuniV3 = { apply: apply, settleOnTarget: settleOnTarget, startSettling: startSettling };
 })();

@@ -172,6 +172,19 @@ CHECKS = [
      "window.cardiffuniV3.apply();var withBar=window.__spy.options.offset;"
      "w.style.position='';w.style.top='';window.cardiffuniV3.apply();"
      "return String(withBar > window.__spy.options.offset)})()", "true"),
+    # The theme scrolls smoothly. A correction issued with scrollTo(), or with behaviour 'auto',
+    # defers to that and starts a second animation instead of arriving, so a link followed while
+    # images were still loading never reached its section (reported 21 September 2026).
+    ("stickynav", "the script corrects a landing instantly, not with a second animation",
+     "(function(){var e=document.scrollingElement||document.documentElement;"
+     "var before=getComputedStyle(e).scrollBehavior;"
+     "document.body.style.minHeight='4000px';"
+     "var sec=document.getElementById('test-section');"
+     "location.hash='#test-section';window.cardiffuniV3.settleOnTarget();"
+     "var landed=Math.round(window.pageYOffset);"
+     "var wanted=Math.round(sec.getBoundingClientRect().top+window.pageYOffset-16);"
+     "location.hash='';document.body.style.minHeight='';window.scrollTo(0,0);"
+     "return String(Math.abs(landed-wanted)<=2)})()", "true"),
 ]
 
 
