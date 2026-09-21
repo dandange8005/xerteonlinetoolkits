@@ -18,6 +18,13 @@
 
     var GAP = 16; // --cu-space-4: breathing room below the bar
 
+    // Sections carry scroll-margin-top of the same size, so a link lands with the heading exactly
+    // GAP below the bar. That puts the spy's threshold precisely on the section's stored offset,
+    // and the browser rounding the scroll position down by a fraction of a pixel is enough to
+    // leave the previous item highlighted until the reader nudges the page. A few pixels of slack
+    // keeps the clicked section selected on arrival.
+    var SLACK = 8;
+
     // The player makes one of two elements sticky, depending on where the author put the page
     // menu: #topnav itself when it sits above the header, or the #pageLinks wrapper it is moved
     // into when the author sets navbarPos=below (application.js). Measure whichever one is
@@ -66,7 +73,7 @@
         }
         var spy = $('body').data('scrollspy');
         if (spy && spy.options) {
-            spy.options.offset = height + GAP;
+            spy.options.offset = height + GAP + SLACK;
             if (typeof spy.refresh === 'function') {
                 spy.refresh();
             }

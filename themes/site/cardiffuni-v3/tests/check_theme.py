@@ -160,6 +160,18 @@ CHECKS = [
      "m.style.top='65px';w.style.position='sticky';w.style.top='0';window.cardiffuniV3.apply();"
      "var ok=m.style.top!=='65px'&&parseFloat(m.style.top)>0;"
      "w.style.position='';w.style.top='';window.cardiffuniV3.apply();m.style.top='';return String(ok)})()", "true"),
+    # A section link lands with the heading scroll-margin-top below the top of the window. If the
+    # spy switched exactly there, a sub-pixel rounding of the scroll position left the previous
+    # item highlighted until the reader nudged the page (reported 21 September 2026).
+    ("stickynav", "spy switches before a link's landing point, not exactly on it",
+     "(function(){window.cardiffuniV3.apply();"
+     "var margin=parseFloat(cs('#test-section','scrollMarginTop'));"
+     "return String(window.__spy.options.offset - margin)})()", "8"),
+    ("stickynav", "the spy offset follows the sticky bar too",
+     "(function(){var w=document.getElementById('pageLinks');w.style.position='sticky';w.style.top='0';"
+     "window.cardiffuniV3.apply();var withBar=window.__spy.options.offset;"
+     "w.style.position='';w.style.top='';window.cardiffuniV3.apply();"
+     "return String(withBar > window.__spy.options.offset)})()", "true"),
 ]
 
 
