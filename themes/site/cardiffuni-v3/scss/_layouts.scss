@@ -315,12 +315,15 @@ section {
   }
 
   // Bootstrap pins the section menu to the viewport once it scrolls past (.affix). Hold it
-  // clear of the sticky page menu, and let a long menu scroll instead of being cut off.
-  // --cu-sticky-nav is published by cardiffuni-v3.js and is 0px when the bar is not sticky.
+  // clear of the sticky page menu; --cu-sticky-nav is published by cardiffuni-v3.js and is 0px
+  // when the bar is not sticky.
+  //
+  // Deliberately no max-height or overflow here. The player already handles a menu taller than
+  // the window: fixSideBar() adds .staticPosition so it scrolls with the page at full height.
+  // Capping the height broke that twice over - it gave the menu its own scrollbar, and because
+  // fixSideBar() measures the menu, the cap made a long menu look short enough to pin.
   &.affix {
     top: calc(var(--cu-sticky-nav, 0px) + var(--cu-space-6));
-    max-height: calc(100vh - var(--cu-sticky-nav, 0px) - var(--cu-space-12));
-    overflow-y: auto;
   }
 
   a:hover .icon-chevron-right {

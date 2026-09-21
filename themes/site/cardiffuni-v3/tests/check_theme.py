@@ -121,7 +121,8 @@ CHECKS = [
     # the fallbacks that apply when it is absent or the bar is not sticky.
     ("focus", "sections carry a scroll margin for the sticky page menu", "cs('#test-section','scrollMarginTop')", "16px"),
     ("frame", "affixed section menu clears the top of the viewport", "cs('#toc-affixed','top')", "24px"),
-    ("frame", "affixed section menu scrolls instead of being cut off", "cs('#toc-affixed','overflowY')", "auto"),
+    ("frame", "affixed section menu is not capped: the player makes a long one static instead",
+     "cs('#toc-affixed','maxHeight') + ' ' + cs('#toc-affixed','overflowY')", "none visible"),
     # Xerte marks a page section's heading with .sectionTitle; it should read as the design
     # system's section heading (h2), not a lighter red variant of it.
     ("headings", "section title is ink, not red", "cs('#section-title','color')", "rgb(18, 18, 18)"),
