@@ -344,6 +344,14 @@ CHECKS = [
     ("tables", "the wrapper scrolls sideways", "cs('#tbl-scroll','overflowX')", "auto"),
     ("tables", "a wrapped narrow table still fills the wrapper",
      "String(Math.abs(document.getElementById('tbl-narrow').getBoundingClientRect().width-document.getElementById('tbl-scroll-narrow').clientWidth)<=1)", "true"),
+    # Cards (21 September 2026): only the heading is smaller. --font-size-2xl is
+    # clamp(1.5rem, 1.30rem + 1vw, 1.75rem), which is 28px at the fixture's 1280px width.
+    ("cards", "card heading uses the 2xl size", "cs('#card-heading','fontSize')", "28px"),
+    ("cards", "the clickable card's plain h3 matches", "cs('#card-heading-link','fontSize')", "28px"),
+    ("cards", "card heading is smaller than a plain component heading",
+     "String(parseFloat(cs('#card-heading','fontSize'))<parseFloat(cs('#plain-h3','fontSize')))", "true"),
+    ("cards", "a component heading outside a card keeps its size", "cs('#plain-h3','fontSize')", "30px"),
+    ("cards", "card description keeps the reading size", "cs('#card-desc','fontSize')", "18px"),
     ("tables", "the scroll wrapper shows the theme's focus ring when focused",
      "(function(){var b=document.querySelector('#tbl-scroll'),previous=document.activeElement;b.focus({preventScroll:true});"
      "var s=getComputedStyle(b),result=(document.activeElement===b && b.matches(':focus-visible'))+' '+s.outlineStyle+' '+s.outlineWidth+' '+s.outlineOffset+' '+s.outlineColor;"

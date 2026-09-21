@@ -1942,6 +1942,9 @@ a.glossary:active {
 .card__heading, .card__metadata, .card__description {
   margin-bottom: var(--spacing-md);
 }
+.card__heading, .card__content h3 {
+  font-size: var(--font-size-2xl);
+}
 .card__link {
   position: initial;
 }
