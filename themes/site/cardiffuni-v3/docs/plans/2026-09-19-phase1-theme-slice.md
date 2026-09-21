@@ -1,5 +1,7 @@
 # cardiffuni-v3 Phase 1 (Theme Slice) Implementation Plan
 
+> **Historical implementation plan.** Phase 1 was implemented on 19–21 September 2026. Unchecked steps below are retained as original instructions, not an outstanding task list. The test round superseded the white-navbar/unchanged-red constraints with an approved charcoal navbar and red-rule sidebar selection. Current status and next work are in [the follow-up checklist](2026-09-21-follow-up.md).
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Bring the `cardiffuni-v3` Xerte theme up to the Cardiff Resource Design System v1.3 far enough to build the first Assessment Menu pages: generated tokens, corrected colour roles, rules, the seven callouts, and a white header, navbar and sidebar.

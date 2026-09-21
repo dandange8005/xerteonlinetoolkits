@@ -1,417 +1,126 @@
-# Cardiff University v2 - Theming Guide
+# Cardiff University v3 theming guide
 
-This guide explains how to customize the Cardiff University v2 theme for your own branding or project needs.
+The current design-system baseline is v1.4. Read [migration status](MIGRATION.md) before
+extending unfinished components, and use the [author guide](demos/index.html) for HTML examples.
 
----
+## Source ownership
 
-## Table of Contents
+| Source | Responsibility |
+| --- | --- |
+| Design-system `DESIGN.md` | Colour roles, typography and component intent |
+| Design-system `v1/tokens.css` | Canonical `--cu-*` tokens |
+| `scss/_cu-tokens.scss` | Generated copy at `:root`; do not edit directly |
+| `scss/_allvariables.scss` | Compatibility aliases to shared roles, plus Xerte-only component settings |
+| Other `scss/` modules | Xerte layout and component implementation |
 
-1. [Token Architecture](#token-architecture)
-2. [Changing Brand Colors](#changing-brand-colors)
-3. [Typography Customization](#typography-customization)
-4. [Component Customization](#component-customization)
-5. [Creating Theme Variants](#creating-theme-variants)
-6. [Adding Custom Components](#adding-custom-components)
-7. [Development Workflow](#development-workflow)
+The design-system folder lives in the vault under
+`10 Projects 📋/11 Work Projects/🎨 Cardiff University Design System/design-system/`.
+For shared token changes, edit its source and run its `sync-theme.py`, then compile the theme.
+Do not substitute `cardiff-design.json` for that source; it is a legacy asset awaiting review.
 
----
+## Project overrides
 
-## Token Architecture
-
-This theme uses a **hybrid two-layer architecture**:
-
-| Layer | File | Purpose |
-|-------|------|---------|
-| **Primitives** | `_tokens.scss` | Raw brand values (SCSS variables) |
-| **Semantics** | `_allvariables.scss` | Runtime tokens (CSS custom properties) |
-
-### Why Two Layers?
-
-- **Primitives** are compile-time values — perfect for Sass functions and breakpoints
-- **Semantics** are runtime values — can be changed without recompiling, great for theming
-
-### Token Flow
-
-```
-_tokens.scss (primitives)
-    ↓
-$token-color-brand-primary: #E4251B;
-    ↓
-_allvariables.scss (semantics)
-    ↓
---color-brand-primary: #{t.$token-color-brand-primary};
-    ↓
-Components use: var(--color-brand-primary)
-```
-
----
-
-## Changing Brand Colors
-
-### Option 1: CSS Override (No Recompile)
-
-Add a `<style>` block or separate CSS file:
+Load project CSS after the theme. New rules should use semantic `--cu-*` roles:
 
 ```css
-:root {
-  /* Primary brand color */
-  --color-brand-primary: #0066CC;
-  
-  /* Secondary/dark color */
-  --color-brand-secondary: #003366;
-  
-  /* Accent colors */
-  --color-accent-green: #228B22;
-  --color-accent-blue: #1E90FF;
+.project-note {
+  color: var(--cu-ink);
+  background: var(--cu-surface);
+  border-left: 4px solid var(--cu-border);
+  padding: var(--cu-space-6);
 }
 ```
 
-This immediately affects all components using these variables.
+For a project-wide adjustment, override the shared role **once at `:root`**, after the
+theme. Existing aliases follow it automatically:
 
-### Option 2: Edit Primitive Tokens (Recompile Required)
-
-Edit `scss/_tokens.scss`:
-
-```scss
-// Change these values to your brand colors
-$token-color-brand-primary: #0066CC;    // Your primary color
-$token-color-brand-secondary: #003366;  // Your secondary color
-$token-color-brand-white: #FFFFFF;
-$token-color-brand-light: #f9fafb;
+```css
+:root {
+  --cu-body: system-ui, sans-serif;
+  --cu-text-body: 19px;
+}
 ```
 
-Then recompile:
+This updates reading copy through `--font-size-body` as well as any new rules that use
+`--cu-text-body` directly. You do not need to redeclare `--font-family-primary` or
+`--font-size-body`. Apply the same approach to shared spacing, heading sizes, weights,
+control radius, shadows and motion roles.
+
+```text
+Design-system v1/tokens.css
+    → generated _cu-tokens.scss (--cu-* roles)
+        → newer theme rules
+        → _allvariables.scss (existing names) → existing components
+```
+
+`_tokens.scss` has been removed: it had no genuine Sass-only consumers. Its shared values
+are now aliases; settings without a shared role live directly in `_allvariables.scss`.
+These include intermediate utility weights, extra line-height steps, structural zero radii,
+border widths, control dimensions, z-indexes and the existing outline-button tint.
+Component geometry is not automatically a spacing role just because its number matches one.
+
+| To change | Override at `:root` |
+| --- | --- |
+| Brand marks | `--cu-red` |
+| Primary action and hover | `--cu-action`, `--cu-action-hover` |
+| Reading copy and font | `--cu-text-body`, `--cu-body` |
+| Display, section and component headings | `--cu-text-display`, `--cu-text-section`, `--cu-text-component` |
+| Shared spacing step | `--cu-space-4`, etc. |
+| Control corners | `--cu-radius` (structural panels remain square) |
+| Overlay shadow | `--cu-shadow-lg`, etc. |
+| Fast motion | `--cu-fast`, `--cu-ease` |
+| Xerte-only focus geometry | `--focus-ring-width`, `--focus-ring-offset` |
+
+Existing local overrides of names such as `--font-size-body` still work for their existing
+consumers. Prefer the shared roles when the change should reach both old and new components.
+Subtree theme switching is not this adapter's supported workflow: inherited aliases resolve
+where declared, so a subtree override can need additional local alias declarations.
+For an optional page-wide variant, use `:root[data-theme="variant-name"]` and set that
+attribute on `<html>`; a `data-theme` attribute alone does not activate any built-in variant.
+
+To create another institution's theme, fork the theme, provide a separate token source and
+review its full palette and role mapping. Do not change Cardiff's canonical source or its
+generated copy just to recolour that fork. Brand marks, action, error and callout roles are
+separate decisions, so changing `--cu-red` alone is not a complete rebrand. Cardiff logos
+and other identity assets also need replacing. Alternate brands and dark mode are not
+validated features of this migration.
+
+For shared Cardiff changes, update the canonical design-system source and regenerate it.
+The theme does not redefine `--cu-*` values in its adapter. The default fonts remain system
+and Franklin Gothic fallback stacks, with no web-font fetch.
+
+## Build and checks
+
+Run from this folder:
 
 ```bash
-sass cardiffuni-v2.scss cardiffuni-v2.css --source-map
+npx -y sass@1 cardiffuni-v3.scss cardiffuni-v3.css --source-map
+python3 tests/check_theme.py
+python3 tools/build-reference.py
+python3 tools/build-reference.py --check
+python3 tools/build-reference.py --coverage
+git diff --check
 ```
 
----
-
-## Typography Customization
-
-### Font Families
-
-**Option 1: CSS Override**
-
-```css
-:root {
-  --font-family-primary: "Your Sans Font", -apple-system, sans-serif;
-  --font-family-secondary: "Your Serif Font", Georgia, serif;
-}
-```
-
-**Option 2: Edit Tokens**
-
-In `_tokens.scss`:
-
-```scss
-$token-font-family-primary: "Your Font", -apple-system, sans-serif;
-$token-font-family-secondary: "Your Serif", Georgia, serif;
-```
-
-Don't forget to load your custom font:
-
-```scss
-// In cardiffuni-v2.scss, update the Google Fonts import:
-@import url('https://fonts.googleapis.com/css2?family=Your+Font:wght@300;400;500;600;700&display=swap');
-```
-
-### Font Sizes
-
-The theme uses fluid typography with `clamp()`. To adjust:
-
-```css
-:root {
-  /* Base size (affects all relative sizes) */
-  --font-size-base: clamp(0.9375rem, 0.85rem + 0.4vw, 1.0625rem);
-  
-  /* Individual sizes */
-  --font-size-lg: clamp(1.125rem, 1.00rem + 0.625vw, 1.25rem);
-  --font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);
-}
-```
-
----
-
-## Component Customization
-
-### Buttons
-
-Button tokens are centralized in `_allvariables.scss`:
-
-```css
-:root {
-  /* Primary button */
-  --btn-primary-bg: var(--color-brand-primary);
-  --btn-primary-text: var(--color-white);
-  --btn-primary-hover-bg: color-mix(in srgb, var(--color-brand-primary) 85%, black);
-  
-  /* Button sizing */
-  --btn-padding-x: var(--spacing-4);
-  --btn-padding-y: var(--spacing-2);
-  --btn-border-radius: var(--radius-md);
-}
-```
-
-### Links
-
-```css
-:root {
-  --color-link-default: #0645AD;
-  --color-link-hover: color-mix(in srgb, var(--color-link-default) 70%, black);
-  --color-link-visited: #551A8B;
-}
-```
-
-### Alerts
-
-Override alert colors via status tokens:
-
-```css
-:root {
-  --color-status-success: #07873E;
-  --color-status-warning: #E9761E;
-  --color-status-error: #E4251B;
-  --color-status-info: #1E90FF;
-}
-```
-
----
-
-## Creating Theme Variants
-
-### Dark Mode
-
-Add to your CSS or create a separate file:
-
-```css
-[data-theme="dark"] {
-  --color-bg-body: #1a1a1a;
-  --color-bg-page: #121212;
-  --color-bg-subtle: #2a2a2a;
-  
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #b0b0b0;
-  --color-text-inverse: #121212;
-  
-  --color-link-default: #6DB3F2;
-  --color-link-hover: #8CC4F5;
-  
-  --color-border-default: #404040;
-}
-```
-
-Apply with:
-
-```html
-<html data-theme="dark">
-```
-
-Or toggle with JavaScript:
-
-```javascript
-document.documentElement.setAttribute('data-theme', 'dark');
-```
-
-### High Contrast Mode
-
-```css
-[data-theme="high-contrast"] {
-  --color-bg-body: #000000;
-  --color-bg-page: #000000;
-  --color-text-primary: #FFFFFF;
-  
-  --color-brand-primary: #FFFF00;
-  --color-link-default: #00FFFF;
-  
-  --focus-ring-width: 4px;
-  --border-width-1: 2px;
-}
-```
-
-### Alternative Institution
-
-```css
-[data-theme="swansea"] {
-  --color-brand-primary: #003B5C;    /* Swansea blue */
-  --color-brand-secondary: #00263E;
-  --font-family-primary: "Raleway", sans-serif;
-}
-```
-
----
-
-## Adding Custom Components
-
-### Step 1: Create Component File
-
-Create `scss/components/_mycomponent.scss`:
-
-```scss
-/**
- * My Custom Component
- */
-
-.my-component {
-  padding: var(--spacing-md);
-  background: var(--color-bg-subtle);
-  border-radius: var(--radius-md);
-  border-left: 4px solid var(--color-brand-primary);
-  
-  &__title {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--spacing-sm);
-  }
-  
-  &__content {
-    font-size: var(--font-size-base);
-    line-height: var(--line-height-relaxed);
-  }
-  
-  // Variant
-  &--highlight {
-    background: color-mix(in srgb, var(--color-brand-primary) 10%, white);
-  }
-}
-```
-
-### Step 2: Import in _custom-components.scss
-
-```scss
-@use "components/mycomponent";
-```
-
-### Step 3: Recompile
-
-```bash
-sass cardiffuni-v2.scss cardiffuni-v2.css --source-map
-```
-
----
-
-## Development Workflow
-
-### Watch Mode
-
-Auto-compile on save:
-
-```bash
-sass --watch cardiffuni-v2.scss:cardiffuni-v2.css --source-map
-```
-
-### VS Code Live Sass Compiler
-
-Configure in `.vscode/settings.json`:
-
-```json
-{
-  "liveSassCompile.settings.formats": [
-    {
-      "format": "expanded",
-      "extensionName": ".css",
-      "savePath": null
-    }
-  ],
-  "liveSassCompile.settings.generateMap": true
-}
-```
-
-### Testing Changes
-
-1. Open demo pages in browser: `demos/index.html`
-2. Use browser DevTools to test CSS variable changes in real-time
-3. Once satisfied, update tokens and recompile
-
-### Production Build
-
-Minified output:
-
-```bash
-sass cardiffuni-v2.scss cardiffuni-v2.min.css --style=compressed --no-source-map
-```
-
----
-
-## Key CSS Variables Reference
-
-### Colors
-
-| Variable | Purpose |
-|----------|---------|
-| `--color-brand-primary` | Main brand color |
-| `--color-brand-secondary` | Secondary/dark color |
-| `--color-text-primary` | Main text color |
-| `--color-text-inverse` | Text on dark backgrounds |
-| `--color-bg-body` | Page background |
-| `--color-bg-page` | Content area background |
-| `--color-link-default` | Link color |
-
-### Typography
-
-| Variable | Purpose |
-|----------|---------|
-| `--font-family-primary` | Main font |
-| `--font-family-secondary` | Accent/heading font |
-| `--font-size-base` | Base text size |
-| `--font-size-lg` through `--font-size-4xl` | Larger sizes |
-| `--line-height-normal` | Standard line height (1.5) |
-
-### Spacing
-
-| Variable | Value |
-|----------|-------|
-| `--spacing-1` | 4px |
-| `--spacing-2` | 8px |
-| `--spacing-4` | 16px |
-| `--spacing-6` | 24px |
-| `--spacing-8` | 32px |
-
-### Borders & Shadows
-
-| Variable | Purpose |
-|----------|---------|
-| `--radius-sm` | Small corners (4px) |
-| `--radius-md` | Medium corners (8px) |
-| `--radius-lg` | Large corners (12px) |
-| `--shadow-sm` | Subtle shadow |
-| `--shadow-md` | Medium shadow |
-
----
-
-## Troubleshooting
-
-### Colors Not Updating
-
-1. Check browser cache — hard refresh (Cmd+Shift+R)
-2. Verify CSS is recompiled if editing SCSS
-3. Check for typos in variable names
-4. Ensure CSS file is loading after Bootstrap
-
-### `color-mix()` Not Working
-
-Requires modern browsers. Check [caniuse.com/color-mix](https://caniuse.com/mdn-css_types_color_color-mix).
-
-For legacy support, define fallback values:
-
-```scss
-.button {
-  background: #E4251B; /* Fallback */
-  background: var(--btn-primary-bg);
-}
-```
-
-### Fonts Not Loading
-
-1. Check Google Fonts URL is correct
-2. Verify font weights match what you're using
-3. Check network tab for 404 errors
-
----
-
-## Need Help?
-
-- Review demo pages for usage examples
-- Check `XERTE_THEME_STANDARDIZATION_GUIDE.md` for architectural details
-- Contact: [@dandange8005](https://github.com/dandange8005)
+The Chrome runner defaults to macOS Google Chrome. Set `CHROME` to another Chrome binary
+when needed. Named groups such as `focus`, `headings` and `stickynav` can be passed to the
+runner for focused checks. The fixture uses selected player styles and a jQuery/scrollspy
+stub; it does not replace a test in the real player. Resize observer delivery is explicitly
+triggered in the fixture to avoid virtual-time rendering ambiguity; native delivery still
+needs a real-player check. Coverage currently counts class mentions
+as well as examples, so a clean coverage report is not proof that every class is demonstrated.
+
+Commit both compiled CSS and the source map with SCSS changes. Regenerate the reference
+after changes that affect it. Hard-refresh the Docker player to inspect the result.
+
+## Adding a component
+
+Add its SCSS module under `scss/components/`, import it from `_custom-components.scss`,
+and provide an example in the author guide. Use existing roles rather than inventing new
+colour values. Check keyboard focus, narrow widths, zoom, long labels and editor save/reopen
+behaviour where applicable. Keep project-specific interactive patterns in project code unless
+there is an explicit decision to make them shared theme features.
+
+Record player and export results in `docs/test-rounds/`, including browser, date and any
+untested paths. Follow [the release checklist](docs/plans/2026-09-21-follow-up.md) for the
+remaining migration and sign-off work.

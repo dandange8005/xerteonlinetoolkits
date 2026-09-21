@@ -1,12 +1,15 @@
-> **Kept for the record.** This is the whole-branch review of
-> `feature/cardiffuni-v3-ds-v1.3`, run on 20 September 2026 before the branch was considered
-> finished. The Important findings were fixed the same day (commit `9ca3786`), as was I3, the
-> section menu's height cap (`f241986`). The Minor findings below are **still open** and are the
-> best starting list for the next tidy-up: the stale `#7F140E` focus fallbacks, the `v1.3`/`v1.4`
-> drift in `MIGRATION.md`, and the two checks that pass vacuously are the ones worth doing first.
+> **Historical review, with follow-up status updated 21 September 2026.**
+> Important findings I1, I2, I4–I6 were addressed in `9ca3786`; I3 was addressed in
+> `f241986`. The subsequent JavaScript findings were addressed in `79fcdeb`, then
+> smooth scrolling was removed in `4def076`.
 >
-> A second review by Codex on 21 September found three further issues in the theme script, all
-> fixed in `79fcdeb`.
+> The 21 September tidy-up addresses Minor 1–8: unused breakpoints, stale comments,
+> focus fallbacks, current version documentation, colour comparison, missing-element
+> checks, focused-control checking and the fixture scope note. The tick/cross classes
+> are now explicitly listed as legacy with a warning. These changes are recorded with
+> the token consolidation in this branch. Minor 9–13 remain open; see the
+> [follow-up checklist](../plans/2026-09-21-follow-up.md). The original review below is
+> preserved verbatim; its “Needs work” verdict describes the reviewed commit, not today's tree.
 
 # Final review — `feature/cardiffuni-v3-ds-v1.3`
 

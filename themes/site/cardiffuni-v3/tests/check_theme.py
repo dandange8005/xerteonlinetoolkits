@@ -8,6 +8,7 @@ Exit code 1 if any selected check fails.
 """
 import html
 import json
+import os
 import re
 import subprocess
 import sys
@@ -15,7 +16,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 FIXTURE = HERE / "fixture.html"
-CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
 # (group, name, JavaScript expression evaluated in the fixture, expected string)
 CHECKS = [
@@ -99,7 +100,7 @@ CHECKS = [
     ("frame", "last sidebar item has no rule below the frame", "cs('#toc > li:last-child > a','borderBottomWidth')", "0px"),
     ("frame", "selected sidebar item has a 4px red left rule", "cs('#toc > li.active > a','borderLeftWidth')", "4px"),
     ("frame", "selected sidebar left rule is brand red", "cs('#toc > li.active > a','borderLeftColor')", "rgb(228, 37, 27)"),
-    ("frame", "selected sidebar item sits on a pale red wash", "cs('#toc > li.active > a','backgroundColor')", "color(srgb 0.993647 0.948706 0.946353)"),
+    ("frame", "selected sidebar item sits on a pale red wash", "String(cs('#toc > li.active > a','backgroundColor') === v('color-mix(in srgb, var(--cu-red) 6%, var(--cu-bg))','backgroundColor'))", "true"),
     ("frame", "selected sidebar text is ink, not white on red", "cs('#toc > li.active > a','color')", "rgb(18, 18, 18)"),
     ("frame", "selected and unselected sidebar text line up", "(function(){var a=document.querySelector('#toc > li.active > a'),b=document.querySelector('#toc > li:nth-child(2) > a');return String(getComputedStyle(a).paddingLeft===getComputedStyle(b).paddingLeft&&getComputedStyle(a).borderLeftWidth===getComputedStyle(b).borderLeftWidth)})()", "true"),
     # The base template clears floats with `section { overflow: auto }` (custom.css), which also
@@ -109,8 +110,8 @@ CHECKS = [
     ("focus", "float containment still works (section is as tall as its float)",
      "(function(){var s=document.querySelector('#test-section');return String(s.getBoundingClientRect().height>=60)})()", "true"),
     ("focus", "focus ring is 2px, offset 4px, ink",
-     "(function(){var b=document.querySelector('#focus-btn');b.style.outline='var(--focus-ring)';b.style.outlineOffset='var(--focus-ring-offset)';"
-     "var s=getComputedStyle(b);return s.outlineWidth+' '+s.outlineOffset+' '+s.outlineColor})()", "2px 4px rgb(18, 18, 18)"),
+     "(function(){var b=document.querySelector('#focus-btn'),previous=document.activeElement;b.focus({preventScroll:true});"
+     "var s=getComputedStyle(b),result=(document.activeElement===b && b.matches(':focus-visible'))+' '+s.outlineStyle+' '+s.outlineWidth+' '+s.outlineOffset+' '+s.outlineColor;previous.focus({preventScroll:true});if(document.activeElement===b)b.blur();return result})()", "true solid 2px 4px rgb(18, 18, 18)"),
     # Test round 1: the toggle overflowed the bar and the header painted over the overflow.
     # Forcing it taller than the bar proves the bar now grows to contain it.
     ("frame", "navbar toggle stays inside the bar, even when taller than it",
@@ -172,24 +173,29 @@ CHECKS = [
      "window.cardiffuniV3.apply();var withBar=window.__spy.options.offset;"
      "w.style.position='';w.style.top='';window.cardiffuniV3.apply();"
      "return String(withBar > window.__spy.options.offset)})()", "true"),
-    # The theme scrolls smoothly. A correction issued with scrollTo(), or with behaviour 'auto',
-    # defers to that and starts a second animation instead of arriving, so a link followed while
-    # images were still loading never reached its section (reported 21 September 2026).
+    # A host can enable smooth scrolling even though the theme no longer does.
+    # Corrections must still land instantly and restore the host setting.
     ("stickynav", "the script corrects a landing instantly, not with a second animation",
      "(function(){var e=document.scrollingElement||document.documentElement;"
-     "var before=getComputedStyle(e).scrollBehavior;"
+     "var before=e.style.scrollBehavior;e.style.scrollBehavior='smooth';"
      "document.body.style.minHeight='4000px';"
      "var sec=document.getElementById('test-section');"
      "location.hash='#test-section';window.cardiffuniV3.settleOnTarget();"
      "var landed=Math.round(window.pageYOffset);"
      "var wanted=Math.round(sec.getBoundingClientRect().top+window.pageYOffset-16);"
+     "var restored=e.style.scrollBehavior==='smooth';e.style.scrollBehavior=before;"
      "location.hash='';document.body.style.minHeight='';window.scrollTo(0,0);"
-     "return String(Math.abs(landed-wanted)<=2)})()", "true"),
+     "return String(restored && Math.abs(landed-wanted)<=2)})()", "true"),
     # Raised by the Codex review, 21 September 2026.
     # The player renders each page asynchronously and announces it with contentLoaded, and moves
     # between pages with pushState, which fires no hashchange.
     ("stickynav", "the script follows the player's content lifecycle",
-     "String((window.__playerEvents || []).indexOf('contentLoaded') !== -1)", "true"),
+     "(async function(){await new Promise(r=>setTimeout(r,250));"
+     "var n=document.getElementById('topnav');n.style.position='sticky';n.style.top='0';"
+     "document.documentElement.style.setProperty('--cu-sticky-nav','0px');"
+     "try{window.__playerHandlers.contentLoaded();await new Promise(r=>setTimeout(r,250));"
+     "return String(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cu-sticky-nav'))===Math.round(n.getBoundingClientRect().height));}"
+     "finally{n.style.position='';n.style.top='';window.cardiffuniV3.apply();}})()", "true"),
     # Opening the collapsed page menu makes the bar taller without resizing the window.
     ("stickynav", "a bar that changes height is re-measured",
      "(function(){var n=document.getElementById('topnav');n.style.position='sticky';n.style.top='0';"
@@ -199,8 +205,16 @@ CHECKS = [
      "var published=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cu-sticky-nav'));"
      "pad.remove();n.style.position='';n.style.top='';window.cardiffuniV3.apply();"
      "return String(grown > 40 && Math.abs(published - grown) <= 1)})()", "true"),
-    ("stickynav", "the script watches the bar's size, not just the window",
-     "String(typeof window.ResizeObserver === 'function')", "true"),
+    # Deliver the captured observer callback explicitly; virtual time does not guarantee rendering frames.
+    ("stickynav", "resize observer watches both navbar candidates and schedules measurement",
+     "(async function(){await new Promise(r=>setTimeout(r,250));"
+     "var n=document.getElementById('topnav'),pad=document.createElement('div');"
+     "n.style.position='sticky';n.style.top='0';await new Promise(r=>setTimeout(r,250));"
+     "pad.style.height='40px';n.querySelector('.navbar-inner').appendChild(pad);"
+     "try{var observer=window.__resizeObservers.find(o=>o.targets.includes(n) && o.targets.includes(document.getElementById('pageLinks')));"
+     "if(!observer)return 'false';observer.deliver();await new Promise(r=>setTimeout(r,250));"
+     "return String(Math.abs(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cu-sticky-nav'))-n.getBoundingClientRect().height)<=1);}"
+     "finally{pad.remove();n.style.position='';n.style.top='';window.cardiffuniV3.apply();}})()", "true"),
     # Dragging the scrollbar produces no wheel, touch or key event, so it needs its own signal.
     ("stickynav", "dragging the scrollbar stops the script re-landing the page",
      "(function(){location.hash='#test-section';window.cardiffuniV3.startSettling();"
@@ -208,6 +222,30 @@ CHECKS = [
      "window.dispatchEvent(new MouseEvent('mousedown'));"
      "var after=window.cardiffuniV3.state().settling;location.hash='';"
      "return String(before === true && after === false)})()", "true"),
+    # Change the shared source and exercise old aliases and newer consumers together.
+    ("theming", "brand role updates legacy utilities and the new header rule",
+     "withRootTokens({'--cu-red':'rgb(0, 80, 140)'},()=>{const h=document.getElementById('overview'),old=h.style.transition;h.style.transition='none';try{return classStyle('bg-brand','backgroundColor')+' '+cs('#overview','borderTopColor');}finally{h.style.transition=old;}})",
+     "rgb(0, 80, 140) rgb(0, 80, 140)"),
+    ("theming", "spacing source updates legacy gap and section scroll margin",
+     "withRootTokens({'--cu-space-4':'22px'},()=>classStyle('gap-md','gap')+' '+cs('#test-section','scrollMarginTop'))", "22px 22px"),
+    ("theming", "body size follows the shared reading-copy role",
+     "withRootTokens({'--cu-text-body':'21px'},()=>cs('body','fontSize'))", "21px"),
+    ("theming", "all three heading sizes follow shared roles",
+     "withRootTokens({'--cu-text-display':'50px','--cu-text-section':'35px','--cu-text-component':'27px'},()=>"
+     "v('var(--h1-font-size)','fontSize')+' '+cs('#plain-h2','fontSize')+' '+v('var(--h3-font-size)','fontSize'))", "50px 35px 27px"),
+    ("theming", "body font source reaches the theme alias without redeclaring it",
+     "withRootTokens({'--cu-body':'monospace'},()=>cs('body','fontFamily'))", "monospace"),
+    ("theming", "bold weight source reaches legacy utility",
+     "withRootTokens({'--cu-weight-bold':'600'},()=>classStyle('font-bold','fontWeight'))", "600"),
+    ("theming", "control rounding follows shared radius",
+     "withRootTokens({'--cu-radius':'7px'},()=>classStyle('rounded','borderTopLeftRadius')+' '+v('var(--radius-card)','borderTopLeftRadius'))", "7px 0px"),
+    ("theming", "overlay shadow follows shared shadow",
+     "withRootTokens({'--cu-shadow-lg':'1px 2px 3px rgb(1, 2, 3)'},()=>v('var(--shadow-dropdown)','boxShadow'))", "rgb(1, 2, 3) 1px 2px 3px 0px"),
+    ("theming", "fast transition follows shared duration and easing",
+     "withRootTokens({'--cu-fast':'240ms','--cu-ease':'linear'},()=>v('var(--transition-fast)','transition'))", "0.24s linear"),
+    ("theming", "legacy component overrides still work",
+     "withRootTokens({'--font-size-body':'23px'},()=>cs('body','fontSize'))", "23px"),
+
 ]
 
 
@@ -219,13 +257,13 @@ def evaluate(checks):
     try:
         out = subprocess.run(
             [CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files",
-             "--virtual-time-budget=3000", "--window-size=1280,900", "--dump-dom", run_file.as_uri()],
+             "--virtual-time-budget=5000", "--window-size=1280,900", "--dump-dom", run_file.as_uri()],
             capture_output=True, text=True, timeout=90,
         ).stdout
     finally:
         run_file.unlink(missing_ok=True)
     match = re.search(r'<pre id="results">(.*?)</pre>', out, re.S)
-    if not match:
+    if not match or not match.group(1).strip():
         sys.exit("ERROR: the fixture produced no results. Check the Chrome path and the fixture's script.")
     return json.loads(html.unescape(match.group(1)))
 

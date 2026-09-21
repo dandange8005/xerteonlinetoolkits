@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>cardiffuni-v3 checks</title>
+<!-- Relevant player styles in cascade order. Media/plugin styles are omitted; this is not the full player. -->
 <link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/css/bootstrap.css">
 <link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/css/bootstrap-responsive.css">
 <link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/css/custom.css">
@@ -64,9 +65,24 @@
 <script>
 // Minimal stand-in for what the player provides, so the theme script's scroll-spy path runs here.
 window.__spy = { options: { offset: 10 }, refresh: function () {}, process: function () {} };
+window.__playerHandlers = {};
+// Retain native observation, but expose delivery for deterministic checks: Chrome's
+// --virtual-time-budget does not guarantee compositor frames between timer callbacks.
+window.__resizeObservers = [];
+const NativeResizeObserver = window.ResizeObserver;
+window.ResizeObserver = function (callback) {
+  const native = new NativeResizeObserver(callback);
+  const record = { targets: [], deliver: callback };
+  window.__resizeObservers.push(record);
+  return {
+    observe: function (target) { record.targets.push(target); native.observe(target); },
+    unobserve: function (target) { native.unobserve(target); },
+    disconnect: function () { native.disconnect(); }
+  };
+};
 window.jQuery = function () {
   return { data: function () { return window.__spy; },
-           on: function (name) { window.__playerEvents = (window.__playerEvents || []).concat(name); return this; } };
+           on: function (name, callback) { window.__playerEvents = (window.__playerEvents || []).concat(name); window.__playerHandlers[name] = callback; return this; } };
 };
 </script>
 <script src="../cardiffuni-v3.js"></script>
@@ -74,7 +90,8 @@ window.jQuery = function () {
 /*@CHECKS@*/
 function cs(selector, property) {
   var el = document.querySelector(selector);
-  return el ? getComputedStyle(el)[property] : 'MISSING';
+  if (!el) throw new Error('Missing fixture element: ' + selector);
+  return getComputedStyle(el)[property];
 }
 function v(value, property) {
   property = property || 'color';
@@ -87,14 +104,34 @@ function v(value, property) {
 }
 function ps(selector, pseudo, property) {
   var el = document.querySelector(selector);
-  return el ? getComputedStyle(el, pseudo)[property] : 'MISSING';
+  if (!el) throw new Error('Missing fixture element: ' + selector);
+  return getComputedStyle(el, pseudo)[property];
 }
-window.addEventListener('load', function () {
+// Each override check restores exactly the prior inline root declaration.
+function withRootTokens(overrides, check) {
+  const root = document.documentElement;
+  const previous = root.getAttribute('style');
+  try {
+    Object.entries(overrides).forEach(([name, value]) => root.style.setProperty(name, value));
+    return check();
+  } finally {
+    if (previous === null) root.removeAttribute('style');
+    else root.setAttribute('style', previous);
+  }
+}
+function classStyle(classes, property) {
+  const probe = document.createElement('div');
+  probe.className = classes;
+  document.body.appendChild(probe);
+  try { return getComputedStyle(probe)[property]; }
+  finally { probe.remove(); }
+}
+window.addEventListener('load', async function () {
   var results = {};
-  Object.keys(CHECKS).forEach(function (key) {
-    try { results[key] = String(new Function('cs', 'v', 'ps', 'return ' + CHECKS[key])(cs, v, ps)); }
+  for (const key of Object.keys(CHECKS)) {
+    try { results[key] = String(await new Function('cs', 'v', 'ps', 'return ' + CHECKS[key])(cs, v, ps)); }
     catch (e) { results[key] = 'ERROR: ' + e.message; }
-  });
+  }
   document.getElementById('results').textContent = JSON.stringify(results);
 });
 </script>

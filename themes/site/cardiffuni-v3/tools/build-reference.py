@@ -60,6 +60,8 @@ ALLOW_MULTI = {"visually-hidden"}
 
 # Classes the guide deliberately does not teach, with the reason shown to authors where relevant.
 LEGACY = {
+    "list--tick": "Known bug: icons stack on multi-item lists. Use Font Awesome icons per item instead.",
+    "list--cross": "Known bug: icons stack on multi-item lists. Use Font Awesome icons per item instead.",
     "action-link": "Legacy. Kept so older resources keep working; use link-action in new content.",
     "c10": "Legacy System 2 column width.", "c20": "Legacy System 2 column width.",
     "c30": "Legacy System 2 column width.", "c40": "Legacy System 2 column width.",
@@ -209,7 +211,7 @@ def render_tables(utils):
         for c, why in sorted(LEGACY.items()))
     blocks.append(f"""            <div class="demo-block demo-block--highlight">
                 <div class="demo-block__title">Legacy classes &mdash; do not use in new content</div>
-                <p class="demo-block__description">These still work so that older resources keep rendering. Do not reach for them when writing something new.</p>
+                <p class="demo-block__description">These classes remain for older resources; known limitations and replacements are listed below. Do not use them in new content.</p>
                 <table>
                     <thead>
                         <tr><th>Class</th><th>Why it is here</th></tr>

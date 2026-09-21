@@ -63,7 +63,7 @@ ul.nav-tabs {
 
 // Tab links - focus-visible state (keyboard navigation)
 .nav-tabs>li>a:focus-visible {
-    outline: var(--focus-ring, 2px solid #7F140E);
+    outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
     outline-offset: var(--focus-ring-offset, 2px);
     border-radius: var(--radius-sm);
 }
@@ -142,7 +142,7 @@ ul.nav-pills {
 
 // Pill links - focus-visible state (keyboard navigation)
 .nav-pills>li>a:focus-visible {
-    outline: var(--focus-ring, 2px solid #7F140E);
+    outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
     outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -276,7 +276,7 @@ a.accordion-toggle:focus {
 
 // Accordion - focus-visible state (keyboard navigation)
 a.accordion-toggle:focus-visible {
-    outline: var(--focus-ring, 2px solid #7F140E);
+    outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
     outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -390,7 +390,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
 // Carousel control - focus-visible state (keyboard navigation)
 .carousel-control:focus-visible {
-    outline: var(--focus-ring, 2px solid #7F140E);
+    outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
     outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -654,7 +654,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
             }
 
             &:focus-visible {
-                outline: var(--focus-ring, 2px solid #7F140E);
+                outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
                 outline-offset: 2px;
                 border-radius: var(--radius-sm);
             }

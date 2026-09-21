@@ -547,7 +547,7 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
                             <tr><td><code>.pointer-events-auto</code></td><td>pointer-events: auto</td></tr>
                             <tr><td><code>.pointer-events-none</code></td><td>pointer-events: none</td></tr>
                             <tr><td><code>.shadow</code></td><td>box-shadow: none</td></tr>
-                            <tr><td><code>.shadow-lg</code></td><td>box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)</td></tr>
+                            <tr><td><code>.shadow-lg</code></td><td>box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05)</td></tr>
                             <tr><td><code>.shadow-md</code></td><td>box-shadow: none</td></tr>
                             <tr><td><code>.shadow-none</code></td><td>box-shadow: none</td></tr>
                             <tr><td><code>.shadow-sm</code></td><td>box-shadow: none</td></tr>
@@ -561,7 +561,7 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
 
             <div class="demo-block demo-block--highlight">
                 <div class="demo-block__title">Legacy classes &mdash; do not use in new content</div>
-                <p class="demo-block__description">These still work so that older resources keep rendering. Do not reach for them when writing something new.</p>
+                <p class="demo-block__description">These classes remain for older resources; known limitations and replacements are listed below. Do not use them in new content.</p>
                 <table>
                     <thead>
                         <tr><th>Class</th><th>Why it is here</th></tr>
@@ -575,6 +575,8 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
                             <tr><td><code>.c60</code></td><td>Legacy System 2 column width.</td></tr>
                             <tr><td><code>.c70</code></td><td>Legacy System 2 column width.</td></tr>
                             <tr><td><code>.c80</code></td><td>Legacy System 2 column width.</td></tr>
+                            <tr><td><code>.list--cross</code></td><td>Known bug: icons stack on multi-item lists. Use Font Awesome icons per item instead.</td></tr>
+                            <tr><td><code>.list--tick</code></td><td>Known bug: icons stack on multi-item lists. Use Font Awesome icons per item instead.</td></tr>
                             <tr><td><code>.org</code></td><td>Legacy System 2 organisation block.</td></tr>
                             <tr><td><code>.screenshots</code></td><td>Older alias of image-screenshots.</td></tr>
                             <tr><td><code>.topMargin</code></td><td>Legacy System 2 spacing.</td></tr>
@@ -592,30 +594,28 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
             <div class="demo-block">
                 <div class="demo-block__title">Spacing Scale</div>
 
-                <pre><code>--spacing-xs: 4px;
---spacing-sm: 8px;
---spacing-md: 16px;
---spacing-lg: 24px;
---spacing-xl: 32px;
---spacing-2xl: 48px;
---spacing-3xl: 64px;</code></pre>
+                <p>The existing names below are aliases. Change the shared <code>--cu-space-*</code> roles at <code>:root</code> to update both old and new components.</p>
+                <pre><code>--spacing-xs: var(--cu-space-1);   /* 4px */
+--spacing-sm: var(--cu-space-2);   /* 8px */
+--spacing-md: var(--cu-space-4);   /* 16px */
+--spacing-lg: var(--cu-space-6);   /* 24px */
+--spacing-xl: var(--cu-space-8);   /* 32px */
+--spacing-2xl: var(--cu-space-12); /* 48px */
+--spacing-3xl: var(--cu-space-16); /* 64px */</code></pre>
             </div>
 
             <div class="demo-block">
                 <div class="demo-block__title">Typography Scale</div>
 
-                <pre><code>--font-size-xs: 0.75rem;   /* 12px */
---font-size-sm: 0.875rem;  /* 14px */
---font-size-base: 1rem;    /* 16px */
---font-size-lg: 1.125rem;  /* 18px */
---font-size-xl: 1.25rem;   /* 20px */
---font-size-2xl: 1.5rem;   /* 24px */
---font-size-3xl: 1.875rem; /* 30px */
---font-size-4xl: 2.25rem;  /* 36px */
-
---font-weight-regular: 400;
---font-weight-medium: 500;
---font-weight-bold: 700;</code></pre>
+                <pre><code>/* Shared source roles; existing theme names resolve through these. */
+--cu-text-ui: 16px;
+--cu-text-body: 18px;
+--cu-text-lead: 20px;
+--cu-text-display: clamp(44px, 5.5vw, 76px);
+--cu-text-section: clamp(30px, 3.2vw, 44px);
+--cu-text-component: 30px;
+--cu-weight-regular: 400;
+--cu-weight-bold: 700;</code></pre>
             </div>
 
             <div class="demo-block">
@@ -624,10 +624,10 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
                 <p>CSS custom properties can be used in your stylesheets:</p>
 
                 <pre><code>.my-element {
-    padding: var(--spacing-md);
-    font-size: var(--font-size-lg);
-    color: var(--cu-brand-red);
-    margin-bottom: var(--spacing-xl);
+    padding: var(--cu-space-4);
+    font-size: var(--cu-text-lead);
+    color: var(--cu-ink);
+    margin-bottom: var(--cu-space-8);
 }</code></pre>
             </div>
         </section>

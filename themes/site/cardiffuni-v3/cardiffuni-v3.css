@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * Cardiff University Theme v3 - Main Entry Point
- * Aligned with Cardiff Resource Design System v1.3
+ * Aligned with Cardiff Resource Design System v1.4
  *
  * This file orchestrates the theme by importing modular SCSS components.
  * Each module serves a specific purpose:
@@ -160,52 +160,22 @@
 }
 
 /**
- * Cardiff University Theme v3 - Semantic Design Tokens
- * Aligned with Cardiff Resource Design System v1.3
- * ==================================================
+ * Cardiff University v3 - Xerte token adapter (Design System v1.4)
  *
- * HYBRID APPROACH:
- * - Imports primitive tokens from _tokens.scss (single source of truth)
- * - Generates CSS custom properties using SCSS interpolation
- * - Single semantic layer for easy theming
+ * Shared values come from _cu-tokens.scss, generated from the design system.
+ * This file maps existing theme names to those values and owns Xerte-only settings.
+ * There is no second Sass token scale. Keep aliases so existing components and
+ * authored overrides continue to work; do not copy shared values into this file.
  *
- * TO CREATE A NEW THEME:
- * Override CSS variables using [data-theme] or inline styles:
- * <style>
- *   :root { --color-brand-primary: #0066CC; }
- * </style>
- *
- * Or use a theme selector:
- * [data-theme="other-uni"] { --color-brand-primary: #0066CC; }
- */
-/**
- * Design Tokens - Cardiff University Theme v3
- * =========================================
- *
- * PRIMITIVE TOKENS ONLY - Raw, immutable brand values.
- * These are the foundation that semantic tokens build upon.
- *
- * ARCHITECTURE:
- * - _tokens.scss       = Primitive tokens (this file) - SCSS variables, compile-time
- * - _allvariables.scss = Semantic tokens - CSS custom properties, runtime-configurable
- *
- * USAGE:
- * 1. Import this file first: @use "tokens" as t;
- * 2. Reference primitives: t.$token-color-brand-primary
- * 3. Build semantic tokens in _allvariables.scss using these primitives
- *
- * Colours and font families come from the design system tokens (scss/_cu-tokens.scss, generated). This file keeps only non-colour primitives used at compile time.
- * Values marked [DS] come from that specification. Keep the two aligned when versioning.
- *
- * FOR NEW THEMES:
- * Brand values are no longer here: colours and font families come from the design system
- * (v1/tokens.css, generated into scss/_cu-tokens.scss). To rebrand, change them there and
- * run sync-theme.py. This file holds only the non-colour primitives Sass needs at compile
- * time, which _allvariables.scss turns into CSS custom properties.
+ * To adjust shared roles for one project, load :root CSS overrides after the theme.
+ * Both older components and newer rules then resolve through the same --cu-* source.
+ * Theme-only settings (focus dimensions, grid, etc.) are declared in their sections below.
+ * Creating another institution's theme requires a reviewed palette and role mapping,
+ * not a two-variable override. See THEMING-GUIDE.md for the supported workflow.
  */
 :root {
-  --color-brand-primary: var(--cu-brand-red);
-  --color-brand-secondary: var(--cu-black);
+  --color-brand-primary: var(--cu-red);
+  --color-brand-secondary: var(--cu-ink);
   --color-white: var(--cu-white);
   --color-light: var(--cu-bg);
   --color-action: var(--cu-action);
@@ -239,7 +209,7 @@
   --color-accent-indigo: var(--cu-accent-indigo);
   --color-accent-violet: var(--cu-accent-dark-violet);
   --color-text-primary: var(--color-brand-secondary);
-  --color-text-secondary: var(--color-gray-70);
+  --color-text-secondary: var(--cu-muted);
   --color-text-tertiary: var(--cu-text-tertiary);
   --color-text-inverse: var(--color-white);
   --color-text-brand: var(--color-action);
@@ -249,18 +219,18 @@
   --color-link-visited: var(--color-link-default);
   --color-link-active: color-mix(in srgb, var(--color-link-default) 50%, black 50%);
   --color-bg-body: var(--color-light);
-  --color-bg-page: var(--color-white);
-  --color-bg-subtle: var(--color-gray-10);
+  --color-bg-page: var(--cu-bg);
+  --color-bg-subtle: var(--cu-surface);
   --color-bg-muted: var(--color-gray-20);
   --color-bg-elevated: var(--color-white);
   --color-bg-brand: var(--color-brand-primary);
   --color-bg-dark: var(--color-brand-secondary);
-  --color-border-default: var(--color-gray-30);
-  --color-border-light: var(--color-gray-20);
+  --color-border-default: var(--cu-border);
+  --color-border-light: var(--cu-line);
   --color-border-dark: var(--color-gray-40);
   --color-border-focus: var(--color-focus);
   --color-border-brand: var(--color-brand-primary);
-  --color-status-success: var(--color-accent-green);
+  --color-status-success: var(--cu-success);
   --color-status-warning: var(--color-warning);
   --color-status-warning-bg: var(--color-warning-bg);
   --color-status-error: var(--cu-error);
@@ -334,11 +304,11 @@
   --font-family-primary: var(--cu-body);
   --font-family-display: var(--cu-display);
   --font-family-secondary: var(--cu-serif);
-  --font-size-xs: 16px;
-  --font-size-sm: 16px;
-  --font-size-base: 16px;
-  --font-size-md: 18px;
-  --font-size-lg: 20px;
+  --font-size-xs: var(--cu-text-ui);
+  --font-size-sm: var(--cu-text-ui);
+  --font-size-base: var(--cu-text-ui);
+  --font-size-md: var(--cu-text-body);
+  --font-size-lg: var(--cu-text-lead);
   --font-size-body: var(--font-size-md);
   --font-size-lead: var(--font-size-lg);
   --font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);
@@ -346,45 +316,45 @@
   --font-size-3xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);
   --font-size-4xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);
   --font-weight-light: 300;
-  --font-weight-regular: 400;
+  --font-weight-regular: var(--cu-weight-regular);
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-heading: 750;
-  --font-weight-extrabold: 800;
-  --font-weight-heavy: 850;
+  --font-weight-bold: var(--cu-weight-bold);
+  --font-weight-heading: var(--cu-weight-component);
+  --font-weight-extrabold: var(--cu-weight-section);
+  --font-weight-heavy: var(--cu-weight-display);
   --line-height-none: 1;
-  --line-height-heading: 1.1;
+  --line-height-heading: var(--cu-leading-heading);
   --line-height-tight: 1.2;
   --line-height-snug: 1.3;
   --line-height-normal: 1.5;
-  --line-height-relaxed: 1.6;
+  --line-height-relaxed: var(--cu-leading-body);
   --line-height-loose: 1.75;
-  --letter-spacing-heading: -0.035em;
+  --letter-spacing-heading: var(--cu-tracking-heading);
   --letter-spacing-tighter: -0.02em;
   --letter-spacing-tight: -0.01em;
   --letter-spacing-normal: 0;
   --letter-spacing-wide: 0.02em;
   --letter-spacing-wider: 0.05em;
   --h1-font-family: var(--font-family-display);
-  --h1-font-size: clamp(44px, 5.5vw, 76px);
+  --h1-font-size: var(--cu-text-display);
   --h1-font-weight: var(--font-weight-heavy);
   --h1-line-height: var(--line-height-heading);
   --h1-letter-spacing: var(--letter-spacing-heading);
   --h2-font-family: var(--font-family-display);
-  --h2-font-size: clamp(30px, 3.2vw, 44px);
+  --h2-font-size: var(--cu-text-section);
   --h2-font-weight: var(--font-weight-extrabold);
   --h2-line-height: var(--line-height-heading);
   --h2-letter-spacing: var(--letter-spacing-heading);
   --h3-font-family: var(--font-family-display);
-  --h3-font-size: 30px;
+  --h3-font-size: var(--cu-text-component);
   --h3-font-weight: var(--font-weight-heading);
   --h3-line-height: var(--line-height-heading);
   --h3-letter-spacing: var(--letter-spacing-heading);
   --h4-font-family: var(--font-family-primary);
   --h4-font-size: var(--font-size-lg);
   --h4-font-weight: var(--font-weight-bold);
-  --h4-line-height: 1.35;
+  --h4-line-height: var(--cu-leading-entry);
   --h4-letter-spacing: normal;
   --h5-font-family: var(--font-family-primary);
   --h5-font-size: var(--font-size-md);
@@ -400,22 +370,22 @@
   --h-secondary-font-weight: var(--font-weight-regular);
   --spacing-0: 0;
   --spacing-px: 1px;
-  --spacing-1: 4px;
-  --spacing-2: 8px;
-  --spacing-3: 12px;
-  --spacing-4: 16px;
-  --spacing-5: 20px;
-  --spacing-6: 24px;
-  --spacing-7: 28px;
-  --spacing-8: 32px;
-  --spacing-9: 36px;
-  --spacing-10: 40px;
-  --spacing-12: 48px;
-  --spacing-14: 56px;
-  --spacing-16: 64px;
-  --spacing-20: 80px;
-  --spacing-24: 96px;
-  --spacing-32: 128px;
+  --spacing-1: var(--cu-space-1);
+  --spacing-2: var(--cu-space-2);
+  --spacing-3: var(--cu-space-3);
+  --spacing-4: var(--cu-space-4);
+  --spacing-5: var(--cu-space-5);
+  --spacing-6: var(--cu-space-6);
+  --spacing-7: var(--cu-space-7);
+  --spacing-8: var(--cu-space-8);
+  --spacing-9: var(--cu-space-9);
+  --spacing-10: var(--cu-space-10);
+  --spacing-12: var(--cu-space-12);
+  --spacing-14: var(--cu-space-14);
+  --spacing-16: var(--cu-space-16);
+  --spacing-20: var(--cu-space-20);
+  --spacing-24: var(--cu-space-24);
+  --spacing-32: calc(var(--cu-space-16) * 2);
   --spacing-xs: var(--spacing-1);
   --spacing-sm: var(--spacing-2);
   --spacing-md: var(--spacing-4);
@@ -427,18 +397,18 @@
   --spacing-card: var(--spacing-6);
   --spacing-section: var(--spacing-16);
   --container-max-width: 1240px;
-  --container-padding-mobile: 16px;
-  --container-padding-tablet: 24px;
-  --container-padding-desktop: 32px;
+  --container-padding-mobile: var(--cu-space-4);
+  --container-padding-tablet: var(--cu-space-6);
+  --container-padding-desktop: var(--cu-space-8);
   --content-width-narrow: 640px;
   --content-width-medium: 768px;
   --content-width-wide: 1024px;
   --content-width-full: 100%;
   --grid-columns: 12;
-  --grid-gutter: 24px;
+  --grid-gutter: var(--cu-space-6);
   --radius-none: 0;
-  --radius-sm: 3px;
-  --radius-md: 3px;
+  --radius-sm: var(--cu-radius);
+  --radius-md: var(--cu-radius);
   --radius-lg: 0;
   --radius-xl: 0;
   --radius-2xl: 0;
@@ -451,20 +421,20 @@
   --border-width-1: 1px;
   --border-width-2: 2px;
   --border-width-4: 4px;
-  --shadow-none: none;
-  --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-none: var(--cu-shadow);
+  --shadow-sm: var(--cu-shadow-sm);
+  --shadow-md: var(--cu-shadow-md);
+  --shadow-lg: var(--cu-shadow-lg);
+  --shadow-xl: var(--cu-shadow-xl);
+  --shadow-2xl: var(--cu-shadow-2xl);
   --shadow-card: var(--shadow-sm);
   --shadow-card-hover: none;
   --shadow-dropdown: var(--shadow-lg);
   --shadow-modal: var(--shadow-xl);
-  --duration-fast: 160ms;
+  --duration-fast: var(--cu-fast);
   --duration-normal: 300ms;
   --duration-slow: 500ms;
-  --easing-default: cubic-bezier(0.16, 1, 0.3, 1);
+  --easing-default: var(--cu-ease);
   --easing-in: cubic-bezier(0.4, 0, 1, 1);
   --easing-out: cubic-bezier(0, 0, 0.2, 1);
   --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -489,7 +459,7 @@
   --min-input-height: 56px;
   --min-textarea-height: 112px;
   --icon-size-sm: 20px;
-  --icon-size-md: 24px;
+  --icon-size-md: var(--cu-icon-size);
   --icon-size-lg: 32px;
   --icon-size-xl: 48px;
   --ratio-widescreen: 16 / 9;
@@ -628,7 +598,7 @@ a:where(:not(.button):not(.btn):not(.nav-link)):hover {
   text-decoration: none !important;
 }
 a:where(:not(.button):not(.btn):not(.nav-link)):focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
   outline-offset: var(--focus-ring-offset, 2px);
   border-radius: var(--radius-sm);
 }
@@ -1018,7 +988,7 @@ input[type=datetime-local]:focus,
 input[type=month]:focus,
 input[type=week]:focus,
 textarea:focus {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
   outline-offset: 0;
   border-color: var(--color-brand-primary);
 }
@@ -1068,7 +1038,7 @@ select:hover:not(:disabled) {
   border-color: var(--color-gray-50);
 }
 select:focus {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
   outline-offset: 0;
   border-color: var(--color-brand-primary);
 }
@@ -1088,7 +1058,7 @@ input[type=radio] {
 }
 input[type=checkbox]:focus-visible,
 input[type=radio]:focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
   outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -1274,7 +1244,7 @@ ul.nav-tabs {
 }
 
 .nav-tabs > li > a:focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
   outline-offset: var(--focus-ring-offset, 2px);
   border-radius: var(--radius-sm);
 }
@@ -1341,7 +1311,7 @@ ul.nav-pills {
 }
 
 .nav-pills > li > a:focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
   outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -1384,7 +1354,7 @@ a.accordion-toggle:focus {
 }
 
 a.accordion-toggle:focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
   outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -1465,7 +1435,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 }
 
 .carousel-control:focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
   outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -1675,7 +1645,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   text-decoration: underline;
 }
 .breadcrumb > li > a:focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
@@ -4578,6 +4548,6 @@ This is where you can define styles that will be available
   color: var(--color-brand-secondary) !important;
 }
 
-/* v3: no web font - Design System v1.3 uses the Franklin Gothic stack with system fallbacks */
+/* v3: no web font - Design System v1.4 uses the Franklin Gothic stack with system fallbacks */
 
 /*# sourceMappingURL=cardiffuni-v3.css.map */
