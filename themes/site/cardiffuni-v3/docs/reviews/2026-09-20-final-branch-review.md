@@ -7,7 +7,12 @@
 > focus fallbacks, current version documentation, colour comparison, missing-element
 > checks, focused-control checking and the fixture scope note. The tick/cross classes
 > are now explicitly listed as legacy with a warning. These changes are recorded with
-> the token consolidation in this branch. Minor 9–13 remain open; see the
+> the token consolidation in this branch. Later on 21 September: Minor 9 (wide tables) was
+> reproduced and deferred to an opt-in `.cu-table-scroll` wrapper ([tables note](../design-notes/2026-09-21-tables.md));
+> Minor 10 (right-logo headers) was fixed, along with a two-logo case the review did not mention;
+> Minor 13 (callout title leading) was checked and left unchanged
+> ([header and callout note](../design-notes/2026-09-21-header-logos-and-callout-titles.md)).
+> Minor 11 and 12 remain open; see the
 > [follow-up checklist](../plans/2026-09-21-follow-up.md). The original review below is
 > preserved verbatim; its “Needs work” verdict describes the reviewed commit, not today's tree.
 

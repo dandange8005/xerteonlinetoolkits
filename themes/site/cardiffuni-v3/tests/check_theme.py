@@ -18,7 +18,32 @@ HERE = Path(__file__).resolve().parent
 FIXTURE = HERE / "fixture.html"
 CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
-# (group, name, JavaScript expression evaluated in the fixture, expected string)
+# A check may name a variant as a fifth element: the fixture is then rendered with that header
+# markup and window width (headless Chrome will not go below about 485px). Names must be unique.
+PARTNER_LOGO = ("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='60'"
+                "%3E%3Crect width='160' height='60' fill='%23666'/%3E%3C/svg%3E")  # an uploaded logo has a size
+
+
+def header_markup(left, right):
+    """The player's header with the left logo, the right logo or both switched on."""
+    def slot(side, src, on):
+        img = f'<img class="logo logo{side} themeLogo" src="{src}" alt="Logo {side}">' if on else ""
+        return f'<div class="logo{side}"' + ("" if on else ' style="display:none"') + f">{img}</div>"
+    cls = "jumbotron" + (" logoL" if left else "") + (" logoR" if right else "")
+    return (f'<header class="{cls}" id="overview"><div class="container">'
+            + slot("L", "../logo_left.svg", left) + slot("R", PARTNER_LOGO, right)
+            + '<div class="titles"><h1 id="pageTitle">Assessment Menu</h1>'
+              '<p id="pageSubTitle">Designing meaningful, inclusive and future-focused assessment</p></div>'
+              "</div></header>")
+
+
+VARIANTS = {
+    f"{name} {width}px": (width, header_markup(*logos))
+    for name, logos in (("right logo", (False, True)), ("both logos", (True, True)))
+    for width in (1280, 800, 485)
+}
+
+# (group, name, JavaScript expression evaluated in the fixture, expected string[, variant])
 CHECKS = [
     ("smoke", "theme loaded: body copy is 18px", "cs('body','fontSize')", "18px"),
     ("tokens", "--cu-action is dark Cardiff red", "v('var(--cu-action)')", "rgb(194, 31, 22)"),
@@ -360,15 +385,50 @@ CHECKS = [
 ]
 
 
-def evaluate(checks):
-    exprs = {f"{g}::{n}": js for g, n, js, _ in checks}
-    page = FIXTURE.read_text(encoding="utf-8").replace("/*@CHECKS@*/", "const CHECKS = " + json.dumps(exprs) + ";")
+def logo_checks():
+    """Right-logo and two-logo headers (review Minor 10, and the two-logo case it did not mention)."""
+    out = []
+    for variant in VARIANTS:
+        both = variant.startswith("both")
+        first = ("#overview img.logoL" if both else "#overview .titles")
+        def add(name, js, expected="true"):
+            out.append(("logos", f"{variant}: {name}", js, expected, variant))
+        add("content stays inside the window",
+            "(function(){var w=document.documentElement.clientWidth;"
+            "return String(['#overview .titles','#overview img.logoR','#overview img.logoL'].every(function(s){"
+            "var e=document.querySelector(s);return !e||e.offsetParent===null||e.getBoundingClientRect().right<=w+0.5}))})()")
+        add("title is left aligned", "cs('#overview .titles','textAlign')", "left")
+        add("the right logo sits to the right of the title",
+            "String(box('#overview .titles').right<=box('#overview img.logoR').left+1)")
+        add("logo and title share a row",
+            "(function(){var t=box('#overview .titles'),l=box('#overview img.logoR');return String(t.top<l.bottom&&l.top<t.bottom)})()")
+        add("the right logo takes at most a quarter of the header",
+            "String(box('#overview img.logoR').width<=document.querySelector('#overview .container').clientWidth*0.25+1)")
+        # A maximum alone passes for a logo squeezed to a few pixels, so also require a minimum.
+        add("the right logo is not squeezed below its own size or a quarter of the header",
+            "(function(){var l=box('#overview img.logoR'),c=document.querySelector('#overview .container');"
+            "return String(l.width>=Math.min(160,c.clientWidth*0.25)-1)})()")
+        add("the right logo has the same side gutter as the first item",
+            "(function(){var l=box('#overview img.logoR'),c=box('#overview .container'),f=box('%s');"
+            "return String(Math.abs((c.right-l.right)-(f.left-c.left))<=2)})()" % first)
+        add("the first item keeps a side gutter", f"String(box('{first}').left>=16)")
+        if both:
+            add("the Cardiff logo keeps its 70px minimum", "String(box('#overview img.logoL').width>=70)")
+            add("left logo, title and right logo run in that order",
+                "String(box('#overview img.logoL').right<=box('#overview .titles').left+1)")
+    return out
+
+
+CHECKS += logo_checks()
+
+
+def run_chrome(page, width):
     run_file = HERE / ".fixture-run.html"
     run_file.write_text(page, encoding="utf-8")
     try:
         out = subprocess.run(
             [CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files",
-             "--virtual-time-budget=5000", "--window-size=1280,900", "--dump-dom", run_file.as_uri()],
+             "--virtual-time-budget=5000", f"--window-size={width},900", "--dump-dom", run_file.as_uri()],
             capture_output=True, text=True, timeout=90,
         ).stdout
     finally:
@@ -379,6 +439,21 @@ def evaluate(checks):
     return json.loads(html.unescape(match.group(1)))
 
 
+def evaluate(checks):
+    by_variant = {}
+    for check in checks:
+        by_variant.setdefault(check[4] if len(check) > 4 else None, []).append(check)
+    results = {}
+    for variant, group in by_variant.items():
+        width, header = VARIANTS[variant] if variant else (1280, None)
+        page = FIXTURE.read_text(encoding="utf-8")
+        if header is not None:
+            page = re.sub(r'<header class="jumbotron logoL" id="overview">.*?</header>', lambda _: header, page, count=1, flags=re.S)
+        exprs = {f"{c[0]}::{c[1]}": c[2] for c in group}
+        results.update(run_chrome(page.replace("/*@CHECKS@*/", "const CHECKS = " + json.dumps(exprs) + ";"), width))
+    return results
+
+
 def main():
     groups = set(sys.argv[1:])
     selected = [c for c in CHECKS if not groups or c[0] in groups]
@@ -386,7 +461,7 @@ def main():
         sys.exit(f"ERROR: no checks in groups {sorted(groups)}. Known: {sorted({c[0] for c in CHECKS})}")
     results = evaluate(selected)
     failed = 0
-    for group, name, _, expected in selected:
+    for group, name, _, expected, *_variant in selected:
         actual = results.get(f"{group}::{name}", "NO RESULT")
         ok = actual == expected
         failed += not ok

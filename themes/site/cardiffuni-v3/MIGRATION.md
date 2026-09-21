@@ -10,7 +10,7 @@ current specification. This is Nan's prototype design system, not an approved in
 | Area | Status |
 | --- | --- |
 | Tokens | Generated from the design system; duplicate Sass scale removed; compatibility aliases and Xerte-only settings in `_allvariables.scss` |
-| Phase 1 layout | White header with red top edge, charcoal navbar, quieter selected sidebar, section headings and visible focus rings implemented |
+| Phase 1 layout | White header with red top edge (left-logo, right-logo and two-logo headers in one row), charcoal navbar, quieter selected sidebar, section headings and visible focus rings implemented |
 | Components | Rules, seven callout types, page chrome (footer, feedback tab, back-to-top, glossary tip), alerts, badges, progress bars and tables implemented; card headings resized; tabs and accordions deliberately left as they are; the rest need migration |
 | Navigation | Sticky height, player lifecycle, menu resizing and reader takeover fixes committed; smooth scrolling removed |
 | Validation | First Docker Xerte round passed, including editor retention, export and re-import; see the dated test record |

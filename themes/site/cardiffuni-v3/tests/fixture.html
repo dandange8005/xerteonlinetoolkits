@@ -162,6 +162,11 @@ function v(value, property) {
   probe.remove();
   return out;
 }
+function box(selector) {
+  var el = document.querySelector(selector);
+  if (!el) throw new Error('Missing fixture element: ' + selector);
+  return el.getBoundingClientRect();
+}
 function ps(selector, pseudo, property) {
   var el = document.querySelector(selector);
   if (!el) throw new Error('Missing fixture element: ' + selector);
