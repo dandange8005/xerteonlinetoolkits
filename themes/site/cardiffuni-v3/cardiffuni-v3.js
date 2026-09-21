@@ -104,9 +104,9 @@
         }
         var wanted = wantedScrollTop(target);
         if (Math.abs(window.pageYOffset - wanted) > 2) {
-            // The theme scrolls smoothly, and both scrollTo() and its 'auto' behaviour defer to
-            // that, which would start a second animation on top of the one just finishing. Turn
-            // smoothing off for this correction so the page simply arrives.
+            // This theme does not scroll smoothly, but a host might: both scrollTo() and its
+            // 'auto' behaviour defer to the CSS, and an animated correction never arrives before
+            // the next attempt restarts it. Turn smoothing off for this one jump.
             var scroller = document.scrollingElement || document.documentElement;
             var previous = scroller.style.scrollBehavior;
             scroller.style.scrollBehavior = 'auto';
@@ -116,29 +116,17 @@
         apply();
     }
 
-    // The theme scrolls smoothly, so a jump takes a moment to arrive and the position keeps
-    // changing while it does. Correcting mid-flight would fight the animation, so wait for the
-    // page to hold still, then put the target where it belongs.
-    var lastSeenY = -1;
-
     function tick() {
         if (readerMoved || attemptsLeft <= 0) {
             return;
         }
         attemptsLeft -= 1;
-        var y = Math.round(window.pageYOffset);
-        if (Math.abs(y - lastSeenY) > 1) {
-            lastSeenY = y;           // still moving: let the animation finish
-        } else {
-            settleOnTarget();
-            lastSeenY = Math.round(window.pageYOffset);
-        }
+        settleOnTarget();
         targetTimer = window.setTimeout(tick, 200);
     }
 
     function startSettling() {
         readerMoved = false;
-        lastSeenY = -1;
         attemptsLeft = 25; // about five seconds, long enough for a page of screenshots to load
         window.clearTimeout(targetTimer);
         tick();
