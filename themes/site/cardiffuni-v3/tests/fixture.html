@@ -64,7 +64,10 @@
 <script>
 // Minimal stand-in for what the player provides, so the theme script's scroll-spy path runs here.
 window.__spy = { options: { offset: 10 }, refresh: function () {}, process: function () {} };
-window.jQuery = function () { return { data: function () { return window.__spy; } }; };
+window.jQuery = function () {
+  return { data: function () { return window.__spy; },
+           on: function (name) { window.__playerEvents = (window.__playerEvents || []).concat(name); return this; } };
+};
 </script>
 <script src="../cardiffuni-v3.js"></script>
 <script>

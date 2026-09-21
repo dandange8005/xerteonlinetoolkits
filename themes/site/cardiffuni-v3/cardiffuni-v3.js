@@ -90,7 +90,6 @@
     var attemptsLeft = 0;
     var targetTimer = null;
     var readerMoved = false;
-    var ourScroll = false;
 
     function wantedScrollTop(target) {
         var top = window.pageYOffset + target.getBoundingClientRect().top;
@@ -105,7 +104,6 @@
         }
         var wanted = wantedScrollTop(target);
         if (Math.abs(window.pageYOffset - wanted) > 2) {
-            ourScroll = true;
             // The theme scrolls smoothly, and both scrollTo() and its 'auto' behaviour defer to
             // that, which would start a second animation on top of the one just finishing. Turn
             // smoothing off for this correction so the page simply arrives.
@@ -114,7 +112,6 @@
             scroller.style.scrollBehavior = 'auto';
             window.scrollTo(0, wanted);
             scroller.style.scrollBehavior = previous;
-            window.setTimeout(function () { ourScroll = false; }, 60);
         }
         apply();
     }
@@ -147,15 +144,17 @@
         tick();
     }
 
+    // Any of these means the reader has taken over, so stop moving the page under them. None of
+    // them fire for a programmatic scroll, so no guard is needed. mousedown covers dragging the
+    // scrollbar, which the others miss.
     function readerTookOver() {
-        if (!ourScroll) {
-            readerMoved = true;
-            window.clearTimeout(targetTimer);
-        }
+        readerMoved = true;
+        window.clearTimeout(targetTimer);
     }
 
     window.addEventListener('wheel', readerTookOver, { passive: true });
     window.addEventListener('touchstart', readerTookOver, { passive: true });
+    window.addEventListener('mousedown', readerTookOver, { passive: true });
     window.addEventListener('keydown', readerTookOver);
 
     var pending = null;
@@ -176,11 +175,39 @@
         startSettling(); // a link followed on load lands properly once the images are in
     });
     window.addEventListener('resize', schedule);
+
+    // The player renders each page asynchronously and announces it, and it moves between pages
+    // with pushState, which fires no hashchange. Without this the measurement can sit at 0px for
+    // a whole page.
+    var playerEvents = window.jQuery && window.jQuery(document);
+    if (playerEvents && typeof playerEvents.on === 'function') {
+        playerEvents.on('contentLoaded', function () {
+            schedule();
+            startSettling();
+        });
+    }
+
+    // Opening the collapsed page menu makes the bar taller without resizing the window.
+    if (window.ResizeObserver) {
+        var observer = new window.ResizeObserver(schedule);
+        ['topnav', 'pageLinks'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) {
+                observer.observe(el);
+            }
+        });
+    }
     window.addEventListener('hashchange', function () {
         schedule();       // the player swaps pages without reloading
         startSettling();
     });
 
     // A host or a test can force a recalculation after changing the layout.
-    window.cardiffuniV3 = { apply: apply, settleOnTarget: settleOnTarget, startSettling: startSettling };
+    window.cardiffuniV3 = {
+        apply: apply,
+        settleOnTarget: settleOnTarget,
+        startSettling: startSettling,
+        // for the theme's checks: is the script still trying to land on a target?
+        state: function () { return { settling: attemptsLeft > 0 && !readerMoved, readerMoved: readerMoved }; }
+    };
 })();

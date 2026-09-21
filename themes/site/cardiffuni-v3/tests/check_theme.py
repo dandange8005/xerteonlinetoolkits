@@ -185,6 +185,29 @@ CHECKS = [
      "var wanted=Math.round(sec.getBoundingClientRect().top+window.pageYOffset-16);"
      "location.hash='';document.body.style.minHeight='';window.scrollTo(0,0);"
      "return String(Math.abs(landed-wanted)<=2)})()", "true"),
+    # Raised by the Codex review, 21 September 2026.
+    # The player renders each page asynchronously and announces it with contentLoaded, and moves
+    # between pages with pushState, which fires no hashchange.
+    ("stickynav", "the script follows the player's content lifecycle",
+     "String((window.__playerEvents || []).indexOf('contentLoaded') !== -1)", "true"),
+    # Opening the collapsed page menu makes the bar taller without resizing the window.
+    ("stickynav", "a bar that changes height is re-measured",
+     "(function(){var n=document.getElementById('topnav');n.style.position='sticky';n.style.top='0';"
+     "var pad=document.createElement('div');pad.style.height='40px';"
+     "n.querySelector('.navbar-inner').appendChild(pad);window.cardiffuniV3.apply();"
+     "var grown=Math.round(n.getBoundingClientRect().height);"
+     "var published=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cu-sticky-nav'));"
+     "pad.remove();n.style.position='';n.style.top='';window.cardiffuniV3.apply();"
+     "return String(grown > 40 && Math.abs(published - grown) <= 1)})()", "true"),
+    ("stickynav", "the script watches the bar's size, not just the window",
+     "String(typeof window.ResizeObserver === 'function')", "true"),
+    # Dragging the scrollbar produces no wheel, touch or key event, so it needs its own signal.
+    ("stickynav", "dragging the scrollbar stops the script re-landing the page",
+     "(function(){location.hash='#test-section';window.cardiffuniV3.startSettling();"
+     "var before=window.cardiffuniV3.state().settling;"
+     "window.dispatchEvent(new MouseEvent('mousedown'));"
+     "var after=window.cardiffuniV3.state().settling;location.hash='';"
+     "return String(before === true && after === false)})()", "true"),
 ]
 
 
