@@ -483,6 +483,9 @@
     --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 70%, black 30%);
     --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 40%, black 60%);
 
+    // Orange fails 3:1 against the progress track and 4.5:1 under white text; this tone passes both.
+    --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 70%, black 30%);
+
     --color-brand-secondary-lighter: color-mix(in srgb, var(--color-brand-secondary) 30%, white);
     --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
     --color-brand-secondary-dark: color-mix(in srgb, var(--color-brand-secondary) 15%, black);

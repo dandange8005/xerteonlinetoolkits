@@ -61,6 +61,34 @@
     <div id="glossaryHover" class="glossaryTip">Definition shown as a tooltip.</div>
     <!-- application.js: topBtnRound=true appends this round button to each page section -->
     <p><a class="topBtn btn btn-mini pull-right top-round" id="top-round" href="#skipLink"><span class="sr-only">Top</span><i class="fa fa-angle-up fa-2x" aria-hidden="true"></i></a></p>
+    <div class="alert alert-success" id="alert-success"><strong>Success!</strong> Saved.</div>
+    <div class="alert alert-info" id="alert-info"><strong>Info:</strong> Available from September.</div>
+    <div class="alert alert-warning" id="alert-warning"><strong>Warning!</strong> Session ends soon.</div>
+    <div class="alert alert-danger" id="alert-danger"><strong>Error!</strong> Unable to submit.</div>
+    <div class="alert alert-error" id="alert-error"><strong>Error!</strong> Unable to submit.</div>
+    <!-- Bootstrap colours a heading inside each alert variant (.alert-info h4 ...) -->
+    <div class="alert alert-block alert-success"><h4 id="alert-h-success">Heading</h4><p>Body</p></div>
+    <div class="alert alert-block alert-info"><h4 id="alert-h-info">Heading</h4><p>Body</p></div>
+    <div class="alert alert-block alert-warning"><h4 id="alert-h-warning">Heading</h4><p>Body</p></div>
+    <div class="alert alert-block alert-danger"><h4 id="alert-h-danger">Heading</h4><p>Body</p></div>
+    <div class="alert alert-block alert-error"><h4 id="alert-h-error">Heading</h4><p>Body</p></div>
+    <p>
+      <span class="badge" id="badge-default">Default</span>
+      <span class="badge badge-success" id="badge-success">Success</span>
+      <span class="badge badge-warning" id="badge-warning">Warning</span>
+      <span class="badge badge-important" id="badge-important">Important</span>
+      <span class="badge badge-danger" id="badge-danger">Danger</span>
+      <span class="badge badge-info" id="badge-info">Info</span>
+      <span class="badge badge-inverse" id="badge-inverse">Inverse</span>
+      <span class="label" id="label-default">Default</span>
+      <span class="label label-info" id="label-info">Info</span>
+      <span class="label label-danger" id="label-danger">Danger</span>
+    </p>
+    <div class="progress" id="progress-track"><div class="progress-bar" id="bar-default" style="width:40%">40%</div></div>
+    <div class="progress"><div class="progress-bar progress-bar-success" id="bar-success" style="width:60%">60%</div></div>
+    <div class="progress"><div class="progress-bar progress-bar-warning" id="bar-warning" style="width:80%">80%</div></div>
+    <div class="progress"><div class="progress-bar progress-bar-danger" id="bar-danger" style="width:25%">25%</div></div>
+    <div class="progress"><div class="progress-bar progress-bar-info" id="bar-info" style="width:55%">55%</div></div>
     <!--@MARKUP@-->
   </div>
 </div></div>
@@ -126,15 +154,20 @@ function ps(selector, pseudo, property) {
   return getComputedStyle(el, pseudo)[property];
 }
 // WCAG contrast ratio between one element's text colour and another's background colour.
-function contrast(textSelector, backgroundSelector) {
-  function rgb(value) { return value.match(/[\d.]+/g).slice(0, 3).map(Number); }
+// Pass 'backgroundColor' as textProperty to compare two fills instead (a bar against its track).
+function contrast(textSelector, backgroundSelector, textProperty) {
+  // color-mix() results serialise as color(srgb r g b) with channels from 0 to 1.
+  function rgb(value) {
+    var scale = /^color\(srgb/.test(value) ? 255 : 1;
+    return value.match(/[\d.]+/g).slice(0, 3).map(function (n) { return Number(n) * scale; });
+  }
   function luminance(c) {
     var l = c.map(function (x) { x /= 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
     return 0.2126 * l[0] + 0.7152 * l[1] + 0.0722 * l[2];
   }
   var text = document.querySelector(textSelector), back = document.querySelector(backgroundSelector);
   if (!text || !back) throw new Error('Missing fixture element: ' + textSelector + ' / ' + backgroundSelector);
-  var a = luminance(rgb(getComputedStyle(text).color)), b = luminance(rgb(getComputedStyle(back).backgroundColor));
+  var a = luminance(rgb(getComputedStyle(text)[textProperty || 'color'])), b = luminance(rgb(getComputedStyle(back).backgroundColor));
   return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
 }
 // Each override check restores exactly the prior inline root declaration.

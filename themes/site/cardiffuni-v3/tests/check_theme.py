@@ -297,6 +297,39 @@ CHECKS = [
     ("chrome", "glossary tip reads at 4.5:1 or better", "String(contrast('#glossaryHover','#glossaryHover')>=4.5)", "true"),
     ("chrome", "glossary term is marked by more than colour",
      "String(parseFloat(cs('#glossary-term','borderBottomWidth'))>=1 && cs('#glossary-term','borderBottomStyle')!=='none')", "true"),
+    # Alerts, badges and progress (21 September 2026). Danger and error states use the design
+    # system's error red; the default progress fill is ink (Red Usage Decisions).
+    ("status", "alert sits on the grey surface", "cs('#alert-info','backgroundColor')", "rgb(242, 242, 242)"),
+    ("status", "alert corners are square", "cs('#alert-info','borderTopLeftRadius')", "0px"),
+    ("status", "alert text is ink", "cs('#alert-info','color')", "rgb(18, 18, 18)"),
+    ("status", "success alert rule is Forest Green", "cs('#alert-success','borderLeftColor')", "rgb(7, 135, 62)"),
+    ("status", "info alert rule is link blue", "cs('#alert-info','borderLeftColor')", "rgb(4, 91, 198)"),
+    ("status", "warning alert rule is Yellow", "cs('#alert-warning','borderLeftColor')", "rgb(255, 179, 0)"),
+    ("status", "danger alert rule is the error red", "cs('#alert-danger','borderLeftColor')", "rgb(161, 26, 18)"),
+    ("status", "error alert matches danger", "cs('#alert-error','borderLeftColor')", "rgb(161, 26, 18)"),
+    # The glyph and the word carry the status, so the rule's colour is never the only cue.
+    ("status", "warning alert keeps its glyph prefix", "ps('#alert-warning','::before','content')", '"⚠ "'),
+    ("status", "every alert's text reads at 4.5:1 or better",
+     "String(['success','info','warning','danger','error'].every(function(v){return contrast('#alert-'+v,'#alert-'+v)>=4.5}))", "true"),
+    ("status", "a heading inside any alert is ink, not Bootstrap's per-variant colour",
+     "String(['success','info','warning','danger','error'].map(function(v){return cs('#alert-h-'+v,'color')}).join('|'))",
+     "|".join(["rgb(18, 18, 18)"] * 5)),
+    ("status", "every badge and label reads at 4.5:1 or better",
+     "String(['badge-default','badge-success','badge-warning','badge-important','badge-danger','badge-info','badge-inverse','label-default','label-info','label-danger']"
+     ".every(function(i){return contrast('#'+i,'#'+i)>=4.5}))", "true"),
+    ("status", "danger badge is the error red", "cs('#badge-danger','backgroundColor')", "rgb(161, 26, 18)"),
+    ("status", "important badge is the error red", "cs('#badge-important','backgroundColor')", "rgb(161, 26, 18)"),
+    ("status", "danger label is the error red", "cs('#label-danger','backgroundColor')", "rgb(161, 26, 18)"),
+    ("status", "info badge is link blue", "cs('#badge-info','backgroundColor')", "rgb(4, 91, 198)"),
+    ("status", "progress track has no shadow", "cs('#progress-track','boxShadow')", "none"),
+    ("status", "progress track is square", "cs('#progress-track','borderTopLeftRadius')", "0px"),
+    ("status", "default progress fill is ink", "cs('#bar-default','backgroundColor')", "rgb(18, 18, 18)"),
+    ("status", "danger progress fill is the error red", "cs('#bar-danger','backgroundColor')", "rgb(161, 26, 18)"),
+    ("status", "info progress fill is link blue", "cs('#bar-info','backgroundColor')", "rgb(4, 91, 198)"),
+    ("status", "every progress fill shows against its track at 3:1 or better",
+     "String(['default','success','warning','danger','info'].every(function(v){return contrast('#bar-'+v,'#progress-track','backgroundColor')>=3}))", "true"),
+    ("status", "every progress label reads on its fill at 4.5:1 or better",
+     "String(['default','success','warning','danger','info'].every(function(v){return contrast('#bar-'+v,'#bar-'+v)>=4.5}))", "true"),
 
 ]
 

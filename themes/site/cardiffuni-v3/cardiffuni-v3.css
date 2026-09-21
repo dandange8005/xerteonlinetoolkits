@@ -471,6 +471,7 @@
   --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 70%, white 30%);
   --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 70%, black 30%);
   --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 40%, black 60%);
+  --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 70%, black 30%);
   --color-brand-secondary-lighter: color-mix(in srgb, var(--color-brand-secondary) 30%, white);
   --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
   --color-brand-secondary-dark: color-mix(in srgb, var(--color-brand-secondary) 15%, black);
@@ -1528,9 +1529,11 @@ a.accordion-toggle[aria-expanded=true]::after {
 .alert {
   padding: var(--spacing-md) var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
-  border: 1px solid transparent;
+  border: 0;
   border-left: 4px solid;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-none);
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-primary);
   font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
 }
@@ -1540,6 +1543,9 @@ a.accordion-toggle[aria-expanded=true]::after {
 }
 .alert strong {
   font-weight: var(--font-weight-bold);
+}
+.alert h4 {
+  color: inherit;
 }
 .alert p:last-child {
   margin-bottom: 0;
@@ -1559,30 +1565,21 @@ a.accordion-toggle[aria-expanded=true]::after {
 }
 
 .alert-success {
-  background-color: color-mix(in srgb, var(--color-accent-green) 10%, white);
-  border-color: color-mix(in srgb, var(--color-accent-green) 30%, white);
-  border-left-color: var(--color-accent-green);
-  color: color-mix(in srgb, var(--color-accent-green) 80%, black);
+  border-left-color: var(--color-status-success);
 }
 .alert-success::before {
   content: "✓ ";
 }
 
 .alert-info {
-  background-color: color-mix(in srgb, var(--color-accent-blue) 10%, white);
-  border-color: color-mix(in srgb, var(--color-accent-blue) 30%, white);
-  border-left-color: var(--color-accent-blue);
-  color: color-mix(in srgb, var(--color-accent-blue) 80%, black);
+  border-left-color: var(--color-status-info);
 }
 .alert-info::before {
   content: "ℹ ";
 }
 
 .alert-warning {
-  background-color: color-mix(in srgb, var(--color-accent-yellow) 15%, white);
-  border-color: color-mix(in srgb, var(--color-accent-orange) 30%, white);
-  border-left-color: var(--color-accent-orange);
-  color: color-mix(in srgb, var(--color-accent-orange) 80%, black);
+  border-left-color: var(--color-accent-yellow);
 }
 .alert-warning::before {
   content: "⚠ ";
@@ -1590,10 +1587,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 
 .alert-danger,
 .alert-error {
-  background-color: color-mix(in srgb, var(--color-brand-primary) 10%, white);
-  border-color: color-mix(in srgb, var(--color-brand-primary) 30%, white);
-  border-left-color: var(--color-brand-primary);
-  color: color-mix(in srgb, var(--color-brand-primary) 80%, black);
+  border-left-color: var(--color-status-error);
 }
 .alert-danger::before,
 .alert-error::before {
@@ -1662,7 +1656,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   white-space: nowrap;
   vertical-align: middle;
   color: var(--color-white);
-  background-color: var(--color-gray-60);
+  background-color: var(--color-gray-70);
   border-radius: var(--radius-full);
 }
 
@@ -1685,12 +1679,12 @@ a.accordion-toggle[aria-expanded=true]::after {
 .label-important,
 .badge-danger,
 .label-danger {
-  background-color: var(--color-brand-primary);
+  background-color: var(--color-status-error);
 }
 
 .badge-info,
 .label-info {
-  background-color: var(--color-accent-blue);
+  background-color: var(--color-status-info);
 }
 
 .badge-inverse,
@@ -1707,8 +1701,8 @@ a.accordion-toggle[aria-expanded=true]::after {
   height: 20px;
   overflow: hidden;
   background-color: var(--color-gray-20);
-  border-radius: var(--radius-md);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-none);
+  box-shadow: none;
   margin-bottom: var(--spacing-md);
 }
 
@@ -1719,7 +1713,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   line-height: 20px;
   color: var(--color-white);
   text-align: center;
-  background-color: var(--color-brand-primary);
+  background-color: var(--color-brand-secondary);
   transition: width var(--duration-normal) ease;
 }
 
@@ -1730,17 +1724,17 @@ a.accordion-toggle[aria-expanded=true]::after {
 
 .bar-warning,
 .progress-bar-warning {
-  background-color: var(--color-accent-orange);
+  background-color: var(--color-accent-orange-dark);
 }
 
 .bar-danger,
 .progress-bar-danger {
-  background-color: var(--color-brand-primary);
+  background-color: var(--color-status-error);
 }
 
 .bar-info,
 .progress-bar-info {
-  background-color: var(--color-accent-blue);
+  background-color: var(--color-status-info);
 }
 
 .progress-striped .bar,

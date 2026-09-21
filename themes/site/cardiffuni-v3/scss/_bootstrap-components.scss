@@ -512,15 +512,19 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
 // =============================================================================
 // ALERTS
-// Notification and feedback messages with semantic color variants
+// Notification and feedback messages. Like the design system's callouts: a grey surface,
+// square edges and a 4px left rule in the status colour. Ink text and the glyph prefix carry
+// the meaning, so the rule's colour is never the only cue.
 // =============================================================================
 
 .alert {
     padding: var(--spacing-md) var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
-    border: 1px solid transparent;
+    border: 0;
     border-left: 4px solid;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-none);
+    background-color: var(--color-bg-subtle);
+    color: var(--color-text-primary);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-normal);
 
@@ -532,6 +536,11 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
     strong {
         font-weight: var(--font-weight-bold);
+    }
+
+    // Bootstrap gives a heading in each variant its own colour (.alert-info h4 and so on).
+    h4 {
+        color: inherit;
     }
 
     p:last-child {
@@ -558,10 +567,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
 // Alert variants
 .alert-success {
-    background-color: color-mix(in srgb, var(--color-accent-green) 10%, white);
-    border-color: color-mix(in srgb, var(--color-accent-green) 30%, white);
-    border-left-color: var(--color-accent-green);
-    color: color-mix(in srgb, var(--color-accent-green) 80%, black);
+    border-left-color: var(--color-status-success);
 
     &::before {
         content: "✓ ";
@@ -569,10 +575,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 }
 
 .alert-info {
-    background-color: color-mix(in srgb, var(--color-accent-blue) 10%, white);
-    border-color: color-mix(in srgb, var(--color-accent-blue) 30%, white);
-    border-left-color: var(--color-accent-blue);
-    color: color-mix(in srgb, var(--color-accent-blue) 80%, black);
+    border-left-color: var(--color-status-info);
 
     &::before {
         content: "ℹ ";
@@ -580,10 +583,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 }
 
 .alert-warning {
-    background-color: color-mix(in srgb, var(--color-accent-yellow) 15%, white);
-    border-color: color-mix(in srgb, var(--color-accent-orange) 30%, white);
-    border-left-color: var(--color-accent-orange);
-    color: color-mix(in srgb, var(--color-accent-orange) 80%, black);
+    border-left-color: var(--color-accent-yellow);
 
     &::before {
         content: "⚠ ";
@@ -592,10 +592,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
 .alert-danger,
 .alert-error {
-    background-color: color-mix(in srgb, var(--color-brand-primary) 10%, white);
-    border-color: color-mix(in srgb, var(--color-brand-primary) 30%, white);
-    border-left-color: var(--color-brand-primary);
-    color: color-mix(in srgb, var(--color-brand-primary) 80%, black);
+    border-left-color: var(--color-status-error);
 
     &::before {
         content: "✗ ";
@@ -684,7 +681,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
     white-space: nowrap;
     vertical-align: middle;
     color: var(--color-white);
-    background-color: var(--color-gray-60);
+    background-color: var(--color-gray-70); // grey-60 was 3.95:1 under white text
     border-radius: var(--radius-full);
 }
 
@@ -708,12 +705,12 @@ a.accordion-toggle[aria-expanded="true"]::after {
 .label-important,
 .badge-danger,
 .label-danger {
-    background-color: var(--color-brand-primary);
+    background-color: var(--color-status-error);
 }
 
 .badge-info,
 .label-info {
-    background-color: var(--color-accent-blue);
+    background-color: var(--color-status-info); // the light accent blue was 3.24:1 under white text
 }
 
 .badge-inverse,
@@ -736,8 +733,8 @@ a.accordion-toggle[aria-expanded="true"]::after {
     height: 20px;
     overflow: hidden;
     background-color: var(--color-gray-20);
-    border-radius: var(--radius-md);
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-none);
+    box-shadow: none; // Bootstrap draws an inset shadow; shadows are for overlays
     margin-bottom: var(--spacing-md);
 }
 
@@ -748,7 +745,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
     line-height: 20px;
     color: var(--color-white);
     text-align: center;
-    background-color: var(--color-brand-primary);
+    background-color: var(--color-brand-secondary); // ink
     transition: width var(--duration-normal) ease;
 }
 
@@ -760,17 +757,17 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
 .bar-warning,
 .progress-bar-warning {
-    background-color: var(--color-accent-orange);
+    background-color: var(--color-accent-orange-dark);
 }
 
 .bar-danger,
 .progress-bar-danger {
-    background-color: var(--color-brand-primary);
+    background-color: var(--color-status-error);
 }
 
 .bar-info,
 .progress-bar-info {
-    background-color: var(--color-accent-blue);
+    background-color: var(--color-status-info);
 }
 
 // Striped progress bars
