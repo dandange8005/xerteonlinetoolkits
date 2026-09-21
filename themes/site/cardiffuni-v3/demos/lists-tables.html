@@ -560,11 +560,88 @@
                 </table>
             </div>
 
+            <div class="demo-block">
+                <div class="demo-block__title">Striped Rows</div>
+                <div class="demo-block__description">Add <code>.table-striped</code> for a quiet grey tint on alternate rows.</div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Assessment</th>
+                            <th>Weighting</th>
+                            <th>Format</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Essay</td>
+                            <td>40%</td>
+                            <td>2,500 words</td>
+                        </tr>
+                        <tr>
+                            <td>Presentation</td>
+                            <td>20%</td>
+                            <td>10 minutes</td>
+                        </tr>
+                        <tr>
+                            <td>Exam</td>
+                            <td>40%</td>
+                            <td>Two hours</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <code class="code-label">&lt;table class="table table-striped"&gt;</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Wide Tables</div>
+                <div class="demo-block__description">A table wider than the page does not scroll by itself and stretches the whole page. Wrap any table that may be wide in <code>.cu-table-scroll</code>: it scrolls inside the wrapper while a narrow table still fills it. Give the wrapper <code>tabindex="0"</code> so keyboard users can scroll it, and a <code>role="region"</code> and <code>aria-label</code> naming the table.</div>
+
+                <div class="cu-table-scroll" tabindex="0" role="region" aria-label="Module results by week">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Module</th>
+                                <th>Week 1</th>
+                                <th>Week 2</th>
+                                <th>Week 3</th>
+                                <th>Week 4</th>
+                                <th>Week 5</th>
+                                <th>Week 6</th>
+                                <th>Week 7</th>
+                                <th>Week 8</th>
+                                <th>Week 9</th>
+                                <th>Week 10</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="white-space: nowrap;">Assessment design</td>
+                                <td>72</td>
+                                <td>68</td>
+                                <td>75</td>
+                                <td>81</td>
+                                <td>79</td>
+                                <td>64</td>
+                                <td>70</td>
+                                <td>77</td>
+                                <td>83</td>
+                                <td>85</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <code class="code-label">.cu-table-scroll</code>
+            </div>
+
             <div class="demo-note">
                 <div class="demo-note__title">Accessibility Note</div>
                 <p>All tables include proper semantic markup with <code>&lt;thead&gt;</code>,
                     <code>&lt;tbody&gt;</code>, and <code>&lt;th&gt;</code> elements. Captions provide context for
-                    screen reader users. Tables are responsive and will scroll horizontally on small screens if needed.
+                    screen reader users. A table wider than the page does not scroll on its own: wrap it in
+                    <code>.cu-table-scroll</code> as shown above.
                 </p>
             </div>
         </section>

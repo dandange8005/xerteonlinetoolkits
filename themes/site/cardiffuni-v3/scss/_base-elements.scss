@@ -323,15 +323,15 @@ table {
     width: 100%;
     background: var(--color-white);
     border-collapse: collapse;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-none); // structural, so square
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    box-shadow: none; // shadows are for overlays
     font-size: var(--font-size-sm);
     border: 1px solid var(--color-gray-20);
 
     caption {
         text-align: left;
-        color: var(--color-gray-60);
+        color: var(--color-gray-70); // grey-60 was 3.95:1 on white
         font-weight: var(--font-weight-medium);
         padding: var(--spacing-md) 0;
         caption-side: top;
@@ -372,6 +372,20 @@ thead {
         text-transform: uppercase;
         font-size: var(--font-size-xs);
         letter-spacing: 0.5px;
+    }
+}
+
+// Opt-in scroll wrapper for a table that may be wider than the page:
+//   <div class="cu-table-scroll" tabindex="0" role="region" aria-label="…"><table>…</table></div>
+// Making `table` itself display:block would stop every table filling its container.
+.cu-table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+
+    // A scrolling region has to be reachable by keyboard, so it gets the theme's focus ring.
+    &:focus-visible {
+        outline: var(--focus-ring);
+        outline-offset: var(--focus-ring-offset);
     }
 }
 

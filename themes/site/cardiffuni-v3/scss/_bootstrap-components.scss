@@ -506,7 +506,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
 .table-striped tbody>tr:nth-child(odd)>td,
 .table-striped tbody>tr:nth-child(odd)>th {
-    background-color: var(--color-accent-green);
+    background-color: var(--color-gray-10); // was Forest Green, 4.05:1 with ink
     color: var(--color-text-primary);
 }
 

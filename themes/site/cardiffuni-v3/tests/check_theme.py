@@ -330,6 +330,24 @@ CHECKS = [
      "String(['default','success','warning','danger','info'].every(function(v){return contrast('#bar-'+v,'#progress-track','backgroundColor')>=3}))", "true"),
     ("status", "every progress label reads on its fill at 4.5:1 or better",
      "String(['default','success','warning','danger','info'].every(function(v){return contrast('#bar-'+v,'#bar-'+v)>=4.5}))", "true"),
+    # Tables (21 September 2026). Wide tables only stay off the page when an author adds the
+    # .cu-table-scroll wrapper: display:block would stop every table filling its container.
+    ("tables", "table is square", "cs('#tbl','borderTopLeftRadius')", "0px"),
+    ("tables", "table has no shadow, even if the shared shadow role changes",
+     "withRootTokens({'--cu-shadow-sm':'1px 2px 3px rgb(1, 2, 3)'},()=>cs('#tbl','boxShadow'))", "none"),
+    ("tables", "caption reads at 4.5:1 or better", "String(contrast('#tbl-caption','#tbl')>=4.5)", "true"),
+    ("tables", "odd striped row is a quiet grey tint, not green", "cs('#td-odd','backgroundColor')", "rgb(242, 242, 242)"),
+    ("tables", "even striped row has no fill", "cs('#td-even','backgroundColor')", "rgba(0, 0, 0, 0)"),
+    ("tables", "striped text reads at 4.5:1 or better", "String(contrast('#td-odd','#td-odd')>=4.5)", "true"),
+    ("tables", "a wrapped wide table does not stretch the page",
+     "String(document.documentElement.scrollWidth<=document.documentElement.clientWidth)", "true"),
+    ("tables", "the wrapper scrolls sideways", "cs('#tbl-scroll','overflowX')", "auto"),
+    ("tables", "a wrapped narrow table still fills the wrapper",
+     "String(Math.abs(document.getElementById('tbl-narrow').getBoundingClientRect().width-document.getElementById('tbl-scroll-narrow').clientWidth)<=1)", "true"),
+    ("tables", "the scroll wrapper shows the theme's focus ring when focused",
+     "(function(){var b=document.querySelector('#tbl-scroll'),previous=document.activeElement;b.focus({preventScroll:true});"
+     "var s=getComputedStyle(b),result=(document.activeElement===b && b.matches(':focus-visible'))+' '+s.outlineStyle+' '+s.outlineWidth+' '+s.outlineOffset+' '+s.outlineColor;"
+     "previous.focus({preventScroll:true});if(document.activeElement===b)b.blur();return result})()", "true solid 2px 4px rgb(18, 18, 18)"),
 
 ]
 
