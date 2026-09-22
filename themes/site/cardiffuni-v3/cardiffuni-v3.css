@@ -183,8 +183,8 @@
   --color-tint: #F8DADA;
   --color-selected-bg: color-mix(in srgb, var(--cu-red) 6%, var(--cu-bg));
   --color-focus: var(--cu-focus);
-  --color-warning: var(--cu-draft);
-  --color-warning-bg: var(--cu-draft-bg);
+  --color-draft: var(--cu-draft);
+  --color-draft-bg: var(--cu-draft-bg);
   --color-on-dark: var(--cu-on-dark);
   --color-on-dark-muted: var(--cu-on-dark-muted);
   --color-gray-10: var(--cu-grey-10);
@@ -231,8 +231,7 @@
   --color-border-focus: var(--color-focus);
   --color-border-brand: var(--color-brand-primary);
   --color-status-success: var(--cu-success);
-  --color-status-warning: var(--color-warning);
-  --color-status-warning-bg: var(--color-warning-bg);
+  --color-status-warning: var(--color-accent-orange-dark);
   --color-status-error: var(--cu-error);
   --color-status-info: var(--color-link-default);
   --color-nav-accent: var(--color-brand-secondary);

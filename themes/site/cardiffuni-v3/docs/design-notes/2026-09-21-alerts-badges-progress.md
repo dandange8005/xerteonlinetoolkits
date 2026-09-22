@@ -84,3 +84,32 @@ Not verified: the real Xerte player, and any project that uses these components.
   radius question belongs to the hardcoded-values audit.
 - **Block alert layout.** The glyph still sits on its own line above a heading, as before.
 - **The wider Red Usage rows** (inputs, radios, skip link and others) remain undecided.
+
+## Addendum: warning status colour was the same as ink (22 September)
+
+`--color-status-warning` resolved to black, by two hops: `--color-status-warning` →
+`--color-warning` → the Draft label's `--cu-draft` → `--cu-black`. It was not a deliberate
+choice; the design system defines no general "warning" role, only `draft`/`draft-bg` for its
+one specific black-on-Yellow label. The v3 theme's own `--color-warning` got mapped onto that
+role because the two concepts look similar, and a separate status token then aliased to it.
+
+Two real consumers were affected: the `.text-warning` utility (`_utilities.scss`) rendered as
+plain ink, indistinguishable from body text, and a warning triangle icon in the images-media
+demo was a plain black triangle. `.alert-warning` was unaffected: it uses
+`--color-accent-yellow` directly and never touches this chain.
+
+**Fix:**
+
+- `--color-warning` / `--color-warning-bg` are renamed `--color-draft` / `--color-draft-bg`,
+  since the Draft label is their only use. Not documented anywhere as a supported override
+  point, so nothing depends on the old names.
+- `--color-status-warning` now resolves to `--color-accent-orange-dark` (introduced in the
+  original alerts/badges/progress work, above), 5.52:1 on white. The raw accent orange is
+  2.97:1 and Yellow is 1.79:1, both short of 4.5:1 for text and icons.
+- `--color-status-warning-bg` is removed. It was unused, and no other status token
+  (`success`, `error`, `info`) has a `-bg` counterpart, so it was not a pattern to preserve.
+
+Verification: 233 checks pass (229 before). Four new checks assert the warning text and icon
+match the darkened orange (not ink), read at 4.5:1 on white, and that the Draft label is
+unaffected by the rename; two existing `roles` checks were updated to the new token names.
+The generated reference is in sync. Rendered and reviewed by eye.

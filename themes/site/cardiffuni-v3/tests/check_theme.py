@@ -53,8 +53,8 @@ CHECKS = [
     ("roles", "action hover unchanged: #A11A12", "v('var(--color-action-hover)')", "rgb(161, 26, 18)"),
     ("roles", "error is #A11A12", "v('var(--color-status-error)')", "rgb(161, 26, 18)"),
     ("roles", "focus is black", "v('var(--color-focus)')", "rgb(18, 18, 18)"),
-    ("roles", "draft label text is black", "v('var(--color-warning)')", "rgb(18, 18, 18)"),
-    ("roles", "draft label background is Yellow", "v('var(--color-warning-bg)','backgroundColor')", "rgb(255, 179, 0)"),
+    ("roles", "draft label text is black", "v('var(--color-draft)')", "rgb(18, 18, 18)"),
+    ("roles", "draft label background is Yellow", "v('var(--color-draft-bg)','backgroundColor')", "rgb(255, 179, 0)"),
     ("roles", "tertiary text is grey-70", "v('var(--color-text-tertiary)')", "rgb(102, 102, 102)"),
     ("roles", "link blue unchanged", "v('var(--color-link-default)')", "rgb(4, 91, 198)"),
     ("roles", "brand red unchanged", "v('var(--color-brand-primary)')", "rgb(228, 37, 27)"),
@@ -384,6 +384,17 @@ CHECKS = [
     ("cards", "card heading is smaller than a plain component heading",
      "String(parseFloat(cs('#card-heading','fontSize'))<parseFloat(cs('#plain-h3','fontSize')))", "true"),
     ("cards", "a component heading outside a card keeps its size", "cs('#plain-h3','fontSize')", "30px"),
+    # --color-warning and --color-status-warning were the same token by two hops (both resolved
+    # to the Draft label's black), so warning text and icons were indistinguishable from plain
+    # ink (21 September 2026, addendum). --color-warning is renamed --color-draft: it is only
+    # ever used for that one label.
+    ("warning", "warning text matches the darkened warning orange, not ink",
+     "String(sameColor(cs('#text-warning','color'),'rgb(163, 83, 21)'))", "true"),
+    ("warning", "warning text reads at 4.5:1 or better on white", "String(contrast('#text-warning','body')>=4.5)", "true"),
+    ("warning", "warning icon matches warning text, not ink",
+     "String(sameColor(cs('#warning-icon','color'),cs('#text-warning','color')))", "true"),
+    ("warning", "the draft label keeps its own black-on-yellow (10.4:1), unaffected by the rename",
+     "cs('#draft-label','color')+' '+cs('#draft-label','backgroundColor')", "rgb(18, 18, 18) rgb(255, 179, 0)"),
     ("cards", "card description keeps the reading size", "cs('#card-desc','fontSize')", "18px"),
     ("tables", "the scroll wrapper shows the theme's focus ring when focused",
      "(function(){var b=document.querySelector('#tbl-scroll'),previous=document.activeElement;b.focus({preventScroll:true});"
