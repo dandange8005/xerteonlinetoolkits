@@ -66,3 +66,34 @@ left for later decisions:
 `--color-tint: #F8DADA` in `_allvariables.scss` is already flagged in-code as a Red Usage
 Decisions item and is out of scope here, as is the wider set of undecided Red Usage rows and
 secondary-button semantics named in the same checklist line.
+
+## Addendum: the five batches (22 September, later)
+
+Decisions made by Nan.
+
+| Batch | Decision |
+| --- | --- |
+| Section backgrounds | Fix: `.evenSection`/`.oddSection` now use `var(--color-white)`/`var(--color-light)` instead of raw `#ffffff`/`#f9f9f9`. |
+| Editor iframe fallbacks | Not a real batch: `.cardiff-test-style` was the same class Nan's own Red Usage Decisions log already marked "delete (test leftover)". Deleted from `_editorstyles.scss`, and the now-unused `"cardiff-test-style"` entry removed from `build-reference.py`'s exclusion list. |
+| Misc | Fixed: `.rounded-full` now uses `var(--radius-full)` instead of the identical literal `9999px`. `.carousel figcaption`'s `color: #fff` now uses `var(--color-white)`. |
+| `kbd`'s raised shadow | **Kept.** A recognised web idiom for a keyboard key, distinct from the design system's "no decorative shadows" rule, which targets cards and panels, not this. |
+| File-type icon colours | **Kept.** PDF red and Word blue are external brand-recognition colours, not the Cardiff palette. Commented in `_links.scss` as an intentional exception. |
+| Carousel shadows and translucent colours | **Kept.** They sit on a photo, an overlay context the design system's rule already permits. The theme's only shared shadow tier with a real value, `--shadow-lg`, is a larger, softer dropdown shadow that would visibly change the controls; the translucent whites need to show the photo through them, which a solid token cannot do. Commented at the top of the carousel's `:root` block. The same reasoning applies to `--btn-reverse-outline-hover-bg`/`-active-bg` (translucent white on a dark button) and the progress-bar stripe pattern, neither of which was in the original five-batch list but is the same category; both are now commented too. |
+
+Section backgrounds, the utility radius and the caption colour needed no failing test: the
+tolerant colour comparison already used elsewhere in the suite treats `#f9f9f9` and the current
+`--color-light` (about 248.5 per channel, within the check's 1.5 tolerance) as the same colour,
+and `--radius-full` was already exactly `9999px`. These are honest zero-risk substitutions, not
+bug fixes, so three new `audit` checks exist as regression guards rather than as proof of a
+defect.
+
+Fresh re-scan after all of this: two raw hex values remain (`--color-tint`, already a Red Usage
+Decisions item; the two file-type icon colours, decided above), and every remaining `rgba()` and
+non-zero radius/shadow literal is one of the three kept-on-purpose exceptions, now commented in
+place.
+
+Verification: 240 checks pass (237 before). The generated reference is in sync. No demo
+references `.cardiff-test-style`, `.evenSection` or `.oddSection`, so nothing else needed
+updating.
+
+Not verified: the real Xerte player.

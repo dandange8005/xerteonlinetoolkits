@@ -325,6 +325,12 @@ a.accordion-toggle[aria-expanded="true"]::after {
 // =============================================================================
 
 :root {
+    // Carousel controls, indicators and caption sit on a photo, an overlay context, so the
+    // design system's shadow/tint rule permits them. These rgba() values stay literal on
+    // purpose (hardcoded-values audit, 22 September 2026, decided by Nan): the only shared
+    // shadow tier with a real value is --shadow-lg, a larger, softer dropdown shadow that
+    // would visibly change these controls, and the translucent whites need to show the photo
+    // through them, which a solid design-system colour cannot do.
     // Carousel control buttons
     --carousel-control-size: 2.5rem;
     --carousel-control-icon-size: 1.25rem;
@@ -447,7 +453,11 @@ a.accordion-toggle[aria-expanded="true"]::after {
 // Carousel caption styling
 .carousel figcaption {
     position: absolute;
-    color: #fff;
+    color: var(--color-white);
+    // A photo caption sits on the image, so this scrim and the carousel's other overlay
+    // shadows are the design system's permitted exception (shadows/tints on overlays, not
+    // page content). Not mapped to a shared shadow tier: only --shadow-lg has a value, and
+    // it is a larger, softer dropdown shadow that would visibly change these controls.
     background: rgba(0, 0, 0, 0.5);
     bottom: 32px;
     padding: 8px;

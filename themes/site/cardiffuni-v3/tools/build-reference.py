@@ -76,7 +76,7 @@ LEGACY = {
 FRAME_PREFIXES = (
     "navbar", "nav-", "jumbotron", "bs-docs", "activePage", "backBtn", "footer", "feedback",
     "backToTop", "logo", "titles", "pageTitle", "pageSubTitle", "sectionTitle", "contentTitle",
-    "x_", "xerte", "editorStyle", "cardiff-test-style", "language-toggle", "project-info",
+    "x_", "xerte", "editorStyle", "language-toggle", "project-info",
     "sectionSubLinks", "hideSectionMenu", "expandMain", "stickyTop", "affix", "carousel",
     "modal", "tooltip", "popover", "dropdown", "accordion", "tab-", "nav-tabs", "nav-list",
     # .focus-visible only applies the focus ring to a custom control: for developers, not authors.

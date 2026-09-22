@@ -129,12 +129,14 @@ a.link-external {
         font-size: var(--font-size-lg);
         margin-right: var(--spacing-md);
 
-        // PDF files (red)
+        // PDF files (red). External brand colours, not the Cardiff palette: kept as literal
+        // hex on purpose, so a PDF icon still reads as a PDF icon (hardcoded-values audit,
+        // 22 September 2026, decided by Nan).
         &.fa-file-pdf {
             color: #dc3545;
         }
 
-        // Word documents (blue)
+        // Word documents (blue). Same exception as above.
         &.fa-file-word {
             color: #2b579a;
         }

@@ -499,9 +499,9 @@ section {
 // =============================================================================
 
 .evenSection {
-  background: #ffffff;
+  background: var(--color-white);
 }
 
 .oddSection {
-  background: #f9f9f9;
+  background: var(--color-light);
 }

@@ -384,6 +384,12 @@ CHECKS = [
     ("cards", "card heading is smaller than a plain component heading",
      "String(parseFloat(cs('#card-heading','fontSize'))<parseFloat(cs('#plain-h3','fontSize')))", "true"),
     ("cards", "a component heading outside a card keeps its size", "cs('#plain-h3','fontSize')", "30px"),
+    # evenSection/oddSection used raw #ffffff/#f9f9f9 instead of the theme's own white/off-white
+    # tokens (22 September 2026, hardcoded-values audit).
+    ("audit", "even section matches --color-white exactly", "String(sameColor(cs('#even-section','backgroundColor'),v('var(--color-white)','backgroundColor')))", "true"),
+    ("audit", "odd section matches --color-light, the theme's off-white, not a stray literal", "String(sameColor(cs('#odd-section','backgroundColor'),v('var(--color-light)','backgroundColor')))", "true"),
+    ("audit", "the rounded-full utility matches the shared --radius-full token",
+     "String(cs('#rounded-full-util','borderTopLeftRadius')===v('var(--radius-full)','borderTopLeftRadius'))", "true"),
     # The theme's shared focus ring, referenced with a literal fallback in 9 places even
     # though --focus-ring is always defined at :root (22 September 2026).
     ("focus", "the shared --focus-ring token itself is a 2px solid ink ring",

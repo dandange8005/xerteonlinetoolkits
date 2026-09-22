@@ -185,6 +185,9 @@
     // Reverse Outline (for dark backgrounds)
     --btn-reverse-outline-text: var(--color-white);
     --btn-reverse-outline-border: var(--color-white);
+    // Translucent on purpose, same reasoning as the carousel overlays (hardcoded-values audit,
+    // 22 September 2026): a tint that shows the dark surface behind it through, which a solid
+    // design-system colour cannot do.
     --btn-reverse-outline-hover-bg: rgba(255, 255, 255, 0.15);
     --btn-reverse-outline-active-bg: rgba(255, 255, 255, 0.25);
 

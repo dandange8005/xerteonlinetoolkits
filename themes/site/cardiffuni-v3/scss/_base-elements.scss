@@ -429,7 +429,9 @@ pre {
     }
 }
 
-// Keyboard input
+// Keyboard input. Kept its raised "keycap" shadow on purpose (hardcoded-values audit,
+// 22 September 2026, decided by Nan): a recognised web idiom for a key, distinct from the
+// design system's "no decorative shadows on page content" rule, which targets cards and panels.
 kbd {
     font-family: 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
     font-size: 0.875em;

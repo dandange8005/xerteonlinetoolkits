@@ -627,7 +627,7 @@ $spacing-map: (
 }
 
 .rounded-full {
-    border-radius: 9999px !important;
+    border-radius: var(--radius-full) !important;
 }
 
 // Shadows
