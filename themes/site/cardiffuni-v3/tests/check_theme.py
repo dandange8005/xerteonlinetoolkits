@@ -59,6 +59,12 @@ CHECKS = [
     ("roles", "link blue unchanged", "v('var(--color-link-default)')", "rgb(4, 91, 198)"),
     ("roles", "brand red unchanged", "v('var(--color-brand-primary)')", "rgb(228, 37, 27)"),
     ("roles", "heading font is the Franklin Gothic stack", "cs('#pageTitle','fontFamily').split(',')[0].trim()", '"Franklin Gothic Heavy"'),
+    # --color-light is the off-white for soft backgrounds (v2's #f9fafb); the page itself stays white.
+    ("roles", "light is an off-white: lighter than the surface grey, not white",
+     "(function(){var c=rgbOf(v('var(--color-light)','backgroundColor'));return String(c[0]<254.5&&c[0]>242.5)})()", "true"),
+    ("roles", "light is neutral, with no colour tint",
+     "(function(){var c=rgbOf(v('var(--color-light)','backgroundColor'));return String(Math.abs(c[0]-c[1])<0.5&&Math.abs(c[1]-c[2])<0.5)})()", "true"),
+    ("roles", "the page background is white", "cs('body','backgroundColor')", "rgb(255, 255, 255)"),
     ("roles", "primary button still dark red", "cs('.button.button-primary','backgroundColor')", "rgb(194, 31, 22)"),
     ("rules", "rule is 1px", "cs('#rule','borderTopWidth')", "1px"),
     ("rules", "rule is neutral grey-30", "cs('#rule','borderTopColor')", "rgb(204, 204, 204)"),
@@ -268,6 +274,8 @@ CHECKS = [
      "withRootTokens({'--cu-shadow-lg':'1px 2px 3px rgb(1, 2, 3)'},()=>v('var(--shadow-dropdown)','boxShadow'))", "rgb(1, 2, 3) 1px 2px 3px 0px"),
     ("theming", "fast transition follows shared duration and easing",
      "withRootTokens({'--cu-fast':'240ms','--cu-ease':'linear'},()=>v('var(--transition-fast)','transition'))", "0.24s linear"),
+    ("theming", "light is derived from the shared white and surface roles, not a fixed value",
+     "withRootTokens({'--cu-grey-10':'rgb(200, 200, 200)'},()=>{var c=rgbOf(v('var(--color-light)','backgroundColor'));return String(c[0]<235&&c[0]>220)})", "true"),
     ("theming", "legacy component overrides still work",
      "withRootTokens({'--font-size-body':'23px'},()=>cs('body','fontSize'))", "23px"),
     # Page chrome (21 September 2026). Colours follow the Red Usage Decisions log: the footer uses

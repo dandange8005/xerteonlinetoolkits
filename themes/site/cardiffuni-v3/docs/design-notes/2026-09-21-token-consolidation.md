@@ -63,3 +63,25 @@ reference are included. The [review](../reviews/2026-09-20-final-branch-review.m
 remaining player checks and wider migration work. The upstream issue report is a local draft.
 
 This records local changes only; no push, merge or deployment is included.
+
+## Addendum: `--color-light` is an off-white again (21 September, later)
+
+`--color-light` and `--color-white` were the same white. That was not a side effect of the
+consolidation: v2 defined `light` as `#f9fafb` ("off-white for backgrounds"), and the first v3
+commit set it to white on purpose, noting "v2 used off-white #f9fafb", to follow the design
+system's white "main paper". The only consumer was `--color-bg-body`, so the token decided the
+page background.
+
+Nan asked for the off-white back, but not for the page. Decisions:
+
+- `--color-light` is `color-mix(in srgb, var(--cu-bg) 50%, var(--cu-surface) 50%)`: half way
+  between the design system's white and its grey-10 surface, about `#F9F9F9` (248.5 per channel).
+  It is neutral, has no raw hex, and follows both shared roles; v2's `#f9fafb` has a faint blue
+  tint that no design-system grey has.
+- `--color-bg-body` now uses `--cu-bg` directly, so **the page background is unchanged and stays
+  white**. Nothing rendered by the theme uses `--color-light`; it is available to authors and
+  appears in the colours demo.
+
+Verification: 229 checks pass (225 before). Four new checks cover the value (off-white, neutral,
+follows the shared roles when grey-10 is overridden) and that the page background is white; the
+first and last of those failed or passed as expected before the change.

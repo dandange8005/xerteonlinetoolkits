@@ -172,14 +172,16 @@ function ps(selector, pseudo, property) {
   if (!el) throw new Error('Missing fixture element: ' + selector);
   return getComputedStyle(el, pseudo)[property];
 }
+// The three channels (0 to 255) of a computed colour. color-mix() results serialise as
+// color(srgb r g b) with channels from 0 to 1.
+function rgbOf(value) {
+  var scale = /^color\(srgb/.test(value) ? 255 : 1;
+  return value.match(/[\d.]+/g).slice(0, 3).map(function (n) { return Number(n) * scale; });
+}
 // WCAG contrast ratio between one element's text colour and another's background colour.
 // Pass 'backgroundColor' as textProperty to compare two fills instead (a bar against its track).
 function contrast(textSelector, backgroundSelector, textProperty) {
-  // color-mix() results serialise as color(srgb r g b) with channels from 0 to 1.
-  function rgb(value) {
-    var scale = /^color\(srgb/.test(value) ? 255 : 1;
-    return value.match(/[\d.]+/g).slice(0, 3).map(function (n) { return Number(n) * scale; });
-  }
+  var rgb = rgbOf;
   function luminance(c) {
     var l = c.map(function (x) { x /= 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
     return 0.2126 * l[0] + 0.7152 * l[1] + 0.0722 * l[2];

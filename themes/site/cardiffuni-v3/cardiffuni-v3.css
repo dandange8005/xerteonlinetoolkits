@@ -177,7 +177,7 @@
   --color-brand-primary: var(--cu-red);
   --color-brand-secondary: var(--cu-ink);
   --color-white: var(--cu-white);
-  --color-light: var(--cu-bg);
+  --color-light: color-mix(in srgb, var(--cu-bg) 50%, var(--cu-surface) 50%);
   --color-action: var(--cu-action);
   --color-action-hover: var(--cu-action-hover);
   --color-tint: #F8DADA;
@@ -218,7 +218,7 @@
   --color-link-hover: color-mix(in srgb, var(--color-link-default) 70%, black 30%);
   --color-link-visited: var(--color-link-default);
   --color-link-active: color-mix(in srgb, var(--color-link-default) 50%, black 50%);
-  --color-bg-body: var(--color-light);
+  --color-bg-body: var(--cu-bg);
   --color-bg-page: var(--cu-bg);
   --color-bg-subtle: var(--cu-surface);
   --color-bg-muted: var(--color-gray-20);

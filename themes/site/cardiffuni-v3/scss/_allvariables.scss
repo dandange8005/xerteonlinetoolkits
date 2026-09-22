@@ -27,7 +27,10 @@
     // =========================================================================
 
     --color-white: var(--cu-white);
-    --color-light: var(--cu-bg);
+    // The off-white for soft backgrounds (v2's `light`, #f9fafb). Half way between the design
+    // system's white and its grey-10 surface, so it stays neutral and follows both roles. The
+    // page itself is white (--color-bg-body): the design system's main paper.
+    --color-light: color-mix(in srgb, var(--cu-bg) 50%, var(--cu-surface) 50%);
 
     // =========================================================================
     // ACTION & INTERACTION COLORS (Design System v1.4)
@@ -90,7 +93,7 @@
     --color-link-active: color-mix(in srgb, var(--color-link-default) 50%, black 50%);
 
     // Background
-    --color-bg-body: var(--color-light);
+    --color-bg-body: var(--cu-bg);
     --color-bg-page: var(--cu-bg);
     --color-bg-subtle: var(--cu-surface);
     --color-bg-muted: var(--color-gray-20);
