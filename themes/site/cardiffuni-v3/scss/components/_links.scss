@@ -42,6 +42,8 @@ a.link-action {
         margin-right: var(--spacing-sm);
         color: var(--color-accent-green);
         font-size: var(--font-size-lg);
+        text-decoration: none;
+        display: inline-block;
     }
 
     &:hover::after,

@@ -2839,6 +2839,8 @@ a.link-action::before {
   margin-right: var(--spacing-sm);
   color: var(--color-accent-green);
   font-size: var(--font-size-lg);
+  text-decoration: none;
+  display: inline-block;
 }
 a.link-action:hover::after, a.link-action:focus::after {
   content: none;
