@@ -610,6 +610,8 @@ a {
         margin-right: var(--size-2);
         color: var(--clr-success);
         font-size: var(--fs-lg);
+        text-decoration: none;
+        display: inline-block;
     }
 
     &:hover,
