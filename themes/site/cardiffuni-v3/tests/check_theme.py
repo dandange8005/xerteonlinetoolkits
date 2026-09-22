@@ -384,6 +384,25 @@ CHECKS = [
     ("cards", "card heading is smaller than a plain component heading",
      "String(parseFloat(cs('#card-heading','fontSize'))<parseFloat(cs('#plain-h3','fontSize')))", "true"),
     ("cards", "a component heading outside a card keeps its size", "cs('#plain-h3','fontSize')", "30px"),
+    # The theme's shared focus ring, referenced with a literal fallback in 9 places even
+    # though --focus-ring is always defined at :root (22 September 2026).
+    ("focus", "the shared --focus-ring token itself is a 2px solid ink ring",
+     "v('var(--focus-ring)','outline')", "rgb(18, 18, 18) solid 2px"),
+    # components/_details.scss: .details__summary:focus referenced the undefined
+    # --color-accent-gold for both background and box-shadow, and explicitly zeroed outline,
+    # leaving a keyboard-focused summary with no visible focus indicator at all.
+    ("focus", "a keyboard-focused details summary has a visible outline",
+     "(function(){var s=document.querySelector('#details-summary'),previous=document.activeElement;s.focus({preventScroll:true});"
+     "var cs=getComputedStyle(s),result=(document.activeElement===s)+' '+cs.outlineStyle+' '+cs.outlineWidth+' '+cs.outlineColor;"
+     "previous.focus({preventScroll:true});if(document.activeElement===s)s.blur();return result})()", "true solid 2px rgb(18, 18, 18)"),
+    ("focus", "a focused breadcrumb link keeps its outline after removing the fallback",
+     "(function(){var a=document.querySelector('#breadcrumb-link'),previous=document.activeElement;a.focus({preventScroll:true});"
+     "var cs=getComputedStyle(a),result=(document.activeElement===a)+' '+cs.outlineStyle+' '+cs.outlineWidth;"
+     "previous.focus({preventScroll:true});if(document.activeElement===a)a.blur();return result})()", "true solid 2px"),
+    ("focus", "a focused accordion toggle keeps its outline after removing the fallback",
+     "(function(){var a=document.querySelector('#accordion-toggle-link'),previous=document.activeElement;a.focus({preventScroll:true});"
+     "var cs=getComputedStyle(a),result=(document.activeElement===a)+' '+cs.outlineStyle+' '+cs.outlineWidth;"
+     "previous.focus({preventScroll:true});if(document.activeElement===a)a.blur();return result})()", "true solid 2px"),
     # --color-warning and --color-status-warning were the same token by two hops (both resolved
     # to the Draft label's black), so warning text and icons were indistinguishable from plain
     # ink (21 September 2026, addendum). --color-warning is renamed --color-draft: it is only

@@ -598,7 +598,7 @@ a:where(:not(.button):not(.btn):not(.nav-link)):hover {
   text-decoration: none !important;
 }
 a:where(:not(.button):not(.btn):not(.nav-link)):focus-visible {
-  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+  outline: var(--focus-ring);
   outline-offset: var(--focus-ring-offset, 2px);
   border-radius: var(--radius-sm);
 }
@@ -997,7 +997,7 @@ input[type=datetime-local]:focus,
 input[type=month]:focus,
 input[type=week]:focus,
 textarea:focus {
-  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+  outline: var(--focus-ring);
   outline-offset: 0;
   border-color: var(--color-brand-primary);
 }
@@ -1047,7 +1047,7 @@ select:hover:not(:disabled) {
   border-color: var(--color-gray-50);
 }
 select:focus {
-  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+  outline: var(--focus-ring);
   outline-offset: 0;
   border-color: var(--color-brand-primary);
 }
@@ -1067,7 +1067,7 @@ input[type=radio] {
 }
 input[type=checkbox]:focus-visible,
 input[type=radio]:focus-visible {
-  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+  outline: var(--focus-ring);
   outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -1249,7 +1249,7 @@ ul.nav-tabs {
 }
 
 .nav-tabs > li > a:focus-visible {
-  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+  outline: var(--focus-ring);
   outline-offset: var(--focus-ring-offset, 2px);
   border-radius: var(--radius-sm);
 }
@@ -1316,7 +1316,7 @@ ul.nav-pills {
 }
 
 .nav-pills > li > a:focus-visible {
-  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+  outline: var(--focus-ring);
   outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -1359,7 +1359,7 @@ a.accordion-toggle:focus {
 }
 
 a.accordion-toggle:focus-visible {
-  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+  outline: var(--focus-ring);
   outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -1440,7 +1440,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 }
 
 .carousel-control:focus-visible {
-  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+  outline: var(--focus-ring);
   outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -1643,7 +1643,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   text-decoration: underline;
 }
 .breadcrumb > li > a:focus-visible {
-  outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+  outline: var(--focus-ring);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
@@ -2660,11 +2660,9 @@ button.button--block {
 .details__summary:hover {
   text-decoration: none;
 }
-.details__summary:focus {
-  background-color: var(--color-accent-gold);
-  box-shadow: 0 -2px var(--color-accent-gold), 0 4px var(--color-gray-90);
-  color: var(--color-gray-90);
-  outline: 4px solid transparent;
+.details__summary:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
   text-decoration: none;
 }
 .details[open] > .details__summary::before {

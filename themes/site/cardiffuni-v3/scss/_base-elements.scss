@@ -64,7 +64,7 @@ a:where(:not(.button):not(.btn):not(.nav-link)) {
     }
 
     &:focus-visible {
-        outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+        outline: var(--focus-ring); // --focus-ring is always defined at :root
         outline-offset: var(--focus-ring-offset, 2px);
         border-radius: var(--radius-sm);
     }
@@ -506,7 +506,7 @@ textarea {
     }
 
     &:focus {
-        outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+        outline: var(--focus-ring); // --focus-ring is always defined at :root
         outline-offset: 0;
         border-color: var(--color-brand-primary);
     }
@@ -549,7 +549,7 @@ select {
     }
 
     &:focus {
-        outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+        outline: var(--focus-ring); // --focus-ring is always defined at :root
         outline-offset: 0;
         border-color: var(--color-brand-primary);
     }
@@ -571,7 +571,7 @@ input[type="radio"] {
     cursor: pointer;
 
     &:focus-visible {
-        outline: var(--focus-ring, 2px solid var(--cu-ink, #121212));
+        outline: var(--focus-ring); // --focus-ring is always defined at :root
         outline-offset: var(--focus-ring-offset, 2px);
     }
 }
