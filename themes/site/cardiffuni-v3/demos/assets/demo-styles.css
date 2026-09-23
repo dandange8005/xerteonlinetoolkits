@@ -55,7 +55,7 @@ body {
 }
 
 .demo-block--highlight {
-    border-left: 4px solid var(--cu-brand-red);
+    border-left: 4px solid var(--cu-ink);
 }
 
 .demo-block__title {
@@ -141,7 +141,7 @@ body {
 
 .demo-card__title {
     margin-top: 0;
-    color: var(--cu-brand-red);
+    color: var(--cu-ink);
     font-size: var(--font-size-lg);
 }
 
@@ -202,7 +202,7 @@ body {
 }
 
 .demo-footer__link:hover {
-    color: var(--cu-brand-red);
+    color: var(--cu-ink);
     text-decoration: underline;
 }
 

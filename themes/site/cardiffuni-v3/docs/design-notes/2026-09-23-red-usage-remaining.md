@@ -118,9 +118,27 @@ job 4, the *Never red* table and §4 *Fields*), as was the `cardiff-brand-guidel
 - **Resting field borders.** Text inputs, textareas and selects rest on a grey-30 border, which
   is 1.61:1 on white, short of the 3:1 WCAG 1.4.11 asks for a field boundary. This is not a red
   row and was not part of what was approved.
-- **Red in the author guide's own demo markup.** A few examples set brand red with inline styles
-  (`h4` headings and a panel on the base-elements page, a banner and a heading on the patterns
-  page). These are demo content, not theme rules; the headings contradict the "headings are
-  never red" rule and could be changed separately.
 - **`--color-bg-brand`** still resolves to brand red. No theme rule reads it now; only the colour
   page's swatch shows it. It was kept because project CSS may use it.
+
+## Addendum: red in the author guide (23 September, later)
+
+The guide's own demo markup and shared demo stylesheet still used brand red where the design
+system says ink. These are demo styles, not theme rules, but authors copy them.
+
+| Where | Before | After |
+| --- | --- | --- |
+| Guide section `h2` (`base-elements-demo.html` page style), card `h4`s, staff-profile `h3`, `.demo-card__title` (`assets/demo-styles.css`) | brand red | ink: headings are never red |
+| Dark panels behind the reverse buttons (`components.html`, `base-elements-demo.html`) and the centred CTA banner (`patterns.html`) | brand red fill | ink fill |
+| `.demo-block--highlight` left rule, `.demo-footer__link:hover` | brand red | ink |
+| Contact list icons (`images-media.html`) | blue, green, red, orange | inherit the text colour: icons outside callouts are black or white (§4 *Icons*) |
+| "Brand" heart in the icon colour row | brand red | removed; the four status icons remain |
+| Flexbox feature-grid icons and their code sample | `.text-brand` | no colour class |
+| Flexbox placeholder boxes (renamed `.demo-box--brand` → `.demo-box--muted`) | brand red fill | grey-70 with white text (5.74:1) |
+
+Kept on purpose: `.demo-warning`'s red rule, which mirrors the Warning callout, and the
+`colors.html` swatches, the "White text on Brand Primary" combination and the override example,
+which document the brand token itself.
+
+Verification: 257 checks pass, the reference is in sync and no theme class is undocumented. The
+Patterns and Components pages were rendered in headless Chrome and reviewed by eye.
