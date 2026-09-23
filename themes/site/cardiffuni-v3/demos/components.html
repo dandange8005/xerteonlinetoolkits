@@ -25,7 +25,7 @@
 
             <div class="titles">
                 <h1 id="pageTitle" aria-live="polite">Components</h1>
-                <p id="pageSubTitle" aria-live="polite">UI Components Library</p>
+                <p id="pageSubTitle" aria-live="polite">Cardiff components</p>
             </div>
         </div>
     </header>
@@ -47,12 +47,13 @@
                         <ul class="nav" id="nav" aria-labelledby="pageNavBtn">
                             <li role="none"><a href="index.html">Home</a></li>
                             <li role="none"><a href="typography.html">Typography</a></li>
+                            <li role="none"><a href="colors.html">Colors</a></li>
                             <li role="none"><a href="lists-tables.html">Lists & Tables</a></li>
                             <li role="none"><a href="images-media.html">Images, Media & Icons</a></li>
                             <li role="none"><a href="forms.html">Forms</a></li>
                             <li class="activePage" role="none" aria-current="page"><a href="components.html">Components</a></li>
+                            <li role="none"><a href="bootstrap.html">Bootstrap</a></li>
                             <li role="none"><a href="code-utilities.html">Code & Utilities</a></li>
-                            <li role="none"><a href="colors.html">Colors</a></li>
                             <li role="none"><a href="patterns.html">Patterns</a></li>
                             <li role="none"><a href="flexbox.html">Flexbox</a></li>
                         </ul>
@@ -66,11 +67,8 @@
         <div class="row-fluid">
             <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
                 <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
-                    <li class="active" aria-current="location"><a href="#buttons">Buttons</a></li>
-                    <li><a href="#alerts">Alerts</a></li>
-                    <li><a href="#badges">Badges & Labels</a></li>
-                    <li><a href="#progress">Progress Bars</a></li>
-                    <li><a href="#breadcrumbs">Breadcrumbs</a></li>
+                    <li class="active" aria-current="location"><a href="#about-components">About Components</a></li>
+                    <li><a href="#buttons">Buttons</a></li>
                     <li><a href="#cards">Cards</a></li>
                     <li><a href="#callouts">Callouts</a></li>
                     <li><a href="#rules">Rules</a></li>
@@ -81,13 +79,16 @@
                     <li><a href="#dosdonts">Do's &amp; Don'ts</a></li>
                     <li><a href="#projectinfo">Project info</a></li>
                     <li><a href="#pagechrome">Page chrome</a></li>
-                    <li><a href="#tabs">Tabs</a></li>
-                    <li><a href="#accordions">Accordions</a></li>
                     <li><a href="#component-usage-guidelines">Component Usage Guidelines</a></li>
                 </ul>
             </div>
 
             <div class="span9" id="mainContent">
+        <!-- ==================== ABOUT ==================== -->
+        <section class="demo-section" id="about-components">
+            <h2>About Components</h2>
+            <p>The components <code>cardiffuni-v3</code> adds for Cardiff resources. Alerts, badges, progress bars, breadcrumbs, tabs and accordions come from Bootstrap and are on the <a href="bootstrap.html">Bootstrap</a> page.</p>
+        </section>
         <!-- Table of Contents -->
         <!-- ==================== BUTTONS ==================== -->
         <section class="demo-section" id="buttons">
@@ -186,172 +187,6 @@
                     <a href="#" class="button button-secondary-outline">Outline Link</a>
                 </div>
                 <code class="code-label">&lt;a class="button ..."&gt;</code>
-            </div>
-        </section>
-
-        <!-- ==================== ALERTS ==================== -->
-        <section class="demo-section" id="alerts">
-            <h2><i class="fa-solid fa-bell"></i> Alerts</h2>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Alert Variants</div>
-                <p class="demo-block__description">A grey surface, square edges and a 4px rule in the status colour, like the design system's callouts. The glyph and the bold word carry the status, so the rule's colour is never the only cue. Danger and error use the design-system error red.</p>
-
-                <div class="alert alert-success">
-                    <strong>Success!</strong> Your changes have been saved successfully.
-                </div>
-
-                <div class="alert alert-info">
-                    <strong>Info:</strong> This course will be available from September 2025.
-                </div>
-
-                <div class="alert alert-warning">
-                    <strong>Warning!</strong> Your session will expire in 5 minutes.
-                </div>
-
-                <div class="alert alert-danger">
-                    <strong>Error!</strong> Unable to submit form. Please check required fields.
-                </div>
-
-                <code class="code-label">.alert .alert-success | .alert-info | .alert-warning | .alert-danger</code>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Block Alert with Dismissible</div>
-
-                <div class="alert alert-block alert-info">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <h4>Important Information</h4>
-                    <p>This is a block-level alert with more content. It can contain multiple paragraphs and additional formatting.</p>
-                    <p>Click the &times; button to dismiss this alert.</p>
-                </div>
-
-                <code class="code-label">.alert .alert-block + .close[data-dismiss="alert"]</code>
-            </div>
-        </section>
-
-        <!-- ==================== BADGES & LABELS ==================== -->
-        <section class="demo-section" id="badges">
-            <h2><i class="fa-solid fa-tag"></i> Badges & Labels</h2>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Badges (Pill Shape)</div>
-                <p class="demo-block__description">Every badge and label keeps its text readable at 4.5:1 or better. Danger and important use the design-system error red; info uses link blue; the default is grey-70.</p>
-                <div class="demo-inline">
-                    <span class="badge">Default</span>
-                    <span class="badge badge-success">Success</span>
-                    <span class="badge badge-warning">Warning</span>
-                    <span class="badge badge-important">Important</span>
-                    <span class="badge badge-danger">Danger</span>
-                    <span class="badge badge-info">Info</span>
-                    <span class="badge badge-inverse">Inverse</span>
-                </div>
-                <code class="code-label">.badge .badge-success | .badge-warning | .badge-important | .badge-danger | .badge-info | .badge-inverse</code>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Labels (Square Shape)</div>
-                <div class="demo-inline">
-                    <span class="label">Default</span>
-                    <span class="label label-success">Success</span>
-                    <span class="label label-warning">Warning</span>
-                    <span class="label label-important">Important</span>
-                    <span class="label label-danger">Danger</span>
-                    <span class="label label-info">Info</span>
-                    <span class="label label-inverse">Inverse</span>
-                </div>
-                <code class="code-label">.label .label-success | .label-warning | .label-important | .label-danger | .label-info | .label-inverse</code>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Usage Example</div>
-                <p>
-                    Course Status: <span class="badge badge-success">Active</span>
-                    &nbsp;&nbsp;
-                    Level: <span class="label label-info">Undergraduate</span>
-                    &nbsp;&nbsp;
-                    New <span class="badge badge-important">3</span> notifications
-                </p>
-            </div>
-        </section>
-
-        <!-- ==================== PROGRESS BARS ==================== -->
-        <section class="demo-section" id="progress">
-            <h2><i class="fa-solid fa-bars-progress"></i> Progress Bars</h2>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Basic Progress Bars</div>
-                <p class="demo-block__description">The default fill is ink. The variants add a status colour: danger is the design-system error red, info is link blue, and warning is a darkened orange so it stays visible against the track.</p>
-
-                <p>Default (40%)</p>
-                <div class="progress">
-                    <div class="progress-bar" style="width: 40%;">40%</div>
-                </div>
-
-                <p>Success (60%)</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: 60%;">60%</div>
-                </div>
-
-                <p>Warning (80%)</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: 80%;">80%</div>
-                </div>
-
-                <p>Danger (25%)</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-danger" style="width: 25%;">25%</div>
-                </div>
-
-                <p>Info (55%)</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-info" style="width: 55%;">55%</div>
-                </div>
-
-                <code class="code-label">.progress > .progress-bar | .progress-bar-success | .progress-bar-warning | .progress-bar-danger | .progress-bar-info</code>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Striped & Animated</div>
-
-                <p>Striped</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" style="width: 45%;">45%</div>
-                </div>
-
-                <p>Animated Striped</p>
-                <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-success" style="width: 70%;">Loading...</div>
-                </div>
-
-                <code class="code-label">.progress .progress-striped | .progress-striped.active</code>
-            </div>
-        </section>
-
-        <!-- ==================== BREADCRUMBS ==================== -->
-        <section class="demo-section" id="breadcrumbs">
-            <h2><i class="fa-solid fa-sitemap"></i> Breadcrumbs</h2>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Navigation Breadcrumb</div>
-
-                <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Courses</a></li>
-                    <li><a href="#">Computer Science</a></li>
-                    <li class="active">Introduction to Programming</li>
-                </ul>
-
-                <code class="code-label">.breadcrumb > li > a | li.active</code>
-            </div>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Short Breadcrumb</div>
-
-                <ul class="breadcrumb">
-                    <li><a href="#">Dashboard</a></li>
-                    <li class="active">Settings</li>
-                </ul>
             </div>
         </section>
 
@@ -515,13 +350,23 @@
 
             <div class="demo-block">
                 <div class="demo-block__title">Asset link (file download)</div>
-                <a href="#links" class="link-asset">
-                    <i class="fa-solid fa-file-pdf link-asset__icon" aria-hidden="true"></i>
-                    <div>
-                        <div class="link-asset__name">Assessment design checklist</div>
-                        <div class="link-asset__label">PDF, 240 KB</div>
-                    </div>
-                </a>
+                <div class="demo-block__description">The icon class sets the file-type colour: <code>fa-file-pdf</code> is red and <code>fa-file-word</code> is Word blue. Put the file type and size in the label.</div>
+                <div class="flex flex-col gap-md">
+                    <a href="#links" class="link-asset">
+                        <i class="fa-solid fa-file-pdf link-asset__icon" aria-hidden="true"></i>
+                        <div>
+                            <div class="link-asset__name">Assessment design checklist</div>
+                            <div class="link-asset__label">PDF, 240 KB</div>
+                        </div>
+                    </a>
+                    <a href="#links" class="link-asset">
+                        <i class="fa-solid fa-file-word link-asset__icon" aria-hidden="true"></i>
+                        <div>
+                            <div class="link-asset__name">Marking rubric template</div>
+                            <div class="link-asset__label">Word, 85 KB</div>
+                        </div>
+                    </a>
+                </div>
                 <code class="code-label">.link-asset | .link-asset__icon | .link-asset__name | .link-asset__label</code>
             </div>
         </section>
@@ -641,94 +486,6 @@
             </div>
         </section>
 
-        <!-- ==================== TABS ==================== -->
-        <section class="demo-section" id="tabs">
-            <h2><i class="fa-solid fa-folder"></i> Tabs</h2>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Tab Navigation</div>
-
-                <ul class="nav nav-tabs" id="demoTabs">
-                    <li class="active"><a href="#tab1" data-toggle="tab">Overview</a></li>
-                    <li><a href="#tab2" data-toggle="tab">Details</a></li>
-                    <li><a href="#tab3" data-toggle="tab">Requirements</a></li>
-                </ul>
-
-                <div class="tab-content">
-                    <div class="tab-pane active" id="tab1">
-                        <h4>Course Overview</h4>
-                        <p>This is the overview tab content. It provides a high-level summary of the course material and learning objectives.</p>
-                    </div>
-                    <div class="tab-pane" id="tab2">
-                        <h4>Course Details</h4>
-                        <p>Detailed information about the course structure, duration, and assessment methods would appear here.</p>
-                    </div>
-                    <div class="tab-pane" id="tab3">
-                        <h4>Prerequisites</h4>
-                        <ul>
-                            <li>Basic computer literacy</li>
-                            <li>Access to a modern web browser</li>
-                            <li>Minimum 10 hours per week study time</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <code class="code-label">.nav .nav-tabs + .tab-content > .tab-pane</code>
-            </div>
-        </section>
-
-        <!-- ==================== ACCORDIONS ==================== -->
-        <section class="demo-section" id="accordions">
-            <h2><i class="fa-solid fa-list"></i> Accordions</h2>
-
-            <div class="demo-block">
-                <div class="demo-block__title">Collapsible Accordion</div>
-
-                <div class="accordion" id="demoAccordion">
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#demoAccordion" href="#collapse1" aria-expanded="true">
-                                What is Xerte Online Toolkits?
-                            </a>
-                        </div>
-                        <div id="collapse1" class="accordion-body collapse in">
-                            <div class="accordion-inner">
-                                <p>Xerte Online Toolkits is a suite of browser-based tools that allow users to create interactive learning materials using simple forms-based authoring.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#demoAccordion" href="#collapse2" aria-expanded="false">
-                                How do I get started?
-                            </a>
-                        </div>
-                        <div id="collapse2" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                <p>To get started, simply log in with your university credentials and create a new project. You'll be guided through the process of adding pages and interactive elements.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#demoAccordion" href="#collapse3" aria-expanded="false">
-                                Can I share my content?
-                            </a>
-                        </div>
-                        <div id="collapse3" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                <p>Yes! You can share your content via direct links, embed it in your VLE, or export it as a SCORM package for use in other learning management systems.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <code class="code-label">.accordion > .accordion-group > .accordion-heading + .accordion-body.collapse > .accordion-inner</code>
-            </div>
-        </section>
-
         <!-- ==================== USAGE GUIDELINES ==================== -->
         <section class="demo-section" id="component-usage-guidelines">
             <h2><i class="fa-solid fa-book"></i> Component Usage Guidelines</h2>
@@ -744,32 +501,12 @@
                     </ul>
                 </div>
 
-                <div class="demo-block">
-                    <div class="demo-block__title">Alerts</div>
-                    <ul>
-                        <li><strong>Success:</strong> Completed actions</li>
-                        <li><strong>Info:</strong> Neutral information</li>
-                        <li><strong>Warning:</strong> Caution needed</li>
-                        <li><strong>Danger:</strong> Errors, critical issues</li>
-                    </ul>
-                </div>
-
-                <div class="demo-block">
-                    <div class="demo-block__title">Badges vs Labels</div>
-                    <ul>
-                        <li><strong>Badges:</strong> Counts, notifications</li>
-                        <li><strong>Labels:</strong> Categories, status tags</li>
-                        <li>Use sparingly to avoid clutter</li>
-                    </ul>
-                </div>
 
                 <div class="demo-block">
                     <div class="demo-block__title">Accessibility</div>
                     <ul>
                         <li>All components have focus states</li>
                         <li>Use <code>aria-label</code> for icon-only buttons</li>
-                        <li>Alerts use semantic color + icons</li>
-                        <li>Accordions use ARIA expanded states</li>
                     </ul>
                 </div>
             </div>
@@ -783,7 +520,7 @@
         <ul class="demo-footer__links">
             <li><a href="index.html" class="demo-footer__link">Home</a></li>
             <li><a href="forms.html" class="demo-footer__link">&larr; Forms</a></li>
-            <li><a href="code-utilities.html" class="demo-footer__link">Code & Utilities &rarr;</a></li>
+            <li><a href="bootstrap.html" class="demo-footer__link">Bootstrap &rarr;</a></li>
         </ul>
     </footer>
     <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>

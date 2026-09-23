@@ -60,6 +60,7 @@
             overflow-x: auto;
             font-family: monospace;
             font-size: var(--font-size-sm);
+            white-space: pre-line; /* one line per line of markup */
         }
     </style>
 </head>
@@ -97,15 +98,15 @@
                         <ul class="nav" id="nav" aria-labelledby="pageNavBtn">
                             <li role="none"><a href="index.html">Home</a></li>
                             <li role="none"><a href="typography.html">Typography</a></li>
+                            <li role="none"><a href="colors.html">Colors</a></li>
                             <li role="none"><a href="lists-tables.html">Lists & Tables</a></li>
                             <li role="none"><a href="images-media.html">Images, Media & Icons</a></li>
                             <li role="none"><a href="forms.html">Forms</a></li>
                             <li role="none"><a href="components.html">Components</a></li>
+                            <li role="none"><a href="bootstrap.html">Bootstrap</a></li>
                             <li role="none"><a href="code-utilities.html">Code & Utilities</a></li>
-                            <li role="none"><a href="colors.html">Colors</a></li>
                             <li role="none"><a href="patterns.html">Patterns</a></li>
-                            <li class="activePage" role="none" aria-current="page"><a href="flexbox.html">Flexbox</a>
-                            </li>
+                            <li class="activePage" role="none" aria-current="page"><a href="flexbox.html">Flexbox</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1113,12 +1114,184 @@
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 2rem;">Legacy Example (Still Works)</h4>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">How the Columns Work</div>
+                <div class="demo-block__description">Put <code>.flexItem</code> children inside a <code>.flexContainer</code> and give each one a width class: <code>.c10</code>, <code>.c20</code>, <code>.c25</code>, <code>.c30</code>, <code>.c33</code>, <code>.c40</code>, <code>.c50</code>, <code>.c60</code>, <code>.c70</code> or <code>.c80</code>. Widths that add up to 100 share one row: each column gives up its share of the gap, and an item's padding and border stay inside its width. Below 806px every item stacks at full width. There is no <code>.c66</code>, <code>.c75</code> or <code>.c90</code>.</div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Two Columns</div>
+                <div class="demo-block__description">Pairs that add up to 100.</div>
+
+                <div class="demo-container flex flex-col gap-md">
+                    <div class="flexContainer">
+                        <div class="flexItem c50 demo-box">50%</div>
+                        <div class="flexItem c50 demo-box demo-box--muted">50%</div>
+                    </div>
+                    <div class="flexContainer">
+                        <div class="flexItem c40 demo-box">40%</div>
+                        <div class="flexItem c60 demo-box demo-box--muted">60%</div>
+                    </div>
+                    <div class="flexContainer">
+                        <div class="flexItem c30 demo-box">30%</div>
+                        <div class="flexItem c70 demo-box demo-box--muted">70%</div>
+                    </div>
+                    <div class="flexContainer">
+                        <div class="flexItem c20 demo-box">20%</div>
+                        <div class="flexItem c80 demo-box demo-box--muted">80%</div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+                    &lt;div class="flexContainer"&gt;
+                        &lt;div class="flexItem c50"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c50"&gt;…&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="flexContainer"&gt;
+                        &lt;div class="flexItem c40"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c60"&gt;…&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="flexContainer"&gt;
+                        &lt;div class="flexItem c30"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c70"&gt;…&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="flexContainer"&gt;
+                        &lt;div class="flexItem c20"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c80"&gt;…&lt;/div&gt;
+                    &lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Three, Four and Five Columns</div>
+                <div class="demo-block__description">Any mix works as long as the row adds up to 100.</div>
+
+                <div class="demo-container flex flex-col gap-md">
+                    <div class="flexContainer">
+                        <div class="flexItem c33 demo-box">33%</div>
+                        <div class="flexItem c33 demo-box demo-box--muted">33%</div>
+                        <div class="flexItem c33 demo-box">33%</div>
+                    </div>
+                    <div class="flexContainer">
+                        <div class="flexItem c25 demo-box">25%</div>
+                        <div class="flexItem c50 demo-box demo-box--muted">50%</div>
+                        <div class="flexItem c25 demo-box">25%</div>
+                    </div>
+                    <div class="flexContainer">
+                        <div class="flexItem c30 demo-box">30%</div>
+                        <div class="flexItem c40 demo-box demo-box--muted">40%</div>
+                        <div class="flexItem c30 demo-box">30%</div>
+                    </div>
+                    <div class="flexContainer">
+                        <div class="flexItem c25 demo-box">25%</div>
+                        <div class="flexItem c25 demo-box demo-box--muted">25%</div>
+                        <div class="flexItem c25 demo-box">25%</div>
+                        <div class="flexItem c25 demo-box demo-box--muted">25%</div>
+                    </div>
+                    <div class="flexContainer">
+                        <div class="flexItem c20 demo-box">20%</div>
+                        <div class="flexItem c20 demo-box demo-box--muted">20%</div>
+                        <div class="flexItem c20 demo-box">20%</div>
+                        <div class="flexItem c20 demo-box demo-box--muted">20%</div>
+                        <div class="flexItem c20 demo-box">20%</div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+                    &lt;div class="flexContainer"&gt;
+                        &lt;div class="flexItem c33"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c33"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c33"&gt;…&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="flexContainer"&gt;
+                        &lt;div class="flexItem c25"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c50"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c25"&gt;…&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="flexContainer"&gt;
+                        &lt;div class="flexItem c30"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c40"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c30"&gt;…&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="flexContainer"&gt;
+                        &lt;div class="flexItem c25"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c25"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c25"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c25"&gt;…&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="flexContainer"&gt;
+                        &lt;div class="flexItem c20"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c20"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c20"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c20"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c20"&gt;…&lt;/div&gt;
+                    &lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Wrapping onto New Rows</div>
+                <div class="demo-block__description">When a row is full, the next item starts a new one. Four <code>.c50</code> items make two rows of two; four <code>.c33</code> items leave the last one on its own row at a third of the width.</div>
+
+                <div class="demo-container flex flex-col gap-md">
+                    <div class="flexContainer">
+                        <div class="flexItem c50 demo-box">50%</div>
+                        <div class="flexItem c50 demo-box demo-box--muted">50%</div>
+                        <div class="flexItem c50 demo-box">50%</div>
+                        <div class="flexItem c50 demo-box demo-box--muted">50%</div>
+                    </div>
+                    <div class="flexContainer">
+                        <div class="flexItem c33 demo-box">33%</div>
+                        <div class="flexItem c33 demo-box demo-box--muted">33%</div>
+                        <div class="flexItem c33 demo-box">33%</div>
+                        <div class="flexItem c33 demo-box demo-box--muted">33%</div>
+                    </div>
+                </div>
+
+                <div class="code-snippet">
+                    &lt;div class="flexContainer"&gt;
+                        &lt;div class="flexItem c50"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c50"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c50"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c50"&gt;…&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="flexContainer"&gt;
+                        &lt;div class="flexItem c33"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c33"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c33"&gt;…&lt;/div&gt;
+                        &lt;div class="flexItem c33"&gt;…&lt;/div&gt;
+                    &lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Image and Text</div>
+                <div class="demo-block__description">The most common legacy use. Inside a <code>.flexItem</code>, an image fills the column (never wider than its own size) and an <code>h3</code> has no top margin; add <code>.topMargin</code> to an <code>h3</code> further down the column to space it out.</div>
+
                 <div class="demo-container">
                     <div class="flexContainer">
-                        <div class="flexItem c50 demo-box">50% Column</div>
-                        <div class="flexItem c50 demo-box--muted demo-box">50% Column</div>
+                        <div class="flexItem c40"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='300' viewBox='0 0 480 300'%3E%3Crect width='480' height='300' fill='%23E5E5E5'/%3E%3Cpath d='M150 210l70-80 50 55 35-35 75 60z' fill='%23999999'/%3E%3Ccircle cx='330' cy='100' r='26' fill='%23B3B3B3'/%3E%3C/svg%3E" alt="Placeholder landscape image"></div>
+                        <div class="flexItem c60">
+                            <h3>Clinical placements</h3>
+                            <p>Your first placement starts in week 6. You will spend two days a week with a GP practice near your home address.</p>
+                            <h3 class="topMargin">Before you start</h3>
+                            <p>Complete the occupational health form and book your induction session.</p>
+                        </div>
                     </div>
+                </div>
+
+                <div class="code-snippet">
+                    &lt;div class="flexContainer"&gt;
+                        &lt;div class="flexItem c40"&gt;&lt;img src="…" alt="…"&gt;&lt;/div&gt;
+                        &lt;div class="flexItem c60"&gt;
+                            &lt;h3&gt;Clinical placements&lt;/h3&gt;
+                            &lt;p&gt;…&lt;/p&gt;
+                            &lt;h3 class="topMargin"&gt;Before you start&lt;/h3&gt;
+                            &lt;p&gt;…&lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
                 </div>
             </div>
         </section>
@@ -1131,7 +1304,6 @@
         <ul class="demo-footer__links">
             <li><a href="index.html" class="demo-footer__link">Home</a></li>
             <li><a href="patterns.html" class="demo-footer__link">&larr; Patterns</a></li>
-            <li><a href="code-utilities.html" class="demo-footer__link">Code & Utilities &rarr;</a></li>
         </ul>
     </footer>
     <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>
