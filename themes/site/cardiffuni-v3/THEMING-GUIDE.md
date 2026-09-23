@@ -1,6 +1,6 @@
 # Cardiff University v3 theming guide
 
-The current design-system baseline is v1.4. Read [migration status](MIGRATION.md) before
+The current design-system baseline is v1.6. Read [migration status](MIGRATION.md) before
 extending unfinished components, and use the [author guide](demos/index.html) for HTML examples.
 
 ## Source ownership

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * Cardiff University Theme v3 - Main Entry Point
- * Aligned with Cardiff Resource Design System v1.4
+ * Aligned with Cardiff Resource Design System v1.6
  *
  * This file orchestrates the theme by importing modular SCSS components.
  * Each module serves a specific purpose:
@@ -160,7 +160,7 @@
 }
 
 /**
- * Cardiff University v3 - Xerte token adapter (Design System v1.4)
+ * Cardiff University v3 - Xerte token adapter (Design System v1.6)
  *
  * Shared values come from _cu-tokens.scss, generated from the design system.
  * This file maps existing theme names to those values and owns Xerte-only settings.
@@ -4602,6 +4602,6 @@ This is where you can define styles that will be available
   color: var(--color-brand-secondary) !important;
 }
 
-/* v3: no web font - Design System v1.4 uses the Franklin Gothic stack with system fallbacks */
+/* v3: no web font - Design System v1.6 uses the Franklin Gothic stack with system fallbacks */
 
 /*# sourceMappingURL=cardiffuni-v3.css.map */
