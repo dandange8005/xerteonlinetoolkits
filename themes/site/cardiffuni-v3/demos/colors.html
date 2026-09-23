@@ -47,13 +47,14 @@
                             <li role="none"><a href="typography.html">Typography</a></li>
                             <li class="activePage" role="none" aria-current="page"><a href="colors.html">Colors</a></li>
                             <li role="none"><a href="lists-tables.html">Lists & Tables</a></li>
-                            <li role="none"><a href="images-media.html">Images, Media & Icons</a></li>
+                            <li role="none"><a href="images-media.html">Media & Icons</a></li>
                             <li role="none"><a href="forms.html">Forms</a></li>
                             <li role="none"><a href="components.html">Components</a></li>
                             <li role="none"><a href="bootstrap.html">Bootstrap</a></li>
                             <li role="none"><a href="code-utilities.html">Code & Utilities</a></li>
                             <li role="none"><a href="patterns.html">Patterns</a></li>
                             <li role="none"><a href="flexbox.html">Flexbox</a></li>
+                            <li role="none"><a href="theming.html">Theming</a></li>
                         </ul>
                     </div>
                 </div>
@@ -719,18 +720,8 @@
             </div>
 
             <div class="demo-block">
-                <div class="demo-block__title">Creating a New Theme</div>
-                <p>Override CSS custom properties to create a new theme:</p>
-                <pre><code>&lt;style&gt;
-  :root {
-    --color-brand-primary: #0066CC;
-    --color-brand-secondary: #1A1A1A;
-  }
-&lt;/style&gt;</code></pre>
-                <p>Or use a theme selector:</p>
-                <pre><code>[data-theme="other-uni"] {
-  --color-brand-primary: #0066CC;
-}</code></pre>
+                <div class="demo-block__title">Restyling a project</div>
+                <p>Override the <code>--cu-*</code> roles once at <code>:root</code>, in the project's Styles or Stylesheet property. The <a href="theming.html">Theming</a> page shows which roles to change, what stays Cardiff red, and a live variant.</p>
             </div>
         </section>
         </div>
