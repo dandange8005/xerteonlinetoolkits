@@ -29,17 +29,23 @@
     outline-offset: var(--focus-ring-offset);
 }
 
-// Skip link helper
+// Skip link helper. Ink with white text, like the back-to-top button: no red.
 .skip-link {
     position: absolute;
     top: -9999px;
     left: 1rem;
     z-index: var(--z-index-toast);
     padding: var(--spacing-4);
-    background: var(--color-bg-brand);
-    color: var(--color-text-on-brand);
+    background: var(--cu-ink);
+    color: var(--color-white);
     text-decoration: none;
     font-weight: var(--font-weight-bold);
+
+    &:hover,
+    &:focus {
+        background: var(--color-gray-90);
+        color: var(--color-white);
+    }
 
     &:focus {
         top: 1rem;

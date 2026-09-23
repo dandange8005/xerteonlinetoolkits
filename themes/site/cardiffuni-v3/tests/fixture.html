@@ -112,6 +112,18 @@
     <div class="card" id="card-basic"><div class="card__content"><h3 class="card__heading" id="card-heading">Card Title</h3><p class="card__description" id="card-desc">A basic card with a heading and description.</p></div></div>
     <!-- the clickable pattern from _cards.scss: a plain h3 wrapping the link -->
     <div class="card card--clickable" id="card-clickable"><div class="card__content"><h3 id="card-heading-link"><a href="#" class="card__link">Introduction to Data Science</a></h3></div></div>
+    <!-- Red usage, remaining rows (23 September 2026): fields, lists, code and the skip link. -->
+    <a class="skip-link" id="skip-link" href="#mainContent">Skip to main content</a>
+    <p><label class="required" id="required-label" for="text-input">Full name</label></p>
+    <input type="text" id="text-input">
+    <textarea id="textarea-input"></textarea>
+    <select id="select-plain"><option>One</option></select>
+    <select id="select-invalid" required><option value="">Choose one</option></select>
+    <input type="radio" id="radio-checked" name="red-radio" checked>
+    <input type="checkbox" id="checkbox-checked" checked>
+    <ul class="list-icon"><li><span class="fa fa-check" id="list-icon-span" aria-hidden="true"></span>Item</li></ul>
+    <p>Run <code id="inline-code">sass</code> first.</p>
+    <pre id="code-block"><code>sass cardiffuni-v3.scss</code></pre>
     <!--@MARKUP@-->
   </div>
 </div></div>

@@ -43,6 +43,16 @@ VARIANTS = {
     for width in (1280, 800, 485)
 }
 
+
+# The border colour of a field while it has focus. Text inputs fade their border in, so the
+# transition is switched off: a reading taken on focus would be the start of the fade.
+def focused_border(selector):
+    return ("(function(){var e=document.querySelector('" + selector + "'),p=document.activeElement;"
+            "e.style.setProperty('transition','none','important');e.focus({preventScroll:true});"
+            "var r=(document.activeElement===e)+' '+getComputedStyle(e).borderTopColor;"
+            "e.style.removeProperty('transition');p.focus({preventScroll:true});if(document.activeElement===e)e.blur();return r})()")
+
+
 # (group, name, JavaScript expression evaluated in the fixture, expected string[, variant])
 CHECKS = [
     ("smoke", "theme loaded: body copy is 18px", "cs('body','fontSize')", "18px"),
@@ -420,6 +430,35 @@ CHECKS = [
      "String(sameColor(cs('#warning-icon','color'),cs('#text-warning','color')))", "true"),
     ("warning", "the draft label keeps its own black-on-yellow (10.4:1), unaffected by the rename",
      "cs('#draft-label','color')+' '+cs('#draft-label','backgroundColor')", "rgb(18, 18, 18) rgb(255, 179, 0)"),
+    # Red usage, remaining rows (23 September 2026, DESIGN.md v1.5 §2): red is kept for a real
+    # error; field focus, radios, list spans, inline code, pre rule and skip link are not red.
+    ("red", "an invalid select's border is the error red", "cs('#select-invalid','borderTopColor')", "rgb(161, 26, 18)"),
+    ("red", "the invalid border shows on white at 3:1 or better", "String(contrast('#select-invalid','body','borderTopColor')>=3)", "true"),
+    # The asterisk is the error red, not brand red, so recolouring the brand leaves it alone.
+    ("red", "the required-field asterisk is the error red", "ps('#required-label','::after','color')", "rgb(161, 26, 18)"),
+    ("red", "the asterisk ignores a recoloured brand",
+     "withRootTokens({'--cu-red':'rgb(1, 2, 3)'},()=>ps('#required-label','::after','color'))", "rgb(161, 26, 18)"),
+    ("red", "the asterisk reads on white at 4.5:1 or better",
+     "(function(){var c=ps('#required-label','::after','color'),p=document.createElement('span');p.style.color=c;document.body.appendChild(p);"
+     "p.id='asterisk-probe';var r=contrast('#asterisk-probe','body');p.remove();return String(r>=4.5)})()", "true"),
+    *[("red", f"a focused {name}'s border is ink", focused_border(sel), "true rgb(18, 18, 18)")
+      for name, sel in (("text input", "#text-input"), ("textarea", "#textarea-input"), ("select", "#select-plain"))],
+    ("red", "a checked radio is ink", "cs('#radio-checked','accentColor')", "rgb(18, 18, 18)"),
+    ("red", "a checked checkbox is ink", "cs('#checkbox-checked','accentColor')", "rgb(18, 18, 18)"),
+    ("red", "an icon-list span is ink", "cs('#list-icon-span','color')", "rgb(18, 18, 18)"),
+    ("red", "inline code is ink", "cs('#inline-code','color')", "rgb(18, 18, 18)"),
+    ("red", "inline code reads on its grey at 4.5:1 or better", "String(contrast('#inline-code','#inline-code')>=4.5)", "true"),
+    ("red", "the code block's left rule is the border grey",
+     "String(sameColor(cs('#code-block','borderLeftColor'),v('var(--cu-border)')))", "true"),
+    ("red", "the skip link is ink", "cs('#skip-link','backgroundColor')", "rgb(18, 18, 18)"),
+    ("red", "the focused skip link is grey-90 with an offset ink ring",
+     "(function(){var e=document.querySelector('#skip-link'),p=document.activeElement;e.focus({preventScroll:true});"
+     "var s=getComputedStyle(e),r=(document.activeElement===e)+' '+s.backgroundColor+' '+s.outlineStyle+' '+s.outlineWidth+' '+s.outlineOffset+' '+s.outlineColor;"
+     "p.focus({preventScroll:true});if(document.activeElement===e)e.blur();return r})()",
+     "true rgb(51, 51, 51) solid 2px 4px rgb(18, 18, 18)"),
+    ("red", "the skip link text reads at 4.5:1 or better, resting and focused",
+     "(function(){var e=document.querySelector('#skip-link'),p=document.activeElement,a=contrast('#skip-link','#skip-link');e.focus({preventScroll:true});"
+     "var b=contrast('#skip-link','#skip-link');p.focus({preventScroll:true});if(document.activeElement===e)e.blur();return String(a>=4.5&&b>=4.5)})()", "true"),
     ("cards", "card description keeps the reading size", "cs('#card-desc','fontSize')", "18px"),
     ("tables", "the scroll wrapper shows the theme's focus ring when focused",
      "(function(){var b=document.querySelector('#tbl-scroll'),previous=document.activeElement;b.focus({preventScroll:true});"
