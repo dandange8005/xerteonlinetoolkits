@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * Cardiff University Theme v3 - Main Entry Point
- * Aligned with Cardiff Resource Design System v1.1
+ * Aligned with Cardiff Resource Design System v1.6
  *
  * This file orchestrates the theme by importing modular SCSS components.
  * Each module serves a specific purpose:
@@ -24,108 +24,215 @@
  * - Added missing CSS custom properties
  */
 /* Import modular SCSS components - @use must come before @import */
+:root {
+  /* Tier 1 · primary palette */
+  --cu-brand-red:#E4251B;
+  --cu-white:#FFFFFF;
+  --cu-black:#121212;
+  /* Tier 1 · darker tones of brand red for filled controls and error text (recorded deviation, DESIGN.md §2) */
+  --cu-brand-red-dark:#C21F16;
+  --cu-brand-red-darker:#A11A12;
+  /* Tier 1 · greys, 10% steps from black */
+  --cu-grey-10:#F2F2F2;
+  --cu-grey-20:#E5E5E5;
+  --cu-grey-30:#CCCCCC;
+  --cu-grey-40:#B3B3B3;
+  --cu-grey-50:#999999;
+  --cu-grey-60:#808080;
+  --cu-grey-70:#666666;
+  --cu-grey-80:#4C4C4C;
+  --cu-grey-90:#333333;
+  /* Tier 1 · accents: use sparingly, in tier order, with Design team permission (03 Colour) */
+  --cu-accent-forest-green:#07873E;
+  --cu-accent-cadet:#5EB99B;
+  --cu-accent-stone:#C9C2BA;
+  --cu-accent-light-blue:#1E90FF;
+  --cu-accent-royal-blue:#4A42FF;
+  --cu-accent-midnight-blue:#273573;
+  --cu-accent-midnight-purple:#26192C;
+  --cu-accent-orange:#E9761E;
+  --cu-accent-yellow:#FFB300;
+  --cu-accent-yellow-green:#85C041;
+  --cu-accent-indigo:#570185;
+  --cu-accent-dark-violet:#D401C5;
+  /* Tier 2 · colour roles */
+  --cu-bg:var(--cu-white);
+  --cu-surface:var(--cu-grey-10);
+  --cu-border:var(--cu-grey-30);
+  --cu-line:var(--cu-grey-20);
+  --cu-ink:var(--cu-black);
+  --cu-muted:var(--cu-grey-70);
+  --cu-text-tertiary:var(--cu-grey-70);
+  --cu-red:var(--cu-brand-red);
+  --cu-action:var(--cu-brand-red-dark);
+  --cu-action-hover:var(--cu-brand-red-darker);
+  --cu-error:var(--cu-brand-red-darker);
+  --cu-focus:var(--cu-black);
+  --cu-link:#045bc6; /* recorded deviation: not in the Cardiff palette (DESIGN.md §2) */
+  --cu-success:var(--cu-accent-forest-green);
+  --cu-draft:var(--cu-black);
+  --cu-draft-bg:var(--cu-accent-yellow); /* draft label: black on Yellow, 10.4:1 */
+  /* Callouts: rule and icon disc colour, plus the glyph colour on the disc (brand colour map text pairs). Title carries the meaning. */
+  --cu-callout-info:var(--cu-accent-light-blue);
+  --cu-callout-info-on:var(--cu-black);
+  --cu-callout-tip:var(--cu-accent-cadet);
+  --cu-callout-tip-on:var(--cu-black);
+  --cu-callout-good:var(--cu-accent-forest-green);
+  --cu-callout-good-on:var(--cu-white);
+  --cu-callout-important:var(--cu-accent-yellow);
+  --cu-callout-important-on:var(--cu-black);
+  --cu-callout-warning:var(--cu-brand-red);
+  --cu-callout-warning-on:var(--cu-white);
+  --cu-callout-example:var(--cu-accent-indigo);
+  --cu-callout-example-on:var(--cu-white);
+  --cu-callout-key:var(--cu-black);
+  --cu-callout-key-on:var(--cu-white);
+  --cu-on-dark:var(--cu-white);
+  --cu-on-dark-muted:var(--cu-grey-30);
+  --cu-transparent:transparent;
+  /* Charts (06 Elements): single series = red; fills = red then tints of black; lines = accents. Never mix tints and accents in one chart.
+     Red and Forest Green have equal lightness: always add data labels and never separate them by colour alone. */
+  --cu-chart-single:var(--cu-brand-red);
+  --cu-chart-fill-1:var(--cu-brand-red);
+  --cu-chart-fill-2:var(--cu-black);
+  --cu-chart-fill-3:var(--cu-grey-70);
+  --cu-chart-fill-4:var(--cu-grey-50);
+  --cu-chart-fill-5:var(--cu-grey-30);
+  --cu-chart-line-1:var(--cu-brand-red);
+  --cu-chart-line-2:var(--cu-accent-midnight-blue);
+  --cu-chart-line-3:var(--cu-accent-royal-blue);
+  --cu-chart-line-4:var(--cu-accent-forest-green);
+  --cu-chart-separator:var(--cu-white);
+  /* Typography · families */
+  --cu-display:'Franklin Gothic Heavy','Franklin Gothic',system-ui,sans-serif;
+  --cu-body:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --cu-serif:ui-serif,Georgia,'Times New Roman',serif;
+  /* Typography · sizes by role */
+  --cu-text-display:clamp(44px,5.5vw,76px);
+  --cu-text-section:clamp(30px,3.2vw,44px);
+  --cu-text-component:30px;
+  --cu-text-prompt:clamp(30px,3vw,42px);
+  --cu-text-entry:20px;
+  --cu-text-lead:20px;
+  --cu-text-body:18px;
+  --cu-text-ui:16px;
+  --cu-text-icon:24px;
+  /* Typography · weights, leading, tracking */
+  --cu-weight-display:850;
+  --cu-weight-section:800;
+  --cu-weight-component:750;
+  --cu-weight-bold:700;
+  --cu-weight-regular:400;
+  --cu-leading-heading:1.1;
+  --cu-leading-entry:1.35;
+  --cu-leading-lead:1.55;
+  --cu-leading-body:1.6;
+  --cu-tracking-heading:-.035em;
+  /* Space · 4px base; the suffix is the multiple of 4 */
+  --cu-space-1:4px;
+  --cu-space-2:8px;
+  --cu-space-3:12px;
+  --cu-space-4:16px;
+  --cu-space-5:20px;
+  --cu-space-6:24px;
+  --cu-space-7:28px;
+  --cu-space-8:32px;
+  --cu-space-9:36px;
+  --cu-space-10:40px;
+  --cu-space-12:48px;
+  --cu-space-14:56px;
+  --cu-space-16:64px;
+  --cu-space-20:80px;
+  --cu-space-24:96px;
+  /* Shape, depth, motion */
+  --cu-icon-size:24px;
+  --cu-logo-width:clamp(60px,17vw,80px); /* logo minimums: 60px at 375px, 70px at 414px, 80px from 480px */
+  --cu-radius:3px;
+  --cu-shadow:none;
+  --cu-fast:160ms;
+  --cu-ease:cubic-bezier(.16,1,.3,1);
+  /* Shadow scale (matches cardiffuni-v3). Components stay flat (--cu-shadow); lg/xl/2xl are for overlays only: dropdowns, popovers, modals. */
+  --cu-shadow-sm:none;
+  --cu-shadow-md:none;
+  --cu-shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
+  --cu-shadow-xl:0 20px 25px -5px rgba(0,0,0,.1),0 10px 10px -5px rgba(0,0,0,.04);
+  --cu-shadow-2xl:0 25px 50px -12px rgba(0,0,0,.25);
+}
+
 /**
- * Cardiff University Theme v3 - Semantic Design Tokens
- * Aligned with Cardiff Resource Design System v1.1
- * ==================================================
+ * Cardiff University v3 - Xerte token adapter (Design System v1.6)
  *
- * HYBRID APPROACH:
- * - Imports primitive tokens from _tokens.scss (single source of truth)
- * - Generates CSS custom properties using SCSS interpolation
- * - Single semantic layer for easy theming
+ * Shared values come from _cu-tokens.scss, generated from the design system.
+ * This file maps existing theme names to those values and owns Xerte-only settings.
+ * There is no second Sass token scale. Keep aliases so existing components and
+ * authored overrides continue to work; do not copy shared values into this file.
  *
- * TO CREATE A NEW THEME:
- * Override CSS variables using [data-theme] or inline styles:
- * <style>
- *   :root { --color-brand-primary: #0066CC; }
- * </style>
- *
- * Or use a theme selector:
- * [data-theme="other-uni"] { --color-brand-primary: #0066CC; }
- */
-/**
- * Design Tokens - Cardiff University Theme v3
- * =========================================
- *
- * PRIMITIVE TOKENS ONLY - Raw, immutable brand values.
- * These are the foundation that semantic tokens build upon.
- *
- * ARCHITECTURE:
- * - _tokens.scss       = Primitive tokens (this file) - SCSS variables, compile-time
- * - _allvariables.scss = Semantic tokens - CSS custom properties, runtime-configurable
- *
- * USAGE:
- * 1. Import this file first: @use "tokens" as t;
- * 2. Reference primitives: t.$token-color-brand-primary
- * 3. Build semantic tokens in _allvariables.scss using these primitives
- *
- * v3 SOURCE: Cardiff Resource Design System v1.1 (codex/DESIGN.md, design-system/v1/tokens.css).
- * Values marked [DS] come from that specification. Keep the two aligned when versioning.
- *
- * FOR NEW THEMES:
- * Copy this file and update the primitive values to match your brand.
- * The semantic layer (_allvariables.scss) can remain largely unchanged.
+ * To adjust shared roles for one project, load :root CSS overrides after the theme.
+ * Both older components and newer rules then resolve through the same --cu-* source.
+ * Theme-only settings (focus dimensions, grid, etc.) are declared in their sections below.
+ * Creating another institution's theme requires a reviewed palette and role mapping,
+ * not a two-variable override. See THEMING-GUIDE.md for the supported workflow.
  */
 :root {
-  --color-brand-primary: #E4251B;
-  --color-brand-secondary: #121212;
-  --color-white: #FFFFFF;
-  --color-light: #FFFFFF;
-  --color-action: #C21F16;
-  --color-action-hover: #A11A12;
+  --color-brand-primary: var(--cu-red);
+  --color-brand-secondary: var(--cu-ink);
+  --color-white: var(--cu-white);
+  --color-light: color-mix(in srgb, var(--cu-bg) 50%, var(--cu-surface) 50%);
+  --color-action: var(--cu-action);
+  --color-action-hover: var(--cu-action-hover);
   --color-tint: #F8DADA;
-  --color-focus: #7F140E;
-  --color-warning: #65501c;
-  --color-warning-bg: #faf3dd;
-  --color-on-dark: var(--color-white);
-  --color-on-dark-muted: #CCCCCC;
-  --color-gray-10: #F2F2F2;
-  --color-gray-20: #E5E5E5;
-  --color-gray-30: #CCCCCC;
-  --color-gray-40: #B3B3B3;
-  --color-gray-50: #999999;
-  --color-gray-60: #808080;
-  --color-gray-70: #666666;
-  --color-gray-80: #4C4C4C;
-  --color-gray-90: #333333;
-  --color-accent-green: #07873E;
-  --color-accent-teal: #5EB99B;
-  --color-accent-stone: #C9C2BA;
-  --color-accent-blue: #1E90FF;
-  --color-accent-royal: #4A42FF;
-  --color-accent-navy: #273573;
-  --color-accent-purple: #26192C;
-  --color-accent-orange: #E9761E;
-  --color-accent-yellow: #FFB300;
-  --color-accent-lime: #85C041;
-  --color-accent-indigo: #570185;
-  --color-accent-violet: #D401C5;
+  --color-selected-bg: color-mix(in srgb, var(--cu-red) 6%, var(--cu-bg));
+  --color-focus: var(--cu-focus);
+  --color-draft: var(--cu-draft);
+  --color-draft-bg: var(--cu-draft-bg);
+  --color-on-dark: var(--cu-on-dark);
+  --color-on-dark-muted: var(--cu-on-dark-muted);
+  --color-gray-10: var(--cu-grey-10);
+  --color-gray-20: var(--cu-grey-20);
+  --color-gray-30: var(--cu-grey-30);
+  --color-gray-40: var(--cu-grey-40);
+  --color-gray-50: var(--cu-grey-50);
+  --color-gray-60: var(--cu-grey-60);
+  --color-gray-70: var(--cu-grey-70);
+  --color-gray-80: var(--cu-grey-80);
+  --color-gray-90: var(--cu-grey-90);
+  --color-accent-green: var(--cu-accent-forest-green);
+  --color-accent-teal: var(--cu-accent-cadet);
+  --color-accent-stone: var(--cu-accent-stone);
+  --color-accent-blue: var(--cu-accent-light-blue);
+  --color-accent-royal: var(--cu-accent-royal-blue);
+  --color-accent-navy: var(--cu-accent-midnight-blue);
+  --color-accent-purple: var(--cu-accent-midnight-purple);
+  --color-accent-orange: var(--cu-accent-orange);
+  --color-accent-yellow: var(--cu-accent-yellow);
+  --color-accent-lime: var(--cu-accent-yellow-green);
+  --color-accent-indigo: var(--cu-accent-indigo);
+  --color-accent-violet: var(--cu-accent-dark-violet);
   --color-text-primary: var(--color-brand-secondary);
-  --color-text-secondary: var(--color-gray-70);
-  --color-text-tertiary: var(--color-gray-50);
+  --color-text-secondary: var(--cu-muted);
+  --color-text-tertiary: var(--cu-text-tertiary);
   --color-text-inverse: var(--color-white);
   --color-text-brand: var(--color-action);
   --color-text-on-brand: var(--color-white);
-  --color-link-default: #045bc6;
+  --color-link-default: var(--cu-link);
   --color-link-hover: color-mix(in srgb, var(--color-link-default) 70%, black 30%);
   --color-link-visited: var(--color-link-default);
   --color-link-active: color-mix(in srgb, var(--color-link-default) 50%, black 50%);
-  --color-bg-body: var(--color-light);
-  --color-bg-page: var(--color-white);
-  --color-bg-subtle: var(--color-gray-10);
+  --color-bg-body: var(--cu-bg);
+  --color-bg-page: var(--cu-bg);
+  --color-bg-subtle: var(--cu-surface);
   --color-bg-muted: var(--color-gray-20);
   --color-bg-elevated: var(--color-white);
   --color-bg-brand: var(--color-brand-primary);
   --color-bg-dark: var(--color-brand-secondary);
-  --color-border-default: var(--color-gray-30);
-  --color-border-light: var(--color-gray-20);
+  --color-border-default: var(--cu-border);
+  --color-border-light: var(--cu-line);
   --color-border-dark: var(--color-gray-40);
   --color-border-focus: var(--color-focus);
   --color-border-brand: var(--color-brand-primary);
-  --color-status-success: var(--color-accent-green);
-  --color-status-warning: var(--color-warning);
-  --color-status-warning-bg: var(--color-warning-bg);
-  --color-status-error: var(--color-action-hover);
+  --color-status-success: var(--cu-success);
+  --color-status-warning: var(--color-accent-orange-dark);
+  --color-status-error: var(--cu-error);
   --color-status-info: var(--color-link-default);
   --color-nav-accent: var(--color-brand-secondary);
   --color-nav-accent-dark: var(--color-brand-secondary-dark);
@@ -193,14 +300,14 @@
   --btn-icon-size: 20px;
   --btn-icon-size-sm: 16px;
   --btn-transition: var(--transition-fast);
-  --font-family-primary: system-ui, -apple-system, Segoe UI, sans-serif;
-  --font-family-display: Franklin Gothic Heavy, Franklin Gothic, system-ui, sans-serif;
-  --font-family-secondary: ui-serif, Georgia, Times New Roman, serif;
-  --font-size-xs: 16px;
-  --font-size-sm: 16px;
-  --font-size-base: 16px;
-  --font-size-md: 18px;
-  --font-size-lg: 20px;
+  --font-family-primary: var(--cu-body);
+  --font-family-display: var(--cu-display);
+  --font-family-secondary: var(--cu-serif);
+  --font-size-xs: var(--cu-text-ui);
+  --font-size-sm: var(--cu-text-ui);
+  --font-size-base: var(--cu-text-ui);
+  --font-size-md: var(--cu-text-body);
+  --font-size-lg: var(--cu-text-lead);
   --font-size-body: var(--font-size-md);
   --font-size-lead: var(--font-size-lg);
   --font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);
@@ -208,45 +315,45 @@
   --font-size-3xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);
   --font-size-4xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);
   --font-weight-light: 300;
-  --font-weight-regular: 400;
+  --font-weight-regular: var(--cu-weight-regular);
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-heading: 750;
-  --font-weight-extrabold: 800;
-  --font-weight-heavy: 850;
+  --font-weight-bold: var(--cu-weight-bold);
+  --font-weight-heading: var(--cu-weight-component);
+  --font-weight-extrabold: var(--cu-weight-section);
+  --font-weight-heavy: var(--cu-weight-display);
   --line-height-none: 1;
-  --line-height-heading: 1.1;
+  --line-height-heading: var(--cu-leading-heading);
   --line-height-tight: 1.2;
   --line-height-snug: 1.3;
   --line-height-normal: 1.5;
-  --line-height-relaxed: 1.6;
+  --line-height-relaxed: var(--cu-leading-body);
   --line-height-loose: 1.75;
-  --letter-spacing-heading: -0.035em;
+  --letter-spacing-heading: var(--cu-tracking-heading);
   --letter-spacing-tighter: -0.02em;
   --letter-spacing-tight: -0.01em;
   --letter-spacing-normal: 0;
   --letter-spacing-wide: 0.02em;
   --letter-spacing-wider: 0.05em;
   --h1-font-family: var(--font-family-display);
-  --h1-font-size: clamp(44px, 5.5vw, 76px);
+  --h1-font-size: var(--cu-text-display);
   --h1-font-weight: var(--font-weight-heavy);
   --h1-line-height: var(--line-height-heading);
   --h1-letter-spacing: var(--letter-spacing-heading);
   --h2-font-family: var(--font-family-display);
-  --h2-font-size: clamp(30px, 3.2vw, 44px);
+  --h2-font-size: var(--cu-text-section);
   --h2-font-weight: var(--font-weight-extrabold);
   --h2-line-height: var(--line-height-heading);
   --h2-letter-spacing: var(--letter-spacing-heading);
   --h3-font-family: var(--font-family-display);
-  --h3-font-size: 30px;
+  --h3-font-size: var(--cu-text-component);
   --h3-font-weight: var(--font-weight-heading);
   --h3-line-height: var(--line-height-heading);
   --h3-letter-spacing: var(--letter-spacing-heading);
   --h4-font-family: var(--font-family-primary);
   --h4-font-size: var(--font-size-lg);
   --h4-font-weight: var(--font-weight-bold);
-  --h4-line-height: 1.35;
+  --h4-line-height: var(--cu-leading-entry);
   --h4-letter-spacing: normal;
   --h5-font-family: var(--font-family-primary);
   --h5-font-size: var(--font-size-md);
@@ -262,22 +369,22 @@
   --h-secondary-font-weight: var(--font-weight-regular);
   --spacing-0: 0;
   --spacing-px: 1px;
-  --spacing-1: 4px;
-  --spacing-2: 8px;
-  --spacing-3: 12px;
-  --spacing-4: 16px;
-  --spacing-5: 20px;
-  --spacing-6: 24px;
-  --spacing-7: 28px;
-  --spacing-8: 32px;
-  --spacing-9: 36px;
-  --spacing-10: 40px;
-  --spacing-12: 48px;
-  --spacing-14: 56px;
-  --spacing-16: 64px;
-  --spacing-20: 80px;
-  --spacing-24: 96px;
-  --spacing-32: 128px;
+  --spacing-1: var(--cu-space-1);
+  --spacing-2: var(--cu-space-2);
+  --spacing-3: var(--cu-space-3);
+  --spacing-4: var(--cu-space-4);
+  --spacing-5: var(--cu-space-5);
+  --spacing-6: var(--cu-space-6);
+  --spacing-7: var(--cu-space-7);
+  --spacing-8: var(--cu-space-8);
+  --spacing-9: var(--cu-space-9);
+  --spacing-10: var(--cu-space-10);
+  --spacing-12: var(--cu-space-12);
+  --spacing-14: var(--cu-space-14);
+  --spacing-16: var(--cu-space-16);
+  --spacing-20: var(--cu-space-20);
+  --spacing-24: var(--cu-space-24);
+  --spacing-32: calc(var(--cu-space-16) * 2);
   --spacing-xs: var(--spacing-1);
   --spacing-sm: var(--spacing-2);
   --spacing-md: var(--spacing-4);
@@ -289,18 +396,18 @@
   --spacing-card: var(--spacing-6);
   --spacing-section: var(--spacing-16);
   --container-max-width: 1240px;
-  --container-padding-mobile: 16px;
-  --container-padding-tablet: 24px;
-  --container-padding-desktop: 32px;
+  --container-padding-mobile: var(--cu-space-4);
+  --container-padding-tablet: var(--cu-space-6);
+  --container-padding-desktop: var(--cu-space-8);
   --content-width-narrow: 640px;
   --content-width-medium: 768px;
   --content-width-wide: 1024px;
   --content-width-full: 100%;
   --grid-columns: 12;
-  --grid-gutter: 24px;
+  --grid-gutter: var(--cu-space-6);
   --radius-none: 0;
-  --radius-sm: 3px;
-  --radius-md: 3px;
+  --radius-sm: var(--cu-radius);
+  --radius-md: var(--cu-radius);
   --radius-lg: 0;
   --radius-xl: 0;
   --radius-2xl: 0;
@@ -313,20 +420,20 @@
   --border-width-1: 1px;
   --border-width-2: 2px;
   --border-width-4: 4px;
-  --shadow-none: none;
-  --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-none: var(--cu-shadow);
+  --shadow-sm: var(--cu-shadow-sm);
+  --shadow-md: var(--cu-shadow-md);
+  --shadow-lg: var(--cu-shadow-lg);
+  --shadow-xl: var(--cu-shadow-xl);
+  --shadow-2xl: var(--cu-shadow-2xl);
   --shadow-card: var(--shadow-sm);
   --shadow-card-hover: none;
   --shadow-dropdown: var(--shadow-lg);
   --shadow-modal: var(--shadow-xl);
-  --duration-fast: 160ms;
+  --duration-fast: var(--cu-fast);
   --duration-normal: 300ms;
   --duration-slow: 500ms;
-  --easing-default: cubic-bezier(0.16, 1, 0.3, 1);
+  --easing-default: var(--cu-ease);
   --easing-in: cubic-bezier(0.4, 0, 1, 1);
   --easing-out: cubic-bezier(0, 0, 0.2, 1);
   --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -351,7 +458,7 @@
   --min-input-height: 56px;
   --min-textarea-height: 112px;
   --icon-size-sm: 20px;
-  --icon-size-md: 24px;
+  --icon-size-md: var(--cu-icon-size);
   --icon-size-lg: 32px;
   --icon-size-xl: 48px;
   --ratio-widescreen: 16 / 9;
@@ -363,6 +470,7 @@
   --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 70%, white 30%);
   --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 70%, black 30%);
   --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 40%, black 60%);
+  --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 70%, black 30%);
   --color-brand-secondary-lighter: color-mix(in srgb, var(--color-brand-secondary) 30%, white);
   --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
   --color-brand-secondary-dark: color-mix(in srgb, var(--color-brand-secondary) 15%, black);
@@ -443,11 +551,6 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -495,7 +598,7 @@ a:where(:not(.button):not(.btn):not(.nav-link)):hover {
   text-decoration: none !important;
 }
 a:where(:not(.button):not(.btn):not(.nav-link)):focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-ring-offset, 2px);
   border-radius: var(--radius-sm);
 }
@@ -572,11 +675,14 @@ h6:first-child {
 }
 
 h2.sectionTitle {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-light);
-  margin-bottom: var(--spacing-md);
-  color: var(--color-brand-primary);
+  font-family: var(--h2-font-family);
+  font-size: var(--h2-font-size);
+  font-weight: var(--h2-font-weight);
+  line-height: var(--h2-line-height);
+  letter-spacing: var(--h2-letter-spacing);
+  color: var(--cu-ink);
   margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
 }
 h2.sectionTitle p {
   margin-bottom: 0 !important;
@@ -672,7 +778,7 @@ section dd,
 }
 .list-icon li span {
   margin-right: 10px;
-  color: var(--color-brand-primary);
+  color: var(--cu-ink);
   font-size: inherit;
 }
 
@@ -705,15 +811,15 @@ table {
   width: 100%;
   background: var(--color-white);
   border-collapse: collapse;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-none);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
   font-size: var(--font-size-sm);
   border: 1px solid var(--color-gray-20);
 }
 table caption {
   text-align: left;
-  color: var(--color-gray-60);
+  color: var(--color-gray-70);
   font-weight: var(--font-weight-medium);
   padding: var(--spacing-md) 0;
   caption-side: top;
@@ -750,12 +856,21 @@ thead th {
   letter-spacing: 0.5px;
 }
 
+.cu-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.cu-table-scroll:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
 code {
   font-family: "Monaco", "Menlo", "Consolas", "Courier New", monospace;
   font-size: 0.9em;
   padding: 0.2em 0.4em;
   background: var(--color-gray-10);
-  color: var(--color-brand-primary);
+  color: var(--cu-ink);
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-gray-20);
 }
@@ -771,7 +886,7 @@ pre {
   border-radius: var(--radius-md);
   overflow-x: auto;
   box-shadow: var(--shadow-md);
-  border-left: 4px solid var(--color-brand-primary);
+  border-left: 4px solid var(--cu-border);
 }
 pre code {
   padding: 0;
@@ -838,10 +953,6 @@ textarea {
   border-radius: var(--radius-md);
   transition: border-color var(--duration-fast) var(--easing-default), box-shadow var(--duration-fast) var(--easing-default);
 }
-input[type=text]::-moz-placeholder, input[type=email]::-moz-placeholder, input[type=password]::-moz-placeholder, input[type=search]::-moz-placeholder, input[type=tel]::-moz-placeholder, input[type=url]::-moz-placeholder, input[type=number]::-moz-placeholder, input[type=date]::-moz-placeholder, input[type=time]::-moz-placeholder, input[type=datetime-local]::-moz-placeholder, input[type=month]::-moz-placeholder, input[type=week]::-moz-placeholder, textarea::-moz-placeholder {
-  color: var(--color-gray-50);
-  opacity: 1;
-}
 input[type=text]::placeholder,
 input[type=email]::placeholder,
 input[type=password]::placeholder,
@@ -886,9 +997,9 @@ input[type=datetime-local]:focus,
 input[type=month]:focus,
 input[type=week]:focus,
 textarea:focus {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring);
   outline-offset: 0;
-  border-color: var(--color-brand-primary);
+  border-color: var(--color-border-focus);
 }
 input[type=text]:disabled,
 input[type=email]:disabled,
@@ -929,18 +1040,16 @@ select {
   background-position: right var(--spacing-sm) center;
   border: 2px solid var(--color-border-default);
   border-radius: var(--radius-md);
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   cursor: pointer;
 }
 select:hover:not(:disabled) {
   border-color: var(--color-gray-50);
 }
 select:focus {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring);
   outline-offset: 0;
-  border-color: var(--color-brand-primary);
+  border-color: var(--color-border-focus);
 }
 select:disabled {
   background-color: var(--color-gray-10);
@@ -953,12 +1062,12 @@ input[type=radio] {
   width: 20px;
   height: 20px;
   margin-right: var(--spacing-sm);
-  accent-color: var(--color-brand-primary);
+  accent-color: var(--cu-ink);
   cursor: pointer;
 }
 input[type=checkbox]:focus-visible,
 input[type=radio]:focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -976,19 +1085,15 @@ legend {
   color: var(--color-text-primary);
 }
 
-input:invalid:not(:-moz-placeholder), textarea:invalid:not(:-moz-placeholder) {
-  border-color: var(--color-brand-primary);
-}
-
 input:invalid:not(:placeholder-shown),
 textarea:invalid:not(:placeholder-shown),
 select:invalid {
-  border-color: var(--color-brand-primary);
+  border-color: var(--color-status-error);
 }
 
 label.required::after {
   content: " *";
-  color: var(--color-brand-primary);
+  color: var(--color-status-error);
 }
 
 img.pull-right {
@@ -1001,7 +1106,6 @@ img.pull-left {
 }
 
 figure {
-  max-width: -moz-max-content;
   max-width: max-content;
 }
 
@@ -1084,10 +1188,6 @@ section p:not(:last-child) {
   margin-bottom: var(--spacing-md);
 }
 
-.footer h3 {
-  margin-bottom: var(--spacing-md);
-}
-
 hr {
   background-color: var(--color-border-default);
   border: 0;
@@ -1113,8 +1213,7 @@ ul.nav-tabs {
   display: flex;
   flex-wrap: wrap;
   row-gap: var(--spacing-sm);
-  -moz-column-gap: 0;
-       column-gap: 0;
+  column-gap: 0;
   margin-bottom: 0;
   padding-inline: 0;
   list-style: none;
@@ -1150,7 +1249,7 @@ ul.nav-tabs {
 }
 
 .nav-tabs > li > a:focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-ring-offset, 2px);
   border-radius: var(--radius-sm);
 }
@@ -1217,7 +1316,7 @@ ul.nav-pills {
 }
 
 .nav-pills > li > a:focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -1260,7 +1359,7 @@ a.accordion-toggle:focus {
 }
 
 a.accordion-toggle:focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -1341,7 +1440,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 }
 
 .carousel-control:focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-ring-offset, 2px);
 }
 
@@ -1392,7 +1491,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 
 .carousel figcaption {
   position: absolute;
-  color: #fff;
+  color: var(--color-white);
   background: rgba(0, 0, 0, 0.5);
   bottom: 32px;
   padding: 8px;
@@ -1431,16 +1530,18 @@ a.accordion-toggle[aria-expanded=true]::after {
 
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th {
-  background-color: var(--color-accent-green);
+  background-color: var(--color-gray-10);
   color: var(--color-text-primary);
 }
 
 .alert {
   padding: var(--spacing-md) var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
-  border: 1px solid transparent;
+  border: 0;
   border-left: 4px solid;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-none);
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-primary);
   font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
 }
@@ -1450,6 +1551,9 @@ a.accordion-toggle[aria-expanded=true]::after {
 }
 .alert strong {
   font-weight: var(--font-weight-bold);
+}
+.alert h4 {
+  color: inherit;
 }
 .alert p:last-child {
   margin-bottom: 0;
@@ -1469,30 +1573,21 @@ a.accordion-toggle[aria-expanded=true]::after {
 }
 
 .alert-success {
-  background-color: color-mix(in srgb, var(--color-accent-green) 10%, white);
-  border-color: color-mix(in srgb, var(--color-accent-green) 30%, white);
-  border-left-color: var(--color-accent-green);
-  color: color-mix(in srgb, var(--color-accent-green) 80%, black);
+  border-left-color: var(--color-status-success);
 }
 .alert-success::before {
   content: "✓ ";
 }
 
 .alert-info {
-  background-color: color-mix(in srgb, var(--color-accent-blue) 10%, white);
-  border-color: color-mix(in srgb, var(--color-accent-blue) 30%, white);
-  border-left-color: var(--color-accent-blue);
-  color: color-mix(in srgb, var(--color-accent-blue) 80%, black);
+  border-left-color: var(--color-status-info);
 }
 .alert-info::before {
   content: "ℹ ";
 }
 
 .alert-warning {
-  background-color: color-mix(in srgb, var(--color-accent-yellow) 15%, white);
-  border-color: color-mix(in srgb, var(--color-accent-orange) 30%, white);
-  border-left-color: var(--color-accent-orange);
-  color: color-mix(in srgb, var(--color-accent-orange) 80%, black);
+  border-left-color: var(--color-accent-yellow);
 }
 .alert-warning::before {
   content: "⚠ ";
@@ -1500,10 +1595,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 
 .alert-danger,
 .alert-error {
-  background-color: color-mix(in srgb, var(--color-brand-primary) 10%, white);
-  border-color: color-mix(in srgb, var(--color-brand-primary) 30%, white);
-  border-left-color: var(--color-brand-primary);
-  color: color-mix(in srgb, var(--color-brand-primary) 80%, black);
+  border-left-color: var(--color-status-error);
 }
 .alert-danger::before,
 .alert-error::before {
@@ -1551,7 +1643,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   text-decoration: underline;
 }
 .breadcrumb > li > a:focus-visible {
-  outline: var(--focus-ring, 2px solid #7F140E);
+  outline: var(--focus-ring);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
@@ -1572,7 +1664,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   white-space: nowrap;
   vertical-align: middle;
   color: var(--color-white);
-  background-color: var(--color-gray-60);
+  background-color: var(--color-gray-70);
   border-radius: var(--radius-full);
 }
 
@@ -1595,12 +1687,12 @@ a.accordion-toggle[aria-expanded=true]::after {
 .label-important,
 .badge-danger,
 .label-danger {
-  background-color: var(--color-brand-primary);
+  background-color: var(--color-status-error);
 }
 
 .badge-info,
 .label-info {
-  background-color: var(--color-accent-blue);
+  background-color: var(--color-status-info);
 }
 
 .badge-inverse,
@@ -1617,8 +1709,8 @@ a.accordion-toggle[aria-expanded=true]::after {
   height: 20px;
   overflow: hidden;
   background-color: var(--color-gray-20);
-  border-radius: var(--radius-md);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-none);
+  box-shadow: none;
   margin-bottom: var(--spacing-md);
 }
 
@@ -1629,7 +1721,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   line-height: 20px;
   color: var(--color-white);
   text-align: center;
-  background-color: var(--color-brand-primary);
+  background-color: var(--color-brand-secondary);
   transition: width var(--duration-normal) ease;
 }
 
@@ -1640,17 +1732,17 @@ a.accordion-toggle[aria-expanded=true]::after {
 
 .bar-warning,
 .progress-bar-warning {
-  background-color: var(--color-accent-orange);
+  background-color: var(--color-accent-orange-dark);
 }
 
 .bar-danger,
 .progress-bar-danger {
-  background-color: var(--color-brand-primary);
+  background-color: var(--color-status-error);
 }
 
 .bar-info,
 .progress-bar-info {
-  background-color: var(--color-accent-blue);
+  background-color: var(--color-status-info);
 }
 
 .progress-striped .bar,
@@ -1704,17 +1796,21 @@ a.glossary:active {
 }
 
 .glossaryTip {
-  background-color: var(--color-brand-primary);
+  background-color: var(--color-brand-secondary);
   color: var(--color-white);
 }
 
-.top-round {
+.btn.topBtn {
   color: var(--color-white);
-  background: var(--color-brand-primary);
+  background: var(--color-brand-secondary);
 }
-.top-round:hover, .top-round:focus {
-  background: var(--color-brand-primary-dark);
+.btn.topBtn:hover, .btn.topBtn:focus {
+  background: var(--color-gray-90);
   color: var(--color-white);
+}
+
+.top-round::after {
+  box-shadow: none;
 }
 
 /**
@@ -1845,6 +1941,9 @@ a.glossary:active {
 .card__heading, .card__metadata, .card__description {
   margin-bottom: var(--spacing-md);
 }
+.card__heading, .card__content h3 {
+  font-size: var(--font-size-2xl);
+}
 .card__link {
   position: initial;
 }
@@ -1857,8 +1956,7 @@ a.glossary:active {
   overflow: hidden;
   width: 100%;
   aspect-ratio: var(--ratio-widescreen);
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   transition: transform var(--duration-normal) var(--easing-default);
 }
 .card--clickable {
@@ -1892,63 +1990,152 @@ a.glossary:active {
 }
 
 /**
- * Callout Component
+ * Callouts (Cardiff Resource Design System v1.3, seven types)
  *
- * PURPOSE: Alert/notice box with icon and color variants for different message types
+ * Paste in a Text element's Source view (short form; the theme draws the icon):
+ * <div class="cu-callout cu-callout-tip">
+ *   <strong class="cu-callout-title">Tip</strong><p>...</p>
+ * </div>
  *
- * USAGE:
- * - Basic callout:
- *   <div class="callout">Default callout message</div>
+ * The design system's fa-stack markup also works and is unchanged:
+ * <div class="cu-callout cu-callout-tip">
+ *   <span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-lightbulb fa-stack-1x"></i></span>
+ *   <div><strong class="cu-callout-title">Tip</strong><p>...</p></div>
+ * </div>
+ * A callout containing .cu-callout-icon keeps the two-column grid; one without it gets the
+ * CSS disc. Override a single icon with style="--cu-callout-glyph: '\f0eb'".
  *
- * - Callout with custom emoji:
- *   <div class="callout" emoji-data="🎯">Message with custom icon</div>
+ * Type (class)                        glyph               use
+ * Information   .cu-callout-info       fa-info             extra context
+ * Tip           .cu-callout-tip        fa-lightbulb        recommendation
+ * Good practice .cu-callout-good       fa-check            preferred approach
+ * Important     .cu-callout-important  fa-exclamation      something requiring attention
+ * Warning       .cu-callout-warning    fa-minus            risk or problem
+ * Example       .cu-callout-example    fa-graduation-cap   worked example
+ * Key point     .cu-callout-key or no modifier   fa-star   main takeaway
  *
- * - Callout with variants:
- *   <div class="callout warning">Warning message</div>
- *   <div class="callout success">Success message</div>
- *   <div class="callout danger">Error message</div>
- *   <div class="callout info">Information message</div>
- *
- * VARIANTS:
- * - .callout         - Base callout style (neutral gray)
- * - .callout.warning - Yellow warning style with ⚠️ icon
- * - .callout.success - Green success style with ✅ icon
- * - .callout.danger  - Red error style with ⛔ icon
- * - .callout.info    - Blue info style with ℹ️ icon
+ * The title carries the meaning; colour and icon support it. One or two per screen.
+ * Font Awesome 6.6.0 is loaded by the Xerte player; the theme does not bundle it.
  */
-.callout {
-  background: var(--color-gray-10);
-  padding: var(--spacing-md);
-  padding-left: var(--spacing-2xl);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-base);
-  color: var(--color-text-primary);
+.cu-callout {
+  display: block;
+  margin-top: var(--cu-space-6);
+  padding: var(--cu-space-5) var(--cu-space-6);
+  background: var(--cu-surface);
+  color: var(--cu-ink);
+  border-left: 4px solid var(--cu-callout, var(--cu-callout-key));
+}
+.cu-callout p {
+  margin-top: var(--cu-space-1);
+}
+
+.cu-callout:not(:has(.cu-callout-icon)) {
   position: relative;
+  padding-left: calc(var(--cu-space-6) + 28px + var(--cu-space-4));
 }
-.callout::before {
-  content: attr(emoji-data);
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+.cu-callout:not(:has(.cu-callout-icon))::before {
+  content: var(--cu-callout-glyph, "\f005");
+  content: var(--cu-callout-glyph, "\f005")/"";
   position: absolute;
-  top: var(--spacing-md);
-  left: var(--spacing-md);
-  font-size: var(--font-size-lg);
+  top: var(--cu-space-5);
+  left: var(--cu-space-6);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--cu-callout, var(--cu-callout-key));
+  color: var(--cu-callout-on, var(--cu-callout-key-on));
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 28px;
+  text-align: center;
 }
-.callout h4 {
-  font-size: var(--font-size-base);
-  margin-top: 0;
-  margin-bottom: var(--spacing-sm);
+
+.cu-callout:has(.cu-callout-icon) {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--cu-space-4);
+  align-items: start;
 }
-.callout.warning::before {
-  content: "⚠️";
+
+.cu-callout .cu-callout-icon {
+  font-size: 14px;
+  width: 2em;
 }
-.callout.success::before {
-  content: "✅";
+.cu-callout .cu-callout-icon .fa-stack-2x {
+  color: var(--cu-callout, var(--cu-callout-key));
 }
-.callout.danger::before {
-  content: "⛔️";
+.cu-callout .cu-callout-icon .fa-stack-1x {
+  color: var(--cu-callout-on, var(--cu-callout-key-on));
 }
-.callout.info::before {
-  content: "ℹ️";
+
+.cu-callout-title {
+  display: block;
+  font-weight: var(--cu-weight-bold);
+  line-height: 28px;
+}
+
+.cu-callout-info {
+  --cu-callout: var(--cu-callout-info);
+  --cu-callout-on: var(--cu-callout-info-on);
+  --cu-callout-glyph: "\f129";
+}
+
+.cu-callout-tip {
+  --cu-callout: var(--cu-callout-tip);
+  --cu-callout-on: var(--cu-callout-tip-on);
+  --cu-callout-glyph: "\f0eb";
+}
+
+.cu-callout-good {
+  --cu-callout: var(--cu-callout-good);
+  --cu-callout-on: var(--cu-callout-good-on);
+  --cu-callout-glyph: "\f00c";
+}
+
+.cu-callout-important {
+  --cu-callout: var(--cu-callout-important);
+  --cu-callout-on: var(--cu-callout-important-on);
+  --cu-callout-glyph: "\21";
+}
+
+.cu-callout-warning {
+  --cu-callout: var(--cu-callout-warning);
+  --cu-callout-on: var(--cu-callout-warning-on);
+  --cu-callout-glyph: "\f068";
+}
+
+.cu-callout-example {
+  --cu-callout: var(--cu-callout-example);
+  --cu-callout-on: var(--cu-callout-example-on);
+  --cu-callout-glyph: "\f19d";
+}
+
+.cu-callout-key {
+  --cu-callout: var(--cu-callout-key);
+  --cu-callout-on: var(--cu-callout-key-on);
+  --cu-callout-glyph: "\f005";
+}
+
+@media (max-width: 480px) {
+  .cu-callout {
+    padding: var(--cu-space-4);
+  }
+}
+/**
+ * Rules (Cardiff Resource Design System v1.3)
+ * <hr class="cu-rule">                  1px neutral rule between repeated entries or quiet sections
+ * <hr class="cu-rule cu-rule-strong">   2px charcoal rule for a major boundary
+ */
+.cu-rule {
+  height: 0;
+  border: 0;
+  border-top: 1px solid var(--cu-border);
+  margin-block: var(--cu-space-8);
+}
+
+.cu-rule-strong {
+  border-top: 2px solid var(--cu-ink);
 }
 
 /**
@@ -2414,7 +2601,6 @@ button.button--block {
   outline-offset: var(--focus-ring-offset);
 }
 .btn-mini:active {
-  box-shadow: var(--shadow-lg);
   transform: scale(0.9);
 }
 
@@ -2474,11 +2660,9 @@ button.button--block {
 .details__summary:hover {
   text-decoration: none;
 }
-.details__summary:focus {
-  background-color: var(--color-accent-gold);
-  box-shadow: 0 -2px var(--color-accent-gold), 0 4px var(--color-gray-90);
-  color: var(--color-gray-90);
-  outline: 4px solid transparent;
+.details__summary:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
   text-decoration: none;
 }
 .details[open] > .details__summary::before {
@@ -2655,6 +2839,8 @@ a.link-action::before {
   margin-right: var(--spacing-sm);
   color: var(--color-accent-green);
   font-size: var(--font-size-lg);
+  text-decoration: none;
+  display: inline-block;
 }
 a.link-action:hover::after, a.link-action:focus::after {
   content: none;
@@ -2772,20 +2958,17 @@ a.link-external:hover::after {
  * Uses Cardiff University design tokens
  */
 .jumbotron {
-  background: var(--color-gray-90);
-  background-image: linear-gradient(135deg, var(--color-gray-80) 0%, var(--color-gray-90) 100%);
-  padding: var(--spacing-lg) var(--spacing-2xl);
-  background-size: cover;
-  color: var(--color-white);
-  position: relative;
-  isolation: isolate;
+  background: var(--cu-bg);
+  background-image: none;
+  color: var(--cu-ink);
+  border-top: 4px solid var(--cu-red);
+  border-bottom: 1px solid var(--cu-border);
+  box-shadow: none;
+  padding: var(--cu-space-8) 0;
+  text-shadow: none;
 }
 .jumbotron::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: -1;
+  content: none;
 }
 
 #overview.logoL .logoL {
@@ -2793,63 +2976,152 @@ a.link-external:hover::after {
 }
 
 .logo.logoL.themeLogo {
-  max-width: 90px;
-  width: 100%;
+  width: var(--cu-logo-width);
+  max-width: none;
   height: auto;
+  flex: none;
 }
 
-#overview.logoL .container {
+#overview.logoL .container,
+#overview.logoR .container {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
+  gap: var(--cu-space-6);
+  flex-wrap: nowrap;
 }
 
 .titles {
   padding: 0;
+  text-align: left;
 }
 
+#overview.logoL .titles,
+#overview.logoR .titles {
+  padding: 0;
+  text-align: left;
+}
+
+#overview.logoL.logoR .titles {
+  float: none;
+  padding: 0;
+  text-align: left;
+}
+
+#overview.logoR div.logoR {
+  order: 1;
+  flex: 0 0 auto;
+  max-width: 25%;
+  float: none;
+  margin: 0 0 0 auto;
+}
+
+#overview img.logoR {
+  max-width: 100%;
+  height: auto;
+}
+
+#overview.logoR .container::after {
+  order: 2;
+}
+
+@media (max-width: 980px) {
+  #overview.logoL .titles,
+  #overview.logoR .titles {
+    float: none;
+    width: auto;
+    min-width: 0;
+    flex: 1 1 auto;
+    text-align: left;
+  }
+  #overview.logoL .logoL {
+    float: none;
+    flex: none;
+    text-align: left;
+  }
+  #overview.logoR div.logoR {
+    float: none;
+    text-align: right;
+  }
+}
 #pageTitle {
-  font-family: var(--font-family-primary);
-  color: var(--color-text-inverse);
-  line-height: var(--line-height-tight);
-  letter-spacing: 1px;
-  margin-bottom: var(--spacing-md);
+  font-family: var(--cu-display);
+  font-weight: var(--cu-weight-section);
+  letter-spacing: var(--cu-tracking-heading);
+  line-height: var(--cu-leading-heading);
+  color: var(--cu-ink);
   font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  margin-top: 0;
+  margin: 0 0 var(--cu-space-2);
 }
 
 #pageSubTitle {
-  font-weight: var(--font-weight-regular);
-  color: var(--color-text-inverse);
-  padding-top: var(--spacing-xs);
+  font-weight: var(--cu-weight-regular);
+  color: var(--cu-muted);
   font-size: var(--font-size-lg);
-  line-height: var(--line-height-tight);
+  line-height: var(--cu-leading-lead);
+  padding-top: 0;
   margin-bottom: 0;
 }
 
 .navbar {
-  box-shadow: var(--shadow-sm);
-  margin-bottom: var(--spacing-md);
+  box-shadow: none;
+  margin-bottom: 0;
 }
 
 .navbar-inverse .navbar-inner {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  background: var(--color-gray-20);
-  background-color: var(--color-gray-20);
+  background: var(--cu-ink);
   background-image: none;
-  background-repeat: repeat-x;
-  border-color: var(--color-gray-20);
-  box-shadow: none;
   border: 0;
+  box-shadow: none;
 }
 
+#pageLinks .navbar-inverse .navbar-inner {
+  border-bottom: 4px solid var(--cu-red);
+}
+
+.navbar-inverse .navbar-inner > .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 0;
+}
+
+@media (max-width: 980px) {
+  .jumbotron {
+    margin-top: 0;
+  }
+}
+.navbar-inverse .btn-navbar {
+  float: none;
+  order: 2;
+  margin: 0 0 0 auto;
+  background: transparent;
+  background-image: none;
+  border: 1px solid var(--cu-grey-70);
+  box-shadow: none;
+}
+.navbar-inverse .btn-navbar .icon-bar {
+  background-color: var(--cu-on-dark);
+  box-shadow: none;
+}
+
+.navbar-inverse .navbar-inner > .container > .nav-collapse {
+  order: 3;
+  flex: 1 0 100%;
+}
+
+@media (min-width: 980px) {
+  .navbar-inverse .navbar-inner > .container > .nav-collapse {
+    flex: 1 1 auto;
+  }
+}
 .navbar-inverse .nav-collapse .nav > li > a,
 .navbar-inverse .nav-collapse .dropdown-menu a,
 .navbar-inverse .brand,
 .navbar-inverse .nav > li > a {
-  color: var(--color-gray-80);
+  padding: 8px 10px;
+  color: var(--cu-on-dark);
   text-shadow: none;
   border-radius: 0;
   transition: 0.25s ease-in-out;
@@ -2861,28 +3133,43 @@ a.link-external:hover::after {
 .navbar-inverse .nav-collapse .dropdown-menu a:focus,
 .navbar-inverse .brand:hover,
 .navbar-inverse .nav > li > a:hover {
-  background-color: var(--color-white);
-  color: var(--color-brand-primary);
+  background-color: var(--cu-grey-90);
+  color: var(--cu-on-dark);
   box-sizing: border-box;
+}
+
+.navbar-inverse .nav-collapse .nav > li > a:focus-visible,
+.navbar-inverse .nav > li > a:focus-visible,
+.navbar-inverse .btn-navbar:focus-visible {
+  outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color-on-dark);
+  outline-offset: -4px;
 }
 
 .navbar .nav > li.activePage > a,
 .navbar .nav > li.activePage > a:hover {
-  background-color: var(--color-white);
+  background-color: var(--cu-grey-90);
   text-decoration: none;
-  color: var(--color-brand-primary);
-  box-shadow: inset 0 -2px 0 0 var(--color-brand-primary);
+  color: var(--cu-on-dark);
+  box-shadow: inset 0 -3px 0 0 var(--cu-red);
 }
 
 .navbar.navbar-fixed-top {
   margin-bottom: 0;
 }
 
+section {
+  overflow: visible;
+  display: flow-root;
+  scroll-margin-top: calc(var(--cu-sticky-nav, 0px) + var(--cu-space-4));
+}
+
 .nav-list > .active > a,
 .nav-list > .active > a:hover,
 .nav-list > .active > a:focus {
-  background: var(--color-brand-primary);
-  background-color: var(--color-brand-primary);
+  background: var(--color-selected-bg);
+  background-color: var(--color-selected-bg);
+  color: var(--cu-ink);
+  font-weight: var(--cu-weight-bold);
 }
 
 .nav-list > li > a {
@@ -2896,24 +3183,42 @@ a.link-external:hover::after {
 }
 
 .bs-docs-sidenav {
-  background-color: var(--color-white);
-  border-radius: var(--radius-md);
+  background-color: var(--cu-bg);
+  border: 1px solid var(--cu-border);
+  border-radius: 0;
+  box-shadow: none;
 }
 .bs-docs-sidenav > li > a {
   color: var(--color-text-primary);
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid var(--cu-line);
+  border-left: 4px solid transparent;
 }
-.bs-docs-sidenav > li:first-child > a {
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
-}
+.bs-docs-sidenav > li:first-child > a,
 .bs-docs-sidenav > li:last-child > a {
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  border-radius: 0;
 }
-.bs-docs-sidenav > .active > a {
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
-  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+.bs-docs-sidenav > .active > a,
+.bs-docs-sidenav > .active > a:hover,
+.bs-docs-sidenav > .active > a:focus {
+  padding: 8px 14px;
+  border: 0;
+  border-bottom: 1px solid var(--cu-line);
+  border-left: 4px solid var(--cu-red);
+  color: var(--cu-ink);
+  text-shadow: none;
+  box-shadow: none;
+}
+.bs-docs-sidenav > li:last-child > a,
+.bs-docs-sidenav > li:last-child.active > a {
+  border-bottom: 0;
 }
 .bs-docs-sidenav > li > a:hover {
-  background-color: var(--color-bg-body);
+  background-color: var(--cu-surface);
+}
+.bs-docs-sidenav.affix {
+  top: calc(var(--cu-sticky-nav, 0px) + var(--cu-space-6));
 }
 .bs-docs-sidenav a:hover .icon-chevron-right {
   opacity: 0.5;
@@ -2926,14 +3231,28 @@ a.link-external:hover::after {
 .footer {
   padding-block: var(--spacing-xl);
   position: relative;
-  background-color: var(--color-gray-80);
+  background-color: var(--color-brand-secondary);
   border: 0;
-  color: var(--color-white);
+  color: var(--color-gray-30);
 }
 .footer p {
   margin-bottom: 0;
-  text-align: center;
+  color: var(--color-gray-30);
+}
+.footer h2,
+.footer h3 {
+  margin-bottom: var(--spacing-sm);
   color: var(--color-white);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+}
+.footer ul {
+  margin: 0;
+  list-style: none;
+}
+.footer ul li {
+  padding-left: 0;
 }
 .footer a {
   color: var(--color-white);
@@ -2943,16 +3262,27 @@ a.link-external:hover::after {
   text-decoration: none;
   color: var(--color-white);
 }
+.footer a:focus-visible {
+  outline-color: var(--color-white);
+}
+.footer #customFooter {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--spacing-xl);
+}
+.footer #customFooter > .wcagLink {
+  grid-column: 1;
+}
 
 .footer-logo {
   max-width: 250px;
   height: auto;
-  margin: auto;
+  margin: 0 0 var(--spacing-sm);
 }
 
 #feedback_button {
   writing-mode: vertical-lr;
-  background: var(--color-brand-primary);
+  background: var(--color-action);
   color: var(--color-white);
   padding-inline: 16px;
   padding-block: 4px;
@@ -2966,28 +3296,29 @@ a.link-external:hover::after {
   transform: translateX(10px);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: transform 300ms ease-in-out;
-  box-shadow: -2px 9px 20px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 300ms ease-in-out, background-color 300ms ease-in-out;
   font-weight: var(--font-weight-bold);
 }
 #feedback_button:hover {
   transform: translateX(2px);
+  background: var(--color-action-hover);
 }
 #feedback_button i {
   transform: rotate(90deg);
   margin-inline-end: var(--spacing-xs);
 }
+#feedback_button a,
 #feedback_button a:hover {
   text-decoration: none;
   color: var(--color-white);
 }
 
 .evenSection {
-  background: #ffffff;
+  background: var(--color-white);
 }
 
 .oddSection {
-  background: #f9f9f9;
+  background: var(--color-light);
 }
 
 /* CKEditor custom style
@@ -2995,15 +3326,6 @@ a.link-external:hover::after {
 This is where you can define styles that will be available
    within the CKEditor content editor to style content blocks.
 */
-.cardiff-test-style {
-  padding: var(--spacing-md, 1rem);
-  background: var(--color-brand-primary, #E4251B);
-  color: var(--color-white, #FFFFFF);
-  border-left: 4px solid var(--color-accent-green, #07873E);
-  border-radius: var(--radius-sm, 4px);
-  margin: var(--spacing-md, 1rem) 0;
-}
-
 /* Import CSS-only modules (these generate CSS, not just mixins/variables) */
 /**
  * Utility Classes
@@ -3034,10 +3356,14 @@ This is where you can define styles that will be available
   left: 1rem;
   z-index: var(--z-index-toast);
   padding: var(--spacing-4);
-  background: var(--color-bg-brand);
-  color: var(--color-text-on-brand);
+  background: var(--cu-ink);
+  color: var(--color-white);
   text-decoration: none;
   font-weight: var(--font-weight-bold);
+}
+.skip-link:hover, .skip-link:focus {
+  background: var(--color-gray-90);
+  color: var(--color-white);
 }
 .skip-link:focus {
   top: 1rem;
@@ -4151,7 +4477,7 @@ This is where you can define styles that will be available
 }
 
 .rounded-full {
-  border-radius: 9999px !important;
+  border-radius: var(--radius-full) !important;
 }
 
 .shadow-none {
@@ -4215,7 +4541,6 @@ This is where you can define styles that will be available
 }
 .flexItem img {
   width: 100%;
-  max-width: -moz-max-content;
   max-width: max-content;
   display: block;
   margin: 0 auto;
@@ -4277,4 +4602,6 @@ This is where you can define styles that will be available
   color: var(--color-brand-secondary) !important;
 }
 
-/* v3: no web font import - Design System v1.1 uses system/Franklin Gothic fallback stacks *//*# sourceMappingURL=cardiffuni-v3.css.map */
+/* v3: no web font - Design System v1.6 uses the Franklin Gothic stack with system fallbacks */
+
+/*# sourceMappingURL=cardiffuni-v3.css.map */

@@ -12,19 +12,20 @@
     <link rel="stylesheet" href="assets/demo-styles.css">
 </head>
 
-<body>
-    <header class="jumbotron" id="overview">
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
-                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
-                    alt="Cardiff University Logo">
+                    src="../logo_left.svg"
+                    alt="Cardiff University / Prifysgol Caerdydd">
             </div>
 
             <div class="titles">
                 <h1 id="pageTitle" aria-live="polite">Color Palette</h1>
                 <p id="pageSubTitle" aria-live="polite">Design Tokens & Color System</p>
             </div>
+        </div>
     </header>
 
     <div id="pageLinks">
@@ -59,9 +60,28 @@
         </div>
     </div>
 
-    <main>
+    <main class="container">
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#brand-colors">Brand Colors</a></li>
+                    <li><a href="#accent-colors">Accent Colors</a></li>
+                    <li><a href="#grayscale">Grayscale</a></li>
+                    <li><a href="#semantic-text-colors">Semantic Text Colors</a></li>
+                    <li><a href="#link-colors">Link Colors</a></li>
+                    <li><a href="#background-colors">Background Colors</a></li>
+                    <li><a href="#border-colors">Border Colors</a></li>
+                    <li><a href="#status-colors">Status Colors</a></li>
+                    <li><a href="#action-focus-and-draft-label">Action, Focus &amp; Draft Label</a></li>
+                    <li><a href="#color-usage-guidelines">Color Usage Guidelines</a></li>
+                    <li><a href="#accessibility-contrast">Accessibility & Contrast</a></li>
+                    <li><a href="#theming-with-css-custom-properties">Theming with CSS Custom Properties</a></li>
+                </ul>
+            </div>
+
+            <div class="span9" id="mainContent">
         <!-- Brand Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="brand-colors">
             <h2>Brand Colors</h2>
             <p>The core brand colors that define the Cardiff University visual identity.</p>
 
@@ -87,7 +107,7 @@
         </section>
 
         <!-- Accent Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="accent-colors">
             <h2>Accent Colors</h2>
             <p>A vibrant palette for emphasis, callouts, and visual variety.</p>
 
@@ -203,7 +223,7 @@
         </section>
 
         <!-- Grayscale -->
-        <section class="demo-section">
+        <section class="demo-section" id="grayscale">
             <h2>Grayscale</h2>
             <p>A comprehensive grayscale for text, borders, and backgrounds.</p>
 
@@ -224,7 +244,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Light</span>
                         <span class="color-info__value">--color-light</span>
-                        <span class="color-info__value">#f9fafb</span>
+                        <span class="color-info__value">half way between white and grey-10 · about #F9F9F9</span>
                     </div>
                 </div>
 
@@ -314,7 +334,7 @@
         </section>
 
         <!-- Semantic Text Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="semantic-text-colors">
             <h2>Semantic Text Colors</h2>
             <p>Purpose-driven color tokens for consistent text styling.</p>
 
@@ -342,7 +362,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Text Tertiary</span>
                         <span class="color-info__value">--color-text-tertiary</span>
-                        <span class="color-info__value">var(--color-gray-50)</span>
+                        <span class="color-info__value">var(--cu-text-tertiary) · #666666</span>
                     </div>
                 </div>
 
@@ -351,7 +371,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Text Brand</span>
                         <span class="color-info__value">--color-text-brand</span>
-                        <span class="color-info__value">var(--color-brand-primary)</span>
+                        <span class="color-info__value">var(--color-action) · #C21F16</span>
                     </div>
                 </div>
 
@@ -368,7 +388,7 @@
         </section>
 
         <!-- Link Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="link-colors">
             <h2>Link Colors</h2>
             <p>Accessible link colors for all interaction states.</p>
 
@@ -378,7 +398,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Link Default</span>
                         <span class="color-info__value">--color-link-default</span>
-                        <span class="color-info__value">#0645AD</span>
+                        <span class="color-info__value">var(--cu-link) · #045BC6</span>
                     </div>
                 </div>
 
@@ -396,7 +416,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Link Visited</span>
                         <span class="color-info__value">--color-link-visited</span>
-                        <span class="color-info__value">#551A8B</span>
+                        <span class="color-info__value">var(--color-link-default)</span>
                     </div>
                 </div>
 
@@ -412,7 +432,7 @@
         </section>
 
         <!-- Background Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="background-colors">
             <h2>Background Colors</h2>
             <p>Semantic background tokens for layering and visual hierarchy.</p>
 
@@ -422,7 +442,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Body</span>
                         <span class="color-info__value">--color-bg-body</span>
-                        <span class="color-info__value">var(--color-light)</span>
+                        <span class="color-info__value">var(--cu-bg)</span>
                     </div>
                 </div>
 
@@ -474,7 +494,7 @@
         </section>
 
         <!-- Border Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="border-colors">
             <h2>Border Colors</h2>
             <p>Consistent border tokens for dividers and outlines.</p>
 
@@ -511,14 +531,14 @@
                     <div class="color-info">
                         <span class="color-info__name">Border Focus</span>
                         <span class="color-info__value">--color-border-focus</span>
-                        <span class="color-info__value">var(--color-brand-primary)</span>
+                        <span class="color-info__value">var(--color-focus) · #121212</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Status Colors -->
-        <section class="demo-section">
+        <section class="demo-section" id="status-colors">
             <h2>Status Colors</h2>
             <p>Semantic colors for feedback and system states.</p>
 
@@ -537,7 +557,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Warning</span>
                         <span class="color-info__value">--color-status-warning</span>
-                        <span class="color-info__value">var(--color-accent-orange)</span>
+                        <span class="color-info__value">var(--color-warning) · #121212</span>
                     </div>
                 </div>
 
@@ -546,7 +566,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Error</span>
                         <span class="color-info__value">--color-status-error</span>
-                        <span class="color-info__value">var(--color-brand-primary)</span>
+                        <span class="color-info__value">var(--cu-error) · #A11A12</span>
                     </div>
                 </div>
 
@@ -555,19 +575,65 @@
                     <div class="color-info">
                         <span class="color-info__name">Info</span>
                         <span class="color-info__value">--color-status-info</span>
-                        <span class="color-info__value">var(--color-accent-blue)</span>
+                        <span class="color-info__value">var(--color-link-default)</span>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Action, Focus and Draft Roles -->
+        <section class="demo-section" id="action-focus-and-draft-label">
+            <h2>Action, Focus &amp; Draft Label</h2>
+            <p>Roles introduced by the Cardiff Resource Design System v1.3. Filled buttons use the darker action red; keyboard focus is black; draft labels are black on Yellow.</p>
+            <div class="demo-grid">
+                <div>
+                    <div class="color-swatch" style="background: var(--color-action);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Action</span>
+                        <span class="color-info__value">--color-action</span>
+                        <span class="color-info__value">var(--cu-action) · #C21F16</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: var(--color-action-hover);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Action Hover</span>
+                        <span class="color-info__value">--color-action-hover</span>
+                        <span class="color-info__value">var(--cu-action-hover) · #A11A12</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: var(--color-focus);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Focus</span>
+                        <span class="color-info__value">--color-focus</span>
+                        <span class="color-info__value">var(--cu-focus) · #121212</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: var(--color-draft-bg);"></div>
+                    <div class="color-info">
+                        <span class="color-info__name">Draft Label Background</span>
+                        <span class="color-info__value">--color-draft-bg</span>
+                        <span class="color-info__value">var(--cu-draft-bg) · #FFB300</span>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-block">
+                <div class="demo-block__title">Draft label</div>
+                <p><span style="display: inline-block; padding: 2px 8px; font-weight: var(--font-weight-bold); color: var(--color-draft); background: var(--color-draft-bg);">Draft</span> Black on Yellow (10.4:1).</p>
+                <code class="code-label">color: var(--color-draft); background: var(--color-draft-bg);</code>
+            </div>
+        </section>
+
         <!-- Color Usage Guidelines -->
-        <section class="demo-section">
+        <section class="demo-section" id="color-usage-guidelines">
             <h2>Color Usage Guidelines</h2>
 
             <div class="demo-block">
                 <div class="demo-block__title">Brand Primary (Red)</div>
-                <p><strong>Usage:</strong> Primary CTAs, important headings, active states, error messages</p>
+                <p><strong>Usage:</strong> Brand signals: the header&rsquo;s top edge, the logo, the Warning callout; the 3px underline on the current navbar item and the 4px rule on the current sidebar item. The brand utilities (<code>.text-brand</code>, <code>.bg-brand</code>, <code>.text-cu-red</code>) are opt-in</p>
+                <p><strong>Not for:</strong> filled buttons (use <code>--color-action</code>, #C21F16) or error text (<code>--color-status-error</code>, #A11A12)</p>
                 <p><strong>Avoid:</strong> Large background areas, body text</p>
             </div>
 
@@ -579,23 +645,22 @@
 
             <div class="demo-block">
                 <div class="demo-block__title">Accent Colors</div>
-                <p><strong>Usage:</strong> Visual variety, callouts, charts, illustrations, status indicators</p>
-                <p><strong>Green:</strong> Success states, confirmations</p>
-                <p><strong>Orange:</strong> Warnings, attention-grabbing elements</p>
-                <p><strong>Blue:</strong> Information, links, interactive elements</p>
+                <p><strong>Usage:</strong> Sparingly, in tier order: callouts, charts, illustrations</p>
+                <p><strong>Callouts:</strong> Information = Light Blue, Tip = Cadet, Good practice = Forest Green, Important = Yellow, Warning = Brand Red, Example = Indigo, Key point = Black (see <a href="components.html#callouts">Components</a>)</p>
+                <p><strong>Links:</strong> <code>--color-link-default</code> (#045BC6), a recorded deviation from the palette</p>
             </div>
 
             <div class="demo-block">
                 <div class="demo-block__title">Grayscale</div>
-                <p><strong>Usage:</strong> Text, borders, backgrounds, shadows</p>
+                <p><strong>Usage:</strong> Text, borders, rules and backgrounds (components are flat: no shadows)</p>
                 <p><strong>Light grays (10-30):</strong> Backgrounds, subtle borders</p>
-                <p><strong>Mid grays (40-60):</strong> Secondary text, disabled states</p>
-                <p><strong>Dark grays (70-90):</strong> Body text, headings</p>
+                <p><strong>Mid grays (40-60):</strong> Disabled states</p>
+                <p><strong>Dark grays (70-90):</strong> Secondary and tertiary text (grey 70, #666666)</p>
             </div>
         </section>
 
         <!-- Accessibility -->
-        <section class="demo-section">
+        <section class="demo-section" id="accessibility-contrast">
             <h2>Accessibility & Contrast</h2>
 
             <div class="demo-block">
@@ -641,8 +706,16 @@
         </section>
 
         <!-- Theming -->
-        <section class="demo-section">
+        <section class="demo-section" id="theming-with-css-custom-properties">
             <h2>Theming with CSS Custom Properties</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Where the colours come from</div>
+                <p>Every colour, font family and spacing value comes from the design system&rsquo;s <code>v1/tokens.css</code>. <code>sync-theme.py</code> generates <code>scss/_cu-tokens.scss</code> (the <code>--cu-*</code> tokens at <code>:root</code>); the theme&rsquo;s <code>--color-*</code> roles point at those tokens. Don&rsquo;t edit the generated file: change <code>tokens.css</code>, run <code>sync-theme.py</code>, then recompile the theme.</p>
+                <pre><code>--color-action: var(--cu-action);      /* #C21F16 */
+--color-focus: var(--cu-focus);        /* #121212 */
+--color-link-default: var(--cu-link);  /* #045BC6 */</code></pre>
+            </div>
 
             <div class="demo-block">
                 <div class="demo-block__title">Creating a New Theme</div>
@@ -659,6 +732,8 @@
 }</code></pre>
             </div>
         </section>
+        </div>
+        </div>
     </main>
 
     <footer class="demo-footer">

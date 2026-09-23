@@ -12,19 +12,20 @@
     <link rel="stylesheet" href="assets/demo-styles.css">
 </head>
 
-<body>
-    <header class="jumbotron" id="overview">
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
-                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
-                    alt="Cardiff University Logo">
+                    src="../logo_left.svg"
+                    alt="Cardiff University / Prifysgol Caerdydd">
             </div>
 
             <div class="titles">
                 <h1 id="pageTitle" aria-live="polite">Forms</h1>
                 <p id="pageSubTitle" aria-live="polite">Form Elements & Input Types</p>
             </div>
+        </div>
     </header>
 
     <div id="pageLinks">
@@ -59,9 +60,25 @@
         </div>
     </div>
 
-    <main>
+    <main class="container">
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#labels">Labels</a></li>
+                    <li><a href="#text-input-fields">Text Input Fields</a></li>
+                    <li><a href="#date-time-inputs">Date & Time Inputs</a></li>
+                    <li><a href="#textarea">Textarea</a></li>
+                    <li><a href="#select-dropdowns">Select Dropdowns</a></li>
+                    <li><a href="#checkboxes">Checkboxes</a></li>
+                    <li><a href="#radio-buttons">Radio Buttons</a></li>
+                    <li><a href="#complete-form-examples">Complete Form Examples</a></li>
+                    <li><a href="#form-best-practices">Form Best Practices</a></li>
+                </ul>
+            </div>
+
+            <div class="span9" id="mainContent">
         <!-- Labels -->
-        <section class="demo-section">
+        <section class="demo-section" id="labels">
             <h2>Labels</h2>
 
             <div class="demo-block">
@@ -81,7 +98,7 @@
         </section>
 
         <!-- Text Inputs -->
-        <section class="demo-section">
+        <section class="demo-section" id="text-input-fields">
             <h2>Text Input Fields</h2>
 
             <div class="demo-block">
@@ -155,7 +172,7 @@
         </section>
 
         <!-- Date & Time Inputs -->
-        <section class="demo-section">
+        <section class="demo-section" id="date-time-inputs">
             <h2>Date & Time Inputs</h2>
 
             <div class="demo-block">
@@ -192,7 +209,7 @@
         </section>
 
         <!-- Textarea -->
-        <section class="demo-section">
+        <section class="demo-section" id="textarea">
             <h2>Textarea</h2>
 
             <div class="demo-block">
@@ -218,7 +235,7 @@
         </section>
 
         <!-- Select Dropdowns -->
-        <section class="demo-section">
+        <section class="demo-section" id="select-dropdowns">
             <h2>Select Dropdowns</h2>
 
             <div class="demo-block">
@@ -286,7 +303,7 @@
         </section>
 
         <!-- Checkboxes -->
-        <section class="demo-section">
+        <section class="demo-section" id="checkboxes">
             <h2>Checkboxes</h2>
 
             <div class="demo-block">
@@ -316,7 +333,7 @@
                 <div class="demo-block__title">Checkbox Group</div>
                 <div class="demo-block__description">Related checkboxes with fieldset</div>
 
-                <fieldset style="border: 1px solid var(--cu-gray-30); padding: 1.5rem; border-radius: 4px;">
+                <fieldset style="border: 1px solid var(--cu-grey-30); padding: 1.5rem; ">
                     <legend style="font-weight: var(--font-weight-medium); padding: 0 0.5rem;">Select your interests
                     </legend>
                     <div style="display: flex; flex-direction: column; gap: 0.75rem;">
@@ -338,7 +355,7 @@
         </section>
 
         <!-- Radio Buttons -->
-        <section class="demo-section">
+        <section class="demo-section" id="radio-buttons">
             <h2>Radio Buttons</h2>
 
             <div class="demo-block">
@@ -369,7 +386,7 @@
                 <div class="demo-block__description">Different radio button groups on the same form</div>
 
                 <fieldset
-                    style="border: 1px solid var(--cu-gray-30); padding: 1.5rem; border-radius: 4px; margin-bottom: 1.5rem;">
+                    style="border: 1px solid var(--cu-grey-30); padding: 1.5rem; margin-bottom: 1.5rem;">
                     <legend style="font-weight: var(--font-weight-medium); padding: 0 0.5rem;">Accommodation Preference
                     </legend>
                     <div style="display: flex; flex-direction: column; gap: 0.75rem;">
@@ -385,7 +402,7 @@
                     </div>
                 </fieldset>
 
-                <fieldset style="border: 1px solid var(--cu-gray-30); padding: 1.5rem; border-radius: 4px;">
+                <fieldset style="border: 1px solid var(--cu-grey-30); padding: 1.5rem; ">
                     <legend style="font-weight: var(--font-weight-medium); padding: 0 0.5rem;">Dietary Requirements
                     </legend>
                     <div style="display: flex; flex-direction: column; gap: 0.75rem;">
@@ -410,7 +427,7 @@
         </section>
 
         <!-- Complete Form Examples -->
-        <section class="demo-section">
+        <section class="demo-section" id="complete-form-examples">
             <h2>Complete Form Examples</h2>
 
             <div class="demo-block">
@@ -557,7 +574,7 @@
         </section>
 
         <!-- Form Best Practices -->
-        <section class="demo-section">
+        <section class="demo-section" id="form-best-practices">
             <h2>Form Best Practices</h2>
 
             <div class="demo-block">
@@ -606,6 +623,8 @@
                 </p>
             </div>
         </section>
+        </div>
+        </div>
     </main>
 
     <footer class="demo-footer">

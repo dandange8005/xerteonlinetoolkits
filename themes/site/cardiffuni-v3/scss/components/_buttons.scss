@@ -524,7 +524,6 @@ button.button {
     }
 
     &:active {
-        box-shadow: var(--shadow-lg);
         transform: scale(0.9);
     }
 }

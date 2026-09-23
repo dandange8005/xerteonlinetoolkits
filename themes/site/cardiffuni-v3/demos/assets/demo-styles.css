@@ -1,6 +1,7 @@
 /**
- * Cardiff University v2 Theme - Demo Pages Shared Styles
- * Provides consistent styling across all demo pages
+ * Cardiff University v3 Theme - Demo Pages Shared Styles
+ * Demo chrome only. The header, navbar, sidebar and components come from ../../cardiffuni-v3.css;
+ * nothing here restyles them. Flat like the theme: no shadows, square corners, --cu-* tokens.
  */
 
 /* ===========================
@@ -12,113 +13,11 @@ body {
     padding-top: 0;
 }
 
-/* ===========================
-   Demo Jumbotron Header
-   =========================== */
-/* 
-.jumbotron {
-    background: linear-gradient(135deg, #4c4c4c 0%, #333333 100%) 0% 0% / cover #333333;
-    color: white;
-    padding: 2rem;
-    margin: -2rem -2rem 2rem -2rem;
-    border-radius: 0;
-}
-
-.jumbotron .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
-.jumbotron .logoL {
-    flex: 0 0 auto;
-}
-
-.jumbotron .logo {
-    max-width: 200px;
-    height: auto;
-}
-
-.jumbotron .titles {
-    flex: 1 1 auto;
-}
-
-.jumbotron h1 {
-    color: white;
-    margin: 0 0 0.5rem 0;
-    font-size: var(--font-size-3xl);
-}
-
-.jumbotron p {
-    color: white;
-    margin: 0;
-    font-size: var(--font-size-lg);
-    opacity: 0.9;
-} */
-
-/* Demo Navigation Links */
-.demo-nav__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 1.5rem 0 0 0;
-}
-
-.demo-nav__link {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-    font-size: var(--font-size-sm);
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.demo-nav__link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-.demo-nav__link--active {
-    background: var(--cu-primary-red);
-    font-weight: var(--font-weight-medium);
-}
-
-/* Mobile navigation */
+/* Mobile: demo footer links stack */
 @media (max-width: 768px) {
-    .jumbotron {
-        padding: 1.5rem 1rem;
-        margin: -2rem -2rem 1rem -2rem;
-    }
-
-    .jumbotron .container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .jumbotron .logo {
-        max-width: 150px;
-    }
-
-    .jumbotron h1 {
-        font-size: var(--font-size-2xl);
-    }
-
-    .demo-nav__links {
+    .demo-footer__links {
         flex-direction: column;
         gap: 0.5rem;
-        width: 100%;
-    }
-
-    .demo-nav__link {
-        display: block;
-        text-align: center;
     }
 }
 
@@ -129,20 +28,18 @@ body {
 .demo-section {
     margin-bottom: 4rem;
     padding: 2rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background: var(--cu-bg);
 }
 
 .demo-section>h2:first-child {
     margin-top: 0;
-    color: var(--cu-primary-red);
-    border-bottom: 2px solid var(--cu-gray-20);
+    color: var(--cu-black);
+    border-bottom: 2px solid var(--cu-grey-20);
     padding-bottom: 1rem;
 }
 
 .demo-section>h3 {
-    color: var(--cu-gray-80);
+    color: var(--cu-grey-80);
     margin-top: 2rem;
 }
 
@@ -153,20 +50,18 @@ body {
 .demo-block {
     margin: 2rem 0;
     padding: 1.5rem;
-    background: #f9fafb;
-    border-radius: 4px;
-    border-left: 4px solid var(--color-accent-stone);
+    background: var(--cu-bg);
+    border: 1px solid var(--cu-line);
 }
 
 .demo-block--highlight {
-    border-left-color: var(--cu-primary-red);
-    background: #fff5f5;
+    border-left: 4px solid var(--cu-ink);
 }
 
 .demo-block__title {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-bold);
-    color: var(--cu-gray-70);
+    color: var(--cu-grey-70);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin: 0 0 1rem 0;
@@ -174,7 +69,7 @@ body {
 
 .demo-block__description {
     font-size: var(--font-size-sm);
-    color: var(--cu-gray-60);
+    color: var(--cu-grey-60);
     margin-bottom: 1rem;
     font-style: italic;
 }
@@ -201,20 +96,21 @@ body {
 
 .code-label {
     font-family: monospace;
-    background: var(--cu-gray-20);
+    background: var(--cu-grey-20);
     padding: 0.25rem 0.5rem;
-    border-radius: 3px;
+    border-radius: var(--cu-radius);
     font-size: 0.875rem;
-    color: var(--cu-gray-70);
+    color: var(--cu-grey-70);
+    margin-top: 1rem;
     margin-bottom: 0.5rem;
     display: inline-block;
 }
 
 .code-example {
-    background: var(--cu-gray-90);
-    color: #f8f8f2;
+    background: var(--cu-grey-90);
+    color: var(--cu-on-dark);
     padding: 1rem;
-    border-radius: 4px;
+    border-radius: 0;
     overflow-x: auto;
     font-family: 'Courier New', monospace;
     font-size: 0.875rem;
@@ -237,15 +133,15 @@ body {
 }
 
 .demo-card {
-    background: white;
-    border: 1px solid var(--cu-gray-30);
-    border-radius: 8px;
+    background: var(--cu-bg);
+    border: 1px solid var(--cu-border);
+    border-radius: 0;
     padding: 1.5rem;
 }
 
 .demo-card__title {
     margin-top: 0;
-    color: var(--cu-primary-red);
+    color: var(--cu-ink);
     font-size: var(--font-size-lg);
 }
 
@@ -257,9 +153,8 @@ body {
     display: inline-block;
     width: 100px;
     height: 100px;
-    border-radius: 8px;
-    border: 1px solid var(--cu-gray-30);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    border: 1px solid var(--cu-border);
 }
 
 .color-info {
@@ -274,7 +169,7 @@ body {
 
 .color-info__value {
     font-family: monospace;
-    color: var(--cu-gray-60);
+    color: var(--cu-grey-60);
     display: block;
 }
 
@@ -285,8 +180,8 @@ body {
 .demo-footer {
     margin-top: 4rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--cu-gray-20);
-    color: var(--cu-gray-60);
+    border-top: 1px solid var(--cu-grey-20);
+    color: var(--cu-grey-60);
     text-align: center;
     font-size: var(--font-size-sm);
 }
@@ -302,12 +197,12 @@ body {
 }
 
 .demo-footer__link {
-    color: var(--cu-gray-60);
+    color: var(--cu-grey-60);
     text-decoration: none;
 }
 
 .demo-footer__link:hover {
-    color: var(--cu-primary-red);
+    color: var(--cu-ink);
     text-decoration: underline;
 }
 
@@ -326,31 +221,32 @@ body {
 }
 
 .demo-note {
-    background: #fffbea;
-    border-left: 4px solid var(--color-accent-yellow);
+    background: var(--cu-surface);
+    border-left: 4px solid var(--cu-accent-yellow);
     padding: 1rem;
     margin: 1rem 0;
-    border-radius: 4px;
 }
 
 .demo-note__title {
     font-weight: var(--font-weight-bold);
-    color: var(--cu-gray-80);
+    color: var(--cu-grey-80);
     margin: 0 0 0.5rem 0;
 }
 
 .demo-warning {
-    background: #fff5f5;
-    border-left: 4px solid var(--color-status-warning);
+    background: var(--cu-surface);
+    border-left: 4px solid var(--cu-brand-red);
     padding: 1rem;
     margin: 1rem 0;
-    border-radius: 4px;
 }
 
 .demo-success {
-    background: #f0fdf4;
-    border-left: 4px solid var(--color-status-success);
+    background: var(--cu-surface);
+    border-left: 4px solid var(--cu-success);
     padding: 1rem;
     margin: 1rem 0;
-    border-radius: 4px;
+}
+/* Long button labels wrap inside demo cards */
+.demo-card .button {
+    white-space: normal;
 }

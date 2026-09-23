@@ -14,19 +14,20 @@
     <link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/fontawesome-6.6.0/css/all.min.css">
 </head>
 
-<body>
-    <header class="jumbotron" id="overview">
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
-                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
-                    alt="Cardiff University Logo">
+                    src="../logo_left.svg"
+                    alt="Cardiff University / Prifysgol Caerdydd">
             </div>
 
             <div class="titles">
                 <h1 id="pageTitle" aria-live="polite">Components</h1>
                 <p id="pageSubTitle" aria-live="polite">UI Components Library</p>
             </div>
+        </div>
     </header>
 
     <div id="pageLinks">
@@ -61,23 +62,33 @@
         </div>
     </div>
 
-    <main>
-        <!-- Table of Contents -->
-        <section class="demo-section">
-            <h2>Component Index</h2>
-            <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
-                <a href="#buttons" class="button button-secondary-outline button--small"><i class="fa-solid fa-hand-pointer"></i> Buttons</a>
-                <a href="#alerts" class="button button-secondary-outline button--small"><i class="fa-solid fa-bell"></i> Alerts</a>
-                <a href="#badges" class="button button-secondary-outline button--small"><i class="fa-solid fa-tag"></i> Badges & Labels</a>
-                <a href="#progress" class="button button-secondary-outline button--small"><i class="fa-solid fa-bars-progress"></i> Progress Bars</a>
-                <a href="#breadcrumbs" class="button button-secondary-outline button--small"><i class="fa-solid fa-sitemap"></i> Breadcrumbs</a>
-                <a href="#cards" class="button button-secondary-outline button--small"><i class="fa-solid fa-id-card"></i> Cards</a>
-                <a href="#callouts" class="button button-secondary-outline button--small"><i class="fa-solid fa-bullhorn"></i> Callouts</a>
-                <a href="#tabs" class="button button-secondary-outline button--small"><i class="fa-solid fa-folder"></i> Tabs</a>
-                <a href="#accordions" class="button button-secondary-outline button--small"><i class="fa-solid fa-list"></i> Accordions</a>
+    <main class="container">
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#buttons">Buttons</a></li>
+                    <li><a href="#alerts">Alerts</a></li>
+                    <li><a href="#badges">Badges & Labels</a></li>
+                    <li><a href="#progress">Progress Bars</a></li>
+                    <li><a href="#breadcrumbs">Breadcrumbs</a></li>
+                    <li><a href="#cards">Cards</a></li>
+                    <li><a href="#callouts">Callouts</a></li>
+                    <li><a href="#rules">Rules</a></li>
+                    <li><a href="#boxes">Boxes</a></li>
+                    <li><a href="#quotes">Quotes</a></li>
+                    <li><a href="#links">Links</a></li>
+                    <li><a href="#details">Details</a></li>
+                    <li><a href="#dosdonts">Do's &amp; Don'ts</a></li>
+                    <li><a href="#projectinfo">Project info</a></li>
+                    <li><a href="#pagechrome">Page chrome</a></li>
+                    <li><a href="#tabs">Tabs</a></li>
+                    <li><a href="#accordions">Accordions</a></li>
+                    <li><a href="#component-usage-guidelines">Component Usage Guidelines</a></li>
+                </ul>
             </div>
-        </section>
 
+            <div class="span9" id="mainContent">
+        <!-- Table of Contents -->
         <!-- ==================== BUTTONS ==================== -->
         <section class="demo-section" id="buttons">
             <h2><i class="fa-solid fa-hand-pointer"></i> Buttons</h2>
@@ -119,7 +130,7 @@
             <!-- Reverse Buttons (Dark Background) -->
             <div class="demo-block">
                 <div class="demo-block__title">Reverse Buttons (Dark Backgrounds)</div>
-                <div style="background: var(--color-brand-primary); padding: 1rem; border-radius: var(--radius-md); display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <div style="background: var(--cu-ink); padding: 1rem; border-radius: var(--radius-md); display: flex; gap: 0.5rem; flex-wrap: wrap;">
                     <button class="button button-reverse">Reverse Filled</button>
                     <button class="button button-reverse-outline">Reverse Outline</button>
                 </div>
@@ -130,11 +141,15 @@
             <div class="demo-block">
                 <div class="demo-block__title">Button Sizes</div>
                 <div class="demo-inline" style="align-items: center;">
-                    <button class="button button--small button-primary">Small</button>
+                    <button class="button button-primary button-sm">Small (.button-sm)</button>
                     <button class="button button-primary">Default</button>
+                    <button class="button button-primary button-lg">Large (.button-lg)</button>
+                </div>
+                <div class="demo-inline" style="align-items: center; margin-top: 1rem;">
+                    <button class="button button--small button-primary">Compact (.button--small)</button>
                     <button class="button button-primary button--block" style="max-width: 200px;">Block</button>
                 </div>
-                <code class="code-label">.button--small | .button--block</code>
+                <code class="code-label">.button-sm | .button-lg | .button--small | .button--block</code>
             </div>
 
             <!-- Buttons with Icons -->
@@ -180,6 +195,7 @@
 
             <div class="demo-block">
                 <div class="demo-block__title">Alert Variants</div>
+                <p class="demo-block__description">A grey surface, square edges and a 4px rule in the status colour, like the design system's callouts. The glyph and the bold word carry the status, so the rule's colour is never the only cue. Danger and error use the design-system error red.</p>
 
                 <div class="alert alert-success">
                     <strong>Success!</strong> Your changes have been saved successfully.
@@ -220,15 +236,17 @@
 
             <div class="demo-block">
                 <div class="demo-block__title">Badges (Pill Shape)</div>
+                <p class="demo-block__description">Every badge and label keeps its text readable at 4.5:1 or better. Danger and important use the design-system error red; info uses link blue; the default is grey-70.</p>
                 <div class="demo-inline">
                     <span class="badge">Default</span>
                     <span class="badge badge-success">Success</span>
                     <span class="badge badge-warning">Warning</span>
                     <span class="badge badge-important">Important</span>
+                    <span class="badge badge-danger">Danger</span>
                     <span class="badge badge-info">Info</span>
                     <span class="badge badge-inverse">Inverse</span>
                 </div>
-                <code class="code-label">.badge .badge-success | .badge-warning | .badge-important | .badge-info | .badge-inverse</code>
+                <code class="code-label">.badge .badge-success | .badge-warning | .badge-important | .badge-danger | .badge-info | .badge-inverse</code>
             </div>
 
             <div class="demo-block">
@@ -238,10 +256,11 @@
                     <span class="label label-success">Success</span>
                     <span class="label label-warning">Warning</span>
                     <span class="label label-important">Important</span>
+                    <span class="label label-danger">Danger</span>
                     <span class="label label-info">Info</span>
                     <span class="label label-inverse">Inverse</span>
                 </div>
-                <code class="code-label">.label .label-success | .label-warning | .label-important | .label-info | .label-inverse</code>
+                <code class="code-label">.label .label-success | .label-warning | .label-important | .label-danger | .label-info | .label-inverse</code>
             </div>
 
             <div class="demo-block">
@@ -262,6 +281,7 @@
 
             <div class="demo-block">
                 <div class="demo-block__title">Basic Progress Bars</div>
+                <p class="demo-block__description">The default fill is ink. The variants add a status colour: danger is the design-system error red, info is link blue, and warning is a darkened orange so it stays visible against the track.</p>
 
                 <p>Default (40%)</p>
                 <div class="progress">
@@ -341,6 +361,7 @@
 
             <div class="demo-block">
                 <div class="demo-block__title">Basic Card</div>
+                <p class="demo-block__description">The card heading is smaller than a page heading: <code>--font-size-2xl</code>, 28px from 720px wide and 24px on the narrowest screens. It applies to <code>.card__heading</code> and to a plain <code>h3</code> inside <code>.card__content</code>.</p>
 
                 <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
                     <div class="card">
@@ -395,45 +416,228 @@
             <h2><i class="fa-solid fa-bullhorn"></i> Callouts</h2>
 
             <div class="demo-block">
-                <div class="demo-block__title">Callout Variants</div>
+                <div class="demo-block__title">Seven callout types — design system fa-stack markup</div>
+                <p class="demo-block__description">The markup used by the design system's own prototypes. Still supported, so prototype callouts paste in unchanged. For new Xerte content prefer the short markup below.</p>
 
-                <div class="callout" style="margin-bottom: 1rem;">
-                    <h4>Default Callout</h4>
-                    <p>This is a neutral callout without a specific semantic meaning.</p>
-                </div>
+                <div class="cu-callout cu-callout-info"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-info fa-stack-1x"></i></span><div><strong class="cu-callout-title">Information</strong><p>Extra context.</p></div></div>
+                <div class="cu-callout cu-callout-tip"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-lightbulb fa-stack-1x"></i></span><div><strong class="cu-callout-title">Tip</strong><p>A recommendation.</p></div></div>
+                <div class="cu-callout cu-callout-good"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-check fa-stack-1x"></i></span><div><strong class="cu-callout-title">Good practice</strong><p>The preferred approach.</p></div></div>
+                <div class="cu-callout cu-callout-important"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-exclamation fa-stack-1x"></i></span><div><strong class="cu-callout-title">Important</strong><p>Something requiring attention.</p></div></div>
+                <div class="cu-callout cu-callout-warning"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-minus fa-stack-1x"></i></span><div><strong class="cu-callout-title">Warning</strong><p>A risk or problem.</p></div></div>
+                <div class="cu-callout cu-callout-example"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-graduation-cap fa-stack-1x"></i></span><div><strong class="cu-callout-title">Example</strong><p>A worked example.</p></div></div>
+                <div class="cu-callout"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-star fa-stack-1x"></i></span><div><strong class="cu-callout-title">Key point</strong><p>The main takeaway (default when no type class is given).</p></div></div>
 
-                <div class="callout info" style="margin-bottom: 1rem;">
-                    <h4>Information</h4>
-                    <p>This callout provides helpful information to the user.</p>
-                </div>
-
-                <div class="callout success" style="margin-bottom: 1rem;">
-                    <h4>Success</h4>
-                    <p>This callout indicates a successful action or positive outcome.</p>
-                </div>
-
-                <div class="callout warning" style="margin-bottom: 1rem;">
-                    <h4>Warning</h4>
-                    <p>This callout warns the user about something important.</p>
-                </div>
-
-                <div class="callout danger">
-                    <h4>Danger</h4>
-                    <p>This callout alerts the user to an error or critical issue.</p>
-                </div>
-
-                <code class="code-label">.callout | .callout.info | .callout.success | .callout.warning | .callout.danger</code>
+                <code class="code-label">.cu-callout | -info | -tip | -good | -important | -warning | -example | -key (or no type class at all)</code>
             </div>
 
             <div class="demo-block">
-                <div class="demo-block__title">Callout with Custom Emoji</div>
+                <div class="demo-block__title">Seven callout types — short markup (preferred)</div>
+                <p class="demo-block__description">Same seven types and the same result, three elements instead of five. The theme draws the disc and glyph in CSS, so there is less to paste into the Xerte editor and no empty tags for the editor to strip.</p>
 
-                <div class="callout" emoji-data="&#127891;">
-                    <h4>Did You Know?</h4>
-                    <p>You can customize the callout icon using the <code>emoji-data</code> attribute.</p>
+                <div class="cu-callout cu-callout-info"><strong class="cu-callout-title">Information</strong><p>Extra context.</p></div>
+                <div class="cu-callout cu-callout-tip"><strong class="cu-callout-title">Tip</strong><p>A recommendation.</p></div>
+                <div class="cu-callout cu-callout-good"><strong class="cu-callout-title">Good practice</strong><p>The preferred approach.</p></div>
+                <div class="cu-callout cu-callout-important"><strong class="cu-callout-title">Important</strong><p>Something requiring attention.</p></div>
+                <div class="cu-callout cu-callout-warning"><strong class="cu-callout-title">Warning</strong><p>A risk or problem.</p></div>
+                <div class="cu-callout cu-callout-example"><strong class="cu-callout-title">Example</strong><p>A worked example.</p></div>
+                <div class="cu-callout cu-callout-key"><strong class="cu-callout-title">Key point</strong><p>The main takeaway. Written out as <code>.cu-callout-key</code> here; leaving the type class off does the same.</p></div>
+
+                <code class="code-label">&lt;div class="cu-callout cu-callout-tip"&gt;&lt;strong class="cu-callout-title"&gt;Tip&lt;/strong&gt;&lt;p&gt;…&lt;/p&gt;&lt;/div&gt;</code>
+            </div>
+        </section>
+
+        <!-- ==================== RULES ==================== -->
+        <section class="demo-section" id="rules">
+            <h2><i class="fa-solid fa-grip-lines"></i> Rules</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Neutral and strong rules (design system v1.3)</div>
+                <p>A 1px neutral rule separates repeated entries or quiet sections.</p>
+                <hr class="cu-rule">
+                <p>A 2px charcoal rule marks a major boundary.</p>
+                <hr class="cu-rule cu-rule-strong">
+                <p>Both rules have 32px of space above and below.</p>
+
+                <code class="code-label">&lt;hr class="cu-rule"&gt; | &lt;hr class="cu-rule cu-rule-strong"&gt;</code>
+            </div>
+        </section>
+
+        <!-- ==================== BOXES ==================== -->
+        <section class="demo-section" id="boxes">
+            <h2><i class="fa-solid fa-square"></i> Boxes</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Box and box with icon</div>
+                <div class="box">
+                    <div class="box__title">Plain box</div>
+                    <p>A simple container for grouping related content.</p>
+                </div>
+                <div class="box box-icon" style="margin-top: 1rem;">
+                    <svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><circle cx="12" cy="12" r="10"></circle></svg>
+                    <div>
+                        <div class="box__title">Box with an icon</div>
+                        <p>The icon sits beside the content.</p>
+                    </div>
+                </div>
+                <code class="code-label">.box | .box.box-icon | .box__title | .svg-icon (sizes an inline SVG inside a box)</code>
+            </div>
+        </section>
+
+        <!-- ==================== QUOTES ==================== -->
+        <section class="demo-section" id="quotes">
+            <h2><i class="fa-solid fa-quote-left"></i> Quotes</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Quote, with and without an image</div>
+                <blockquote class="quote">
+                    <p>Assessment shapes what students pay attention to, and how they spend their time.</p>
+                    <p class="quote-author">&mdash; Programme lead, School of Medicine</p>
+                </blockquote>
+                <blockquote class="quote with-image">
+                    <img src="https://placehold.co/96x96/121212/FFFFFF?text=CU" alt="" class="quote-image">
+                    <p>The clearer the criteria, the more useful the feedback becomes.</p>
+                    <p class="quote-author">&mdash; Module convenor, School of Law</p>
+                </blockquote>
+                <code class="code-label">.quote | .quote.with-image | .quote-author | .quote-image</code>
+            </div>
+        </section>
+
+        <!-- ==================== LINKS ==================== -->
+        <section class="demo-section" id="links">
+            <h2><i class="fa-solid fa-link"></i> Links</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Action and external links</div>
+                <p><a href="#links" class="link-action">Start the assessment planner</a></p>
+                <p><a href="https://www.cardiff.ac.uk" class="link-external">Cardiff University website</a></p>
+                <code class="code-label">.link-action | .link-external</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Asset link (file download)</div>
+                <a href="#links" class="link-asset">
+                    <i class="fa-solid fa-file-pdf link-asset__icon" aria-hidden="true"></i>
+                    <div>
+                        <div class="link-asset__name">Assessment design checklist</div>
+                        <div class="link-asset__label">PDF, 240 KB</div>
+                    </div>
+                </a>
+                <code class="code-label">.link-asset | .link-asset__icon | .link-asset__name | .link-asset__label</code>
+            </div>
+        </section>
+
+        <!-- ==================== DETAILS ==================== -->
+        <section class="demo-section" id="details">
+            <h2><i class="fa-solid fa-caret-down"></i> Details</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Native disclosure widget</div>
+                <details class="details">
+                    <summary class="details__summary">What counts as secure assessment?</summary>
+                    <div class="details__text">
+                        <p>Anything where the awarding decision depends on work we can attribute to the student with confidence.</p>
+                    </div>
+                </details>
+                <details class="details">
+                    <summary class="details__summary">When should I use open assessment?</summary>
+                    <div class="details__text">
+                        <p>When the learning outcome is the process rather than the recall, and feedback matters more than control.</p>
+                    </div>
+                </details>
+                <code class="code-label">.details | .details__summary | .details__text</code>
+            </div>
+        </section>
+
+        <!-- ==================== DO'S AND DON'TS ==================== -->
+        <section class="demo-section" id="dosdonts">
+            <h2><i class="fa-solid fa-list-check"></i> Do's &amp; Don'ts</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Paired guidance lists</div>
+                <div class="flex flex-wrap gap-lg">
+                    <div class="do-dont-list flex-300">
+                        <h3 class="do-dont-list__label">Do</h3>
+                        <ul class="list--tick">
+                            <li><i class="fa-solid fa-check" aria-hidden="true" style="color: var(--color-status-success); margin-right: 0.5rem;"></i>Give the criteria before the work starts</li>
+                            <li><i class="fa-solid fa-check" aria-hidden="true" style="color: var(--color-status-success); margin-right: 0.5rem;"></i>Keep feedback specific and actionable</li>
+                        </ul>
+                    </div>
+                    <div class="do-dont-list flex-300">
+                        <h3 class="do-dont-list__label">Don't</h3>
+                        <ul class="list--cross">
+                            <li><i class="fa-solid fa-xmark" aria-hidden="true" style="color: var(--color-status-error); margin-right: 0.5rem;"></i>Rely on colour alone to carry meaning</li>
+                            <li><i class="fa-solid fa-xmark" aria-hidden="true" style="color: var(--color-status-error); margin-right: 0.5rem;"></i>Add a second assessment to fix a design problem</li>
+                        </ul>
+                    </div>
+                </div>
+                <code class="code-label">.do-dont-list | .do-dont-list__label | .list--tick | .list--cross</code>
+                <p class="demo-block__description">Icons here are Font Awesome, as the design system specifies. The component also positions an inline <code>&lt;svg class="icon"&gt;</code> per item.</p>
+            </div>
+        </section>
+
+        <!-- ==================== PROJECT INFO ==================== -->
+        <section class="demo-section" id="projectinfo">
+            <h2><i class="fa-solid fa-circle-info"></i> Project info</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Metadata row</div>
+                <div id="project-info">
+                    <span>Version 1.0</span>
+                    <span>Last updated: September 2026</span>
+                    <span>Cardiff University</span>
+                </div>
+                <code class="code-label">#project-info</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Language toggle</div>
+                <p class="demo-block__description">The theme also styles a language switcher, <code>#language-toggle</code>, which the player positions in the top right of the header. It is not shown here because it is placed by the page frame rather than by page content.</p>
+                <code class="code-label">#language-toggle | .language-toggle-text</code>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE CHROME ==================== -->
+        <section class="demo-section" id="pagechrome">
+            <h2><i class="fa-solid fa-window-maximize"></i> Page chrome</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Footer</div>
+                <p class="demo-block__description">An ink footer with no red. The player builds it from the project's <code>customFooter</code> HTML and puts it in <code>#customFooter</code>, so write only the columns: the theme lays them side by side and stacks them when the space is narrow. Set <code>footerPos</code> to replace the default footer. In that mode the player also appends its accessibility link, which the theme puts on its own row. For a logo, use an official white (reversed) version; the design system says never to recolour it.</p>
+
+                <div class="footer" style="margin-top: 0; padding-inline: 20px;">
+                    <div id="customFooter">
+                        <div>
+                            <p>Developed by the Digital Education Team<br>Learning and Teaching Academy<br>Cardiff University</p>
+                        </div>
+                        <div>
+                            <h2>Useful links</h2>
+                            <ul>
+                                <li><a href="index.html">Author guide home</a></li>
+                                <li><a href="patterns.html">UI patterns</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
-                <code class="code-label">.callout[emoji-data="&#127891;"]</code>
+                <code class="code-label">&lt;div&gt;&lt;p&gt;…&lt;/p&gt;&lt;/div&gt; &lt;div&gt;&lt;h2&gt;Useful links&lt;/h2&gt;&lt;ul&gt;…&lt;/ul&gt;&lt;/div&gt;</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Back to top</div>
+                <p class="demo-block__description">The player adds one to each page section: the round arrow when <code>topBtnRound</code> is on, otherwise the text button. Both are ink with a white label and carry no shadow. Colours an author sets for the round button in the project's settings still override these defaults.</p>
+
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <a class="topBtn btn btn-mini top-round" href="#pageTitle"><span class="sr-only">Top</span><i class="fa fa-angle-up fa-2x" aria-hidden="true"></i></a>
+                    <a class="topBtn btn btn-mini" href="#pageTitle">Top</a>
+                </div>
+
+                <code class="code-label">.topBtn | .top-round</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Feedback tab and glossary</div>
+                <p class="demo-block__description">Neither is shown here: the feedback tab is fixed to the edge of the window, and the player places a glossary definition at the pointer. The feedback tab is action red with white text and no shadow. The player does not create it, so a project adds an element with <code>id="feedback_button"</code> holding an icon and a link. A glossary term is marked with a dotted underline as well as its colour, and its definition (<code>.glossaryTip</code>) is ink with white text.</p>
+                <code class="code-label">#feedback_button | a.glossary | .glossaryTip</code>
             </div>
         </section>
 
@@ -526,7 +730,7 @@
         </section>
 
         <!-- ==================== USAGE GUIDELINES ==================== -->
-        <section class="demo-section">
+        <section class="demo-section" id="component-usage-guidelines">
             <h2><i class="fa-solid fa-book"></i> Component Usage Guidelines</h2>
 
             <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
@@ -570,6 +774,8 @@
                 </div>
             </div>
         </section>
+        </div>
+        </div>
     </main>
 
     <footer class="demo-footer">

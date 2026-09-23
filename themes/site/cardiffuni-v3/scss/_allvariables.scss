@@ -1,81 +1,80 @@
 /**
- * Cardiff University Theme v3 - Semantic Design Tokens
- * Aligned with Cardiff Resource Design System v1.1
- * ==================================================
+ * Cardiff University v3 - Xerte token adapter (Design System v1.6)
  *
- * HYBRID APPROACH:
- * - Imports primitive tokens from _tokens.scss (single source of truth)
- * - Generates CSS custom properties using SCSS interpolation
- * - Single semantic layer for easy theming
+ * Shared values come from _cu-tokens.scss, generated from the design system.
+ * This file maps existing theme names to those values and owns Xerte-only settings.
+ * There is no second Sass token scale. Keep aliases so existing components and
+ * authored overrides continue to work; do not copy shared values into this file.
  *
- * TO CREATE A NEW THEME:
- * Override CSS variables using [data-theme] or inline styles:
- * <style>
- *   :root { --color-brand-primary: #0066CC; }
- * </style>
- *
- * Or use a theme selector:
- * [data-theme="other-uni"] { --color-brand-primary: #0066CC; }
+ * To adjust shared roles for one project, load :root CSS overrides after the theme.
+ * Both older components and newer rules then resolve through the same --cu-* source.
+ * Theme-only settings (focus dimensions, grid, etc.) are declared in their sections below.
+ * Creating another institution's theme requires a reviewed palette and role mapping,
+ * not a two-variable override. See THEMING-GUIDE.md for the supported workflow.
  */
-
-@use "tokens" as t;
 
 :root {
     // =========================================================================
     // BRAND COLORS
-    // Change these to rebrand the entire theme
+    // Compatibility names. Shared roles are the project override points.
     // =========================================================================
 
-    --color-brand-primary: #{t.$token-color-brand-primary};
-    --color-brand-secondary: #{t.$token-color-brand-secondary};
+    --color-brand-primary: var(--cu-red);
+    --color-brand-secondary: var(--cu-ink);
 
     // =========================================================================
     // NEUTRAL COLORS
     // =========================================================================
 
-    --color-white: #{t.$token-color-brand-white};
-    --color-light: #{t.$token-color-brand-light};
+    --color-white: var(--cu-white);
+    // The off-white for soft backgrounds (v2's `light`, #f9fafb). Half way between the design
+    // system's white and its grey-10 surface, so it stays neutral and follows both roles. The
+    // page itself is white (--color-bg-body): the design system's main paper.
+    --color-light: color-mix(in srgb, var(--cu-bg) 50%, var(--cu-surface) 50%);
 
     // =========================================================================
-    // ACTION & INTERACTION COLORS (Design System v1.1)
-    // Red discipline: brand red is a rare signal; primary actions use --color-action.
+    // ACTION & INTERACTION COLORS (Design System v1.6)
+    // Values come from the design system tokens (--cu-*). Red usage is decided separately.
     // =========================================================================
 
-    --color-action: #{t.$token-color-action};
-    --color-action-hover: #{t.$token-color-action-hover};
-    --color-tint: #{t.$token-color-tint};
-    --color-focus: #{t.$token-color-focus};
-    --color-warning: #{t.$token-color-warning};
-    --color-warning-bg: #{t.$token-color-warning-bg};
-    --color-on-dark: var(--color-white);
-    --color-on-dark-muted: #{t.$token-color-on-dark-muted};
+    --color-action: var(--cu-action);
+    --color-action-hover: var(--cu-action-hover);
+    --color-tint: #F8DADA; // not in the design system; see Red Usage Decisions
+    --color-selected-bg: color-mix(in srgb, var(--cu-red) 6%, var(--cu-bg)); // selected nav item wash; not in the design system, see Red Usage Decisions
+    --color-focus: var(--cu-focus);
+    // Only ever used for the Draft/proposed label (black on Yellow, 10.4:1). Not a general
+    // warning colour: see --color-status-warning below for that.
+    --color-draft: var(--cu-draft);
+    --color-draft-bg: var(--cu-draft-bg);
+    --color-on-dark: var(--cu-on-dark);
+    --color-on-dark-muted: var(--cu-on-dark-muted);
 
-    --color-gray-10: #{t.$token-color-gray-10};
-    --color-gray-20: #{t.$token-color-gray-20};
-    --color-gray-30: #{t.$token-color-gray-30};
-    --color-gray-40: #{t.$token-color-gray-40};
-    --color-gray-50: #{t.$token-color-gray-50};
-    --color-gray-60: #{t.$token-color-gray-60};
-    --color-gray-70: #{t.$token-color-gray-70};
-    --color-gray-80: #{t.$token-color-gray-80};
-    --color-gray-90: #{t.$token-color-gray-90};
+    --color-gray-10: var(--cu-grey-10);
+    --color-gray-20: var(--cu-grey-20);
+    --color-gray-30: var(--cu-grey-30);
+    --color-gray-40: var(--cu-grey-40);
+    --color-gray-50: var(--cu-grey-50);
+    --color-gray-60: var(--cu-grey-60);
+    --color-gray-70: var(--cu-grey-70);
+    --color-gray-80: var(--cu-grey-80);
+    --color-gray-90: var(--cu-grey-90);
 
     // =========================================================================
     // ACCENT COLORS
     // =========================================================================
 
-    --color-accent-green: #{t.$token-color-accent-forest-green};
-    --color-accent-teal: #{t.$token-color-accent-cadet};
-    --color-accent-stone: #{t.$token-color-accent-stone};
-    --color-accent-blue: #{t.$token-color-accent-light-blue};
-    --color-accent-royal: #{t.$token-color-accent-royal-blue};
-    --color-accent-navy: #{t.$token-color-accent-midnight-blue};
-    --color-accent-purple: #{t.$token-color-accent-midnight-purple};
-    --color-accent-orange: #{t.$token-color-accent-orange};
-    --color-accent-yellow: #{t.$token-color-accent-yellow};
-    --color-accent-lime: #{t.$token-color-accent-yellow-green};
-    --color-accent-indigo: #{t.$token-color-accent-indigo};
-    --color-accent-violet: #{t.$token-color-accent-dark-violet};
+    --color-accent-green: var(--cu-accent-forest-green);
+    --color-accent-teal: var(--cu-accent-cadet);
+    --color-accent-stone: var(--cu-accent-stone);
+    --color-accent-blue: var(--cu-accent-light-blue);
+    --color-accent-royal: var(--cu-accent-royal-blue);
+    --color-accent-navy: var(--cu-accent-midnight-blue);
+    --color-accent-purple: var(--cu-accent-midnight-purple);
+    --color-accent-orange: var(--cu-accent-orange);
+    --color-accent-yellow: var(--cu-accent-yellow);
+    --color-accent-lime: var(--cu-accent-yellow-green);
+    --color-accent-indigo: var(--cu-accent-indigo);
+    --color-accent-violet: var(--cu-accent-dark-violet);
 
     // =========================================================================
     // SEMANTIC COLORS
@@ -83,39 +82,40 @@
 
     // Text
     --color-text-primary: var(--color-brand-secondary);
-    --color-text-secondary: var(--color-gray-70);
-    --color-text-tertiary: var(--color-gray-50);
+    --color-text-secondary: var(--cu-muted);
+    --color-text-tertiary: var(--cu-text-tertiary);
     --color-text-inverse: var(--color-white);
     --color-text-brand: var(--color-action); // brand red is too light for small text
     --color-text-on-brand: var(--color-white);
 
     // Links (blue, underlined)
-    --color-link-default: #{t.$token-color-link};
+    --color-link-default: var(--cu-link);
     --color-link-hover: color-mix(in srgb, var(--color-link-default) 70%, black 30%);
     --color-link-visited: var(--color-link-default); // DS defines no separate visited colour
     --color-link-active: color-mix(in srgb, var(--color-link-default) 50%, black 50%);
 
     // Background
-    --color-bg-body: var(--color-light);
-    --color-bg-page: var(--color-white);
-    --color-bg-subtle: var(--color-gray-10);
+    --color-bg-body: var(--cu-bg);
+    --color-bg-page: var(--cu-bg);
+    --color-bg-subtle: var(--cu-surface);
     --color-bg-muted: var(--color-gray-20);
     --color-bg-elevated: var(--color-white);
     --color-bg-brand: var(--color-brand-primary);
     --color-bg-dark: var(--color-brand-secondary);
 
     // Border
-    --color-border-default: var(--color-gray-30);
-    --color-border-light: var(--color-gray-20);
+    --color-border-default: var(--cu-border);
+    --color-border-light: var(--cu-line);
     --color-border-dark: var(--color-gray-40);
     --color-border-focus: var(--color-focus);
     --color-border-brand: var(--color-brand-primary);
 
     // Status
-    --color-status-success: var(--color-accent-green);
-    --color-status-warning: var(--color-warning);
-    --color-status-warning-bg: var(--color-warning-bg);
-    --color-status-error: var(--color-action-hover);
+    --color-status-success: var(--cu-success);
+    // A darkened accent-orange, not the raw accent: plain orange is 2.97:1 on white and Yellow
+    // is 1.79:1, both short of 4.5:1 for text and icons.
+    --color-status-warning: var(--color-accent-orange-dark);
+    --color-status-error: var(--cu-error);
     --color-status-info: var(--color-link-default);
 
     // Navigation
@@ -185,6 +185,9 @@
     // Reverse Outline (for dark backgrounds)
     --btn-reverse-outline-text: var(--color-white);
     --btn-reverse-outline-border: var(--color-white);
+    // Translucent on purpose, same reasoning as the carousel overlays (hardcoded-values audit,
+    // 22 September 2026): a tint that shows the dark surface behind it through, which a solid
+    // design-system colour cannot do.
     --btn-reverse-outline-hover-bg: rgba(255, 255, 255, 0.15);
     --btn-reverse-outline-active-bg: rgba(255, 255, 255, 0.25);
 
@@ -214,7 +217,7 @@
 
     --btn-border-radius: var(--radius-md);
     --btn-border-width: var(--border-width-1);
-    --btn-min-height: #{t.$token-min-button-height};
+    --btn-min-height: 48px;
     --btn-min-width: 44px;
 
     --btn-icon-size: 20px;
@@ -227,18 +230,18 @@
     // =========================================================================
 
     // Font Families
-    --font-family-primary: #{t.$token-font-family-primary};
-    --font-family-display: #{t.$token-font-family-display};
-    --font-family-secondary: #{t.$token-font-family-secondary};
+    --font-family-primary: var(--cu-body);
+    --font-family-display: var(--cu-display);
+    --font-family-secondary: var(--cu-serif);
 
     // Font Sizes
     // DS: controls/labels/captions 16px minimum; reading copy 18px; lead 20px.
     // xs/sm are kept for existing components but no longer shrink below 16px.
-    --font-size-xs: #{t.$token-font-size-base};
-    --font-size-sm: #{t.$token-font-size-base};
-    --font-size-base: #{t.$token-font-size-base};
-    --font-size-md: #{t.$token-font-size-md};
-    --font-size-lg: #{t.$token-font-size-lg};
+    --font-size-xs: var(--cu-text-ui);
+    --font-size-sm: var(--cu-text-ui);
+    --font-size-base: var(--cu-text-ui);
+    --font-size-md: var(--cu-text-body);
+    --font-size-lg: var(--cu-text-lead);
     --font-size-body: var(--font-size-md);  // reading copy
     --font-size-lead: var(--font-size-lg);  // lead paragraph
     --font-size-xl: clamp(1.25rem, 1.10rem + 0.75vw, 1.5rem);
@@ -246,32 +249,32 @@
     --font-size-3xl: clamp(1.875rem, 1.60rem + 1.375vw, 2.25rem);
     --font-size-4xl: clamp(2.25rem, 1.90rem + 1.75vw, 3rem);
 
-    // Font Weights
-    --font-weight-light: #{t.$token-font-weight-light};
-    --font-weight-regular: #{t.$token-font-weight-regular};
-    --font-weight-medium: #{t.$token-font-weight-medium};
-    --font-weight-semibold: #{t.$token-font-weight-semibold};
-    --font-weight-bold: #{t.$token-font-weight-bold};
-    --font-weight-heading: #{t.$token-font-weight-heading};
-    --font-weight-extrabold: #{t.$token-font-weight-extrabold};
-    --font-weight-heavy: #{t.$token-font-weight-heavy};
+    // Shared weights are aliases; intermediate legacy weights remain Xerte settings.
+    --font-weight-light: 300;
+    --font-weight-regular: var(--cu-weight-regular);
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: var(--cu-weight-bold);
+    --font-weight-heading: var(--cu-weight-component);
+    --font-weight-extrabold: var(--cu-weight-section);
+    --font-weight-heavy: var(--cu-weight-display);
 
-    // Line Heights
-    --line-height-none: #{t.$token-line-height-none};
-    --line-height-heading: #{t.$token-line-height-heading};
-    --line-height-tight: #{t.$token-line-height-tight};
-    --line-height-snug: #{t.$token-line-height-snug};
-    --line-height-normal: #{t.$token-line-height-normal};
-    --line-height-relaxed: #{t.$token-line-height-relaxed};
-    --line-height-loose: #{t.$token-line-height-loose};
+    // Shared leading is aliased; other legacy steps are Xerte settings.
+    --line-height-none: 1;
+    --line-height-heading: var(--cu-leading-heading);
+    --line-height-tight: 1.2;
+    --line-height-snug: 1.3;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: var(--cu-leading-body);
+    --line-height-loose: 1.75;
 
-    // Letter Spacing
-    --letter-spacing-heading: #{t.$token-letter-spacing-heading};
-    --letter-spacing-tighter: #{t.$token-letter-spacing-tighter};
-    --letter-spacing-tight: #{t.$token-letter-spacing-tight};
-    --letter-spacing-normal: #{t.$token-letter-spacing-normal};
-    --letter-spacing-wide: #{t.$token-letter-spacing-wide};
-    --letter-spacing-wider: #{t.$token-letter-spacing-wider};
+    // Shared heading tracking plus Xerte-specific utility steps.
+    --letter-spacing-heading: var(--cu-tracking-heading);
+    --letter-spacing-tighter: -0.02em;
+    --letter-spacing-tight: -0.01em;
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.02em;
+    --letter-spacing-wider: 0.05em;
 
     // =========================================================================
     // HEADING STYLES
@@ -280,19 +283,19 @@
     // DS scale: display (h1), section (h2), component (h3) use the display
     // stack; entry-level headings (h4-h6) use the body stack.
     --h1-font-family: var(--font-family-display);
-    --h1-font-size: clamp(44px, 5.5vw, 76px);
+    --h1-font-size: var(--cu-text-display);
     --h1-font-weight: var(--font-weight-heavy);
     --h1-line-height: var(--line-height-heading);
     --h1-letter-spacing: var(--letter-spacing-heading);
 
     --h2-font-family: var(--font-family-display);
-    --h2-font-size: clamp(30px, 3.2vw, 44px);
+    --h2-font-size: var(--cu-text-section);
     --h2-font-weight: var(--font-weight-extrabold);
     --h2-line-height: var(--line-height-heading);
     --h2-letter-spacing: var(--letter-spacing-heading);
 
     --h3-font-family: var(--font-family-display);
-    --h3-font-size: 30px;
+    --h3-font-size: var(--cu-text-component);
     --h3-font-weight: var(--font-weight-heading);
     --h3-line-height: var(--line-height-heading);
     --h3-letter-spacing: var(--letter-spacing-heading);
@@ -300,7 +303,7 @@
     --h4-font-family: var(--font-family-primary);
     --h4-font-size: var(--font-size-lg);
     --h4-font-weight: var(--font-weight-bold);
-    --h4-line-height: 1.35;
+    --h4-line-height: var(--cu-leading-entry);
     --h4-letter-spacing: normal;
 
     --h5-font-family: var(--font-family-primary);
@@ -323,24 +326,24 @@
     // SPACING
     // =========================================================================
 
-    --spacing-0: #{t.$token-spacing-0};
-    --spacing-px: #{t.$token-spacing-px};
-    --spacing-1: #{t.$token-spacing-1};
-    --spacing-2: #{t.$token-spacing-2};
-    --spacing-3: #{t.$token-spacing-3};
-    --spacing-4: #{t.$token-spacing-4};
-    --spacing-5: #{t.$token-spacing-5};
-    --spacing-6: #{t.$token-spacing-6};
-    --spacing-7: #{t.$token-spacing-7};
-    --spacing-8: #{t.$token-spacing-8};
-    --spacing-9: #{t.$token-spacing-9};
-    --spacing-10: #{t.$token-spacing-10};
-    --spacing-12: #{t.$token-spacing-12};
-    --spacing-14: #{t.$token-spacing-14};
-    --spacing-16: #{t.$token-spacing-16};
-    --spacing-20: #{t.$token-spacing-20};
-    --spacing-24: #{t.$token-spacing-24};
-    --spacing-32: #{t.$token-spacing-32};
+    --spacing-0: 0;
+    --spacing-px: 1px;
+    --spacing-1: var(--cu-space-1);
+    --spacing-2: var(--cu-space-2);
+    --spacing-3: var(--cu-space-3);
+    --spacing-4: var(--cu-space-4);
+    --spacing-5: var(--cu-space-5);
+    --spacing-6: var(--cu-space-6);
+    --spacing-7: var(--cu-space-7);
+    --spacing-8: var(--cu-space-8);
+    --spacing-9: var(--cu-space-9);
+    --spacing-10: var(--cu-space-10);
+    --spacing-12: var(--cu-space-12);
+    --spacing-14: var(--cu-space-14);
+    --spacing-16: var(--cu-space-16);
+    --spacing-20: var(--cu-space-20);
+    --spacing-24: var(--cu-space-24);
+    --spacing-32: calc(var(--cu-space-16) * 2); // extension beyond the shared scale
 
     // Semantic aliases
     --spacing-xs: var(--spacing-1);
@@ -361,29 +364,30 @@
     // =========================================================================
 
     --container-max-width: 1240px; // DS desktop container
-    --container-padding-mobile: 16px;
-    --container-padding-tablet: 24px;
-    --container-padding-desktop: 32px;
+    --container-padding-mobile: var(--cu-space-4);
+    --container-padding-tablet: var(--cu-space-6);
+    --container-padding-desktop: var(--cu-space-8);
 
     --content-width-narrow: 640px;
     --content-width-medium: 768px;
     --content-width-wide: 1024px;
     --content-width-full: 100%;
 
-    --grid-columns: #{t.$token-grid-columns};
-    --grid-gutter: #{t.$token-grid-gutter};
+    --grid-columns: 12;
+    --grid-gutter: var(--cu-space-6);
 
     // =========================================================================
     // BORDERS
     // =========================================================================
 
-    --radius-none: #{t.$token-radius-none};
-    --radius-sm: #{t.$token-radius-sm};
-    --radius-md: #{t.$token-radius-md};
-    --radius-lg: #{t.$token-radius-lg};
-    --radius-xl: #{t.$token-radius-xl};
-    --radius-2xl: #{t.$token-radius-2xl};
-    --radius-full: #{t.$token-radius-full};
+    // Structural panels stay square; only control rounding follows --cu-radius.
+    --radius-none: 0;
+    --radius-sm: var(--cu-radius);
+    --radius-md: var(--cu-radius);
+    --radius-lg: 0;
+    --radius-xl: 0;
+    --radius-2xl: 0;
+    --radius-full: 9999px;
 
     // Semantic radius
     --radius-card: var(--radius-none);  // structural panels are square
@@ -391,21 +395,21 @@
     --radius-image: var(--radius-none);
     --radius-control: var(--radius-md);
 
-    --border-width-0: #{t.$token-border-width-0};
-    --border-width-1: #{t.$token-border-width-1};
-    --border-width-2: #{t.$token-border-width-2};
-    --border-width-4: #{t.$token-border-width-4};
+    --border-width-0: 0;
+    --border-width-1: 1px;
+    --border-width-2: 2px;
+    --border-width-4: 4px;
 
     // =========================================================================
     // SHADOWS
     // =========================================================================
 
-    --shadow-none: #{t.$token-shadow-none};
-    --shadow-sm: #{t.$token-shadow-sm};
-    --shadow-md: #{t.$token-shadow-md};
-    --shadow-lg: #{t.$token-shadow-lg};
-    --shadow-xl: #{t.$token-shadow-xl};
-    --shadow-2xl: #{t.$token-shadow-2xl};
+    --shadow-none: var(--cu-shadow);
+    --shadow-sm: var(--cu-shadow-sm);
+    --shadow-md: var(--cu-shadow-md);
+    --shadow-lg: var(--cu-shadow-lg);
+    --shadow-xl: var(--cu-shadow-xl);
+    --shadow-2xl: var(--cu-shadow-2xl);
 
     // Semantic shadows
     --shadow-card: var(--shadow-sm);
@@ -417,14 +421,14 @@
     // ANIMATION
     // =========================================================================
 
-    --duration-fast: #{t.$token-duration-fast};
-    --duration-normal: #{t.$token-duration-normal};
-    --duration-slow: #{t.$token-duration-slow};
+    --duration-fast: var(--cu-fast);
+    --duration-normal: 300ms; // Xerte transitions without a shared role
+    --duration-slow: 500ms;
 
-    --easing-default: #{t.$token-easing-default};
-    --easing-in: #{t.$token-easing-in};
-    --easing-out: #{t.$token-easing-out};
-    --easing-in-out: #{t.$token-easing-in-out};
+    --easing-default: var(--cu-ease);
+    --easing-in: cubic-bezier(0.4, 0, 1, 1);
+    --easing-out: cubic-bezier(0, 0, 0.2, 1);
+    --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
     // Transition presets
     --transition-fast: var(--duration-fast) var(--easing-default);
@@ -435,14 +439,14 @@
     // Z-INDEX
     // =========================================================================
 
-    --z-index-behind: #{t.$token-z-index-behind};
-    --z-index-base: #{t.$token-z-index-base};
-    --z-index-raised: #{t.$token-z-index-raised};
-    --z-index-dropdown: #{t.$token-z-index-dropdown};
-    --z-index-sticky: #{t.$token-z-index-sticky};
-    --z-index-overlay: #{t.$token-z-index-overlay};
-    --z-index-modal: #{t.$token-z-index-modal};
-    --z-index-toast: #{t.$token-z-index-toast};
+    --z-index-behind: -1;
+    --z-index-base: 0;
+    --z-index-raised: 1;
+    --z-index-dropdown: 100;
+    --z-index-sticky: 200;
+    --z-index-overlay: 300;
+    --z-index-modal: 400;
+    --z-index-toast: 500;
 
     // =========================================================================
     // ACCESSIBILITY
@@ -450,23 +454,24 @@
 
     --focus-ring-color: var(--color-focus);
     --focus-ring-color-on-dark: var(--color-on-dark);
-    --focus-ring-width: #{t.$token-focus-ring-width};
-    --focus-ring-offset: #{t.$token-focus-ring-offset};
+    // Theme control geometry: the shared token set currently supplies colour only.
+    --focus-ring-width: 2px;
+    --focus-ring-offset: 4px;
     --focus-ring-style: solid;
     --focus-ring: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color);
 
-    --min-touch-target: #{t.$token-min-touch-target};
-    --min-input-height: #{t.$token-min-input-height};
-    --min-textarea-height: #{t.$token-min-textarea-height};
+    --min-touch-target: 44px;
+    --min-input-height: 56px;
+    --min-textarea-height: 112px;
 
     // =========================================================================
     // ICONS
     // =========================================================================
 
-    --icon-size-sm: #{t.$token-icon-size-sm};
-    --icon-size-md: #{t.$token-icon-size-md};
-    --icon-size-lg: #{t.$token-icon-size-lg};
-    --icon-size-xl: #{t.$token-icon-size-xl};
+    --icon-size-sm: 20px; // other icon steps are Xerte-specific
+    --icon-size-md: var(--cu-icon-size);
+    --icon-size-lg: 32px;
+    --icon-size-xl: 48px;
 
     // =========================================================================
     // ASPECT RATIOS
@@ -487,6 +492,9 @@
     --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 70%, black 30%);
     --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 40%, black 60%);
 
+    // Orange fails 3:1 against the progress track and 4.5:1 under white text; this tone passes both.
+    --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 70%, black 30%);
+
     --color-brand-secondary-lighter: color-mix(in srgb, var(--color-brand-secondary) 30%, white);
     --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
     --color-brand-secondary-dark: color-mix(in srgb, var(--color-brand-secondary) 15%, black);
@@ -495,32 +503,3 @@
     --color-text-subtle: color-mix(in srgb, var(--color-text-primary) 60%, var(--color-gray-50));
     --color-text-muted: color-mix(in srgb, var(--color-text-primary) 40%, var(--color-gray-40));
 }
-
-// =============================================================================
-// THEME VARIANTS
-// =============================================================================
-
-// Example: Dark Mode
-// [data-theme="dark"] {
-//     --color-brand-primary: #FF6B5B;
-//     --color-bg-body: #1a1a1a;
-//     --color-bg-page: #121212;
-//     --color-text-primary: #ffffff;
-//     --color-text-inverse: #121212;
-//     --color-link-default: #6DB3F2;
-// }
-
-// Example: High Contrast
-// [data-theme="high-contrast"] {
-//     --color-bg-body: #000000;
-//     --color-bg-page: #000000;
-//     --color-text-primary: #FFFFFF;
-//     --color-brand-primary: #FFFF00;
-//     --focus-ring-width: 4px;
-// }
-
-// Example: Alternative Brand
-// [data-theme="other-uni"] {
-//     --color-brand-primary: #0066CC;
-//     --color-brand-secondary: #003366;
-// }

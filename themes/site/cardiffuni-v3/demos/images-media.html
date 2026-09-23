@@ -14,19 +14,20 @@
     <link rel="stylesheet" href="../../../../modules/site/parent_templates/site/common/fontawesome-6.6.0/css/all.min.css">
 </head>
 
-<body>
-    <header class="jumbotron" id="overview">
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
-                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
-                    alt="Cardiff University Logo">
+                    src="../logo_left.svg"
+                    alt="Cardiff University / Prifysgol Caerdydd">
             </div>
 
             <div class="titles">
                 <h1 id="pageTitle" aria-live="polite">Images, Media & Icons</h1>
                 <p id="pageSubTitle" aria-live="polite">Visual Assets & Icon System</p>
             </div>
+        </div>
     </header>
 
     <div id="pageLinks">
@@ -61,9 +62,22 @@
         </div>
     </div>
 
-    <main>
+    <main class="container">
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#section-index">Section Index</a></li>
+                    <li><a href="#icons">Icon System (FontAwesome 6.6.0)</a></li>
+                    <li><a href="#images">Images</a></li>
+                    <li><a href="#video">Video</a></li>
+                    <li><a href="#audio">Audio</a></li>
+                    <li><a href="#best-practices">Best Practices</a></li>
+                </ul>
+            </div>
+
+            <div class="span9" id="mainContent">
         <!-- Section Index -->
-        <section class="demo-section">
+        <section class="demo-section" id="section-index">
             <h2>Section Index</h2>
             <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
                 <a href="#images" class="button button-secondary-outline button--small"><i class="fa-solid fa-image"></i> Images</a>
@@ -173,7 +187,6 @@
                     <i class="fa-solid fa-circle-info" style="color: var(--color-status-info);" title="Info"></i>
                     <i class="fa-solid fa-triangle-exclamation" style="color: var(--color-status-warning);" title="Warning"></i>
                     <i class="fa-solid fa-circle-xmark" style="color: var(--color-status-error);" title="Error"></i>
-                    <i class="fa-solid fa-heart" style="color: var(--color-brand-primary);" title="Brand"></i>
                     <i class="fa-solid fa-star" style="color: var(--color-accent-yellow);" title="Star"></i>
                 </div>
 
@@ -203,10 +216,10 @@
                 <div class="demo-block__description">Use fixed-width icons for consistent alignment in lists</div>
 
                 <ul style="list-style: none; padding-left: 0;">
-                    <li><i class="fa-solid fa-envelope fa-fw" style="color: var(--color-accent-blue);"></i> Email: contact@cardiff.ac.uk</li>
-                    <li><i class="fa-solid fa-phone fa-fw" style="color: var(--color-accent-green);"></i> Phone: +44 29 2087 4000</li>
-                    <li><i class="fa-solid fa-location-dot fa-fw" style="color: var(--color-brand-primary);"></i> Address: Cardiff, Wales, UK</li>
-                    <li><i class="fa-solid fa-clock fa-fw" style="color: var(--color-accent-orange);"></i> Hours: Mon-Fri, 9am-5pm</li>
+                    <li><i class="fa-solid fa-envelope fa-fw" aria-hidden="true"></i> Email: contact@cardiff.ac.uk</li>
+                    <li><i class="fa-solid fa-phone fa-fw" aria-hidden="true"></i> Phone: +44 29 2087 4000</li>
+                    <li><i class="fa-solid fa-location-dot fa-fw" aria-hidden="true"></i> Address: Cardiff, Wales, UK</li>
+                    <li><i class="fa-solid fa-clock fa-fw" aria-hidden="true"></i> Hours: Mon-Fri, 9am-5pm</li>
                 </ul>
 
                 <code class="code-label">&lt;i class="fa-solid fa-envelope fa-fw"&gt;&lt;/i&gt; (fa-fw = fixed width)</code>
@@ -364,8 +377,8 @@
             <div class="demo-block">
                 <div class="demo-block__title">Image Utility Classes</div>
 
-                <h4>.image-full</h4>
-                <img src="https://placehold.co/1200x200/E4251B/FFFFFF?text=Full+Width+Image" alt="Full width" class="image-full">
+                <h4>.w-full</h4>
+                <img src="https://placehold.co/1200x200/E4251B/FFFFFF?text=Full+Width+Image" alt="Full width" class="w-full">
 
                 <h4 style="margin-top: 1.5rem;">.image-screenshots</h4>
                 <img src="https://placehold.co/600x300/5EB99B/FFFFFF?text=Screenshot+Style" alt="Screenshot" class="image-screenshots" style="max-width: 100%;">
@@ -387,21 +400,48 @@
             </div>
 
             <div class="demo-block">
-                <div class="demo-block__title">Responsive YouTube Embed</div>
-                <code class="code-label">16:9 aspect ratio wrapper</code>
+                <div class="demo-block__title">Embedding a video, H5P or another Xerte resource</div>
+                <p class="demo-block__description">Wrap any iframe in <code>.iframe-container</code>. It keeps the right shape on every screen, so you never need to set a width or height on the iframe itself. Paste this into a Text element's Source view and change the src.</p>
 
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius-md);">
-                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
+                <div class="iframe-container iframe-container--widescreen">
+                    <img src="https://placehold.co/1280x720/121212/FFFFFF?text=16:9+embed" alt="Example of a 16 by 9 embed">
                 </div>
 
-                <pre style="margin-top: 1rem;"><code>&lt;div style="position: relative; padding-bottom: 56.25%; height: 0;"&gt;
-    &lt;iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-            src="https://www.youtube.com/embed/VIDEO_ID"&gt;&lt;/iframe&gt;
+                <pre><code>&lt;div class="iframe-container iframe-container--widescreen"&gt;
+    &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID" title="What the video shows"
+            allowfullscreen&gt;&lt;/iframe&gt;
 &lt;/div&gt;</code></pre>
+                <p class="demo-block__description">Always give the iframe a <code>title</code> that says what it shows: screen reader users hear it in place of the frame.</p>
+                <code class="code-label">.iframe-container</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Shapes</div>
+                <p class="demo-block__description">Add one shape class. Widescreen suits most video; square and portrait suit social clips; Xerte and H5P add a border so the embedded activity reads as a separate thing.</p>
+
+                <div class="flex flex-wrap gap-lg">
+                    <div class="flex-300">
+                        <div class="iframe-container iframe-container--square">
+                            <img src="https://placehold.co/600x600/E5E5E5/121212?text=1:1" alt="Square embed">
+                        </div>
+                        <code class="code-label">.iframe-container--square</code>
+                    </div>
+                    <div class="flex-300">
+                        <div class="iframe-container iframe-container--standard">
+                            <img src="https://placehold.co/800x600/E5E5E5/121212?text=4:3" alt="Standard embed">
+                        </div>
+                        <code class="code-label">.iframe-container--standard</code>
+                    </div>
+                    <div class="flex-300">
+                        <div class="iframe-container iframe-container--xerte">
+                            <img src="https://placehold.co/1280x720/F2F2F2/121212?text=Xerte+resource" alt="Embedded Xerte resource">
+                            <div class="iframe-container__caption">An embedded Xerte resource</div>
+                        </div>
+                        <code class="code-label">.iframe-container--xerte + .iframe-container__caption</code>
+                    </div>
+                </div>
+
+                <code class="code-label">.iframe-container--widescreen (16:9) | .iframe-container--standard (4:3) | .iframe-container--square (1:1) | .iframe-container--portrait (9:16) | .iframe-container--ultrawide (21:9) | .iframe-container--xerte | .iframe-container--h5p</code>
             </div>
         </section>
 
@@ -432,7 +472,7 @@
         </section>
 
         <!-- ==================== BEST PRACTICES ==================== -->
-        <section class="demo-section">
+        <section class="demo-section" id="best-practices">
             <h2><i class="fa-solid fa-lightbulb"></i> Best Practices</h2>
 
             <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
@@ -482,6 +522,8 @@
                 <p><small>Missing accessible label - screen readers won't know the button's purpose.</small></p>
             </div>
         </section>
+        </div>
+        </div>
     </main>
 
     <footer class="demo-footer">

@@ -10,38 +10,33 @@
     <link rel="stylesheet" href="assets/bootstrap/custom.css">
     <link rel="stylesheet" href="../cardiffuni-v3.css">
     <style>
-        body {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+        main.container {
+            padding-block: 2rem;
         }
 
         .style-guide-section {
             margin-bottom: 4rem;
             padding: 2rem;
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         .style-guide-section>h2:first-child {
             margin-top: 0;
-            color: var(--cu-primary-red);
-            border-bottom: 2px solid var(--cu-gray-20);
+            border-bottom: 2px solid var(--cu-grey-20);
             padding-bottom: 1rem;
         }
 
         .demo-block {
             margin: 2rem 0;
             padding: 1.5rem;
-            background: #f9fafb;
-            border-radius: 4px;
+            background: var(--cu-bg);
+            border: 1px solid var(--cu-line);
         }
 
         .demo-block-title {
             font-size: var(--font-size-sm);
             font-weight: var(--font-weight-bold);
-            color: var(--cu-gray-70);
+            color: var(--cu-grey-70);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 1rem;
@@ -56,11 +51,11 @@
 
         .code-label {
             font-family: monospace;
-            background: var(--cu-gray-20);
+            background: var(--cu-grey-20);
             padding: 0.25rem 0.5rem;
             border-radius: 3px;
             font-size: 0.875rem;
-            color: var(--cu-gray-70);
+            color: var(--cu-grey-70);
             margin-bottom: 0.5rem;
             display: inline-block;
         }
@@ -73,8 +68,9 @@
 </head>
 
 <body>
+    <main class="container">
     <h1 class="page-header">Cardiff University Base Elements Style Guide</h1>
-    <p class="lead" style="font-size: var(--font-size-lg); color: var(--cu-gray-70);">
+    <p class="lead" style="font-size: var(--font-size-lg); color: var(--cu-grey-70);">
         A comprehensive showcase of all base HTML element styles used in the Cardiff University theme.
     </p>
 
@@ -101,7 +97,7 @@
         <div class="demo-block">
             <div class="demo-block-title">Paragraphs & Body Text</div>
             <p>This is a standard paragraph demonstrating the default body text styling. Cardiff University uses the
-                Marr Sans Regular font family for body copy, ensuring excellent readability across all devices and
+                system font stack for body copy at 18px, ensuring excellent readability across all devices and
                 screen sizes.</p>
             <p>Multiple paragraphs maintain consistent spacing and line height for optimal reading experience. The text
                 color, line height, and font size are all carefully calibrated to meet accessibility standards while
@@ -430,8 +426,8 @@
         <div class="demo-block">
             <div class="demo-block-title">Video Container (.video-720)</div>
             <div class="video-720"
-                style="background: var(--cu-gray-20); display: flex; align-items: center; justify-content: center; min-height: 200px;">
-                <p style="margin: 0; color: var(--cu-gray-60);">720p Video Container (max-width: 720px, max-height:
+                style="background: var(--cu-grey-20); display: flex; align-items: center; justify-content: center; min-height: 200px;">
+                <p style="margin: 0; color: var(--cu-grey-60);">720p Video Container (max-width: 720px, max-height:
                     405px)</p>
             </div>
         </div>
@@ -473,7 +469,7 @@
             <div class="demo-block-title">Spacing Utilities</div>
 
             <h4>Margin Top Classes</h4>
-            <div style="background: var(--cu-gray-20); padding: 1rem;">
+            <div style="background: var(--cu-grey-20); padding: 1rem;">
                 <div style="background: white; padding: 0.5rem;">.mt-0 (no margin)</div>
                 <div class="mt-1" style="background: white; padding: 0.5rem;">.mt-1 (4px)</div>
                 <div class="mt-2" style="background: white; padding: 0.5rem;">.mt-2 (8px)</div>
@@ -483,7 +479,7 @@
             </div>
 
             <h4 style="margin-top: 2rem;">Padding Classes</h4>
-            <div style="background: var(--cu-gray-20); padding: 1rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+            <div style="background: var(--cu-grey-20); padding: 1rem; display: flex; flex-wrap: wrap; gap: 1rem;">
                 <div class="p-0" style="background: white;">.p-0</div>
                 <div class="p-1" style="background: white;">.p-1</div>
                 <div class="p-2" style="background: white;">.p-2</div>
@@ -497,42 +493,42 @@
             <div class="demo-block-title">Flexbox Utilities - Basic Layout</div>
 
             <h4>Two Column Layout</h4>
-            <code class="code-label">.flex .flex-wrap</code>
-            <div class="flex flex-wrap">
-                <div class="w-md-50" style="background: var(--cu-gray-20); padding: 1rem;">
+            <code class="code-label">.flex .flex-wrap .gap-lg with .flex-300</code>
+            <div class="flex flex-wrap gap-lg">
+                <div class="flex-300" style="background: var(--cu-grey-20); padding: 1rem;">
                     <h5 style="margin-top: 0;">Column 1</h5>
-                    <p>This is a 50% width column on desktop, full width on mobile.</p>
+                    <p>This column is at least 300px wide and wraps to full width when there is no room.</p>
                 </div>
-                <div class="w-md-50" style="background: var(--cu-gray-20); padding: 1rem;">
+                <div class="flex-300" style="background: var(--cu-grey-20); padding: 1rem;">
                     <h5 style="margin-top: 0;">Column 2</h5>
                     <p>Automatically accounts for gap spacing between columns.</p>
                 </div>
             </div>
 
             <h4 style="margin-top: 2rem;">Three Column Layout</h4>
-            <code class="code-label">.flex .flex-wrap (with .w-md-33)</code>
+            <code class="code-label">.flex .flex-wrap .gap-lg with .flex-250</code>
             <div class="flex flex-wrap">
-                <div class="w-md-33" style="background: var(--cu-light-blue); color: white; padding: 1rem;">
+                <div class="flex-250" style="background: var(--cu-accent-light-blue); color: white; padding: 1rem;">
                     <strong>Column 1</strong>
                 </div>
-                <div class="w-md-33" style="background: var(--cu-royal-blue); color: white; padding: 1rem;">
+                <div class="flex-250" style="background: var(--cu-accent-royal-blue); color: white; padding: 1rem;">
                     <strong>Column 2</strong>
                 </div>
-                <div class="w-md-33" style="background: var(--cu-midnight-blue); color: white; padding: 1rem;">
+                <div class="flex-250" style="background: var(--cu-accent-midnight-blue); color: white; padding: 1rem;">
                     <strong>Column 3</strong>
                 </div>
             </div>
 
             <h4 style="margin-top: 2rem;">Four Column Layout</h4>
-            <code class="code-label">.flex .flex-wrap (with .w-md-25)</code>
+            <code class="code-label">.flex .flex-wrap .gap-lg with .flex-200</code>
             <div class="flex flex-wrap">
-                <div class="w-md-25" style="background: var(--cu-cadet); padding: 1rem; text-align: center;">25%</div>
-                <div class="w-md-25"
-                    style="background: var(--cu-forest-green); color: white; padding: 1rem; text-align: center;">25%
+                <div class="flex-200" style="background: var(--cu-accent-cadet); padding: 1rem; text-align: center;">25%</div>
+                <div class="flex-200"
+                    style="background: var(--cu-accent-forest-green); color: white; padding: 1rem; text-align: center;">25%
                 </div>
-                <div class="w-md-25" style="background: var(--cu-cadet); padding: 1rem; text-align: center;">25%</div>
-                <div class="w-md-25"
-                    style="background: var(--cu-forest-green); color: white; padding: 1rem; text-align: center;">25%
+                <div class="flex-200" style="background: var(--cu-accent-cadet); padding: 1rem; text-align: center;">25%</div>
+                <div class="flex-200"
+                    style="background: var(--cu-accent-forest-green); color: white; padding: 1rem; text-align: center;">25%
                 </div>
             </div>
         </div>
@@ -542,7 +538,7 @@
 
             <h4>Justify Content</h4>
             <code class="code-label">.flex .justify-between</code>
-            <div class="flex justify-between" style="background: var(--cu-gray-20); padding: 1rem;">
+            <div class="flex justify-between" style="background: var(--cu-grey-20); padding: 1rem;">
                 <div style="background: white; padding: 0.5rem;">Item 1</div>
                 <div style="background: white; padding: 0.5rem;">Item 2</div>
                 <div style="background: white; padding: 0.5rem;">Item 3</div>
@@ -550,13 +546,13 @@
 
             <h4 style="margin-top: 1rem;">Justify Center</h4>
             <code class="code-label">.flex .justify-center</code>
-            <div class="flex justify-center" style="background: var(--cu-gray-20); padding: 1rem;">
+            <div class="flex justify-center" style="background: var(--cu-grey-20); padding: 1rem;">
                 <div style="background: white; padding: 0.5rem;">Centered Item</div>
             </div>
 
             <h4 style="margin-top: 1rem;">Align Items Center</h4>
             <code class="code-label">.flex .items-center</code>
-            <div class="flex items-center" style="background: var(--cu-gray-20); padding: 1rem; min-height: 100px;">
+            <div class="flex items-center" style="background: var(--cu-grey-20); padding: 1rem; min-height: 100px;">
                 <div style="background: white; padding: 0.5rem;">Vertically centered</div>
                 <div style="background: white; padding: 1rem;">Different height</div>
                 <div style="background: white; padding: 0.5rem;">Still aligned</div>
@@ -569,25 +565,25 @@
             <h4>Gap Small</h4>
             <code class="code-label">.flex .gap-sm</code>
             <div class="flex gap-sm">
-                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
-                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
-                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-grey-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-grey-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-grey-20); padding: 0.5rem; flex: 1;">Item</div>
             </div>
 
             <h4 style="margin-top: 1rem;">Gap Large</h4>
             <code class="code-label">.flex .gap-lg</code>
             <div class="flex gap-lg">
-                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
-                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
-                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-grey-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-grey-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-grey-20); padding: 0.5rem; flex: 1;">Item</div>
             </div>
 
             <h4 style="margin-top: 1rem;">Gap Extra Large</h4>
             <code class="code-label">.flex .gap-xl</code>
             <div class="flex gap-xl">
-                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
-                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
-                <div style="background: var(--cu-gray-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-grey-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-grey-20); padding: 0.5rem; flex: 1;">Item</div>
+                <div style="background: var(--cu-grey-20); padding: 0.5rem; flex: 1;">Item</div>
             </div>
         </div>
 
@@ -598,13 +594,13 @@
             <code class="code-label">.flex with .flex-200, .flex-300, .flex-400</code>
             <div class="flex flex-wrap">
                 <div class="flex-200"
-                    style="background: var(--cu-orange); color: white; padding: 1rem; text-align: center;">
+                    style="background: var(--cu-accent-orange); color: white; padding: 1rem; text-align: center;">
                     .flex-200<br>(min 200px)
                 </div>
-                <div class="flex-300" style="background: var(--cu-yellow); padding: 1rem; text-align: center;">
+                <div class="flex-300" style="background: var(--cu-accent-yellow); padding: 1rem; text-align: center;">
                     .flex-300<br>(min 300px)
                 </div>
-                <div class="flex-400" style="background: var(--cu-yellow-green); padding: 1rem; text-align: center;">
+                <div class="flex-400" style="background: var(--cu-accent-yellow-green); padding: 1rem; text-align: center;">
                     .flex-400<br>(min 400px)
                 </div>
             </div>
@@ -614,13 +610,13 @@
             <div class="demo-block-title">Image Utilities</div>
 
             <h4>Full Width Image</h4>
-            <code class="code-label">.image-full</code>
+            <code class="code-label">.w-full</code>
             <img src="https://placehold.co/1200x300/E4251B/FFFFFF?text=Full+Width+Image" alt="Full width"
-                class="image-full">
+                class="w-full">
 
             <h4 style="margin-top: 2rem;">Screenshot Style</h4>
             <code class="code-label">.image-screenshots</code>
-            <img src="https://placehold.co/800x400/5EB99B/FFFFFF?text=Screenshot+with+Border+and+Shadow"
+            <img src="https://placehold.co/800x400/5EB99B/FFFFFF?text=Screenshot+with+Border"
                 alt="Screenshot" class="image-screenshots" style="max-width: 100%;">
         </div>
 
@@ -630,19 +626,19 @@
             <code class="code-label">.flex .flex-wrap .gap-lg</code>
 
             <div class="flex flex-wrap gap-lg mt-3">
-                <div class="w-md-33"
-                    style="background: white; border: 1px solid var(--cu-gray-30); border-radius: 8px; padding: 1.5rem;">
-                    <h4 style="margin-top: 0; color: var(--cu-primary-red);">Feature 1</h4>
+                <div class="flex-250"
+                    style="background: white; border: 1px solid var(--cu-grey-30); padding: 1.5rem;">
+                    <h4 style="margin-top: 0;">Feature 1</h4>
                     <p>Responsive card that stacks on mobile and displays in a grid on desktop.</p>
                 </div>
-                <div class="w-md-33"
-                    style="background: white; border: 1px solid var(--cu-gray-30); border-radius: 8px; padding: 1.5rem;">
-                    <h4 style="margin-top: 0; color: var(--cu-primary-red);">Feature 2</h4>
+                <div class="flex-250"
+                    style="background: white; border: 1px solid var(--cu-grey-30); padding: 1.5rem;">
+                    <h4 style="margin-top: 0;">Feature 2</h4>
                     <p>Automatically handles gap spacing between items for perfect alignment.</p>
                 </div>
-                <div class="w-md-33"
-                    style="background: white; border: 1px solid var(--cu-gray-30); border-radius: 8px; padding: 1.5rem;">
-                    <h4 style="margin-top: 0; color: var(--cu-primary-red);">Feature 3</h4>
+                <div class="flex-250"
+                    style="background: white; border: 1px solid var(--cu-grey-30); padding: 1.5rem;">
+                    <h4 style="margin-top: 0;">Feature 3</h4>
                     <p>Uses Cardiff University design tokens for consistent styling.</p>
                 </div>
             </div>
@@ -797,7 +793,7 @@
                 <button class="button button-success-outline">Success Outline</button>
             </div>
             <h4 style="margin-top: 1.5rem;">Reverse Outline (for dark backgrounds)</h4>
-            <div style="background: var(--cu-primary-red); padding: 1rem; border-radius: 4px;">
+            <div style="background: var(--cu-ink); padding: 1rem;">
                 <button class="button button-reverse-outline">Reverse Outline</button>
             </div>
         </div>
@@ -932,9 +928,10 @@
             </form>
         </div>
     </section>
+    </main>
 
     <footer
-        style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--cu-gray-20); color: var(--cu-gray-60); text-align: center;">
+        style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--cu-grey-20); color: var(--cu-grey-60); text-align: center;">
         <p>Cardiff University Base Elements & Utilities Style Guide</p>
     </footer>
 </body>

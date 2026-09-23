@@ -66,6 +66,12 @@
         margin-bottom: var(--spacing-md);
     }
 
+    // Card title: smaller than the global h3 (30px). The clickable pattern wraps a plain h3.
+    &__heading,
+    &__content h3 {
+        font-size: var(--font-size-2xl);
+    }
+
     // Card link (makes entire card clickable)
     &__link {
         position: initial;

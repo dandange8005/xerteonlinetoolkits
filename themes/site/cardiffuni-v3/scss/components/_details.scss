@@ -67,12 +67,12 @@
             text-decoration: none;
         }
 
-        // Focus state (accessibility)
-        &:focus {
-            background-color: var(--color-accent-gold);
-            box-shadow: 0 -2px var(--color-accent-gold), 0 4px var(--color-gray-90);
-            color: var(--color-gray-90);
-            outline: 4px solid transparent;
+        // Focus state (accessibility). Was --color-accent-gold, a token that was never defined:
+        // background and box-shadow silently did nothing, and the outline was explicitly zeroed,
+        // leaving no visible focus indicator at all (22 September 2026).
+        &:focus-visible {
+            outline: var(--focus-ring);
+            outline-offset: var(--focus-ring-offset);
             text-decoration: none;
         }
     }

@@ -90,14 +90,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // =============================================================================
-// SMOOTH SCROLLING (if user hasn't set reduced motion preference)
+// SCROLLING
 // =============================================================================
-
-@media (prefers-reduced-motion: no-preference) {
-    html {
-        scroll-behavior: smooth;
-    }
-}
+// No smooth scrolling. A link to a section has to arrive exactly, or the section menu
+// highlights the section above it: the animation finishes wherever the layout has moved to
+// while images load, and a correction issued during it starts a second animation instead of
+// landing (test round 1, 21 September 2026). Readers with reduced-motion settings were already
+// getting instant jumps, so this simply gives everyone the same behaviour. The design system
+// asks for a system that does not depend on animation.
 
 // =============================================================================
 // REDUCED MOTION SUPPORT (respect user accessibility preferences)

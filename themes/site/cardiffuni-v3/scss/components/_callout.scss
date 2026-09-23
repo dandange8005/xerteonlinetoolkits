@@ -1,98 +1,110 @@
 /**
- * Callout Component
+ * Callouts (Cardiff Resource Design System v1.3, seven types)
  *
- * PURPOSE: Alert/notice box with icon and color variants for different message types
+ * Paste in a Text element's Source view (short form; the theme draws the icon):
+ * <div class="cu-callout cu-callout-tip">
+ *   <strong class="cu-callout-title">Tip</strong><p>...</p>
+ * </div>
  *
- * USAGE:
- * - Basic callout:
- *   <div class="callout">Default callout message</div>
+ * The design system's fa-stack markup also works and is unchanged:
+ * <div class="cu-callout cu-callout-tip">
+ *   <span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-lightbulb fa-stack-1x"></i></span>
+ *   <div><strong class="cu-callout-title">Tip</strong><p>...</p></div>
+ * </div>
+ * A callout containing .cu-callout-icon keeps the two-column grid; one without it gets the
+ * CSS disc. Override a single icon with style="--cu-callout-glyph: '\f0eb'".
  *
- * - Callout with custom emoji:
- *   <div class="callout" emoji-data="🎯">Message with custom icon</div>
+ * Type (class)                        glyph               use
+ * Information   .cu-callout-info       fa-info             extra context
+ * Tip           .cu-callout-tip        fa-lightbulb        recommendation
+ * Good practice .cu-callout-good       fa-check            preferred approach
+ * Important     .cu-callout-important  fa-exclamation      something requiring attention
+ * Warning       .cu-callout-warning    fa-minus            risk or problem
+ * Example       .cu-callout-example    fa-graduation-cap   worked example
+ * Key point     .cu-callout-key or no modifier   fa-star   main takeaway
  *
- * - Callout with variants:
- *   <div class="callout warning">Warning message</div>
- *   <div class="callout success">Success message</div>
- *   <div class="callout danger">Error message</div>
- *   <div class="callout info">Information message</div>
- *
- * VARIANTS:
- * - .callout         - Base callout style (neutral gray)
- * - .callout.warning - Yellow warning style with ⚠️ icon
- * - .callout.success - Green success style with ✅ icon
- * - .callout.danger  - Red error style with ⛔ icon
- * - .callout.info    - Blue info style with ℹ️ icon
+ * The title carries the meaning; colour and icon support it. One or two per screen.
+ * Font Awesome 6.6.0 is loaded by the Xerte player; the theme does not bundle it.
  */
+.cu-callout {
+    display: block;
+    margin-top: var(--cu-space-6);
+    padding: var(--cu-space-5) var(--cu-space-6);
+    background: var(--cu-surface);
+    color: var(--cu-ink);
+    border-left: 4px solid var(--cu-callout, var(--cu-callout-key));
 
-// =============================================================================
-// CALLOUT COMPONENT
-// Alert/notice box with icon and semantic color variants
-// =============================================================================
+    p {
+        margin-top: var(--cu-space-1);
+    }
+}
 
-.callout {
-    background: var(--color-gray-10);
-    padding: var(--spacing-md);
-    padding-left: var(--spacing-2xl);
-    border-radius: var(--radius-md);
-    font-size: var(--font-size-base);
-    color: var(--color-text-primary);
+// Short form: no authored icon, so the theme draws the disc and glyph in one pseudo-element.
+.cu-callout:not(:has(.cu-callout-icon)) {
     position: relative;
+    padding-left: calc(var(--cu-space-6) + 28px + var(--cu-space-4)); // 28px icon column + gap
 
-    // Emoji icon using custom attribute or variant-specific emoji
     &::before {
-        content: attr(emoji-data);
-        font-family: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji,
-            "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+        // Two declarations on purpose: a browser that does not support the alt-text syntax
+        // drops the whole second one, and keeps the glyph from the first rather than losing
+        // the disc while its gutter stays.
+        content: var(--cu-callout-glyph, "\f005");
+        content: var(--cu-callout-glyph, "\f005") / ""; // empty alt text: decorative
         position: absolute;
-        top: var(--spacing-md);
-        left: var(--spacing-md);
-        font-size: var(--font-size-lg);
+        top: var(--cu-space-5);
+        left: var(--cu-space-6);
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--cu-callout, var(--cu-callout-key));
+        color: var(--cu-callout-on, var(--cu-callout-key-on));
+        font-family: "Font Awesome 6 Free"; // loaded by the Xerte player
+        font-weight: 900; // Solid style
+        font-size: 14px;
+        line-height: 28px;
+        text-align: center;
+    }
+}
+
+// Design system form: an authored .cu-callout-icon sits beside the content.
+.cu-callout:has(.cu-callout-icon) {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--cu-space-4);
+    align-items: start;
+}
+
+// Pin the icon column to 28px: .fa-stack's own 2.5em has equal specificity, so without this
+// the column width would depend on whether Font Awesome loads before or after the theme.
+.cu-callout .cu-callout-icon {
+    font-size: 14px;
+    width: 2em; // 28px disc, matching the short form's
+
+    .fa-stack-2x {
+        color: var(--cu-callout, var(--cu-callout-key));
     }
 
-    // Callout heading
-    h4 {
-        font-size: var(--font-size-base);
-        margin-top: 0;
-        margin-bottom: var(--spacing-sm);
+    .fa-stack-1x {
+        color: var(--cu-callout-on, var(--cu-callout-key-on));
     }
+}
 
-    // Warning variant (yellow)
-    &.warning {
-        // background-color: #fffbea;
-        // border: 1px solid #f7e07d;
+.cu-callout-title {
+    display: block;
+    font-weight: var(--cu-weight-bold);
+    line-height: 28px; // same as the icon disc, so disc and title share one line box in any host
+}
 
-        &::before {
-            content: '⚠️';
-        }
-    }
+.cu-callout-info { --cu-callout: var(--cu-callout-info); --cu-callout-on: var(--cu-callout-info-on);--cu-callout-glyph: "\f129"; }
+.cu-callout-tip { --cu-callout: var(--cu-callout-tip); --cu-callout-on: var(--cu-callout-tip-on);--cu-callout-glyph: "\f0eb"; }
+.cu-callout-good { --cu-callout: var(--cu-callout-good); --cu-callout-on: var(--cu-callout-good-on);--cu-callout-glyph: "\f00c"; }
+.cu-callout-important { --cu-callout: var(--cu-callout-important); --cu-callout-on: var(--cu-callout-important-on);--cu-callout-glyph: "\21"; }
+.cu-callout-warning { --cu-callout: var(--cu-callout-warning); --cu-callout-on: var(--cu-callout-warning-on);--cu-callout-glyph: "\f068"; }
+.cu-callout-example { --cu-callout: var(--cu-callout-example); --cu-callout-on: var(--cu-callout-example-on);--cu-callout-glyph: "\f19d"; }
+.cu-callout-key { --cu-callout: var(--cu-callout-key); --cu-callout-on: var(--cu-callout-key-on);--cu-callout-glyph: "\f005"; }
 
-    // Success variant (green)
-    &.success {
-        // background-color: var(--color-accent-green-light);
-        // border: 1px solid #7ab87a;
-
-        &::before {
-            content: '✅';
-        }
-    }
-
-    // Danger variant (red)
-    &.danger {
-        // background-color: #fee;
-        // border: 1px solid #fbb;
-
-        &::before {
-            content: '⛔️';
-        }
-    }
-
-    // Info variant (blue)
-    &.info {
-        // background-color: #e6f4ff;
-        // border: 1px solid #91caff;
-
-        &::before {
-            content: 'ℹ️';
-        }
+@media (max-width: 480px) {
+    .cu-callout {
+        padding: var(--cu-space-4);
     }
 }

@@ -24,8 +24,8 @@
             justify-content: center;
         }
 
-        .demo-box--brand {
-            background: var(--color-brand-primary);
+        .demo-box--muted {
+            background: var(--color-gray-70);
             color: white;
             border: none;
         }
@@ -64,19 +64,20 @@
     </style>
 </head>
 
-<body>
-    <header class="jumbotron" id="overview">
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
-                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
-                    alt="Cardiff University Logo">
+                    src="../logo_left.svg"
+                    alt="Cardiff University / Prifysgol Caerdydd">
             </div>
 
             <div class="titles">
                 <h1 id="pageTitle" aria-live="polite">Flexbox & Layout</h1>
                 <p id="pageSubTitle" aria-live="polite">Responsive Grid Systems & Layout Utilities</p>
             </div>
+        </div>
     </header>
 
     <div id="pageLinks">
@@ -113,8 +114,25 @@
     </div>
 
     <main class="container">
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#introduction">Introduction</a></li>
+                    <li><a href="#basic-flex-container">Basic Flex Container</a></li>
+                    <li><a href="#flex-basis-utilities-recommended">Flex Basis Utilities (Recommended)</a></li>
+                    <li><a href="#three-column-layouts">Three Column Layouts</a></li>
+                    <li><a href="#four-column-card-grid">Four Column / Card Grid</a></li>
+                    <li><a href="#gap-utilities">Gap Utilities</a></li>
+                    <li><a href="#alignment-utilities">Alignment Utilities</a></li>
+                    <li><a href="#practical-examples">Practical Examples</a></li>
+                    <li><a href="#utility-class-reference">Utility Class Reference</a></li>
+                    <li><a href="#legacy-support-system-2">Legacy Support (System 2)</a></li>
+                </ul>
+            </div>
+
+            <div class="span9" id="mainContent">
         <!-- Introduction -->
-        <section class="demo-section">
+        <section class="demo-section" id="introduction">
             <h2>Introduction</h2>
             <div class="demo-block">
                 <div class="demo-block__description">
@@ -134,7 +152,7 @@
         </section>
 
         <!-- Basic Flex Container -->
-        <section class="demo-section">
+        <section class="demo-section" id="basic-flex-container">
             <h2>Basic Flex Container</h2>
 
             <div class="demo-block">
@@ -181,7 +199,7 @@
         </section>
 
         <!-- Flex Basis Utilities (Recommended) -->
-        <section class="demo-section">
+        <section class="demo-section" id="flex-basis-utilities-recommended">
             <h2>Flex Basis Utilities (Recommended)</h2>
 
             <div class="demo-block">
@@ -206,7 +224,7 @@
                 <div class="demo-container">
                     <div class="flex flex-wrap gap-md">
                         <div class="demo-box flex-300">Left Column</div>
-                        <div class="demo-box--brand demo-box flex-300">Right Column</div>
+                        <div class="demo-box--muted demo-box flex-300">Right Column</div>
                     </div>
                 </div>
 
@@ -314,7 +332,7 @@
         </section>
 
         <!-- Three Column Layouts -->
-        <section class="demo-section">
+        <section class="demo-section" id="three-column-layouts">
             <h2>Three Column Layouts</h2>
 
             <div class="demo-block">
@@ -325,7 +343,7 @@
                 <div class="demo-container">
                     <div class="flex flex-wrap gap-md">
                         <div class="demo-box flex-200">Column 1</div>
-                        <div class="demo-box--brand demo-box flex-200">Column 2</div>
+                        <div class="demo-box--muted demo-box flex-200">Column 2</div>
                         <div class="demo-box--dark demo-box flex-200">Column 3</div>
                     </div>
                 </div>
@@ -341,7 +359,7 @@
         </section>
 
         <!-- Four Column / Card Grid -->
-        <section class="demo-section">
+        <section class="demo-section" id="four-column-card-grid">
             <h2>Four Column / Card Grid</h2>
 
             <div class="demo-block">
@@ -395,7 +413,7 @@
         </section>
 
         <!-- Gap Utilities -->
-        <section class="demo-section">
+        <section class="demo-section" id="gap-utilities">
             <h2>Gap Utilities</h2>
 
             <div class="demo-block">
@@ -405,52 +423,52 @@
                 <h4>gap-xs (4px)</h4>
                 <div class="demo-container">
                     <div class="flex gap-xs">
-                        <div class="demo-box--brand demo-box">1</div>
-                        <div class="demo-box--brand demo-box">2</div>
-                        <div class="demo-box--brand demo-box">3</div>
+                        <div class="demo-box--muted demo-box">1</div>
+                        <div class="demo-box--muted demo-box">2</div>
+                        <div class="demo-box--muted demo-box">3</div>
                     </div>
                 </div>
 
                 <h4>gap-sm (8px)</h4>
                 <div class="demo-container">
                     <div class="flex gap-sm">
-                        <div class="demo-box--brand demo-box">1</div>
-                        <div class="demo-box--brand demo-box">2</div>
-                        <div class="demo-box--brand demo-box">3</div>
+                        <div class="demo-box--muted demo-box">1</div>
+                        <div class="demo-box--muted demo-box">2</div>
+                        <div class="demo-box--muted demo-box">3</div>
                     </div>
                 </div>
 
                 <h4>gap-md (16px) - Default</h4>
                 <div class="demo-container">
                     <div class="flex gap-md">
-                        <div class="demo-box--brand demo-box">1</div>
-                        <div class="demo-box--brand demo-box">2</div>
-                        <div class="demo-box--brand demo-box">3</div>
+                        <div class="demo-box--muted demo-box">1</div>
+                        <div class="demo-box--muted demo-box">2</div>
+                        <div class="demo-box--muted demo-box">3</div>
                     </div>
                 </div>
 
                 <h4>gap-lg (24px)</h4>
                 <div class="demo-container">
                     <div class="flex gap-lg">
-                        <div class="demo-box--brand demo-box">1</div>
-                        <div class="demo-box--brand demo-box">2</div>
-                        <div class="demo-box--brand demo-box">3</div>
+                        <div class="demo-box--muted demo-box">1</div>
+                        <div class="demo-box--muted demo-box">2</div>
+                        <div class="demo-box--muted demo-box">3</div>
                     </div>
                 </div>
 
                 <h4>gap-xl (32px)</h4>
                 <div class="demo-container">
                     <div class="flex gap-xl">
-                        <div class="demo-box--brand demo-box">1</div>
-                        <div class="demo-box--brand demo-box">2</div>
-                        <div class="demo-box--brand demo-box">3</div>
+                        <div class="demo-box--muted demo-box">1</div>
+                        <div class="demo-box--muted demo-box">2</div>
+                        <div class="demo-box--muted demo-box">3</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Alignment -->
-        <section class="demo-section">
+        <section class="demo-section" id="alignment-utilities">
             <h2>Alignment Utilities</h2>
 
             <div class="demo-block">
@@ -544,7 +562,7 @@
         </section>
 
         <!-- Practical Examples -->
-        <section class="demo-section">
+        <section class="demo-section" id="practical-examples">
             <h2>Practical Examples</h2>
 
             <div class="demo-block">
@@ -581,8 +599,8 @@
                 <div class="demo-block__description">Image alongside text content.</div>
 
                 <div class="demo-container">
-                    <div class="flex gap-md items-start bg-white p-4 rounded shadow-sm">
-                        <img src="https://via.placeholder.com/80" alt="Avatar" class="rounded" style="flex-shrink: 0;">
+                    <div class="flex gap-md items-start bg-white p-4 rounded">
+                        <img src="https://placehold.co/80x80/E5E5E5/121212?text=CU" alt="Avatar" class="rounded" style="flex-shrink: 0;">
                         <div class="flex-1">
                             <h4 class="mt-0 mb-2">Dr. Jane Smith</h4>
                             <p class="mb-0 text-secondary">Professor of Computer Science at Cardiff University. Research
@@ -611,8 +629,8 @@
                 <div class="demo-container">
                     <div class="flex flex-wrap gap-lg items-start">
                         <div class="flex-300">
-                            <img src="https://via.placeholder.com/400x300/E4251B/FFFFFF?text=Cardiff+University"
-                                alt="Cardiff University Building" class="w-full rounded shadow-sm">
+                            <img src="https://placehold.co/400x300/E4251B/FFFFFF?text=Cardiff+University"
+                                alt="Cardiff University Building" class="w-full rounded">
                         </div>
                         <div class="flex-300">
                             <h3>About Our Research</h3>
@@ -650,18 +668,18 @@
 
                 <div class="demo-container">
                     <div class="flex flex-wrap gap-lg">
-                        <div class="bg-white p-4 rounded shadow-sm text-center flex-200">
-                            <div class="text-brand text-3xl mb-3">&#9733;</div>
+                        <div class="bg-white p-4 rounded text-center flex-200">
+                            <div class="text-3xl mb-3">&#9733;</div>
                             <h4 class="mt-0">Quality</h4>
                             <p class="text-secondary mb-0">High standards in everything we do.</p>
                         </div>
-                        <div class="bg-white p-4 rounded shadow-sm text-center flex-200">
-                            <div class="text-brand text-3xl mb-3">&#9829;</div>
+                        <div class="bg-white p-4 rounded text-center flex-200">
+                            <div class="text-3xl mb-3">&#9829;</div>
                             <h4 class="mt-0">Care</h4>
                             <p class="text-secondary mb-0">Student wellbeing is our priority.</p>
                         </div>
-                        <div class="bg-white p-4 rounded shadow-sm text-center flex-200">
-                            <div class="text-brand text-3xl mb-3">&#9728;</div>
+                        <div class="bg-white p-4 rounded text-center flex-200">
+                            <div class="text-3xl mb-3">&#9728;</div>
                             <h4 class="mt-0">Innovation</h4>
                             <p class="text-secondary mb-0">Leading research and discovery.</p>
                         </div>
@@ -670,8 +688,8 @@
 
                 <div class="code-snippet">
                     &lt;div class="flex flex-wrap gap-lg"&gt;
-                    &lt;div class="bg-white p-4 rounded shadow-sm text-center" style="flex: 1 1 200px;"&gt;
-                    &lt;div class="text-brand text-3xl mb-3"&gt;Icon&lt;/div&gt;
+                    &lt;div class="bg-white p-4 rounded text-center" style="flex: 1 1 200px;"&gt;
+                    &lt;div class="text-3xl mb-3"&gt;Icon&lt;/div&gt;
                     &lt;h4&gt;Title&lt;/h4&gt;
                     &lt;p&gt;Description&lt;/p&gt;
                     &lt;/div&gt;
@@ -719,7 +737,7 @@
         </section>
 
         <!-- Utility Reference -->
-        <section class="demo-section">
+        <section class="demo-section" id="utility-class-reference">
             <h2>Utility Class Reference</h2>
 
             <div class="demo-block">
@@ -1056,7 +1074,7 @@
         </section>
 
         <!-- Legacy Support -->
-        <section class="demo-section">
+        <section class="demo-section" id="legacy-support-system-2">
             <h2>Legacy Support (System 2)</h2>
 
             <div class="demo-block">
@@ -1099,11 +1117,13 @@
                 <div class="demo-container">
                     <div class="flexContainer">
                         <div class="flexItem c50 demo-box">50% Column</div>
-                        <div class="flexItem c50 demo-box--brand demo-box">50% Column</div>
+                        <div class="flexItem c50 demo-box--muted demo-box">50% Column</div>
                     </div>
                 </div>
             </div>
         </section>
+        </div>
+        </div>
     </main>
 
     <footer class="demo-footer">

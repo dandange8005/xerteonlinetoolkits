@@ -12,19 +12,20 @@
     <link rel="stylesheet" href="assets/demo-styles.css">
 </head>
 
-<body>
-    <header class="jumbotron" id="overview">
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
         <div class="container">
             <div class="logoL">
                 <img class="logo logoL themeLogo"
-                    src="https://dandange8005.github.io/CU-Xerte-Themes/Assets/Logos/Cardiff-Logo-Red.png"
-                    alt="Cardiff University Logo">
+                    src="../logo_left.svg"
+                    alt="Cardiff University / Prifysgol Caerdydd">
             </div>
 
             <div class="titles">
                 <h1 id="pageTitle" aria-live="polite">UI Patterns</h1>
                 <p id="pageSubTitle" aria-live="polite">Real-World Examples</p>
             </div>
+        </div>
     </header>
 
     <div id="pageLinks">
@@ -59,8 +60,23 @@
         </div>
     </div>
 
-    <main>
-        <section class="demo-section">
+    <main class="container">
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#about-ui-patterns">About UI Patterns</a></li>
+                    <li><a href="#card-layouts">Card Layouts</a></li>
+                    <li><a href="#content-with-sidebar">Content with Sidebar</a></li>
+                    <li><a href="#call-to-action-sections">Call-to-Action Sections</a></li>
+                    <li><a href="#feature-grids">Feature Grids</a></li>
+                    <li><a href="#staff-profiles">Staff Profiles</a></li>
+                    <li><a href="#news-blog-layouts">News & Blog Layouts</a></li>
+                    <li><a href="#step-by-step-guides">Step-by-Step Guides</a></li>
+                </ul>
+            </div>
+
+            <div class="span9" id="mainContent">
+        <section class="demo-section" id="about-ui-patterns">
             <h2>About UI Patterns</h2>
             <p>This page demonstrates common UI patterns that combine multiple elements from the Cardiff University v3
                 theme. These patterns show real-world usage examples for building educational content and applications.
@@ -68,7 +84,7 @@
         </section>
 
         <!-- Card Pattern -->
-        <section class="demo-section">
+        <section class="demo-section" id="card-layouts">
             <h2>Card Layouts</h2>
 
             <div class="demo-block">
@@ -104,7 +120,7 @@
         </section>
 
         <!-- Content with Sidebar -->
-        <section class="demo-section">
+        <section class="demo-section" id="content-with-sidebar">
             <h2>Content with Sidebar</h2>
 
             <div class="demo-block">
@@ -114,7 +130,7 @@
                     <div style="flex: 1 1 600px;">
                         <h1 class="page-header">Research Opportunities at Cardiff</h1>
 
-                        <p class="lead" style="font-size: var(--font-size-lg); color: var(--cu-gray-70);">Cardiff
+                        <p class="lead" style="font-size: var(--font-size-lg); color: var(--cu-grey-70);">Cardiff
                             University offers world-class research opportunities across a wide range of disciplines.</p>
 
                         <h2>Why Choose Cardiff for Research?</h2>
@@ -136,7 +152,7 @@
                     </div>
 
                     <aside
-                        style="flex: 1 1 300px; background: var(--cu-gray-10); padding: 1.5rem; border-radius: 8px; height: fit-content;">
+                        style="flex: 1 1 300px; background: var(--cu-grey-10); padding: 1.5rem; height: fit-content;">
                         <h3 style="margin-top: 0;">Quick Links</h3>
                         <ul class="list-none">
                             <li style="margin-bottom: 0.75rem;"><a href="#">→ Research Areas</a></li>
@@ -161,14 +177,14 @@
         </section>
 
         <!-- Call to Action -->
-        <section class="demo-section">
+        <section class="demo-section" id="call-to-action-sections">
             <h2>Call-to-Action Sections</h2>
 
             <div class="demo-block">
                 <div class="demo-block__title">Centered CTA</div>
 
                 <div
-                    style="background: var(--cu-primary-red); color: white; padding: 3rem 2rem; border-radius: 8px; text-align: center;">
+                    style="background: var(--cu-ink); color: white; padding: 3rem 2rem; text-align: center;">
                     <h2 style="color: white; margin-top: 0;">Ready to Start Your Journey?</h2>
                     <p style="font-size: var(--font-size-lg); max-width: 600px; margin: 1rem auto 2rem;">Join thousands
                         of students who have chosen Cardiff University to pursue their academic goals.</p>
@@ -183,7 +199,7 @@
                 <div class="demo-block__title">Split CTA</div>
 
                 <div class="flex flex-wrap"
-                    style="background: var(--cu-midnight-blue); color: white; border-radius: 8px; overflow: hidden;">
+                    style="background: var(--cu-accent-midnight-blue); color: white; overflow: hidden;">
                     <div style="flex: 1 1 300px; padding: 2rem;">
                         <h3 style="color: white; margin-top: 0;">Open Days</h3>
                         <p>Visit our campus and experience Cardiff University firsthand. Meet staff, tour facilities,
@@ -200,7 +216,7 @@
         </section>
 
         <!-- Feature Grid -->
-        <section class="demo-section">
+        <section class="demo-section" id="feature-grids">
             <h2>Feature Grids</h2>
 
             <div class="demo-block">
@@ -235,21 +251,21 @@
         </section>
 
         <!-- Staff Profile -->
-        <section class="demo-section">
+        <section class="demo-section" id="staff-profiles">
             <h2>Staff Profiles</h2>
 
             <div class="demo-block">
                 <div class="demo-block__title">Academic Staff Card</div>
 
                 <div class="flex flex-wrap"
-                    style="gap: 2rem; background: white; border: 1px solid var(--cu-gray-30); border-radius: 8px; padding: 2rem;">
+                    style="gap: 2rem; background: white; border: 1px solid var(--cu-grey-30); padding: 2rem;">
                     <div style="flex: 0 0 150px;">
                         <img src="https://placehold.co/150x150/5EB99B/FFFFFF?text=Photo" alt="Staff photo"
                             style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
                     </div>
 
                     <div style="flex: 1 1 400px;">
-                        <h3 style="margin-top: 0; color: var(--cu-primary-red);">Dr. Jane Smith</h3>
+                        <h3 style="margin-top: 0;">Dr. Jane Smith</h3>
                         <p><strong>Senior Lecturer in Computer Science</strong></p>
                         <p>Dr. Smith's research focuses on artificial intelligence and machine learning, with particular
                             interest in natural language processing and computer vision applications.</p>
@@ -273,18 +289,18 @@
         </section>
 
         <!-- News/Blog Layout -->
-        <section class="demo-section">
+        <section class="demo-section" id="news-blog-layouts">
             <h2>News & Blog Layouts</h2>
 
             <div class="demo-block">
                 <div class="demo-block__title">News Articles</div>
 
-                <article style="border-bottom: 1px solid var(--cu-gray-20); padding-bottom: 2rem; margin-bottom: 2rem;">
+                <article style="border-bottom: 1px solid var(--cu-grey-20); padding-bottom: 2rem; margin-bottom: 2rem;">
                     <div class="flex flex-wrap" style="gap: 1.5rem;">
                         <img src="https://placehold.co/300x200/E4251B/FFFFFF?text=News+Image" alt="News"
                             class="image-screenshots" style="flex: 0 0 300px; max-width: 100%;">
                         <div style="flex: 1 1 400px;">
-                            <p style="color: var(--cu-gray-60); font-size: var(--font-size-sm); margin: 0;">23 January
+                            <p style="color: var(--cu-grey-60); font-size: var(--font-size-sm); margin: 0;">23 January
                                 2026</p>
                             <h3 style="margin: 0.5rem 0 1rem;"><a href="#">Cardiff Researchers Make Breakthrough in
                                     Renewable Energy</a></h3>
@@ -295,12 +311,12 @@
                     </div>
                 </article>
 
-                <article style="border-bottom: 1px solid var(--cu-gray-20); padding-bottom: 2rem; margin-bottom: 2rem;">
+                <article style="border-bottom: 1px solid var(--cu-grey-20); padding-bottom: 2rem; margin-bottom: 2rem;">
                     <div class="flex flex-wrap" style="gap: 1.5rem;">
                         <img src="https://placehold.co/300x200/5EB99B/FFFFFF?text=News+Image" alt="News"
                             class="image-screenshots" style="flex: 0 0 300px; max-width: 100%;">
                         <div style="flex: 1 1 400px;">
-                            <p style="color: var(--cu-gray-60); font-size: var(--font-size-sm); margin: 0;">20 January
+                            <p style="color: var(--cu-grey-60); font-size: var(--font-size-sm); margin: 0;">20 January
                                 2026</p>
                             <h3 style="margin: 0.5rem 0 1rem;"><a href="#">New Partnership with Leading Tech Company</a>
                             </h3>
@@ -314,7 +330,7 @@
         </section>
 
         <!-- Step-by-Step Guide -->
-        <section class="demo-section">
+        <section class="demo-section" id="step-by-step-guides">
             <h2>Step-by-Step Guides</h2>
 
             <div class="demo-block">
@@ -349,6 +365,8 @@
                 </ul>
             </div>
         </section>
+        </div>
+        </div>
     </main>
 
     <footer class="demo-footer">
