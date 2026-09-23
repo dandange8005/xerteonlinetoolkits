@@ -29,7 +29,8 @@
     outline-offset: var(--focus-ring-offset);
 }
 
-// Skip link helper. Ink with white text, like the back-to-top button: no red.
+// Skip link helper. Ink with white text: no red. It is only ever seen while focused, so focus
+// keeps the ink (unlike the back-to-top button, whose focus change shows against a visible rest).
 .skip-link {
     position: absolute;
     top: -9999px;
@@ -41,10 +42,8 @@
     text-decoration: none;
     font-weight: var(--font-weight-bold);
 
-    &:hover,
-    &:focus {
+    &:hover {
         background: var(--color-gray-90);
-        color: var(--color-white);
     }
 
     &:focus {

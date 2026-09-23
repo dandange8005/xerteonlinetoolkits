@@ -119,6 +119,13 @@ a.link-external {
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
     color: unset;
+    text-decoration: none; // the grey fill and the hover outline mark it as a link
+
+    // The player's custom.css underlines `section a:not(...)`, which outranks a single class.
+    // Matching its specificity lets the theme, loaded after it, win.
+    @at-root section a#{&} {
+        text-decoration: none;
+    }
 
     &:hover {
         color: var(--color-link-default);
@@ -130,6 +137,9 @@ a.link-external {
     &__icon {
         font-size: var(--font-size-lg);
         margin-right: var(--spacing-md);
+        flex-shrink: 0;
+        width: 1.25em; // file-type glyphs differ in width; a fixed box keeps the names aligned
+        text-align: center;
 
         // PDF files (red). External brand colours, not the Cardiff palette: kept as literal
         // hex on purpose, so a PDF icon still reads as a PDF icon (hardcoded-values audit,

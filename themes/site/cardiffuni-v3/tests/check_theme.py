@@ -451,14 +451,41 @@ CHECKS = [
     ("red", "the code block's left rule is the border grey",
      "String(sameColor(cs('#code-block','borderLeftColor'),v('var(--cu-border)')))", "true"),
     ("red", "the skip link is ink", "cs('#skip-link','backgroundColor')", "rgb(18, 18, 18)"),
-    ("red", "the focused skip link is grey-90 with an offset ink ring",
+    # The skip link is only ever seen while focused, so focus keeps the ink; grey-90 is hover only.
+    ("red", "the focused skip link stays ink with an offset ink ring",
      "(function(){var e=document.querySelector('#skip-link'),p=document.activeElement;e.focus({preventScroll:true});"
      "var s=getComputedStyle(e),r=(document.activeElement===e)+' '+s.backgroundColor+' '+s.outlineStyle+' '+s.outlineWidth+' '+s.outlineOffset+' '+s.outlineColor;"
      "p.focus({preventScroll:true});if(document.activeElement===e)e.blur();return r})()",
-     "true rgb(51, 51, 51) solid 2px 4px rgb(18, 18, 18)"),
+     "true rgb(18, 18, 18) solid 2px 4px rgb(18, 18, 18)"),
     ("red", "the skip link text reads at 4.5:1 or better, resting and focused",
      "(function(){var e=document.querySelector('#skip-link'),p=document.activeElement,a=contrast('#skip-link','#skip-link');e.focus({preventScroll:true});"
      "var b=contrast('#skip-link','#skip-link');p.focus({preventScroll:true});if(document.activeElement===e)e.blur();return String(a>=4.5&&b>=4.5)})()", "true"),
+    # Breadcrumbs sit inside page sections, where the base list rules pad every li (23 September 2026).
+    ("breadcrumb", "a breadcrumb item in a section has no left padding", "cs('#crumb-first','paddingLeft')", "0px"),
+    *[("legacy", f"legacy {name} columns share one row and fill the container",
+       "(function(){var c=document.querySelector('" + sel + "'),k=[].slice.call(c.children),r=c.getBoundingClientRect(),"
+       "g=parseFloat(getComputedStyle(c).columnGap),w=k.reduce(function(t,e){return t+e.getBoundingClientRect().width},0)+g*(k.length-1);"
+       "return String(k.every(function(e){return Math.abs(e.getBoundingClientRect().top-k[0].getBoundingClientRect().top)<=1})&&Math.abs(w-r.width)<=1)})()", "true")
+      for name, sel in (("50/50", "#legacy-50"), ("33/33/33", "#legacy-33"), ("30/70", "#legacy-30-70"))],
+    ("legacy", "two c50 columns are the same width",
+     "(function(){var k=document.querySelector('#legacy-50').children;return String(Math.abs(k[0].getBoundingClientRect().width-k[1].getBoundingClientRect().width)<=0.5)})()", "true"),
+    # Resting field borders were grey-30 at 1.61:1; DESIGN.md §4 specifies 1px muted (grey-70),
+    # the same thickness in every state (23 September 2026).
+    *[("fields", f"a resting {name} has a 1px grey-70 border", "(function(){var e=document.querySelector('" + sel + "');e.style.setProperty('transition','none','important');"
+       "var s=getComputedStyle(e),r=s.borderTopWidth+' '+s.borderTopColor;e.style.removeProperty('transition');return r})()", "1px rgb(102, 102, 102)")
+      for name, sel in (("text input", "#text-input"), ("textarea", "#textarea-input"), ("select", "#select-plain"))],
+    ("fields", "every resting field border reads on white at 3:1 or better",
+     "String(['#text-input','#textarea-input','#select-plain'].every(function(s){var e=document.querySelector(s);"
+     "e.style.setProperty('transition','none','important');var ok=contrast(s,'body','borderTopColor')>=3;e.style.removeProperty('transition');return ok}))", "true"),
+    ("fields", "a focused field keeps the same 1px border",
+     "(function(){var e=document.querySelector('#text-input'),p=document.activeElement;e.style.setProperty('transition','none','important');e.focus({preventScroll:true});"
+     "var r=getComputedStyle(e).borderTopWidth;e.style.removeProperty('transition');p.focus({preventScroll:true});if(document.activeElement===e)e.blur();return r})()", "1px"),
+    ("fields", "an invalid field keeps the same 1px border", "cs('#select-invalid','borderTopWidth')", "1px"),
+    # The global link underline drew under the asset card's icon, name and label at rest.
+    ("links", "an asset link has no underline at rest", "cs('#link-asset','textDecorationLine')", "none"),
+    ("links", "PDF and Word asset names line up whatever the icon's width",
+     "(function(){var a=document.querySelector('#link-asset'),i=a.querySelector('.link-asset__icon'),n=a.querySelector('.link-asset__name'),x=n.getBoundingClientRect().left;"
+     "i.classList.replace('fa-file-word','fa-file-pdf');var y=n.getBoundingClientRect().left;i.classList.replace('fa-file-pdf','fa-file-word');return String(Math.abs(x-y)<=0.5)})()", "true"),
     ("cards", "card description keeps the reading size", "cs('#card-desc','fontSize')", "18px"),
     ("tables", "the scroll wrapper shows the theme's focus ring when focused",
      "(function(){var b=document.querySelector('#tbl-scroll'),previous=document.activeElement;b.focus({preventScroll:true});"

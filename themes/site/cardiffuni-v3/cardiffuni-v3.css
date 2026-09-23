@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * Cardiff University Theme v3 - Main Entry Point
- * Aligned with Cardiff Resource Design System v1.6
+ * Aligned with Cardiff Resource Design System v1.7
  *
  * This file orchestrates the theme by importing modular SCSS components.
  * Each module serves a specific purpose:
@@ -160,7 +160,7 @@
 }
 
 /**
- * Cardiff University v3 - Xerte token adapter (Design System v1.6)
+ * Cardiff University v3 - Xerte token adapter (Design System v1.7)
  *
  * Shared values come from _cu-tokens.scss, generated from the design system.
  * This file maps existing theme names to those values and owns Xerte-only settings.
@@ -949,9 +949,9 @@ textarea {
   line-height: var(--line-height-normal);
   color: var(--color-text-primary);
   background-color: var(--color-white);
-  border: 2px solid var(--color-border-default);
+  border: 1px solid var(--cu-muted);
   border-radius: var(--radius-md);
-  transition: border-color var(--duration-fast) var(--easing-default), box-shadow var(--duration-fast) var(--easing-default);
+  transition: border-color var(--duration-fast) var(--easing-default), background-color var(--duration-fast) var(--easing-default), box-shadow var(--duration-fast) var(--easing-default);
 }
 input[type=text]::placeholder,
 input[type=email]::placeholder,
@@ -982,7 +982,7 @@ input[type=datetime-local]:hover:not(:disabled),
 input[type=month]:hover:not(:disabled),
 input[type=week]:hover:not(:disabled),
 textarea:hover:not(:disabled) {
-  border-color: var(--color-gray-50);
+  background-color: var(--cu-surface);
 }
 input[type=text]:focus,
 input[type=email]:focus,
@@ -1038,13 +1038,13 @@ select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right var(--spacing-sm) center;
-  border: 2px solid var(--color-border-default);
+  border: 1px solid var(--cu-muted);
   border-radius: var(--radius-md);
   appearance: none;
   cursor: pointer;
 }
 select:hover:not(:disabled) {
-  border-color: var(--color-gray-50);
+  background-color: var(--cu-surface);
 }
 select:focus {
   outline: var(--focus-ring);
@@ -1628,6 +1628,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 .breadcrumb > li {
   display: flex;
   align-items: center;
+  padding-left: 0;
 }
 .breadcrumb > li + li::before {
   content: "/";
@@ -2896,7 +2897,12 @@ a.link-external:hover::after {
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
   color: unset;
+  text-decoration: none;
 }
+section a.link-asset {
+  text-decoration: none;
+}
+
 .link-asset:hover {
   color: var(--color-link-default);
   text-decoration: none;
@@ -2905,6 +2911,9 @@ a.link-external:hover::after {
 .link-asset__icon {
   font-size: var(--font-size-lg);
   margin-right: var(--spacing-md);
+  flex-shrink: 0;
+  width: 1.25em;
+  text-align: center;
 }
 .link-asset__icon.fa-file-pdf {
   color: #dc3545;
@@ -3361,9 +3370,8 @@ This is where you can define styles that will be available
   text-decoration: none;
   font-weight: var(--font-weight-bold);
 }
-.skip-link:hover, .skip-link:focus {
+.skip-link:hover {
   background: var(--color-gray-90);
-  color: var(--color-white);
 }
 .skip-link:focus {
   top: 1rem;
@@ -4524,12 +4532,14 @@ This is where you can define styles that will be available
  * Prefer using modern Flexbox/Grid utilities in new components.
  */
 .flexContainer {
+  --legacy-flex-gap: var(--spacing-md);
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-md);
+  gap: var(--legacy-flex-gap);
 }
 
 .flexItem {
+  box-sizing: border-box;
   width: 100%;
   margin-bottom: var(--spacing-lg);
 }
@@ -4551,34 +4561,44 @@ This is where you can define styles that will be available
     margin-bottom: 0;
   }
   .c10 {
-    width: 10%;
+    box-sizing: border-box;
+    width: calc(10% - var(--legacy-flex-gap) * 0.9);
   }
   .c20 {
-    width: 20%;
+    box-sizing: border-box;
+    width: calc(20% - var(--legacy-flex-gap) * 0.8);
   }
   .c25 {
-    width: 25%;
+    box-sizing: border-box;
+    width: calc(25% - var(--legacy-flex-gap) * 0.75);
   }
   .c30 {
-    width: 30%;
+    box-sizing: border-box;
+    width: calc(30% - var(--legacy-flex-gap) * 0.7);
   }
   .c33 {
-    width: 33.33%;
+    box-sizing: border-box;
+    width: calc(33.33% - var(--legacy-flex-gap) * 0.6667);
   }
   .c40 {
-    width: 40%;
+    box-sizing: border-box;
+    width: calc(40% - var(--legacy-flex-gap) * 0.6);
   }
   .c50 {
-    width: 50%;
+    box-sizing: border-box;
+    width: calc(50% - var(--legacy-flex-gap) * 0.5);
   }
   .c60 {
-    width: 60%;
+    box-sizing: border-box;
+    width: calc(60% - var(--legacy-flex-gap) * 0.4);
   }
   .c70 {
-    width: 70%;
+    box-sizing: border-box;
+    width: calc(70% - var(--legacy-flex-gap) * 0.3);
   }
   .c80 {
-    width: 80%;
+    box-sizing: border-box;
+    width: calc(80% - var(--legacy-flex-gap) * 0.2);
   }
 }
 .image-screenshots,
@@ -4602,6 +4622,6 @@ This is where you can define styles that will be available
   color: var(--color-brand-secondary) !important;
 }
 
-/* v3: no web font - Design System v1.6 uses the Franklin Gothic stack with system fallbacks */
+/* v3: no web font - Design System v1.7 uses the Franklin Gothic stack with system fallbacks */
 
 /*# sourceMappingURL=cardiffuni-v3.css.map */

@@ -643,6 +643,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
     >li {
         display: flex;
         align-items: center;
+        padding-left: 0; // the base list rule pads every li inside a section
 
         +li::before {
             content: "/";

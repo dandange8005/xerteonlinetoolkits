@@ -1,8 +1,8 @@
 # cardiffuni-v3 migration status
 
-Updated 23 September 2026. Theme v3 follows the Cardiff Resource Design System v1.6;
+Updated 23 September 2026. Theme v3 follows the Cardiff Resource Design System v1.7;
 Phase 1 began against v1.3, adopted v1.4's short callout markup on 20 September, and applied
-the red-usage rules of v1.5 and v1.6 on 23 September.
+the red-usage rules of v1.5 to v1.7 on 23 September.
 The branch name `feature/cardiffuni-v3-ds-v1.3` records that starting point, not a separate
 current specification. This is Nan's prototype design system, not an approved institutional brand standard.
 

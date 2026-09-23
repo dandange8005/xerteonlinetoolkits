@@ -1,6 +1,6 @@
 # Cardiff University Theme v3
 
-A Xerte Bootstrap site theme following the Cardiff Resource Design System v1.6.
+A Xerte Bootstrap site theme following the Cardiff Resource Design System v1.7.
 It provides generated design tokens, 18px reading copy, a white header, charcoal page
 navigation, section navigation, horizontal rules and seven callout types. The wider
 component migration is still in progress; see [migration status](MIGRATION.md).

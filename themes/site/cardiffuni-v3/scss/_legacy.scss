@@ -8,12 +8,14 @@
 
 // Legacy Flexbox System
 .flexContainer {
+    --legacy-flex-gap: var(--spacing-md);
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-md);
+    gap: var(--legacy-flex-gap);
 }
 
 .flexItem {
+    box-sizing: border-box;
     width: 100%;
     margin-bottom: var(--spacing-lg);
 
@@ -33,50 +35,26 @@
     }
 }
 
-// Legacy column classes (responsive)
+// Legacy column classes (responsive). A column takes its percentage minus its share of the
+// container's gaps, so columns whose percentages add up to 100 fit on one row: n columns lose
+// (n - 1) gaps in total, and each column's share is (1 - its fraction) of one gap. Border-box
+// keeps an item's own padding and border inside that width.
+// Class suffix, width, share of one gap.
+$legacy-columns: (
+    10 10% 0.9, 20 20% 0.8, 25 25% 0.75, 30 30% 0.7, 33 33.33% 0.6667,
+    40 40% 0.6, 50 50% 0.5, 60 60% 0.4, 70 70% 0.3, 80 80% 0.2
+);
+
 @media (min-width: 806px) {
     .flexItem {
         margin-bottom: 0;
     }
 
-    .c10 {
-        width: 10%;
-    }
-
-    .c20 {
-        width: 20%;
-    }
-
-    .c25 {
-        width: 25%;
-    }
-
-    .c30 {
-        width: 30%;
-    }
-
-    .c33 {
-        width: 33.33%;
-    }
-
-    .c40 {
-        width: 40%;
-    }
-
-    .c50 {
-        width: 50%;
-    }
-
-    .c60 {
-        width: 60%;
-    }
-
-    .c70 {
-        width: 70%;
-    }
-
-    .c80 {
-        width: 80%;
+    @each $column, $width, $gap-share in $legacy-columns {
+        .c#{$column} {
+            box-sizing: border-box;
+            width: calc(#{$width} - var(--legacy-flex-gap) * #{$gap-share});
+        }
     }
 }
 

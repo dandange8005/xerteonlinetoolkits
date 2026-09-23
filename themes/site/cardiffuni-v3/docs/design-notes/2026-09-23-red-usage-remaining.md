@@ -110,14 +110,8 @@ job 4, the *Never red* table and §4 *Fields*), as was the `cardiff-brand-guidel
 
 ## Left as it was
 
-- **The skip link is never seen in ink.** It sits off-screen until it has focus, and focus turns
-  it grey-90, so ink only shows if the pointer is over the link while it is off-screen, which
-  cannot happen. This follows the decision ("grey-90 on hover and focus") exactly. If the skip
-  link should read as ink when it appears, the focus rule should keep the ink background and only
-  hover should use grey-90.
-- **Resting field borders.** Text inputs, textareas and selects rest on a grey-30 border, which
-  is 1.61:1 on white, short of the 3:1 WCAG 1.4.11 asks for a field boundary. This is not a red
-  row and was not part of what was approved.
+- **The skip link and resting field borders** were left open here and decided later the same
+  day: see [field borders, skip link, legacy columns and demo pages](2026-09-23-fields-skip-link-demo-pages.md).
 - **`--color-bg-brand`** still resolves to brand red. No theme rule reads it now; only the colour
   page's swatch shows it. It was kept because project CSS may use it.
 

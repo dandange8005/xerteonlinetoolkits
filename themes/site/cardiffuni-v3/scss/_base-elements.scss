@@ -493,9 +493,10 @@ textarea {
     line-height: var(--line-height-normal);
     color: var(--color-text-primary);
     background-color: var(--color-white);
-    border: 2px solid var(--color-border-default);
+    border: 1px solid var(--cu-muted); // DESIGN.md §4 Fields: 5.74:1 on white, the same width in every state
     border-radius: var(--radius-md);
     transition: border-color var(--duration-fast) var(--easing-default),
+        background-color var(--duration-fast) var(--easing-default),
         box-shadow var(--duration-fast) var(--easing-default);
 
     &::placeholder {
@@ -504,7 +505,7 @@ textarea {
     }
 
     &:hover:not(:disabled) {
-        border-color: var(--color-gray-50);
+        background-color: var(--cu-surface); // a grey-50 border would be lighter than the resting one
     }
 
     &:focus {
@@ -541,13 +542,13 @@ select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right var(--spacing-sm) center;
-    border: 2px solid var(--color-border-default);
+    border: 1px solid var(--cu-muted); // DESIGN.md §4 Fields: 5.74:1 on white, the same width in every state
     border-radius: var(--radius-md);
     appearance: none;
     cursor: pointer;
 
     &:hover:not(:disabled) {
-        border-color: var(--color-gray-50);
+        background-color: var(--cu-surface); // a grey-50 border would be lighter than the resting one
     }
 
     &:focus {
