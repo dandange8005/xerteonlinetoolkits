@@ -1294,6 +1294,10 @@ ul.nav-pills {
   list-style: none;
 }
 
+ul.nav-pills > li {
+  padding-left: 0;
+}
+
 .nav-pills > li > a {
   display: block;
   padding: var(--spacing-sm) var(--spacing-lg);
@@ -1398,12 +1402,11 @@ a.accordion-toggle[aria-expanded=true]::after {
 }
 
 :root {
-  --carousel-control-size: 2.5rem;
-  --carousel-control-icon-size: 1.25rem;
-  --carousel-control-bg: var(--color-gray-80);
-  --carousel-control-bg-hover: rgba(0, 0, 0, 0.6);
-  --carousel-control-icon-color: var(--color-gray-70);
-  --carousel-control-icon-color-hover: var(--color-gray-90);
+  --carousel-control-size: var(--btn-min-height);
+  --carousel-control-icon-size: var(--cu-text-icon);
+  --carousel-control-bg: var(--color-white);
+  --carousel-control-bg-hover: var(--cu-surface);
+  --carousel-control-icon-color: var(--cu-ink);
   --carousel-indicator-width: 2rem;
   --carousel-indicator-height: 3px;
   --carousel-indicator-color: rgba(255, 255, 255, 0.5);
@@ -1415,33 +1418,34 @@ a.accordion-toggle[aria-expanded=true]::after {
   width: var(--carousel-control-size);
   height: var(--carousel-control-size);
   background-color: var(--carousel-control-bg);
-  backdrop-filter: blur(8px);
+  background-image: none !important;
+  color: var(--carousel-control-icon-color);
   font-size: var(--carousel-control-icon-size) !important;
-  border-radius: 50%;
+  font-weight: var(--font-weight-regular);
+  line-height: 1;
+  border: 1px solid var(--cu-border);
+  border-radius: 0;
   top: 50%;
   transform: translateY(-50%);
   margin-top: 0;
-  opacity: 0.8;
-  transition: all var(--duration-fast) var(--easing-default);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transition: background-color var(--duration-fast) var(--easing-default);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: none !important;
 }
 
 .carousel-control:hover,
 .carousel-control:focus {
   opacity: 1;
   background-color: var(--carousel-control-bg-hover);
-  transform: translateY(-50%) scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: var(--carousel-control-icon-color);
 }
 
 .carousel-control:focus-visible {
-  outline: var(--focus-ring);
-  outline-offset: var(--focus-ring-offset, 2px);
+  outline: var(--focus-ring-width) solid var(--color-white);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--cu-focus);
 }
 
 .carousel-control.left {
@@ -1523,8 +1527,10 @@ a.accordion-toggle[aria-expanded=true]::after {
 }
 
 .well {
-  background-color: var(--color-accent-green);
-  border: 1px solid var(--color-accent-green);
+  background-color: var(--cu-surface);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   color: var(--color-text-primary);
 }
 
@@ -1766,10 +1772,10 @@ a.accordion-toggle[aria-expanded=true]::after {
   }
 }
 .lead {
-  font-size: var(--font-size-xl);
-  color: var(--color-gray-60);
-  line-height: var(--line-height-tight);
-  font-weight: var(--font-weight-light);
+  font-size: var(--cu-text-lead);
+  color: var(--cu-muted);
+  line-height: var(--cu-leading-lead);
+  font-weight: var(--font-weight-regular);
 }
 
 /**
@@ -2239,6 +2245,11 @@ a.glossary:active {
  * Sizes: .button-sm, .button-lg
  * Icons: .button-icon-left, .button-icon-right, .button-icon-only
  * Legacy: .button--outline, .button--small, .button--block, .btn-mini
+ *
+ * DESIGN SYSTEM NAMES: the design system's "secondary" button (white fill, charcoal text and
+ * border, surface on hover) is .button-secondary-outline here. .button-secondary is a filled
+ * black button that predates the design system; it stays for existing content (decided by Nan,
+ * 23 September 2026).
  */
 a.button,
 a.button:link,

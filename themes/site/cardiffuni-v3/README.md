@@ -44,9 +44,9 @@ in the other SCSS modules.
 Commit `cardiffuni-v3.css` and its source map after compiling. `tools/build-reference.py`
 generates the marked reference region in the author guide.
 
-The preview image, Medr override and `cardiff-design.json` still need review; the JSON
-file is not the canonical token source. Browser validation to date is recorded for Chrome
-on macOS; broader browser coverage remains to be established.
+To restyle the theme for a project or another brand, see the [theming page](demos/theming.html)
+in the author guide. Browser validation to date is recorded for Chrome on macOS; broader
+browser coverage remains to be established.
 
 ## Credits and licence
 

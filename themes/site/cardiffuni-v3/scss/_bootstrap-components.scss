@@ -117,6 +117,11 @@ ul.nav-pills {
     list-style: none;
 }
 
+// The base list rule pads every li inside a section, where the player puts pills.
+ul.nav-pills > li {
+    padding-left: 0;
+}
+
 // Pill links - default state
 .nav-pills>li>a {
     display: block;
@@ -325,19 +330,19 @@ a.accordion-toggle[aria-expanded="true"]::after {
 // =============================================================================
 
 :root {
-    // Carousel controls, indicators and caption sit on a photo, an overlay context, so the
-    // design system's shadow/tint rule permits them. These rgba() values stay literal on
-    // purpose (hardcoded-values audit, 22 September 2026, decided by Nan): the only shared
-    // shadow tier with a real value is --shadow-lg, a larger, softer dropdown shadow that
-    // would visibly change these controls, and the translucent whites need to show the photo
+    // Carousel control buttons: the design system's icon-only control (DESIGN.md §4), a 48px
+    // white square with a 1px neutral border and a 24px symbol, no shadow (decided by Nan,
+    // 23 September 2026).
+    --carousel-control-size: var(--btn-min-height);
+    --carousel-control-icon-size: var(--cu-text-icon);
+    --carousel-control-bg: var(--color-white);
+    --carousel-control-bg-hover: var(--cu-surface);
+    --carousel-control-icon-color: var(--cu-ink);
+
+    // The indicators and caption sit on a photo, an overlay context, so the design system's
+    // tint rule permits them. These rgba() values stay literal on purpose (hardcoded-values
+    // audit, 22 September 2026, decided by Nan): the translucent whites need to show the photo
     // through them, which a solid design-system colour cannot do.
-    // Carousel control buttons
-    --carousel-control-size: 2.5rem;
-    --carousel-control-icon-size: 1.25rem;
-    --carousel-control-bg: var(--color-gray-80);
-    --carousel-control-bg-hover: rgba(0, 0, 0, 0.6);
-    --carousel-control-icon-color: var(--color-gray-70);
-    --carousel-control-icon-color-hover: var(--color-gray-90);
 
     // Carousel indicators
     --carousel-indicator-width: 2rem;
@@ -347,36 +352,27 @@ a.accordion-toggle[aria-expanded="true"]::after {
     --carousel-indicator-color-hover: rgba(255, 255, 255, 0.8);
 }
 
-// Carousel navigation controls (prev/next buttons)
+// Carousel navigation controls (prev/next buttons). The player builds them as
+// <button class="carousel-control left|right"> holding a Font Awesome chevron.
 .carousel-control {
     width: var(--carousel-control-size);
     height: var(--carousel-control-size);
     background-color: var(--carousel-control-bg);
-    backdrop-filter: blur(8px);
+    background-image: none !important; // Bootstrap's own background
+    color: var(--carousel-control-icon-color);
     font-size: var(--carousel-control-icon-size) !important;
-    border-radius: 50%;
+    font-weight: var(--font-weight-regular);
+    line-height: 1;
+    border: 1px solid var(--cu-border);
+    border-radius: 0;
     top: 50%;
     transform: translateY(-50%);
     margin-top: 0;
-    opacity: 0.8;
-    transition: all var(--duration-fast) var(--easing-default);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    transition: background-color var(--duration-fast) var(--easing-default);
     display: flex;
     align-items: center;
     justify-content: center;
-
-    // Override Bootstrap background image
-    background-image: none !important;
-
-    // // Icon styling
-    // .glyphicon,
-    // .icon-prev,
-    // .icon-next {
-    //     color: var(--carousel-control-icon-color);
-    //     font-size: var(--carousel-control-icon-size);
-    //     line-height: 1;
-    // }
 }
 
 // Carousel control hover state
@@ -384,20 +380,16 @@ a.accordion-toggle[aria-expanded="true"]::after {
 .carousel-control:focus {
     opacity: 1;
     background-color: var(--carousel-control-bg-hover);
-    transform: translateY(-50%) scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-
-    // .glyphicon,
-    // .icon-prev,
-    // .icon-next {
-    //     color: var(--carousel-control-icon-color-hover);
-    // }
+    color: var(--carousel-control-icon-color);
 }
 
-// Carousel control - focus-visible state (keyboard navigation)
+// Carousel control - focus-visible state (keyboard navigation). A single ink ring can vanish
+// on a dark photo, so the ring is white inside ink: the white outline sits 2px out, the ink
+// shadow spreads past it.
 .carousel-control:focus-visible {
-    outline: var(--focus-ring); // --focus-ring is always defined at :root
-    outline-offset: var(--focus-ring-offset, 2px);
+    outline: var(--focus-ring-width) solid var(--color-white);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px var(--cu-focus);
 }
 
 // Position adjustments for left/right controls
@@ -504,8 +496,12 @@ a.accordion-toggle[aria-expanded="true"]::after {
 // =============================================================================
 
 .well {
-    background-color: var(--color-accent-green);
-    border: 1px solid var(--color-accent-green);
+    // A neutral container, as Bootstrap meant it, in the surface grey: coloured emphasis
+    // belongs to the callouts (decided by Nan, 23 September 2026).
+    background-color: var(--cu-surface);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
     color: var(--color-text-primary);
 }
 
@@ -817,8 +813,10 @@ a.accordion-toggle[aria-expanded="true"]::after {
 // =============================================================================
 
 .lead {
-    font-size: var(--font-size-xl);
-    color: var(--color-gray-60);
-    line-height: var(--line-height-tight);
-    font-weight: var(--font-weight-light);
+    // DESIGN.md §3 lead paragraph: 20px, regular weight, 1.55 line height; muted grey reads
+    // at 5.74:1 on white (decided by Nan, 23 September 2026).
+    font-size: var(--cu-text-lead);
+    color: var(--cu-muted);
+    line-height: var(--cu-leading-lead);
+    font-weight: var(--font-weight-regular);
 }

@@ -462,6 +462,9 @@ CHECKS = [
      "var b=contrast('#skip-link','#skip-link');p.focus({preventScroll:true});if(document.activeElement===e)e.blur();return String(a>=4.5&&b>=4.5)})()", "true"),
     # Breadcrumbs sit inside page sections, where the base list rules pad every li (23 September 2026).
     ("breadcrumb", "a breadcrumb item in a section has no left padding", "cs('#crumb-first','paddingLeft')", "0px"),
+    # The player puts pills (a Navigator page set to tabs) inside sections too.
+    ("bootstrap", "pills in a section line up with the text, with no list indent",
+     "cs('#section-pills','marginLeft')+' '+cs('#pill-first','paddingLeft')", "0px 0px"),
     *[("legacy", f"legacy {name} columns share one row and fill the container",
        "(function(){var c=document.querySelector('" + sel + "'),k=[].slice.call(c.children),r=c.getBoundingClientRect(),"
        "g=parseFloat(getComputedStyle(c).columnGap),w=k.reduce(function(t,e){return t+e.getBoundingClientRect().width},0)+g*(k.length-1);"
@@ -486,6 +489,26 @@ CHECKS = [
     ("links", "PDF and Word asset names line up whatever the icon's width",
      "(function(){var a=document.querySelector('#link-asset'),i=a.querySelector('.link-asset__icon'),n=a.querySelector('.link-asset__name'),x=n.getBoundingClientRect().left;"
      "i.classList.replace('fa-file-word','fa-file-pdf');var y=n.getBoundingClientRect().left;i.classList.replace('fa-file-pdf','fa-file-word');return String(Math.abs(x-y)<=0.5)})()", "true"),
+    # Wells, lead text and carousel controls (23 September 2026), the recommended options.
+    ("bootstrap", "a well is the grey surface, square, with no border or shadow",
+     "cs('#well','backgroundColor')+' '+cs('#well','borderTopLeftRadius')+' '+cs('#well','borderTopWidth')+' '+cs('#well','boxShadow')", "rgb(242, 242, 242) 0px 0px none"),
+    ("bootstrap", "well text reads at 4.5:1 or better", "String(contrast('#well','#well')>=4.5)", "true"),
+    ("bootstrap", "lead text is 20px, regular weight, muted, 1.55 line height",
+     "cs('#lead','fontSize')+' '+cs('#lead','fontWeight')+' '+cs('#lead','color')+' '+cs('#lead','lineHeight')", "20px 400 rgb(102, 102, 102) 31px"),
+    ("bootstrap", "lead text reads at 4.5:1 or better", "String(contrast('#lead','body')>=4.5)", "true"),
+    ("bootstrap", "a carousel control is a 48px white square with a 1px grey-30 border",
+     "(function(){var e=document.querySelector('#car-prev');e.style.setProperty('transition','none','important');var s=getComputedStyle(e),"
+     "r=s.width+' '+s.height+' '+s.backgroundColor+' '+s.borderTopWidth+' '+s.borderTopColor+' '+s.borderTopLeftRadius;e.style.removeProperty('transition');return r})()",
+     "48px 48px rgb(255, 255, 255) 1px rgb(204, 204, 204) 0px"),
+    ("bootstrap", "a carousel control has no shadow, blur or transparency",
+     "(function(){var e=document.querySelector('#car-prev');e.style.setProperty('transition','none','important');var s=getComputedStyle(e),"
+     "r=s.boxShadow+' '+s.backdropFilter+' '+s.opacity;e.style.removeProperty('transition');return r})()", "none none 1"),
+    ("bootstrap", "the carousel chevron is ink and 24px", "cs('#car-prev-icon','color')+' '+cs('#car-prev','fontSize')", "rgb(18, 18, 18) 24px"),
+    ("bootstrap", "a focused carousel control shows a white ring inside an ink ring",
+     "(function(){var e=document.querySelector('#car-prev'),p=document.activeElement;e.style.setProperty('transition','none','important');e.focus({preventScroll:true});"
+     "var s=getComputedStyle(e),r=(document.activeElement===e&&e.matches(':focus-visible'))+' '+s.outlineStyle+' '+s.outlineColor+' '+s.boxShadow;"
+     "e.style.removeProperty('transition');p.focus({preventScroll:true});if(document.activeElement===e)e.blur();return r})()",
+     "true solid rgb(255, 255, 255) rgb(18, 18, 18) 0px 0px 0px 6px"),
     ("cards", "card description keeps the reading size", "cs('#card-desc','fontSize')", "18px"),
     ("tables", "the scroll wrapper shows the theme's focus ring when focused",
      "(function(){var b=document.querySelector('#tbl-scroll'),previous=document.activeElement;b.focus({preventScroll:true});"

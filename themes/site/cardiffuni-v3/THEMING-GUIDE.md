@@ -16,7 +16,6 @@ extending unfinished components, and use the [author guide](demos/index.html) fo
 The design-system folder lives in the vault under
 `10 Projects 📋/11 Work Projects/🎨 Cardiff University Design System/design-system/`.
 For shared token changes, edit its source and run its `sync-theme.py`, then compile the theme.
-Do not substitute `cardiff-design.json` for that source; it is a legacy asset awaiting review.
 
 ## Project overrides
 

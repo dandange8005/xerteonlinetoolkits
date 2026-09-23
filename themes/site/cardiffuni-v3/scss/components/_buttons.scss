@@ -47,6 +47,11 @@
  * Sizes: .button-sm, .button-lg
  * Icons: .button-icon-left, .button-icon-right, .button-icon-only
  * Legacy: .button--outline, .button--small, .button--block, .btn-mini
+ *
+ * DESIGN SYSTEM NAMES: the design system's "secondary" button (white fill, charcoal text and
+ * border, surface on hover) is .button-secondary-outline here. .button-secondary is a filled
+ * black button that predates the design system; it stays for existing content (decided by Nan,
+ * 23 September 2026).
  */
 
 // =============================================================================
