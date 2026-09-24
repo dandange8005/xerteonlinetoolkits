@@ -130,6 +130,63 @@ For shared Cardiff changes, update the canonical design-system source and regene
 The theme does not redefine `--cu-*` values in its adapter. The default fonts remain system
 and Franklin Gothic fallback stacks, with no web-font fetch.
 
+### Header colourways
+
+By default the header is white and the navbar is ink with a red rule underneath. A project can
+switch to one of the colourways below by pasting its snippet into the project's **Styles**
+property (in the editor, open the project's top-level properties and add the optional
+Styles property). The player adds these styles after the theme, so they override the
+defaults for that project only. The red rule appears only when the navbar sits below the header.
+
+| Token | Default | Controls |
+| --- | --- | --- |
+| `--color-header-bg`, `--color-header-text`, `--color-header-subtext`, `--color-header-border` | white, ink, muted grey, border grey | The header behind the logo, title and subtitle |
+| `--color-navbar-bg`, `--color-navbar-text` | ink, white | The navbar |
+| `--color-navbar-item-hover` | grey-90 | Hover and current-page fill |
+| `--color-navbar-rule` | brand red | The 4px rule under the navbar |
+| `--color-navbar-focus` | white | The keyboard focus ring on navbar items |
+
+**Light grey nav** (white header, light grey navbar with black text and rule):
+
+```css
+:root {
+  --color-navbar-bg: #E6E6E6;
+  --color-navbar-item-hover: #FFFFFF;
+  --color-navbar-text: #121212;
+  --color-navbar-rule: #121212;
+  --color-navbar-focus: #121212;
+}
+```
+
+**Charcoal header** (charcoal header above the default ink navbar and red rule):
+
+```css
+:root {
+  --color-header-bg: #1F1F1F;
+  --color-header-text: #FFFFFF;
+  --color-header-subtext: #C8C8C8;
+  --color-header-border: #1F1F1F;
+}
+```
+
+**Charcoal header, light nav** (a mix of the two, with the red rule kept):
+
+```css
+:root {
+  --color-header-bg: #1F1F1F;
+  --color-header-text: #FFFFFF;
+  --color-header-subtext: #C8C8C8;
+  --color-header-border: #1F1F1F;
+  --color-navbar-bg: #E6E6E6;
+  --color-navbar-item-hover: #FFFFFF;
+  --color-navbar-text: #121212;
+  --color-navbar-focus: #121212;
+}
+```
+
+Every colourway keeps text at 4.5:1 or better against its background. If you choose other
+colours, check the contrast yourself.
+
 ## Build and checks
 
 Run from this folder:

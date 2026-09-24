@@ -135,6 +135,18 @@
     // grey-90 (#333333) for ink. White text on both needs a dark secondary (4.5:1 or better).
     --color-navbar-bg: var(--color-brand-secondary);
     --color-navbar-bg-hover: color-mix(in srgb, var(--color-brand-secondary) 86%, white);
+    // Header and navbar colours a project can override from its Styles property (see the
+    // THEMING-GUIDE "Header colourways"). The nav hover and current-page fill have their own
+    // token so a light nav does not also lighten the back-to-top button, which shares
+    // --color-navbar-bg-hover.
+    --color-header-bg: var(--cu-bg);
+    --color-header-text: var(--cu-ink);
+    --color-header-subtext: var(--cu-muted);
+    --color-header-border: var(--cu-border);
+    --color-navbar-text: var(--cu-on-dark);
+    --color-navbar-item-hover: var(--color-navbar-bg-hover);
+    --color-navbar-rule: var(--color-brand-primary);
+    --color-navbar-focus: var(--focus-ring-color-on-dark);
     // Tabs and pills follow the brand secondary too (ink for Cardiff).
     --color-nav-accent: var(--color-brand-secondary);
     --color-nav-accent-dark: color-mix(in srgb, var(--color-nav-accent) 15%, black);

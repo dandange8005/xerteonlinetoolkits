@@ -236,6 +236,14 @@
   --color-status-info: var(--color-link-default);
   --color-navbar-bg: var(--color-brand-secondary);
   --color-navbar-bg-hover: color-mix(in srgb, var(--color-brand-secondary) 86%, white);
+  --color-header-bg: var(--cu-bg);
+  --color-header-text: var(--cu-ink);
+  --color-header-subtext: var(--cu-muted);
+  --color-header-border: var(--cu-border);
+  --color-navbar-text: var(--cu-on-dark);
+  --color-navbar-item-hover: var(--color-navbar-bg-hover);
+  --color-navbar-rule: var(--color-brand-primary);
+  --color-navbar-focus: var(--focus-ring-color-on-dark);
   --color-nav-accent: var(--color-brand-secondary);
   --color-nav-accent-dark: color-mix(in srgb, var(--color-nav-accent) 15%, black);
   --btn-primary-bg: var(--color-action);
@@ -2987,11 +2995,10 @@ section a.link-asset {
  * Uses Cardiff University design tokens
  */
 .jumbotron {
-  background: var(--cu-bg);
+  background: var(--color-header-bg);
   background-image: none;
-  color: var(--cu-ink);
-  border-top: 4px solid var(--color-brand-primary);
-  border-bottom: 1px solid var(--cu-border);
+  color: var(--color-header-text);
+  border-bottom: 1px solid var(--color-header-border);
   box-shadow: none;
   padding: var(--cu-space-8) 0;
   text-shadow: none;
@@ -3077,14 +3084,14 @@ section a.link-asset {
   font-weight: var(--cu-weight-section);
   letter-spacing: var(--cu-tracking-heading);
   line-height: var(--cu-leading-heading);
-  color: var(--cu-ink);
+  color: var(--color-header-text);
   font-size: var(--font-size-3xl);
   margin: 0 0 var(--cu-space-2);
 }
 
 #pageSubTitle {
   font-weight: var(--cu-weight-regular);
-  color: var(--cu-muted);
+  color: var(--color-header-subtext);
   font-size: var(--font-size-lg);
   line-height: var(--cu-leading-lead);
   padding-top: 0;
@@ -3106,7 +3113,7 @@ section a.link-asset {
 }
 
 #pageLinks .navbar-inverse .navbar-inner {
-  border-bottom: 4px solid var(--color-brand-primary);
+  border-bottom: 4px solid var(--color-navbar-rule);
 }
 
 .navbar-inverse .navbar-inner > .container {
@@ -3131,7 +3138,7 @@ section a.link-asset {
   box-shadow: none;
 }
 .navbar-inverse .btn-navbar .icon-bar {
-  background-color: var(--cu-on-dark);
+  background-color: var(--color-navbar-text);
   box-shadow: none;
 }
 
@@ -3150,7 +3157,7 @@ section a.link-asset {
 .navbar-inverse .brand,
 .navbar-inverse .nav > li > a {
   padding: 8px 10px;
-  color: var(--cu-on-dark);
+  color: var(--color-navbar-text);
   text-shadow: none;
   border-radius: 0;
   transition: 0.25s ease-in-out;
@@ -3162,23 +3169,23 @@ section a.link-asset {
 .navbar-inverse .nav-collapse .dropdown-menu a:focus,
 .navbar-inverse .brand:hover,
 .navbar-inverse .nav > li > a:hover {
-  background-color: var(--color-navbar-bg-hover);
-  color: var(--cu-on-dark);
+  background-color: var(--color-navbar-item-hover);
+  color: var(--color-navbar-text);
   box-sizing: border-box;
 }
 
 .navbar-inverse .nav-collapse .nav > li > a:focus-visible,
 .navbar-inverse .nav > li > a:focus-visible,
 .navbar-inverse .btn-navbar:focus-visible {
-  outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color-on-dark);
+  outline: var(--focus-ring-width) var(--focus-ring-style) var(--color-navbar-focus);
   outline-offset: -4px;
 }
 
 .navbar .nav > li.activePage > a,
 .navbar .nav > li.activePage > a:hover {
-  background-color: var(--color-navbar-bg-hover);
+  background-color: var(--color-navbar-item-hover);
   text-decoration: none;
-  color: var(--cu-on-dark);
+  color: var(--color-navbar-text);
   box-shadow: inset 0 -3px 0 0 var(--color-brand-primary);
 }
 
