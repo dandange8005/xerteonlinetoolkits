@@ -85,6 +85,7 @@ now sets `padding-left: 0`.
 **Still open: the panel label.** Panels take their frame and corner label from the player's
 `custom.css`: 4px corners, a `#ddd` border, and a `#9DA0A4` label on `#F5F5F5`, which is 2.41:1.
 The theme only sets the padding. Fixing the label needs a decision and is on the checklist.
+Settled on 24 September: see the addendum below.
 
 ## Verification
 
@@ -96,3 +97,33 @@ The theme only sets the padding. Fixing the label needs a decision and is on the
 
 Not verified: the variant buttons in a real browser by hand, and the preview image inside the
 Xerte theme picker.
+
+## Addendum: panel frame and title label (24 September)
+
+Nan chose option C of four:
+
+- A: leave the panel as it is.
+- B: recolour the label text only.
+- C: B, plus a square frame and label that match the theme's other framed blocks.
+- D: a solid label in the brand secondary, like the Do/Don't labels.
+
+| Part | Player (`custom.css`) | Now |
+| --- | --- | --- |
+| Frame | 1px `#ddd`, 4px corners | 1px `--cu-border` (grey-30), square (`--radius-card`) |
+| Title label | `#9DA0A4` on `#F5F5F5` (2.41:1), 12px, `#ddd` border, 4px corner | `--cu-muted` on `--cu-surface` (5.13:1), `--font-size-sm` (16px) uppercase, grey-30 border, square |
+| Padding | 39px top, 19px sides | 48px top (`--spacing-2xl`), 32px left (`--spacing-8`), 19px right |
+
+**Why the padding and label size changed too.** The player's selector,
+`.panel:not(.editorStyle)`, outranks the bare `.panel` the theme used. So the theme's padding
+and label size never applied, although the code and the Bootstrap page said they did. The theme
+now uses the player's selector, and those rules apply for the first time. The 16px label needs
+the 48px top padding: at the player's 39px, it would sit 7px above the first line. Panels made
+in the editor (`.editorStyle`) keep the player's styles.
+
+Not verified: the real player. Panels with long titles were checked only in headless Chrome.
+
+**Verification.**
+- 296 automated checks pass (292 before).
+- Four new `bootstrap` checks: frame, label colours and corners, label contrast, and
+  padding. All four fail against the old CSS.
+- The panel was rendered in headless Chrome before and after, with a short and a longer title.

@@ -543,6 +543,17 @@ CHECKS = [
     ("bootstrap", "a well is the grey surface, square, with no border or shadow",
      "cs('#well','backgroundColor')+' '+cs('#well','borderTopLeftRadius')+' '+cs('#well','borderTopWidth')+' '+cs('#well','boxShadow')", "rgb(242, 242, 242) 0px 0px none"),
     ("bootstrap", "well text reads at 4.5:1 or better", "String(contrast('#well','#well')>=4.5)", "true"),
+    # Panels (24 September 2026, option C): the player's custom.css draws a #ddd frame with 4px
+    # corners and a #9DA0A4 on #F5F5F5 title label (2.41:1).
+    ("bootstrap", "a panel has a square grey-30 frame",
+     "cs('#panel','borderTopColor')+' '+cs('#panel','borderTopWidth')+' '+cs('#panel','borderTopLeftRadius')", "rgb(204, 204, 204) 1px 0px"),
+    ("bootstrap", "a panel's title label is muted text on the surface grey, square, in a grey-30 frame",
+     "[ps('#panel','::after','color'),ps('#panel','::after','backgroundColor'),ps('#panel','::after','borderTopColor'),ps('#panel','::after','borderBottomRightRadius')].join(' ')",
+     "rgb(102, 102, 102) rgb(242, 242, 242) rgb(204, 204, 204) 0px"),
+    ("bootstrap", "a panel's title label reads at 4.5:1 or better",
+     "String(colourContrast(ps('#panel','::after','color'),ps('#panel','::after','backgroundColor'))>=4.5)", "true"),
+    ("bootstrap", "the theme's panel padding beats the player's",
+     "cs('#panel','paddingLeft')+' '+cs('#panel','paddingTop')", "32px 48px"),
     ("bootstrap", "lead text is 20px, regular weight, muted, 1.55 line height",
      "cs('#lead','fontSize')+' '+cs('#lead','fontWeight')+' '+cs('#lead','color')+' '+cs('#lead','lineHeight')", "20px 400 rgb(102, 102, 102) 31px"),
     ("bootstrap", "lead text reads at 4.5:1 or better", "String(contrast('#lead','body')>=4.5)", "true"),

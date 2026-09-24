@@ -136,6 +136,8 @@
     </section>
     <!-- Wells, lead text and carousel controls (23 September 2026). The player builds the controls as buttons. -->
     <div class="well" id="well">Submit your reflective log by Friday.</div>
+    <!-- Panel (24 September 2026). Authors write the markup; the player's custom.css draws the frame and the title label. -->
+    <div class="panel" id="panel" title="Example"><p id="panel-first">Panel content.</p></div>
     <p class="lead" id="lead">Everything you need before your first placement day.</p>
     <div class="carousel slide" id="fx-carousel" style="position:relative;height:200px;background:#1F4029">
       <button class="carousel-control left" id="car-prev" aria-label="Previous slide"><span class="fa fa-chevron-left" id="car-prev-icon"></span></button>
@@ -254,6 +256,15 @@ function contrast(textSelector, backgroundSelector, textProperty) {
   var text = document.querySelector(textSelector), back = document.querySelector(backgroundSelector);
   if (!text || !back) throw new Error('Missing fixture element: ' + textSelector + ' / ' + backgroundSelector);
   var a = luminance(rgb(getComputedStyle(text)[textProperty || 'color'])), b = luminance(rgb(getComputedStyle(back).backgroundColor));
+  return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+}
+// WCAG contrast ratio between two computed colours, for text drawn by a pseudo-element.
+function colourContrast(foreground, background) {
+  function luminance(c) {
+    var l = c.map(function (x) { x /= 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+    return 0.2126 * l[0] + 0.7152 * l[1] + 0.0722 * l[2];
+  }
+  var a = luminance(rgbOf(foreground)), b = luminance(rgbOf(background));
   return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
 }
 // Each override check restores exactly the prior inline root declaration.

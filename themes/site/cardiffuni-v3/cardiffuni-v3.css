@@ -1510,10 +1510,13 @@ a.accordion-toggle[aria-expanded=true]::after {
   position: relative;
 }
 
-.panel {
-  padding-left: 2rem;
+.panel:not(.editorStyle) {
+  padding-left: var(--spacing-8);
   padding-top: var(--spacing-2xl);
+  border: 1px solid var(--cu-border);
+  border-radius: var(--radius-card);
 }
+
 .panel > *:first-child {
   margin-top: 0;
 }
@@ -1521,11 +1524,15 @@ a.accordion-toggle[aria-expanded=true]::after {
   margin-bottom: 0;
 }
 
-.panel::after {
+.panel:not(.editorStyle)::after {
   font-size: var(--font-size-sm);
   padding-inline: var(--spacing-sm);
   text-transform: uppercase;
   letter-spacing: 0.8px;
+  color: var(--cu-muted);
+  background-color: var(--cu-surface);
+  border: 1px solid var(--cu-border);
+  border-radius: var(--radius-none);
 }
 
 .well {

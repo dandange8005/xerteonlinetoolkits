@@ -468,10 +468,19 @@ a.accordion-toggle[aria-expanded="true"]::after {
 // Content container boxes with optional headers
 // =============================================================================
 
-.panel {
-    padding-left: 2rem;
+// Authors write <div class="panel" title="...">; the player's custom.css draws the frame and
+// echoes the title into a corner label. Its selector, .panel:not(.editorStyle), outranks a bare
+// .panel, so the theme matches it: until 24 September the padding and label size here never
+// applied. The editor's own panels (.editorStyle) keep the player's styles.
+.panel:not(.editorStyle) {
+    padding-left: var(--spacing-8);
     padding-top: var(--spacing-2xl);
+    // Square, with the design system's grey-30 frame, like the other framed blocks (player: #ddd, 4px).
+    border: 1px solid var(--cu-border);
+    border-radius: var(--radius-card);
+}
 
+.panel {
     // Remove extra spacing from first and last children
     >*:first-child {
         margin-top: 0;
@@ -482,12 +491,17 @@ a.accordion-toggle[aria-expanded="true"]::after {
     }
 }
 
-// Panel label/badge (appears in corner)
-.panel::after {
+// Panel title label (the corner tab). The player's #9DA0A4 on #F5F5F5 is 2.41:1; grey-70 on the
+// surface grey is 5.13:1.
+.panel:not(.editorStyle)::after {
     font-size: var(--font-size-sm);
     padding-inline: var(--spacing-sm);
     text-transform: uppercase;
     letter-spacing: 0.8px;
+    color: var(--cu-muted);
+    background-color: var(--cu-surface);
+    border: 1px solid var(--cu-border);
+    border-radius: var(--radius-none);
 }
 
 // =============================================================================
