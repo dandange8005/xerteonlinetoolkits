@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>cardiffuniversity checks</title>
+<!-- Relevant player styles in cascade order. Media/plugin styles are omitted; this is not the full player. -->
+<link rel="stylesheet" href="../../../modules/site/parent_templates/site/common/css/bootstrap.css">
+<link rel="stylesheet" href="../../../modules/site/parent_templates/site/common/css/bootstrap-responsive.css">
+<link rel="stylesheet" href="../../../modules/site/parent_templates/site/common/css/custom.css">
+<link rel="stylesheet" href="../../../modules/site/parent_templates/site/common/fontawesome-6.6.0/css/all.min.css">
+<link rel="stylesheet" href="../../../themes/site/cardiffuniversity/cardiffuniversity.css">
+</head>
+<body>
+<div class="navbar navbar-inverse" id="topnav" role="navigation"><div class="navbar-inner"><div class="container"><button id="pageNavBtn" class="btn btn-navbar navbar-toggler collapsed" data-toggle="collapse" data-target=".nav-collapse" aria-haspopup="true" aria-controls="nav"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><div class="nav-collapse collapse">
+  <ul class="nav" id="nav"><li class="activePage"><a href="#">Home</a></li><li><a href="#">Exams</a></li></ul>
+</div></div></div></div>
+
+<!-- navbarPos=below: application.js moves #topnav into a #pageLinks div after the header -->
+<div id="pageLinks"><div class="navbar navbar-inverse" id="topnav-below" role="navigation"><div class="navbar-inner"><div class="container"><div class="nav-collapse collapse">
+  <ul class="nav"><li class="activePage"><a href="#">Home</a></li><li><a href="#">Exams</a></li></ul>
+</div></div></div></div></div>
+
+<header class="jumbotron logoL" id="overview"><div class="container">
+  <div class="logoL"><img class="logo logoL themeLogo" src="../../../themes/site/cardiffuniversity/logo_left.svg" alt="Cardiff University / Prifysgol Caerdydd"></div>
+  <div class="titles"><h1 id="pageTitle">Assessment Menu</h1><p id="pageSubTitle">Designing meaningful, inclusive and future-focused assessment</p></div>
+</div></header>
+
+<div class="container"><div class="row-fluid">
+  <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation">
+    <ul class="nav nav-list bs-docs-sidenav" id="toc">
+      <li class="active"><a href="#">About this category</a></li><li><a href="#">Essay</a></li><li><a href="#">Report</a></li>
+    </ul>
+  </div>
+  <ul class="nav nav-list bs-docs-sidenav affix" id="toc-affixed"><li class="active"><a href="#">Affixed</a></li></ul>
+  <div class="span9" id="mainContent" role="main">
+    <h2 id="plain-h2">Plain heading</h2>
+    <h2 class="sectionTitle" id="section-title">Section title</h2>
+    <p>Reading copy.</p>
+    <button class="button button-primary" type="button">Primary</button>
+    <hr class="cu-rule" id="rule">
+    <hr class="cu-rule cu-rule-strong" id="rule-strong">
+    <div class="cu-callout cu-callout-tip" id="callout-tip">
+      <span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-lightbulb fa-stack-1x"></i></span>
+      <div><strong class="cu-callout-title">Tip</strong><p>Recommendation.</p></div>
+    </div>
+    <div class="cu-callout" id="callout-key">
+      <span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-star fa-stack-1x"></i></span>
+      <div><strong class="cu-callout-title">Key point</strong><p>Main takeaway.</p></div>
+    </div>
+    <div class="cu-callout cu-callout-warning" id="callout-warning"><div><strong class="cu-callout-title">Warning</strong></div></div>
+    <div class="cu-callout cu-callout-good" id="callout-good"><div><strong class="cu-callout-title">Good practice</strong></div></div>
+    <div class="callout info" id="old-callout"><p>Old v2 callout.</p></div>
+    <div class="cu-callout cu-callout-tip" id="callout-tip-simple"><strong class="cu-callout-title">Tip</strong><p>Simple markup.</p></div>
+    <div class="cu-callout" id="callout-key-simple"><strong class="cu-callout-title">Key point</strong><p>Simple markup.</p></div>
+    <section id="test-section">
+      <div style="float:left;width:40px;height:60px;background:#eee" id="test-float">&nbsp;</div>
+      <p><a class="button button-primary" id="focus-btn" href="#">Primary button</a></p>
+    </section>
+    <p>A term with a <a class="glossary" id="glossary-term" href="#">glossary definition</a> in reading copy.</p>
+    <div id="glossaryHover" class="glossaryTip">Definition shown as a tooltip.</div>
+    <!-- application.js: topBtnRound=true appends this round button to each page section -->
+    <p><a class="topBtn btn btn-mini pull-right top-round" id="top-round" href="#skipLink"><span class="sr-only">Top</span><i class="fa fa-angle-up fa-2x" aria-hidden="true"></i></a></p>
+    <div class="alert alert-success" id="alert-success"><strong>Success!</strong> Saved.</div>
+    <div class="alert alert-info" id="alert-info"><strong>Info:</strong> Available from September.</div>
+    <div class="alert alert-warning" id="alert-warning"><strong>Warning!</strong> Session ends soon.</div>
+    <div class="alert alert-danger" id="alert-danger"><strong>Error!</strong> Unable to submit.</div>
+    <div class="alert alert-error" id="alert-error"><strong>Error!</strong> Unable to submit.</div>
+    <!-- Bootstrap colours a heading inside each alert variant (.alert-info h4 ...) -->
+    <div class="alert alert-block alert-success"><h4 id="alert-h-success">Heading</h4><p>Body</p></div>
+    <div class="alert alert-block alert-info"><h4 id="alert-h-info">Heading</h4><p>Body</p></div>
+    <div class="alert alert-block alert-warning"><h4 id="alert-h-warning">Heading</h4><p>Body</p></div>
+    <div class="alert alert-block alert-danger"><h4 id="alert-h-danger">Heading</h4><p>Body</p></div>
+    <div class="alert alert-block alert-error"><h4 id="alert-h-error">Heading</h4><p>Body</p></div>
+    <p>
+      <span class="badge" id="badge-default">Default</span>
+      <span class="badge badge-success" id="badge-success">Success</span>
+      <span class="badge badge-warning" id="badge-warning">Warning</span>
+      <span class="badge badge-important" id="badge-important">Important</span>
+      <span class="badge badge-danger" id="badge-danger">Danger</span>
+      <span class="badge badge-info" id="badge-info">Info</span>
+      <span class="badge badge-inverse" id="badge-inverse">Inverse</span>
+      <span class="label" id="label-default">Default</span>
+      <span class="label label-info" id="label-info">Info</span>
+      <span class="label label-danger" id="label-danger">Danger</span>
+    </p>
+    <div class="progress" id="progress-track"><div class="progress-bar" id="bar-default" style="width:40%">40%</div></div>
+    <div class="progress"><div class="progress-bar progress-bar-success" id="bar-success" style="width:60%">60%</div></div>
+    <div class="progress"><div class="progress-bar progress-bar-warning" id="bar-warning" style="width:80%">80%</div></div>
+    <div class="progress"><div class="progress-bar progress-bar-danger" id="bar-danger" style="width:25%">25%</div></div>
+    <div class="progress"><div class="progress-bar progress-bar-info" id="bar-info" style="width:55%">55%</div></div>
+    <table id="tbl"><caption id="tbl-caption">Assessment types</caption><thead><tr><th>Name</th><th>Type</th></tr></thead><tbody><tr><td>One</td><td>A</td></tr><tr><td>Two</td><td>B</td></tr></tbody></table>
+    <table class="table table-striped" id="tbl-striped"><tbody><tr><td id="td-odd">Odd row</td></tr><tr><td id="td-even">Even row</td></tr></tbody></table>
+    <!-- Opt-in: authors add the wrapper (with tabindex and a label) around a table that may be wide. -->
+    <div class="cu-table-scroll" id="tbl-scroll" tabindex="0" role="region" aria-label="Wide table"><table id="tbl-wide"><tbody><tr>
+      <td style="white-space:nowrap">A value in column 1</td><td style="white-space:nowrap">A value in column 2</td><td style="white-space:nowrap">A value in column 3</td>
+      <td style="white-space:nowrap">A value in column 4</td><td style="white-space:nowrap">A value in column 5</td><td style="white-space:nowrap">A value in column 6</td>
+      <td style="white-space:nowrap">A value in column 7</td><td style="white-space:nowrap">A value in column 8</td><td style="white-space:nowrap">A value in column 9</td>
+      <td style="white-space:nowrap">A value in column 10</td><td style="white-space:nowrap">A value in column 11</td><td style="white-space:nowrap">A value in column 12</td>
+    </tr></tbody></table></div>
+    <div class="cu-table-scroll" id="tbl-scroll-narrow"><table id="tbl-narrow"><tbody><tr><td>One</td><td>Two</td><td>Three</td></tr></tbody></table></div>
+    <h3 id="plain-h3">Plain component heading</h3>
+    <p class="text-warning" id="text-warning">Warning text</p>
+    <i class="fa-solid fa-triangle-exclamation" id="warning-icon" style="color: var(--color-status-warning);"></i>
+    <span id="draft-label" style="display: inline-block; padding: 2px 8px; font-weight: var(--font-weight-bold); color: var(--color-draft); background: var(--color-draft-bg);">Draft</span>
+    <details class="details" id="details-1"><summary class="details__summary" id="details-summary">Click to expand</summary><div class="details__text"><p>Hidden content.</p></div></details>
+    <div class="evenSection" id="even-section">Even</div>
+    <div class="oddSection" id="odd-section">Odd</div>
+    <span class="rounded-full" id="rounded-full-util">Pill</span>
+    <ul class="breadcrumb" id="breadcrumb"><li><a href="#" id="breadcrumb-link">Home</a></li></ul>
+    <div class="accordion-group"><a class="accordion-toggle" href="#" id="accordion-toggle-link">Toggle</a></div>
+    <div class="card" id="card-basic"><div class="card__content"><h3 class="card__heading" id="card-heading">Card Title</h3><p class="card__description" id="card-desc">A basic card with a heading and description.</p></div></div>
+    <!-- the clickable pattern from _cards.scss: a plain h3 wrapping the link -->
+    <div class="card card--clickable" id="card-clickable"><div class="card__content"><h3 id="card-heading-link"><a href="#" class="card__link">Introduction to Data Science</a></h3></div></div>
+    <!-- Red usage, remaining rows (23 September 2026): fields, lists, code and the skip link. -->
+    <a class="skip-link" id="skip-link" href="#mainContent">Skip to main content</a>
+    <p><label class="required" id="required-label" for="text-input">Full name</label></p>
+    <input type="text" id="text-input">
+    <textarea id="textarea-input"></textarea>
+    <select id="select-plain"><option>One</option></select>
+    <select id="select-invalid" required><option value="">Choose one</option></select>
+    <input type="radio" id="radio-checked" name="red-radio" checked>
+    <input type="checkbox" id="checkbox-checked" checked>
+    <ul class="list-icon"><li><span class="fa fa-check" id="list-icon-span" aria-hidden="true"></span>Item</li></ul>
+    <p>Run <code id="inline-code">sass</code> first.</p>
+    <pre id="code-block"><code>sass cardiffuniversity.scss</code></pre>
+    <!-- Legacy columns and a breadcrumb inside a section, where the base list rules apply (23 September 2026). -->
+    <section id="legacy-section">
+      <!-- The player's custom.css underlines every link inside a section. -->
+      <a href="#" class="link-asset" id="link-asset"><i class="fa-solid fa-file-word link-asset__icon" aria-hidden="true"></i><div><div class="link-asset__name">Handbook</div><div class="link-asset__label">Word, 85 KB</div></div></a>
+      <ul class="nav nav-pills" id="section-pills"><li class="active" id="pill-first"><a href="#">Overview</a></li><li><a href="#">Week 1</a></li></ul>
+      <ul class="breadcrumb" id="section-breadcrumb"><li id="crumb-first"><a href="#">Home</a></li><li class="active">Page</li></ul>
+      <div class="flexContainer" id="legacy-50"><div class="flexItem c50" style="padding:16px;border:1px solid #ccc">A</div><div class="flexItem c50" style="padding:16px;border:1px solid #ccc">B</div></div>
+      <div class="flexContainer" id="legacy-33"><div class="flexItem c33" style="padding:16px">A</div><div class="flexItem c33" style="padding:16px">B</div><div class="flexItem c33" style="padding:16px">C</div></div>
+      <div class="flexContainer" id="legacy-30-70"><div class="flexItem c30" style="padding:16px">A</div><div class="flexItem c70" style="padding:16px">B</div></div>
+    </section>
+    <!-- Wells, lead text and carousel controls (23 September 2026). The player builds the controls as buttons. -->
+    <div class="well" id="well">Submit your reflective log by Friday.</div>
+    <!-- Panel (24 September 2026). Authors write the markup; the player's custom.css draws the frame and the title label. -->
+    <div class="panel" id="panel" title="Example"><p id="panel-first">Panel content.</p></div>
+    <p class="lead" id="lead">Everything you need before your first placement day.</p>
+    <div class="carousel slide" id="fx-carousel" style="position:relative;height:200px;background:#1F4029">
+      <button class="carousel-control left" id="car-prev" aria-label="Previous slide"><span class="fa fa-chevron-left" id="car-prev-icon"></span></button>
+      <button class="carousel-control right" id="car-next" aria-label="Next slide"><span class="fa fa-chevron-right"></span></button>
+    </div>
+    <!--@MARKUP@-->
+  </div>
+</div></div>
+
+<!-- Not emitted by the player: projects add #feedback_button themselves (structure inferred from the v2 theme's CSS). -->
+<div id="feedback_button"><i class="fa-solid fa-comment" aria-hidden="true"></i><a href="#" id="feedback-link">Feedback</a></div>
+
+<!-- rloObject.htm footer; #customFooter is what application.js injects the author's HTML into. -->
+<footer class="footer" id="test-footer"><div class="container">
+  <div id="customFooter">
+    <div><p id="footer-note">Developed by the Digital Education Team</p></div>
+    <div><h2 id="footer-heading">Useful links</h2><ul><li><a href="#" id="footer-link">A link</a></li></ul></div>
+    <!-- footerPos=replace: application.js appends the WCAG link to #customFooter as a third child -->
+    <div class="wcagLink" id="footer-wcag"><a href="#">Accessibility statement</a></div>
+  </div>
+  <div class="row-fluid"><div class="wcagLink hidden"><a>WCAG</a></div></div>
+</div></footer>
+
+<pre id="results"></pre>
+<script>
+// Minimal stand-in for what the player provides, so the theme script's scroll-spy path runs here.
+window.__spy = { options: { offset: 10 }, refresh: function () {}, process: function () {} };
+window.__playerHandlers = {};
+// Retain native observation, but expose delivery for deterministic checks: Chrome's
+// --virtual-time-budget does not guarantee compositor frames between timer callbacks.
+window.__resizeObservers = [];
+const NativeResizeObserver = window.ResizeObserver;
+window.ResizeObserver = function (callback) {
+  const native = new NativeResizeObserver(callback);
+  const record = { targets: [], deliver: callback };
+  window.__resizeObservers.push(record);
+  return {
+    observe: function (target) { record.targets.push(target); native.observe(target); },
+    unobserve: function (target) { native.unobserve(target); },
+    disconnect: function () { native.disconnect(); }
+  };
+};
+window.jQuery = function () {
+  return { data: function () { return window.__spy; },
+           on: function (name, callback) { window.__playerEvents = (window.__playerEvents || []).concat(name); window.__playerHandlers[name] = callback; return this; } };
+};
+</script>
+<script src="../../../themes/site/cardiffuniversity/cardiffuniversity.js"></script>
+<script>
+/*@CHECKS@*/
+function cs(selector, property) {
+  var el = document.querySelector(selector);
+  if (!el) throw new Error('Missing fixture element: ' + selector);
+  return getComputedStyle(el)[property];
+}
+function v(value, property) {
+  property = property || 'color';
+  var probe = document.createElement('div');
+  document.body.appendChild(probe);
+  probe.style[property] = value;
+  var out = getComputedStyle(probe)[property];
+  probe.remove();
+  return out;
+}
+function box(selector) {
+  var el = document.querySelector(selector);
+  if (!el) throw new Error('Missing fixture element: ' + selector);
+  return el.getBoundingClientRect();
+}
+function ps(selector, pseudo, property) {
+  var el = document.querySelector(selector);
+  if (!el) throw new Error('Missing fixture element: ' + selector);
+  return getComputedStyle(el, pseudo)[property];
+}
+// The three channels (0 to 255) of a computed colour. color-mix() results serialise as
+// color(srgb r g b) with channels from 0 to 1.
+function rgbOf(value) {
+  var scale = /^color\(srgb/.test(value) ? 255 : 1;
+  return value.match(/[\d.]+/g).slice(0, 3).map(function (n) { return Number(n) * scale; });
+}
+// Two computed colours are the same value, tolerating the color(srgb ...) vs rgb(...) formats
+// a color-mix() result can serialise as.
+function sameColor(a, b, tol) {
+  tol = tol || 1.5;
+  var ca = rgbOf(a), cb = rgbOf(b);
+  return ca.every(function (v, i) { return Math.abs(v - cb[i]) <= tol; });
+}
+// A computed colour rounded to whole rgb() channels, so a color-mix() result that serialises
+// as color(srgb ...) compares with a plain value.
+function rounded(value) {
+  return 'rgb(' + rgbOf(value).map(Math.round).join(', ') + ')';
+}
+// Runs a check under a restyled brand (see THEMING-GUIDE.md), with transitions off so every
+// part reads its new colour rather than the start of a fade from the old one.
+function withBrand(primary, secondary, check) {
+  const off = document.createElement('style');
+  off.textContent = '*, *::before, *::after { transition: none !important; }';
+  document.head.appendChild(off);
+  try {
+    return withRootTokens({'--color-brand-primary': primary, '--color-brand-secondary': secondary}, check);
+  } finally {
+    // Settle the restored brand while transitions are still off; otherwise the next reading
+    // would catch a fade back from the example colours.
+    void document.body.offsetHeight;
+    off.remove();
+  }
+}
+// WCAG contrast ratio between one element's text colour and another's background colour.
+// Pass 'backgroundColor' as textProperty to compare two fills instead (a bar against its track).
+function contrast(textSelector, backgroundSelector, textProperty) {
+  var rgb = rgbOf;
+  function luminance(c) {
+    var l = c.map(function (x) { x /= 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+    return 0.2126 * l[0] + 0.7152 * l[1] + 0.0722 * l[2];
+  }
+  var text = document.querySelector(textSelector), back = document.querySelector(backgroundSelector);
+  if (!text || !back) throw new Error('Missing fixture element: ' + textSelector + ' / ' + backgroundSelector);
+  var a = luminance(rgb(getComputedStyle(text)[textProperty || 'color'])), b = luminance(rgb(getComputedStyle(back).backgroundColor));
+  return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+}
+// WCAG contrast ratio between two computed colours, for text drawn by a pseudo-element.
+function colourContrast(foreground, background) {
+  function luminance(c) {
+    var l = c.map(function (x) { x /= 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+    return 0.2126 * l[0] + 0.7152 * l[1] + 0.0722 * l[2];
+  }
+  var a = luminance(rgbOf(foreground)), b = luminance(rgbOf(background));
+  return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+}
+// Each override check restores exactly the prior inline root declaration.
+function withRootTokens(overrides, check) {
+  const root = document.documentElement;
+  const previous = root.getAttribute('style');
+  try {
+    Object.entries(overrides).forEach(([name, value]) => root.style.setProperty(name, value));
+    return check();
+  } finally {
+    if (previous === null) root.removeAttribute('style');
+    else root.setAttribute('style', previous);
+  }
+}
+function classStyle(classes, property) {
+  const probe = document.createElement('div');
+  probe.className = classes;
+  document.body.appendChild(probe);
+  try { return getComputedStyle(probe)[property]; }
+  finally { probe.remove(); }
+}
+window.addEventListener('load', async function () {
+  var results = {};
+  for (const key of Object.keys(CHECKS)) {
+    try { results[key] = String(await new Function('cs', 'v', 'ps', 'return ' + CHECKS[key])(cs, v, ps)); }
+    catch (e) { results[key] = 'ERROR: ' + e.message; }
+  }
+  document.getElementById('results').textContent = JSON.stringify(results);
+});
+</script>
+</body>
+</html>

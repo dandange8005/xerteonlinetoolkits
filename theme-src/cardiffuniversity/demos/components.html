@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components - Cardiff University Theme</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap-responsive.css">
+    <link rel="stylesheet" href="assets/bootstrap/custom.css">
+    <link rel="stylesheet" href="../../../themes/site/cardiffuniversity/cardiffuniversity.css">
+    <link rel="stylesheet" href="assets/demo-styles.css">
+    <!-- FontAwesome 6.6.0 -->
+    <link rel="stylesheet" href="../../../modules/site/parent_templates/site/common/fontawesome-6.6.0/css/all.min.css">
+</head>
+
+<body data-spy="scroll" data-target="#contentTable">
+    <header class="jumbotron logoL" id="overview">
+        <div class="container">
+            <div class="logoL">
+                <img class="logo logoL themeLogo"
+                    src="../../../themes/site/cardiffuniversity/logo_left.svg"
+                    alt="Cardiff University / Prifysgol Caerdydd">
+            </div>
+
+            <div class="titles">
+                <h1 id="pageTitle" aria-live="polite">Components</h1>
+                <p id="pageSubTitle" aria-live="polite">Cardiff components</p>
+            </div>
+        </div>
+    </header>
+
+    <div id="pageLinks">
+        <div class="navbar navbar-inverse navbar-fixed-top" id="topnav" role="navigation" aria-label="Pages"
+            style="position: static;">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button id="pageNavBtn" class="btn btn-navbar navbar-toggler collapsed" data-toggle="collapse"
+                        data-target=".nav-collapse" aria-haspopup="true" aria-controls="nav" aria-label="Page menu"
+                        aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="nav" aria-labelledby="pageNavBtn">
+                            <li role="none"><a href="index.html">Home</a></li>
+                            <li role="none"><a href="typography.html">Typography</a></li>
+                            <li role="none"><a href="colors.html">Colors</a></li>
+                            <li role="none"><a href="lists-tables.html">Lists & Tables</a></li>
+                            <li role="none"><a href="images-media.html">Media & Icons</a></li>
+                            <li role="none"><a href="forms.html">Forms</a></li>
+                            <li class="activePage" role="none" aria-current="page"><a href="components.html">Components</a></li>
+                            <li role="none"><a href="bootstrap.html">Bootstrap</a></li>
+                            <li role="none"><a href="code-utilities.html">Code & Utilities</a></li>
+                            <li role="none"><a href="patterns.html">Patterns</a></li>
+                            <li role="none"><a href="flexbox.html">Flexbox</a></li>
+                            <li role="none"><a href="theming.html">Theming</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="row-fluid">
+            <div class="span3 bs-docs-sidebar" id="contentTable" role="navigation" aria-label="Sections">
+                <ul class="nav nav-list bs-docs-sidenav affix-top" id="toc">
+                    <li class="active" aria-current="location"><a href="#about-components">About Components</a></li>
+                    <li><a href="#buttons">Buttons</a></li>
+                    <li><a href="#cards">Cards</a></li>
+                    <li><a href="#callouts">Callouts</a></li>
+                    <li><a href="#rules">Rules</a></li>
+                    <li><a href="#boxes">Boxes</a></li>
+                    <li><a href="#quotes">Quotes</a></li>
+                    <li><a href="#links">Links</a></li>
+                    <li><a href="#details">Details</a></li>
+                    <li><a href="#dosdonts">Do's &amp; Don'ts</a></li>
+                    <li><a href="#projectinfo">Project info</a></li>
+                    <li><a href="#pagechrome">Page chrome</a></li>
+                    <li><a href="#component-usage-guidelines">Component Usage Guidelines</a></li>
+                </ul>
+            </div>
+
+            <div class="span9" id="mainContent">
+        <!-- ==================== ABOUT ==================== -->
+        <section class="demo-section" id="about-components">
+            <h2>About Components</h2>
+            <p>The components <code>cardiffuniversity</code> adds for Cardiff resources. Alerts, badges, progress bars, breadcrumbs, tabs and accordions come from Bootstrap and are on the <a href="bootstrap.html">Bootstrap</a> page.</p>
+        </section>
+        <!-- Table of Contents -->
+        <!-- ==================== BUTTONS ==================== -->
+        <section class="demo-section" id="buttons">
+            <h2><i class="fa-solid fa-hand-pointer"></i> Buttons</h2>
+
+            <!-- Filled Buttons -->
+            <div class="demo-block">
+                <div class="demo-block__title">Filled Buttons</div>
+                <div class="demo-block__description"><code>.button-secondary</code> is a filled black button kept for existing content. For the design system's secondary button, use <code>.button-secondary-outline</code> (below).</div>
+                <div class="demo-inline">
+                    <button class="button button-primary">Primary</button>
+                    <button class="button button-secondary">Secondary</button>
+                    <button class="button button-success">Success</button>
+                    <button class="button button-primary" disabled>Disabled</button>
+                </div>
+                <code class="code-label">.button .button-primary | .button-secondary | .button-success</code>
+            </div>
+
+            <!-- Outline Buttons -->
+            <div class="demo-block">
+                <div class="demo-block__title">Outline Buttons</div>
+                <div class="demo-block__description"><code>.button-secondary-outline</code> is the design system's secondary button: white, with charcoal text and a charcoal border, turning grey on hover. Pair it with one primary button.</div>
+                <div class="demo-inline">
+                    <button class="button button-primary-outline">Primary</button>
+                    <button class="button button-secondary-outline">Secondary</button>
+                    <button class="button button-success-outline">Success</button>
+                    <button class="button button-primary-outline" disabled>Disabled</button>
+                </div>
+                <code class="code-label">.button .button-primary-outline | .button-secondary-outline | .button-success-outline</code>
+            </div>
+
+            <!-- Ghost Button -->
+            <div class="demo-block">
+                <div class="demo-block__title">Ghost Button</div>
+                <div class="demo-inline">
+                    <button class="button button-ghost">Ghost Button</button>
+                    <button class="button button-ghost" disabled>Ghost Disabled</button>
+                </div>
+                <code class="code-label">.button .button-ghost</code>
+            </div>
+
+            <!-- Reverse Buttons (Dark Background) -->
+            <div class="demo-block">
+                <div class="demo-block__title">Reverse Buttons (Dark Backgrounds)</div>
+                <div style="background: var(--cu-ink); padding: 1rem; border-radius: var(--radius-md); display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <button class="button button-reverse">Reverse Filled</button>
+                    <button class="button button-reverse-outline">Reverse Outline</button>
+                </div>
+                <code class="code-label">.button .button-reverse | .button-reverse-outline</code>
+            </div>
+
+            <!-- Button Sizes -->
+            <div class="demo-block">
+                <div class="demo-block__title">Button Sizes</div>
+                <div class="demo-inline" style="align-items: center;">
+                    <button class="button button-primary button-sm">Small (.button-sm)</button>
+                    <button class="button button-primary">Default</button>
+                    <button class="button button-primary button-lg">Large (.button-lg)</button>
+                </div>
+                <div class="demo-inline" style="align-items: center; margin-top: 1rem;">
+                    <button class="button button--small button-primary">Compact (.button--small)</button>
+                    <button class="button button-primary button--block" style="max-width: 200px;">Block</button>
+                </div>
+                <code class="code-label">.button-sm | .button-lg | .button--small | .button--block</code>
+            </div>
+
+            <!-- Buttons with Icons -->
+            <div class="demo-block">
+                <div class="demo-block__title">Buttons with Icons</div>
+                <div class="demo-inline">
+                    <button class="button button-primary button-icon-left"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                    <button class="button button-primary button-icon-right">Next <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="button button-secondary button-icon-only" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="button button-success button-icon-only" aria-label="Check"><i class="fa-solid fa-check"></i></button>
+                </div>
+                <code class="code-label">.button-icon-left | .button-icon-right | .button-icon-only (using FontAwesome icons)</code>
+            </div>
+
+            <!-- Mini Buttons -->
+            <div class="demo-block">
+                <div class="demo-block__title">Mini Buttons</div>
+                <div class="demo-inline">
+                    <button class="btn-mini"><i class="fa-solid fa-arrow-up"></i></button>
+                    <button class="btn-mini"><i class="fa-solid fa-arrow-down"></i></button>
+                    <button class="btn-mini"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button class="btn-mini"><i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="btn-mini"><i class="fa-solid fa-xmark"></i></button>
+                    <button class="btn-mini"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <code class="code-label">.btn-mini</code>
+            </div>
+
+            <!-- Links as Buttons -->
+            <div class="demo-block">
+                <div class="demo-block__title">Links as Buttons</div>
+                <div class="demo-inline">
+                    <a href="#" class="button button-primary">Link Button</a>
+                    <a href="#" class="button button-secondary-outline">Outline Link</a>
+                </div>
+                <code class="code-label">&lt;a class="button ..."&gt;</code>
+            </div>
+        </section>
+
+        <!-- ==================== CARDS ==================== -->
+        <section class="demo-section" id="cards">
+            <h2><i class="fa-solid fa-id-card"></i> Cards</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Basic Card</div>
+                <p class="demo-block__description">The card heading is smaller than a page heading: <code>--font-size-2xl</code>, 28px from 720px wide and 24px on the narrowest screens. It applies to <code>.card__heading</code> and to a plain <code>h3</code> inside <code>.card__content</code>.</p>
+
+                <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+                    <div class="card">
+                        <div class="card__content">
+                            <h3 class="card__heading">Card Title</h3>
+                            <p class="card__description">This is a basic card component with a heading and description text.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://picsum.photos/400/225" alt="Placeholder" class="card__image">
+                        <div class="card__content">
+                            <h3 class="card__heading">Card with Image</h3>
+                            <p class="card__metadata">Category &bull; 5 min read</p>
+                            <p class="card__description">Cards can include images, metadata, and descriptive text.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <code class="code-label">.card > .card__image + .card__content > .card__heading + .card__metadata + .card__description</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Clickable Cards</div>
+
+                <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+                    <div class="card card--clickable">
+                        <img src="https://picsum.photos/400/226" alt="Course preview" class="card__image">
+                        <div class="card__content">
+                            <h3 class="card__heading"><a href="#" class="card__link">Introduction to Data Science</a></h3>
+                            <p class="card__metadata">Online Course &bull; 12 weeks</p>
+                            <p class="card__description">Learn the fundamentals of data science and machine learning.</p>
+                        </div>
+                    </div>
+
+                    <div class="card card--clickable">
+                        <img src="https://picsum.photos/400/227" alt="Course preview" class="card__image">
+                        <div class="card__content">
+                            <h3 class="card__heading"><a href="#" class="card__link">Web Development Bootcamp</a></h3>
+                            <p class="card__metadata">Self-paced &bull; Beginner</p>
+                            <p class="card__description">Build modern websites with HTML, CSS, and JavaScript.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <code class="code-label">.card .card--clickable + .card__link (makes entire card clickable)</code>
+            </div>
+        </section>
+
+        <!-- ==================== CALLOUTS ==================== -->
+        <section class="demo-section" id="callouts">
+            <h2><i class="fa-solid fa-bullhorn"></i> Callouts</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Seven callout types — design system fa-stack markup</div>
+                <p class="demo-block__description">The markup used by the design system's own prototypes. Still supported, so prototype callouts paste in unchanged. For new Xerte content prefer the short markup below.</p>
+
+                <div class="cu-callout cu-callout-info"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-info fa-stack-1x"></i></span><div><strong class="cu-callout-title">Information</strong><p>Extra context.</p></div></div>
+                <div class="cu-callout cu-callout-tip"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-lightbulb fa-stack-1x"></i></span><div><strong class="cu-callout-title">Tip</strong><p>A recommendation.</p></div></div>
+                <div class="cu-callout cu-callout-good"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-check fa-stack-1x"></i></span><div><strong class="cu-callout-title">Good practice</strong><p>The preferred approach.</p></div></div>
+                <div class="cu-callout cu-callout-important"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-exclamation fa-stack-1x"></i></span><div><strong class="cu-callout-title">Important</strong><p>Something requiring attention.</p></div></div>
+                <div class="cu-callout cu-callout-warning"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-minus fa-stack-1x"></i></span><div><strong class="cu-callout-title">Warning</strong><p>A risk or problem.</p></div></div>
+                <div class="cu-callout cu-callout-example"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-graduation-cap fa-stack-1x"></i></span><div><strong class="cu-callout-title">Example</strong><p>A worked example.</p></div></div>
+                <div class="cu-callout"><span class="fa-stack cu-callout-icon" aria-hidden="true"><i class="fa-solid fa-circle fa-stack-2x"></i><i class="fa-solid fa-star fa-stack-1x"></i></span><div><strong class="cu-callout-title">Key point</strong><p>The main takeaway (default when no type class is given).</p></div></div>
+
+                <code class="code-label">.cu-callout | -info | -tip | -good | -important | -warning | -example | -key (or no type class at all)</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Seven callout types — short markup (preferred)</div>
+                <p class="demo-block__description">Same seven types and the same result, three elements instead of five. The theme draws the disc and glyph in CSS, so there is less to paste into the Xerte editor and no empty tags for the editor to strip.</p>
+
+                <div class="cu-callout cu-callout-info"><strong class="cu-callout-title">Information</strong><p>Extra context.</p></div>
+                <div class="cu-callout cu-callout-tip"><strong class="cu-callout-title">Tip</strong><p>A recommendation.</p></div>
+                <div class="cu-callout cu-callout-good"><strong class="cu-callout-title">Good practice</strong><p>The preferred approach.</p></div>
+                <div class="cu-callout cu-callout-important"><strong class="cu-callout-title">Important</strong><p>Something requiring attention.</p></div>
+                <div class="cu-callout cu-callout-warning"><strong class="cu-callout-title">Warning</strong><p>A risk or problem.</p></div>
+                <div class="cu-callout cu-callout-example"><strong class="cu-callout-title">Example</strong><p>A worked example.</p></div>
+                <div class="cu-callout cu-callout-key"><strong class="cu-callout-title">Key point</strong><p>The main takeaway. Written out as <code>.cu-callout-key</code> here; leaving the type class off does the same.</p></div>
+
+                <code class="code-label">&lt;div class="cu-callout cu-callout-tip"&gt;&lt;strong class="cu-callout-title"&gt;Tip&lt;/strong&gt;&lt;p&gt;…&lt;/p&gt;&lt;/div&gt;</code>
+            </div>
+        </section>
+
+        <!-- ==================== RULES ==================== -->
+        <section class="demo-section" id="rules">
+            <h2><i class="fa-solid fa-grip-lines"></i> Rules</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Neutral and strong rules (design system v1.3)</div>
+                <p>A 1px neutral rule separates repeated entries or quiet sections.</p>
+                <hr class="cu-rule">
+                <p>A 2px charcoal rule marks a major boundary.</p>
+                <hr class="cu-rule cu-rule-strong">
+                <p>Both rules have 32px of space above and below.</p>
+
+                <code class="code-label">&lt;hr class="cu-rule"&gt; | &lt;hr class="cu-rule cu-rule-strong"&gt;</code>
+            </div>
+        </section>
+
+        <!-- ==================== BOXES ==================== -->
+        <section class="demo-section" id="boxes">
+            <h2><i class="fa-solid fa-square"></i> Boxes</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Box and box with icon</div>
+                <div class="box">
+                    <div class="box__title">Plain box</div>
+                    <p>A simple container for grouping related content.</p>
+                </div>
+                <div class="box box-icon" style="margin-top: 1rem;">
+                    <svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><circle cx="12" cy="12" r="10"></circle></svg>
+                    <div>
+                        <div class="box__title">Box with an icon</div>
+                        <p>The icon sits beside the content.</p>
+                    </div>
+                </div>
+                <code class="code-label">.box | .box.box-icon | .box__title | .svg-icon (sizes an inline SVG inside a box)</code>
+            </div>
+        </section>
+
+        <!-- ==================== QUOTES ==================== -->
+        <section class="demo-section" id="quotes">
+            <h2><i class="fa-solid fa-quote-left"></i> Quotes</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Quote, with and without an image</div>
+                <blockquote class="quote">
+                    <p>Assessment shapes what students pay attention to, and how they spend their time.</p>
+                    <p class="quote-author">&mdash; Programme lead, School of Medicine</p>
+                </blockquote>
+                <blockquote class="quote with-image">
+                    <img src="https://placehold.co/96x96/121212/FFFFFF?text=CU" alt="" class="quote-image">
+                    <p>The clearer the criteria, the more useful the feedback becomes.</p>
+                    <p class="quote-author">&mdash; Module convenor, School of Law</p>
+                </blockquote>
+                <code class="code-label">.quote | .quote.with-image | .quote-author | .quote-image</code>
+            </div>
+        </section>
+
+        <!-- ==================== LINKS ==================== -->
+        <section class="demo-section" id="links">
+            <h2><i class="fa-solid fa-link"></i> Links</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Action and external links</div>
+                <p><a href="#links" class="link-action">Start the assessment planner</a></p>
+                <p><a href="https://www.cardiff.ac.uk" class="link-external">Cardiff University website</a></p>
+                <code class="code-label">.link-action | .link-external</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Asset link (file download)</div>
+                <div class="demo-block__description">The icon class sets the file-type colour: <code>fa-file-pdf</code> is red and <code>fa-file-word</code> is Word blue. Put the file type and size in the label.</div>
+                <div class="flex flex-col gap-md">
+                    <a href="#links" class="link-asset">
+                        <i class="fa-solid fa-file-pdf link-asset__icon" aria-hidden="true"></i>
+                        <div>
+                            <div class="link-asset__name">Assessment design checklist</div>
+                            <div class="link-asset__label">PDF, 240 KB</div>
+                        </div>
+                    </a>
+                    <a href="#links" class="link-asset">
+                        <i class="fa-solid fa-file-word link-asset__icon" aria-hidden="true"></i>
+                        <div>
+                            <div class="link-asset__name">Marking rubric template</div>
+                            <div class="link-asset__label">Word, 85 KB</div>
+                        </div>
+                    </a>
+                </div>
+                <code class="code-label">.link-asset | .link-asset__icon | .link-asset__name | .link-asset__label</code>
+            </div>
+        </section>
+
+        <!-- ==================== DETAILS ==================== -->
+        <section class="demo-section" id="details">
+            <h2><i class="fa-solid fa-caret-down"></i> Details</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Native disclosure widget</div>
+                <details class="details">
+                    <summary class="details__summary">What counts as secure assessment?</summary>
+                    <div class="details__text">
+                        <p>Anything where the awarding decision depends on work we can attribute to the student with confidence.</p>
+                    </div>
+                </details>
+                <details class="details">
+                    <summary class="details__summary">When should I use open assessment?</summary>
+                    <div class="details__text">
+                        <p>When the learning outcome is the process rather than the recall, and feedback matters more than control.</p>
+                    </div>
+                </details>
+                <code class="code-label">.details | .details__summary | .details__text</code>
+            </div>
+        </section>
+
+        <!-- ==================== DO'S AND DON'TS ==================== -->
+        <section class="demo-section" id="dosdonts">
+            <h2><i class="fa-solid fa-list-check"></i> Do's &amp; Don'ts</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Paired guidance lists</div>
+                <div class="flex flex-wrap gap-lg">
+                    <div class="do-dont-list flex-300">
+                        <h3 class="do-dont-list__label">Do</h3>
+                        <ul class="list--tick">
+                            <li><i class="fa-solid fa-check" aria-hidden="true" style="color: var(--color-status-success); margin-right: 0.5rem;"></i>Give the criteria before the work starts</li>
+                            <li><i class="fa-solid fa-check" aria-hidden="true" style="color: var(--color-status-success); margin-right: 0.5rem;"></i>Keep feedback specific and actionable</li>
+                        </ul>
+                    </div>
+                    <div class="do-dont-list flex-300">
+                        <h3 class="do-dont-list__label">Don't</h3>
+                        <ul class="list--cross">
+                            <li><i class="fa-solid fa-xmark" aria-hidden="true" style="color: var(--color-status-error); margin-right: 0.5rem;"></i>Rely on colour alone to carry meaning</li>
+                            <li><i class="fa-solid fa-xmark" aria-hidden="true" style="color: var(--color-status-error); margin-right: 0.5rem;"></i>Add a second assessment to fix a design problem</li>
+                        </ul>
+                    </div>
+                </div>
+                <code class="code-label">.do-dont-list | .do-dont-list__label | .list--tick | .list--cross</code>
+                <p class="demo-block__description">Icons here are Font Awesome, as the design system specifies. The component also positions an inline <code>&lt;svg class="icon"&gt;</code> per item.</p>
+            </div>
+        </section>
+
+        <!-- ==================== PROJECT INFO ==================== -->
+        <section class="demo-section" id="projectinfo">
+            <h2><i class="fa-solid fa-circle-info"></i> Project info</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Metadata row</div>
+                <div id="project-info">
+                    <span>Version 1.0</span>
+                    <span>Last updated: September 2026</span>
+                    <span>Cardiff University</span>
+                </div>
+                <code class="code-label">#project-info</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Language toggle</div>
+                <p class="demo-block__description">The theme also styles a language switcher, <code>#language-toggle</code>, which the player positions in the top right of the header. It is not shown here because it is placed by the page frame rather than by page content.</p>
+                <code class="code-label">#language-toggle | .language-toggle-text</code>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE CHROME ==================== -->
+        <section class="demo-section" id="pagechrome">
+            <h2><i class="fa-solid fa-window-maximize"></i> Page chrome</h2>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Footer</div>
+                <p class="demo-block__description">An ink footer with no red. The player builds it from the project's <code>customFooter</code> HTML and puts it in <code>#customFooter</code>, so write only the columns: the theme lays them side by side and stacks them when the space is narrow. Set <code>footerPos</code> to replace the default footer. In that mode the player also appends its accessibility link, which the theme puts on its own row. For a logo, use an official white (reversed) version; the design system says never to recolour it.</p>
+
+                <div class="footer" style="margin-top: 0; padding-inline: 20px;">
+                    <div id="customFooter">
+                        <div>
+                            <p>Developed by the Digital Education Team<br>Learning and Teaching Academy<br>Cardiff University</p>
+                        </div>
+                        <div>
+                            <h2>Useful links</h2>
+                            <ul>
+                                <li><a href="index.html">Author guide home</a></li>
+                                <li><a href="patterns.html">UI patterns</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <code class="code-label">&lt;div&gt;&lt;p&gt;…&lt;/p&gt;&lt;/div&gt; &lt;div&gt;&lt;h2&gt;Useful links&lt;/h2&gt;&lt;ul&gt;…&lt;/ul&gt;&lt;/div&gt;</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Back to top</div>
+                <p class="demo-block__description">The player adds one to each page section: the round arrow when <code>topBtnRound</code> is on, otherwise the text button. Both are ink with a white label and carry no shadow. Colours an author sets for the round button in the project's settings still override these defaults.</p>
+
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <a class="topBtn btn btn-mini top-round" href="#pageTitle"><span class="sr-only">Top</span><i class="fa fa-angle-up fa-2x" aria-hidden="true"></i></a>
+                    <a class="topBtn btn btn-mini" href="#pageTitle">Top</a>
+                </div>
+
+                <code class="code-label">.topBtn | .top-round</code>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Feedback tab and glossary</div>
+                <p class="demo-block__description">Neither is shown here: the feedback tab is fixed to the edge of the window, and the player places a glossary definition at the pointer. The feedback tab is action red with white text and no shadow. The player does not create it, so a project adds an element with <code>id="feedback_button"</code> holding an icon and a link. A glossary term is marked with a dotted underline as well as its colour, and its definition (<code>.glossaryTip</code>) is ink with white text.</p>
+                <code class="code-label">#feedback_button | a.glossary | .glossaryTip</code>
+            </div>
+        </section>
+
+        <!-- ==================== USAGE GUIDELINES ==================== -->
+        <section class="demo-section" id="component-usage-guidelines">
+            <h2><i class="fa-solid fa-book"></i> Component Usage Guidelines</h2>
+
+            <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+                <div class="demo-block">
+                    <div class="demo-block__title">Buttons</div>
+                    <ul>
+                        <li><strong>Primary:</strong> Main action, one per section</li>
+                        <li><strong>Secondary</strong> (<code>.button-secondary-outline</code>): alternative actions, cancel</li>
+                        <li><strong>Success:</strong> Confirmations, saves</li>
+                        <li><strong>Filled black</strong> (<code>.button-secondary</code>): existing content only</li>
+                    </ul>
+                </div>
+
+
+                <div class="demo-block">
+                    <div class="demo-block__title">Accessibility</div>
+                    <ul>
+                        <li>All components have focus states</li>
+                        <li>Use <code>aria-label</code> for icon-only buttons</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        </div>
+        </div>
+    </main>
+
+    <footer class="demo-footer">
+        <p>Cardiff University Theme - Components Demo</p>
+        <ul class="demo-footer__links">
+            <li><a href="index.html" class="demo-footer__link">Home</a></li>
+            <li><a href="forms.html" class="demo-footer__link">&larr; Forms</a></li>
+            <li><a href="bootstrap.html" class="demo-footer__link">Bootstrap &rarr;</a></li>
+        </ul>
+    </footer>
+    <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>

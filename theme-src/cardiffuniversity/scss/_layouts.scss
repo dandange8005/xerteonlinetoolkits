@@ -1,0 +1,508 @@
+/**
+ * Layout Styles
+ *
+ * Styles for structural layout components:
+ * - Header & Jumbotron
+ * - Main Navigation
+ * - Side Navigation
+ * - Footer
+ * Uses Cardiff University design tokens
+ */
+
+// =============================================================================
+// HEADER & JUMBOTRON
+// =============================================================================
+
+// White header with the official red logo top left, no gradient, overlay or shadow. No top
+// edge: the red rule under the navbar is the only horizontal brand line.
+.jumbotron {
+  background: var(--color-header-bg);
+  background-image: none;
+  color: var(--color-header-text);
+  border-bottom: 1px solid var(--color-header-border);
+  box-shadow: none;
+  padding: var(--cu-space-8) 0;
+  text-shadow: none;
+
+  &::before {
+    content: none;
+  }
+}
+
+// Logo container
+#overview.logoL .logoL {
+  margin-top: 0;
+}
+
+// Logo: brand minimums 60px at 375px, 70px at 414px, 80px from 480px (--cu-logo-width). Never shrink in the flex row.
+.logo.logoL.themeLogo {
+  width: var(--cu-logo-width);
+  max-width: none;
+  height: auto;
+  flex: none;
+}
+
+// Logo and titles in one row, whichever logos are switched on: left logo, titles, right logo.
+#overview.logoL .container,
+#overview.logoR .container {
+  display: flex;
+  align-items: center;
+  gap: var(--cu-space-6);
+  flex-wrap: nowrap;
+}
+
+// The base template centres the header text (custom.css `.jumbotron { text-align: center }`)
+// and indents the titles by 20px (`#overview.logoL .titles { padding: 20px 5px 20px 20px }`).
+// Headings in this theme are left aligned and sit one gap from the logo, so drop both. Matching
+// the base selector's specificity is what makes the padding reset stick.
+.titles {
+  padding: 0;
+  text-align: left;
+}
+
+#overview.logoL .titles,
+#overview.logoR .titles {
+  padding: 0;
+  text-align: left;
+}
+
+// With both logos the base centres the titles (`#overview.logoL.logoR .titles`, one class more
+// specific than the rule above), which no other header does.
+#overview.logoL.logoR .titles {
+  float: none;
+  padding: 0;
+  text-align: left;
+}
+
+// The player puts the right logo before the titles in the markup; show it after them, at the far
+// right (the auto margin takes the free space). An author can upload any size, so its width is
+// its own, capped at a quarter of the header. It must not shrink: an image with a percentage
+// max-width has a minimum size of zero, and a shrinkable logo collapsed to a few pixels.
+// Select the div: the player gives the img inside it the class logoR too, and a 25% cap on the
+// image would then apply to the wrapper's width again.
+#overview.logoR div.logoR {
+  order: 1;
+  flex: 0 0 auto;
+  max-width: 25%;
+  float: none;
+  margin: 0 0 0 auto;
+}
+
+#overview img.logoR {
+  max-width: 100%;
+  height: auto;
+}
+
+// Bootstrap's clearfix (.container::before and ::after) becomes two empty flex items here, and
+// the gap beside each is what gives this row its 24px side gutters. The right logo's order moves
+// it past ::after, which would leave it with no gutter on the right; keep ::after last.
+#overview.logoR .container::after {
+  order: 2;
+}
+
+// Keep the logo and titles in one row at narrow widths. The base player CSS
+// (custom.css) floats/stacks them below 981px (`#overview.logoL .titles { float:right; width:100%; text-align:center; }`,
+// `#overview.logoL .logoL { float:none; text-align:center; }`) across its 768-980px, <=767px and
+// <=480px breakpoints; width:100% on .titles breaks the flex row and overflows the viewport.
+// Match the base selectors' specificity to override them for every width they target.
+@media (max-width: 980px) {
+  #overview.logoL .titles,
+  #overview.logoR .titles {
+    float: none;
+    width: auto;
+    min-width: 0;
+    flex: 1 1 auto;
+    text-align: left;
+  }
+
+  #overview.logoL .logoL {
+    float: none;
+    flex: none;
+    text-align: left;
+  }
+
+  #overview.logoR div.logoR {
+    float: none;
+    text-align: right;
+  }
+}
+
+#pageTitle {
+  font-family: var(--cu-display);
+  font-weight: var(--cu-weight-section);
+  letter-spacing: var(--cu-tracking-heading);
+  line-height: var(--cu-leading-heading);
+  color: var(--color-header-text);
+  font-size: var(--font-size-3xl);
+  margin: 0 0 var(--cu-space-2);
+}
+
+#pageSubTitle {
+  font-weight: var(--cu-weight-regular);
+  color: var(--color-header-subtext);
+  font-size: var(--font-size-lg);
+  line-height: var(--cu-leading-lead);
+  padding-top: 0;
+  margin-bottom: 0;
+}
+
+// =============================================================================
+// MAIN NAVIGATION
+// =============================================================================
+
+.navbar {
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.navbar-inverse .navbar-inner {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  background: var(--color-navbar-bg);
+  background-image: none;
+  border: 0;
+  box-shadow: none;
+}
+
+// The author can place the navbar below the header (navbarPos=below; application.js moves
+// #topnav into #pageLinks). There the rule separates it from the page content. Above the
+// header, the header itself separates the bar from the content, so the bar carries none.
+#pageLinks .navbar-inverse .navbar-inner {
+  border-bottom: 4px solid var(--color-navbar-rule);
+}
+
+// Lay the bar out as a row instead of relying on Bootstrap's floated toggle: a floated
+// button taller than the bar overflows it, and the header below paints over the overflow,
+// so the toggle looked cut off (test round 1, 20 September 2026). Wrapping lets the
+// expanded menu drop onto its own line and the bar grow with it.
+.navbar-inverse .navbar-inner > .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 0;
+}
+
+// The base template pulls the header up by 20px below 980px to cancel Bootstrap's
+// `.navbar { margin-bottom: 20px }` (custom.css). This theme sets that margin to 0, so the
+// offset instead drags the header over the bar and hides the menu toggle behind it
+// (test round 1, 20 September 2026).
+@media (max-width: 980px) {
+  .jumbotron {
+    margin-top: 0;
+  }
+}
+
+// Toggle button on the dark bar (mobile)
+.navbar-inverse .btn-navbar {
+  float: none;
+  order: 2;
+  margin: 0 0 0 auto;
+  background: transparent;
+  background-image: none;
+  border: 1px solid var(--cu-grey-70);
+  box-shadow: none;
+
+  .icon-bar {
+    background-color: var(--color-navbar-text);
+    box-shadow: none;
+  }
+}
+
+// The menu keeps the full width of the bar, so it wraps below the toggle when open.
+.navbar-inverse .navbar-inner > .container > .nav-collapse {
+  order: 3;
+  flex: 1 0 100%;
+}
+
+@media (min-width: 980px) {
+  // Wide layout: the menu shares the row and the toggle is hidden by Bootstrap.
+  .navbar-inverse .navbar-inner > .container > .nav-collapse {
+    flex: 1 1 auto;
+  }
+}
+
+// Navbar collapse (for mobile)
+
+.navbar-inverse .nav-collapse .nav>li>a,
+.navbar-inverse .nav-collapse .dropdown-menu a,
+.navbar-inverse .brand,
+.navbar-inverse .nav>li>a {
+  // Tighter than Bootstrap's 10px 15px: keeps a 36px row and fits more page names on one
+  // line before the menu wraps onto a second row.
+  padding: 8px 10px;
+  color: var(--color-navbar-text);
+  text-shadow: none;
+  border-radius: 0;
+  transition: 0.25s ease-in-out;
+}
+
+// Top navbar text colour when hover or focused
+.navbar-inverse .nav-collapse .nav>li>a:hover,
+.navbar-inverse .nav-collapse .nav>li>a:focus,
+.navbar-inverse .nav-collapse .dropdown-menu a:hover,
+.navbar-inverse .nav-collapse .dropdown-menu a:focus,
+.navbar-inverse .brand:hover,
+.navbar-inverse .nav>li>a:hover {
+  background-color: var(--color-navbar-item-hover);
+  color: var(--color-navbar-text);
+  box-sizing: border-box;
+}
+
+// Keyboard focus must be visible on the dark bar, where the black ring would not be.
+.navbar-inverse .nav-collapse .nav>li>a:focus-visible,
+.navbar-inverse .nav>li>a:focus-visible,
+.navbar-inverse .btn-navbar:focus-visible {
+  outline: var(--focus-ring-width) var(--focus-ring-style) var(--color-navbar-focus);
+  outline-offset: -4px;
+}
+
+// Active nav item styling
+.navbar .nav>li.activePage>a,
+.navbar .nav>li.activePage>a:hover {
+  background-color: var(--color-navbar-item-hover);
+  text-decoration: none;
+  color: var(--color-navbar-text);
+  box-shadow: inset 0 -3px 0 0 var(--color-brand-primary);
+}
+
+// Navbar on top
+
+.navbar.navbar-fixed-top {
+  margin-bottom: 0;
+}
+
+// =============================================================================
+// PAGE SECTIONS
+// =============================================================================
+
+// The base template clears floats with `section { overflow: auto }`
+// (modules/site/parent_templates/site/common/css/custom.css). That also clips anything
+// painted outside the section box, so a focus ring on a control at the section's edge was
+// cut off (test round 1, 20 September 2026). flow-root contains floats without clipping.
+section {
+  overflow: visible;
+  display: flow-root;
+  // Land anchor scrolls below the sticky page menu (height published by cardiffuniversity.js).
+  scroll-margin-top: calc(var(--cu-sticky-nav, 0px) + var(--cu-space-4));
+}
+
+// =============================================================================
+// SIDE NAVIGATION
+// =============================================================================
+
+// Selected item: a red left rule and a pale red wash, not a solid red block.
+.nav-list>.active>a,
+.nav-list>.active>a:hover,
+.nav-list>.active>a:focus {
+  background: var(--color-selected-bg);
+  background-color: var(--color-selected-bg);
+  color: var(--cu-ink);
+  font-weight: var(--cu-weight-bold);
+}
+
+.nav-list>li>a {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  text-shadow: none;
+}
+
+.nav-list .nav-header {
+  text-shadow: none;
+}
+
+// Table of Contents (Sidebar): square and flat, a 1px frame, 1px rules between items and a
+// red left rule on the selected item.
+// Overrides the base template's 6px radius and shadow (modules/site/parent_templates/site/common/css/custom.css).
+.bs-docs-sidenav {
+  background-color: var(--cu-bg);
+  border: 1px solid var(--cu-border);
+  border-radius: 0;
+  box-shadow: none;
+
+  >li>a {
+    color: var(--color-text-primary);
+    margin: 0;
+    border: 0;
+    border-bottom: 1px solid var(--cu-line);
+    border-left: 4px solid transparent;
+  }
+
+  >li:first-child>a,
+  >li:last-child>a {
+    border-radius: 0;
+  }
+
+  // The base template sets `border: 0` and a wider padding on the selected item
+  // (custom.css), so restore both here rather than only recolouring the left edge.
+  >.active>a,
+  >.active>a:hover,
+  >.active>a:focus {
+    padding: 8px 14px;
+    border: 0;
+    border-bottom: 1px solid var(--cu-line);
+    border-left: 4px solid var(--color-brand-primary);
+    color: var(--cu-ink);
+    text-shadow: none;
+    box-shadow: none;
+  }
+
+  >li:last-child>a,
+  >li:last-child.active>a {
+    border-bottom: 0;
+  }
+
+  >li>a:hover {
+    background-color: var(--cu-surface);
+  }
+
+  // Bootstrap pins the section menu to the viewport once it scrolls past (.affix). Hold it
+  // clear of the sticky page menu; --cu-sticky-nav is published by cardiffuniversity.js and is 0px
+  // when the bar is not sticky.
+  //
+  // Deliberately no max-height or overflow here. The player already handles a menu taller than
+  // the window: fixSideBar() adds .staticPosition so it scrolls with the page at full height.
+  // Capping the height broke that twice over - it gave the menu its own scrollbar, and because
+  // fixSideBar() measures the menu, the cap made a long menu look short enough to pin.
+  &.affix {
+    top: calc(var(--cu-sticky-nav, 0px) + var(--cu-space-6));
+  }
+
+  a:hover .icon-chevron-right {
+    opacity: 0.5;
+  }
+
+  .active .icon-chevron-right,
+  .active a:hover .icon-chevron-right {
+    opacity: 1;
+  }
+}
+
+// =============================================================================
+// FOOTER
+// =============================================================================
+
+// Brand-secondary footer (ink for Cardiff) with no red: white links, grey-30 secondary text.
+// The player builds it from the project's customFooter HTML (application.js), which lands in
+// #customFooter.
+.footer {
+  padding-block: var(--spacing-xl);
+  position: relative;
+  background-color: var(--color-brand-secondary);
+  border: 0;
+  color: var(--color-gray-30);
+
+  p {
+    margin-bottom: 0;
+    color: var(--color-gray-30);
+  }
+
+  // The global h2 is a display heading; in a footer it labels a column of links.
+  h2,
+  h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-white);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+  }
+
+  // Link lists carry no bullets, so drop the bullet indent the shared list rule adds.
+  ul {
+    margin: 0;
+    list-style: none;
+
+    li {
+      padding-left: 0;
+    }
+  }
+
+  a {
+    color: var(--color-white);
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      color: var(--color-white);
+    }
+
+    // The global ring is ink, which cannot be seen on an ink background.
+    &:focus-visible {
+      outline-color: var(--color-white);
+    }
+  }
+
+  // The author's columns sit side by side and stack once a column would be under 16rem.
+  #customFooter {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--spacing-xl);
+
+    // footerPos=replace makes the player append its WCAG link here as one more child. Pinning it
+    // to column 1 sends it to its own row; spanning every column would stop auto-fit collapsing
+    // the empty tracks and squeeze the real columns.
+    > .wcagLink {
+      grid-column: 1;
+    }
+  }
+}
+
+.footer-logo {
+  max-width: 250px;
+  height: auto;
+  margin: 0 0 var(--spacing-sm);
+}
+
+// =============================================================================
+// FEEDBACK BUTTON
+// =============================================================================
+
+// Vertical Feedback button for the project. Action red, and no shadow: shadows are for overlays.
+#feedback_button {
+  writing-mode: vertical-lr;
+  background: var(--color-action);
+  color: var(--color-white);
+  padding-inline: 16px;
+  padding-block: 4px;
+  padding-block-end: 8px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  right: 0;
+  top: 62%;
+  z-index: 1000;
+  transform: translateX(10px);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform 300ms ease-in-out, background-color 300ms ease-in-out;
+  font-weight: var(--font-weight-bold);
+
+  &:hover {
+    transform: translateX(2px);
+    background: var(--color-action-hover);
+  }
+
+  i {
+    transform: rotate(90deg);
+    margin-inline-end: var(--spacing-xs);
+  }
+
+  // The link would otherwise take the player's link blue, which fails contrast on red.
+  a,
+  a:hover {
+    text-decoration: none;
+    color: var(--color-white);
+  }
+}
+
+// =============================================================================
+// ALTERNATING SECTION BACKGROUNDS
+// =============================================================================
+
+.evenSection {
+  background: var(--color-white);
+}
+
+.oddSection {
+  background: var(--color-light);
+}
