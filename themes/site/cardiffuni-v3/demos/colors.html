@@ -85,7 +85,7 @@
         <!-- Brand Colors -->
         <section class="demo-section" id="brand-colors">
             <h2>Brand Colors</h2>
-            <p>The core brand colors that define the Cardiff University visual identity.</p>
+            <p>The two brand colours. A project restyles the theme by setting these at <code>:root</code>: see <a href="theming.html">Theming</a>. Text does not follow the secondary: it is always ink.</p>
 
             <div class="demo-grid">
                 <div>
@@ -93,7 +93,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Brand Primary</span>
                         <span class="color-info__value">--color-brand-primary</span>
-                        <span class="color-info__value">#E4251B</span>
+                        <span class="color-info__value">var(--cu-red) · #E4251B</span>
                     </div>
                 </div>
 
@@ -102,7 +102,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Brand Secondary</span>
                         <span class="color-info__value">--color-brand-secondary</span>
-                        <span class="color-info__value">#121212</span>
+                        <span class="color-info__value">var(--cu-ink) · #121212</span>
                     </div>
                 </div>
             </div>
@@ -346,7 +346,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Text Primary</span>
                         <span class="color-info__value">--color-text-primary</span>
-                        <span class="color-info__value">var(--color-brand-secondary)</span>
+                        <span class="color-info__value">var(--cu-ink)</span>
                     </div>
                 </div>
 
@@ -373,12 +373,12 @@
                     <div class="color-info">
                         <span class="color-info__name">Text Brand</span>
                         <span class="color-info__value">--color-text-brand</span>
-                        <span class="color-info__value">var(--color-action) · #C21F16</span>
+                        <span class="color-info__value">var(--color-action) · #C21F17</span>
                     </div>
                 </div>
 
                 <div>
-                    <div class="color-swatch" style="background: var(--color-brand-secondary);"></div>
+                    <div class="color-swatch" style="background: var(--cu-ink);"></div>
                     <div class="color-info">
                         <span class="color-info__name">Text Inverse</span>
                         <span class="color-info__value">--color-text-inverse</span>
@@ -586,14 +586,14 @@
         <!-- Action, Focus and Draft Roles -->
         <section class="demo-section" id="action-focus-and-draft-label">
             <h2>Action, Focus &amp; Draft Label</h2>
-            <p>Roles introduced by the Cardiff Resource Design System v1.3. Filled buttons use the darker action red; keyboard focus is black; draft labels are black on Yellow.</p>
+            <p>Roles introduced by the Cardiff Resource Design System v1.3. Filled buttons use the darker action red, mixed from the brand primary so a restyled brand takes its buttons with it; keyboard focus is black; draft labels are black on Yellow.</p>
             <div class="demo-grid">
                 <div>
                     <div class="color-swatch" style="background: var(--color-action);"></div>
                     <div class="color-info">
                         <span class="color-info__name">Action</span>
                         <span class="color-info__value">--color-action</span>
-                        <span class="color-info__value">var(--cu-action) · #C21F16</span>
+                        <span class="color-info__value">brand primary 85%, black · #C21F17</span>
                     </div>
                 </div>
                 <div>
@@ -601,7 +601,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Action Hover</span>
                         <span class="color-info__value">--color-action-hover</span>
-                        <span class="color-info__value">var(--cu-action-hover) · #A11A12</span>
+                        <span class="color-info__value">brand primary 70.5%, black · #A11A13</span>
                     </div>
                 </div>
                 <div>
@@ -714,14 +714,14 @@
             <div class="demo-block">
                 <div class="demo-block__title">Where the colours come from</div>
                 <p>Every colour, font family and spacing value comes from the design system&rsquo;s <code>v1/tokens.css</code>. <code>sync-theme.py</code> generates <code>scss/_cu-tokens.scss</code> (the <code>--cu-*</code> tokens at <code>:root</code>); the theme&rsquo;s <code>--color-*</code> roles point at those tokens. Don&rsquo;t edit the generated file: change <code>tokens.css</code>, run <code>sync-theme.py</code>, then recompile the theme.</p>
-                <pre><code>--color-action: var(--cu-action);      /* #C21F16 */
+                <pre><code>--color-brand-primary: var(--cu-red);  /* #E4251B */
 --color-focus: var(--cu-focus);        /* #121212 */
 --color-link-default: var(--cu-link);  /* #045BC6 */</code></pre>
             </div>
 
             <div class="demo-block">
                 <div class="demo-block__title">Restyling a project</div>
-                <p>Override the <code>--cu-*</code> roles once at <code>:root</code>, in the project's Styles or Stylesheet property. The <a href="theming.html">Theming</a> page shows which roles to change, what stays Cardiff red, and a live variant.</p>
+                <p>Set <code>--color-brand-primary</code> and <code>--color-brand-secondary</code> once at <code>:root</code>, in the project's Styles or Stylesheet property. The <a href="theming.html">Theming</a> page shows what each one changes, what stays Cardiff red, and a live example.</p>
             </div>
         </section>
         </div>
