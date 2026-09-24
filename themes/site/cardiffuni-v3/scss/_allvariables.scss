@@ -16,7 +16,14 @@
 :root {
     // =========================================================================
     // BRAND COLORS
-    // Compatibility names. Shared roles are the project override points.
+    // The project override points. A project restyles the theme by setting these two at :root,
+    // in its Styles or Stylesheet property (see THEMING-GUIDE.md). Every brand-coloured part reads
+    // them, and the action and navbar shades below derive from them. Text, focus, error, the
+    // Warning callout and charts do not, so they stay put under any brand.
+    //   primary:   the header edge, navbar marker, side-menu rule, selected-item wash and, through
+    //              the action shades, primary buttons and the feedback tab
+    //   secondary: the navbar, footer, secondary buttons, dark bands, tabs and pills, progress
+    //              bars, the back-to-top button and Do/Don't labels. Not text: that is ink.
     // =========================================================================
 
     --color-brand-primary: var(--cu-red);
@@ -37,10 +44,15 @@
     // Values come from the design system tokens (--cu-*). Red usage is decided separately.
     // =========================================================================
 
-    --color-action: var(--cu-action);
-    --color-action-hover: var(--cu-action-hover);
-    --color-tint: #F8DADA; // not in the design system; see Red Usage Decisions
-    --color-selected-bg: color-mix(in srgb, var(--cu-red) 6%, var(--cu-bg)); // selected nav item wash; not in the design system, see Red Usage Decisions
+    // Derived from the brand primary, so a restyled brand takes its buttons with it. For Cardiff
+    // red they come to #C21F17 and #A11A13: one step from the design system's --cu-action and
+    // --cu-action-hover (#C21F16, #A11A12), in the blue channel only. No sRGB mix reproduces both
+    // exactly. White text on them is 6.0:1 and 7.9:1; a light brand colour can fall below 4.5:1,
+    // so a project with one sets --color-action and --color-action-hover itself.
+    --color-action: color-mix(in srgb, var(--color-brand-primary) 85%, black);
+    --color-action-hover: color-mix(in srgb, var(--color-brand-primary) 70.5%, black);
+    --color-tint: color-mix(in srgb, var(--color-brand-primary) 17%, white); // outline-button hover; not in the design system, see Red Usage Decisions
+    --color-selected-bg: color-mix(in srgb, var(--color-brand-primary) 6%, var(--cu-bg)); // selected nav item wash; not in the design system, see Red Usage Decisions
     --color-focus: var(--cu-focus);
     // Only ever used for the Draft/proposed label (black on Yellow, 10.4:1). Not a general
     // warning colour: see --color-status-warning below for that.
@@ -81,7 +93,7 @@
     // =========================================================================
 
     // Text
-    --color-text-primary: var(--color-brand-secondary);
+    --color-text-primary: var(--cu-ink); // text is always ink, whatever the brand secondary
     --color-text-secondary: var(--cu-muted);
     --color-text-tertiary: var(--cu-text-tertiary);
     --color-text-inverse: var(--color-white);
@@ -119,9 +131,13 @@
     --color-status-info: var(--color-link-default);
 
     // Navigation
-    // Decoupled from brand-secondary for flexibility
+    // The main navbar follows the brand secondary. Its hover and current-page fill is 14% lighter:
+    // grey-90 (#333333) for ink. White text on both needs a dark secondary (4.5:1 or better).
+    --color-navbar-bg: var(--color-brand-secondary);
+    --color-navbar-bg-hover: color-mix(in srgb, var(--color-brand-secondary) 86%, white);
+    // Tabs and pills follow the brand secondary too (ink for Cardiff).
     --color-nav-accent: var(--color-brand-secondary);
-    --color-nav-accent-dark: var(--color-brand-secondary-dark);
+    --color-nav-accent-dark: color-mix(in srgb, var(--color-nav-accent) 15%, black);
 
     // =========================================================================
     // BUTTONS
@@ -156,7 +172,7 @@
 
     // Reverse Button (light - for dark backgrounds)
     --btn-reverse-bg: var(--color-white);
-    --btn-reverse-text: var(--color-brand-secondary);
+    --btn-reverse-text: var(--cu-ink);
     --btn-reverse-hover-bg: var(--color-gray-10);
     --btn-reverse-active-bg: var(--color-gray-30);
     --btn-reverse-disabled-bg: var(--color-gray-10);
@@ -193,10 +209,10 @@
 
     // ----- GHOST/TERTIARY BUTTON -----
 
-    --btn-ghost-text: var(--color-brand-secondary);
+    --btn-ghost-text: var(--cu-ink);
     --btn-ghost-hover-bg: var(--color-gray-10);
-    --btn-ghost-hover-text: var(--color-brand-secondary);
-    --btn-ghost-active-text: var(--color-brand-secondary);
+    --btn-ghost-hover-text: var(--cu-ink);
+    --btn-ghost-active-text: var(--cu-ink);
     --btn-ghost-disabled-text: var(--color-gray-50);
 
     // ----- BUTTON SIZING & STYLING -----

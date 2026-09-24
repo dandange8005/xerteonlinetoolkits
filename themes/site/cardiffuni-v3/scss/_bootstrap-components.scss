@@ -705,7 +705,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 .badge-warning,
 .label-warning {
     background-color: var(--color-accent-orange);
-    color: var(--color-brand-secondary);
+    color: var(--cu-ink);
 }
 
 .badge-important,
@@ -722,7 +722,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
 .badge-inverse,
 .label-inverse {
-    background-color: var(--color-brand-secondary);
+    background-color: var(--cu-ink);
 }
 
 // Empty badge (hidden when no content)
@@ -752,7 +752,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
     line-height: 20px;
     color: var(--color-white);
     text-align: center;
-    background-color: var(--color-brand-secondary); // ink
+    background-color: var(--color-brand-secondary);
     transition: width var(--duration-normal) ease;
 }
 

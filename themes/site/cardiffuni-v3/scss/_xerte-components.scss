@@ -32,7 +32,7 @@ a.glossary:active {
 }
 
 .glossaryTip {
-    background-color: var(--color-brand-secondary); // ink
+    background-color: var(--cu-ink);
     color: var(--color-white);
 }
 
@@ -44,11 +44,12 @@ a.glossary:active {
 // to .btn-mini, which is compiled later, so select on .btn.topBtn instead.
 .btn.topBtn {
     color: var(--color-white);
-    background: var(--color-brand-secondary); // ink
+    background: var(--color-brand-secondary);
 
+    // The navbar's hover shade: grey-90 for Cardiff, a lighter secondary under a restyled brand.
     &:hover,
     &:focus {
-        background: var(--color-gray-90);
+        background: var(--color-navbar-bg-hover);
         color: var(--color-white);
     }
 }

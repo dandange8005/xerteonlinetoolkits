@@ -178,10 +178,10 @@
   --color-brand-secondary: var(--cu-ink);
   --color-white: var(--cu-white);
   --color-light: color-mix(in srgb, var(--cu-bg) 50%, var(--cu-surface) 50%);
-  --color-action: var(--cu-action);
-  --color-action-hover: var(--cu-action-hover);
-  --color-tint: #F8DADA;
-  --color-selected-bg: color-mix(in srgb, var(--cu-red) 6%, var(--cu-bg));
+  --color-action: color-mix(in srgb, var(--color-brand-primary) 85%, black);
+  --color-action-hover: color-mix(in srgb, var(--color-brand-primary) 70.5%, black);
+  --color-tint: color-mix(in srgb, var(--color-brand-primary) 17%, white);
+  --color-selected-bg: color-mix(in srgb, var(--color-brand-primary) 6%, var(--cu-bg));
   --color-focus: var(--cu-focus);
   --color-draft: var(--cu-draft);
   --color-draft-bg: var(--cu-draft-bg);
@@ -208,7 +208,7 @@
   --color-accent-lime: var(--cu-accent-yellow-green);
   --color-accent-indigo: var(--cu-accent-indigo);
   --color-accent-violet: var(--cu-accent-dark-violet);
-  --color-text-primary: var(--color-brand-secondary);
+  --color-text-primary: var(--cu-ink);
   --color-text-secondary: var(--cu-muted);
   --color-text-tertiary: var(--cu-text-tertiary);
   --color-text-inverse: var(--color-white);
@@ -234,8 +234,10 @@
   --color-status-warning: var(--color-accent-orange-dark);
   --color-status-error: var(--cu-error);
   --color-status-info: var(--color-link-default);
+  --color-navbar-bg: var(--color-brand-secondary);
+  --color-navbar-bg-hover: color-mix(in srgb, var(--color-brand-secondary) 86%, white);
   --color-nav-accent: var(--color-brand-secondary);
-  --color-nav-accent-dark: var(--color-brand-secondary-dark);
+  --color-nav-accent-dark: color-mix(in srgb, var(--color-nav-accent) 15%, black);
   --btn-primary-bg: var(--color-action);
   --btn-primary-text: var(--color-white);
   --btn-primary-hover-bg: var(--color-action-hover);
@@ -255,7 +257,7 @@
   --btn-success-disabled-bg: color-mix(in srgb, var(--color-accent-green) 50%, white);
   --btn-success-disabled-text: var(--color-white);
   --btn-reverse-bg: var(--color-white);
-  --btn-reverse-text: var(--color-brand-secondary);
+  --btn-reverse-text: var(--cu-ink);
   --btn-reverse-hover-bg: var(--color-gray-10);
   --btn-reverse-active-bg: var(--color-gray-30);
   --btn-reverse-disabled-bg: var(--color-gray-10);
@@ -276,10 +278,10 @@
   --btn-reverse-outline-border: var(--color-white);
   --btn-reverse-outline-hover-bg: rgba(255, 255, 255, 0.15);
   --btn-reverse-outline-active-bg: rgba(255, 255, 255, 0.25);
-  --btn-ghost-text: var(--color-brand-secondary);
+  --btn-ghost-text: var(--cu-ink);
   --btn-ghost-hover-bg: var(--color-gray-10);
-  --btn-ghost-hover-text: var(--color-brand-secondary);
-  --btn-ghost-active-text: var(--color-brand-secondary);
+  --btn-ghost-hover-text: var(--cu-ink);
+  --btn-ghost-active-text: var(--cu-ink);
   --btn-ghost-disabled-text: var(--color-gray-50);
   --btn-font-family: var(--font-family-primary);
   --btn-font-weight: var(--font-weight-bold);
@@ -1687,7 +1689,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 .badge-warning,
 .label-warning {
   background-color: var(--color-accent-orange);
-  color: var(--color-brand-secondary);
+  color: var(--cu-ink);
 }
 
 .badge-important,
@@ -1704,7 +1706,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 
 .badge-inverse,
 .label-inverse {
-  background-color: var(--color-brand-secondary);
+  background-color: var(--cu-ink);
 }
 
 .badge:empty,
@@ -1803,7 +1805,7 @@ a.glossary:active {
 }
 
 .glossaryTip {
-  background-color: var(--color-brand-secondary);
+  background-color: var(--cu-ink);
   color: var(--color-white);
 }
 
@@ -1812,7 +1814,7 @@ a.glossary:active {
   background: var(--color-brand-secondary);
 }
 .btn.topBtn:hover, .btn.topBtn:focus {
-  background: var(--color-gray-90);
+  background: var(--color-navbar-bg-hover);
   color: var(--color-white);
 }
 
@@ -2981,7 +2983,7 @@ section a.link-asset {
   background: var(--cu-bg);
   background-image: none;
   color: var(--cu-ink);
-  border-top: 4px solid var(--cu-red);
+  border-top: 4px solid var(--color-brand-primary);
   border-bottom: 1px solid var(--cu-border);
   box-shadow: none;
   padding: var(--cu-space-8) 0;
@@ -3090,14 +3092,14 @@ section a.link-asset {
 .navbar-inverse .navbar-inner {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  background: var(--cu-ink);
+  background: var(--color-navbar-bg);
   background-image: none;
   border: 0;
   box-shadow: none;
 }
 
 #pageLinks .navbar-inverse .navbar-inner {
-  border-bottom: 4px solid var(--cu-red);
+  border-bottom: 4px solid var(--color-brand-primary);
 }
 
 .navbar-inverse .navbar-inner > .container {
@@ -3153,7 +3155,7 @@ section a.link-asset {
 .navbar-inverse .nav-collapse .dropdown-menu a:focus,
 .navbar-inverse .brand:hover,
 .navbar-inverse .nav > li > a:hover {
-  background-color: var(--cu-grey-90);
+  background-color: var(--color-navbar-bg-hover);
   color: var(--cu-on-dark);
   box-sizing: border-box;
 }
@@ -3167,10 +3169,10 @@ section a.link-asset {
 
 .navbar .nav > li.activePage > a,
 .navbar .nav > li.activePage > a:hover {
-  background-color: var(--cu-grey-90);
+  background-color: var(--color-navbar-bg-hover);
   text-decoration: none;
   color: var(--cu-on-dark);
-  box-shadow: inset 0 -3px 0 0 var(--cu-red);
+  box-shadow: inset 0 -3px 0 0 var(--color-brand-primary);
 }
 
 .navbar.navbar-fixed-top {
@@ -3225,7 +3227,7 @@ section {
   padding: 8px 14px;
   border: 0;
   border-bottom: 1px solid var(--cu-line);
-  border-left: 4px solid var(--cu-red);
+  border-left: 4px solid var(--color-brand-primary);
   color: var(--cu-ink);
   text-shadow: none;
   box-shadow: none;
@@ -4630,7 +4632,7 @@ This is where you can define styles that will be available
 }
 
 .text-cu-black {
-  color: var(--color-brand-secondary) !important;
+  color: var(--cu-ink) !important;
 }
 
 /* v3: no web font - Design System v1.7 uses the Franklin Gothic stack with system fallbacks */

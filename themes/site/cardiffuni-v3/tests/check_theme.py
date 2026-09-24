@@ -59,8 +59,14 @@ CHECKS = [
     ("tokens", "--cu-action is dark Cardiff red", "v('var(--cu-action)')", "rgb(194, 31, 22)"),
     ("tokens", "--cu-callout-tip is Cadet", "v('var(--cu-callout-tip)')", "rgb(94, 185, 155)"),
     ("tokens", "--cu-space-6 is 24px", "v('var(--cu-space-6)','paddingTop')", "24px"),
-    ("roles", "action unchanged: #C21F16", "v('var(--color-action)')", "rgb(194, 31, 22)"),
-    ("roles", "action hover unchanged: #A11A12", "v('var(--color-action-hover)')", "rgb(161, 26, 18)"),
+    # The action shades derive from the brand primary; for Cardiff red they land one step from
+    # the design system's values, in the blue channel (#C21F17, #A11A13).
+    ("roles", "action derives from brand red: #C21F17", "rounded(v('var(--color-action)'))", "rgb(194, 31, 23)"),
+    ("roles", "action hover derives from brand red: #A11A13", "rounded(v('var(--color-action-hover)'))", "rgb(161, 26, 19)"),
+    ("roles", "action is within one step of the design system's --cu-action",
+     "String(sameColor(v('var(--color-action)'),v('var(--cu-action)'),1.5))", "true"),
+    ("roles", "action hover is within one step of the design system's --cu-action-hover",
+     "String(sameColor(v('var(--color-action-hover)'),v('var(--cu-action-hover)'),1.5))", "true"),
     ("roles", "error is #A11A12", "v('var(--color-status-error)')", "rgb(161, 26, 18)"),
     ("roles", "focus is black", "v('var(--color-focus)')", "rgb(18, 18, 18)"),
     ("roles", "draft label text is black", "v('var(--color-draft)')", "rgb(18, 18, 18)"),
@@ -75,7 +81,7 @@ CHECKS = [
     ("roles", "light is neutral, with no colour tint",
      "(function(){var c=rgbOf(v('var(--color-light)','backgroundColor'));return String(Math.abs(c[0]-c[1])<0.5&&Math.abs(c[1]-c[2])<0.5)})()", "true"),
     ("roles", "the page background is white", "cs('body','backgroundColor')", "rgb(255, 255, 255)"),
-    ("roles", "primary button still dark red", "cs('.button.button-primary','backgroundColor')", "rgb(194, 31, 22)"),
+    ("roles", "primary button still dark red", "rounded(cs('.button.button-primary','backgroundColor'))", "rgb(194, 31, 23)"),
     ("rules", "rule is 1px", "cs('#rule','borderTopWidth')", "1px"),
     ("rules", "rule is neutral grey-30", "cs('#rule','borderTopColor')", "rgb(204, 204, 204)"),
     ("rules", "strong rule is 2px", "cs('#rule-strong','borderTopWidth')", "2px"),
@@ -129,7 +135,7 @@ CHECKS = [
     ("frame", "navbar below the header has a 4px rule", "cs('#pageLinks .navbar-inner','borderBottomWidth')", "4px"),
     ("frame", "navbar below-header rule is brand red", "cs('#pageLinks .navbar-inner','borderBottomColor')", "rgb(228, 37, 27)"),
     ("frame", "navbar links are white", "cs('#nav li:not(.activePage) a','color')", "rgb(255, 255, 255)"),
-    ("frame", "current page sits on a lighter dark", "cs('#nav li.activePage a','backgroundColor')", "rgb(51, 51, 51)"),
+    ("frame", "current page sits on a lighter dark", "rounded(cs('#nav li.activePage a','backgroundColor'))", "rgb(51, 51, 51)"),
     ("frame", "current page is underlined in brand red", "cs('#nav li.activePage a','boxShadow')", "rgb(228, 37, 27) 0px -3px 0px 0px inset"),
     ("frame", "sidebar is square", "cs('#toc','borderTopLeftRadius')", "0px"),
     ("frame", "sidebar has no shadow", "cs('#toc','boxShadow')", "none"),
@@ -141,7 +147,7 @@ CHECKS = [
     ("frame", "last sidebar item has no rule below the frame", "cs('#toc > li:last-child > a','borderBottomWidth')", "0px"),
     ("frame", "selected sidebar item has a 4px red left rule", "cs('#toc > li.active > a','borderLeftWidth')", "4px"),
     ("frame", "selected sidebar left rule is brand red", "cs('#toc > li.active > a','borderLeftColor')", "rgb(228, 37, 27)"),
-    ("frame", "selected sidebar item sits on a pale red wash", "String(cs('#toc > li.active > a','backgroundColor') === v('color-mix(in srgb, var(--cu-red) 6%, var(--cu-bg))','backgroundColor'))", "true"),
+    ("frame", "selected sidebar item sits on a pale red wash", "String(cs('#toc > li.active > a','backgroundColor') === v('color-mix(in srgb, var(--color-brand-primary) 6%, var(--cu-bg))','backgroundColor'))", "true"),
     ("frame", "selected sidebar text is ink, not white on red", "cs('#toc > li.active > a','color')", "rgb(18, 18, 18)"),
     ("frame", "selected and unselected sidebar text line up", "(function(){var a=document.querySelector('#toc > li.active > a'),b=document.querySelector('#toc > li:nth-child(2) > a');return String(getComputedStyle(a).paddingLeft===getComputedStyle(b).paddingLeft&&getComputedStyle(a).borderLeftWidth===getComputedStyle(b).borderLeftWidth)})()", "true"),
     # The base template clears floats with `section { overflow: auto }` (custom.css), which also
@@ -265,8 +271,39 @@ CHECKS = [
      "return String(before === true && after === false)})()", "true"),
     # Change the shared source and exercise old aliases and newer consumers together.
     ("theming", "brand role updates legacy utilities and the new header rule",
-     "withRootTokens({'--cu-red':'rgb(0, 80, 140)'},()=>{const h=document.getElementById('overview'),old=h.style.transition;h.style.transition='none';try{return classStyle('bg-brand','backgroundColor')+' '+cs('#overview','borderTopColor');}finally{h.style.transition=old;}})",
+     "withRootTokens({'--color-brand-primary':'rgb(0, 80, 140)'},()=>{const h=document.getElementById('overview'),old=h.style.transition;h.style.transition='none';try{return classStyle('bg-brand','backgroundColor')+' '+cs('#overview','borderTopColor');}finally{h.style.transition=old;}})",
      "rgb(0, 80, 140) rgb(0, 80, 140)"),
+    ("theming", "the brand primary recolours the header edge, both navbar markers and the side-menu rule",
+     "withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>[cs('#overview','borderTopColor'),cs('#pageLinks .navbar-inner','borderBottomColor'),cs('#nav li.activePage a','boxShadow').match(/rgb\\([^)]*\\)/)[0],cs('#toc > li.active > a','borderLeftColor')].join(' | '))",
+     "rgb(0, 112, 60) | rgb(0, 112, 60) | rgb(0, 112, 60) | rgb(0, 112, 60)"),
+    ("theming", "the brand primary recolours the selected-item wash",
+     "withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>String(sameColor(cs('#toc > li.active > a','backgroundColor'),v('color-mix(in srgb, rgb(0, 112, 60) 6%, white)','backgroundColor'))))",
+     "true"),
+    ("theming", "the primary button and feedback tab take the darker brand primary",
+     "withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>rounded(cs('.button.button-primary','backgroundColor'))+' '+rounded(cs('#feedback_button','backgroundColor')))",
+     "rgb(0, 95, 51) rgb(0, 95, 51)"),
+    ("theming", "the brand secondary recolours the navbar, its current-page fill and the footer",
+     "withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>[cs('#topnav .navbar-inner','backgroundColor'),rounded(cs('#nav li.activePage a','backgroundColor')),cs('#test-footer','backgroundColor')].join(' | '))",
+     "rgb(29, 43, 79) | rgb(61, 73, 104) | rgb(29, 43, 79)"),
+    ("theming", "the brand secondary recolours the secondary button and the dark background utility",
+     "withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>classStyle('button button-secondary','backgroundColor')+' '+classStyle('bg-dark','backgroundColor'))",
+     "rgb(29, 43, 79) rgb(29, 43, 79)"),
+    ("theming", "text and headings stay ink under a restyled brand",
+     "withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>[cs('body','color'),cs('#plain-h2','color')].join(' '))",
+     "rgb(18, 18, 18) rgb(18, 18, 18)"),
+    # The player's .top-round sets `transition: all .3s !important`, which beats withBrand's rule,
+    # so the button's transition stays off inline until the example brand has been undone.
+    ("theming", "pills, the progress bar and the back-to-top button take the brand secondary",
+     "(function(){const t=document.getElementById('top-round');t.style.setProperty('transition','none','important');"
+     "try{return withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>[cs('#pill-first a','backgroundColor'),cs('#bar-default','backgroundColor'),cs('#top-round','backgroundColor')].join(' '))}"
+     "finally{void t.offsetHeight;t.style.removeProperty('transition')}})()",
+     "rgb(29, 43, 79) rgb(29, 43, 79) rgb(29, 43, 79)"),
+    ("theming", "error, the Warning callout, focus and links do not follow the brand",
+     "withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>[v('var(--color-status-error)'),cs('#callout-warning','borderLeftColor'),v('var(--color-focus)'),v('var(--color-link-default)')].join(' '))",
+     "rgb(161, 26, 18) rgb(228, 37, 27) rgb(18, 18, 18) rgb(4, 91, 198)"),
+    ("theming", "white navbar and button text read at 4.5:1 or better on the example brand",
+     "withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>String(contrast('#nav li:not(.activePage) a','#topnav .navbar-inner')>=4.5&&contrast('.button.button-primary','.button.button-primary')>=4.5))",
+     "true"),
     ("theming", "spacing source updates legacy gap and section scroll margin",
      "withRootTokens({'--cu-space-4':'22px'},()=>classStyle('gap-md','gap')+' '+cs('#test-section','scrollMarginTop'))", "22px 22px"),
     ("theming", "body size follows the shared reading-copy role",
@@ -317,10 +354,23 @@ CHECKS = [
      "(function(){var k=document.querySelectorAll('#customFooter > div'),col=k[1].getBoundingClientRect(),"
      "w=document.querySelector('#footer-wcag').getBoundingClientRect();"
      "return String(w.top>=col.bottom-1 && Math.abs(w.left-k[0].getBoundingClientRect().left)<=1)})()", "true"),
-    ("chrome", "feedback tab is action red", "cs('#feedback_button','backgroundColor')", "rgb(194, 31, 22)"),
+    ("chrome", "feedback tab is action red", "rounded(cs('#feedback_button','backgroundColor'))", "rgb(194, 31, 23)"),
     ("chrome", "feedback tab has no shadow", "cs('#feedback_button','boxShadow')", "none"),
     ("chrome", "feedback tab text reads at 4.5:1 or better", "String(contrast('#feedback-link','#feedback_button')>=4.5)", "true"),
     ("chrome", "back-to-top is ink", "cs('#top-round','backgroundColor')", "rgb(18, 18, 18)"),
+    # Hover and focus share one rule; headless checks cannot hover, so focus stands in for both.
+    ("chrome", "focused back-to-top is grey-90, the navbar's hover shade",
+     "(function(){var b=document.querySelector('#top-round'),previous=document.activeElement;"
+     "b.style.setProperty('transition','none','important');b.focus({preventScroll:true});"
+     "var r=rounded(getComputedStyle(b).backgroundColor);"
+     "previous.focus({preventScroll:true});if(document.activeElement===b)b.blur();void b.offsetHeight;b.style.removeProperty('transition');return r})()",
+     "rgb(51, 51, 51)"),
+    ("chrome", "focused back-to-top follows a restyled brand secondary",
+     "(function(){var b=document.querySelector('#top-round'),previous=document.activeElement;"
+     "b.style.setProperty('transition','none','important');b.focus({preventScroll:true});"
+     "try{return withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>rounded(getComputedStyle(b).backgroundColor))}"
+     "finally{previous.focus({preventScroll:true});if(document.activeElement===b)b.blur();void b.offsetHeight;b.style.removeProperty('transition')}})()",
+     "rgb(61, 73, 104)"),
     ("chrome", "back-to-top has no resting shadow", "cs('#top-round','boxShadow')", "none"),
     ("chrome", "back-to-top has no hover halo", "ps('#top-round','::after','boxShadow')", "none"),
     ("chrome", "back-to-top arrow reads at 4.5:1 or better", "String(contrast('#top-round','#top-round')>=4.5)", "true"),
@@ -437,7 +487,7 @@ CHECKS = [
     # The asterisk is the error red, not brand red, so recolouring the brand leaves it alone.
     ("red", "the required-field asterisk is the error red", "ps('#required-label','::after','color')", "rgb(161, 26, 18)"),
     ("red", "the asterisk ignores a recoloured brand",
-     "withRootTokens({'--cu-red':'rgb(1, 2, 3)'},()=>ps('#required-label','::after','color'))", "rgb(161, 26, 18)"),
+     "withRootTokens({'--color-brand-primary':'rgb(1, 2, 3)'},()=>ps('#required-label','::after','color'))", "rgb(161, 26, 18)"),
     ("red", "the asterisk reads on white at 4.5:1 or better",
      "(function(){var c=ps('#required-label','::after','color'),p=document.createElement('span');p.style.color=c;document.body.appendChild(p);"
      "p.id='asterisk-probe';var r=contrast('#asterisk-probe','body');p.remove();return String(r>=4.5)})()", "true"),

@@ -223,6 +223,26 @@ function sameColor(a, b, tol) {
   var ca = rgbOf(a), cb = rgbOf(b);
   return ca.every(function (v, i) { return Math.abs(v - cb[i]) <= tol; });
 }
+// A computed colour rounded to whole rgb() channels, so a color-mix() result that serialises
+// as color(srgb ...) compares with a plain value.
+function rounded(value) {
+  return 'rgb(' + rgbOf(value).map(Math.round).join(', ') + ')';
+}
+// Runs a check under a restyled brand (see THEMING-GUIDE.md), with transitions off so every
+// part reads its new colour rather than the start of a fade from the old one.
+function withBrand(primary, secondary, check) {
+  const off = document.createElement('style');
+  off.textContent = '*, *::before, *::after { transition: none !important; }';
+  document.head.appendChild(off);
+  try {
+    return withRootTokens({'--color-brand-primary': primary, '--color-brand-secondary': secondary}, check);
+  } finally {
+    // Settle the restored brand while transitions are still off; otherwise the next reading
+    // would catch a fade back from the example colours.
+    void document.body.offsetHeight;
+    off.remove();
+  }
+}
 // WCAG contrast ratio between one element's text colour and another's background colour.
 // Pass 'backgroundColor' as textProperty to compare two fills instead (a bar against its track).
 function contrast(textSelector, backgroundSelector, textProperty) {
