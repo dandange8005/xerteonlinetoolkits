@@ -39,7 +39,7 @@ Page Subtitle: Short tests run in timetabled sessions, from knowledge checks to 
 | # | Fragment | Section ID | Section Title |
 | --- | --- | --- | --- |
 | 1 | `01-about.html` | `class-tests-about` | About this category |
-| 2 | `02-timed-in-class-knowledge-test.html` | `timed-in-class-knowledge-test` | Timed in-class knowledge test |
+| 2 | `02-timed-in-class-knowledge-test.html` | `timed-in-class-knowledge-test` | Timed in-class knowledge test (short answer and MCQs) |
 | 3 | `03-application-based-problem-test.html` | `application-based-problem-test` | Application-based problem test |
 | 4 | `04-mentimeter-conceptual-understanding-check.html` | `mentimeter-conceptual-understanding-check` | Mentimeter conceptual understanding check |
 
@@ -130,7 +130,7 @@ Theme components where one fits:
 
 | Prototype | Here |
 | --- | --- |
-| `.placeholder` (Practical considerations) | `.cu-callout-tip` with a `.badge.am-draft` "New field" label |
+| `.placeholder` (Practical considerations) | `.cu-callout-tip` |
 | `blockquote.voice` | `.quote` |
 | `.back-link` | `.link-action` |
 

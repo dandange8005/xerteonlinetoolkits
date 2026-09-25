@@ -14,7 +14,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 SOURCE = HERE.parents[1] / "prototypes/2026-09-15_assessment-menu-xerte-prototype-v1.html"
-XERTE = Path.home() / "Projects/xerteonlinetoolkits"
+XERTE = HERE.parents[3]  # repo root
 THEME = XERTE / "themes/site/cardiffuniversity"
 COMMON = XERTE / "modules/site/parent_templates/site/common"
 
@@ -108,8 +108,8 @@ def type_fragment(data, t):
         fields(t, FIELDS),
         "<h3>Lane 1 and Lane 2</h3>",
         f'<div class="am-lanes">\n{lane_card(data, t, 1)}\n{lane_card(data, t, 2)}\n</div>',
-        '<div class="cu-callout cu-callout-tip"><strong class="cu-callout-title">Practical considerations '
-        '<span class="badge am-draft">New field</span></strong>\n<p>Content needed: rooms and lab space, staff time '
+        '<div class="cu-callout cu-callout-tip"><strong class="cu-callout-title">Practical considerations</strong>'
+        '\n<p>Content needed: rooms and lab space, staff time '
         "and marking load at scale, timetabling, and resourcing adjustments.</p></div>",
         fields(t, LATER_FIELDS),
         f"<h3>Student voice</h3>\n{voice}" if voice else "",

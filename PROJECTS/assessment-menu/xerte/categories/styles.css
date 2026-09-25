@@ -2,7 +2,7 @@
    Paste into Project > Optional properties > Styles (shared by all seven category pages).
 
    Theme components carry what they can: .cu-callout-tip for Practical considerations,
-   .quote for student voice, .link-action for the back link, .badge for the draft label.
+   .quote for student voice, .link-action for the back link.
    The lane pills, the "To resolve" note, the lane cards and the Browse page's search
    layout have no theme equivalent, so they are built here. Browse's type cards and filter
    buttons are the theme's .card and .button. Every value resolves through a theme token, except the lane and
@@ -14,12 +14,6 @@
   --am-note: color-mix(in srgb, var(--cu-accent-yellow) 45%, var(--cu-ink));
   /* Deliberate deviation: the DS keeps panels square (--radius-lg: 0). */
   --am-radius-panel: 10px;
-}
-
-/* The draft label's colour pair exists as tokens but has no class of its own. */
-.badge.am-draft {
-  background-color: var(--color-draft-bg);
-  color: var(--color-draft);
 }
 
 /* One colour per variant; the tint and border are derived from it. */
