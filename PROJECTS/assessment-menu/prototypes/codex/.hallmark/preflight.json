@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-16",
+  "framework": "vanilla HTML",
+  "reference": "2026-09-16_assessment-menu-landing-options-v2.html:29-56",
+  "fonts": "Franklin Gothic / system sans; Georgia for numerals",
+  "palette": "html-it Cardiff theme 12",
+  "motion": "No library. Control feedback only. Reduced motion respected.",
+  "spacing": "4/8 px rhythm",
+  "brand_override": "Cardiff white and supplied exact colour values override generic editorial tinting.",
+  "delivery": "Embedded CSS, JS and logo; exported tokens.css for reuse."
+}

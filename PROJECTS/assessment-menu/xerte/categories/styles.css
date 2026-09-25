@@ -1,0 +1,183 @@
+/* ===== Assessment Menu: category pages =====
+   Paste into Project > Optional properties > Styles (shared by all seven category pages).
+
+   Theme components carry what they can: .cu-callout-tip for Practical considerations,
+   .quote for student voice, .link-action for the back link, .badge for the draft label.
+   The lane pills, the "To resolve" note, the lane cards and the Browse page's search
+   layout have no theme equivalent, so they are built here. Browse's type cards and filter
+   buttons are the theme's .card and .button. Every value resolves through a theme token, except the lane and
+   note colours (mixed from the DS accents, not picked by hand) and the panel radius. */
+:root {
+  /* Lane 1 blue, Lane 2 green and the note amber: text, tinted background, border. */
+  --am-lane1: color-mix(in srgb, var(--cu-accent-light-blue) 55%, var(--cu-ink));
+  --am-lane2: color-mix(in srgb, var(--cu-accent-forest-green) 70%, var(--cu-ink));
+  --am-note: color-mix(in srgb, var(--cu-accent-yellow) 45%, var(--cu-ink));
+  /* Deliberate deviation: the DS keeps panels square (--radius-lg: 0). */
+  --am-radius-panel: 10px;
+}
+
+/* The draft label's colour pair exists as tokens but has no class of its own. */
+.badge.am-draft {
+  background-color: var(--color-draft-bg);
+  color: var(--color-draft);
+}
+
+/* One colour per variant; the tint and border are derived from it. */
+.am-pill,
+.am-note,
+.am-lane {
+  --am-tone-bg: color-mix(in srgb, var(--am-tone) 10%, var(--color-white));
+  --am-tone-line: color-mix(in srgb, var(--am-tone) 30%, var(--color-white));
+}
+
+.am-pill--lane1,
+.am-lane--1 {
+  --am-tone: var(--am-lane1);
+}
+
+.am-pill--lane2,
+.am-lane--2 {
+  --am-tone: var(--am-lane2);
+}
+
+.am-pill--either {
+  --am-tone: var(--color-action);
+}
+
+.am-note {
+  --am-tone: var(--am-note);
+}
+
+/* Lane summary pills */
+.am-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-6);
+}
+
+.am-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-1) var(--spacing-4);
+  border: var(--border-width-1) solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.am-pill--lane1,
+.am-pill--lane2,
+.am-pill--either {
+  border-color: var(--am-tone-line);
+  background: var(--am-tone-bg);
+  color: var(--am-tone);
+}
+
+.am-pill--muted {
+  color: var(--color-text-secondary);
+}
+
+/* "To resolve" note */
+.am-note {
+  padding: var(--spacing-4) var(--spacing-5);
+  border: var(--border-width-1) solid var(--am-tone-line);
+  border-radius: var(--radius-md);
+  background: var(--am-tone-bg);
+  color: var(--am-tone);
+}
+
+/* Lane 1 / Lane 2 cards */
+.am-lanes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-5);
+  margin-bottom: var(--spacing-8);
+}
+
+.am-lane {
+  padding: var(--spacing-5) var(--spacing-6);
+  border: var(--border-width-1) solid var(--am-tone-line);
+  border-top: 6px solid var(--am-tone);
+  border-radius: var(--am-radius-panel);
+  background: var(--am-tone-bg);
+}
+
+.am-lane__title {
+  margin: 0;
+  color: var(--am-tone);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-2xl);
+}
+
+.am-lane__subtitle {
+  margin-block: var(--spacing-1) var(--spacing-3);
+  font-family: var(--font-family-secondary);
+  font-style: italic;
+}
+
+.am-lane__label {
+  margin-block: var(--spacing-4) var(--spacing-1);
+  font-size: var(--font-size-base);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+}
+
+.am-lane__not-normally {
+  margin-bottom: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  border: var(--border-width-1) dashed currentColor;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-white) 70%, transparent);
+}
+
+.am-lane__not-normally> :last-child {
+  margin-bottom: 0;
+}
+
+.am-lane__review summary {
+  color: var(--color-link-default);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+
+/* Browse all: search and filters above a grid of theme cards */
+.am-browse-controls {
+  margin-bottom: var(--spacing-6);
+}
+
+.am-browse-controls input[type="search"] {
+  width: 100%;
+  min-height: var(--min-input-height);
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--spacing-3) var(--spacing-4);
+  font-size: var(--font-size-md);
+  border: var(--border-width-1) solid var(--color-border-default);
+  border-radius: var(--radius-input);
+}
+
+.am-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  margin-block: var(--spacing-4);
+}
+
+.am-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-5);
+}
+
+.am-cards .am-pills {
+  margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .am-lanes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

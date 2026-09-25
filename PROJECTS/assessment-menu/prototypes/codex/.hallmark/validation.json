@@ -1,0 +1,61 @@
+{
+  "date": "2026-09-16",
+  "browser": "local headless Google Chrome",
+  "layoutCases": 56,
+  "widths": [
+    320,
+    375,
+    414,
+    768,
+    1024,
+    1280,
+    1600,
+    1920
+  ],
+  "overflowFailures": 0,
+  "textContrastFailures": 0,
+  "runtimeExceptions": [],
+  "keyboardFollowup": [
+    {
+      "slug": "editorial",
+      "before": {
+        "focus": true,
+        "element": "<button data-cat=\"written\" aria-pressed=\"false\"><span class=\"\" data-en=\"Written\" data-cy=\"Asesiadau ysgrifenedig\">Written</span></button>"
+      },
+      "after": {
+        "count": 2,
+        "pressed": "true"
+      }
+    },
+    {
+      "slug": "type-finder",
+      "before": {
+        "focus": true,
+        "element": "<button data-cat=\"written\" aria-pressed=\"false\"><span class=\"\" data-en=\"Written\" data-cy=\"Asesiadau ysgrifenedig\">Written</span></button>"
+      },
+      "after": {
+        "count": 2,
+        "pressed": "true"
+      }
+    },
+    {
+      "slug": "design-studio",
+      "before": {
+        "focus": true,
+        "element": "<button data-cat=\"written\" aria-pressed=\"false\"><span class=\"\" data-en=\"Written\" data-cy=\"Asesiadau ysgrifenedig\">Written</span></button>"
+      },
+      "after": {
+        "count": 2,
+        "pressed": "true"
+      }
+    }
+  ],
+  "clipboard": "Stub success for visible types; blocked-clipboard manual export for design notes and gallery review. OS clipboard not inspected.",
+  "designReview": "Structural variety, brand token consistency, no invented metrics, responsive layouts and reduced-motion support reviewed. Brand theme overrides generic Hallmark font/palette rotation. No claim of exhaustive accessibility certification.",
+  "limitations": [
+    "Welsh translation draft for review",
+    "D1 remains proposed",
+    "Xerte deployment not tested",
+    "External pages not re-snapshotted"
+  ]
+}

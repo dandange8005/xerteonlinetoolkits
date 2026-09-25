@@ -1,0 +1,157 @@
+/* ===== Assessment Menu: Home page (option C) =====
+   Put this in a <style> block on the Home page, as the README describes.
+   The section and layout rules intentionally apply only while this page is in
+   the Xerte player DOM.
+
+   Colour, spacing, type and shadow all come from the Cardiff theme's
+   custom properties. The only values declared here are the ones the design
+   system has no token for: this page's rounded panels (the DS keeps
+   structural panels square, so the rounding is a deliberate, recorded
+   deviation for the Home page) and the two on-dark lane accents, which are
+   mixed from the DS accent colours rather than picked by hand. */
+:root {
+  /* Home page panel rounding: deliberate deviation from --radius-card (square). */
+  --am-radius-panel: 16px;
+  --am-radius-panel-sm: 12px;
+  --am-radius-control: 6px;
+  /* Lane accents for use on the dark panel, lightened from the DS accents so
+     they carry enough contrast against --color-bg-dark. */
+  --am-lane1-on-dark: color-mix(in srgb, var(--cu-accent-light-blue) 55%, var(--color-white));
+  --am-lane2-on-dark: color-mix(in srgb, var(--cu-accent-forest-green) 45%, var(--color-white));
+}
+
+/* ======================
+   NO TOC Page Template
+   =======================*/
+/* remove toc */
+#contentTable {
+  display: none;
+}
+/*remove left margin for full width*/
+.row-fluid .span9 {
+  margin-left: 0;
+}
+/*remove extra spacing*/
+.navbar-fixed-top {
+  margin-bottom: 0;
+}
+/* Custom section container */
+section {
+  position: relative;
+  box-shadow: none;
+  border-radius: 0;
+  background: none;
+  margin: 0;
+  padding-block: var(--spacing-10);
+  overflow: revert;
+}
+/* The band spreads sideways with a box-shadow rather than a 100vw width. 100vw
+   includes the scrollbar, which made the page scroll sideways by a few pixels.
+   clip-path trims the spread back to the section vertically, and because it sits
+   on the pseudo-element rather than the section, nothing inside the section is
+   clipped — the search results can still drop below the band. Each section sets
+   one colour, in --am-band. */
+section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--am-band);
+  box-shadow: 0 0 0 100vmax var(--am-band);
+  clip-path: inset(0 -100vmax);
+}
+/* custom background colour for sections  */
+section:nth-child(odd) {
+  --am-band: var(--color-white);
+}
+section:nth-child(even) {
+  --am-band: var(--color-light);
+}
+.footer {
+  margin-top: 0;
+}
+
+/* The player prints a "Top" link in every section; this page does not use it. */
+section > p:has(> .topBtn) { display: none; }
+
+/* Intro */
+#intro { padding-top: var(--spacing-6); }
+.am-lead { font-size: var(--font-size-lead); line-height: var(--line-height-relaxed); max-width: 62ch; margin-block: 0; }
+
+/* "Where would you like to start?" */
+#start .page-header { text-align: center; border-bottom: 0; }
+.am-paths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-5); }
+.am-path { display: flex; flex-direction: column; gap: var(--spacing-3); padding: var(--spacing-6); background: var(--color-white); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-radius-panel); }
+.am-path:hover, .am-path:focus-within { border-color: var(--color-text-primary); box-shadow: var(--shadow-lg); }
+.am-path--lead { border-color: var(--color-action); background: var(--color-tint); }
+.am-step { width: var(--spacing-12); height: var(--spacing-12); border-radius: var(--radius-full); background: var(--color-action); color: var(--color-text-on-brand); display: grid; place-items: center; font-weight: var(--font-weight-bold); font-size: var(--font-size-lead); }
+.am-path h3 { line-height: var(--line-height-snug); }
+.am-go { margin-top: auto; }
+.am-chips { display: flex; flex-wrap: wrap; gap: var(--spacing-2); list-style: none; margin: 0; padding: 0; }
+.am-chips li { margin: 0; }
+/* The base template underlines every link inside a section. The chips and the
+   search results are bordered controls rather than prose links, so they opt out;
+   the selector carries "section" only to match that rule's specificity. */
+section .am-chips a,
+section .am-results > li > a { text-decoration: none; }
+.am-chips a { display: inline-block; padding: var(--spacing-1) var(--spacing-3); border: var(--border-width-1) solid var(--color-border-default); border-radius: var(--radius-full); background: var(--color-white); text-decoration: none; color: var(--color-text-primary); font-weight: var(--font-weight-semibold); font-size: var(--font-size-base); }
+.am-chips a:hover { border-color: var(--color-text-primary); }
+.am-policy { max-width: 70ch; margin-bottom: 0; }
+
+/* Type search (needs the project Script) */
+.am-search { position: relative; }
+.am-search input[type="search"] { width: 100%; height: auto; min-height: var(--min-input-height); box-sizing: border-box; margin: 0; padding: var(--spacing-3) var(--spacing-4); font-size: var(--font-size-md); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-radius-control); box-shadow: none; }
+.am-search input[type="search"]:focus { border-color: var(--color-text-primary); }
+.am-results { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--z-index-dropdown); list-style: none; margin: 0; padding: 0; background: var(--color-white); border: var(--border-width-1) solid var(--color-border-default); border-radius: 0 0 var(--am-radius-control) var(--am-radius-control); box-shadow: var(--shadow-dropdown); max-height: 300px; overflow-y: auto; }
+.am-results[hidden] { display: none; }
+.am-results li { margin: 0; }
+/* Result rows only: the "No match" message holds an ordinary inline link, which
+   the row styling would otherwise turn into a padded, bordered flex block. */
+.am-results > li > a { display: flex; justify-content: space-between; gap: var(--spacing-3); padding: var(--spacing-3) var(--spacing-4); border-top: var(--border-width-1) solid var(--color-border-light); color: var(--color-text-primary); text-decoration: none; }
+.am-results > li > a:hover, .am-results > li > a:focus { background: var(--color-tint); }
+/* The type name takes the space it needs; a long category wraps rather than
+   squeezing the name, which matters in a dropdown this narrow and for longer
+   Welsh labels. */
+.am-results > li > a > span:first-child { flex: 1 1 auto; min-width: 0; }
+.am-results .am-cat { flex: 0 1 auto; text-align: right; color: var(--color-text-secondary); font-size: var(--font-size-base); }
+.am-results .am-none { display: block; padding: var(--spacing-3) var(--spacing-4); color: var(--color-text-secondary); }
+
+/* Six questions */
+.am-questions { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-7) var(--spacing-6); counter-reset: amq; }
+.am-questions li { counter-increment: amq; position: relative; min-height: var(--spacing-12); margin: 0; padding-left: calc(var(--spacing-12) + var(--spacing-4)); font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); line-height: var(--line-height-normal); }
+.am-questions li::before { content: counter(amq); position: absolute; left: 0; top: 0; width: var(--spacing-12); height: var(--spacing-12); box-sizing: border-box; display: grid; place-items: center; border-radius: var(--radius-full); background: var(--color-white); border: 3px solid var(--color-brand-primary); color: var(--color-text-primary); font-weight: var(--font-weight-bold); }
+
+/* "What shapes the menu" dark panel */
+.am-briefs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--color-bg-dark); color: var(--color-on-dark); border-radius: var(--am-radius-panel); overflow: hidden; }
+.am-brief { display: flex; flex-direction: column; padding: var(--spacing-7); border-left: var(--border-width-1) solid var(--color-gray-90); }
+.am-brief:first-child { border-left: 0; }
+.am-brief h3 { color: var(--color-on-dark); }
+.am-brief p { color: var(--color-on-dark-muted); }
+.am-brief a { color: var(--color-on-dark); }
+.am-brief a:focus-visible { outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color-on-dark); outline-offset: 2px; }
+.am-lane { display: block; margin: var(--spacing-2) 0; padding-left: var(--spacing-3); border-left: var(--border-width-4) solid; color: var(--color-on-dark-muted); }
+.am-lane--1 { border-color: var(--am-lane1-on-dark); }
+.am-lane--1 strong { color: var(--am-lane1-on-dark); }
+.am-lane--2 { border-color: var(--am-lane2-on-dark); }
+.am-lane--2 strong { color: var(--am-lane2-on-dark); }
+.am-more { margin: auto 0 0; padding-top: var(--spacing-4); }
+.am-more a { display: inline-block; }
+
+/* "Use this menu alongside" */
+.am-alongside { display: grid; grid-template-columns: 1.2fr .8fr; gap: var(--spacing-10); padding: var(--spacing-8); background: var(--color-bg-subtle); border-radius: var(--am-radius-panel-sm); }
+.am-alongside ul { list-style: none; margin: 0; padding: 0; }
+.am-alongside li { margin: 0; padding: var(--spacing-2) 0; border-bottom: var(--border-width-1) solid var(--color-border-default); }
+
+@media (max-width: 979px) {
+  .am-paths, .am-questions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .am-briefs, .am-alongside { grid-template-columns: 1fr; }
+  .am-brief { border-left: 0; border-top: var(--border-width-1) solid var(--color-gray-90); }
+  .am-brief:first-child { border-top: 0; }
+}
+@media (max-width: 640px) {
+  .am-paths, .am-questions { grid-template-columns: 1fr; }
+  /* Give the text more of the width back on a phone. */
+  .am-path { padding: var(--spacing-5); }
+  .am-brief { padding: var(--spacing-5); }
+  .am-alongside { padding: var(--spacing-5); gap: var(--spacing-6); }
+}

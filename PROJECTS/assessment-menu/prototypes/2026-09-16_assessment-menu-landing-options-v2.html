@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assessment Menu — landing page options v2 — Cardiff University</title>
+<!--
+  Assessment Menu landing page: design options, version 2 (16 September 2026).
+  Theme: Cardiff University (html-it theme 12).
+  Content: Hannah and Carys's "Landing page-draft 1" (with their tracked deletions and comments applied),
+  cut to a short brief per section with links to the central resources. Same content in each option:
+    1. Assessment Menu: intro, design tool, guidance not policy, the six questions (kept as a design tool)
+    2. Understanding the two-lane approach (brief + links)
+    3. AI, inclusion and student choice (brief + links)
+    4. Thinking at programme level (brief + link)
+    5. Find an assessment type (search and categories)
+    6. Use alongside / further reading
+  "Using the Assessment Menu" is not a section: the menu fields appear as hints under the six questions.
+  v1 (options A, B, C) is kept unchanged: 2026-09-15_assessment-menu-landing-options-v1.html
+  Search results and category links open the Xerte prototype: 2026-09-15_assessment-menu-xerte-prototype-v1.html
+-->
+<style>
+/* === THEME: Cardiff University (html-it 12) === */
+:root {
+  --bg:       #FFFFFF;
+  --surface:  #F2F2F2;
+  --border:   #CCCCCC;
+  --accent:   #E4251B;
+  --accent-l: #C21F16;
+  --accent-a: #A11A12;
+  --hi:       #F8DADA;
+  --text:     #121212;
+  --muted:    #666666;
+  --link:     #045bc6;
+  --focus:    #7F140E;
+  --success:  #07873E;
+  --h-font:   'Franklin Gothic Heavy', 'Franklin Gothic', system-ui, sans-serif;
+  --b-font:   system-ui, -apple-system, "Segoe UI", sans-serif;
+  --s-font:   ui-serif, Georgia, "Times New Roman", serif;
+
+  --line: #E5E5E5;
+  --on-dark-muted: #CFCFCF;
+  --dark-2: #2A2A2A;
+  --red-tint: #FFF5F5;
+  --lane1: #1d5c8f; --lane1-bg: #e8f1f8; --lane1-line: #bcd6e9; --lane1-on-dark: #9cc7ea;
+  --lane2: #2e7d4f; --lane2-bg: #e9f5ee; --lane2-line: #bfe0cd; --lane2-on-dark: #9ad6b1;
+  --note: #6b5314; --note-bg: #faf3dd; --note-line: #e6d8a8;
+  --radius: 6px; --radius-lg: 12px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { background: var(--bg); color: var(--text); font-family: var(--b-font); font-size: 16px; line-height: 1.6; }
+a { color: var(--link); text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--h-font); line-height: 1.15; }
+.wrap { width: min(1140px, 100% - 48px); margin-inline: auto; }
+svg.icon { width: 32px; height: 32px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.skip-link { position: absolute; left: 16px; top: 8px; z-index: 1000; background: var(--bg); color: var(--text); padding: 8px 16px; border: 2px solid var(--text); border-radius: var(--radius); transform: translateY(-200%); }
+.skip-link:focus { transform: none; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: inherit; font-weight: 700; background: var(--accent-l); color: #fff; border: 2px solid var(--accent-l); border-radius: var(--radius); padding: 11px 22px; text-decoration: none; cursor: pointer; }
+.btn:hover { background: var(--accent-a); border-color: var(--accent-a); }
+.eyebrow { font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.eyebrow::before { content: ''; width: 28px; height: 4px; background: var(--accent); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.flag { display: inline-block; font-family: var(--b-font); font-size: 12px; font-weight: 700; line-height: 1.6; letter-spacing: 0; text-transform: none; background: var(--note-bg); color: var(--note); border: 1px solid var(--note-line); border-radius: 999px; padding: 0 8px; vertical-align: middle; }
+body.hide-flags .flag { display: none; }
+.more { font-weight: 700; }
+.more::after { content: ' →'; }
+.links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; }
+
+/* ================= Review bar (not part of the designs) ================= */
+.review { position: sticky; top: 0; z-index: 500; background: #fff; border-bottom: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.review .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding: 10px 0; }
+.review strong.title { font-size: 15px; }
+.seg { display: inline-flex; border: 1.5px solid var(--text); border-radius: var(--radius); overflow: hidden; }
+.seg button { font: inherit; font-size: 15px; font-weight: 700; background: #fff; color: var(--text); border: none; padding: 6px 14px; cursor: pointer; border-left: 1.5px solid var(--text); }
+.seg button:first-child { border-left: none; }
+.seg button[aria-pressed="true"] { background: var(--text); color: #fff; }
+.review .desc { font-size: 15px; color: var(--muted); flex: 1 1 280px; }
+.review .tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.review .tools button { font: inherit; font-size: 14px; font-weight: 700; background: #fff; color: var(--text); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 5px 12px; cursor: pointer; }
+.review .tools button.primary { background: var(--accent-l); border-color: var(--accent-l); color: #fff; }
+.panel { border-top: 1px solid var(--line); background: var(--surface); max-height: 70vh; overflow-y: auto; }
+.decide .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 14px 0 16px; }
+.decide label { display: block; font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.decide textarea { width: 100%; min-height: 72px; font: inherit; font-size: 15px; padding: 8px 10px; border: 1.5px solid var(--border); border-radius: var(--radius); resize: vertical; }
+.decide .fit { font-size: 15px; }
+.decide .fit p { margin-bottom: 6px; }
+.decide .row { grid-column: 1 / -1; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.decide .pick { display: flex; gap: 14px; flex-wrap: wrap; font-size: 15px; }
+.decide .pick label { font-weight: 400; }
+.copied { font-size: 14px; color: var(--muted); }
+.coverage .wrap { padding: 14px 0 18px; }
+.coverage h2 { font-size: 20px; margin-bottom: 4px; }
+.coverage > .wrap > p { font-size: 15px; color: var(--muted); margin-bottom: 10px; }
+.coverage table { width: 100%; border-collapse: collapse; background: #fff; font-size: 15px; }
+.coverage th, .coverage td { text-align: left; vertical-align: top; padding: 8px 10px; border: 1px solid var(--border); }
+.coverage th { background: var(--text); color: #fff; }
+.coverage td:first-child { font-weight: 700; width: 22%; }
+.coverage td:last-child { width: 26%; color: var(--muted); }
+
+/* ================= Shared Xerte chrome ================= */
+.topnav { background: var(--text); color: #fff; border-bottom: 4px solid var(--accent); }
+.topnav .wrap { display: flex; align-items: center; gap: 6px; min-height: 52px; }
+.topnav ul { display: flex; list-style: none; flex: 1; overflow-x: auto; }
+.topnav a { display: block; color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; padding: 14px 10px; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -4px; }
+.topnav a:hover { background: var(--dark-2); }
+.topnav a[aria-current="page"] { border-bottom-color: var(--accent); background: var(--dark-2); }
+.topnav a:focus-visible { outline-color: #fff; outline-offset: -4px; }
+.lang { background: none; color: #fff; border: 1px solid #666; border-radius: var(--radius); font: inherit; font-size: 14px; font-weight: 700; padding: 5px 12px; cursor: not-allowed; }
+.site-footer { background: var(--text); color: var(--on-dark-muted); border-top: 4px solid var(--accent); }
+.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 26px 0; font-size: 15px; }
+.site-footer a { color: #fff; }
+.site-footer a:focus-visible { outline-color: #fff; }
+
+/* shared search */
+.search-box { position: relative; }
+.search-box label { display: block; font-weight: 700; margin-bottom: 6px; }
+.search-box input { width: 100%; font: inherit; font-size: 18px; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius); background: #fff; color: var(--text); }
+.search-box input:focus { border-color: var(--text); }
+.results { list-style: none; position: absolute; left: 0; right: 0; top: 100%; z-index: 20; background: #fff; border: 1px solid var(--border); border-radius: 0 0 var(--radius) var(--radius); box-shadow: 0 10px 24px rgba(0,0,0,.14); max-height: 300px; overflow-y: auto; }
+.results a { display: flex; justify-content: space-between; gap: 12px; padding: 10px 16px; border-top: 1px solid var(--line); color: var(--text); text-decoration: none; }
+.results a:hover, .results a:focus { background: var(--red-tint); }
+.results .cat { color: var(--muted); font-size: 14px; white-space: nowrap; }
+.results .none { padding: 10px 16px; color: var(--muted); }
+
+/* shared lane labels */
+.lanes-mini { display: grid; gap: 8px; margin: 12px 0; }
+.lane-row { border-radius: var(--radius); padding: 10px 14px; border-left: 5px solid; }
+.lane-row b { display: block; }
+.lane-row.l1 { background: var(--lane1-bg); border-color: var(--lane1); }
+.lane-row.l1 b { color: var(--lane1); }
+.lane-row.l2 { background: var(--lane2-bg); border-color: var(--lane2); }
+.lane-row.l2 b { color: var(--lane2); }
+.hint { display: block; font-size: 15px; font-weight: 400; color: var(--muted); margin-top: 8px; }
+.hint b { color: var(--text); font-weight: 700; }
+
+/* shared "use alongside" band */
+.alongside { background: var(--surface); padding: 48px 0; }
+.alongside .wrap { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; }
+.alongside h2 { font-size: 24px; margin-bottom: 10px; }
+.alongside ul { list-style: none; }
+.alongside li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+.alongside .ref { font-size: 15px; }
+.alongside .ref p + p { margin-top: 12px; }
+
+[id] { scroll-margin-top: 96px; }
+.design { display: none; }
+.design.active { display: block; }
+section { padding: 64px 0; }
+.sec-head { margin-bottom: 28px; max-width: 70ch; }
+.sec-head h2 { font-size: clamp(30px, 3.4vw, 40px); margin-bottom: 8px; }
+.sec-head p { color: var(--muted); font-size: 18px; }
+
+/* ================= OPTION A: Bold hero ================= */
+.a-hero { background: var(--text); color: #fff; padding: 64px 0 96px; }
+.a-hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+.a-hero .eyebrow { color: #fff; }
+.a-hero h1 { font-size: clamp(40px, 5.6vw, 64px); letter-spacing: -.015em; margin-bottom: 10px; color: #fff; }
+.a-hero .strap { font-size: 22px; color: #fff; margin-bottom: 14px; }
+.a-hero .lead { font-size: 18px; color: var(--on-dark-muted); max-width: 58ch; margin-bottom: 26px; }
+.a-hero .search-box label { color: #fff; }
+.a-hero .search-box input { border-color: #fff; }
+.a-hero .alt { margin-top: 12px; color: var(--on-dark-muted); }
+.a-hero .alt a { color: #fff; font-weight: 700; }
+.a-hero .alt a:focus-visible { outline-color: #fff; }
+.a-road { width: 100%; height: auto; }
+.a-strip { position: relative; margin-top: -48px; z-index: 2; }
+.a-strip .card { background: #fff; border-radius: var(--radius-lg); border-left: 8px solid var(--accent); box-shadow: 0 12px 32px rgba(0,0,0,.14); padding: 22px 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.a-strip h2 { font-size: 22px; margin-bottom: 4px; }
+.a-q { background: var(--bg); }
+.a-qgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: q; }
+.a-qgrid li { list-style: none; counter-increment: q; background: var(--surface); border-radius: var(--radius-lg); padding: 22px 22px 24px; border-top: 4px solid var(--accent); font-size: 18px; font-weight: 600; }
+.a-qgrid li::before { content: counter(q, decimal-leading-zero); display: block; font-family: var(--h-font); font-size: 30px; color: var(--accent-l); margin-bottom: 6px; }
+.a-briefs-sec { background: var(--surface); }
+.a-briefs { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 20px; }
+.a-brief { background: #fff; border-radius: var(--radius-lg); padding: 26px; display: flex; flex-direction: column; }
+.a-brief h3 { font-size: 24px; margin-bottom: 10px; }
+.a-brief .links { margin-top: auto; padding-top: 14px; }
+.a-brief.choice { border-top: 6px solid var(--accent); }
+.a-cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.a-cat { display: flex; flex-direction: column; gap: 10px; padding: 22px; border: 1px solid var(--border); border-radius: var(--radius-lg); text-decoration: none; color: var(--text); transition: transform .15s, box-shadow .15s; }
+.a-cat:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,.1); border-color: var(--text); }
+.a-cat svg { color: var(--accent-l); }
+.a-cat strong { font-size: 18px; }
+.a-cat span { color: var(--muted); font-size: 15px; }
+.a-cat.all { background: var(--text); color: #fff; border-color: var(--text); }
+.a-cat.all svg { color: #fff; }
+.a-cat.all span { color: var(--on-dark-muted); }
+
+/* ================= OPTION C: Pathways ================= */
+.c-hero { background: #fff; padding: 56px 0 24px; text-align: center; }
+.c-hero .logo { width: 64px; height: 64px; margin-bottom: 14px; }
+.c-hero h1 { font-size: clamp(40px, 5.4vw, 60px); letter-spacing: -.015em; }
+.c-hero .strap { font-size: 22px; color: var(--muted); margin: 6px auto 14px; max-width: 40ch; }
+.c-hero .lead { font-size: 18px; max-width: 62ch; margin: 0 auto; }
+.c-start { padding: 32px 0 56px; }
+.c-start h2 { text-align: center; font-size: clamp(30px, 3.4vw, 38px); margin-bottom: 24px; }
+.c-paths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.c-path { border: 2px solid var(--border); border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 12px; background: #fff; }
+.c-path:hover, .c-path:focus-within { border-color: var(--text); box-shadow: 0 12px 28px rgba(0,0,0,.1); }
+.c-path.lead-path { border-color: var(--accent-l); background: var(--red-tint); }
+.c-path .step { width: 44px; height: 44px; border-radius: 50%; background: var(--accent-l); color: #fff; display: grid; place-items: center; font-family: var(--h-font); font-size: 22px; }
+.c-path h3 { font-size: 24px; }
+.c-path p { color: var(--muted); }
+.c-path .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.c-path .chips a { font-size: 15px; font-weight: 600; padding: 5px 12px; border: 1.5px solid var(--border); border-radius: 999px; text-decoration: none; color: var(--text); background: #fff; }
+.c-path .chips a:hover { border-color: var(--text); background: var(--surface); }
+.c-path .go { margin-top: auto; font-weight: 700; }
+.c-policy { text-align: center; margin: 24px auto 0; max-width: 70ch; color: var(--muted); }
+.c-policy strong { color: var(--text); }
+.c-qs { background: var(--surface); }
+.c-qgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 24px; counter-reset: q; }
+.c-qgrid li { list-style: none; counter-increment: q; display: grid; grid-template-columns: 52px 1fr; gap: 14px; font-size: 18px; font-weight: 600; }
+.c-qgrid li::before { content: counter(q); display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #fff; border: 3px solid var(--accent); font-family: var(--h-font); font-size: 20px; }
+.c-dark { background: var(--text); color: #fff; }
+.c-dark .sec-head h2 { color: #fff; }
+.c-dark .eyebrow { color: #fff; }
+.c-bgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid #333; border-radius: 16px; overflow: hidden; }
+.c-bgrid article { padding: 30px; border-left: 1px solid #333; display: flex; flex-direction: column; }
+.c-bgrid article:first-child { border-left: none; }
+.c-bgrid h3 { font-size: 24px; color: #fff; margin-bottom: 10px; }
+.c-bgrid p { color: #eee; }
+.c-bgrid a { color: #fff; }
+.c-bgrid a:focus-visible { outline-color: #fff; }
+.c-bgrid .links { margin-top: auto; padding-top: 16px; }
+.c-bgrid .dl { margin: 12px 0; display: grid; gap: 8px; }
+.c-bgrid .dl span { display: block; padding-left: 12px; border-left: 4px solid; }
+.c-bgrid .dl .l1 { border-color: var(--lane1-on-dark); }
+.c-bgrid .dl .l2 { border-color: var(--lane2-on-dark); }
+.c-bgrid .dl .l1 b { color: var(--lane1-on-dark); }
+.c-bgrid .dl .l2 b { color: var(--lane2-on-dark); }
+
+/* ================= OPTION D: Question-led ================= */
+.d-head { background: #fff; border-bottom: 1px solid var(--line); padding: 44px 0 36px; }
+.d-head .wrap { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: start; }
+.d-head .logo { width: 72px; height: 72px; }
+.d-head h1 { font-size: clamp(38px, 4.6vw, 54px); letter-spacing: -.015em; }
+.d-head .strap { font-family: var(--s-font); font-style: italic; font-size: 22px; color: var(--muted); margin: 4px 0 14px; }
+.d-head .lead { font-size: 18px; max-width: 72ch; }
+.d-head .lead + .lead { margin-top: 10px; }
+.d-lanes { background: var(--surface); padding: 20px 0; }
+.d-lanes .wrap { display: grid; grid-template-columns: 1fr 1fr auto; gap: 14px; align-items: center; }
+.d-lanes .lane-row { background: #fff; }
+.d-main { padding: 48px 0 64px; }
+.d-main > .wrap { display: grid; grid-template-columns: 1fr 340px; gap: 40px; align-items: start; }
+.d-main h2 { font-size: clamp(30px, 3.4vw, 38px); margin-bottom: 6px; }
+.d-intro { color: var(--muted); font-size: 18px; margin-bottom: 18px; }
+.d-tools { display: flex; justify-content: flex-end; margin-bottom: 6px; }
+.d-tools button { font: inherit; font-size: 15px; font-weight: 700; color: var(--link); background: none; border: none; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.d-q { border-top: 1px solid var(--border); }
+.d-q:last-of-type { border-bottom: 1px solid var(--border); }
+.d-q summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 52px 1fr 28px; gap: 14px; align-items: center; padding: 18px 4px; font-size: 19px; font-weight: 600; }
+.d-q summary::-webkit-details-marker { display: none; }
+.d-q summary:hover { background: var(--red-tint); }
+.d-q .n { font-family: var(--s-font); font-size: 38px; line-height: 1; color: var(--accent-l); text-align: center; }
+.d-q .chev { width: 22px; height: 22px; transition: transform .15s; }
+.d-q[open] .chev { transform: rotate(180deg); }
+.d-q .body { padding: 0 4px 22px 70px; }
+.d-q .body > p + p { margin-top: 10px; }
+.d-q .look { display: inline-block; margin-top: 10px; font-size: 15px; background: var(--surface); border-radius: var(--radius); padding: 6px 12px; }
+.d-q .brief { margin-top: 14px; background: #fff; border: 1px solid var(--border); border-left: 6px solid var(--accent); border-radius: var(--radius); padding: 16px 18px; }
+.d-q .brief h3 { font-size: 20px; margin-bottom: 6px; }
+.d-aside { position: sticky; top: 84px; background: var(--surface); border-radius: var(--radius-lg); padding: 22px; }
+.d-aside h2 { font-size: 24px; margin-bottom: 12px; }
+.d-aside ul { list-style: none; margin: 16px 0 12px; border-top: 1px solid var(--border); }
+.d-aside li a { display: flex; justify-content: space-between; padding: 9px 2px; border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text); font-weight: 600; }
+.d-aside li a:hover { background: #fff; }
+.d-aside li span { color: var(--muted); font-weight: 400; }
+.d-aside .policy { margin-top: 18px; padding-top: 14px; border-top: 3px solid var(--accent); font-size: 15px; }
+
+@media (max-width: 960px) {
+  .a-hero .wrap, .alongside .wrap, .d-main > .wrap { grid-template-columns: 1fr; }
+  .a-road { max-width: 380px; }
+  .a-cats { grid-template-columns: repeat(2, 1fr); }
+  .a-qgrid, .c-paths, .c-qgrid { grid-template-columns: 1fr 1fr; }
+  .a-briefs, .c-bgrid { grid-template-columns: 1fr; }
+  .c-bgrid article { border-left: none; border-top: 1px solid #333; }
+  .c-bgrid article:first-child { border-top: none; }
+  .decide .wrap { grid-template-columns: 1fr; }
+  .d-aside { position: static; }
+  .d-lanes .wrap { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .wrap { width: calc(100% - 32px); }
+  section { padding: 48px 0; }
+  .a-qgrid, .a-cats, .c-paths, .c-qgrid, .d-lanes .wrap { grid-template-columns: 1fr; }
+  .a-strip .card { grid-template-columns: 1fr; gap: 14px; }
+  .a-road { display: none; }
+  .a-hero { padding-bottom: 80px; }
+  .review .desc { flex-basis: 100%; }
+  .d-head .wrap { grid-template-columns: 1fr; gap: 12px; }
+  .d-head .logo { width: 56px; height: 56px; }
+  .d-q summary { grid-template-columns: 36px 1fr 24px; font-size: 18px; }
+  .d-q .n { font-size: 30px; }
+  .d-q .body { padding-left: 4px; }
+  .coverage table, .coverage tbody, .coverage tr, .coverage td { display: block; width: 100% !important; }
+  .coverage thead { display: none; }
+  .coverage td { border-top: none; }
+  .coverage tr { border-top: 2px solid var(--text); }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#designs">Skip to the design</a>
+
+<!-- ================= Review bar ================= -->
+<div class="review" role="region" aria-label="Compare designs">
+  <div class="wrap">
+    <strong class="title">Landing page options v2</strong>
+    <div class="seg" role="group" aria-label="Choose a design to view">
+      <button type="button" data-opt="A" aria-pressed="true">A · Bold hero</button>
+      <button type="button" data-opt="C" aria-pressed="false">C · Pathways</button>
+      <button type="button" data-opt="D" aria-pressed="false">D · Question-led</button>
+    </div>
+    <span class="desc" id="optDesc" aria-live="polite"></span>
+    <div class="tools">
+      <button type="button" id="coverBtn" aria-expanded="false" aria-controls="coverage">Draft 1 coverage</button>
+      <button type="button" id="flagsBtn" aria-pressed="true">Hide draft labels</button>
+      <button type="button" class="primary" id="decideBtn" aria-expanded="false" aria-controls="decide">Choose and comment</button>
+    </div>
+  </div>
+
+  <div class="panel coverage" id="coverage" hidden>
+    <div class="wrap">
+      <h2>How v2 covers Landing page draft 1</h2>
+      <p>Checked against the Word file with Hannah and Carys's tracked deletions accepted and their comments applied. The same content is in all three designs.</p>
+      <table>
+        <thead><tr><th>Draft 1 section</th><th>In v2</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Assessment Menu (intro)</td><td>Opening paragraph, shortened. "A design tool, not a list of recommended assessment replacements" kept. The six questions kept in the draft's own wording.</td><td>Hannah: "love this bit". Nan: keep the six questions so the menu works as a design tool.</td></tr>
+          <tr><td>Understanding the Two-Lane Approach</td><td>Short brief: why two lanes (AI use can't be reliably detected; approach from Sydney), the two purposes and lane names, and "what you're assessing decides the lane". Links to Cardiff's position and the Sydney page.</td><td>Hannah: add context, or just link out; lane depends on what you assess. Carys: link to the Sydney literature. Detailed lane lists were deleted in the draft.</td></tr>
+          <tr><td>AI, Inclusion and Student Choice</td><td>Short brief: students don't have to use AI; outcomes achievable without it; brief says whether AI is optional or part of the task. Full six-point list left to the linked guidance.</td><td>Carys: link to the toolkit sections on inclusive assessment and AI, and to the assessment brief template. The no-compulsion line is not published elsewhere, so it stays on the page (proposed key message D1).</td></tr>
+          <tr><td>Thinking at programme level</td><td>One-sentence brief with a link.</td><td>Carys: delete the mapping list and link to the toolkit page on programme-level assessment.</td></tr>
+          <tr><td>Using the Assessment Menu</td><td>No section. The fields staff will find in each entry appear as short hints under the questions they help answer.</td><td>Nan: a clear design shouldn't need a how-to section. Carys's "merge" comment is reflected (AI and the two lanes shown together).</td></tr>
+          <tr><td>Authenticity, academic integrity and AI (still in the draft, no comments)</td><td>Not a section. Authenticity sits under question 3; "clear AI expectations" and "outcomes achievable without AI" sit in the AI brief.</td><td>Its points repeat the AI and inclusion section. <strong>Check with Hannah and Carys.</strong></td></tr>
+          <tr><td>Closing sentence: use alongside principles, approval, inclusive assessment, AI</td><td>"Use this menu alongside" list, with placeholder links where pages don't exist yet.</td><td>Carys: link to assessment principles (once ready), the programme approval process, the toolkit and the AI pages.</td></tr>
+          <tr><td>References</td><td>"Further reading", with Rutherford, Pritchard and Francis (2024).</td><td>Carys: a References or Further reading area.</td></tr>
+          <tr><td><em>Not in draft 1</em></td><td>"Guidance, not policy" line.</td><td>Feedback sheet comment 8: the menu risks being read as policy.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel decide" id="decide" hidden>
+    <div class="wrap">
+      <div>
+        <label id="pickLabel">Which design should we build?</label>
+        <div class="pick" role="radiogroup" aria-labelledby="pickLabel">
+          <label><input type="radio" name="pick" value="A"> A · Bold hero</label>
+          <label><input type="radio" name="pick" value="C"> C · Pathways</label>
+          <label><input type="radio" name="pick" value="D"> D · Question-led</label>
+          <label><input type="radio" name="pick" value="Mix"> A mix</label>
+        </div>
+        <label for="notes" style="margin-top:10px">What to keep, change or borrow from the others</label>
+        <textarea id="notes" placeholder="e.g. D's question list, with A's search in the header"></textarea>
+        <label for="contentNotes" style="margin-top:10px">Comments on the content (all designs)</label>
+        <textarea id="contentNotes" placeholder="e.g. shorten the two-lane brief; drop the programme-level link"></textarea>
+      </div>
+      <div class="fit" id="fitNote"></div>
+      <div class="row">
+        <button type="button" class="btn" id="copyBtn">Copy choice as prompt</button>
+        <span class="copied" id="copied" aria-live="polite"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="designs" tabindex="-1">
+
+<!-- ======================================================================= -->
+<!-- OPTION A: BOLD HERO                                                     -->
+<!-- ======================================================================= -->
+<div class="design active" id="design-A" data-label="A · Bold hero">
+  <nav class="topnav" aria-label="Pages"><div class="wrap"><ul class="navlinks"></ul><button class="lang" type="button" aria-disabled="true" title="Welsh version to come">Cymraeg</button></div></nav>
+
+  <header class="a-hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Learning and Teaching Academy</div>
+        <h1>Assessment Menu</h1>
+        <p class="strap">Designing meaningful, inclusive and future-focused assessment</p>
+        <p class="lead">At Cardiff University, assessment should let students show they have achieved their programme learning outcomes, through tasks that are authentic, inclusive and aligned with what we want our graduates to develop.</p>
+        <div class="search-box">
+          <label for="searchA">Find an assessment type</label>
+          <input id="searchA" type="search" placeholder="Try 'viva', 'essay' or 'portfolio'" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="resultsA" aria-autocomplete="list">
+          <ul class="results" id="resultsA" hidden></ul>
+        </div>
+        <p class="alt">or <a href="PROTO#page/browse">browse all 17 types</a></p>
+      </div>
+      <svg class="a-road" viewBox="0 0 420 360" role="img" aria-labelledby="roadTitle">
+        <title id="roadTitle">Two lanes side by side: Lane 1 and Lane 2</title>
+        <path d="M70 360 L170 20" stroke="#fff" stroke-width="6"/>
+        <path d="M350 360 L250 20" stroke="#fff" stroke-width="6"/>
+        <path d="M210 360 L210 20" stroke="#E4251B" stroke-width="6" stroke-dasharray="26 18"/>
+        <rect x="96" y="210" width="94" height="44" rx="22" fill="#e8f1f8"/>
+        <text x="143" y="239" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#1d5c8f">Lane 1</text>
+        <rect x="230" y="210" width="94" height="44" rx="22" fill="#e9f5ee"/>
+        <text x="277" y="239" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#2e7d4f">Lane 2</text>
+        <text x="143" y="290" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="15" fill="#CFCFCF">assurance</text>
+        <text x="277" y="290" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="15" fill="#CFCFCF">open learning</text>
+      </svg>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap a-strip">
+      <div class="card">
+        <div><h2>A design tool, not a list of replacements</h2><p>Use the menu to think through purpose, authenticity, inclusion, academic integrity and the role of generative AI, and to see how common assessment types work in Lane 1 and Lane 2.</p></div>
+        <div><h2>Guidance, not policy <span class="flag">Added: feedback comment 8</span></h2><p>Decisions about assessment types and lanes sit with module and programme teams, based on the learning outcomes.</p></div>
+      </div>
+    </div>
+
+    <section class="a-q">
+      <div class="wrap">
+        <div class="sec-head"><div class="eyebrow">Start here</div><h2>Six questions to design with</h2><p>Rather than asking "What assessment should I use?", ask: <span class="flag">Hints replace "Using the Assessment Menu"</span></p></div>
+        <ol class="a-qgrid">
+          <li>What do students need to demonstrate?<span class="hint">Start from your learning outcomes</span></li>
+          <li>Why is this assessment the most appropriate way of evidencing learning?<span class="hint">In each entry: <b>What is it?</b> · <b>What's it for?</b></span></li>
+          <li>How authentic is the task to the discipline, profession, or wider context?<span class="hint">In each entry: <b>Authenticity</b></span></li>
+          <li>How can barriers to participation and success be reduced?<span class="hint">In each entry: <b>Inclusive design and reasonable adjustments</b></span></li>
+          <li>What role, if any, should GenAI play in the assessment process?<span class="hint">In each entry: <b>AI considerations</b> · <b>Lane 1 and Lane 2</b></span></li>
+          <li>How does this assessment contribute to the wider programme assessment journey?<span class="hint">See <a href="#a-programme">Thinking at programme level</a></span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="a-briefs-sec">
+      <div class="wrap">
+        <div class="sec-head"><div class="eyebrow">In brief</div><h2>What shapes the menu</h2><p>The short version. Follow the links for the full guidance.</p></div>
+        <div class="a-briefs">
+          <article class="a-brief">
+            <h3>Understanding the two-lane approach</h3>
+            <p>AI use can't be reliably detected, so Cardiff uses a two-lane approach, first developed at the University of Sydney. Assessment has two complementary purposes:</p>
+            <div class="lanes-mini">
+              <div class="lane-row l1"><b>Lane 1 · Secure assurance of learning</b>Trustworthy evidence of what students have achieved.</div>
+              <div class="lane-row l2"><b>Lane 2 · Open assessment for and as learning</b>Supports learning in open settings, including responsible use of AI.</div>
+            </div>
+            <p>What you're assessing decides the lane, not the assessment type, so each entry shows both.</p>
+            <div class="links"><a class="more" href="TOOLKIT#cardiff-position" target="_blank" rel="noopener">Cardiff's two-lane approach</a><a href="SYDNEY" target="_blank" rel="noopener">Where it comes from (Sydney)</a></div>
+          </article>
+          <article class="a-brief choice">
+            <h3>AI, inclusion and student choice <span class="flag">Proposed key message D1</span></h3>
+            <p>The two-lane approach doesn't assume students must use generative AI. Learning outcomes should stay achievable without it, and students shouldn't be disadvantaged if they choose not to use it, for ethical, environmental, personal, accessibility or academic reasons. Where AI is allowed, the brief should say whether it's optional or part of the task.</p>
+            <div class="links"><a class="more" href="TOOLKIT#assessment-design" target="_blank" rel="noopener">GenAI and assessment design</a><a href="#" onclick="return false">Assessment brief template <span class="flag">link to add</span></a></div>
+          </article>
+          <article class="a-brief" id="a-programme">
+            <h3>Thinking at programme level</h3>
+            <p>Students experience assessment as a programme, not a series of separate modules. Look across the programme for a balance of assessment types, manageable deadlines, progression, and consistent expectations about AI.</p>
+            <div class="links"><a class="more" href="TOOLKIT#assessment-design" target="_blank" rel="noopener">Programme-level assessment design</a><span class="flag">or a toolkit programme-level page, if one exists</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="sec-head"><div class="eyebrow">17 assessment types</div><h2>Browse by category</h2><p>Each entry shows the type in Lane 1 and Lane 2, side by side.</p></div>
+        <div class="a-cats" id="catsA"></div>
+      </div>
+    </section>
+
+    <div class="alongside" data-alongside></div>
+  </main>
+  <footer class="site-footer"><div class="wrap"><span>Developed by the Digital Education Team, Learning and Teaching Academy, Cardiff University</span><a href="FORM" target="_blank" rel="noopener">Give feedback on this menu</a></div></footer>
+</div>
+
+<!-- ======================================================================= -->
+<!-- OPTION C: PATHWAYS                                                      -->
+<!-- ======================================================================= -->
+<div class="design" id="design-C" data-label="C · Pathways">
+  <nav class="topnav" aria-label="Pages"><div class="wrap"><ul class="navlinks"></ul><button class="lang" type="button" aria-disabled="true" title="Welsh version to come">Cymraeg</button></div></nav>
+
+  <main>
+    <header class="c-hero">
+      <div class="wrap">
+        <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACgCAIAAAAErfB6AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAoKADAAQAAAABAAAAoAAAAACn7BmJAABAAElEQVR4Ae2dBZwcRdbAd2Rn1neTTUKA4O6uh8vB4RIgWLDDjuDuTpAgx+Ee3AJBD3cOdye4RjbrNv79X1V3dfXYziTcfSS/7ewv01L+tF69ehX4ZYn5KwavuXcEgnNv1wZ7JiMwCOC5HA8GATwI4Ll8BOby7g1S8CCA5/IRmMu7N0jBgwCey0dgLu9e+A/rXyZTkU5XVGT4VxEIeH9/WAWDBc3KCMwegDOZTCJRkUpWhCuDdXWBuvpAtKoiUFGRSGb6e9PdPfxfkUpVhMOBcKWAfPAaaAQysZiMWOlXMBiIRouM7awCGNDG+gM1tdGVV4uut0Fk5dXCCy4UbGrSAAbqmb6+dOvM5E8/xj/6IPbGa4nPPpH0gH+WLzhEoat01ClSiC689KIKNca8H7Auk5IbXW8mU7PDzqF5Rtpfit+npv7e9+xTFclkIRgHZsEWnYnHAtU1NVtvX7v3fpEVVy5UtNeyVCr+/rtdN17d98xTgcpZIuVgsKLQePE+nRZGkk5VBENSPonzXgwif4XKIQsiJpXKMFiZtCoqzP95SyrpZZE2Z+UXRhgPVEYy/X1DL7u6ZvSYrO/FH1vHHdj76MOBqvzEUzYFQ5rRNdduPOWsyGprmIpTv/2S+OrL5M8/Zfp64RihkfNVLrl0eNHFnAShUGSNtZpXX7PzX5d1XXEJHNtkLOUm099fu9e+dXvt64ONS2oZQAK3mNmS/HZK7L134h+8m545U7hWFpjT6WDTkCH/vDbUNCSnUpEdGYCaTGZ6elIt05PffZv49OP4px+npv5WEQgGIpGcLAO8gAYajj25epO/ilIy0AV29j70QPcdt9CI+Mcf2gCGBaY72gOmL/Q6BBJHAnV1wYZGDdRAQ6NvZPzVlTPWIFo8Vjd2/8ZTz4I563Jir7/Sffst8bffTLW1ijDWVzAUrK+vXH7F2t3H1myzPW2S14FAwxHHxt9/p/+l5wORqJMSeUOjTQect9k/6bbWymWX972FEHVeXbj6Vl9Rkfz+u557bu+5c2K6vy9gY1IwkO7sALqVy63gK6fwQ2rG9NirL/XcfXvs3bcCobDTi6z0Ii9dvdJqSUUyBa5ULudvc1Ze6zFY39Bz/10wj9T0adbrio4Lzup76gnBV30xVoFAABhHq4JDhoaXXqZmmx0Qf0VopgwAA936Q49oPOkMXVemp7tj/Dk9994pHDsSVWjuYTrKQuyN12P/ea334QeGnH9xaP4FdK7oqmv0P/dMhU6YyQRHjqyIxZHWRZrIyKZ+/UXA6Y5gx8Xn0W3QFtSmn5XLLFe95TbRv6xPFeFFFoW7VG28WevRh6WnT0X70/WCXzQJgjAATv74ffuZJwMGeADlQAfhBRaMrLQK/Ck0akFyhYaPqNlp1+rtduyddH/nJRekWmbkknJo3vkqEApciURq2u+Qu1NdMJj86Qfnnp9MpvPyi5I//FARNjw/EKyuDjYPo8GwtxRNjcdBdLDQy8UdOheCQ6Yn3gUewNVA+sTXX/Q/+ZjosLoNXhLvrlQAwwaRuI0nnq6zpjs6Wo84CFAFamoCVdVeeeYORFN41//80y2//jLs1rtDowTGyR9/cOgVntnQOPzOSYxa6xEHw11zh08XRknprk7AQ136TfKbrxNffh5U9Wa+/Sb21n+675pYs+2OTWePR9EjTXSd9YZecU3L/nsy7sIh9JVOp9vbnHsEbktL/wvPSmNIAB8VWS7shEGv3mTzuoPHIWVIjP5fu9ueAL718IMSU762GwlrFWTacBOSZZKJ7puv67zyMidBMJCx6gJCfU8/Cfv1QUJXCkGOHBkcNlxaAo/s7RMNwEUUkE+aZ7pgWs8bkNJmUeaT/8bFOP/brCdoNLL6mk2nna1rAoPaTj62//lnArW1eer2Z0YdS3zxWdvpJ9LJ1LSp/a++qIcgE49H1lwH/A3NP4rRFEZX6AoEQFja4H1PZ2Sk6B7IG4lQBVyr94G7204+RlQkdUXX/kvtrnugunu5GLnuLvMohEteeA8ijZtoVMqpqs50dfXcf/eM0dvCnE3iyqWXbb7uNujVlC+fkonkb78wCPwFG5uiG28uI66VOJCyt9e5F+RJV4TCFO77q64W8qiuTre1ocEoVKvIJGICVHMh9Vz8NO/KuikBwJk0PW864zwjd3vumtj32EPmccD66Aa00v/qS0jr1O+/S0+4goGaHUfrvFUbbIyIFU047wW2wpTgYO6lRtnfb8i8rr7vycdiLz3vpqqo2X4nmZgZtRlZ2W/BO5nIpPNhFZRRXYMAajvluO7bbjKlhRdbvOnM87Q+Zl6mp00198JOqcuhtkBFIu5hAxUVnslYtCg9rUh5DFkB299Tr76S7gYGcKY/VrPD6Mgqq+ny0AK6rr1SU2FJNahEUJgI7LsnOtp8MlG51DJV62+kS+Bl7S57SN8KXTBPG6+TMN58SdOpvueeNh/CCy0SHNosHM9cFg4JPhnYmwTmBkUmHO4Yf3bs7TfNu+otto5utKmFagGbJQhEjbCE6yRTnuyk8alk3iabwrmRBKQ0hfBYZEzsnIXvBwIwelBDY93+B5kSeh+8N/XLTzAc86akm3A4+fWXGTikQnAGl8mAkamUULPtDvBqHxStcmXgrG7L2OWFsKhjP3v5FOO1eb9HUiRi7IoAmATBIBPTzssu8kY5EKjdY6xLo9IEMTy5F3NZg0wOqAxupVNKmrpJC/8qpuLyFeb3NHJAvChcGl8GADCSD0NV5RJL6ULoT+/jkysqPW25aOH+j8gnrTukUijVtTvthkjufWSSToSWUb3N9j5B68/tPQEVMx/z3qo7RsaacYnk7u/z4CFJ3LETtWggAAPBaFX83bdiH75v6kHHDjMjcNgJfNjjOkLZXvEmh6pVKLgAUtoJgSV4bNBOelpCLruEnPsBAEz66q22NbkSX3+Z/GZKKcqbyZJ7AxRrdt4t2NwMdDsvv9joQehEwfpic3anKFRNwet8iJ0W1DE1MrlKt7fnT0miEgBMKrDEluvws/BSS/s4gVtfJo4OUQDC0CKgAmC5f2723F86avOt3ASlvCkKYGYyQ5rRn01BiY8+wFZVcMhMuiI36XRo2Ii6PcYyAe29764kk5w3XtfJmZZEN9zYZnr5i3HwOt/HQLBqg43MB9Q6ZneFWutTVk2e3JtQKP7Zx/br8EILy4RKXRn3Rp6KCHUNKpAy6w+MsNQCXab3PxCGV+m8WkjZ//O+hKuYKGUIKhdeJDxyPlMOFGzuZ+0Geq0euz/itue+uxJTvqLDCPWqjTbVpdXuvjfzxYFLztc3bUM1RTFT7510n2/eSbk23VtCvViNoWBq6lTAYIrCtOKltwphKlyIgDFUDbv5ToGl1wDAIzozM/jeh+9nquaVae6w5DCzYpku33xXKAGh4Bp/TKasm2IARtSFF1nMLoK1C1vIZZU18KOwhKEYOxFXPZhelaba/8pLGJXQeMmOgYLVi/iH72dp6WKMtXuSBWAYYF9feMmlmsZfyojoZnRediHWafOoX4rF0VwiyAcmAiwfwrQYStdaZAPDV6DVKik3aBkowmFjQTP165taDNEPP5D1Uj+CUs033GaLeTsZRpvW445IfPVFXvCblFaHzTtzk8mE5/fte0j3dFs4aNKVegPS1e62R3jhRfv+/RimfG2RTrfN7H1scsO4oymFLmE2ir/3TpES0ajT2BcZ9KSyEYbCoWHDqnbZHUO3GA7V1Xnlpcy5Z2t10m4BkLOBF+vzPnoU6b1z7kSjdBQF2EnbCUdmMEPyEsBHosHGxvCoBaPrbYi5UTF81ZesMjByjRiZ9c48wgWjq63BokgxKy+2W5Mhzw2z9kax/HmX1U/vZYl3zLjq62v3+Tvk23X91RkMPaIiihDqvf+e+n0PhBfxWL3l1l1XXS6swiZZqwqm1A2HHZVqm4ltAxBiAcVIYtZQE99O6br8YlR9obMio28VWPwWOSiI4pIviVmtMpATaJVyJeKxt99gycvhfxA4MyjscTdcLYYws/RCUdJmp0xGpv3kY1ij00MhbCxcydwyNGIeLGvRv2wg5u5QUS1qAABTlWesl34EWUSaVRgjfWu22xFNKt3ZyRpI9VbbuR0RTslXDWB4OPOlrmv+iTnJGzrWZc38JxisGb2b98m9Q6Xqnfxg//PPsnRRaHHUh+zCrksAj4iVId56Dtq3MadXKIup2wDfL2gBgpo2g4vKLOq90akRLp2d3ksoCoAZvMSp4oP3FBPW9M0wMVb8L6ab0DzzouHb8sLXAPehKAVTmm0BBsAj5gHv3Lzl/NLhmtq6/Q8mTyAaEcuJ6QavIBNLmWQS1X0HsifupskwBDJe+kqnOy65AOQFo+vHHY1FTL+WhcK7JgZxGyqw9A00jaIkWewG6CLy/p9KhRdd3HyB2cIkHLHHSBRZKkbDMACW/PmQiTZYzZCRtdGCPJWVYi3Pp2TJwok/u2mkfVMUwAHNjrz0lYstIeRW/iXK87Y7oWjAcGYeuLfMXuzOpzF3Vw+76U694gSVV623gayDalBRId22OsmKcvzD90ALFsOH3XK3/oTulvj0o5577vCRflZTLU7ra0BWMv9jdI21zQs8kFK//+aOuOLe5psFKhklGmz6yA1/AzO/jA/AAr/CHNgUbhqQ76ZwflIHgiIArKtyxZVFIA3cUCsPt5BvdU39gYdy2/fIQ4mPP8TYmfrpB+/vl594aU+Qanfby5YuQr6GgtFrWYdhxbuhsf+lF3oeuMdUxuJd5fIrZXEd81Vo1pqNeCzBSpF9i9Ftvvmq1t/QvO+b/CCLSObR1tIF6oZKYbYgkwE5LLoUeAiLDuNC4pSvc5U72qZx6qYogDEgfzfFtjxElllOFsOVcuQvp9gT5Fu12RaRlVdFZvQ+/nAFKIL8y/qLRFkLMiWLI9/yK4p1l4sewqmMexSj5lIzg4it2Cyti1POhZcx6TTlZDXLFqVSiAFAVjr3kQbXjtk7OHyEfsEiNFho60S2OJD3XoF+8UzjDYK6hef/Fbp3hBHw9XhA/tQDvy0GYHAcF4jk99+aYtCDqjfbQoyupV9K+tYf9A9yxN97O/n1Vz5B6JbDy/inH7FyrF8ACYweOL44j+h6lrqoVD8lKVhdmPZ7x3lnGtMSK/PQsWMAcgs3v/b0Wu6LUhV6fnSdv9QpxiMlpFKdF5+f7rZ0IniCJe9FSTQcldbZ3AJHDgA8IC0yVrZ/8X8bwOAj6z/9L79gBoibGizGjY2l20hhANVbbxdZaVXy9j3/jEOUdon6nrp6evqe+bf5UrPdzpVYffHApduwO5sC8BVR8CUxTBJp3X3nRJMRzKjdaz8R81kXFGEPOiv8hQCsvO+i66439Mrr0dp0MXgMshYpEsq6UB3ME0uT0k4HihkbmWR6g9OkSVrwBl5laUUAWHhVCfkKFjjQahIt63tssi3VKpdcqma3PWWVpsQLa8mCGG9lvS/xyUdF1hmh2t6H7mdWIIkBal1d/WFHCQwYMjw3XMZFtTKsFjUwrJ0TLhDfM/dqOuVMmHx2IxkvS+kFM7DF0jVwTv7icRgyVAtGhuYbBRsYdtu9ofkcOw9L4F1XXurj8NQVDMY/eF8wicZkMszFxWFINwygWAodvFBo3Wqz21L/LzI4bNkswUihe3+aMp8sfMmXU3HOj/ufeYq5qfneMO6Y2Gsv42WS3WGTwrqhYzgrifdTKCgrUVa3rVTqFn77268tu+8UWnAhl3lmRGD3dov+YlGbUJU9WKGQmIpOOmbYXQ+ieVEWU7KhE/41Y8/RGEE9SmKuZQEYgouusaZaWoZVKevSkCFY2SKrrh5dYy3EuW4eOnPHhAt6H7xP8pLMuqDmvscnJz7/JFhbJ1BgLRePESeNn4IBcG2dr81WOb7biM+kpYZrtiA8AICl7kAA7hTdcBPsULopwaFDh1zyz5Z9d2cqZjM9X0PNA7y3rw9/M7on+GhzWpPG3ITDuBWmPvrA5UswVTrsG1bS4u/oJnBygmpMnNrPOgW4alRgxjX0yutoZKajzfGtBCcsLGFRaPgDj5uac2+YQfQ9MonFAJwIbG3ZlzIQwBPPXecPKEXaba0fG0LNzQPLNS2M7AqQKbMF34rQMc0NdoG590AFLMbsoN0HdYLQyHlRZ2KvvozzZjGi1KkhEHVhErJwPLcq9YaU4Lv7xyte4MAWWWFFHNuEkcZj2JLEuVrkk3fRjMTHH8HMo2utq9/SyMpllu1HrqMVAtpkEnYSWXEVBhrFPhOTory/WAx3O1Q2FD2ywJPRzyUv1iKL7r363DuEiNdaF6iyRNHbE11zHTBPV4TtHZ/wLMugW4b7m0xGllu++m/eAjxKe3LKV1k9dVOX9Fva1hVwP5VquuDS2jF72qWyXNN+9mlaC8vlYE5KGc0YFteGY07iTcd5pxekBrvorHukcmVlqHmYZoCAmSWKXMoWHkg7z7tYHGvcq+/fj7cec5h4xIEQqWSweXghyUI7RQb39cjSfVBpZBbFu+WV/IvXZk2Nw+px7untRY64DDx/ISgNNbvsPvTSq8zntmPHMdGflRFzi/ARgfsy5xfEDAbbzzwpEA7ZGyvCiy2BwzPzV/hY4uMP0l04paInwKP4E72DaQP8vGrLrev/fggb1PC0tZlkTjWFXyj6E0aiL9WePKl1O884iVpqx+ylE1T/bZtmXK+PHYd3B1goTvY0LO9Fdv4wNVSXNix5CzEvQyHYFVqF86JQm016bhgwv44SYE5fqLV2xsL3JfeEIU4lUWSYGYtyazZThELV2+7AH74AmPHgJ+z4oGMkQKtkzwFbmMILLOQ0QEDviqjCbcr/RYbeNUfnT6He0k782087AX5rprBVm/4ViyYwxmO+mCGzSLGz9qnENtuFyxKId+GF7z3M0l1pLNoUzZw01o+QazjyONYyzesBb/B26H/qiY5LL0z99GNJcBqwxOIJkAvJRO2uezaeeJoZI3aSIVD6nnyUBgwgC4sX/l/7yqQ/ssJK4GJwmAPX3kcfYkdF1uS7rPrLBLAqGxEIJ8H7As91/keXKVgl/nE/ft//8oss5OGnAfnOjr5QsJYCH9Dew4svUf+PI2u22lZmKerqfezhrmuuRHsokOn/+7VYv+eXIVWsDg+L5Ndf50wjymjkrABYioeUlcGSGQsLdqw/hxZaODR8eKCqhtagQKamTUt+903i80+ZRaTbW2W7bVFdtIwml5NU3B/xLFtiSfgNxnCZX6Fsf/Qhm5XTrbSqmKW2nHr+0LSYX4y1HxXdP1kot6ZZBbCpRzFDBlEUK5ZBtL0JX0PxRlObWf02CpPvf3qD6VE7vMlg4YuqbJ+zrA38T5s+u5X5RPqsFCbmoWhORp85Jufr//yFBAmZ7Z7+z1v9h1T4p+RRf0jPBgtRIzAI4LkcEQYBPJcDuHzJJJspZKWsoAqqNw7ZRgmtE9pvskZVfNBz7BiUw2VXpN/wkqLyqkjKVCmfTF26tVnVZRXLjMBorW5KJnRSdd5adBo2DOKPgC4p1WGO9vuHUKAY8uyWqDdu+eZXjGqkVOYqmWhQoOin/o6b1NzI8DICpQKu1HROFcFgaNQisvwws8Xn7+m2AF2G+RI2y3TLDAcDWDuYfxTfJc6GHjU3sfPLSu9Ci2ImE6ueHlC1qCKLhoFAauZM8RdnrEMh2RREqA1SUpQeWbsocuEmzSb8/j72LcoXt7V2Kn2famlx9rJKrqhsGPQsbMzz0ngfEJSD+Z6okNRuX0wc4nGmquHFlwwNGUp1yd9+lYk1QNWIxdrwfPOzaI39WVpCp3gzagGljQpAfRcuWOiARKcIhVmNwLLLiifO/ZnubhnDLN0wGCQmQiaVlvA/Gg98ZeV5KGeaxFhEIsMfeAw3Upb/Zu47xpl7mGJxjqxvGPHIU/Rkxpgdkz//AF4zEx12w8TIWuuw9IYhSVDVHi+F5sPufKBy6eVa/3FA/2svyShQTkPDiElPhuadN/7xR1KRLAcFmq+fiJcF40hYqPZTj/fIVDWANFhdsI0Dm+mjt2bFiaKG3/swc3S+2741PLJfZuYBauEkkw4OGzFi8lOMLJBwnIFYCyJiy7dT+p54hB0SwMmriyWE6mqMtbIX0tgR02mCvWHHFRxVJugh4y/F+ZftFy0H7BV743VM8Y2nnWPsuzJusBaqs/xDkj98N22z9Vj+asaSVVuHw2jrMeNi/3nVy5VM4tU6fNLjVDFjl+0SX35Wij2uPAqW9RY81KuqwCPBUMZd05yGsbjddGMEDi+3MNtJaHEFxmPCz7TMwBFO3GiSqfazTxXuZ3KRJdYPqgYbGsR8o7GSl/CArk5qCS+8iK6IRbfu22+WvWXswt5ld8addT2faT6VZHRoG+/ZGAGbgba0EzztJMiNWDYqK1neAeSSUREWyyEMJRv1qZ0tC23nnsYju1gxXxMBgj0TkbXWBfNklRO8VNg55MLLcX/A008srz//yK6q2rH7s88guu76hPWgtfQCCqMl/MmWi3SKhc74B++xFin96uut3nxLPAsos/uW6ykTKxtELP5M6XT8ww96brux4fhTQzU1Dcec2PLOm1KpHq54HN9F8SV94VmQz7ctSo9/vv/LATDVpFJEoJRygHSO3JJ2SAIJdGIRt3gv66rr9v07jBG3dRE2utF8SJNAYgfRc5HEXHzCNKECCglKKalDltgrL7EBRJZ7WeHYfEs8bW23GFb19dbCruuvgogZXAZaVw0l9dx1O9HahBDhkeGwDsYjFTF81CXrYBXpjjZIFkziZe+kexlEhpj4ITU77tI98SZx8WFRfINNZKN6X1/r4QfTGOE3yedwCms85czYO29Kv1T7dY+4lXWXququG69hr4Z0RHl9sO4pAO7u6rxiQrplughU+q2NfcFg103XRTfYJLrWOtHV16zaZHPHPxwT5rzz1Y09AJRtP+c0ezOc1Fj48kuXwun0FwmloLyCZV9srhQkkRovSUxn9IUCoYya+om9CBiHoVpJ6aYAitzKS1cQ4tPu5IKVCSYJ0YM03bfepDOxCBjAw8QthLGrXGxxBgXPLPEF0ItdsjSiQizQVCXnWEpC2gEGJJxTOTAWmaqS0Wa84yTcjvhd9zx4r45ahROPkziVwpmXezER//g9G3kkcW0tXg9tJxyVcjcR0VinXpIKk1PDQgOgaR3IRw0OraMleBdJdWwT1chB3IhYrOP8M0UuBAKMlbAEZRiuP/gwZFbHhPEi7/2rik7z8v2UB2ApQcedYMj4y7loiaZs+d+FlsgbaN6NZtJ4/ClCyrbbni5KgOHmoRy1txqgClapi9GUPQ2ff8oTux9YiPRQJxFnsxNQ6b71RshXSFNfKi/g5yXRZKAn+UME2noAKRWiyHu3LkmAVzZv+Ah/drFRsZkKSLCOXXRceNyRRWv1plK3QPkVenAbw7NcOjCD+OH69o/rj6SORAjtKdybnTErr0qoQPCMbfjUSPd777uzrPX/8gGs28EOJZd63Ib5f+Wr2zE1al0EqrzxWkkUDDaefh6uC7IFVF8qoUArd4xAdlORyPiu3rtv14XUbL+zwbZg01AKZK1aHNOrsk2nOI5Vb/E34rwwWDDYKBGDTJlOC+RHsVAHkhAQG23wMeI9gdachlVG0Ho0bTUcfcLwuybV7Lwr+qCAOatAB1FcWFq1qJpULVlZrDTQOmOFjyLv6g45HCW/6dSzGB8iG8LafKNk5cp7WyaAhUAVPRVunFuNi/PuM2pwxzmn6c3O6DhDLpiA85EHYz2+LkqYTEIfVl3QKHuLU7+Jawcu+HqbBQy2auNNCUTIpnJZuTLe524pSNwhE/419Npbhl5zczN/t90jzpcODNxE/MItoG8YCax4zbUJDYZcjL35uiCN4vmoQokvv1ABEIXD4xY/9IprRzzyTMNxJyMvFLFapXGbVvzMxlr13VFfaEChnXzENGybyR52+k4EHBocWX0t3MSy9Up/bXmfylGydAFquGWiZo27v2iluTCdMG91D5UWSog8IpahIsFncD5q6enuf9pzdjc5zI3wZ7uiYJBAXcQ8YKIiG03/ulX3Tdcy+oRZRPvofeQh0XpyLiJBzjx4X6IEIs/C848KL72s+N/njHt4yaWH3z0JAEO47HECC9ln3HHO6Y4/lyqWuoiDxzIomjMYxkwJxML9AW1o5sH7pKdNE3bNZUSA3XjTsJyqzRdzI6j81BMozOjzEvXgk4+7b7uRlyZBiTdlU7BoDTBfe7OQVZW4GDJ9ghRsfhtyF5fofDyOIxmzRimkvr75XzcgXUTIZV3MpQoYa+C3sAERtGyz2Gk02pPyZF6boB+p32Ua6pUEiunHRCLxzZTEV5/jVEQ0gc4J46VGe5QVPOAEqdaZOI9GVl0DW8r07bdoO+KQ9MxsawMwRg9oO/7Iadts1n7GSTIbRFiusFIDyqOS2dIAu3CvQc4dnCDnXc4L5FEqhfqtOQ0O2KhyHt7kJC/0olwAp3G5oix2r8hWnCwuR9DDmlpIhK3sMj/Ru+TQf21nbjyfu7taxx3EWEs5Q5ubr7s1O1SwNNbZhSA7G7Iu+OSUr/teeJbXkeVXArpEfQBgEFaOk7Zsu5bcoIusGLJ/pFJUWeNQxicoTBbVBQWT33w184C9mMVxj/UNQ5WgaRaekR7tV5WTnj6t++brMeno2DSRVVbXGi9alFMvBeVeNEa3KvdT1hsYNfM3zQPEMJIzFFnp8z2WmycgW0sAjJgLlvEQVhUNc6tcYUX2W8Y/+0S5iDqFy5SUS9ongpnRxNI58x8H6HHBlKE9rgWWruAWTqDBACnkowZCj2rYNJ5wKlMmPK1k8pBFGQylU0hRqzLlOyK2EtncfesNyF1g0HTm+QRwFJFsLkCr+6IHXfYr1KZw0lbbt0Sy6vfs/NfJyCgI6vZKl2NaxSezU9RUYd/o6jSK67my/bW0+/IADOaiUup5SP3fD2X4ZLaj/CUw26LKNh59IhDse+xhi7gdgxx5TU8ZvtQvP7ceuj96r9dO3ROeGSYBsEILYGbeu0nJHnvrDVzJeUFUWcQ5dgzHmcRNI78ylKoQIEGZAIA/WovXuxI0Oq0QtyYp2cMY4lP7aSeKca2xccglV4YI9CtTHbnIiLCv2+9AOuvMqVDyKyuZs/EVDUhGA3QBoLpeegFg/PAF0b1W5XRN1eP9JyqFxu8s3PWSDHBXHoAhEcLd99x7B6Xi5dR80x1Vm/yVMKzYCNl1yNYgYlv3v/gcvuYeG4QC1RY8uLfdFhLAaVsPO8CLcW73wR104aj2e10E8qm3B2OTfoq9+3Zu5CX5BIAVJVEXEfCwGsoKwaKLVW/+t6ZzL0I6OFho6qKdoAJOW1990YatO5GASw2ZcKVAS03lUXqxQLEvremcCwEqOkRwnpFM6+FAzJQk/LDm5yxEuRQcqM7ZcwbA9IAAPP4cotdd8f8vFOzojEE3VrY/xcBPJUh7fyH0v/PSi7DWEgmFjmnuapKI2nnmyUIoRtkBfxUOhhdYwJm2uqkZfSQxbqGIYVRi2VJmhLoiYhISagRKSqFSmQJVdlAbNGoYdywepuxJRD/SaOSW7f4quYUpmOUEUcjBNrWDFB96grhLIirivaKk0Lzzs/8KkzVFMRnDbN50zniCxw+5+AoMVaKXYTF+/BGiy9cdcAh/sjULOxTcaNo0ZoCCZLZ0V02QlTTTKa9RQldM3jCY0BLM5u6X7F+jgqgg9N68JDtd4edyVpNMKbQ4nUb7xU7LyhLGP+iJWXn/66/E331bUtktJpraUstW//VvYkR8/mlnH5gpSvhejGkA48jXxBefO3I0lWLhCDsORNPz0P1pNLscbgaTrCLNqmtAOkqny+FGLD+svFrVOusJhpnsMpVPcdSExF/XvIG61ttQFL1kEv1cgpuoxECUVY3G088FEuymFKd/jJHBYOXiS1ZtshnTU+Z7rIiwJ5YdG8lffvagi9141AJiTEWiwV2wkyglzuk0G5DYwIhXeTDY9+hDie+/LTRfYJBZnasdvRsVsarRO3mS1wtrAIvfzhKAVZEixmBcuFGiKSiQw6AcYZZVJ2KPxJUcLaB02qyvwJjZBbECQX8LMySLstkKmzXg8efVaYolUCX7M6kn1GDLnOvUBX0TKE/LPJUKmVq5zPJ1fz8ERsU8u+Oic1nwgOgd7VI6LgJWem21XLKqncciff0VqVKd/kpGOLC171l/9f1PXWIoleAsHgL5UgzwMOsAHqDgueWzVqYQ2NAxYy3BzOaoq2wZPEf17g9orCb0TFdniuVLm9X/AWX/L4oYBHBpo1xARpSW+f8zVY5i8v/ZmMG6//gRGATwHz+mf6oSBwH8pwLHH9+YQQD/8WP6pypxEMB/KnD88Y0Ji7vJ4DX3jkC4duz+c2/vBnvGTpAiqxmD4zPnj8CgDJ7zYVi0B4MALjo8c/7HQQDP+TAs2oNA6ynHFU0w+HHOHoHAz6Osg9rm7L4Mtj7PCBCX0YtZnuf74Ks5fAQGZfAcDsCBmj8I4IFGaA7/PgjgORyAAzV/EMADjdAc/n0QwHM4AAdq/iCABxqhOfz7IIDncAAO1PyyvSpltx07U+wLZ1K1pcd2GZfvxmnbl1j2PYgHvOVfbr5LEAX83XFAZ9NOlis55eECnrMNRPK6m4u49ZqXz89ee9hXhAle7dsnLvXiIk+T+FNVcAZuEZd0KYcdaSTGbV1vfsGLHU/63G1UXt+Uu7yzVUDOHZDj+AoPhbjO642NBGopUqwpv8BNmQBOp4nyzp52KU32NEjoKHzBOSQr/smH+A54OxvUtov6A//h7MwEWiROpVKtrUl1ugObPrJd9ZOJ6Cqrs2Mlk0hKnIZffvZgrFz7OUBWBc1QYBD8YKuuoBGbggidIYkzGTabsH+V4Yu99Wbs3bd82xcSCQITRddel83gcl6ORiCwMB6rXGLpqs23iCy3Avv+Um2tHM/T98yT4uOu01hjJ6Blf+/yK9JOTqQINg4hckN62lT2q7HvMsHJjPn2/rJzgvdUTSwt4qfLDqjubg6QYCN87J232D+RhXBs6QgvuZScoZ1Mssk/8cWn2duUrSYVvy0PwOCUxI3aaVcKJZRQht1XtXX65BhGmeA/NNfrYSpZu88BEgmMxO3thOOQY2bUmfGEQOgYf07/qy/aHSNMGlu1Go49mfRsOOs4/ywJ8KcvthPG4+BWZLU15QUBJEAgYKwAAHpN33oToMvok0yf38MWI7boS2gjg/7JJDs/GbXeRyZxUoze8gXtgoUNRx0v+3+mT4OOq9gutuseNbvu3rLXLuy5snfNsH20cqllicjBVitaIcePdHURwi3IFlMwrben69p/EQ8rCy1gPGxGYh8z0JW2d3WyC6ayaQiFECUp9t7bbIOL/ec1vRGSBFz0jtBxDUccyz1nCbKXuuD+JZW+yH9lymA5g+EHXVzbMYdN3XCtqRut1bL/nmzzZaMYmwTlsGy1oQg0JxqNUCED8duv07beeNqm65K+Zb89iHnATi/ioUAxQhDmIv6GfXBO1l66ZEJXDb7P2H3HaRusMXWTdab9baPWow4leIOUAcAjkd7JDxCKhSfQjgPHvfKTifASS0U32JjgkQyoZnrgK3E2CDIIN6KcaRS4+XrTt9kMWiROAZzcNI0b4BRdbyOCeAAY9hhO33FLejRtq42nbrrujJ23lnBlNbWciymnulg+FOQiIMmw2+8Hupya3HrUP6ZtvM60LTeauvE6Mw/Zjx170dXWHHbrPTU77CwCyL046F2wR4WpUB4ZWWPhpivhtzwKRjqmVa2UTHQBCWXS3Q07pUvDbrqDiCS1O47uuPh8GT7ICymiAiXJ0Y8dHXBC5CsDgfSiS7Cpmp3HxD8+yYvpBU7gIKa2njrix+4AHSU2GAOdkGCkEo80HEY+JD77FCIzbAPp3nH5xezdCy+yWO3Ou/XceasEI6qsFEo9ZBw7VFtPP1EONAQMXIEKgi/x2/f802AJESJpNrKm9YhDYL9yzpJL/SAKBz8QUwdihUw7LjxH7UQl8IMcmsoWwtj77w791/XJr770iZ6k5OIYQKic0Ict+4yR03Ux/tPTzg7CbrB7luCahFYcMv4y0JdHtyNEeOTUzIQA1g4xII0u7yqTgukWQNWXSCOCEHAGVR1bKGXXpQptIaBVl0Sr09TM/yC1k7gWkBDrRBLPO5/NAHlDJFnZxcsNqlbO5ZSGbkJpDD0aCmE32CFuiz0OqmyZ0XHhebBxoojU/f1QNosyWNF11q8dPQb04vwXJ5CYCrWhjkGsAPASpoOqVVAApG/O0XkZwhpy6gghygh7iWgX4UKP6KyKNsFG3vbTTyR6md0YQk7BhPVOcw45Tk75mpAP0mWdq6YWDsd5iyKhORnuyOO8s7/pO41RyqwMhcUSckZlgBflAtgtDnoCbBqWVM/OT72xGjGmQ+GRkPcaWmwfVTeSma8qch+3EpvVvOeZ0kx8NYNGkse9XHRJ9/WB3fRcOq9fukn4BX59Tz/R+8Sj3BMsLbLSyhBi46lnQVsIfqlFN1vkekILhaoNNyYiB9QJC5EyLZZAIfSU3cBVm27Bfc89dwhbyt2qROwHWBp5deEkVQfkEASJW3QOwZichTveEAAw/t47pEFrCy+6hIPEFAJ5qJFUUkY2qc7aNasABjBQsIAwhbZVvfFmcCEe+196IY++R0oApnYJp3t6iTgniVMpwJAnseoHfDhff1Q/QyE2jHMCrKjEa6xFAIk8CB4MSHhZdMCqqvpDDq87ZBxZOi+/RIK02nuxAxU9d00UQRMMsQl4xOPPNZ1/SWS11WWUbbzhvKpV16Ao4AcD92SK3USNzdAcN7oLbD9ffAmtgcbee0fHx7NzOPfxOFFMuQcvw0st7atXp9DRI/LkLOlVmTLYlKn4G5MKLUobTzqDL4T7jb/9H5tH6eS8CS20CMSKbkx0u/qDDuN951WXg7y5id0aCuIsQzbstnvcZBVEj5q2xYbopTZVAUWkXfdN14nGu9V2VAprJbRIFg3BZvtff7n1iEMbTzyV4BuhEfMwE6vbYywHkRM0MPnrL84sS59xDSnH+ohiysmipnbnhtGoq4eBg7Wp3393oqylM8Kc1UUg4ews5pmg51Odr3L6posf5nueN963ge9mFcDhMBFYwGhokZkSTey++orum6+VybF3OcwQ9XWef7/InFWDE7j23HFr7xOP2JNUJ5Phb14h1p0qXEK7HncEwbaYRBHEEYXcYWtWQm4hOGJKV2+7I+fEM+6cFSvzNB38xkoJjPuefCT+1utVf90Kfh5dc22ke/VW2xLcacZeo72o9ireEdkRlkinLKUWLhpZcilODAcHYAnt556hp/iKu0pl9mzQqlzfEnM26tzB4b2LSrLq8b6VflcugJV2Qz8Iuz55UmrGNPSX5A/fJz79iEAk0itbOAEtpYWitbafcTLEBJ9E+2094mAmDOasOa+tIC/z2hzbgkngzG0UT0PFVTJbIr0K3tj16gxEEWud0f/KCwA4TQiR777xMWdTKKMYrUp3dgKY3gfuITBWw4mnw/nBG4Lx9Nxzuw7qoOd7QIL3ic8/0/0yZcgZB4TuB/Dg3OJLOtGveMksUU0KCOuRp4U6f6YCTVvfqoMdFXtQQ1EkOIupesCbHG4zUA4H3dKp7jtv67ziEtggppZ0m0g7T79QhUgwM6Xfsj2+/7mnO1AX+/swZRDkUygplxcRPwyzXC6oTJN0bCLRWkVzBp9guboKk8R3g1ZqAnEUwBshMlpCmWhAoSDht1qPInyhxGkQg50OFloZxhwh07yKCixlIoNzGk/XnDkhczkduIOQU99OSRCejYh8a6/LKQ5OLCa7iYgtTppffyPegfpxYti7KoJgsztJs3OUe18mgGGzapSRQ8FaIlnXyBBnEa5ugh41zXyIZV5fD2fuuuoKPlZvvV3dwYcxItltFR7uxv3KlXMSP0xYmWBAESTwFerEyXKsqmLYzL4gVnnlAEzSE9hfxwHnJALNIxl0gsz2P/sUCbFX6EBoOfq/GNekJNisnkdwcHlXJ8KIl0RTw14mk3sbM9TMvm7fA8IcPyL6+e1yCofumlZxQgo6WWKLEuypBzmLXmUCmPHVZARBGOIoVAFpFEgqoGMYKTGQr79KzoiuqGg4+sSsWMJSBr3CxK8uEwBMP8r/HMmtSyPYGKhtj5SXyH+nJrW8El6SG3GO6iKRIRddjtIn82/O/uaMh67OqvU34sBj6BVq9voYCGDAEetKRUXjyWc2HHcKyC1ZmFYRgZj/sf8401ag6DQDTtNz3919CjNAi/rDjiYCuKqoX/5XptP6cceQmuCJhDJ3OshI8A9c1xTMwSa9wh7kr7cXS06QIzZL6b5qRZkyGLVJB6yDhO24ZU6P/D/YQJQxGUsIQymonUq1nXzMsNvuq1x2uSEXXYG5gxhSjlFJshLYzXHxFJO1O0xOoVCwOiIWnhGsrmaS6K8s3xMAxrCgkBLpmEc5IvZ1OtNw/ClYvtCcCSyLUalunwMY2e5rrsbEb9QfGCaqxsyDxg65+MrK5ZYnGjgHORDTj3CbnEOCRSWy3IraIu3TsSE+TtU+7vCK8ycQiLzx5DOYFss6ytTfQ8NGEKNcomVxBMwLz7WddLRweJc/03eRQYr/oRbUjztKOHZlBMM+xxYQiLXzonOtccvXd/dduQAOEntTmeBDYofSvMgtK/s3kcB2w9yDthLILtXVycClpk+feeh+EmF2meWar70FhSv26kvSVsYiGMLcj5LMoyxRZEnNdJooipnV14JtBofPk/lmSgkqZgY1R8yfjDpzmCzOhqGjvw9DUuNJpxPamz/dfmyK3RPGY+PMiuoFecU/+3TGHjtxeHzNdijny0CUdpfRsxJfft775CMO5elvGEC6uzF0Vz/zZO0eYyUEGoq6U1OSuHGYSHsfnVTBvN9Al69oiO1txF1j4kQ4xaazxxuSJeRb/I3XC9kPnJKtnzLjZEE3oZCc+kRU4PZ2iWCcJSGsooXlVteow6wDRN5VZ24IUCBl4Nd0+rkgNTSNXbfn3rtEJFMUB0jNM1Korb/fzA6dIoWBR+XonUBQjqzibJciVes8Vhb0JthvbhaZ6dXWcjROcMQIOiWrmd9+I0iGOMhbPgtZsRgkGx61AKEP0S3oggRZQnLPmE5GJDEIbQ+D3MM9yIU9YNQCLGNIB/vkOC3BP45lyVuX0r8kZrP/gktL3L8s7PensZ/KBDBZgbESNqIODKjsQOL6CAAaZI8XdiJi+K69HquwDBOH2bB+55SmjUEkzu2DqTqrNLtDWfdeFizABRQORp/2aPpG0iOtB+6XDIIXP5hZMmJeL5BnNcB+pDHIYLeDkr54R2hSFtehtLwjY9fivy8fwP78s/OkpbIc/IeA8VlIZqfUwby+EShTBvvyzu5DHlY2u0UO5s8egQJcKzvZ4POcOgKDAJ5TIVdiu/9oAKNH8Dd4/WlGYLZlMNMGzLl4WWCIQFfSxhetYWplW/wuStBL/zQjMpc1ZNYBLHBNJbHIVC6/QmSlVVl4F5uGmK6UPxFTw6m/Y2on0DsupRInn8N1mIEMXv/bEZilEYdAcUJbbgUOLKpmIsvx2UWv5Pffcb5Cz90Tkz//KOtIJV5iUvAcDf2ZlF1azVZldd32vvCnE3unmjgOwEXokT6ANCu7eZRyxMAks+RCk1dcVkB6uTAHFQh+LxWx6MvJSxGfwYtXYsrN68ci5aleqPOdBpyjmzarm7LnwVhkZG1k3FFA1z5IBTdPLCxil8EwObQ519aIJQ+3NBzKjYHX3xLfE9aAyoUXwbYnfeMCSNoyKY8ZWaW58zZZEk6nqrfbiVPHnGQqrfWfnA4qFsRvv0lO+UrcnpEXuWskIOvKq3FuZRHtAVTjVHiWsUHW5C8/YX/GMixI416AFg/c6IYbixUolep/9aUY3ktZdeFkuczyHE8DRuL7B2/zYJxMVu+wM37E/v7SZ9FpdC+w1CbohTozvvQZptdEt6nFfjEockrikAsv0ycFkVRODJz8IJZ61j5ZNhfLi5j461hMxZMNF3ncV3WJgHzoZVdP32VbDLZ5RtlfrRxzFApxson3mjeA2b04vgOuAKzDCy7sS+YmyPrFuQ63t+47bkl8+kmWaVAWIaKRugMOzsqS91FMjBz9/sKznA2Fw710RFncWLBiwwRrU9pNh+POZ4zZAT8hGxLQaNUWW8liBm54306RU1pcFIEPcXx7dkfAFVW4aQk4Gnv9VXyPWOkSdwD/V5PMvimDgoFu1WZbDr38ar07gVIALa4wYJbs9sFWbgDAmNG4RAJP6foDD607eJyBaOelF3ZefrES1cozFD4Mv7Lt7Lp1WGKbmkY8+SJynRcchRf78D0OI4JnhEctGN140x78v6CAZAqXq+brxNNdX5zgiFsu20mokSN5IiuvEllzXRzH9Fcor/OfEzi5VUbWtFYdrj3i3y+ymUAnY/Gu/5UXtZmQpmJMxatSjllRa1M6DT5DeIB0XX1FasYMwRhora+vetsdmq++UdtEQfqZB+3jARgbdbRq+OSn8N/g6PCWfXZ3djep4hhbOCLncEk5iUTruANRXKBdRgaMYb2Bw82j62/oML9kknP8OCFEDi53UUS3Kvf/UikYHhVdZ72h/7zWGYVMpvPS8Z0s4GO8NRtMTPEQMaICd/OebtYSYCwsDuqFZDkAXtEhONt0ytmsKXVMOD/+0YcGA0wZ9FNWINSV/PXn1I/fpysjYA6Iz4oNMozO41rKMawmCze9k+4XXz5GXE/YQiG0P3am1Gy3E19hLRxrBXftuupyDRXJy8o8J5nRMBfArOB2XXGJ0y8l/2h8aIGFqv+6Ze0e++j1eVZL6/Y7KPqXDdqOPTz+8QfiZMJpS0882rvJ5jWjx1Bq9SabRddcJyZeiAr8nJq26x5AVw65P+c0Fgc92Os2qHPupT2ZNM76ie++DcIe6PC3U2JvvtZ9x604PDWeeBo1AlSEF6yRdTmBcVE6Lm0ezF6o+RfgDDCD451XXwEpAJU8xCdtdC+0kpra3gfv5cBPXrHOyAFEol9ANCNG1uwyJrreBo0nnyXYkDV7hryS8ACldOhPoCq7CKlRPN3dpR6W/BCHej4mFYjLGICRNLiacBONIjXZqYDLldumClzMIyuvJtqZvqiLbQR9PoVO8oq/ijoSXvkzp374DrSYsePf7KIQVTgfVi67glKdKmCbnG2Z+u0XKThcWf+PIxwbO/2dZ2T9oUfwGqqwdjDoFgiSob64D2oDJv0FcmrjpDSDY8E/+oBdQpwCppOxvtl0+nmew7mX2XdXEoBBI9wY8HPQWWFfguDow4bL+crMfgDG3XfcDB33KrlFo0Ua4UrdJOdr497MgXjecJvcmgR5ZEkKPVk/mpcqGZwCpc/zqkQDcM8ZNMUIToSCHRMukGOtdK5IpHbMnh5aUIMot9b4ijLsyXvJRE8FdWpZpuUIZASNLor/RbeY8E9BfWpnwfG3XzsUNvOJjXpVG2wE86O/QDe0wIIsAIvnhuvXYAqhAu98aaRW2jp92U0kLCeZaD/tBCCt37Ebr2q9DYvr/wMDmPYBDFm7VRfrkZ0Xny9jWrq+rsAAEXddd5VixbKyq/mYFBkKsWfLcW/TdeT8D/4GqhRdVlVLCYZkWUGmJe7sAnQW2e8HjaoijIbf/9xTpmDcJICWxzbAG2eGI0nc2Y5Jbt2gh0ejcC+koHlbudyKuFaBaryBeeBviiOifA0GcdNBEcYNA7ULId1+/pk4V+cnDL2uagrNexOSw3m7rrzUaTmOcQxd0WsgACPnKyP1Bx9m2tT31ON5OEzROvgIU8WxUjZz4uEQi0fWXCe66uomU9VmW4jraKHpbDDUfMPEkS+9Oc+zr87z9MvDH3lazpQ2DBa64U9fQFdOHs+FMC0IovSaGlmoBxI2gJ2j63UKWpKvDCc7fCMcRrvkYHFTYO3uY8VVipZA65k0DENkB/xpjbVq99wHryDQAgUwzpZlJZJNRu/G9MJ7lecOxtn/xmuyo05dDAW2Jm8EcnIMAGBwObLaGlEcZfSVTiNQy6Bduz4kiib6QEXd3vtyH//gXf0dp62anXfTYszO4dxn0pwkywYeXBvhkGxBCC+0sEhouWQ7E5dJWRBLAJjBCVKLGQ5ad8FICVhb3UtRsPvJfen7hRX/8lPvww+al3i5QKYa7SAJduN133aT/jrknAuja63L5AqfQ5FrXJhEcNXz/cluK6c0VEe5dzvlvHV/YIddXbGP3tfP+PRQtfCtAtdAWnQqhfuj0dNwYZczHXNdUgqUnvuaIeDYbjZyIZLbjjty+IOP4a5FspodRnfffJ0cK53D+Wl9x7mn4w8FEcCf2YIsm47UzCS7/EIsmnSZjHaK01mYFosfpJlj+EV7QSyx6wtX4kjLIcpmcMQd7vHJOgnN67rpOqZw4UUWFXNHMtlxyXhsBiJ9U6nwUsvg0uUDoWzpX9opHlePeUaiqYmmnWPwkjRMQn/43kkcCskAFqb+ogCGPzc0RP+yvlNWRQXzGawZwtxm+Uql2fYPiqCLMrtAVkG7FAYaVm2xNV7EaL9O2XgFuxMAAS2KsZo2gBmidefgAbmElKWr+YgvGIQVmVbLMdeJuLEzCClbDj140ZqUhW7Im/juGywP4nyoLtnTADz0FQwh9bsn3tR01gW8SPz0Y+yVFzT5Ui9OpUMvvcpJmfNDT9k0jPUt9tLzvRxPqsNC2P1lXsekzr2Kb4AoxqIhHawKwg/di22QotPO6oWiyEaSmq23R9XsfeQh0Lln0v0G+5Tts9qRi4AK6Fbm4J+SfxZ02ZTAKxeiDoCz24f6w0ymihmkutgOyRZ9IQ5zUYI9goUJwuQAJ8TXbupv5k1oaLPwNtqgr2BAGJK+bHGA8+iPP5hkCOaZB45tGbtbx0XnOYmhq9o6Zr31Rxw7/KF/N5xwmjiW+xQU2YrhJMZchL+tGQHz1r3x0rlvrF/4xmKL20oBBgcb062kpd0mkrV7788Us/uuiemW6aBq/L23459+pDPTJc5rN5IYEilJFgjxuQCGRVuiVBeLqMP01nT2BdqtmpfdN1yDP7PHn3PbLvDIfet/A4CTSQ+E8A1sHbZnGabVfHIE9oMt3Ujc/tdeAdf7nv13/H3ZJczFPIWZWPzD97hnb1/DuKOar75Ju2+q76SoCKkZpiTmQNQZ04WlFbgKfpD0WHpHLWhnJPCAN5r2h1LuQZdFFyMYhZivH7pfGyswffQ+9ICTGxv2mL29kgCwMmEKgfoGTsUj8mG0mwkezbSYeSd/bBZSuwcia67NdlOMSjoRVXdde6Wj7Lj5ZvEXWrWaAbz1lm23NPz488kytGwmVLKmJJfgcbWYbmzZBD+fMWbH3kcf1mnkFPLzLlb3ij0EgyHXwg8vFP9iV5bp9Pb/OTzQ/ggnGCoakLlk0jkgapvU/htkDxOGYEMj9ltUSqwzMjqZir7HJtcfdpQOpVC10SZoH6z8wIKEhSJ0uYIhhIWYLSEs3ldVRVdaBRYX/+A9aYxFwWTBZpthlQlPTazWCy2M+sqUTMta5i1dN17TdfU/RcrYGKPbqTaI+ps80BOoZ9EoHFuUc8NOaJoLYKEwT8ZjpEvSI2cgHXHAdFR1VuoMMDiZ3p/bTjgSbQvdjVfsg61+6kksRXA1rPRwO904rJjspMpnOdHfK4oCmKr8y7fy6IoYp4ASf7DVLbAQUTIAEopJ9ZbbeBySDRA//qABTMdqdtqFcEwaukE9fIFA06lnpWa2oE3AZlHHMBCyQVtWVPRuRHfsWAzIq7xQPtY3ToJnhU5AkgtdQFWYCPJ3USwElQGXVZIGR3bkiwEqbwJRV2FEiAoXZewUWAFqlioDP7d1AtJh7+vr7bzk/GF3P6RFFcopMRHgySxJaXs4iCJK5SOIRgAACiRJREFUTNGWDwBgIVnrCjY3Z7fM+lrkFnMaNhe9lCYbMQpfrAp03XANEbjSLS2xt99iIQWErlxx5YhARU152cPyzZQYkc80ytM9VwLBJPqeeEwsDJFIzTY7OEyP5eNrrui+5QbHuJG3asjO9jahzAHxmHlXYxMUZsqT9V0bbMCsxgEwUGdFUrb85PI/R+1nt5lf6VPUxYIjagrLPNRCsJHQqAXTM6Y1HH6M5hM9kx/EPFBcUykKYKRFR7vpADcYGYrbFO3E3j3kO/8otvSgMIst/ucfs5Euk2HBR2JsqfkSXiLEOqno7Wk5aKxZ3vBKA84s/sg+O4IjJQQwBsD9/VC/7Achcsj0aXB+yRUIEhqNCG3J77+1C/HdU4KZE/PBLdCXxv8A6ouXkgqBJl9SKRYBfYXQTtcjBf4UbB4u245zSzYs2li4ZJ9ESBM7LAFU1gCGfUbXWZfNj+yQo8LEF591XnjugIynOIADxKmw+yUuB/ZA2N8K36NTSITB4SNY6eu67l8iei1BRT54ESsZ2PN0GbW7smaiNK9EQu3FzqEmeLLmS1AJSoo7atzApaEbViu7rr+a1WuJ36DWA4acfwkx2KRqN7HdXslo9auksHLJhETQcUvD1ib831rYhmp77r6DAGGKkchGtwx+iXat9j0dsShYa4gMNQw5ztTUvZrOvECLAKzFrYcfxB4tO5ebyvdbFMChMJEPRLVxuTyynRX4dCuYaMfi8JWY/QD5zjsfy6i8F9seS/GoV/6LwWWeUD/uaM1UWQnAhNv/n1e1pu1Pm/WkdBN3lBluwWjwISS786DmYbfcpTESImg48viO8Wfl0Udkzo3Gbg2FfZ9VoX5MJvFEI6aH+YgLEVDxFc50qGUG4gYEJhn0V5Ta1IZgVRwtgQkTMhO0w2pZuajjEiOFsD+daBP33onQYZvhgNAli9UrVbr9XyAcIuwgROyIdFjXsOEsQ0Jenk5vZ8h3L9J3z32AMQ1i97c9q/aSYxX6ZooIG7VfFjiBEP2vv+IlKHTH0KGbGH5gKFuNRf9Lz3XfeWvdvs4mz/qDDsV2JiYOYyxzi6WnNmdSCq1AJf+FJpBMSlw0VwDjAUL8yyyFVPKCcDl15S8T68evTkAPiMdbavOn7nv0oY5LL2SFGxfVLKXMn9B7KgZgpBf7IWNv/scAmHy1u+3FGIkhxgyrV1rOHbawhRap3WtfPrAUirtaQaRDP3rqCQfArKRutkVkxVXin3xUML2uClUWb1z3AvdFMPNSvWEIcA/CeKKFFmTadM5FbFlOfPN1drEIcpu7omkXgK8YKNAYjj4eu5uuFm/D9jNOEsOnXw12G5XvFzbjZ4Ho9riMTR+9DdNIOwPkEV1tDQIK6JdEd0tM+TqYs6fUzpJ1X9TQQdpAsO+xhwSc7kVMXObdRn1wX+f/pdtqPUuCsRLQUURggQvK7mM9ESxWF7yIXfRCSVbV+bPaw8rAybzObS1hDdvbcOVkIVbnJZSV+KWoMGxeacKiQzb/FLLDIob6o/+YheM/pKI1wDCHXnkdISh0dqRg62EHssxVBnRpHtUZsWLaId5I7wFm39/zzxhjGW0Qv+MqcQAq/SpKwcA3EoGCCcVmLEGwHbQh3rBx3cjmQvUBNrwAMbxhnhRnHUuPyM4CMKZPwxVNNEYRgRKmgnUSiXBWhFWoyahXFMoVy/g6NI56C9uEf3ZedmHjqWfrZETFbTr3otZjxgUAnjvKAl1L7jKdY+c1LgbSDNhsVbXstF9q6eiGm4gjiuu6hc7Yfupx8U8+1oqP14zid6Af1ekAK6R028BtHizJZLDE6fKwDglztqdzxStSXwcAMIOLDoztiai3BpwYm9if33r8kcqIWJQHoGi0taKAMFLSemsQ87SNOBjffSPehAyrXCpGjtX/PFlkUDwWTQKsPFlED3i6br4epwuspLoElCOmUnglitQU7FEkZbHo2r33q9l2RwexFICF6IGKe2E56bnrNiwnxPUuD7qqBOU97468dNBlOW75zi8bR+YfZdZIMGPhsJeromZlynp0q8l6bT0q8fBC97131u25j3mNFkBsrI7xZwsTKw42V9GAw2jRaArJcyP254Gb5GUMhUBqRtmIpdDCi/isDSQFDQMBxCSaBCEydF6CwMJdu2+6VsaLpb3WmTgqE8ddf5X4Mvz5L+wnhCkkViWxV/pffRkNmZEpxpP82c2TqAiYwAZCXNAU0mK9WVuHwMje++4WM1yZV0mjyaAzp44stQwC1ZRfd+ChwXlGdpx/RurXXwWLi7QY02s8Xr39Tqid3TdfPwutNJVm3TBSuNHP2HW7SozvqgGEUMmjqMP/uzpajzxk2MR7tTkFqDedejbWEjbUAGNu8GHOP8tnoAlr29kBQgBUce4HZzCRlqgeZ7VYPzqWS/WQTwCJAScerx17gPaSR2lvP+dUTLyzwi1+WWL+vG3Iegn9hUfOO/T624yZWydAMe6+7qreJx9j0UrscKgPzFVoNOMCccvyQAD7V90+f6et+BvPPHifPNOJrMrKfKRtUpG+tAt+vhIgCOXlejuKvf7OOLafeUrP7bfIwLHUyLDmZZZ0ByaA1ET1zQePfLUVfAe6EGhn+P2P6hQtB+7dp5bG5RF1j79wGD8QwtULy2QqHIu1n31Kz50TZwG6FFnOzoZEPNQ8vOmCCfrEAt0+/T8RwmQ3zjtvJr/7Lt3RJmthbCwY2ixR9P+yPt6jejME+s6M3XfKkpp2Of/te4ExgduvutGZOFEfHvyXX4zDs1RdlnSY1bYKgP+ywfC7HH+urpuvS7z3boWa7MEVwvONwvCOE5zeReEcbvHy8z4TSjlVlwFgKZZ5Dl6ue+5DEGaJaJR7QbhMJzBXIU11yDQ3DSsE7eecRlQsZ5HAff8//mVmic9907kXVm+xtakaz5iOc89gYVWoZLZp1BSb9wZ+E1lplRGTPR/e3GR4BKCis/2J/VfiI1W+6DVllglg8gHC/n5ZPBg9ppp4YEuKsbfIBbATn36M8QslUHYJz0Zbi9RS3idlka7ZbU/Q1DkiCNT98QfW5iTsIDNgpMx/9WLBd/MtQxKi0q93YnvvaGMNn6h6qd9/FbWUFYgiyk0JjSwfwLpQtc+VAN/sEmZrAkF2CfHFIUIafnBC9FL0HWziGCBxSJbFH0A7e20toTslJ9FoOs9I1larN90ivASh2YfiV9uj9pOJYeS/TccsNOV6ugNu6mXewWTXmpWV3Ks8CWcVwLoohkkUHJZoxN8f7UnLVwxYUDlg1iqDzHz+y+OVp2elvEKxopHhMAZCTDGiZ6Ew48OGeji3XLMHYHsUtE1R/6/B+ecEqt1mcw9EaTkN1n/m/Zx/U9I8uKRuznFAtXv155Eddqv+iPv/sjbxRzRxsIzZGYFBAM/O6M0BeQcBPAcAaXaaOAjg2Rm9OSDvIIDnACDNThMHATw7ozcH5B0E8BwApNlp4v8B5p+lnS3M9HkAAAAASUVORK5CYII=" alt="Cardiff University">
+        <h1>Assessment Menu</h1>
+        <p class="strap">Designing meaningful, inclusive and future-focused assessment</p>
+        <p class="lead">At Cardiff University, assessment should let students show they have achieved their programme learning outcomes, through tasks that are authentic, inclusive and aligned with what we want our graduates to develop. This menu is a design tool, not a list of recommended assessment replacements.</p>
+      </div>
+    </header>
+
+    <section class="c-start">
+      <div class="wrap">
+        <h2>Where would you like to start?</h2>
+        <div class="c-paths">
+          <article class="c-path lead-path">
+            <span class="step" aria-hidden="true">1</span>
+            <h3>I'm designing or reviewing an assessment</h3>
+            <p>Work through six questions, then compare the types that fit.</p>
+            <a class="go" href="#c-questions">Start with the six questions</a>
+          </article>
+          <article class="c-path">
+            <span class="step" aria-hidden="true">2</span>
+            <h3>I know the assessment type</h3>
+            <p>Go straight to what it looks like in Lane 1 and Lane 2.</p>
+            <div class="search-box">
+              <label for="searchC" class="visually-hidden">Search assessment types</label>
+              <input id="searchC" type="search" placeholder="e.g. viva, essay" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="resultsC" aria-autocomplete="list">
+              <ul class="results" id="resultsC" hidden></ul>
+            </div>
+          </article>
+          <article class="c-path">
+            <span class="step" aria-hidden="true">3</span>
+            <h3>I want to see the options</h3>
+            <p>Browse 17 types by category.</p>
+            <div class="chips" id="chipsC"></div>
+            <a class="go" href="PROTO#page/browse">Browse all types</a>
+          </article>
+        </div>
+        <p class="c-policy"><strong>Guidance, not policy.</strong> Decisions about assessment types and lanes sit with module and programme teams, based on the learning outcomes. <span class="flag">Added: feedback comment 8</span></p>
+      </div>
+    </section>
+
+    <section class="c-qs" id="c-questions" tabindex="-1">
+      <div class="wrap">
+        <div class="sec-head"><div class="eyebrow">Design tool</div><h2>Six questions to design with</h2><p>Rather than asking "What assessment should I use?", ask: <span class="flag">Hints replace "Using the Assessment Menu"</span></p></div>
+        <ol class="c-qgrid">
+          <li><div>What do students need to demonstrate?<span class="hint">Start from your learning outcomes</span></div></li>
+          <li><div>Why is this assessment the most appropriate way of evidencing learning?<span class="hint">In each entry: <b>What is it?</b> · <b>What's it for?</b></span></div></li>
+          <li><div>How authentic is the task to the discipline, profession, or wider context?<span class="hint">In each entry: <b>Authenticity</b></span></div></li>
+          <li><div>How can barriers to participation and success be reduced?<span class="hint">In each entry: <b>Inclusive design and reasonable adjustments</b></span></div></li>
+          <li><div>What role, if any, should GenAI play in the assessment process?<span class="hint">In each entry: <b>AI considerations</b> · <b>Lane 1 and Lane 2</b></span></div></li>
+          <li><div>How does this assessment contribute to the wider programme assessment journey?<span class="hint">See <a href="#c-briefs">Thinking at programme level</a></span></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="c-dark" id="c-briefs">
+      <div class="wrap">
+        <div class="sec-head"><div class="eyebrow">In brief</div><h2>What shapes the menu</h2></div>
+        <div class="c-bgrid">
+          <article>
+            <h3>Understanding the two-lane approach</h3>
+            <p>AI use can't be reliably detected, so Cardiff uses a two-lane approach, first developed at the University of Sydney. Assessment has two complementary purposes:</p>
+            <div class="dl">
+              <span class="l1"><b>Lane 1 · Secure assurance of learning.</b> Trustworthy evidence of what students have achieved.</span>
+              <span class="l2"><b>Lane 2 · Open assessment for and as learning.</b> Supports learning in open settings, including responsible use of AI.</span>
+            </div>
+            <p>What you're assessing decides the lane, not the assessment type.</p>
+            <div class="links"><a class="more" href="TOOLKIT#cardiff-position" target="_blank" rel="noopener">Cardiff's two-lane approach</a><a href="SYDNEY" target="_blank" rel="noopener">Where it comes from (Sydney)</a></div>
+          </article>
+          <article>
+            <h3>AI, inclusion and student choice <span class="flag">Proposed D1</span></h3>
+            <p>The two-lane approach doesn't assume students must use generative AI. Learning outcomes should stay achievable without it, and students shouldn't be disadvantaged if they choose not to use it, for ethical, environmental, personal, accessibility or academic reasons. Where AI is allowed, the brief should say whether it's optional or part of the task.</p>
+            <div class="links"><a class="more" href="TOOLKIT#assessment-design" target="_blank" rel="noopener">GenAI and assessment design</a><a href="#" onclick="return false">Assessment brief template <span class="flag">link to add</span></a></div>
+          </article>
+          <article>
+            <h3>Thinking at programme level</h3>
+            <p>Students experience assessment as a programme, not a series of separate modules. Look across the programme for a balance of assessment types, manageable deadlines, progression, and consistent expectations about AI.</p>
+            <div class="links"><a class="more" href="TOOLKIT#assessment-design" target="_blank" rel="noopener">Programme-level assessment design</a><span class="flag">or a toolkit programme-level page</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="alongside" data-alongside></div>
+  </main>
+  <footer class="site-footer"><div class="wrap"><span>Developed by the Digital Education Team, Learning and Teaching Academy, Cardiff University</span><a href="FORM" target="_blank" rel="noopener">Give feedback on this menu</a></div></footer>
+</div>
+
+<!-- ======================================================================= -->
+<!-- OPTION D: QUESTION-LED                                                  -->
+<!-- ======================================================================= -->
+<div class="design" id="design-D" data-label="D · Question-led">
+  <nav class="topnav" aria-label="Pages"><div class="wrap"><ul class="navlinks"></ul><button class="lang" type="button" aria-disabled="true" title="Welsh version to come">Cymraeg</button></div></nav>
+
+  <main>
+    <header class="d-head">
+      <div class="wrap">
+        <img class="logo" src="data:image/png;base64,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" alt="Cardiff University">
+        <div>
+          <h1>Assessment Menu</h1>
+          <p class="strap">Designing meaningful, inclusive and future-focused assessment</p>
+          <p class="lead">At Cardiff University, assessment should let students show they have achieved their programme learning outcomes, through tasks that are authentic, inclusive and aligned with what we want our graduates to develop.</p>
+          <p class="lead">This menu is a design tool, not a list of recommended assessment replacements. Work through the questions, then compare how each assessment type works in Lane 1 and Lane 2.</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="d-lanes" aria-label="The two lanes">
+      <div class="wrap">
+        <div class="lane-row l1"><b>Lane 1 · Secure assurance of learning</b>Trustworthy evidence of what students have achieved.</div>
+        <div class="lane-row l2"><b>Lane 2 · Open assessment for and as learning</b>Supports learning in open settings, including responsible use of AI.</div>
+        <a class="more" href="#d-q5">About the two lanes</a>
+      </div>
+    </div>
+
+    <section class="d-main">
+      <div class="wrap">
+        <div>
+          <h2>Design with six questions</h2>
+          <p class="d-intro">Rather than asking "What assessment should I use?", ask: <span class="flag">Briefs sit inside questions 4 to 6</span></p>
+          <div class="d-tools"><button type="button" id="dToggle">Open all</button></div>
+
+          <details class="d-q" open>
+            <summary><span class="n" aria-hidden="true">1</span><span>What do students need to demonstrate?</span><svg class="icon chev" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 12l9 9 9-9"/></svg></summary>
+            <div class="body">
+              <p>Start from the intended learning outcomes: what students should know, understand and be able to do at this point in the programme.</p>
+            </div>
+          </details>
+
+          <details class="d-q">
+            <summary><span class="n" aria-hidden="true">2</span><span>Why is this assessment the most appropriate way of evidencing learning?</span><svg class="icon chev" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 12l9 9 9-9"/></svg></summary>
+            <div class="body">
+              <p>No single type is better than another. Compare a few that could show the same learning.</p>
+              <span class="look">In each entry: <b>What is it?</b> · <b>What's it for?</b></span>
+            </div>
+          </details>
+
+          <details class="d-q">
+            <summary><span class="n" aria-hidden="true">3</span><span>How authentic is the task to the discipline, profession, or wider context?</span><svg class="icon chev" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 12l9 9 9-9"/></svg></summary>
+            <div class="body">
+              <p>Authenticity depends on the task and the learning it evidences, not on a particular format.</p>
+              <span class="look">In each entry: <b>Authenticity</b></span>
+            </div>
+          </details>
+
+          <details class="d-q">
+            <summary><span class="n" aria-hidden="true">4</span><span>How can barriers to participation and success be reduced?</span><svg class="icon chev" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 12l9 9 9-9"/></svg></summary>
+            <div class="body">
+              <span class="look">In each entry: <b>Inclusive design and reasonable adjustments</b></span>
+              <div class="brief">
+                <h3>AI, inclusion and student choice <span class="flag">Proposed key message D1</span></h3>
+                <p>The two-lane approach doesn't assume students must use generative AI. Learning outcomes should stay achievable without it, and students shouldn't be disadvantaged if they choose not to use it, for ethical, environmental, personal, accessibility or academic reasons.</p>
+                <div class="links"><a class="more" href="TOOLKIT#supporting-students" target="_blank" rel="noopener">Supporting students in their use of GenAI</a><a href="#" onclick="return false">Inclusive assessment guidance <span class="flag">link to add</span></a></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="d-q" id="d-q5">
+            <summary><span class="n" aria-hidden="true">5</span><span>What role, if any, should GenAI play in the assessment process?</span><svg class="icon chev" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 12l9 9 9-9"/></svg></summary>
+            <div class="body">
+              <span class="look">In each entry: <b>AI considerations</b> · <b>Lane 1 and Lane 2</b></span>
+              <div class="brief">
+                <h3>Understanding the two-lane approach</h3>
+                <p>AI use can't be reliably detected, so Cardiff uses a two-lane approach, first developed at the University of Sydney. Lane 1 gives secure assurance of learning; Lane 2 is open assessment for and as learning. What you're assessing decides the lane, not the assessment type, so each entry shows both.</p>
+                <p>Where AI is allowed, the brief should say whether it's optional or part of the task.</p>
+                <div class="links"><a class="more" href="TOOLKIT#cardiff-position" target="_blank" rel="noopener">Cardiff's two-lane approach</a><a href="SYDNEY" target="_blank" rel="noopener">Where it comes from (Sydney)</a><a href="#" onclick="return false">Assessment brief template <span class="flag">link to add</span></a></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="d-q">
+            <summary><span class="n" aria-hidden="true">6</span><span>How does this assessment contribute to the wider programme assessment journey?</span><svg class="icon chev" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 12l9 9 9-9"/></svg></summary>
+            <div class="body">
+              <div class="brief">
+                <h3>Thinking at programme level</h3>
+                <p>Students experience assessment as a programme, not a series of separate modules. Look across the programme for a balance of assessment types, manageable deadlines, progression, and consistent expectations about AI.</p>
+                <div class="links"><a class="more" href="TOOLKIT#assessment-design" target="_blank" rel="noopener">Programme-level assessment design</a><span class="flag">or a toolkit programme-level page</span></div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <aside class="d-aside" aria-labelledby="dFind">
+          <h2 id="dFind">Find an assessment type</h2>
+          <div class="search-box">
+            <label for="searchD" class="visually-hidden">Search assessment types</label>
+            <input id="searchD" type="search" placeholder="e.g. viva, essay" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="resultsD" aria-autocomplete="list">
+            <ul class="results" id="resultsD" hidden></ul>
+          </div>
+          <ul id="catsD"></ul>
+          <a class="more" href="PROTO#page/browse">Browse all 17 types</a>
+          <p class="policy"><strong>Guidance, not policy.</strong> Decisions about assessment types and lanes sit with module and programme teams, based on the learning outcomes. <span class="flag">Added: comment 8</span></p>
+        </aside>
+      </div>
+    </section>
+
+    <div class="alongside" data-alongside></div>
+  </main>
+  <footer class="site-footer"><div class="wrap"><span>Developed by the Digital Education Team, Learning and Teaching Academy, Cardiff University</span><a href="FORM" target="_blank" rel="noopener">Give feedback on this menu</a></div></footer>
+</div>
+
+</div>
+
+<!-- Shared "use alongside" band: same in every design, copied into each by script -->
+<template id="alongsideTpl">
+  <div class="wrap">
+    <div>
+      <h2>Use this menu alongside</h2>
+      <ul>
+        <li><a href="#" onclick="return false">Cardiff's assessment principles</a> <span class="flag">once ready</span></li>
+        <li><a href="#" onclick="return false">Programme approval process</a> <span class="flag">link to add</span></li>
+        <li><a href="TOOLKIT" target="_blank" rel="noopener">Generative AI in Learning and Teaching</a> (Education Development Toolkit)</li>
+        <li><a href="COMPENDIUM" target="_blank" rel="noopener">Assessment as learning and the Assessment Compendium</a> (Education Development Toolkit)</li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h2>Further reading</h2>
+      <p>Rutherford, S., Pritchard, C. and Francis, N. (2024) 'Assessment IS learning: developing a student-centred approach for assessment in Higher Education', <em>FEBS Open Bio</em>, 15(1), pp. 21–34. <a href="https://doi.org/10.1002/2211-5463.13921" target="_blank" rel="noopener">doi:10.1002/2211-5463.13921</a></p>
+      <p>Need help? Contact the Learning and Teaching Academy: <a href="mailto:LTAcademy@cardiff.ac.uk">LTAcademy@cardiff.ac.uk</a></p>
+    </div>
+  </div>
+</template>
+
+<script>
+const PROTO = '2026-09-15_assessment-menu-xerte-prototype-v1.html';
+const FORM = 'https://forms.office.com/Pages/ResponsePage.aspx?id=MEu3vWiVVki9vwZ1l3j8vL7liF4SYuFKusJXCxhIjiZUMU05RVhFUTJGMjcySEczWUk2TlA2Vkc5NC4u';
+const TOOLKIT = 'https://sites.cardiff.ac.uk/education-development-toolkit/generative-ai-in-learning-and-teaching/';
+const SYDNEY = 'https://educational-innovation.sydney.edu.au/teaching@sydney/program-level-assessment-two-lane/';
+const COMPENDIUM = 'https://sites.cardiff.ac.uk/education-development-toolkit/key-principles/principle-5-assessment-as-learning/assessment-compendium/';
+
+const CATS = [
+  { id: 'exams', name: 'Exams', icon: '<circle cx="16" cy="17" r="11"/><path d="M16 11v6l4 3M13 3h6"/>' },
+  { id: 'class-tests', name: 'Class tests', icon: '<rect x="6" y="4" width="20" height="24" rx="2"/><path d="M11 11l2 2 4-4M11 20l2 2 4-4M20 12h2M20 21h2"/>' },
+  { id: 'portfolios', name: 'Portfolios', icon: '<path d="M4 9h9l3 3h12v14H4z"/><path d="M4 9V6h9l3 3"/>' },
+  { id: 'multimedia', name: 'Multimedia assessments', icon: '<rect x="4" y="6" width="24" height="20" rx="2"/><circle cx="11" cy="13" r="2.5"/><path d="M4 23l7-6 5 4 4-3 8 6"/>' },
+  { id: 'oral', name: 'Oral and spoken', icon: '<path d="M5 7h22v14H14l-6 5v-5H5z"/><path d="M10 12h12M10 16h8"/>' },
+  { id: 'practical', name: 'Practical based', icon: '<path d="M12 4h8M14 4v8l-7 13a2 2 0 0 0 2 3h14a2 2 0 0 0 2-3l-7-13V4"/><path d="M10 20h12"/>' },
+  { id: 'written', name: 'Written assessments', icon: '<path d="M6 26l4-1 15-15-3-3L7 22z"/><path d="M19 10l3 3M6 29h20"/>' },
+];
+const TYPES = [
+  ['In-person, invigilated exam', 'exams', 'in-person-invigilated-exam'], ['Open-book exam', 'exams', 'open-book-exam'],
+  ['Timed in-class knowledge test', 'class-tests', 'timed-in-class-knowledge-test'], ['Application-based problem test', 'class-tests', 'application-based-problem-test'],
+  ['Mentimeter conceptual understanding check', 'class-tests', 'mentimeter-conceptual-understanding-check'],
+  ['Reflective portfolio', 'portfolios', 'reflective-portfolio'], ['Annotated bibliography', 'portfolios', 'annotated-bibliography'], ['Professional portfolio', 'portfolios', 'professional-portfolio'],
+  ['Artefacts', 'multimedia', 'artefacts'], ['Posters', 'multimedia', 'posters'], ['Blog/vlog', 'multimedia', 'blog-vlog'],
+  ['Assessed seminars', 'oral', 'assessed-seminars'], ['Presentation', 'oral', 'presentation'], ['Viva voce', 'oral', 'viva-voce'],
+  ['OSCEs and ISCEs', 'practical', 'osces-and-isces'], ['Essay', 'written', 'essay'], ['Report', 'written', 'report'],
+];
+const count = id => TYPES.filter(t => t[1] === id).length;
+const plural = n => `${n} type${n > 1 ? 's' : ''}`;
+const catName = id => CATS.find(c => c.id === id).name;
+const svg = paths => `<svg class="icon" viewBox="0 0 32 32" aria-hidden="true">${paths}</svg>`;
+
+const OPTIONS = {
+  A: { desc: 'Dark hero with search up front; the six questions come straight after, then three brief cards and the category tiles.',
+       fit: '<p><strong>Best for:</strong> staff who arrive knowing their assessment type, while still putting the questions before the categories.</p><p><strong>In Xerte:</strong> needs page-specific CSS to hide the section menu and restyle the header band, plus a small script for the search box (shared with the Browse all page).</p><p><strong>Watch:</strong> the heaviest to build and maintain. The search in the hero pulls attention towards "find a type" rather than "design".</p>' },
+  C: { desc: 'Starts by asking where you want to begin. "I\'m designing an assessment" is the first, highlighted route.',
+       fit: '<p><strong>Best for:</strong> mixed audiences, and a pilot where we want to see which route people take.</p><p><strong>In Xerte:</strong> three cards in a Text element with theme CSS; the search needs the same small script as A. The dark brief band and question grid are CSS only.</p><p><strong>Watch:</strong> the longest scroll of the three.</p>' },
+  D: { desc: 'New. The six questions are the page: each opens to show where the menu helps, with the briefs inside questions 4 to 6. Search and categories sit alongside.',
+       fit: '<p><strong>Best for:</strong> positioning the menu as a design tool first. Every brief appears at the moment it is relevant, so nothing reads as a wall of framework text.</p><p><strong>In Xerte:</strong> the closest fit to the Bootstrap template: a two-column row, and the questions as Xerte\'s accordion element or &lt;details&gt; in a Text element (test which the editor keeps). The search can be dropped for plain category links, so no script is needed.</p><p><strong>Watch:</strong> the two-lane and AI briefs are inside closed questions, so the lane strip under the header does the job of making the lanes visible.</p>' },
+};
+
+function fixLinks() {
+  const map = { PROTO, FORM, TOOLKIT, SYDNEY, COMPENDIUM };
+  document.querySelectorAll('a[href]').forEach(a => {
+    const h = a.getAttribute('href');
+    const key = Object.keys(map).find(k => h === k || h.startsWith(k + '#'));
+    if (key) a.setAttribute('href', map[key] + h.slice(key.length));
+  });
+}
+
+function buildShared() {
+  const tpl = document.getElementById('alongsideTpl');
+  document.querySelectorAll('[data-alongside]').forEach(el => el.appendChild(tpl.content.cloneNode(true)));
+  const nav = ['Home', 'Browse all', 'Exams', 'Class tests', 'Portfolios', 'Multimedia', 'Oral and spoken', 'Practical', 'Written', 'Help'];
+  const ids = ['home', 'browse', 'exams', 'class-tests', 'portfolios', 'multimedia', 'oral', 'practical', 'written', 'help'];
+  document.querySelectorAll('.navlinks').forEach(ul => ul.innerHTML = nav.map((n, i) => `<li><a href="PROTO#page/${ids[i]}" ${i === 0 ? 'aria-current="page"' : ''}>${n}</a></li>`).join(''));
+  document.getElementById('catsA').innerHTML = CATS.map(c => `<a class="a-cat" href="PROTO#page/${c.id}">${svg(c.icon)}<strong>${c.name}</strong><span>${plural(count(c.id))}</span></a>`).join('') +
+    `<a class="a-cat all" href="PROTO#page/browse">${svg('<circle cx="14" cy="14" r="8"/><path d="M20 20l7 7"/>')}<strong>Browse all types</strong><span>Search and filter all 17</span></a>`;
+  document.getElementById('chipsC').innerHTML = CATS.map(c => `<a href="PROTO#page/${c.id}">${c.name.replace(' assessments', '')}</a>`).join('');
+  document.getElementById('catsD').innerHTML = CATS.map(c => `<li><a href="PROTO#page/${c.id}">${c.name}<span>${count(c.id)}</span></a></li>`).join('');
+}
+
+function wireSearch(inputId, listId) {
+  const input = document.getElementById(inputId), list = document.getElementById(listId);
+  const close = () => { list.hidden = true; input.setAttribute('aria-expanded', 'false'); };
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    if (!q) return close();
+    const hits = TYPES.filter(t => t[0].toLowerCase().includes(q) || catName(t[1]).toLowerCase().includes(q));
+    list.innerHTML = hits.length ? hits.map(t => `<li><a href="${PROTO}#page/${t[1]}/${t[2]}"><span>${t[0]}</span><span class="cat">${catName(t[1])}</span></a></li>`).join('')
+      : `<li class="none">No match. <a href="${PROTO}#page/browse">Browse all types</a></li>`;
+    list.hidden = false; input.setAttribute('aria-expanded', 'true');
+  });
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowDown' && !list.hidden) { const first = list.querySelector('a'); if (first) { e.preventDefault(); first.focus(); } }
+  });
+  list.addEventListener('keydown', e => {
+    const links = [...list.querySelectorAll('a')]; const i = links.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown' && i < links.length - 1) { e.preventDefault(); links[i + 1].focus(); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); i > 0 ? links[i - 1].focus() : input.focus(); }
+    if (e.key === 'Escape') { close(); input.focus(); }
+  });
+  document.addEventListener('click', e => { if (!input.closest('.search-box').contains(e.target)) close(); });
+}
+
+// ---------- option D: open all / close all, and in-page links that open a question ----------
+const dQs = [...document.querySelectorAll('#design-D details.d-q')];
+const dToggle = document.getElementById('dToggle');
+const syncToggle = () => { dToggle.textContent = dQs.every(d => d.open) ? 'Close all' : 'Open all'; };
+dToggle.addEventListener('click', () => { const open = !dQs.every(d => d.open); dQs.forEach(d => d.open = open); syncToggle(); });
+dQs.forEach(d => d.addEventListener('toggle', syncToggle));
+document.querySelectorAll('#design-D a[href="#d-q5"]').forEach(a => a.addEventListener('click', () => { document.getElementById('d-q5').open = true; }));
+
+// ---------- review bar ----------
+const OPTS = ['A', 'C', 'D'];
+let current = 'A';
+function show(opt) {
+  current = opt;
+  document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.opt === opt)));
+  document.querySelectorAll('.design').forEach(d => d.classList.toggle('active', d.id === `design-${opt}`));
+  document.getElementById('optDesc').textContent = OPTIONS[opt].desc;
+  document.getElementById('fitNote').innerHTML = `<strong>Option ${opt}</strong>${OPTIONS[opt].fit}`;
+  try { localStorage.setItem('landingOptionV2', opt); } catch (e) {}
+  if (location.hash !== `#option-${opt}`) history.replaceState(null, '', `#option-${opt}`);
+}
+document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => { show(b.dataset.opt); window.scrollTo({ top: 0 }); }));
+function togglePanel(btn, id, other) {
+  const panel = document.getElementById(id); panel.hidden = !panel.hidden;
+  btn.setAttribute('aria-expanded', String(!panel.hidden));
+  if (!panel.hidden) { const o = document.getElementById(other); o.hidden = true; document.querySelector(`[aria-controls="${other}"]`).setAttribute('aria-expanded', 'false'); }
+  return !panel.hidden;
+}
+document.getElementById('coverBtn').addEventListener('click', e => togglePanel(e.currentTarget, 'coverage', 'decide'));
+document.getElementById('decideBtn').addEventListener('click', e => {
+  if (togglePanel(e.currentTarget, 'decide', 'coverage') && !document.querySelector('input[name="pick"]:checked'))
+    document.querySelector(`input[name="pick"][value="${current}"]`).checked = true;
+});
+document.getElementById('flagsBtn').addEventListener('click', e => {
+  const hidden = document.body.classList.toggle('hide-flags');
+  e.currentTarget.setAttribute('aria-pressed', String(!hidden));
+  e.currentTarget.textContent = hidden ? 'Show draft labels' : 'Hide draft labels';
+});
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const pick = (document.querySelector('input[name="pick"]:checked') || {}).value || '(not chosen)';
+  const label = pick === 'Mix' ? 'A mix of options' : `Option ${pick}: ${(document.getElementById('design-' + pick) || {}).dataset?.label || ''}`;
+  const out = [
+    'Assessment Menu landing page options v2 (Outputs/assessment-menu/2026-09-16_assessment-menu-landing-options-v2.html).',
+    `Preferred design: ${label}`,
+    `Design notes: ${document.getElementById('notes').value.trim() || '(none)'}`,
+    `Content notes: ${document.getElementById('contentNotes').value.trim() || '(none)'}`,
+    '', 'Please build the chosen landing page into the Xerte prototype (2026-09-15_assessment-menu-xerte-prototype-v1.html) as the Home page, and update the landing page section of Drafts/Assessment Menu - Xerte Page Structure and Landing Page.md to match (short briefs with links; six questions kept; no "How to use" section).'
+  ].join('\n');
+  const msg = document.getElementById('copied');
+  const done = () => { msg.textContent = 'Copied'; setTimeout(() => msg.textContent = '', 2000); };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(out).then(done, () => fallback(out, done)); else fallback(out, done);
+});
+function fallback(t, done) { const ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) { document.getElementById('copied').textContent = 'Select and copy manually'; } ta.remove(); }
+
+buildShared(); fixLinks();
+wireSearch('searchA', 'resultsA'); wireSearch('searchC', 'resultsC'); wireSearch('searchD', 'resultsD');
+let start = 'A';
+const fromHash = (location.hash.match(/^#option-([ACD])$/) || [])[1];
+try { start = fromHash || localStorage.getItem('landingOptionV2') || 'A'; } catch (e) { start = fromHash || 'A'; }
+show(OPTS.includes(start) ? start : 'A');
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+{
+  "layouts": [
+    {
+      "width": 320,
+      "overflow": []
+    },
+    {
+      "width": 375,
+      "overflow": []
+    },
+    {
+      "width": 414,
+      "overflow": []
+    },
+    {
+      "width": 768,
+      "overflow": []
+    },
+    {
+      "width": 1024,
+      "overflow": []
+    },
+    {
+      "width": 1280,
+      "overflow": []
+    },
+    {
+      "width": 1920,
+      "overflow": []
+    }
+  ],
+  "interactions": {
+    "afterNext": "Question 2 of 6",
+    "eventHook": true,
+    "restored": true,
+    "singleAdvance": true,
+    "exportOK": true,
+    "searchOK": true,
+    "listPreserves": true,
+    "gridPreserves": true,
+    "empty": true,
+    "reset": true,
+    "typeExport": true
+  },
+  "errors": [],
+  "keyboard": true,
+  "noJS": {
+    "questions": 6,
+    "types": 17,
+    "enhancedControlsHidden": true
+  },
+  "date": "2026-09-17",
+  "scope": "Standalone component guide. Xerte event-registration stub and DOM reinsertion used; actual editor/player not tested.",
+  "localLinkErrors": [],
+  "organisation": {
+    "moved_codex": [
+      ".hallmark/log.json",
+      ".hallmark/preflight.json",
+      ".hallmark/validation.json",
+      "2026-09-16_assessment-menu-landing-design-studio-v1.html",
+      "2026-09-16_assessment-menu-landing-editorial-v1.html",
+      "2026-09-16_assessment-menu-landing-options-v3.html",
+      "2026-09-16_assessment-menu-landing-type-finder-v1.html",
+      "2026-09-16_landing-design-notes-v3.md",
+      "tokens.css"
+    ],
+    "restored_others": [
+      "Assessment-menu-content.md",
+      "assessment-menu-interactive.html",
+      "assessment_adviser_ai.html",
+      "2026-09-15_assessment-menu-landing-options-v1.html",
+      "2026-09-08_assessment-menu-v3-prototype.html",
+      "2026-09-15_assessment-menu-xerte-prototype-v1.html",
+      "assessment-menu-cardiff.html",
+      "assessment_examples_grid.html",
+      "assessment-menu-cardiff-copy.html",
+      "assessment_menu_prototype.html",
+      "2026-07-20_assessment-menu-v2-wireframe.html",
+      "Assessment Menu Prototype.html",
+      "2026-09-16_assessment-menu-landing-options-v2.html",
+      "2026-09-16_xerte-home-option-c/local-preview.html",
+      "2026-09-16_xerte-home-option-c/s1-intro.html",
+      "2026-09-16_xerte-home-option-c/s2-policy.html",
+      "2026-09-16_xerte-home-option-c/styles.css",
+      "2026-09-16_xerte-home-option-c/s4-briefs.html",
+      "2026-09-16_xerte-home-option-c/s5-alongside.html",
+      "2026-09-16_xerte-home-option-c/s3-questions.html",
+      "2026-09-16_xerte-home-option-c/script.js",
+      "2026-09-16_xerte-home-option-c/s2-paths.html",
+      "assets/images/Cardiff-Logo-Red.png",
+      "assets/images/LearningTeachingWhite.png",
+      "assets/pdfs/BIOSI_Case_study.pdf"
+    ]
+  }
+}

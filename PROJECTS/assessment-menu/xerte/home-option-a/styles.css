@@ -1,0 +1,188 @@
+/* ===== Assessment Menu: Home page (option A, Bold hero) =====
+   Put this in a <style> block on the Home page, as the README describes.
+   The page-frame overrides are also scoped by the Home hero marker.
+
+   Colour, spacing, type and shadow all come from the Cardiff theme's
+   custom properties. The only values declared here are the ones the design
+   system has no token for: this page's rounded panels (the DS keeps structural
+   panels square, so the rounding is a deliberate, recorded deviation for the
+   Home page) and the lane tints, which are mixed from the DS accents rather
+   than picked by hand. */
+:root {
+  /* Home page panel rounding: deliberate deviation from --radius-card (square). */
+  --am-radius-panel: 12px;
+  --am-radius-control: 6px;
+  /* Lane tints and label colours, mixed from the DS accents. The labels are
+     darkened so they clear 4.5:1 on their own tint. */
+  --am-lane1-bg: color-mix(in srgb, var(--cu-accent-light-blue) 12%, var(--color-white));
+  --am-lane1: color-mix(in srgb, var(--cu-accent-light-blue) 60%, var(--cu-black));
+  --am-lane2-bg: color-mix(in srgb, var(--cu-accent-forest-green) 12%, var(--color-white));
+  --am-lane2: color-mix(in srgb, var(--cu-accent-forest-green) 85%, var(--cu-black));
+}
+
+/* ======================
+   NO TOC Page Template
+   =======================*/
+/* Scope the project-level template overrides to this Home design. */
+body:has(.am-hero) #contentTable {
+  display: none;
+}
+/*remove left margin for full width*/
+body:has(.am-hero) .row-fluid .span9.expandMain {
+  margin-left: 0;
+}
+/*remove extra spacing*/
+body:has(.am-hero) .navbar-fixed-top {
+  margin-bottom: 0;
+}
+/* Custom section container */
+body:has(.am-hero) section {
+  position: relative;
+  box-shadow: none;
+  border-radius: 0;
+  background: none;
+  margin: 0;
+  padding-block: var(--spacing-10);
+  overflow: revert;
+}
+/* The band spreads sideways with a box-shadow rather than a 100vw width. 100vw
+   includes the scrollbar, which made the page scroll sideways by a few pixels.
+   clip-path trims the spread back to the section vertically, and because it sits
+   on the pseudo-element rather than the section, nothing inside the section is
+   clipped — the search results can still drop below the band. Each section sets
+   one colour, in --am-band. */
+body:has(.am-hero) section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--am-band);
+  box-shadow: 0 0 0 100vmax var(--am-band);
+  clip-path: inset(0 -100vmax);
+}
+/* custom background colour for sections  */
+body:has(.am-hero) section:nth-child(odd) {
+  --am-band: var(--color-white);
+}
+body:has(.am-hero) section:nth-child(even) {
+  --am-band: var(--color-light);
+}
+body:has(.am-hero) .footer {
+  margin-top: 0;
+}
+
+/* Sections that differ from the alternating default, by Section ID.
+   The hero is the dark band; the strip section has no band of its own, so its
+   card floats over the bottom edge of the hero. */
+body:has(.am-hero) #intro {
+  --am-band: var(--color-bg-dark);
+}
+body:has(.am-hero) #tool {
+  --am-band: transparent;
+}
+
+/* Hide the player's own section furniture. Xerte has no "hide section title"
+   setting, so the title is hidden here: this page supplies its own heading in
+   each section, with the eyebrow above it, which the player's title would
+   duplicate. The sections keep their accessible names, because aria-labelledby
+   still resolves to the hidden heading — so give each section a meaningful
+   Section Title even though it is not shown. The second rule removes the
+   per-section "Top" link and the paragraph the player wraps it in. */
+body:has(.am-hero) section > .page-header { display: none; }
+body:has(.am-hero) section > p:has(> .topBtn) { display: none; }
+
+/* Section heads: the eyebrow sits above the heading, so each section carries
+   its own head in the element. */
+.am-sec-head { margin-bottom: var(--spacing-7); max-width: 70ch; }
+.am-sec-head p:not(.am-eyebrow) { font-size: var(--font-size-md); }
+.am-eyebrow { display: flex; align-items: center; gap: var(--spacing-3); font-size: var(--font-size-base); letter-spacing: var(--letter-spacing-wider); }
+.am-sec-head .am-eyebrow { font-size: var(--font-size-md); }
+.am-eyebrow::before { content: ""; width: var(--spacing-7); height: var(--border-width-4); background: var(--color-brand-primary); }
+
+/* Hero */
+body:has(.am-hero) #intro { padding-bottom: var(--spacing-24); color: var(--color-on-dark); }
+.am-hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: var(--spacing-12); align-items: center; }
+.am-hero .am-lead { font-size: var(--font-size-md); color: var(--color-on-dark-muted); max-width: 58ch; margin-bottom: var(--spacing-6); }
+.am-hero .am-alt { color: var(--color-on-dark-muted); }
+.am-hero .am-alt a { color: var(--color-on-dark); }
+.am-hero a:focus-visible { outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color-on-dark); outline-offset: var(--focus-ring-offset); }
+.am-road { width: 100%; height: auto; }
+
+/* Type search (needs the project Script) */
+.am-search { position: relative; }
+#intro .am-search label { color: var(--color-on-dark); }
+.am-search input[type="search"] { width: 100%; height: auto; min-height: var(--min-input-height); box-sizing: border-box; margin: 0; padding: var(--spacing-3) var(--spacing-4); font-size: var(--font-size-md); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-radius-control); background: var(--color-white); color: var(--color-text-primary); box-shadow: none; }
+#intro .am-search input[type="search"] { border-color: var(--color-white); }
+.am-search input[type="search"]:focus { border-color: var(--color-text-primary); }
+.am-results { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--z-index-dropdown); list-style: none; margin: 0; padding: 0; background: var(--color-white); border: var(--border-width-1) solid var(--color-border-default); border-radius: 0 0 var(--am-radius-control) var(--am-radius-control); box-shadow: var(--shadow-dropdown); max-height: 300px; overflow-y: auto; }
+.am-results[hidden] { display: none; }
+.am-results li { margin: 0; }
+.am-results a { display: flex; justify-content: space-between; gap: var(--spacing-3); padding: var(--spacing-3) var(--spacing-4); border-top: var(--border-width-1) solid var(--color-border-light); color: var(--color-text-primary); text-decoration: none; }
+.am-results a:hover, .am-results a:focus { background: var(--color-tint); }
+.am-results .am-cat { color: var(--color-text-secondary); font-size: var(--font-size-base); white-space: nowrap; }
+.am-results .am-none { display: block; padding: var(--spacing-3) var(--spacing-4); color: var(--color-text-secondary); }
+/* The base template underlines every link inside a section. The search results
+   are a bordered control rather than prose links, so they opt out; the selector
+   carries "section" only to match that rule's specificity. */
+section .am-results a { text-decoration: none; }
+
+/* The strip card straddles the bottom of the hero band */
+body:has(.am-hero) #tool { padding-block: 0; }
+.am-strip { position: relative; z-index: var(--z-index-raised); margin-top: calc(var(--spacing-12) * -1); display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-7); padding: var(--spacing-6) var(--spacing-7); background: var(--color-white); border-left: var(--spacing-2) solid var(--color-brand-primary); border-radius: var(--am-radius-panel); box-shadow: var(--shadow-xl); }
+
+/* Six questions */
+.am-qgrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-4); counter-reset: amq; }
+.am-qgrid li { counter-increment: amq; margin: 0; padding: var(--spacing-6); background: var(--color-bg-subtle); border-top: var(--border-width-4) solid var(--color-brand-primary); border-radius: var(--am-radius-panel); font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); }
+.am-qgrid li::before { content: counter(amq, decimal-leading-zero); display: block; margin-bottom: var(--spacing-2); font-family: var(--font-family-display); font-size: var(--font-size-3xl); color: var(--color-action); }
+
+/* "What shapes the menu" */
+.am-briefs { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: var(--spacing-5); }
+.am-brief { display: flex; flex-direction: column; padding: var(--spacing-7); background: var(--color-white); border-radius: var(--am-radius-panel); }
+.am-brief--choice { border-top: 6px solid var(--color-brand-primary); }
+.am-more { margin: auto 0 0; padding-top: var(--spacing-4); }
+.am-more a { display: inline-block; }
+.am-lanes { display: grid; gap: var(--spacing-2); margin: var(--spacing-3) 0; }
+.am-lane { padding: var(--spacing-3) var(--spacing-4); border-left: 5px solid; border-radius: var(--am-radius-control); }
+.am-lane--1 { background: var(--am-lane1-bg); border-color: var(--am-lane1); }
+.am-lane--1 strong { color: var(--am-lane1); }
+.am-lane--2 { background: var(--am-lane2-bg); border-color: var(--am-lane2); }
+.am-lane--2 strong { color: var(--am-lane2); }
+
+/* Browse by category */
+.am-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--spacing-4); }
+.am-tile { display: flex; flex-direction: column; gap: var(--spacing-3); padding: var(--spacing-6); border: var(--border-width-1) solid var(--color-border-default); border-radius: var(--am-radius-panel); color: var(--color-text-primary); text-decoration: none; transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+.am-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--color-text-primary); color: var(--color-text-primary); }
+/* The theme's visited-link colour is a:...:visited, which outranks a single
+   class, so a visited tile would revert to link blue — unreadable on the dark
+   tile. Naming the link states here matches that specificity. */
+.am-tile:link,
+.am-tile:visited { color: var(--color-text-primary); }
+.am-tile i { font-size: var(--icon-size-lg); color: var(--color-action); }
+.am-tile strong { font-size: var(--font-size-md); }
+.am-tile--all { background: var(--color-bg-dark); border-color: var(--color-bg-dark); }
+.am-tile--all,
+.am-tile--all:link,
+.am-tile--all:visited,
+.am-tile--all:hover,
+.am-tile--all:focus { color: var(--color-on-dark); }
+.am-tile--all i { color: var(--color-on-dark); }
+.am-tile--all span { color: var(--color-on-dark-muted); }
+/* The base template underlines every link inside a section. The category tiles
+   are bordered controls rather than prose links, so they opt out; the selector
+   carries "section" only to match that rule's specificity. */
+section a.am-tile { text-decoration: none; }
+
+/* "Use this menu alongside" */
+.am-alongside { display: grid; grid-template-columns: 1.2fr .8fr; gap: var(--spacing-10); }
+.am-alongside ul { list-style: none; margin: 0; padding: 0; }
+.am-alongside li { margin: 0; padding: var(--spacing-2) 0; border-bottom: var(--border-width-1) solid var(--color-border-default); }
+
+@media (max-width: 979px) {
+  .am-hero, .am-briefs, .am-alongside { grid-template-columns: 1fr; }
+  .am-qgrid, .am-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .am-road { max-width: 380px; }
+}
+@media (max-width: 640px) {
+  .am-qgrid, .am-tiles, .am-strip { grid-template-columns: 1fr; }
+  .am-road { display: none; }
+}

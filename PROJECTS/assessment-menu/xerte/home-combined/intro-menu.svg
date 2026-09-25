@@ -1,0 +1,93 @@
+<svg class="am-hero-art" viewBox="100 4 430 420" xmlns="http://www.w3.org/2000/svg" width="860" height="840" role="img" aria-labelledby="t">
+  <title id="t">An assessment menu card listing seven categories, with one assessment type chosen and ticked in red</title>
+  <style>
+    .am-a-card { fill: #FFFFFF; stroke: #121212; stroke-width: 2px; }
+    .am-a-shadow { fill: #E5E5E5; }
+    .am-a-red { fill: #E4251B; }
+    .am-a-ink { fill: #121212; }
+    .am-a-bar { fill: #CCCCCC; }
+    .am-a-name { fill: #B3B3B3; }
+    .am-a-rule { stroke: #121212; stroke-width: 2px; }
+    .am-a-leader { fill: none; stroke: #B3B3B3; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 0 6; }
+    .am-a-chosen { fill: #FDF2F1; }
+    .am-a-tile { stroke: #121212; stroke-width: 1px; }
+    .am-a-glyph { fill: none; stroke: #121212; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .am-a-glyph.is-chosen { stroke: #FFFFFF; }
+    .am-g-10 { fill: #F2F2F2; }
+    .am-g-20 { fill: #E5E5E5; }
+    .am-g-30 { fill: #CCCCCC; }
+    .am-g-40 { fill: #B3B3B3; }
+    .am-g-50 { fill: #999999; }
+    .am-g-60 { fill: #808080; }
+    .am-g-chosen { fill: #E4251B; }
+    .am-a-tick path { fill: none; stroke: #FFFFFF; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+  <rect class="am-a-shadow" x="132" y="36" width="380" height="372"/>
+  <rect class="am-a-card" x="116" y="20" width="380" height="372"/>
+  <rect class="am-a-red" x="116" y="20" width="380" height="10"/>
+  <rect class="am-a-ink" x="144" y="54" width="150" height="16"/>
+  <rect class="am-a-bar" x="144" y="80" width="232" height="8"/>
+  <path class="am-a-rule" d="M144 106H468"/>
+  <g class="am-a-row"><!-- Exams: 2 -->
+    <rect class="am-a-tile am-g-10" x="144" y="117" width="22" height="22"/>
+    <g class="am-a-glyph"><circle cx="155" cy="128" r="6"/><path d="M155 124.5V128l2.5 2"/></g>
+    <rect class="am-a-name" x="178" y="124" width="70" height="8"/>
+    <path class="am-a-leader" d="M258 128H436"/>
+    <rect class="am-a-tile am-g-10" x="446" y="123.5" width="9" height="9"/>
+    <rect class="am-a-tile am-g-10" x="459" y="123.5" width="9" height="9"/>
+    </g>
+  <g class="am-a-row"><!-- Class tests: 3 -->
+    <rect class="am-a-tile am-g-20" x="144" y="155" width="22" height="22"/>
+    <g class="am-a-glyph"><rect x="149" y="160" width="12" height="12"/><path d="M152 166l2.5 2.5 5-5.5"/></g>
+    <rect class="am-a-name" x="178" y="162" width="104" height="8"/>
+    <path class="am-a-leader" d="M292 166H423"/>
+    <rect class="am-a-tile am-g-20" x="433" y="161.5" width="9" height="9"/>
+    <rect class="am-a-tile am-g-20" x="446" y="161.5" width="9" height="9"/>
+    <rect class="am-a-tile am-g-20" x="459" y="161.5" width="9" height="9"/>
+    </g>
+  <g class="am-a-row is-chosen"><!-- Portfolios: 3 -->
+    <rect class="am-a-chosen" x="130" y="187" width="352" height="34"/>
+    <rect class="am-a-red" x="130" y="187" width="4" height="34"/>
+    <rect class="am-a-tile am-g-chosen" x="144" y="193" width="22" height="22"/>
+    <g class="am-a-glyph is-chosen"><path d="M152 197h9v11"/><rect x="149" y="200" width="9" height="11"/></g>
+    <rect class="am-a-ink" x="178" y="200" width="96" height="8"/>
+    <path class="am-a-leader" d="M284 204H423"/>
+    <rect class="am-a-tile am-g-chosen" x="433" y="199.5" width="9" height="9"/>
+    <rect class="am-a-tile am-g-chosen" x="446" y="199.5" width="9" height="9"/>
+    <rect class="am-a-tile am-g-chosen" x="459" y="199.5" width="9" height="9"/>
+    </g>
+  <g class="am-a-row"><!-- Multimedia: 3 -->
+    <rect class="am-a-tile am-g-30" x="144" y="231" width="22" height="22"/>
+    <g class="am-a-glyph"><path d="M152 236l9 6-9 6z"/></g>
+    <rect class="am-a-name" x="178" y="238" width="112" height="8"/>
+    <path class="am-a-leader" d="M300 242H423"/>
+    <rect class="am-a-tile am-g-30" x="433" y="237.5" width="9" height="9"/>
+    <rect class="am-a-tile am-g-30" x="446" y="237.5" width="9" height="9"/>
+    <rect class="am-a-tile am-g-30" x="459" y="237.5" width="9" height="9"/>
+    </g>
+  <g class="am-a-row"><!-- Oral and spoken: 3 -->
+    <rect class="am-a-tile am-g-40" x="144" y="269" width="22" height="22"/>
+    <g class="am-a-glyph"><path d="M148 275h14v8h-8l-4 3.5v-3.5h-2z"/></g>
+    <rect class="am-a-name" x="178" y="276" width="138" height="8"/>
+    <path class="am-a-leader" d="M326 280H423"/>
+    <rect class="am-a-tile am-g-40" x="433" y="275.5" width="9" height="9"/>
+    <rect class="am-a-tile am-g-40" x="446" y="275.5" width="9" height="9"/>
+    <rect class="am-a-tile am-g-40" x="459" y="275.5" width="9" height="9"/>
+    </g>
+  <g class="am-a-row"><!-- Practical: 1 -->
+    <rect class="am-a-tile am-g-50" x="144" y="307" width="22" height="22"/>
+    <g class="am-a-glyph"><path d="M155 312v12M149 318h12"/></g>
+    <rect class="am-a-name" x="178" y="314" width="88" height="8"/>
+    <path class="am-a-leader" d="M276 318H449"/>
+    <rect class="am-a-tile am-g-50" x="459" y="313.5" width="9" height="9"/>
+    </g>
+  <g class="am-a-row"><!-- Written: 2 -->
+    <rect class="am-a-tile am-g-60" x="144" y="345" width="22" height="22"/>
+    <g class="am-a-glyph"><path d="M149 352h12M149 356h12M149 360h7"/></g>
+    <rect class="am-a-name" x="178" y="352" width="76" height="8"/>
+    <path class="am-a-leader" d="M264 356H436"/>
+    <rect class="am-a-tile am-g-60" x="446" y="351.5" width="9" height="9"/>
+    <rect class="am-a-tile am-g-60" x="459" y="351.5" width="9" height="9"/>
+    </g>
+  <g class="am-a-tick"><circle class="am-a-red" cx="496" cy="204" r="18"/><path d="M487 204l6 6 11-12"/></g>
+</svg>

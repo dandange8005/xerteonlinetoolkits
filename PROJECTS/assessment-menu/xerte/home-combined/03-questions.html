@@ -1,0 +1,113 @@
+<p>Use these prompts on your own or with colleagues. They do not produce a recommendation; they help make the choices visible.</p>
+
+<div class="am-studio">
+  <nav class="am-steps" id="amSteps" aria-label="Design questions"></nav>
+  <div class="am-stage">
+    <p class="text-secondary text-base" id="amStepCount"></p>
+    <h3 id="amQuestion" tabindex="-1"></h3>
+    <p id="amQuestionHelp"></p>
+    <label for="amNote" class="block mt-6"><span class="block font-bold mb-2">Your note</span>
+      <textarea id="amNote"></textarea>
+    </label>
+    <div class="flex flex-wrap gap-md mt-6">
+      <button class="button button-secondary-outline" id="amPrevious" type="button">← Previous</button>
+      <button class="button button-primary" id="amNext" type="button">Next →</button>
+    </div>
+  </div>
+</div>
+
+<p class="text-secondary mt-4">Notes stay on this page while it remains open. Moving to another page, reloading or closing clears them. No information is sent.</p>
+<div class="flex flex-wrap gap-md">
+  <button class="button button-secondary-outline" id="amCopy" type="button">Copy design notes</button>
+</div>
+<p class="text-secondary" id="amCopyStatus" role="status"></p>
+
+<script>
+(function () {
+  /* Each row: [step label, question, help text]. */
+  var QUESTIONS = [
+    ['Learning outcomes', 'What do students need to demonstrate?',
+      'Start from your learning outcomes. Identify the knowledge, skills and judgement students need to show.'],
+    ['Evidence of learning', 'Why is this assessment the most appropriate way of evidencing learning?',
+      'Choose a task that makes the intended learning visible. Compare what each assessment type is for before choosing a format.'],
+    ['Authenticity', 'How authentic is the task to the discipline, profession, or wider context?',
+      'Consider the decisions, practices and audiences that matter in your discipline. Ask what makes this task meaningful.'],
+    ['Inclusive design', 'How can barriers to participation and success be reduced?',
+      'Consider access, participation and reasonable adjustments from the start, including the demands of the chosen format.'],
+    ['The role of AI', 'What role, if any, should GenAI play in the assessment process?',
+      'Let the learning outcomes guide the lane. Make expectations about AI clear in the assessment brief.'],
+    ['The programme', 'How does this assessment contribute to the wider programme assessment journey?',
+      'Look across modules for progression, manageable deadlines and a balance of assessment types. Discuss the pattern with your programme team.']
+  ];
+
+  var steps = document.getElementById('amSteps');
+  var stepCount = document.getElementById('amStepCount');
+  var question = document.getElementById('amQuestion');
+  var help = document.getElementById('amQuestionHelp');
+  var note = document.getElementById('amNote');
+  var previous = document.getElementById('amPrevious');
+  var next = document.getElementById('amNext');
+  var copy = document.getElementById('amCopy');
+  var copyStatus = document.getElementById('amCopyStatus');
+  if (!steps || !question || !note) { return; }
+
+  var step = 0;
+  var notes = QUESTIONS.map(function () { return ''; });
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  function render() {
+    var q = QUESTIONS[step];
+    stepCount.textContent = 'Question ' + (step + 1) + ' of ' + QUESTIONS.length;
+    question.textContent = q[1];
+    help.textContent = q[2];
+    note.value = notes[step];
+    previous.disabled = step === 0;
+    next.disabled = step === QUESTIONS.length - 1;
+    steps.innerHTML = QUESTIONS.map(function (x, i) {
+      return '<button class="am-step" type="button" data-step="' + i +
+        '" aria-current="' + (i === step) + '" data-noted="' + Boolean(notes[i].trim()) + '">' +
+        '<span aria-hidden="true">0' + (i + 1) + '</span>' + esc(x[0]) + '</button>';
+    }).join('');
+  }
+
+  steps.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-step]');
+    if (!btn) { return; }
+    step = Number(btn.getAttribute('data-step'));
+    render();
+    question.focus({ preventScroll: true });
+  });
+
+  note.addEventListener('input', function (e) {
+    notes[step] = e.target.value;
+    render();
+  });
+
+  previous.addEventListener('click', function () { if (step > 0) { step--; render(); } });
+  next.addEventListener('click', function () { if (step < QUESTIONS.length - 1) { step++; render(); } });
+
+  copy.addEventListener('click', function () {
+    var text = QUESTIONS.map(function (q, i) {
+      return (i + 1) + '. ' + q[1] + '\n' + (notes[i].trim() || '(no note)');
+    }).join('\n\n');
+    function done() {
+      copyStatus.textContent = 'Design notes copied.';
+      setTimeout(function () { copyStatus.textContent = ''; }, 3000);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done, function () {
+        copyStatus.textContent = 'Copying was blocked. Select your notes and copy them manually.';
+      });
+    } else {
+      copyStatus.textContent = 'Copying is not available here. Select your notes and copy them manually.';
+    }
+  });
+
+  render();
+})();
+</script>

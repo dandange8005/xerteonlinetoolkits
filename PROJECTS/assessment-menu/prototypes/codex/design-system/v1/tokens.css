@@ -1,0 +1,18 @@
+/* Cardiff learning resource UI v1.0 · extracted 17 September 2026.
+   Scoped tokens: the host page and Xerte navigation are not restyled. */
+.cu-resource {
+ --cu-bg:#FFFFFF; --cu-surface:#F2F2F2; --cu-border:#CCCCCC; --cu-line:#E5E5E5;
+ --cu-ink:#121212; --cu-muted:#666666; --cu-red:#E4251B; --cu-action:#C21F16;
+ --cu-action-hover:#A11A12; --cu-tint:#F8DADA; --cu-link:#045bc6; --cu-focus:#7F140E;
+ --cu-success:#07873E; --cu-warning:#65501c; --cu-warning-bg:#faf3dd;
+ --cu-lane1:#1d5c8f; --cu-lane1-bg:#e8f1f8; --cu-lane2:#276c44; --cu-lane2-bg:#e9f5ee;
+ --cu-on-dark:#FFFFFF; --cu-on-dark-muted:#CCCCCC; --cu-transparent:transparent;
+ --cu-display:'Franklin Gothic Heavy','Franklin Gothic',system-ui,sans-serif;
+ --cu-body:system-ui,-apple-system,'Segoe UI',sans-serif;
+ --cu-serif:ui-serif,Georgia,'Times New Roman',serif;
+ --cu-space-1:4px; --cu-space-2:8px; --cu-space-3:12px; --cu-space-4:16px;
+ --cu-space-5:20px; --cu-space-6:24px; --cu-space-7:28px; --cu-space-8:32px;
+ --cu-space-9:36px; --cu-space-10:40px; --cu-space-12:48px; --cu-space-14:56px;
+ --cu-space-16:64px; --cu-space-20:80px; --cu-space-24:96px;
+ --cu-radius:3px; --cu-shadow:none; --cu-fast:160ms; --cu-ease:cubic-bezier(.16,1,.3,1);
+}

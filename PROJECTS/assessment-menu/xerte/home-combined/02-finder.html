@@ -1,0 +1,125 @@
+<p>Search the 17 types, or browse a category. Use the same records in a list or grid while deciding which view works best.</p>
+
+<div class="am-finder">
+  <div class="am-finder-controls">
+    <label for="amSearch"><span class="block font-bold mb-2">Search the menu</span>
+      <input id="amSearch" type="search" placeholder="Essay, viva, portfolio…" autocomplete="off">
+    </label>
+    <div class="am-filters" id="amFilters" role="group" aria-label="Assessment categories"></div>
+  </div>
+  <div>
+    <div class="am-control-row">
+      <p class="text-secondary text-base" id="amCount" role="status"></p>
+      <div class="am-view" role="group" aria-label="Display format">
+        <button class="button button-secondary button-sm" type="button" data-view="list" aria-pressed="true">List</button>
+        <button class="button button-secondary-outline button-sm" type="button" data-view="grid" aria-pressed="false">Grid</button>
+      </div>
+    </div>
+    <div class="am-types" id="amTypes" data-view="list"></div>
+    <p class="text-secondary" id="amEmpty" hidden>No matching assessment types. Try another term or reset the search.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  /* Each row: [type name, category ID, section ID]. The category ID is the Page ID
+     and the section ID the Section ID, so a result links to #page|section. */
+  var TYPES = [
+    ['In-person, invigilated exam', 'exams', 'in-person-invigilated-exam'],
+    ['Open-book exam', 'exams', 'open-book-exam'],
+    ['Timed in-class knowledge test', 'class-tests', 'timed-in-class-knowledge-test'],
+    ['Application-based problem test', 'class-tests', 'application-based-problem-test'],
+    ['Mentimeter conceptual understanding check', 'class-tests', 'mentimeter-conceptual-understanding-check'],
+    ['Reflective portfolio', 'portfolios', 'reflective-portfolio'],
+    ['Annotated bibliography', 'portfolios', 'annotated-bibliography'],
+    ['Professional portfolio', 'portfolios', 'professional-portfolio'],
+    ['Artefacts', 'multimedia', 'artefacts'],
+    ['Posters', 'multimedia', 'posters'],
+    ['Blog/vlog', 'multimedia', 'blog-vlog'],
+    ['Assessed seminars', 'oral', 'assessed-seminars'],
+    ['Presentation', 'oral', 'presentation'],
+    ['Viva voce', 'oral', 'viva-voce'],
+    ['OSCEs and ISCEs', 'practical', 'osces-and-isces'],
+    ['Essay', 'written', 'essay'],
+    ['Report', 'written', 'report']
+  ];
+  var CATS = [
+    ['all', 'All'], ['exams', 'Exams'], ['class-tests', 'Class tests'], ['portfolios', 'Portfolios'],
+    ['multimedia', 'Multimedia'], ['oral', 'Oral and spoken'], ['practical', 'Practical'], ['written', 'Written']
+  ];
+
+  var search = document.getElementById('amSearch');
+  var filters = document.getElementById('amFilters');
+  var list = document.getElementById('amTypes');
+  var count = document.getElementById('amCount');
+  var empty = document.getElementById('amEmpty');
+  var view = document.querySelector('.am-view');
+  if (!search || !filters || !list) { return; }
+
+  var cat = 'all';
+
+  function catName(id) {
+    var found = CATS.filter(function (c) { return c[0] === id; })[0];
+    return found ? found[1] : '';
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  /* The pressed state swaps the theme's outline button for its filled one, rather
+     than recolouring it: .button-secondary-outline sets its text colour with
+     !important, so an override would have to fight it. */
+  function buttonClass(pressed) {
+    return 'button ' + (pressed ? 'button-secondary' : 'button-secondary-outline') + ' button-sm';
+  }
+
+  function renderFilters() {
+    filters.innerHTML = CATS.map(function (c) {
+      return '<button class="' + buttonClass(c[0] === cat) + '" type="button" data-cat="' + c[0] +
+        '" aria-pressed="' + (c[0] === cat) + '">' + esc(c[1]) + '</button>';
+    }).join('');
+  }
+
+  function renderTypes() {
+    var q = search.value.trim().toLowerCase();
+    var shown = TYPES.filter(function (t) {
+      var matchesCat = cat === 'all' || t[1] === cat;
+      var haystack = (t[0] + ' ' + catName(t[1])).toLowerCase();
+      return matchesCat && haystack.indexOf(q) !== -1;
+    });
+    count.textContent = shown.length + ' of ' + TYPES.length + ' assessment types';
+    list.innerHTML = shown.map(function (t) {
+      return '<article class="am-type"><div><h3>' + esc(t[0]) + '</h3>' +
+        '<p class="text-secondary">' + esc(catName(t[1])) + '</p></div>' +
+        '<a class="link-action" href="#' + t[1] + '|' + t[2] + '">View</a></article>';
+    }).join('');
+    empty.hidden = shown.length !== 0;
+  }
+
+  search.addEventListener('input', renderTypes);
+
+  filters.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-cat]');
+    if (!btn) { return; }
+    cat = btn.getAttribute('data-cat');
+    renderFilters();
+    renderTypes();
+  });
+
+  view.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-view]');
+    if (!btn) { return; }
+    list.setAttribute('data-view', btn.getAttribute('data-view'));
+    Array.prototype.forEach.call(view.querySelectorAll('[data-view]'), function (b) {
+      b.setAttribute('aria-pressed', String(b === btn));
+      b.className = buttonClass(b === btn);
+    });
+  });
+
+  renderFilters();
+  renderTypes();
+})();
+</script>

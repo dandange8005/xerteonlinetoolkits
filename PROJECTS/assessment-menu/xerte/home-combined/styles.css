@@ -1,0 +1,80 @@
+/* ===== Assessment Menu: Home page (combined) =====
+   Paste into Project > Optional properties > Styles.
+
+   Deliberately small. The page is built from theme components and utilities
+   (.button, .card, .cu-callout, .cu-rule, .badge, .link-action, .link-external,
+   .flex/.flex-NNN, .text-*, .font-*); what is here is only the handful of
+   patterns the theme has no component for: the finder's two-column workbench,
+   its result rows, the design studio's step list, and the pressed state for
+   the filter and view controls. Every value resolves through a theme token. */
+
+/* Intro art: the menu as a card of seven categories (tiles = types), with the
+   chosen type in red. Standalone copy with the colours written in: intro-menu.svg.
+   Red, ink and greys only. The SVG carries classes; every fill is a theme token. */
+.am-intro { align-items: center; }
+.am-intro-art svg { width: 100%; max-width: 520px; height: auto; margin: 0 auto; overflow: visible; }
+.am-a-card { fill: var(--color-white); stroke: var(--color-text-primary); stroke-width: var(--border-width-2); }
+.am-a-shadow { fill: var(--color-gray-20); }
+.am-a-red { fill: var(--color-brand-primary); }
+.am-a-ink { fill: var(--color-text-primary); }
+.am-a-bar { fill: var(--color-gray-30); }
+.am-a-name { fill: var(--color-gray-40); }
+.am-a-rule { stroke: var(--color-text-primary); stroke-width: var(--border-width-2); }
+.am-a-leader { fill: none; stroke: var(--color-gray-40); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 0 6; }
+.am-a-chosen { fill: var(--color-selected-bg); }
+.am-a-tile { stroke: var(--color-text-primary); stroke-width: var(--border-width-1); }
+.am-a-glyph { fill: none; stroke: var(--color-text-primary); stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.am-a-glyph.is-chosen { stroke: var(--color-white); }
+/* A light-to-dark grey ramp down the rows; the chosen row breaks it in red */
+.am-g-10 { fill: var(--color-gray-10); }
+.am-g-20 { fill: var(--color-gray-20); }
+.am-g-30 { fill: var(--color-gray-30); }
+.am-g-40 { fill: var(--color-gray-40); }
+.am-g-50 { fill: var(--color-gray-50); }
+.am-g-60 { fill: var(--color-gray-60); }
+.am-g-chosen { fill: var(--color-brand-primary); }
+.am-a-tick path { fill: none; stroke: var(--color-white); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* One pass on load: the choice is ticked. */
+@media (prefers-reduced-motion: no-preference) {
+  .am-a-tick { transform-box: fill-box; transform-origin: center; animation: am-tick var(--duration-slow) cubic-bezier(0, 0, 0.2, 1) 1.3s both; }
+}
+@keyframes am-tick { from { transform: scale(0); } 70% { transform: scale(1.15); } to { transform: scale(1); } }
+
+/* Finder: filter rail beside the results */
+.am-finder { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: var(--spacing-10); padding-top: var(--spacing-8); border-top: var(--border-width-2) solid var(--color-text-primary); }
+.am-finder-controls { align-self: start; padding: var(--spacing-6); background: var(--color-bg-subtle); }
+.am-finder-controls input[type="search"] { width: 100%; min-height: var(--min-input-height); box-sizing: border-box; margin: 0; padding: var(--spacing-3) var(--spacing-4); font-size: var(--font-size-md); border: var(--border-width-1) solid var(--color-border-default); border-radius: var(--radius-input); }
+.am-filters { display: flex; flex-wrap: wrap; gap: var(--spacing-2); margin-top: var(--spacing-6); }
+.am-control-row { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-2); margin-bottom: var(--spacing-4); }
+.am-view { display: flex; gap: var(--spacing-2); }
+
+/* Results: bordered rows in list view, two columns in grid view */
+.am-types { display: grid; grid-template-columns: minmax(0, 1fr); column-gap: var(--spacing-7); }
+.am-types[data-view="grid"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.am-type { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-4); padding: var(--spacing-5) 0; border-top: var(--border-width-1) solid var(--color-border-default); }
+.am-type h3 { margin: 0; font-family: var(--font-family-primary); font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); letter-spacing: normal; }
+.am-type p { margin-top: var(--spacing-1); margin-bottom: 0; font-size: var(--font-size-base); }
+.am-type a { white-space: nowrap; }
+
+/* Design studio: step list beside the current question */
+.am-studio { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: var(--spacing-10); padding: var(--spacing-8); background: var(--color-bg-subtle); }
+.am-steps { display: flex; flex-direction: column; gap: var(--spacing-1); }
+.am-step { display: flex; align-items: center; gap: var(--spacing-3); min-height: 58px; padding: var(--spacing-3); background: none; border: var(--border-width-1) solid transparent; color: var(--color-text-primary); font: inherit; text-align: left; cursor: pointer; }
+.am-step:hover { background: var(--color-white); }
+.am-step[aria-current="true"] { background: var(--color-white); border-color: var(--color-text-primary); font-weight: var(--font-weight-bold); }
+.am-step span { color: var(--color-text-secondary); font-weight: var(--font-weight-bold); }
+.am-step[data-noted="true"] span { color: var(--color-action); }
+.am-stage { padding: var(--spacing-10); background: var(--color-white); border-top: var(--border-width-4) solid var(--color-brand-primary); }
+.am-stage textarea { width: 100%; min-height: var(--min-textarea-height); box-sizing: border-box; padding: var(--spacing-3) var(--spacing-4); font: inherit; border: var(--border-width-1) solid var(--color-border-default); border-radius: var(--radius-input); resize: vertical; }
+
+/* The draft label's colour pair exists as tokens but has no class of its own. */
+.badge.am-draft { background-color: var(--color-draft-bg); color: var(--color-draft); }
+
+@media (max-width: 979px) {
+  .am-intro-art svg { max-width: 400px; }
+  .am-finder, .am-studio { grid-template-columns: minmax(0, 1fr); }
+  .am-types[data-view="grid"] { grid-template-columns: minmax(0, 1fr); }
+  .am-steps { flex-direction: row; flex-wrap: wrap; }
+  .am-stage { padding: var(--spacing-6); }
+}

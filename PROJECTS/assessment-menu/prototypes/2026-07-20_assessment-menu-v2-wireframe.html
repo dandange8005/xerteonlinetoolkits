@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assessment Menu v2 — UCL/Jisc Integration Wireframe (Iteration 2)</title>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --surface: #FFFFFF;
+    --surface2: #F5F5F5;
+    --border: #D1D1D1;
+    --accent: #000000;
+    --accent-l: #1B1B1B;
+    --hi: #E5E5E5;
+    --text: #000000;
+    --muted: #717171;
+    --on-accent: #FFFFFF;
+    --scrim: rgb(0 0 0 / 40%);
+    --h-font: "Inter", system-ui, sans-serif;
+    --b-font: "Inter", system-ui, sans-serif;
+    --m-font: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --primary: var(--accent);
+    --stroke: var(--border);
+    --xs: 4px; --sm: 8px; --md: 16px; --lg: 24px; --xl: 48px;
+    --container-max: 1280px;
+    --radius: 0px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--b-font); font-size: 16px; line-height: 1.5; }
+  .wrap { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--lg); }
+  .mono { font-family: var(--m-font); }
+
+  header.top { background: var(--surface2); border-bottom: 1px solid var(--stroke); padding: var(--md) 0; }
+  header.top .wrap { display: flex; align-items: baseline; gap: var(--md); flex-wrap: wrap; }
+  header.top h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+  .status { font-family: var(--m-font); font-size: 12px; color: var(--muted); }
+
+  section.block { padding: var(--xl) 0; border-bottom: 1px solid var(--stroke); }
+  section.block:last-of-type { border-bottom: none; }
+  h2 { font-size: 18px; font-weight: 700; margin-bottom: var(--sm); }
+  h3 { font-size: 15px; font-weight: 600; margin-bottom: var(--sm); }
+  .lede { color: var(--muted); max-width: 70ch; margin-bottom: var(--lg); }
+
+  .q-card { border: 2px solid var(--accent); padding: var(--md); margin-bottom: var(--md); }
+  .q-card .mono { font-size: 12px; color: var(--muted); display: block; margin-bottom: var(--xs); }
+  .decided { border: 1px solid var(--stroke); background: var(--surface2); padding: var(--md); font-size: 14px; }
+  .decided .mono { font-size: 11px; color: var(--muted); display: block; margin-bottom: var(--xs); }
+  .decided ul { margin: var(--xs) 0 0 var(--lg); font-size: 13px; }
+
+  /* wireframe canvas */
+  .canvas { border: 2px solid var(--accent); }
+  .canvas-bar { background: var(--surface2); border-bottom: 1px solid var(--stroke); padding: var(--sm) var(--md); display: flex; gap: var(--lg); align-items: center; flex-wrap: wrap; }
+  .canvas-bar .brand { font-weight: 700; font-size: 14px; }
+  .canvas-nav { display: flex; gap: var(--md); }
+  .canvas-nav a { color: var(--text); text-decoration: none; font-size: 14px; padding-bottom: 2px; cursor: pointer; }
+  .canvas-nav a.active { border-bottom: 2px solid var(--accent); font-weight: 600; }
+  .screen { display: none; }
+  .screen.on { display: block; }
+
+  .browse { display: grid; grid-template-columns: 240px 1fr; }
+  .filters { border-right: 1px solid var(--stroke); padding: var(--md); }
+  .filters .f-group { margin-bottom: var(--lg); }
+  .filters .f-label { font-family: var(--m-font); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: var(--sm); }
+  .filters label.ck { display: flex; align-items: center; gap: var(--sm); font-size: 14px; margin-bottom: var(--xs); cursor: pointer; }
+  .filters input[type="checkbox"] { width: 14px; height: 14px; accent-color: #000; }
+  .searchbox { width: 100%; border: 1px solid var(--stroke); padding: var(--sm); font-family: var(--b-font); font-size: 14px; background: var(--surface); }
+  .searchbox:focus { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .grid { padding: var(--md); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--md); align-content: start; }
+  .tcard { border: 1px solid var(--stroke); padding: var(--md); cursor: pointer; background: var(--surface); }
+  .tcard:hover { background: var(--hi); }
+  .tcard .src { font-family: var(--m-font); font-size: 11px; color: var(--muted); }
+  .tcard h4 { font-size: 14px; font-weight: 600; margin: var(--xs) 0; }
+  .tcard .meta { font-family: var(--m-font); font-size: 11px; color: var(--muted); }
+  .tcard.idea { border-style: dashed; }
+
+  .detail { padding: var(--md); }
+  .backlink { font-size: 13px; cursor: pointer; text-decoration: underline; display: inline-block; margin-bottom: var(--md); }
+  .detail-cols { display: grid; grid-template-columns: 2fr 1fr; gap: var(--md); }
+  .sect { border: 1px solid var(--stroke); margin-bottom: var(--sm); }
+  .sect .sect-h { padding: var(--sm) var(--md); font-size: 14px; font-weight: 600; background: var(--surface2); border-bottom: 1px solid var(--stroke); }
+  .sect .sect-b { padding: var(--sm) var(--md); font-size: 13px; color: var(--muted); }
+  .todo { font-family: var(--m-font); font-size: 12px; }
+  .panel { border: 2px solid var(--accent); padding: var(--md); }
+  .panel .p-tag { font-family: var(--m-font); font-size: 11px; color: var(--muted); margin-bottom: var(--sm); }
+  .ratingline { font-family: var(--m-font); font-size: 12px; line-height: 1.8; }
+  .xlink { display: block; font-size: 13px; text-decoration: underline; cursor: pointer; margin-bottom: var(--xs); }
+
+  /* mapping review rows */
+  .map-row { display: grid; grid-template-columns: 1fr auto; gap: var(--md); border: 1px solid var(--stroke); padding: var(--sm) var(--md); margin-bottom: var(--sm); align-items: center; }
+  .map-row .nm { font-size: 14px; font-weight: 600; }
+  .map-row .links { font-family: var(--m-font); font-size: 12px; color: var(--muted); }
+  .map-row .why { font-size: 12px; color: var(--muted); }
+  .confirm { font-family: var(--m-font); font-size: 12px; border: 1px solid var(--accent); background: var(--surface); padding: 6px 12px; cursor: pointer; min-width: 110px; }
+  .confirm[data-state="ok"] { background: var(--accent); color: var(--on-accent); }
+  .confirm[data-state="change"] { background: var(--hi); }
+
+  textarea.comments { width: 100%; border: 1px solid var(--stroke); padding: var(--md); font-family: var(--b-font); font-size: 14px; min-height: 90px; background: var(--surface); }
+  textarea.comments:focus { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .notes { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--md); }
+  .note { border: 1px solid var(--stroke); padding: var(--md); font-size: 13px; }
+  .note .n-tag { font-family: var(--m-font); font-size: 11px; color: var(--muted); display: block; margin-bottom: var(--xs); }
+
+  .export-bar { border-top: 2px solid var(--accent); background: var(--surface2); padding: var(--md) var(--lg); display: flex; align-items: center; gap: var(--md); position: sticky; bottom: 0; }
+  .export-hint { font-family: var(--m-font); font-size: 12px; color: var(--muted); flex: 1; }
+  .btn-primary { background: var(--accent); color: var(--on-accent); border: none; font-family: var(--b-font); font-size: 14px; font-weight: 600; padding: 10px 20px; cursor: pointer; }
+  .btn-primary:hover { background: var(--accent-l); }
+  #fallback { display: none; width: 100%; margin-top: var(--sm); font-family: var(--m-font); font-size: 12px; min-height: 120px; }
+
+  @media (max-width: 768px) {
+    .notes, .detail-cols { grid-template-columns: 1fr; }
+    .browse { grid-template-columns: 1fr; }
+    .filters { border-right: none; border-bottom: 1px solid var(--stroke); }
+    .grid { grid-template-columns: 1fr; }
+    .map-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>Assessment Menu v2 — integration wireframe</h1>
+    <span class="status">[ITERATION 2] · low-fidelity · not visual design</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="block">
+    <div class="decided">
+      <span class="mono">DECISIONS APPLIED FROM ITERATION 1</span>
+      <strong>Placement: Option B — separate "Ideas bank" tab.</strong> Cardiff types remain the only top-level menu entries; all 8 adopted UCL/Jisc ideas live in the bank and surface on type pages as <span class="mono">[LANE 2 EXAMPLE]</span> cross-links. No UCL idea becomes a top-level entry.
+      <ul>
+        <li>Adopted as Lane 2 examples: Case study (student led) · Field viva · Micro action research project · Consultant report · Debate with AI · AI think-pair-share · AI prompt competition · Patchwork assessment</li>
+      </ul>
+    </div>
+    <div class="q-card" style="margin-top:16px;">
+      <span class="mono">ITERATION 2 PROTOTYPE QUESTION</span>
+      Does the Ideas bank + cross-link model make the adopted ideas findable from both directions (bank → types, type page → bank), and are the proposed idea-to-type mappings right?
+    </div>
+    <p class="lede">Click through the screens, then confirm or challenge each mapping in section 3 and export your feedback.</p>
+  </section>
+
+  <section class="block">
+    <h2>1 · Clickable screens — Option B applied</h2>
+    <p class="lede">Two tabs: "Browse types" (Cardiff content only) and "Ideas bank" (the 8 adopted UCL/Jisc ideas, dashed cards). Type pages link into the bank; bank pages link back to the types that use them.</p>
+
+    <div class="canvas">
+      <div class="canvas-bar">
+        <span class="brand">Assessment Menu</span>
+        <nav class="canvas-nav">
+          <a data-open="screen-browse" id="nav-browse" class="active">Browse types</a>
+          <a data-open="screen-bank" id="nav-bank">Ideas bank</a>
+          <a>About &amp; sources</a>
+        </nav>
+        <span class="status" style="margin-left:auto">guidance, not policy</span>
+      </div>
+
+      <!-- SCREEN: browse (Cardiff only) -->
+      <div class="screen on" id="screen-browse">
+        <div class="browse">
+          <aside class="filters">
+            <div class="f-group">
+              <div class="f-label">Search</div>
+              <input class="searchbox" type="text" placeholder="e.g. viva, essay…" aria-label="Search assessment types">
+            </div>
+            <div class="f-group">
+              <div class="f-label">Category</div>
+              <label class="ck"><input type="checkbox" checked> Exams</label>
+              <label class="ck"><input type="checkbox" checked> Written</label>
+              <label class="ck"><input type="checkbox" checked> Oral &amp; Spoken</label>
+              <label class="ck"><input type="checkbox"> Portfolios</label>
+              <label class="ck"><input type="checkbox"> Practical</label>
+            </div>
+            <div class="f-group">
+              <div class="f-label">Has Lane 2 ideas</div>
+              <label class="ck"><input type="checkbox" checked> Show link count</label>
+            </div>
+          </aside>
+          <div class="grid">
+            <div class="tcard" data-open="screen-essay">
+              <span class="src">[CARDIFF] · Written</span>
+              <h4>Essay</h4>
+              <span class="meta">Lane 1 + Lane 2 guidance · 4 LANE 2 IDEAS →</span>
+            </div>
+            <div class="tcard">
+              <span class="src">[CARDIFF] · Written</span>
+              <h4>Report</h4>
+              <span class="meta">Lane 1 + Lane 2 guidance · 3 LANE 2 IDEAS →</span>
+            </div>
+            <div class="tcard" data-open="screen-viva">
+              <span class="src">[CARDIFF] · Oral &amp; Spoken</span>
+              <h4>Viva voce</h4>
+              <span class="meta">Lane 1 + Lane 2 guidance · 1 LANE 2 IDEA →</span>
+            </div>
+            <div class="tcard">
+              <span class="src">[CARDIFF] · Oral &amp; Spoken</span>
+              <h4>Assessed seminars</h4>
+              <span class="meta">Lane 1 + Lane 2 guidance · 2 LANE 2 IDEAS →</span>
+            </div>
+            <div class="tcard">
+              <span class="src">[CARDIFF] · Portfolios</span>
+              <h4>Reflective portfolio</h4>
+              <span class="meta">Lane 1 + Lane 2 guidance · 2 LANE 2 IDEAS →</span>
+            </div>
+            <div class="tcard">
+              <span class="src">[CARDIFF] · Exams</span>
+              <h4>Open-book exam</h4>
+              <span class="meta">Lane 1 + Lane 2 guidance · 0 LANE 2 IDEAS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN: ideas bank -->
+      <div class="screen" id="screen-bank">
+        <div class="browse">
+          <aside class="filters">
+            <div class="f-group">
+              <div class="f-label">Search ideas</div>
+              <input class="searchbox" type="text" placeholder="e.g. debate, patchwork…" aria-label="Search ideas">
+            </div>
+            <div class="f-group">
+              <div class="f-label">Characteristics (UCL model)</div>
+              <label class="ck"><input type="checkbox"> High authenticity</label>
+              <label class="ck"><input type="checkbox"> Low staff demand</label>
+              <label class="ck"><input type="checkbox"> AI-native task</label>
+            </div>
+            <div class="f-group">
+              <div class="f-label">Source</div>
+              <p class="todo">[UCL/JISC] Bowditch et al. — 8 of 40 ideas adopted; full deck linked on About &amp; sources</p>
+            </div>
+          </aside>
+          <div class="grid">
+            <div class="tcard idea" data-open="screen-debate">
+              <span class="src">[IDEA] · AI-native</span>
+              <h4>Debate with AI</h4>
+              <span class="meta">USED BY: Essay · Assessed seminars</span>
+            </div>
+            <div class="tcard idea">
+              <span class="src">[IDEA] · AI-native</span>
+              <h4>AI think-pair-share</h4>
+              <span class="meta">USED BY: Essay · Reflective portfolio</span>
+            </div>
+            <div class="tcard idea">
+              <span class="src">[IDEA] · AI-native</span>
+              <h4>AI prompt competition</h4>
+              <span class="meta">USED BY: Assessed seminars · Blog/vlog</span>
+            </div>
+            <div class="tcard idea">
+              <span class="src">[IDEA]</span>
+              <h4>Patchwork assessment</h4>
+              <span class="meta">USED BY: Essay · Reflective portfolio</span>
+            </div>
+            <div class="tcard idea">
+              <span class="src">[IDEA]</span>
+              <h4>Case study (student led)</h4>
+              <span class="meta">USED BY: Essay · Report · Presentation</span>
+            </div>
+            <div class="tcard idea">
+              <span class="src">[IDEA]</span>
+              <h4>Field viva</h4>
+              <span class="meta">USED BY: Viva voce · OSCEs/ISCEs</span>
+            </div>
+            <div class="tcard idea">
+              <span class="src">[IDEA]</span>
+              <h4>Micro action research project</h4>
+              <span class="meta">USED BY: Report · Professional portfolio</span>
+            </div>
+            <div class="tcard idea">
+              <span class="src">[IDEA]</span>
+              <h4>Consultant report: professional futures</h4>
+              <span class="meta">USED BY: Report · Essay</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN: essay detail -->
+      <div class="screen" id="screen-essay">
+        <div class="detail">
+          <span class="backlink" data-open="screen-browse">&larr; Back to browse</span>
+          <h3>Essay <span class="status">[CARDIFF] · 7. Written Assessments</span></h3>
+          <div class="detail-cols">
+            <div>
+              <div class="sect"><div class="sect-h">What is it? / What's it for?</div><div class="sect-b">Existing Cardiff content unchanged.</div></div>
+              <div class="sect"><div class="sect-h">Two-Lane Alignment</div><div class="sect-b">Existing AI considerations, Lane 1 / Lane 2 how-tos and examples.</div></div>
+              <div class="sect"><div class="sect-h">Authenticity · Inclusive Design · Student Voice</div><div class="sect-b">Existing Cardiff content unchanged.</div></div>
+            </div>
+            <div class="panel">
+              <div class="p-tag">LANE 2 TASK IDEAS · FROM THE IDEAS BANK</div>
+              <span class="xlink" data-open="screen-debate">→ Debate with AI</span>
+              <span class="xlink" data-open="screen-bank">→ AI think-pair-share</span>
+              <span class="xlink" data-open="screen-bank">→ Patchwork assessment</span>
+              <span class="xlink" data-open="screen-bank">→ Case study (student led)</span>
+              <p class="todo" style="margin-top:8px;">[NOTE] links, not copies — one source of truth in the bank</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN: viva detail -->
+      <div class="screen" id="screen-viva">
+        <div class="detail">
+          <span class="backlink" data-open="screen-browse">&larr; Back to browse</span>
+          <h3>Viva voce <span class="status">[CARDIFF] · 5. Oral &amp; Spoken</span></h3>
+          <div class="detail-cols">
+            <div>
+              <div class="sect"><div class="sect-h">What is it? / What's it for?</div><div class="sect-b">Existing Cardiff content unchanged.</div></div>
+              <div class="sect"><div class="sect-h">Two-Lane Alignment</div><div class="sect-b">Existing AI considerations, Lane 1 / Lane 2 how-tos and examples.</div></div>
+            </div>
+            <div class="panel">
+              <div class="p-tag">LANE 2 TASK IDEAS · FROM THE IDEAS BANK</div>
+              <span class="xlink" data-open="screen-bank">→ Field viva</span>
+              <p class="todo" style="margin-top:8px;">[NOTE] variant where the discussion happens in a live practice setting</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN: idea detail (Debate with AI) -->
+      <div class="screen" id="screen-debate">
+        <div class="detail">
+          <span class="backlink" data-open="screen-bank">&larr; Back to Ideas bank</span>
+          <h3>Debate with AI <span class="status">[IDEA] · UCL/JISC · AI-native</span></h3>
+          <div class="detail-cols">
+            <div>
+              <div class="sect"><div class="sect-h">Student activities (from UCL card)</div><div class="sect-b">Students present a major disciplinary question to an AI text generator, debate it by questioning the responses, then individually produce an argumentative essay evaluating both their own position and AI's.</div></div>
+              <div class="sect"><div class="sect-h">How this works as Lane 2</div><div class="sect-b todo">[TODO — TO BE AUTHORED BY LTA] AI use is the task; assessed on evaluative judgement, transparency, and disciplinary argument (per operational guide Lane 2 rubric).</div></div>
+              <div class="sect"><div class="sect-h">Used as a Lane 2 example by</div><div class="sect-b"><span class="xlink" data-open="screen-essay">→ Essay</span><span class="xlink" data-open="screen-browse">→ Assessed seminars</span></div></div>
+            </div>
+            <div class="panel">
+              <div class="p-tag">UCL CHARACTERISTICS (ONE PERSPECTIVE — DEBATE)</div>
+              <div class="ratingline">
+                AUTHENTICITY&nbsp;&nbsp;3/5<br>
+                CHALLENGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4/5<br>
+                PRODUCT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3/5<br>
+                LEARNING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5/5<br>
+                STAFF DEMAND&nbsp;&nbsp;3/5<br>
+                LIFELONG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3/5
+              </div>
+              <p class="todo" style="margin-top:8px;">[SOURCE] Bowditch et al., UCL/Jisc — credit on publish</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>2 · Cross-link mapping review</h2>
+    <p class="lede">Proposed idea → Cardiff type mappings (which type pages show each idea as a Lane 2 example). Click to cycle: [ — ] → [OK] → [CHANGE]. If [CHANGE], say what in the comments.</p>
+    <div id="mappings">
+      <div class="map-row" data-idea="Debate with AI">
+        <div><div class="nm">Debate with AI</div><div class="links">→ Essay · Assessed seminars</div></div>
+        <button class="confirm" data-state="">[ — ]</button>
+      </div>
+      <div class="map-row" data-idea="AI think-pair-share">
+        <div><div class="nm">AI think-pair-share</div><div class="links">→ Essay · Reflective portfolio</div></div>
+        <button class="confirm" data-state="">[ — ]</button>
+      </div>
+      <div class="map-row" data-idea="AI prompt competition">
+        <div><div class="nm">AI prompt competition</div><div class="links">→ Assessed seminars · Blog/vlog</div></div>
+        <button class="confirm" data-state="">[ — ]</button>
+      </div>
+      <div class="map-row" data-idea="Patchwork assessment">
+        <div><div class="nm">Patchwork assessment</div><div class="links">→ Essay · Reflective portfolio</div><div class="why">Scaffolding alternative to production logs (feedback #17)</div></div>
+        <button class="confirm" data-state="">[ — ]</button>
+      </div>
+      <div class="map-row" data-idea="Case study (student led)">
+        <div><div class="nm">Case study (student led)</div><div class="links">→ Essay · Report · Presentation</div><div class="why">Partially covers missing-type request #22 via the bank</div></div>
+        <button class="confirm" data-state="">[ — ]</button>
+      </div>
+      <div class="map-row" data-idea="Field viva">
+        <div><div class="nm">Field viva</div><div class="links">→ Viva voce · OSCEs/ISCEs</div><div class="why">Partially covers lab/field gap #9, #22 via the bank</div></div>
+        <button class="confirm" data-state="">[ — ]</button>
+      </div>
+      <div class="map-row" data-idea="Micro action research project">
+        <div><div class="nm">Micro action research project</div><div class="links">→ Report · Professional portfolio</div><div class="why">Research-skills route (feedback #23, #27)</div></div>
+        <button class="confirm" data-state="">[ — ]</button>
+      </div>
+      <div class="map-row" data-idea="Consultant report: professional futures">
+        <div><div class="nm">Consultant report: professional futures</div><div class="links">→ Report · Essay</div></div>
+        <button class="confirm" data-state="">[ — ]</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>3 · Design notes</h2>
+    <div class="notes">
+      <div class="note"><span class="n-tag">NOTE 1 · ONE SOURCE OF TRUTH</span>Idea content lives only in the bank; type pages hold links plus a one-line hook. No duplicated text to keep in sync when the operational guide's Lane 2 rubric language lands.</div>
+      <div class="note"><span class="n-tag">NOTE 2 · LINK COUNTS AS SIGNPOST</span>Type cards show "N LANE 2 IDEAS →" so the bank is discoverable from the browse grid without a separate campaign to explain it.</div>
+      <div class="note"><span class="n-tag">NOTE 3 · OPEN ISSUE — MISSING TYPES</span>All 8 ideas were adopted as Lane 2 examples, none as new entries — so feedback #22–23's missing top-level types (case studies, lab/field work, dissertations) remain unfilled in the menu proper. The bank partially covers this because it is browsable, but flag to Hannah/Carys whether top-level entries are still needed.</div>
+      <div class="note"><span class="n-tag">NOTE 4 · ATTRIBUTION</span>About &amp; sources credits Bowditch et al. (UCL/Jisc) and the deck's cited authors (serves feedback #1). Permission check before publish. Ratings shown as debate prompts, never as scores.</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>4 · Comments</h2>
+    <textarea class="comments" id="comments" placeholder="Mapping changes, missing cross-links, bank naming, anything else…"></textarea>
+  </section>
+
+</div>
+
+<div class="export-bar">
+  <span class="export-hint" id="summary">0/8 mappings reviewed</span>
+  <button class="btn-primary" id="exportBtn">Copy feedback as prompt</button>
+</div>
+<div class="wrap"><textarea id="fallback" readonly aria-label="Export fallback"></textarea></div>
+
+<script>
+  // screen switching + nav tab state
+  document.querySelectorAll('[data-open]').forEach(el => {
+    el.addEventListener('click', () => {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
+      document.getElementById(el.dataset.open).classList.add('on');
+      const navBrowse = document.getElementById('nav-browse');
+      const navBank = document.getElementById('nav-bank');
+      navBrowse.classList.toggle('active', el.dataset.open !== 'screen-bank' && el.dataset.open !== 'screen-debate');
+      navBank.classList.toggle('active', el.dataset.open === 'screen-bank' || el.dataset.open === 'screen-debate');
+    });
+  });
+
+  // mapping confirm cycle
+  const STATES = ['', 'ok', 'change'];
+  const LABELS = { '': '[ — ]', 'ok': '[OK]', 'change': '[CHANGE]' };
+  document.querySelectorAll('.confirm').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const next = STATES[(STATES.indexOf(btn.dataset.state) + 1) % STATES.length];
+      btn.dataset.state = next;
+      btn.textContent = LABELS[next];
+      updateSummary();
+    });
+  });
+
+  function updateSummary() {
+    const reviewed = [...document.querySelectorAll('.confirm')].filter(b => b.dataset.state !== '').length;
+    document.getElementById('summary').textContent = reviewed + '/8 mappings reviewed';
+  }
+
+  function buildExport() {
+    const lines = [];
+    lines.push('Prototype: Assessment Menu v2 — UCL/Jisc integration wireframe (iteration 2)');
+    lines.push('Applied decisions: Option B (separate Ideas bank tab); all 8 ideas adopted as Lane 2 examples.');
+    lines.push('Question: does the Ideas bank + cross-link model work, and are the idea-to-type mappings right?');
+    lines.push('');
+    lines.push('Mapping review:');
+    document.querySelectorAll('.map-row').forEach(row => {
+      const state = row.querySelector('.confirm').dataset.state || 'not reviewed';
+      lines.push('- ' + row.dataset.idea + ' (' + row.querySelector('.links').textContent.trim() + '): ' + state);
+    });
+    lines.push('');
+    const c = document.getElementById('comments').value.trim();
+    lines.push('Comments: ' + (c || 'none'));
+    lines.push('');
+    lines.push('Please apply this feedback: fix any [CHANGE] mappings per the comments, then if all mappings are settled, implement the Ideas bank model in the real prototype (assessment-menu-interactive.html) — new bank tab, idea pages from the UCL source note, and Lane 2 idea link panels on the mapped type pages.');
+    return lines.join('\n');
+  }
+
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    const out = buildExport();
+    const btn = document.getElementById('exportBtn');
+    navigator.clipboard.writeText(out).then(() => {
+      btn.textContent = '✓ Copied';
+      setTimeout(() => { btn.textContent = 'Copy feedback as prompt'; }, 2000);
+    }).catch(() => {
+      const fb = document.getElementById('fallback');
+      fb.style.display = 'block';
+      fb.value = out;
+      fb.select();
+    });
+  });
+</script>
+
+</body>
+</html>

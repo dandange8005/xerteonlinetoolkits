@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assessment Menu — Prototype</title>
+<style>
+  :root {
+    --red: #c8102e;
+    --red-dark: #9e0c24;
+    --ink: #1f2430;
+    --ink-soft: #4a5162;
+    --paper: #f7f6f4;
+    --card: #ffffff;
+    --line: #e3e0da;
+    --lane1: #1d5c8f;
+    --lane1-bg: #e8f1f8;
+    --lane2: #2e7d4f;
+    --lane2-bg: #e9f5ee;
+    --stub: #8a6d1a;
+    --stub-bg: #faf3dd;
+    --radius: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  h1, h2, h3, h4 { line-height: 1.25; }
+
+  /* ---------- Header ---------- */
+  header {
+    background: var(--red);
+    color: #fff;
+    padding: 28px 24px 24px;
+  }
+  .header-inner { max-width: 1100px; margin: 0 auto; }
+  header .kicker {
+    text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.75rem;
+    opacity: 0.85; margin-bottom: 6px;
+  }
+  header h1 { font-size: 1.7rem; font-weight: 700; }
+  header .sub { margin-top: 8px; font-size: 0.95rem; opacity: 0.92; max-width: 720px; }
+  .proto-badge {
+    display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.45);
+    border-radius: 999px; padding: 2px 12px; font-size: 0.75rem; margin-top: 12px;
+  }
+
+  /* ---------- Layout ---------- */
+  main { max-width: 1100px; margin: 0 auto; padding: 24px; }
+  section { margin-bottom: 32px; }
+
+  /* ---------- Landing / orientation ---------- */
+  .notice {
+    background: #fff8e6; border: 1px solid #eadfb2; border-left: 4px solid #d9a800;
+    border-radius: var(--radius); padding: 14px 18px; margin-bottom: 20px; font-size: 0.95rem;
+  }
+  .notice strong { color: #7a5c00; }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 760px) { .intro-grid { grid-template-columns: 1fr; } }
+  .lane-card {
+    border-radius: var(--radius); padding: 18px 20px; border: 1px solid var(--line); background: var(--card);
+  }
+  .lane-card.l1 { border-top: 4px solid var(--lane1); }
+  .lane-card.l2 { border-top: 4px solid var(--lane2); }
+  .lane-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .lane-card.l1 h3 { color: var(--lane1); }
+  .lane-card.l2 h3 { color: var(--lane2); }
+  .lane-card p { font-size: 0.92rem; color: var(--ink-soft); }
+  .lane-card p + p { margin-top: 8px; }
+
+  .howto {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 18px 20px; margin-bottom: 20px;
+  }
+  .howto h2 { font-size: 1.1rem; margin-bottom: 10px; }
+  .howto p, .howto li { font-size: 0.93rem; color: var(--ink-soft); }
+  .howto ul { padding-left: 20px; margin-top: 8px; }
+  .howto li { margin-bottom: 4px; }
+
+  .decision {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px;
+  }
+  .decision h2 { font-size: 1.1rem; margin-bottom: 4px; }
+  .decision .lede { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 14px; }
+  .decision-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (max-width: 760px) { .decision-grid { grid-template-columns: 1fr; } }
+  .decision-step {
+    background: var(--paper); border-radius: 8px; padding: 14px 16px; border: 1px solid var(--line);
+  }
+  .decision-step .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%; background: var(--red); color: #fff;
+    font-weight: 700; font-size: 0.85rem; margin-bottom: 8px;
+  }
+  .decision-step h4 { font-size: 0.95rem; margin-bottom: 4px; }
+  .decision-step p { font-size: 0.87rem; color: var(--ink-soft); }
+
+  /* ---------- Controls ---------- */
+  .menu-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .menu-head h2 { font-size: 1.3rem; }
+  .count { font-size: 0.85rem; color: var(--ink-soft); }
+  .controls {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 14px 16px; margin-bottom: 18px; position: sticky; top: 0; z-index: 5;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .search-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  #search {
+    flex: 1; min-width: 220px; padding: 10px 14px; font-size: 0.95rem;
+    border: 1.5px solid var(--line); border-radius: 8px; outline: none;
+  }
+  #search:focus { border-color: var(--red); }
+  select {
+    padding: 10px 12px; font-size: 0.9rem; border: 1.5px solid var(--line); border-radius: 8px;
+    background: #fff; color: var(--ink); outline: none;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .chip {
+    border: 1.5px solid var(--line); background: #fff; border-radius: 999px;
+    padding: 5px 14px; font-size: 0.83rem; cursor: pointer; color: var(--ink-soft); user-select: none;
+  }
+  .chip:hover { border-color: var(--red); color: var(--red); }
+  .chip.active { background: var(--red); border-color: var(--red); color: #fff; }
+
+  /* ---------- Cards ---------- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 16px 18px; cursor: pointer; transition: box-shadow 0.15s, transform 0.15s;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.09); transform: translateY(-2px); }
+  .card h3 { font-size: 1.02rem; }
+  .card .summary { font-size: 0.87rem; color: var(--ink-soft); flex: 1; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+  .badge {
+    font-size: 0.7rem; padding: 2px 9px; border-radius: 999px; letter-spacing: 0.02em;
+    background: #efece7; color: var(--ink-soft); border: 1px solid var(--line);
+  }
+  .badge.stub { background: var(--stub-bg); color: var(--stub); border-color: #e6d391; font-weight: 600; }
+  .no-results { color: var(--ink-soft); padding: 30px 10px; text-align: center; font-size: 0.95rem; }
+
+  /* ---------- Detail modal ---------- */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(26,22,20,0.55); display: none;
+    z-index: 20; overflow-y: auto; padding: 4vh 16px;
+  }
+  .overlay.open { display: block; }
+  .detail {
+    max-width: 860px; margin: 0 auto; background: var(--paper); border-radius: 14px;
+    overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .detail-head { background: var(--red); color: #fff; padding: 22px 26px; position: relative; }
+  .detail-head h2 { font-size: 1.4rem; padding-right: 48px; }
+  .detail-head .badges { margin-top: 10px; }
+  .detail-head .badge { background: rgba(255,255,255,0.18); color: #fff; border-color: rgba(255,255,255,0.4); }
+  .close-btn {
+    position: absolute; top: 18px; right: 18px; background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4); color: #fff; width: 34px; height: 34px;
+    border-radius: 50%; font-size: 1.05rem; cursor: pointer; line-height: 1;
+  }
+  .close-btn:hover { background: rgba(255,255,255,0.3); }
+  .detail-body { padding: 22px 26px 30px; }
+  .detail-body h3 {
+    font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.09em;
+    color: var(--red-dark); margin: 22px 0 8px;
+  }
+  .detail-body h3:first-child { margin-top: 0; }
+  .detail-body p, .detail-body li { font-size: 0.93rem; color: var(--ink); }
+  .detail-body ul { padding-left: 20px; }
+  .detail-body li { margin-bottom: 4px; }
+  .lane-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+  @media (max-width: 700px) { .lane-cols { grid-template-columns: 1fr; } }
+  .lane-box { border-radius: 8px; padding: 14px 16px; font-size: 0.9rem; }
+  .lane-box.l1 { background: var(--lane1-bg); border: 1px solid #c3d9ea; }
+  .lane-box.l2 { background: var(--lane2-bg); border: 1px solid #c2e0cf; }
+  .lane-box h4 { font-size: 0.95rem; margin-bottom: 8px; }
+  .lane-box.l1 h4 { color: var(--lane1); }
+  .lane-box.l2 h4 { color: var(--lane2); }
+  .lane-box .ex {
+    margin-top: 10px; padding: 10px 12px; background: rgba(255,255,255,0.75);
+    border-radius: 6px; font-size: 0.86rem;
+  }
+  .lane-box .ex strong { display: block; margin-bottom: 4px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .considerations {
+    background: #fff; border: 1px dashed #c9c3b8; border-radius: 8px; padding: 14px 16px; font-size: 0.9rem;
+  }
+  .considerations .tag { font-size: 0.72rem; color: var(--stub); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+  .voice {
+    background: #fff; border-left: 4px solid var(--red); border-radius: 0 8px 8px 0;
+    padding: 12px 16px; font-style: italic; color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 8px;
+  }
+  .stub-note {
+    background: var(--stub-bg); border: 1px solid #e6d391; border-radius: 8px; padding: 16px 18px; font-size: 0.93rem;
+  }
+
+  footer {
+    max-width: 1100px; margin: 0 auto; padding: 20px 24px 40px;
+    font-size: 0.8rem; color: var(--ink-soft); border-top: 1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="kicker">Cardiff University · Learning &amp; Teaching Academy</div>
+    <h1>Assessment Menu</h1>
+    <p class="sub">A design tool to support thoughtful choices about assessment purpose, authenticity, inclusivity, and the role of AI across a programme — built around the Two-Lane approach.</p>
+    <span class="proto-badge">PROTOTYPE — for discussion, not a live resource</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- Orientation -->
+  <section>
+    <div class="notice">
+      <strong>This menu is guidance, not policy.</strong> It is not a list of recommended replacements and it does not mandate any assessment type. Lane decisions sit with programme teams, made against learning outcomes. Use it to support redesign conversations.
+    </div>
+
+    <div class="intro-grid">
+      <div class="lane-card l1">
+        <h3>Lane 1 — Verified</h3>
+        <p><strong>Secure assurance of learning.</strong> Lane 1 assessments verify that students have achieved the intended capabilities. Every Lane 1 component has at least one <em>assurance feature</em>: controlled conditions, contextualised task design, or a verification mechanism (e.g. viva, Q&amp;A, live demonstration).</p>
+        <p>The aim is verification of learning outcomes — not making artefacts "AI-proof".</p>
+      </div>
+      <div class="lane-card l2">
+        <h3>Lane 2 — Open</h3>
+        <p><strong>Open, scaffolded, feedback-oriented.</strong> Lane 2 assessments support learning with AI in the open: use is expected, made visible, and often assessed. Students develop ethical, critical and reflective AI practices.</p>
+        <p>Lane 2 is <em>not</em> lower-integrity assessment — it assesses different things, differently.</p>
+      </div>
+    </div>
+
+    <div class="howto">
+      <h2>How to use this menu</h2>
+      <p>Search or browse every assessment type in one flat list below — no need to guess which category a type sits under, and some types appear under more than one category. Each entry covers what the assessment is, what it's for, how to design it for each lane, practical considerations, authenticity, and inclusive design.</p>
+      <ul>
+        <li>Categories are signposts, not silos — filter by category or ignore them entirely.</li>
+        <li>Each assessment type includes worked Lane 1 and Lane 2 designs side by side.</li>
+        <li>The design test: from any brief, a student should immediately know <em>which lane</em>, <em>what that means for AI use</em>, and <em>how their judgement will be assessed</em>.</li>
+      </ul>
+    </div>
+
+    <div class="decision">
+      <h2>How to decide the lane</h2>
+      <p class="lede">The lane attaches to <strong>what is being assessed</strong>, not to the assessment format. Ask three questions:</p>
+      <div class="decision-grid">
+        <div class="decision-step">
+          <span class="num">1</span>
+          <h4>Purpose</h4>
+          <p>What learning outcome is this task assessing? Would AI use stop you making a trustworthy judgement about it?</p>
+        </div>
+        <div class="decision-step">
+          <span class="num">2</span>
+          <h4>Evidence</h4>
+          <p>What evidence do you need that the capability is the student's own? Where does that evidence come from?</p>
+        </div>
+        <div class="decision-step">
+          <span class="num">3</span>
+          <h4>Environment</h4>
+          <p>What conditions does the task need — and is at least one assurance feature present if it must be Lane 1?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section>
+    <div class="menu-head">
+      <h2>Browse all assessment types</h2>
+      <span class="count" id="count"></span>
+    </div>
+
+    <div class="controls">
+      <div class="search-row">
+        <input type="search" id="search" placeholder="Search assessment types… (e.g. exam, portfolio, viva, coding)" aria-label="Search assessment types">
+        <select id="sort" aria-label="Sort order">
+          <option value="az">Sort: A–Z</option>
+          <option value="category">Sort: by category</option>
+        </select>
+      </div>
+      <div class="chips" id="chips"></div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="no-results" id="noResults" style="display:none">No assessment types match your search. Try a different term or clear the filters.</div>
+  </section>
+
+</main>
+
+<div class="overlay" id="overlay">
+  <div class="detail" role="dialog" aria-modal="true">
+    <div class="detail-head">
+      <button class="close-btn" id="closeBtn" aria-label="Close">✕</button>
+      <h2 id="dTitle"></h2>
+      <div class="badges" id="dBadges"></div>
+    </div>
+    <div class="detail-body" id="dBody"></div>
+  </div>
+</div>
+
+<footer>
+  Prototype responding to the Assessment Menu Feedback Sheet (27 comments, July 2026). Content adapted from the original Xerte resource by Hannah &amp; Carys (LTA); lane definitions from the Two-Lane Operational Guide draft. Amber-badged entries are stubs where content is still to be written.
+</footer>
+
+<script>
+const CATEGORIES = ["Exams","Class Tests","Portfolios","Multimedia","Oral & Spoken","Practical","Written"];
+
+const TYPES = [
+{
+  name: "In-person, invigilated exam",
+  categories: ["Exams"],
+  summary: "Time-limited, supervised assessment on campus responding to unseen or partially seen tasks.",
+  whatIsIt: "A time-limited, supervised assessment completed on campus, where students work individually under defined conditions and respond to unseen or partially seen tasks.",
+  whatFor: ["Providing secure evidence of individual learning","Evaluating conceptual understanding","Assessing judgement","Used at key points of progression within a programme"],
+  ai: "Lane 1 in-person exams validate programme learning outcomes under supervised conditions, where students work independently and without reliance on GenAI; Lane 2 designs make ethical, critical GenAI use explicit rather than hidden.",
+  lane1: {
+    how: ["Use invigilated, supervised conditions","Require students to work independently, without GenAI (unless explicitly permitted)","Focus on programme-level learning outcomes","Design questions that assess reasoning and understanding, not memorisation alone","Apply clear, standardised marking criteria"],
+    example: "A two-hour, invigilated, closed-book exam in which students answer structured conceptual questions, explain disciplinary theories or methods, and apply taught procedures to unseen problems."
+  },
+  lane2: {
+    how: ["Scaffold GenAI use as part of the assessment design","Make students' interaction with AI visible and assessable","Focus on evaluation, judgement, critique or adaptation rather than generation alone","Include explicit prompts requiring students to justify or reflect on AI use"],
+    example: "An in-person exam where students bring AI-generated notes or feedback produced through a structured pre-exam activity, and during the exam critically evaluate, adapt, or apply this material to an unseen task, including a short reflection on the value and limits of GenAI."
+  },
+  considerations: ["Exam hall or invigilated room capacity and scheduling","Invigilator availability at scale","Advance information about format to reduce anxiety","Reasonable adjustments: extra time, rest breaks, alternative formats, assistive technologies"],
+  authenticity: "Exams offer limited scope for meaningful application beyond recall, so they are most defensible when used selectively at programme level, with tasks that prioritise interpretation, evaluative judgement, and decision-making under constraint rather than speed or memorisation.",
+  inclusive: ["Use clear and well-structured questions","Ensure appropriate cognitive and reading load","Provide advance information about exam format","Avoid unnecessary emphasis on speeded performance"],
+  voice: ["it's really stressful to have your whole grade depending on that one exam"]
+},
+{
+  name: "Open-book exam",
+  categories: ["Exams"],
+  summary: "Time-limited assessment with access to specified resources, typically under supervised or semi-supervised conditions.",
+  whatIsIt: "A time-limited assessment in which tasks are completed with access to specified resources (e.g. notes, readings, data, or online materials), typically under supervised or semi-supervised conditions.",
+  whatFor: ["Assessing ability to apply, interpret and synthesise knowledge","Conducted under time constraints","Requires independent responses to unseen prompts","Focuses on analysis rather than recall"],
+  ai: "Open-book exams require careful design because access to resources means GenAI use is difficult to restrict and should therefore be explicitly addressed or incorporated. The Lane 1/Lane 2 contrast turns on conditions and verification — the assurance feature — not simply on which materials are allowed.",
+  lane1: {
+    how: ["Run the exam under in-person, supervised conditions — the assurance feature","Restrict GenAI use explicitly and communicate this clearly","Design questions that require reasoned responses grounded in course-specific materials, not generic explanations","Emphasise interpretation and explanation over searching"],
+    example: "An invigilated open-book exam where students access approved notes and texts and respond to unseen questions requiring explanation of concepts using specific course materials. Supervision — not the materials list — is what makes this Lane 1."
+  },
+  lane2: {
+    how: ["Remove or reduce controlled conditions and design for open resource and AI use instead","Make students' use of resources and AI visible and accountable","Design tasks requiring evaluation, synthesis, critique or adaptation, not content generation","Include prompts requiring students to reflect on or justify how AI was used"],
+    example: "An unsupervised, time-limited task where students may use notes and GenAI tools to support planning or sense-making, assessed on their ability to critically evaluate information, apply it to a prompt, and explain the role and limitations of AI in their response. Without supervision or a verification mechanism, this sits in Lane 2 regardless of what materials are permitted."
+  },
+  considerations: ["Clarity about exactly which resources and tools are permitted","Supervision model (fully invigilated vs semi-supervised) determines the lane","Manageable reading and resource expectations under time pressure","Reasonable adjustments: extra time, alternative formats, assistive technologies"],
+  authenticity: "Open-book exams are often assumed to promote authenticity, but may still assess recall or searching unless carefully designed. Authenticity depends on tasks that require students to interpret information, weigh alternatives, and exercise judgement rather than locate or reproduce content.",
+  inclusive: ["Provide transparent guidance on permitted materials and AI use","Ensure manageable reading and resource expectations","Use predictable structures and question formats"]
+},
+{
+  name: "Timed in-class knowledge test",
+  categories: ["Class Tests"],
+  summary: "Short, time-limited test in a scheduled class combining MCQs and brief written responses on foundational knowledge.",
+  whatIsIt: "A short, time-limited test taken during a scheduled class, typically combining multiple-choice questions and brief written responses to assess foundational knowledge.",
+  whatFor: ["Checking grasp of core concepts and terminology","Providing early diagnostic feedback to students and staff","Encouraging regular engagement with content"],
+  ai: "If delivered in person, this test is very low risk in terms of AI usage as it is supervised.",
+  lane1: {
+    how: ["Conduct under direct supervision by a tutor","Ensure controlled conditions, enhancing academic integrity"],
+    example: "In a first-year module, students complete a 60-minute multiple-choice and short-answer test in a classroom with a tutor invigilating throughout. Standardised questions under timed conditions allow consistent assessment of all students."
+  },
+  lane2: {
+    how: ["Use open-book formats","Allow flexible timing","Reduce invigilation"],
+    example: "Students complete a short test in a computer lab within 60 minutes, with access to notes or online resources and minimal invigilation. The reduced supervision and open-resource format place it in Lane 2."
+  },
+  considerations: ["Room booking and cohort size for in-class delivery","Time pressure may disadvantage some students — build in extra time or rest breaks","Screen-readable papers and alternative formats","Clear instructions and consistent structure to reduce cognitive load"],
+  authenticity: "Maintain authenticity with scenario-based or problem-solving questions, short written justifications rather than pure recall, and questions varied each year to avoid predictability — controlled but meaningful, not just a memory test.",
+  inclusive: ["Extra time or rest breaks as required","Alternative formats (e.g. screen-readable papers)","Clear instructions and consistent structure","Question wording avoiding unnecessary complexity"]
+},
+{
+  name: "Application-based problem test",
+  categories: ["Class Tests"],
+  summary: "In-class test applying knowledge to unseen problems, case studies, or data sets.",
+  whatIsIt: "An in-class test requiring students to apply knowledge to unseen problems, case studies, or data sets.",
+  whatFor: ["Assessing application and reasoning","Evaluating problem-solving skills"],
+  ai: "Strong protection against AI misuse due to unseen, contextual questions delivered in person.",
+  lane1: {
+    how: ["Create an in-class, supervised test where students apply knowledge to unseen problems","Use controlled conditions to demonstrate independent learning"],
+    example: "Students complete a timed, invigilated case-based test where they diagnose a problem and justify their answer without external support."
+  },
+  lane2: {
+    how: ["Set an open, take-home assessment where students apply knowledge to complex or unfamiliar problems"],
+    example: "Students analyse a real-world data set and produce a report interpreting trends and proposing solutions, drawing on course concepts and external tools where appropriate."
+  },
+  considerations: ["Fresh unseen problems needed each cycle — authorship workload","Step-by-step scaffolding within questions","Avoid overloading a single test with too many tasks","Make expectations around method and working explicit"],
+  authenticity: "Students value tests that reflect real problem solving rather than memorisation. Applying concepts to practical, often unfamiliar scenarios mirrors how knowledge is used in real-world contexts and prepares students for professional challenges.",
+  inclusive: ["Provide step-by-step scaffolding within questions","Avoid overloading a single test","Make expectations around method and working explicit"]
+},
+{
+  name: "Mentimeter conceptual understanding check",
+  categories: ["Class Tests"],
+  summary: "Live, in-class diagnostic activity gathering student responses to conceptual, reflective or application-based questions.",
+  whatIsIt: "A diagnostic or formative class activity using Mentimeter — a live, in-class diagnostic rather than a formal assessment method, gathering students' responses to conceptual, reflective or application-based questions.",
+  whatFor: ["Checking conceptual understanding","Supporting dialogue and peer learning","Identifying threshold concepts and misunderstandings"],
+  ai: "In-class Mentimeter activities typically limit unsupervised AI use, supporting authentic insight into student thinking. Used outside class (asynchronous polls), students may use AI to help formulate responses — which can be leveraged as a learning support tool rather than restricted.",
+  lane1: {
+    how: ["Run Mentimeter questions live in a timetabled session","Require students to respond individually to unseen questions without external tools"],
+    example: "In a biosciences lecture, students respond to concept-check questions about a newly introduced process (e.g. cellular respiration stages). Responses are displayed in real time and used to clarify misconceptions immediately."
+  },
+  lane2: {
+    how: ["Extend activities beyond the live classroom (pre/post-session or asynchronous tasks)","Encourage students to reflect, discuss, and use digital tools (including AI) to refine their thinking"],
+    example: "Business School students respond to an open-ended Mentimeter question before class (e.g. \"What factors influence consumer trust in a digital economy?\"). In class, responses are analysed collectively, comparing perspectives and building on ideas."
+  },
+  considerations: ["Device access and connectivity in the room","Alternative participation routes (verbal, written) where digital access is limited","Mainly formative — consider its place alongside summative components"],
+  authenticity: "Mirrors professional practices such as polling and consultation, and encourages students to articulate uncertainty as a normal part of learning.",
+  inclusive: ["Provide alternative ways to participate (verbal contribution, written submission)","Ensure questions are clearly worded and accessible","Allow additional time or repetition where needed","Be mindful of digital accessibility (screen readers, device access, connectivity)"]
+},
+{
+  name: "Reflective portfolio",
+  categories: ["Portfolios"],
+  summary: "Curated collection of reflections evidencing learning over time, linked to theory, practice and personal development.",
+  whatIsIt: "A curated collection of reflections (written, audio or multimodal), evidencing learning over time, often linked to theory, practice and personal development.",
+  whatFor: ["Demonstrating learning progression across the programme","Encouraging integration of theory and experience","Supporting metacognition, reflection and critical thinking"],
+  ai: "AI can generate summaries of readings, suggest reflective prompts, help draft or edit reflections and support idea generation. Over-reliance may reduce authenticity and personal voice, but AI can support deeper reflection if used critically.",
+  lane1: {
+    how: ["Have students complete reflections in class under controlled conditions"],
+    example: "Reflections created under controlled conditions in an observed environment — for example, an in-class reflective writing session immediately following an observed activity."
+  },
+  lane2: {
+    how: ["Reflective portfolios are inherently Lane 2: completed outside controlled conditions where AI use cannot be directly observed","Depth of reflection exposes over-reliance on AI — weak, generic or overly polished responses signal limited engagement","Strong performance depends on authentic experience: students must draw on their own observed practice, decisions and development","High-quality reflective work requires personal, contextualised, specific insight that generic AI outputs struggle to replicate"],
+    example: "A student links their experience of facilitating a seminar to theories of teaching and student engagement, using theory to interpret and evaluate practice. Even if AI supported source identification or structuring, quality depends on the student's ability to meaningfully apply and critique these ideas."
+  },
+  considerations: ["Sustained staff feedback time across the portfolio period","Flexible formats: written, audio, video, visual","Scaffolded reflection prompts, templates and guided questions","Accessibility: captions, alt text; bullet-point, recorded or mind-map reflections as alternatives"],
+  authenticity: "Provides an opportunity to build a collection of work presentable to prospective clients and employers, developing a wide range of transferable skills.",
+  inclusive: ["Offer flexible formats (written, audio, video, visual)","Provide scaffolded reflection prompts and templates","Accept bullet-point reflections, recorded reflections, or mind maps","Provide clear examples of both lanes and accessibility support (captions, alt text)"]
+},
+{
+  name: "Annotated bibliography",
+  categories: ["Portfolios","Written"],
+  summary: "Structured list of sources, each with a short annotation summarising, evaluating and connecting it to a topic or question.",
+  whatIsIt: "A structured list of sources (books, journal articles, websites), where each reference is accompanied by a short annotation summarising the source, evaluating its credibility or relevance and explaining how it relates to a topic or research question.",
+  whatFor: ["Developing research and information literacy skills","Promoting summarising, analysing and synthesising information","Building a foundation for essays, projects or dissertations","Understanding academic conversations within a subject area","Encouraging critical evaluation of sources"],
+  ai: "Significant potential for AI-generated summaries or annotations, risking reliance without engaging with original texts. But AI can also support understanding — clarifying complex texts or suggesting initial summaries. Design tasks requiring critical engagement, verification, and the student's own interpretation.",
+  lane1: {
+    how: ["Include in-class elements or supervised tasks","Require links between annotations and taught content or discussions","Ask for evidence of reading (quotations, specific points)"],
+    example: "Annotations completed during a supervised session where AI use is restricted or explicitly disclosed and visible — e.g. annotating a source immediately after an observed teaching activity, explaining how its ideas relate to what was actually done and observed, with any AI use documented in real time."
+  },
+  lane2: {
+    how: ["Allow AI use for initial summarising or note-taking","Require students to check, refine and critique AI-generated content","Include a reflective element on how AI was used","Emphasise synthesis, comparison and originality","Ask students to identify inaccuracies or gaps in AI outputs"],
+    example: "A student annotates a paper on formative assessment by summarising its main claims (potentially AI-assisted), then critically evaluating its relevance to practice. Relying solely on AI-generated summaries would not achieve high marks without clear evidence of understanding and analysis."
+  },
+  considerations: ["Choice of sources, formats and annotation length","Templates, exemplars and guided questions to reduce cognitive load","Clear expectations around critical engagement and AI use","Reasonable adjustments: extended deadlines, alternative formats, assistive technology"],
+  authenticity: "Supported by traceable engagement with sources: specific arguments, brief quotations, links to module content, explaining why each source was selected and how it informed understanding. Links to subsequent coursework situate the bibliography within the student's own learning journey.",
+  inclusive: ["Offer choice of sources and formats (written, audio, or video annotations)","Provide templates, exemplars and guided questions","Allow digital tools including AI for initial comprehension support, with clear expectations"]
+},
+{
+  name: "Professional portfolio",
+  categories: ["Portfolios"],
+  summary: "Curated collection of work demonstrating skills, knowledge and development over time, with explanatory commentary.",
+  whatIsIt: "A curated collection of work demonstrating a student's skills, knowledge, and development over time — project work, reflections, case studies, presentations, or placement evidence, with commentary explaining context, learning and progression.",
+  whatFor: ["Demonstrating applied skills and professional competencies","Promoting self-directed learning and goal setting","Building a body of work usable for employment or further study","Supporting integration of theory and practice","Encouraging reflection on development over time"],
+  ai: "Portfolios can operate across both lanes depending on design. AI may support drafting, reflection or presentation — risking outputs that don't represent the student's own understanding — but can also help students organise ideas and reflect more deeply. Design for personalisation, critical reflection and clear links to individual experience.",
+  lane1: {
+    how: ["Include an in-person or supervised reflective discussion (viva, presentation, or portfolio defence) — for a Lane 1 portfolio this oral component is required, as it is the assurance feature","Use targeted questioning to verify authenticity and depth of understanding","Focus assessment on personal experience, decision-making and reasoning","Require students to explain and justify their artefacts and learning in real time"],
+    example: "Students submit a professional portfolio and participate in a required live oral discussion where they explain selected artefacts, reflect on their learning, and respond to assessor questions. Marks reflect both the portfolio and the student's ability to articulate and justify their work in real time. If the defence is optional, the portfolio is Lane 2."
+  },
+  lane2: {
+    how: ["Allow AI use to support drafting, structuring and reflection","Ask students to demonstrate progression over time and connect artefacts","Emphasise personalisation, synthesis and integration of experiences","Include a reflective commentary on how tools (including AI) were used","Require critical evaluation and refinement of AI-supported outputs"],
+    example: "Students develop a portfolio over a module drawing on coursework, practical experience and reflection. They may use AI to organise and draft commentary but must critically review and personalise it, including reflection on how the portfolio represents their development and how tools were used. Assessment focuses on coherence, depth and authenticity."
+  },
+  considerations: ["Scheduling oral defences at cohort scale (the Lane 1 assurance feature)","Flexible formats: written, audio, video, multimodal","Templates, examples and guiding questions","Staged submissions to reduce cognitive load; extended deadlines and assistive technologies as adjustments"],
+  authenticity: "Supported by basing the portfolio on personal experiences, original work and individual development — linking artefacts to specific activities, placements or projects with rationale. Oral defences, interim submissions, or links to other assessed work strengthen confidence in genuine achievement.",
+  inclusive: ["Offer flexible formats (written, audio, video, multimodal)","Provide clear scaffolding: templates, examples, guiding questions","Allow adjustments to timing, format and tools, including assistive technologies and staged submissions"]
+},
+{
+  name: "Artefacts",
+  categories: ["Multimedia","Practical"],
+  summary: "Students create tangible or digital outputs — designs, prototypes, creative works — demonstrating understanding and applied skill.",
+  whatIsIt: "Students create tangible or digital outputs demonstrating understanding, skills, and application of knowledge — sculptures, paintings, architectural designs, engineering prototypes, or other designed objects. Emphasises process as well as outcome: iterative development, reflection, and problem-solving.",
+  whatFor: ["Assessing applied, practice-based learning and technical skills","Supporting portfolio-building for employment or study","Developing problem-solving and iterative design processes","Demonstrating knowledge through making and doing","Encouraging creativity, innovation and design thinking"],
+  ai: "Artefact production can be susceptible to GenAI misuse; staff can support students to demonstrate their ability to use AI tools effectively and critically, and to generate creative solutions.",
+  lane1: {
+    how: ["Require production in a supervised or observed setting (studio, lab, workshop)","Provide structured guidance during observed sessions","Assess both the observed process and the final product","Incorporate viva-style questioning alongside creation","Limit or control access to external tools during observed periods","Use checkpoints where students explain decisions in person","Include real-time demonstrations of skills","Break the task into timetabled sessions where progress is monitored"],
+    example: "Students develop a simple software application during timetabled, supervised lab sessions, building it step by step (interface design, core functionality, testing). Tutors observe coding practices, question logic, and support debugging in real time; students explain or modify code live. The final artefact is assessed alongside the observed process and an in-person explanation of design choices."
+  },
+  lane2: {
+    how: ["Set an artefact brief completed independently outside supervised sessions","Assess final quality, creativity, and evidenced process","Allow appropriate, transparent use of digital tools including AI","Use process evidence (not observation) to support integrity","Incorporate checkpoints: draft submissions, progress uploads","Require a reflective commentary or design rationale","Encourage process documentation (photos, videos, journals)","Allow flexibility in when and where the artefact is produced"],
+    example: "Architecture students design and produce a scale model or digital prototype independently over several weeks, submitting a digital portfolio of sketches, iterations and development stages plus a written design rationale. The artefact is assessed with this supporting evidence, authenticating work through documented process and reflection."
+  },
+  considerations: ["Studio/lab/workshop capacity and timetabling for observed production","Access to materials, tools, software — and their cost","Technical-skills support and varied digital literacy","Flexibility in scale, complexity or medium; assistive technologies; additional time where needed"],
+  authenticity: "Strong authenticity: mirrors professional outputs and processes, developing design thinking, technical execution and creative problem-solving, and supporting the graduate attribute of being innovative, enterprising and commercially aware.",
+  inclusive: ["Alternative submission formats (physical or digital)","Ensure access to necessary materials, tools, software","Offer training for required technical skills","Inclusive criteria valuing process as well as product","Clear instructions and exemplars; adapted processes where needed"]
+},
+{
+  name: "Posters",
+  categories: ["Multimedia"],
+  summary: "Visual and written representation of work, often displayed and discussed at an exhibition or poster conference.",
+  whatIsIt: "A visual and written representation of work, often displayed for peers and assessors in an exhibition; useful to keep as exemplars for future cohorts.",
+  whatFor: ["Developing concise, effective communication","Providing reusable teaching exemplars","Assessing understanding in an accessible, engaging format","Developing presentation and discussion skills","Enabling peer learning through exhibition","Encouraging synthesis and prioritisation of key information","Supporting visual representation of complex ideas or data"],
+  ai: "Poster production can be susceptible to GenAI misuse; staff can support students to demonstrate effective, critical AI use and creative solutions.",
+  lane1: {
+    how: ["Require live, supervised presentation (poster conference, exhibition, or viva)","Provide guidance and rehearsal opportunities","Assess both the poster and live communication skills","Use questioning to probe depth of understanding","Observe students justifying design and content decisions","Include a verbal explanation or Q&A component"],
+    example: "Health sciences students create a research-informed poster on a public health issue and present it at a scheduled poster conference, responding to questions from tutors and peers about topic, data interpretation and design choices. The live Q&A verifies authenticity and assesses communication in real time."
+  },
+  lane2: {
+    how: ["Allow independent design and production outside supervised sessions","Assess clarity, design effectiveness and supporting explanation","Encourage transparent use of digital tools including AI","Use staged submissions (draft, final)","Ask students to document their design process","Include a recorded presentation, audio explanation or written rationale","Require a digital version of the poster"],
+    example: "Business students design a poster analysing a contemporary market trend independently over several weeks, submitting a short recorded presentation explaining key insights and design decisions, with drafts and feedback evidencing the development process."
+  },
+  considerations: ["Exhibition/conference space and scheduling for live formats","Software access and digital-skills support","Screen-reader-compatible digital posters; high-contrast, accessible layouts","Alternative formats (written report, audio presentation, narrated slides) where appropriate"],
+  authenticity: "Authentic communication development: professionals routinely present complex ideas in clear, visual formats. Poster sessions provide diverse audiences and immediate feedback, supporting the effective-communicator graduate attribute.",
+  inclusive: ["Provide alternative formats where appropriate","Ensure digital posters work with screen readers","Encourage high-contrast colours, clear fonts, accessible layouts","Allow explanatory text or audio alongside visuals","Templates for structure; flexibility in tools; additional time or adapted formats where required"]
+},
+{
+  name: "Blog / Vlog",
+  categories: ["Multimedia","Written"],
+  summary: "Reflective or informative written (blog) or video (vlog) content in a personal, conversational style — often low-stakes.",
+  whatIsIt: "A reflective or informative piece created by a learner, either written (blog) or recorded video (vlog), typically communicating ideas or reflecting on learning in a personal, conversational style.",
+  whatFor: ["Low-stakes assessment and informal collaborative discussion","Documenting learning journeys or responding to prompts","Sharing ideas with peers or wider audiences","Supporting creativity and personal voice","Developing written or verbal communication","Encouraging reflection and critical thinking"],
+  ai: "Clear potential for AI-generated scripts or content, risking over-reliance for idea generation and structure. But AI can support brainstorming, refining writing, and accessibility. Design to maintain and foreground the authenticity of the learner's own voice, experiences and reflections.",
+  lane1: {
+    how: ["Students write or record in controlled or in-class conditions where possible"],
+    example: "In class, create a 3-minute vlog reflecting on your experience of this week's group activity, including challenges you personally faced and how you addressed them, referring to at least two moments from the session."
+  },
+  lane2: {
+    how: ["Allow AI for planning, structuring or editing","Combine AI input with original insights","Encourage transparency in how AI was used","Require evaluation or critique of AI outputs","Assess critical engagement, synthesis and personalisation"],
+    example: "Produce a blog post explaining a key module concept. You may use AI tools to help structure the post, but must critically evaluate the accuracy of any AI-generated content, add your own examples or interpretations, and include a short note describing how you used AI."
+  },
+  considerations: ["If posted on an open forum, potential for peer plagiarism","Clarify writing structure and style for those unfamiliar with the genre","Recording equipment/space for vlogs; captioning","Good practice: unlimited forum submissions with peer and tutor feedback, best piece selected for summative assessment"],
+  authenticity: "Helps students develop disciplinary identity and engagement, working toward professional identity. Low-stakes format builds familiarity with writing and reflection and can create communities of learning.",
+  inclusive: ["Shorter, informal writing lowers barriers — useful low-stakes practice","Clarify structure and style expectations","Offer choice between written and recorded formats"]
+},
+{
+  name: "Assessed seminars",
+  categories: ["Oral & Spoken"],
+  summary: "Individual contributions to seminar discussion are assessed: preparation, interaction with peers, and quality of argument.",
+  whatIsIt: "Students' individual contributions to a seminar are assessed, including interactions with peers, evidence of preparation, and the quality of arguments.",
+  whatFor: ["Evaluating critical, collaborative engagement with course material","Supporting learning through dialogue and diverse perspectives","Promoting consistent preparation and engagement","Encouraging active listening and constructive interaction","Developing argumentation, reasoning, and defending ideas","Assessing clarity, confidence and responsiveness in discussion"],
+  ai: "Aligns with Lane 1 when students demonstrate knowledge, reasoning and communication in real time under conditions ensuring the work is their own. In remote settings students may rely on GenAI for pre-prepared scripts.",
+  lane1: {
+    how: ["Keep assessment live and in-class (or synchronous)","Assess contributions made in real time","Use follow-up prompts to probe depth of understanding","Ensure each student contributes verbally or interactively","Use structured turn-taking, small-group reporting, directed questions","Base assessment on live performance even if preparation is allowed"],
+    example: "Students participate in a live, in-person seminar, assessed on contributions to a structured academic discussion: responding to prompts, engaging with peers' ideas, and defending arguments in real time, with tutor follow-up questions probing understanding."
+  },
+  lane2: {
+    how: ["Allow and scaffold AI tools in preparation (idea generation, summarising readings, developing arguments)","Use seminars to test, refine and extend ideas developed outside class","Make ethical and effective AI-use expectations explicit","Incorporate collaborative activities building on and critiquing ideas, including AI-generated ones","Assess process as well as contribution","Include pre- or post-seminar reflection on how AI was used"],
+    example: "Students prepare using a range of resources including GenAI to explore topics and develop initial arguments, then contribute, respond and refine thinking collaboratively in the session. Assessment covers contribution quality and critical reflection on how ideas were developed, including AI use in preparation."
+  },
+  considerations: ["Live marking is demanding — consider rubric design, second markers, or recorded formats","Small-group sizes needed for meaningful individual assessment","Challenges for students with anxiety, ASD, ADHD, hearing/speech impairments, or EAL","Distributing accessible, equitable topics across large cohorts"],
+  authenticity: "Develops communication skills and the ability to answer questions through group discussion, providing opportunities to demonstrate in-depth knowledge and supporting the 'independent and critical thinkers' graduate attribute.",
+  inclusive: ["Offer multiple ways to contribute: written, audio or pre-recorded input alongside live discussion","Reduce pressure on spontaneous verbal participation","Clear structure, expectations and advance materials","Adjust pace and format (additional time, smaller groups); blended live/recorded formats"]
+},
+{
+  name: "Presentation",
+  categories: ["Oral & Spoken"],
+  summary: "Students communicate ideas orally, supported by visual artefacts — live or recorded, individual or group.",
+  whatIsIt: "An assessment in which students communicate ideas orally, often supported by visual or digital artefacts (slides, posters, demonstrations), delivered live or recorded, individually or in groups.",
+  whatFor: ["Assessing communication of disciplinary knowledge and construction and defence of arguments","Assessing adaptation of content for a specific audience, drawing on application, synthesis and evaluative judgement"],
+  ai: "Particularly susceptible to hidden GenAI use unless AI engagement is meaningfully restricted (Lane 1) or explicitly designed in and assessed (Lane 2). Note: the lane attaches to what is being assessed. Live delivery and Q&A can be verified (Lane 1); the development process happens outside controlled conditions and is effectively Lane 2. A paired design — Lane 2 development feeding a Lane 1 delivery/Q&A — is a legitimate two-lane pattern, with the Q&A acting as the accountability moment verifying the development work.",
+  lane1: {
+    how: ["Use live, in-person delivery with time limits","For group presentations, include mechanisms to evidence individual contribution","Assess reasoning, explanation and responsiveness, not slide polish alone","Limit or clearly specify permitted AI use in preparation","Require responses to unseen questions, or include a Q&A component"],
+    example: "An in-class individual presentation where students explain and defend a disciplinary argument, followed by examiner questions probing understanding and independent reasoning — the live performance and Q&A are the assessed, verified capabilities."
+  },
+  lane2: {
+    how: ["Explicitly incorporate GenAI into preparation or development stages","Focus marking on argument, interpretation and evaluative decision-making","Include a reflective element on the role and limits of GenAI","Assess judgement, critique, or adaptation of AI-supported content","Make AI use transparent and accountable"],
+    example: "A presentation where students use GenAI to support brainstorming or structuring, then critically refine and deliver an argument, with a short explanation of how AI informed — and did not replace — their thinking."
+  },
+  considerations: ["Session time at cohort scale for live delivery","Group-work allocation and evidencing individual contribution","Anxiety, language, disability and group-dynamics barriers","Adjusted delivery modes, assistive technologies, alternative assessment options"],
+  authenticity: "Students demonstrate communication skills alongside core subject knowledge; presentation skills transfer to employment. Authenticity is strongest when presentations privilege disciplinary reasoning and judgement over polished delivery.",
+  inclusive: ["Clear criteria prioritising content over performance style","Alternative formats (e.g. recorded) where appropriate","Structured group roles for equitable participation","Anticipate adjustments in advance and embed in assessment planning"],
+  voice: ["You have to really study the content to be able to produce a presentation.","You have to have your own thoughts, and you have to really understand to present whatever you're talking about."]
+},
+{
+  name: "Viva voce",
+  categories: ["Oral & Spoken"],
+  summary: "Students respond orally to examiner questions, demonstrating knowledge, understanding and reasoning in real time.",
+  whatIsIt: "An assessment in which students respond orally to questions from one or more examiners, demonstrating knowledge, understanding and reasoning in real time. Structured or semi-structured, in person or online, stand-alone or paired with other work (dissertations, projects, portfolios).",
+  whatFor: ["Assessing depth of understanding and articulation of disciplinary knowledge","Providing secure evidence of individual achievement and authorship","Assessing justification of decisions, interpretations or approaches","Evaluating reasoning, critical thinking and response to probing questions","Verifying research skills: how sources were found, methods chosen, and AI outputs validated"],
+  ai: "Vivas are inherently robust where independent thinking must be demonstrated, requiring real-time responses. They can function as strongly controlled assessments (Lane 1) or as opportunities to critically engage with AI-supported work (Lane 2), depending on design.",
+  lane1: {
+    how: ["Use unseen or follow-up questions to probe independent understanding","Use structured questioning for consistency and fairness","Focus on reasoning, explanation and responsiveness","Restrict or clearly define permitted AI use in preparation","Conduct live, time-limited oral examination with examiners"],
+    example: "A live oral examination in which a student responds to structured and follow-up questions about their dissertation, demonstrating understanding, defending their argument, and evidencing independent reasoning under examiner questioning."
+  },
+  lane2: {
+    how: ["Explicitly incorporate discussion of AI-supported work or outputs","Focus marking on critical engagement and disciplinary reasoning","Include reflective elements on the strengths and limitations of GenAI","Assess evaluative judgement in interpreting or refining AI-generated content","Require students to explain, critique or justify their use of GenAI"],
+    example: "A viva linked to the same dissertation where the student discusses how they used GenAI tools in their research and writing process — search strategy, analytic choices, validation of outputs — critically evaluating them and explaining how they were refined to meet disciplinary standards."
+  },
+  considerations: ["Examiner time at cohort scale — consider short, targeted vivas on sampled work","Consistency and sensitivity in examiner conduct; structured question banks","Anxiety, communication style, disability, processing speed","Additional time, rest breaks, alternative communication methods, assistive technologies"],
+  authenticity: "A direct, authentic way to demonstrate knowledge, reasoning and communication — particularly valuable for verifying authorship and understanding. Mirrors professional practice of explaining, justifying and defending thinking.",
+  inclusive: ["Clear advance information about format, structure and expectations","Opportunities for familiarisation or practice","Structured questioning to reduce ambiguity","Additional time, rest breaks, alternative communication methods where needed"]
+},
+{
+  name: "OSCEs / ISCEs",
+  categories: ["Practical"],
+  summary: "Timed stations demonstrating clinical skills, reasoning and decision-making with simulated patients or scenarios.",
+  whatIsIt: "In-person (often clinical) assessments in which students rotate through timed stations to demonstrate defined skills, reasoning, and decision-making, often using simulated patients, scenarios, or tasks aligned to professional practice.",
+  whatFor: ["Assessing applied clinical competence","Required prior to progression or accreditation","Demonstrating safe and effective practice","Examining clinical reasoning and procedural performance","Assessing communication and professional skills"],
+  ai: "Inherently AI-resilient during delivery; opportunities for designed, ethical GenAI use sit mainly in preparation, reflection, or debrief activities rather than live performance.",
+  lane1: {
+    how: ["Use in-person, supervised delivery with standardised stations and timing","Avoid over-fragmentation that reduces integrated judgement","Assess performance, reasoning, communication and professionalism","Use trained examiners, clear rubrics and moderation","Align stations to programme-level outcomes and professional standards"],
+    example: "A multi-station OSCE where students independently demonstrate history-taking, clinical reasoning, and decision-making in timed scenarios with simulated patients, assessed using standardised criteria."
+  },
+  lane2: {
+    how: ["Integrate GenAI outside the live OSCE in structured preparation or reflective learning","Assess judgement about when and how AI is appropriate in clinical contexts","Require critical evaluation of AI outputs: limitations, bias, risk","Scaffold AI use for scenario rehearsal, feedback generation, or differential-diagnosis exploration"],
+    example: "Structured pre-OSCE preparation where students use GenAI for scenario rehearsal and differential-diagnosis exploration, then submit a critical reflection on the reliability and limits of the AI support before the live examination."
+  },
+  considerations: ["Significant staffing: trained examiners, simulated patients, station logistics","Estate: multiple stations, rotation timing","Realistic and appropriate timing per station","Rest breaks between stations; alternative communication methods; assistive technologies"],
+  authenticity: "Often viewed as highly authentic through simulated practice contexts; authenticity is strongest when tasks require integrating knowledge, skills and professional reasoning under constraint — avoid fragmentation into disconnected micro-tasks.",
+  inclusive: ["Clear advance information about format and expectations","Realistic timing for tasks; flexibility in delivery where appropriate","Additional time and rest breaks where needed"]
+},
+{
+  name: "Essay",
+  categories: ["Written"],
+  summary: "Structured written response to a question, constructing and supporting an argument from sources, theories and evidence.",
+  whatIsIt: "A structured written response to a question or prompt, drawing on relevant sources, theories, and evidence to construct and support an argument — timed or as coursework, varying in length and formality.",
+  whatFor: ["Assessing construction and communication of coherent written arguments","Developing academic writing, reasoning and evaluative judgement","Assessing critical analysis, interpretation and synthesis of sources","Evaluating understanding and application of disciplinary knowledge"],
+  ai: "Particularly susceptible to hidden GenAI use unless tightly controlled (Lane 1) or explicitly designed to incorporate and critically engage with AI (Lane 2). Avoid detached 'production logs' as integrity evidence — they presume guilt and can themselves be AI-completed. Instead, use a short assessed reflection on how and why AI was used, marked as part of the work; or position the essay as low-stakes Lane 2 scaffolding feeding a higher-stakes verification point.",
+  lane1: {
+    how: ["Use timed, in-person or controlled conditions where appropriate","Assess argument, reasoning and use of evidence rather than fluency alone","Require use of specific or provided sources","Restrict or clearly define permitted AI use","Set unseen or tightly framed questions"],
+    example: "A timed, invigilated essay responding to an unseen question, drawing on knowledge to construct a structured argument and demonstrate independent critical thinking under controlled conditions."
+  },
+  lane2: {
+    how: ["Explicitly incorporate GenAI into research, drafting, or idea generation","Focus marking on interpretation, judgement and originality of thinking","Include an assessed reflective commentary on process (not a detached log)","Assess ability to critique, refine and build on AI outputs","Require transparency about how AI tools were used"],
+    example: "An essay where students may use GenAI for idea generation or drafting, submitting a short assessed commentary explaining how AI was used, critically evaluating outputs, and demonstrating how they developed their own argument."
+  },
+  considerations: ["Marking workload for reflective commentary components","Clear guidance on structure, expectations and criteria","Hidden expectations about academic conventions disadvantage some students","Extended deadlines, speech-to-text and alternative formats as adjustments"],
+  authenticity: "Develops core academic skills — constructing arguments, engaging critically with sources, communicating complex ideas — transferable to many professional contexts. Strongest when prioritising disciplinary reasoning, evidence use and critical judgement over surface fluency.",
+  inclusive: ["Clear guidance on structure, expectations and marking criteria","Transparent, well-scaffolded prompts and manageable scope","Exemplars or models where appropriate","Extended deadlines, assistive technologies, alternative formats"]
+},
+{
+  name: "Report",
+  categories: ["Written"],
+  summary: "Structured document addressing a task, problem or scenario using disciplinary conventions and evidence-based recommendations.",
+  whatIsIt: "A structured written document addressing a specific task, problem, or scenario, using disciplinary conventions — headings, sections, data presentation, evidence-based recommendations. Typically analytical and applied: case studies, research, professional scenarios, practical investigations.",
+  whatFor: ["Applying disciplinary knowledge to real or simulated contexts","Making evidence-based recommendations or decisions","Assessing professional, structured written communication","Evaluating analytical thinking, problem-solving and interpretation of data"],
+  ai: "Vulnerable to hidden GenAI use where tasks can be completed through generic synthesis or formatting, unless design restricts AI (Lane 1) or explicitly incorporates and evaluates it (Lane 2). Context-specific tasks and clear expectations strengthen authenticity.",
+  lane1: {
+    how: ["Use context-specific, applied or localised scenarios difficult to replicate generically","Assess analysis, interpretation and justification rather than surface structure","Require evidence of process, calculation or methodology","Restrict or clearly define permitted AI use","Provide unique datasets, case materials or prompts"],
+    example: "A report based on a provided dataset or case study, where students analyse findings and produce evidence-based recommendations, demonstrating reasoning and methodology using materials not available outside the assessment."
+  },
+  lane2: {
+    how: ["Explicitly allow GenAI in drafting, structuring or data interpretation","Focus marking on judgement, decision-making and contextual appropriateness","Include reflective commentary on strengths and limitations of AI support","Assess critical evaluation and refinement of AI outputs","Require documentation of how AI tools were used"],
+    example: "A professional report where students may use GenAI for structuring or initial drafting, but must critically evaluate outputs, adapt them to context, and include a commentary explaining how AI contributed to and was refined within their work."
+  },
+  considerations: ["Producing unique datasets/case materials each cycle","Group-report allocation and management, considering individual needs","Staged submissions or checkpoints","Extended deadlines, assistive technologies, alternative formats"],
+  authenticity: "Closely mirrors professional practice: analysing information, communicating findings, making justified recommendations. Strongest when tasks reflect realistic contexts and prioritise interpretation, judgement and decision-making over generic structure.",
+  inclusive: ["Clear guidance on structure, format and expectations","Transparent marking criteria focused on analysis and reasoning","Scaffolded, staged submissions where appropriate","Manageable scope and clarity in task requirements"]
+},
+
+/* ---------- Stubs: requested in feedback, content to be written ---------- */
+{
+  name: "Online tests",
+  categories: ["Class Tests","Exams"],
+  summary: "Requested addition — remote or VLE-based tests and quizzes.",
+  stub: true,
+  stubNote: "Requested in the feedback (Pereiro). Key design tension to address: unsupervised online tests cannot restrict AI use, so they sit naturally in Lane 2 or need a verification mechanism (e.g. sampled follow-up viva) to count toward Lane 1. Content to be drafted."
+},
+{
+  name: "Laboratory & fieldwork assessment",
+  categories: ["Practical"],
+  summary: "Requested addition — assessed practical work in labs and in the field.",
+  stub: true,
+  stubNote: "Requested in the feedback (Pereiro, Harmer). Observed practical performance is naturally Lane 1; written lab/field reports produced afterwards behave like reports (see Report entry) and may be Lane 2 with AI use made visible. Content to be drafted."
+},
+{
+  name: "Case studies",
+  categories: ["Written","Practical"],
+  summary: "Requested addition — analysis of real or simulated cases; cross-listed under Written and Practical.",
+  stub: true,
+  stubNote: "Requested in the feedback (Harmer). Deliberately cross-listed under two categories to demonstrate the flat-list principle: a type can be found from any heading. Context-specific, localised cases resist generic AI completion; verification can come from in-class discussion or Q&A. Content to be drafted."
+},
+{
+  name: "Dissertations, literature reviews & research proposals",
+  categories: ["Written"],
+  summary: "Requested addition — extended research-based writing and the research skills behind it.",
+  stub: true,
+  stubNote: "Requested in the feedback (Voisey, Mogg). Builds on the dissertation worked example in the operational guide. Likely pattern: Lane 2 development with a research decision log (documented search strategy, analytic choices, validation of AI outputs) plus a Lane 1 viva on source discovery and methodology. Also the natural home for information literacy and research-skills assessment. Content to be drafted with Library input."
+},
+{
+  name: "OSPEs (Objective Structured Practical Examinations)",
+  categories: ["Practical"],
+  summary: "Requested addition — the practical (non-clinical) sibling of OSCEs; scalable, inclusive Lane 1 format.",
+  stub: true,
+  stubNote: "Requested in the feedback (Voisey, with a Strathclyde inclusive-pharmacology reference). A scalable, inclusive Lane 1 option beyond written exams — useful against the risk of over-relying on invigilated exams as the 'safe' Lane 1 default. Content to be drafted."
+}
+];
+
+/* ---------- State & rendering ---------- */
+let activeCategory = null;
+let query = "";
+let sortMode = "az";
+
+const grid = document.getElementById("grid");
+const chipsEl = document.getElementById("chips");
+const countEl = document.getElementById("count");
+const noResults = document.getElementById("noResults");
+const overlay = document.getElementById("overlay");
+
+function renderChips() {
+  chipsEl.innerHTML = "";
+  const all = document.createElement("span");
+  all.className = "chip" + (activeCategory === null ? " active" : "");
+  all.textContent = "All types";
+  all.onclick = () => { activeCategory = null; renderChips(); renderGrid(); };
+  chipsEl.appendChild(all);
+  CATEGORIES.forEach(cat => {
+    const c = document.createElement("span");
+    c.className = "chip" + (activeCategory === cat ? " active" : "");
+    c.textContent = cat;
+    c.onclick = () => { activeCategory = activeCategory === cat ? null : cat; renderChips(); renderGrid(); };
+    chipsEl.appendChild(c);
+  });
+}
+
+function matches(t) {
+  if (activeCategory && !t.categories.includes(activeCategory)) return false;
+  if (!query) return true;
+  const hay = [t.name, t.summary, t.whatIsIt || "", t.ai || "", (t.whatFor || []).join(" "), t.categories.join(" "), t.stubNote || ""].join(" ").toLowerCase();
+  return query.toLowerCase().split(/\s+/).every(w => hay.includes(w));
+}
+
+function renderGrid() {
+  const items = TYPES.filter(matches);
+  items.sort((a, b) => sortMode === "category"
+    ? (CATEGORIES.indexOf(a.categories[0]) - CATEGORIES.indexOf(b.categories[0])) || a.name.localeCompare(b.name)
+    : a.name.localeCompare(b.name));
+  grid.innerHTML = "";
+  items.forEach(t => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("role", "button");
+    const badges = t.categories.map(c => `<span class="badge">${c}</span>`).join("")
+      + (t.stub ? `<span class="badge stub">Content needed</span>` : "");
+    card.innerHTML = `<div class="badges">${badges}</div><h3>${t.name}</h3><p class="summary">${t.summary}</p>`;
+    card.onclick = () => openDetail(t);
+    card.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openDetail(t); } };
+    grid.appendChild(card);
+  });
+  const total = TYPES.length;
+  countEl.textContent = items.length === total ? `${total} assessment types` : `${items.length} of ${total} assessment types`;
+  noResults.style.display = items.length ? "none" : "block";
+}
+
+function ul(items) { return `<ul>${items.map(i => `<li>${i}</li>`).join("")}</ul>`; }
+
+function openDetail(t) {
+  document.getElementById("dTitle").textContent = t.name;
+  document.getElementById("dBadges").innerHTML =
+    t.categories.map(c => `<span class="badge">${c}</span>`).join("")
+    + (t.stub ? `<span class="badge stub">Content needed</span>` : "");
+  const b = document.getElementById("dBody");
+  if (t.stub) {
+    b.innerHTML = `<div class="stub-note"><strong>Stub — requested in the July 2026 feedback.</strong><p style="margin-top:8px">${t.stubNote}</p></div>`;
+  } else {
+    b.innerHTML = `
+      <h3>What is it?</h3><p>${t.whatIsIt}</p>
+      <h3>What's it for?</h3>${ul(t.whatFor)}
+      <h3>AI considerations</h3><p>${t.ai}</p>
+      <h3>Two-lane alignment</h3>
+      <div class="lane-cols">
+        <div class="lane-box l1">
+          <h4>Lane 1 — Verified</h4>
+          ${ul(t.lane1.how)}
+          <div class="ex"><strong>Lane 1 example</strong>${t.lane1.example}</div>
+        </div>
+        <div class="lane-box l2">
+          <h4>Lane 2 — Open</h4>
+          ${ul(t.lane2.how)}
+          <div class="ex"><strong>Lane 2 example</strong>${t.lane2.example}</div>
+        </div>
+      </div>
+      <h3>Practical considerations</h3>
+      <div class="considerations">
+        <span class="tag">New section — proposed in feedback</span>
+        ${ul(t.considerations)}
+      </div>
+      <h3>Authenticity</h3><p>${t.authenticity}</p>
+      <h3>Inclusive design &amp; reasonable adjustments</h3>${ul(t.inclusive)}
+      ${t.voice ? `<h3>Student voice</h3>` + t.voice.map(v => `<div class="voice">“${v}”</div>`).join("") : ""}
+    `;
+  }
+  overlay.classList.add("open");
+  overlay.scrollTop = 0;
+  document.body.style.overflow = "hidden";
+}
+
+function closeDetail() {
+  overlay.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("closeBtn").onclick = closeDetail;
+overlay.onclick = e => { if (e.target === overlay) closeDetail(); };
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeDetail(); });
+document.getElementById("search").addEventListener("input", e => { query = e.target.value.trim(); renderGrid(); });
+document.getElementById("sort").addEventListener("change", e => { sortMode = e.target.value; renderGrid(); });
+
+renderChips();
+renderGrid();
+</script>
+</body>
+</html>

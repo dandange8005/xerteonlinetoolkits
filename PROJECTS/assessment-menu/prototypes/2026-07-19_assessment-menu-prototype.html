@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2-Lane Assessment Menu — Cardiff University</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cardiff-purple: #4B1F6F;
+    --cardiff-purple-light: #6B3A8F;
+    --cardiff-purple-pale: #F3EEF8;
+    --lane1: #1A6B5A;
+    --lane1-light: #E8F5F1;
+    --lane1-mid: #2E8B6F;
+    --lane2: #C05A1F;
+    --lane2-light: #FDF0E8;
+    --lane2-mid: #E07030;
+    --both: #2B5BA8;
+    --both-light: #EBF0FA;
+    --neutral-100: #F8F7FA;
+    --neutral-200: #EEEBF3;
+    --neutral-400: #9B8BAD;
+    --neutral-700: #3A2E4A;
+    --neutral-900: #1A1220;
+    --white: #FFFFFF;
+    --shadow-sm: 0 1px 4px rgba(75,31,111,0.08);
+    --shadow-md: 0 4px 16px rgba(75,31,111,0.12);
+    --shadow-lg: 0 8px 32px rgba(75,31,111,0.18);
+    --radius: 10px;
+    --radius-lg: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--neutral-100);
+    color: var(--neutral-700);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--cardiff-purple);
+    color: white;
+    padding: 20px 32px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -60px;
+    width: 280px; height: 280px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 20%;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 50%;
+  }
+  .header-inner { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
+  .header-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .header-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.72);
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.5;
+  }
+
+  /* LANE LEGEND */
+  .legend-bar {
+    background: white;
+    border-bottom: 1px solid var(--neutral-200);
+    padding: 12px 32px;
+  }
+  .legend-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .legend-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--neutral-400);
+    margin-right: 4px;
+  }
+  .legend-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .legend-pill.l1 { background: var(--lane1-light); color: var(--lane1); }
+  .legend-pill.l2 { background: var(--lane2-light); color: var(--lane2); }
+  .legend-pill.both { background: var(--both-light); color: var(--both); }
+  .legend-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .l1 .legend-dot { background: var(--lane1); }
+  .l2 .legend-dot { background: var(--lane2); }
+  .both .legend-dot { background: var(--both); }
+
+  /* MAIN LAYOUT */
+  .main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 28px 32px 60px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* SIDEBAR — GROUPINGS */
+  .sidebar {
+    position: sticky;
+    top: 20px;
+  }
+  .sidebar-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--neutral-400);
+    margin-bottom: 10px;
+    padding: 0 2px;
+  }
+  .group-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 400;
+    color: var(--neutral-700);
+    transition: all 0.15s ease;
+    margin-bottom: 2px;
+  }
+  .group-btn:hover {
+    background: var(--neutral-200);
+    color: var(--cardiff-purple);
+  }
+  .group-btn.active {
+    background: var(--cardiff-purple-pale);
+    color: var(--cardiff-purple);
+    font-weight: 600;
+  }
+  .group-icon {
+    width: 28px; height: 28px;
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    background: var(--neutral-200);
+  }
+  .group-btn.active .group-icon {
+    background: var(--cardiff-purple);
+  }
+  .group-count {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--neutral-400);
+    font-weight: 400;
+  }
+
+  /* CONTENT AREA */
+  .content-area { min-width: 0; }
+
+  .group-header {
+    margin-bottom: 16px;
+  }
+  .group-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--cardiff-purple);
+    margin-bottom: 4px;
+  }
+  .group-header p {
+    font-size: 13px;
+    color: var(--neutral-400);
+    line-height: 1.5;
+  }
+
+  /* ASSESSMENT TYPE CARDS — LIST */
+  .type-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .type-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 1.5px solid var(--neutral-200);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+  }
+  .type-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--cardiff-purple-light);
+  }
+  .type-card.open {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--cardiff-purple);
+  }
+
+  .type-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+  }
+  .type-card-title {
+    flex: 1;
+    min-width: 0;
+  }
+  .type-card-title h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin-bottom: 4px;
+  }
+  .type-card-title p {
+    font-size: 12.5px;
+    color: var(--neutral-400);
+    line-height: 1.4;
+  }
+  .lane-badges {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+  .lane-badge {
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+  .lane-badge.l1 { background: var(--lane1-light); color: var(--lane1); }
+  .lane-badge.l2 { background: var(--lane2-light); color: var(--lane2); }
+
+  .chevron {
+    color: var(--neutral-400);
+    font-size: 14px;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+  .type-card.open .chevron { transform: rotate(180deg); color: var(--cardiff-purple); }
+
+  /* EXPANDED DETAIL */
+  .type-detail {
+    display: none;
+    padding: 0 18px 18px;
+    border-top: 1px solid var(--neutral-200);
+    margin-top: 0;
+  }
+  .type-card.open .type-detail { display: block; }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .detail-grid.full { grid-template-columns: 1fr; }
+
+  .detail-block {
+    background: var(--neutral-100);
+    border-radius: var(--radius);
+    padding: 14px;
+  }
+  .detail-block.lane1-block { background: var(--lane1-light); }
+  .detail-block.lane2-block { background: var(--lane2-light); }
+  .detail-block.example-block { background: var(--cardiff-purple-pale); }
+
+  .detail-block-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .lane1-block .detail-block-title { color: var(--lane1); }
+  .lane2-block .detail-block-title { color: var(--lane2); }
+  .example-block .detail-block-title { color: var(--cardiff-purple); }
+  .detail-block-title span { font-size: 13px; }
+
+  .detail-block p, .detail-block li {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--neutral-700);
+  }
+  .detail-block ul {
+    padding-left: 16px;
+  }
+  .detail-block ul li { margin-bottom: 3px; }
+
+  /* TAGS ROW */
+  .tag-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .tag {
+    font-size: 11.5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+  .tag.workload-low { background: #E8F5E9; color: #2E7D32; }
+  .tag.workload-med { background: #FFF8E1; color: #F57F17; }
+  .tag.workload-high { background: #FEECEC; color: #C62828; }
+  .tag.access { background: var(--both-light); color: var(--both); }
+  .tag.link { background: var(--neutral-200); color: var(--cardiff-purple); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* PLACEHOLDER NOTICE */
+  .placeholder-notice {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--neutral-400);
+    background: var(--neutral-200);
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-top: 8px;
+  }
+
+  /* PANEL SECTIONS */
+  .panel-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--neutral-400);
+    margin: 16px 0 8px;
+  }
+
+  /* GROUP PANEL */
+  .group-panel { display: none; }
+  .group-panel.active { display: block; }
+
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    .main { grid-template-columns: 1fr; padding: 16px; }
+    .sidebar { position: static; }
+    .detail-grid { grid-template-columns: 1fr; }
+    .header { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-tag">Cardiff University — Digital Education</div>
+    <h1>2-Lane Assessment Menu</h1>
+    <p class="header-sub">Browse assessment types by category, understand their lane alignment, and find practical guidance on configuring them for your programme.</p>
+  </div>
+</div>
+
+<div class="legend-bar">
+  <div class="legend-inner">
+    <span class="legend-label">Lane key</span>
+    <span class="legend-pill l1"><span class="legend-dot"></span>Lane 1 — Secure / In-person</span>
+    <span class="legend-pill l2"><span class="legend-dot"></span>Lane 2 — Open / AI-acknowledged</span>
+    <span class="legend-pill both"><span class="legend-dot"></span>Configurable for either lane</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-title">Assessment groupings</div>
+    <button class="group-btn active" onclick="showGroup('written')">
+      <span class="group-icon">✍️</span>
+      Written
+      <span class="group-count">4</span>
+    </button>
+    <button class="group-btn" onclick="showGroup('oral')">
+      <span class="group-icon">🎤</span>
+      Oral &amp; Verbal
+      <span class="group-count">3</span>
+    </button>
+    <button class="group-btn" onclick="showGroup('practical')">
+      <span class="group-icon">🔬</span>
+      Practical &amp; Performance
+      <span class="group-count">3</span>
+    </button>
+    <button class="group-btn" onclick="showGroup('portfolio')">
+      <span class="group-icon">📁</span>
+      Portfolio &amp; Process
+      <span class="group-count">3</span>
+    </button>
+    <button class="group-btn" onclick="showGroup('digital')">
+      <span class="group-icon">💻</span>
+      Digital &amp; Creative
+      <span class="group-count">3</span>
+    </button>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-area">
+
+    <!-- WRITTEN -->
+    <div class="group-panel active" id="group-written">
+      <div class="group-header">
+        <h2>Written Assessments</h2>
+        <p>Traditional and contemporary written tasks, from essays to in-class tests.</p>
+      </div>
+      <div class="type-list">
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Essay</h3>
+              <p>Extended written argument or analysis on a set question or topic.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l2">Lane 2</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>In its standard take-home form, an essay is not securable. To move to Lane 1, consider an in-class timed essay under invigilation, or pair with a viva or oral follow-up to verify authorship of submitted work.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Design with AI use acknowledged. Ask students to submit a process log, annotated bibliography, or AI use declaration alongside the essay. Focus marking criteria on analytical depth and original argument — things AI struggles to produce at quality.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Allow flexible word count bands rather than rigid limits.</li>
+                  <li>Provide clear guidance on AI use expectations to reduce student anxiety.</li>
+                  <li>Consider alternative submission formats for students with writing difficulties.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-med">Staff workload: Medium</span>
+              <span class="tag workload-med">Student workload: Medium–High</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">DigEd drop-in support →</span>
+              <span class="tag link">Tier 2 implementation toolkit →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>In-class / Timed Written Test</h3>
+              <p>Supervised written task completed within a set time under exam conditions.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l1">Lane 1</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>Naturally suited to Lane 1. Ensure the task is genuinely programme-level and tests the learning outcomes you need to validate — avoid using it simply because it is securable. Consider open-book formats to test application rather than recall.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Less common in Lane 2, but a take-home version of a timed task — where students work independently but not under supervision — can function as Lane 2 if the design focuses on process and reflection alongside output.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Ensure access arrangements are in place and communicated in advance.</li>
+                  <li>Computer-based alternatives reduce barriers for students with dyslexia.</li>
+                  <li>Avoid high-stakes single-sitting formats where programme-level risk is manageable.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-high">Staff workload: High (invigilation, room booking)</span>
+              <span class="tag workload-med">Student workload: Medium</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">DigEd drop-in support →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Report</h3>
+              <p>Structured written output presenting research, analysis, or professional recommendations.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l2">Lane 2</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>A take-home report is not securable on its own. Pair with an in-person defence, short viva, or poster presentation where students must explain and justify their findings without notes or AI assistance.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Well suited to Lane 2. Design the brief so that the quality of critical analysis and decision-making is foregrounded. Require a methodology section or AI use log so students account for how they produced the work.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Scaffold the report structure clearly for students who are new to professional formats.</li>
+                  <li>Group reports can reduce individual load but require careful design to ensure individual accountability.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-med">Staff workload: Medium</span>
+              <span class="tag workload-high">Student workload: High</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">Tier 2 implementation toolkit →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Reflective Log / Journal</h3>
+              <p>Ongoing or end-of-module personal reflection on learning, practice, or experience.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l2">Lane 2</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>Difficult to use as a standalone Lane 1 assessment. Reflective writing produced outside supervision cannot easily be secured. Could be incorporated into a Lane 1 context via in-class reflective writing or an oral follow-up on written reflections.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Naturally suited to Lane 2. Ongoing logs that record genuine personal development are harder to fabricate at quality. Encourage students to include specific incidents, dates, and critical analysis of their own practice.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Be explicit about what "reflection" means — this is not universal across cultures and disciplines.</li>
+                  <li>Offer audio or video log alternatives for students who find written reflection difficult.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-low">Staff workload: Low–Medium</span>
+              <span class="tag workload-med">Student workload: Ongoing / Medium</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">DigEd drop-in support →</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ORAL -->
+    <div class="group-panel" id="group-oral">
+      <div class="group-header">
+        <h2>Oral &amp; Verbal Assessments</h2>
+        <p>In-person or live spoken assessments — some of the most effective Lane 1 options.</p>
+      </div>
+      <div class="type-list">
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Viva / Oral Examination</h3>
+              <p>Structured academic conversation testing depth of knowledge and understanding.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l1">Lane 1</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>Highly effective Lane 1 assessment. The real-time, in-person nature makes AI assistance impossible during the examination itself. Works well as a standalone assessment or as a follow-up to a submitted piece of work to verify authorship.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>A viva-style conversation could function in Lane 2 if conducted remotely and without invigilation conditions — though its natural strength is as a secure verification tool.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>High anxiety for some students — scaffold with practice opportunities and clear marking criteria in advance.</li>
+                  <li>Allow extra time for students with relevant access arrangements.</li>
+                  <li>Consider whether recording is appropriate for moderation purposes.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-high">Staff workload: High (individual scheduling)</span>
+              <span class="tag workload-med">Student workload: Medium</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">DigEd drop-in support →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Presentation</h3>
+              <p>Spoken delivery of findings, arguments, or creative work to an audience.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l1">Lane 1</span>
+              <span class="lane-badge l2">Lane 2</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>In-person delivery without notes, or with limited permitted materials, creates a Lane 1 condition. Adding live Q&amp;A questions strengthens the verification. Ensure students cannot simply read a pre-prepared AI-generated script.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Pre-recorded presentations are Lane 2 by default. Focus marking on the quality of the argument, use of evidence, and communication design — not simply the content, which AI can generate. Require a process reflection on how the presentation was developed.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Offer alternatives for students with speech or communication difficulties.</li>
+                  <li>Clarify whether slides, notes, or props are permitted — this affects both accessibility and lane alignment.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-med">Staff workload: Medium</span>
+              <span class="tag workload-med">Student workload: Medium</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">Tier 2 implementation toolkit →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Oral Interactive Assessment</h3>
+              <p>Structured conversation or problem-solving dialogue, often one-to-one or small group.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l1">Lane 1</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>An excellent scalable Lane 1 option. Particularly effective when structured around unseen problems or follow-up questions based on submitted work. The interactive, live element makes AI intervention impossible. Widely used at Sydney as a mitigation strategy.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Less commonly configured as Lane 2, though a remote or asynchronous discussion task could function in this way if students are permitted to use resources during the exchange.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Provide question areas in advance so students can prepare — this reduces anxiety without compromising the Lane 1 condition.</li>
+                  <li>Suitable for students who find written formats difficult.</li>
+                  <li>Scheduling at scale requires careful planning — acknowledge staff time implications.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-high">Staff workload: High (scheduling, 1:1 time)</span>
+              <span class="tag workload-low">Student workload: Low–Medium</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">DigEd drop-in support →</span>
+              <span class="tag link">Tier 2 implementation toolkit →</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PRACTICAL -->
+    <div class="group-panel" id="group-practical">
+      <div class="group-header">
+        <h2>Practical &amp; Performance Assessments</h2>
+        <p>Observed, hands-on, or live assessments of skills, techniques, and professional practice.</p>
+      </div>
+      <div class="type-list">
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Observed Practical / Lab Assessment</h3>
+              <p>Supervised demonstration of practical skills or experimental technique.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l1">Lane 1</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>Naturally Lane 1. The in-person, supervised nature of practical assessment makes AI intervention impossible during the task itself. Ensure assessment criteria focus on the demonstration of technique and decision-making in the moment, not written outputs produced before or after.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Where a written or analytical component accompanies a practical (e.g. a lab report), that element can be designed as Lane 2 — with the practical itself anchoring Lane 1 coverage.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Ensure physical access and reasonable adjustments are built into scheduling.</li>
+                  <li>Assessment criteria should distinguish between the skill being assessed and any associated written task.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-med">Staff workload: Medium (observation time)</span>
+              <span class="tag workload-med">Student workload: Medium</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">DigEd drop-in support →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Performance / Creative Recital</h3>
+              <p>Live performance, studio critique, or creative practice assessed by observation.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l1">Lane 1</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>Live, in-person performance or studio assessment is inherently Lane 1. AI cannot perform in someone's place. Focus assessment criteria on the live demonstration of skill, interpretation, and in-the-moment decision-making.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Accompanying written reflections or process portfolios can be Lane 2 elements that sit alongside the Lane 1 performance — creating a combined assessment that covers both lanes.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Consider how students with relevant disabilities are accommodated in live performance contexts.</li>
+                  <li>Offer alternative demonstration formats where the core learning outcome allows it.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-med">Staff workload: Medium</span>
+              <span class="tag workload-high">Student workload: High (preparation)</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Simulation / Role Play</h3>
+              <p>Structured scenario in which students respond to a professional or real-world situation.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l1">Lane 1</span>
+              <span class="lane-badge l2">Lane 2</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>In-person, live simulation under observation is Lane 1. Common in health, law, and professional programmes. The real-time, human-interactional element secures the assessment naturally.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Online or asynchronous simulation tasks — for example, responding to a case scenario in writing or via recorded video — function as Lane 2. Well-designed Lane 2 simulations can ask students to reflect critically on how they used any AI tools in their decision-making.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Brief students clearly on the scenario and expectations — high ambiguity increases anxiety disproportionately for some students.</li>
+                  <li>Consider cultural dimensions of role play scenarios.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-med">Staff workload: Medium</span>
+              <span class="tag workload-med">Student workload: Medium</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">Tier 2 implementation toolkit →</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <div class="group-panel" id="group-portfolio">
+      <div class="group-header">
+        <h2>Portfolio &amp; Process Assessments</h2>
+        <p>Assessments that capture learning over time, including process, iteration, and reflection.</p>
+      </div>
+      <div class="type-list">
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Portfolio</h3>
+              <p>A curated collection of work demonstrating learning, development, or professional practice.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l2">Lane 2</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>A portfolio is not securable in its standard form. To incorporate Lane 1 coverage, pair with an in-person portfolio defence or viva, where the student must speak to specific pieces without preparation time.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Excellent Lane 2 format. The breadth of evidence, reflective commentary, and documentation of process make quality AI-generated substitution very difficult. Require students to include a rationale for piece selection and a reflective commentary on their development.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Provide clear scaffolding on what a portfolio should contain — this is not intuitive for all students.</li>
+                  <li>Allow flexibility in format (digital, physical, multimedia) where possible.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-high">Staff workload: High (marking breadth)</span>
+              <span class="tag workload-high">Student workload: High (ongoing)</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">Tier 2 implementation toolkit →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Research Project / Dissertation</h3>
+              <p>Sustained independent investigation leading to a substantial written output.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l2">Lane 2</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>The written dissertation itself is not securable. The standard mitigation is a viva or oral defence of the project. This is widely used at postgraduate level and works well as a Lane 1 accountability moment alongside a Lane 2 written component.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Large-scale original research projects with unique data, fieldwork, or primary inquiry are among the most robust Lane 2 assessments. Focus marking on research design decisions, data interpretation, and critical synthesis — areas where AI cannot replicate genuine inquiry.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Supervision quality is a significant equity variable — ensure consistent support is available.</li>
+                  <li>Be explicit about permitted AI use in the research process (e.g. literature searching vs. data analysis vs. writing).</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-high">Staff workload: High (supervision + marking)</span>
+              <span class="tag workload-high">Student workload: Very high</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">DigEd drop-in support →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Group Project / Collaborative Task</h3>
+              <p>Team-based assessment requiring collaboration, division of labour, and shared output.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l2">Lane 2</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>Group work itself is not securable. A Lane 1 element can be added via individual in-person components — for example, each student presenting their contribution to the project in a short oral defence, without AI support.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Well suited to Lane 2 when designed around authentic professional tasks. Including an AI use log and individual contribution statement helps maintain individual accountability and makes the process visible.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Group dynamics can disadvantage some students — build in structured peer assessment and clear role allocation.</li>
+                  <li>Allow for individual submissions where group participation is genuinely not possible.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-med">Staff workload: Medium</span>
+              <span class="tag workload-med">Student workload: Medium (shared)</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">Tier 2 implementation toolkit →</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIGITAL -->
+    <div class="group-panel" id="group-digital">
+      <div class="group-header">
+        <h2>Digital &amp; Creative Assessments</h2>
+        <p>Technology-enabled, multimodal, or creative outputs including digital artefacts and media.</p>
+      </div>
+      <div class="type-list">
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>AI-Assisted Task</h3>
+              <p>A task explicitly designed around student use of AI tools, with critical evaluation of outputs.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l2">Lane 2</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>Not typically a Lane 1 assessment type. Could be paired with an in-person debrief or oral element where students must critically discuss their AI use and the decisions they made without AI assistance.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Core Lane 2 assessment type. Ask students to document their AI prompting process, evaluate the quality of AI outputs, and explain what they added, changed, or rejected. Mark on critical judgment and AI literacy, not just the final product.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Some students have principled objections to AI use — ensure there is a route through the assessment that does not require AI engagement where the learning outcome permits it.</li>
+                  <li>Be explicit about which AI tools are permitted and which are not.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-med">Staff workload: Medium (new marking criteria needed)</span>
+              <span class="tag workload-med">Student workload: Medium</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">DigEd drop-in support →</span>
+              <span class="tag link">Tier 2 implementation toolkit →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Digital Artefact / Multimedia Output</h3>
+              <p>Websites, videos, podcasts, infographics, or other digital creative outputs.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l2">Lane 2</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>Live or in-person demonstration of a digital artefact — for example, a website walkthrough with live Q&amp;A — can create a Lane 1 accountability moment alongside the submitted output.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Authentic digital outputs that require creative decisions, audience awareness, and technical skills are naturally suited to Lane 2. Require a production rationale or process diary that documents the creative choices made.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Ensure students have access to required tools and software — do not assume home access.</li>
+                  <li>Offer flexibility in output format to accommodate different skill levels and disabilities.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-med">Staff workload: Medium</span>
+              <span class="tag workload-high">Student workload: High (production time)</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">DigEd drop-in support →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-card" onclick="toggleCard(this)">
+          <div class="type-card-header">
+            <div class="type-card-title">
+              <h3>Online Quiz / Computer-Based Test</h3>
+              <p>Automated, digitally delivered question set — multiple choice, short answer, or adaptive.</p>
+            </div>
+            <div class="lane-badges">
+              <span class="lane-badge l1">Lane 1</span>
+              <span class="lane-badge l2">Lane 2</span>
+            </div>
+            <span class="chevron">▾</span>
+          </div>
+          <div class="type-detail">
+            <div class="detail-grid">
+              <div class="detail-block lane1-block">
+                <div class="detail-block-title"><span>🔒</span> Configuring for Lane 1</div>
+                <p>Invigilated computer-based tests delivered in a controlled environment are Lane 1. Randomised question banks, time limits, and supervised conditions all strengthen the Lane 1 condition. Avoid purely knowledge-recall formats — test application and analysis where possible.</p>
+              </div>
+              <div class="detail-block lane2-block">
+                <div class="detail-block-title"><span>🤝</span> Configuring for Lane 2</div>
+                <p>Open online quizzes are Lane 2 by default. They work well as formative learning tools rather than high-stakes summative assessment. If used summatively in Lane 2, design questions that require application and synthesis rather than simple recall.</p>
+              </div>
+              <div class="detail-block example-block">
+                <div class="detail-block-title"><span>📍</span> Cardiff Example</div>
+                <p>[Placeholder — add a Cardiff-specific example here once available from Karis's catalogue.]</p>
+                <span class="placeholder-notice">⚪ Awaiting case study</span>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title" style="color:var(--neutral-700)"><span>♿</span> Inclusive Design Notes</div>
+                <ul>
+                  <li>Timed tests can disadvantage students with processing difficulties — ensure extended time arrangements are possible.</li>
+                  <li>Avoid overly complex question formats that test literacy rather than the intended learning outcome.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-section-title">Workload &amp; Capacity</div>
+            <div class="tag-row">
+              <span class="tag workload-low">Staff workload: Low (once built)</span>
+              <span class="tag workload-low">Student workload: Low–Medium</span>
+            </div>
+            <div class="panel-section-title">Further Resources</div>
+            <div class="tag-row">
+              <span class="tag link">Cardiff examples catalogue →</span>
+              <span class="tag link">DigEd drop-in support →</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function showGroup(id) {
+    document.querySelectorAll('.group-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.group-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('group-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+    // Close all cards when switching group
+    document.querySelectorAll('.type-card').forEach(c => c.classList.remove('open'));
+  }
+
+  function toggleCard(card) {
+    const isOpen = card.classList.contains('open');
+    // Close all cards in this group
+    card.closest('.type-list').querySelectorAll('.type-card').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+</script>
+</body>
+</html>
