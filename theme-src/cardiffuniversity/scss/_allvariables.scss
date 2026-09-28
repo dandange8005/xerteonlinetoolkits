@@ -262,10 +262,11 @@
     --font-family-secondary: var(--cu-serif);
 
     // Font Sizes
-    // DS: controls/labels/captions 16px minimum; reading copy 18px; lead 20px.
-    // xs/sm are kept for existing components but no longer shrink below 16px.
-    --font-size-xs: var(--cu-text-ui);
-    --font-size-sm: var(--cu-text-ui);
+    // DS: controls/labels/captions 16px; reading copy 18px; lead 20px. This is an authoring
+    // tool's content, not a marketing site, so xs and sm may go below the DS 16px for dense UI
+    // (small buttons, captions, badges, table text). They are Xerte-only settings.
+    --font-size-xs: 0.75rem;  // 12px
+    --font-size-sm: 0.875rem; // 14px
     --font-size-base: var(--cu-text-ui);
     --font-size-md: var(--cu-text-body);
     --font-size-lg: var(--cu-text-lead);

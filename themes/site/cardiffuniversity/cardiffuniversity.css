@@ -283,8 +283,8 @@
   --font-family-primary: var(--cu-body);
   --font-family-display: var(--cu-display);
   --font-family-secondary: var(--cu-serif);
-  --font-size-xs: var(--cu-text-ui);
-  --font-size-sm: var(--cu-text-ui);
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
   --font-size-base: var(--cu-text-ui);
   --font-size-md: var(--cu-text-body);
   --font-size-lg: var(--cu-text-lead);
