@@ -96,8 +96,8 @@
     // =========================================================================
 
     // Text
-    --color-text-primary: var(--cu-ink); // text is always ink, whatever the brand secondary
-    --color-text-secondary: var(--cu-muted);
+    --color-text: var(--cu-ink); // text is always ink, whatever the brand secondary
+    --color-text-muted: var(--cu-muted);
     --color-text-inverse: var(--color-white);
     --color-text-brand: var(--color-action); // brand red is too light for small text
     --color-text-on-brand: var(--color-white);
@@ -175,12 +175,12 @@
     --btn-secondary-disabled-bg: color-mix(in srgb, var(--color-brand-secondary) 40%, white);
     --btn-secondary-disabled-text: var(--color-white);
 
-    // Success Button (green)
-    --btn-success-bg: var(--color-accent-green);
+    // Success Button (the success status colour)
+    --btn-success-bg: var(--color-status-success);
     --btn-success-text: var(--color-white);
-    --btn-success-hover-bg: color-mix(in srgb, var(--color-accent-green) 85%, black);
-    --btn-success-active-bg: color-mix(in srgb, var(--color-accent-green) 80%, black);
-    --btn-success-disabled-bg: color-mix(in srgb, var(--color-accent-green) 50%, white);
+    --btn-success-hover-bg: color-mix(in srgb, var(--color-status-success) 85%, black);
+    --btn-success-active-bg: color-mix(in srgb, var(--color-status-success) 80%, black);
+    --btn-success-disabled-bg: color-mix(in srgb, var(--color-status-success) 50%, white);
     --btn-success-disabled-text: var(--color-white);
 
     // Reverse Button (light - for dark backgrounds)
@@ -206,10 +206,10 @@
     --btn-secondary-outline-active-bg: var(--color-gray-20);
 
     // Success Outline
-    --btn-success-outline-text: var(--color-accent-green);
-    --btn-success-outline-border: var(--color-accent-green);
-    --btn-success-outline-hover-bg: color-mix(in srgb, var(--color-accent-green) 10%, white);
-    --btn-success-outline-active-bg: color-mix(in srgb, var(--color-accent-green) 25%, white);
+    --btn-success-outline-text: var(--color-status-success);
+    --btn-success-outline-border: var(--color-status-success);
+    --btn-success-outline-hover-bg: color-mix(in srgb, var(--color-status-success) 10%, white);
+    --btn-success-outline-active-bg: color-mix(in srgb, var(--color-status-success) 25%, white);
 
     // Reverse Outline (for dark backgrounds)
     --btn-reverse-outline-text: var(--color-white);
@@ -465,6 +465,4 @@
     --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 70%, black 30%);
 
     --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
-
-    --color-text-muted: color-mix(in srgb, var(--color-text-primary) 40%, var(--color-gray-40));
 }

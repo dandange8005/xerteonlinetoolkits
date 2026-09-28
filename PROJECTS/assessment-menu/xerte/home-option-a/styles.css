@@ -111,16 +111,16 @@ body:has(.am-hero) #intro { padding-bottom: var(--spacing-24); color: var(--colo
 /* Type search (needs the project Script) */
 .am-search { position: relative; }
 #intro .am-search label { color: var(--color-on-dark); }
-.am-search input[type="search"] { width: 100%; height: auto; min-height: var(--min-input-height); box-sizing: border-box; margin: 0; padding: var(--spacing-3) var(--spacing-4); font-size: var(--font-size-md); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-radius-control); background: var(--color-white); color: var(--color-text-primary); box-shadow: none; }
+.am-search input[type="search"] { width: 100%; height: auto; min-height: var(--min-input-height); box-sizing: border-box; margin: 0; padding: var(--spacing-3) var(--spacing-4); font-size: var(--font-size-md); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-radius-control); background: var(--color-white); color: var(--color-text); box-shadow: none; }
 #intro .am-search input[type="search"] { border-color: var(--color-white); }
-.am-search input[type="search"]:focus { border-color: var(--color-text-primary); }
+.am-search input[type="search"]:focus { border-color: var(--color-text); }
 .am-results { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--z-index-dropdown); list-style: none; margin: 0; padding: 0; background: var(--color-white); border: var(--border-width-1) solid var(--color-border-default); border-radius: 0 0 var(--am-radius-control) var(--am-radius-control); box-shadow: var(--shadow-dropdown); max-height: 300px; overflow-y: auto; }
 .am-results[hidden] { display: none; }
 .am-results li { margin: 0; }
-.am-results a { display: flex; justify-content: space-between; gap: var(--spacing-3); padding: var(--spacing-3) var(--spacing-4); border-top: var(--border-width-1) solid var(--color-border-light); color: var(--color-text-primary); text-decoration: none; }
+.am-results a { display: flex; justify-content: space-between; gap: var(--spacing-3); padding: var(--spacing-3) var(--spacing-4); border-top: var(--border-width-1) solid var(--color-border-light); color: var(--color-text); text-decoration: none; }
 .am-results a:hover, .am-results a:focus { background: var(--color-tint); }
-.am-results .am-cat { color: var(--color-text-secondary); font-size: var(--font-size-base); white-space: nowrap; }
-.am-results .am-none { display: block; padding: var(--spacing-3) var(--spacing-4); color: var(--color-text-secondary); }
+.am-results .am-cat { color: var(--color-text-muted); font-size: var(--font-size-base); white-space: nowrap; }
+.am-results .am-none { display: block; padding: var(--spacing-3) var(--spacing-4); color: var(--color-text-muted); }
 /* The base template underlines every link inside a section. The search results
    are a bordered control rather than prose links, so they opt out; the selector
    carries "section" only to match that rule's specificity. */
@@ -150,13 +150,13 @@ body:has(.am-hero) #tool { padding-block: 0; }
 
 /* Browse by category */
 .am-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--spacing-4); }
-.am-tile { display: flex; flex-direction: column; gap: var(--spacing-3); padding: var(--spacing-6); border: var(--border-width-1) solid var(--color-border-default); border-radius: var(--am-radius-panel); color: var(--color-text-primary); text-decoration: none; transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
-.am-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--color-text-primary); color: var(--color-text-primary); }
+.am-tile { display: flex; flex-direction: column; gap: var(--spacing-3); padding: var(--spacing-6); border: var(--border-width-1) solid var(--color-border-default); border-radius: var(--am-radius-panel); color: var(--color-text); text-decoration: none; transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+.am-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--color-text); color: var(--color-text); }
 /* The theme's visited-link colour is a:...:visited, which outranks a single
    class, so a visited tile would revert to link blue — unreadable on the dark
    tile. Naming the link states here matches that specificity. */
 .am-tile:link,
-.am-tile:visited { color: var(--color-text-primary); }
+.am-tile:visited { color: var(--color-text); }
 .am-tile i { font-size: var(--icon-size-lg); color: var(--color-action); }
 .am-tile strong { font-size: var(--font-size-md); }
 .am-tile--all { background: var(--color-bg-secondary); border-color: var(--color-bg-secondary); }

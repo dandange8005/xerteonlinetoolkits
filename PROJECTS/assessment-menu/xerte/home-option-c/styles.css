@@ -82,7 +82,7 @@ section > p:has(> .topBtn) { display: none; }
 #start .page-header { text-align: center; border-bottom: 0; }
 .am-paths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-5); }
 .am-path { display: flex; flex-direction: column; gap: var(--spacing-3); padding: var(--spacing-6); background: var(--color-white); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-radius-panel); }
-.am-path:hover, .am-path:focus-within { border-color: var(--color-text-primary); box-shadow: var(--shadow-lg); }
+.am-path:hover, .am-path:focus-within { border-color: var(--color-text); box-shadow: var(--shadow-lg); }
 .am-path--lead { border-color: var(--color-action); background: var(--color-tint); }
 .am-step { width: var(--spacing-12); height: var(--spacing-12); border-radius: var(--radius-full); background: var(--color-action); color: var(--color-text-on-brand); display: grid; place-items: center; font-weight: var(--font-weight-bold); font-size: var(--font-size-lead); }
 .am-path h3 { line-height: var(--line-height-snug); }
@@ -94,32 +94,32 @@ section > p:has(> .topBtn) { display: none; }
    the selector carries "section" only to match that rule's specificity. */
 section .am-chips a,
 section .am-results > li > a { text-decoration: none; }
-.am-chips a { display: inline-block; padding: var(--spacing-1) var(--spacing-3); border: var(--border-width-1) solid var(--color-border-default); border-radius: var(--radius-full); background: var(--color-white); text-decoration: none; color: var(--color-text-primary); font-weight: var(--font-weight-semibold); font-size: var(--font-size-base); }
-.am-chips a:hover { border-color: var(--color-text-primary); }
+.am-chips a { display: inline-block; padding: var(--spacing-1) var(--spacing-3); border: var(--border-width-1) solid var(--color-border-default); border-radius: var(--radius-full); background: var(--color-white); text-decoration: none; color: var(--color-text); font-weight: var(--font-weight-semibold); font-size: var(--font-size-base); }
+.am-chips a:hover { border-color: var(--color-text); }
 .am-policy { max-width: 70ch; margin-bottom: 0; }
 
 /* Type search (needs the project Script) */
 .am-search { position: relative; }
 .am-search input[type="search"] { width: 100%; height: auto; min-height: var(--min-input-height); box-sizing: border-box; margin: 0; padding: var(--spacing-3) var(--spacing-4); font-size: var(--font-size-md); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-radius-control); box-shadow: none; }
-.am-search input[type="search"]:focus { border-color: var(--color-text-primary); }
+.am-search input[type="search"]:focus { border-color: var(--color-text); }
 .am-results { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--z-index-dropdown); list-style: none; margin: 0; padding: 0; background: var(--color-white); border: var(--border-width-1) solid var(--color-border-default); border-radius: 0 0 var(--am-radius-control) var(--am-radius-control); box-shadow: var(--shadow-dropdown); max-height: 300px; overflow-y: auto; }
 .am-results[hidden] { display: none; }
 .am-results li { margin: 0; }
 /* Result rows only: the "No match" message holds an ordinary inline link, which
    the row styling would otherwise turn into a padded, bordered flex block. */
-.am-results > li > a { display: flex; justify-content: space-between; gap: var(--spacing-3); padding: var(--spacing-3) var(--spacing-4); border-top: var(--border-width-1) solid var(--color-border-light); color: var(--color-text-primary); text-decoration: none; }
+.am-results > li > a { display: flex; justify-content: space-between; gap: var(--spacing-3); padding: var(--spacing-3) var(--spacing-4); border-top: var(--border-width-1) solid var(--color-border-light); color: var(--color-text); text-decoration: none; }
 .am-results > li > a:hover, .am-results > li > a:focus { background: var(--color-tint); }
 /* The type name takes the space it needs; a long category wraps rather than
    squeezing the name, which matters in a dropdown this narrow and for longer
    Welsh labels. */
 .am-results > li > a > span:first-child { flex: 1 1 auto; min-width: 0; }
-.am-results .am-cat { flex: 0 1 auto; text-align: right; color: var(--color-text-secondary); font-size: var(--font-size-base); }
-.am-results .am-none { display: block; padding: var(--spacing-3) var(--spacing-4); color: var(--color-text-secondary); }
+.am-results .am-cat { flex: 0 1 auto; text-align: right; color: var(--color-text-muted); font-size: var(--font-size-base); }
+.am-results .am-none { display: block; padding: var(--spacing-3) var(--spacing-4); color: var(--color-text-muted); }
 
 /* Six questions */
 .am-questions { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-7) var(--spacing-6); counter-reset: amq; }
 .am-questions li { counter-increment: amq; position: relative; min-height: var(--spacing-12); margin: 0; padding-left: calc(var(--spacing-12) + var(--spacing-4)); font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); line-height: var(--line-height-normal); }
-.am-questions li::before { content: counter(amq); position: absolute; left: 0; top: 0; width: var(--spacing-12); height: var(--spacing-12); box-sizing: border-box; display: grid; place-items: center; border-radius: var(--radius-full); background: var(--color-white); border: 3px solid var(--color-brand-primary); color: var(--color-text-primary); font-weight: var(--font-weight-bold); }
+.am-questions li::before { content: counter(amq); position: absolute; left: 0; top: 0; width: var(--spacing-12); height: var(--spacing-12); box-sizing: border-box; display: grid; place-items: center; border-radius: var(--radius-full); background: var(--color-white); border: 3px solid var(--color-brand-primary); color: var(--color-text); font-weight: var(--font-weight-bold); }
 
 /* "What shapes the menu" dark panel */
 .am-briefs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--color-bg-secondary); color: var(--color-on-dark); border-radius: var(--am-radius-panel); overflow: hidden; }

@@ -55,7 +55,7 @@ ul.nav-tabs {
 // Tab links - hover state
 .nav-tabs>li>a:hover,
 .nav-tabs>li>a:focus {
-    color: var(--color-text-primary);
+    color: var(--color-text);
     background-color: transparent;
     border-bottom-color: var(--color-gray-40);
     text-decoration: none;
@@ -72,7 +72,7 @@ ul.nav-tabs {
 .nav-tabs>.active>a,
 .nav-tabs>.active>a:hover,
 .nav-tabs>.active>a:focus {
-    color: var(--color-text-primary);
+    color: var(--color-text);
     font-weight: var(--font-weight-medium);
     background-color: transparent;
     border: none;
@@ -337,7 +337,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
     --carousel-control-icon-size: var(--icon-size-md);
     --carousel-control-bg: var(--color-white);
     --carousel-control-bg-hover: var(--color-bg-subtle);
-    --carousel-control-icon-color: var(--color-text-primary);
+    --carousel-control-icon-color: var(--color-text);
 
     // The indicators and caption sit on a photo, an overlay context, so the design system's
     // tint rule permits them. These rgba() values stay literal on purpose (hardcoded-values
@@ -498,7 +498,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
     padding-inline: var(--spacing-sm);
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    color: var(--color-text-secondary);
+    color: var(--color-text-muted);
     background-color: var(--color-bg-subtle);
     border: 1px solid var(--color-border-default);
     border-radius: var(--radius-none);
@@ -516,7 +516,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
     border: 0;
     border-radius: 0;
     box-shadow: none;
-    color: var(--color-text-primary);
+    color: var(--color-text);
 }
 
 // =============================================================================
@@ -527,7 +527,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 .table-striped tbody>tr:nth-child(odd)>td,
 .table-striped tbody>tr:nth-child(odd)>th {
     background-color: var(--color-gray-10); // was Forest Green, 4.05:1 with ink
-    color: var(--color-text-primary);
+    color: var(--color-text);
 }
 
 // =============================================================================
@@ -544,7 +544,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
     border-left: 4px solid;
     border-radius: var(--radius-none);
     background-color: var(--color-bg-subtle);
-    color: var(--color-text-primary);
+    color: var(--color-text);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-normal);
 
@@ -719,7 +719,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 .badge-warning,
 .label-warning {
     background-color: var(--color-accent-orange);
-    color: var(--color-text-primary);
+    color: var(--color-text);
 }
 
 .badge-important,
@@ -736,7 +736,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
 
 .badge-inverse,
 .label-inverse {
-    background-color: var(--color-text-primary);
+    background-color: var(--color-text);
 }
 
 // Empty badge (hidden when no content)
@@ -830,7 +830,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
     // DESIGN.md §3 lead paragraph: 20px, regular weight, 1.55 line height; muted grey reads
     // at 5.74:1 on white (decided by Nan, 23 September 2026).
     font-size: var(--font-size-lead);
-    color: var(--color-text-secondary);
+    color: var(--color-text-muted);
     line-height: var(--line-height-lead);
     font-weight: var(--font-weight-regular);
 }

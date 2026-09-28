@@ -37,7 +37,7 @@
     left: 1rem;
     z-index: var(--z-index-toast);
     padding: var(--spacing-4);
-    background: var(--color-text-primary);
+    background: var(--color-text);
     color: var(--color-white);
     text-decoration: none;
     font-weight: var(--font-weight-bold);
@@ -562,11 +562,11 @@ $spacing-map: (
 
 // Text Colors
 .text-primary {
-    color: var(--color-text-primary) !important;
+    color: var(--color-text) !important;
 }
 
 .text-secondary {
-    color: var(--color-text-secondary) !important;
+    color: var(--color-text-muted) !important;
 }
 
 .text-brand {

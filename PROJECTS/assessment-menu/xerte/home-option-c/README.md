@@ -46,8 +46,8 @@ the same IDs, plus a section ID per assessment type, in its `AM_TYPES` table.
 ## Token mapping
 
 Every hardcoded value in the earlier version now resolves through the theme. The exact matches:
-`#C21F16` → `--color-action`, `#E4251B` → `--color-brand-primary`, `#121212` → `--color-text-primary`,
-`#666666` → `--color-text-secondary`, `#CCCCCC` → `--color-border-default`, `#e5e5e5` →
+`#C21F16` → `--color-action`, `#E4251B` → `--color-brand-primary`, `#121212` → `--color-text`,
+`#666666` → `--color-text-muted`, `#CCCCCC` → `--color-border-default`, `#e5e5e5` →
 `--color-border-light`, `#F2F2F2` → `--color-bg-subtle`, `#333` → `--color-gray-90`. Spacing moved to
 the `--spacing-*` scale, type to `--font-size-*` / `--font-weight-*` / `--line-height-*`, the card and
 dropdown shadows to `--shadow-lg` / `--shadow-dropdown`, and the on-dark focus ring to

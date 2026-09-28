@@ -25,7 +25,7 @@
 body {
     font-family: var(--font-family-primary);
     font-size: var(--font-size-body);
-    color: var(--color-text-primary);
+    color: var(--color-text);
     background-color: var(--color-bg-body);
     line-height: var(--line-height-relaxed);
 }
@@ -160,7 +160,7 @@ h2.sectionTitle {
     font-weight: var(--h2-font-weight);
     line-height: var(--h2-line-height);
     letter-spacing: var(--h2-letter-spacing);
-    color: var(--color-text-primary);
+    color: var(--color-text);
     margin-top: var(--spacing-xl);
     margin-bottom: var(--spacing-md);
 
@@ -399,7 +399,7 @@ code {
     font-size: 0.9em;
     padding: 0.2em 0.4em;
     background: var(--color-gray-10);
-    color: var(--color-text-primary);
+    color: var(--color-text);
     border-radius: var(--radius-sm);
     border: 1px solid var(--color-gray-20);
 }
@@ -467,7 +467,7 @@ label {
     margin-bottom: var(--spacing-xs);
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-base);
-    color: var(--color-text-primary);
+    color: var(--color-text);
 }
 
 // Text inputs
@@ -491,7 +491,7 @@ textarea {
     font-family: inherit;
     font-size: var(--font-size-base);
     line-height: var(--line-height-normal);
-    color: var(--color-text-primary);
+    color: var(--color-text);
     background-color: var(--color-white);
     border: 1px solid var(--color-gray-70); // DESIGN.md §4 Fields: 5.74:1 on white, the same width in every state
     border-radius: var(--radius-md);
@@ -537,7 +537,7 @@ select {
     font-family: inherit;
     font-size: var(--font-size-base);
     line-height: var(--line-height-normal);
-    color: var(--color-text-primary);
+    color: var(--color-text);
     background-color: var(--color-white);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -591,7 +591,7 @@ legend {
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-lg);
     padding: 0 var(--spacing-sm);
-    color: var(--color-text-primary);
+    color: var(--color-text);
 }
 
 // Form validation states: a real error, so the error red
@@ -695,7 +695,7 @@ figcaption {
 
     &__caption {
         background: var(--color-gray-10);
-        color: var(--color-text-primary);
+        color: var(--color-text);
         font-style: italic;
         font-size: var(--font-size-sm);
         padding: var(--spacing-xs);

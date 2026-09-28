@@ -296,12 +296,12 @@ section {
 .nav-list>.active>a:focus {
   background: var(--color-selected-bg);
   background-color: var(--color-selected-bg);
-  color: var(--color-text-primary);
+  color: var(--color-text);
   font-weight: var(--font-weight-bold);
 }
 
 .nav-list>li>a {
-  color: var(--color-text-primary);
+  color: var(--color-text);
   font-size: var(--font-size-sm);
   text-shadow: none;
 }
@@ -320,7 +320,7 @@ section {
   box-shadow: none;
 
   >li>a {
-    color: var(--color-text-primary);
+    color: var(--color-text);
     margin: 0;
     border: 0;
     border-bottom: 1px solid var(--color-border-light);
@@ -341,7 +341,7 @@ section {
     border: 0;
     border-bottom: 1px solid var(--color-border-light);
     border-left: 4px solid var(--color-brand-primary);
-    color: var(--color-text-primary);
+    color: var(--color-text);
     text-shadow: none;
     box-shadow: none;
   }

@@ -182,8 +182,8 @@
   --color-accent-lime: var(--cu-accent-yellow-green);
   --color-accent-indigo: var(--cu-accent-indigo);
   --color-accent-violet: var(--cu-accent-dark-violet);
-  --color-text-primary: var(--cu-ink);
-  --color-text-secondary: var(--cu-muted);
+  --color-text: var(--cu-ink);
+  --color-text-muted: var(--cu-muted);
   --color-text-inverse: var(--color-white);
   --color-text-brand: var(--color-action);
   --color-text-on-brand: var(--color-white);
@@ -230,11 +230,11 @@
   --btn-secondary-active-bg: color-mix(in srgb, var(--color-brand-secondary) 90%, black);
   --btn-secondary-disabled-bg: color-mix(in srgb, var(--color-brand-secondary) 40%, white);
   --btn-secondary-disabled-text: var(--color-white);
-  --btn-success-bg: var(--color-accent-green);
+  --btn-success-bg: var(--color-status-success);
   --btn-success-text: var(--color-white);
-  --btn-success-hover-bg: color-mix(in srgb, var(--color-accent-green) 85%, black);
-  --btn-success-active-bg: color-mix(in srgb, var(--color-accent-green) 80%, black);
-  --btn-success-disabled-bg: color-mix(in srgb, var(--color-accent-green) 50%, white);
+  --btn-success-hover-bg: color-mix(in srgb, var(--color-status-success) 85%, black);
+  --btn-success-active-bg: color-mix(in srgb, var(--color-status-success) 80%, black);
+  --btn-success-disabled-bg: color-mix(in srgb, var(--color-status-success) 50%, white);
   --btn-success-disabled-text: var(--color-white);
   --btn-reverse-bg: var(--color-white);
   --btn-reverse-text: var(--cu-ink);
@@ -250,10 +250,10 @@
   --btn-secondary-outline-border: var(--color-brand-secondary);
   --btn-secondary-outline-hover-bg: var(--color-gray-10);
   --btn-secondary-outline-active-bg: var(--color-gray-20);
-  --btn-success-outline-text: var(--color-accent-green);
-  --btn-success-outline-border: var(--color-accent-green);
-  --btn-success-outline-hover-bg: color-mix(in srgb, var(--color-accent-green) 10%, white);
-  --btn-success-outline-active-bg: color-mix(in srgb, var(--color-accent-green) 25%, white);
+  --btn-success-outline-text: var(--color-status-success);
+  --btn-success-outline-border: var(--color-status-success);
+  --btn-success-outline-hover-bg: color-mix(in srgb, var(--color-status-success) 10%, white);
+  --btn-success-outline-active-bg: color-mix(in srgb, var(--color-status-success) 25%, white);
   --btn-reverse-outline-text: var(--color-white);
   --btn-reverse-outline-border: var(--color-white);
   --btn-reverse-outline-hover-bg: rgba(255, 255, 255, 0.15);
@@ -405,7 +405,6 @@
   --ratio-portrait: 9 / 16;
   --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 70%, black 30%);
   --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
-  --color-text-muted: color-mix(in srgb, var(--color-text-primary) 40%, var(--color-gray-40));
 }
 
 /**
@@ -511,7 +510,7 @@ h1, h2, h3, h4, h5, h6 {
 body {
   font-family: var(--font-family-primary);
   font-size: var(--font-size-body);
-  color: var(--color-text-primary);
+  color: var(--color-text);
   background-color: var(--color-bg-body);
   line-height: var(--line-height-relaxed);
 }
@@ -609,7 +608,7 @@ h2.sectionTitle {
   font-weight: var(--h2-font-weight);
   line-height: var(--h2-line-height);
   letter-spacing: var(--h2-letter-spacing);
-  color: var(--color-text-primary);
+  color: var(--color-text);
   margin-top: var(--spacing-xl);
   margin-bottom: var(--spacing-md);
 }
@@ -799,7 +798,7 @@ code {
   font-size: 0.9em;
   padding: 0.2em 0.4em;
   background: var(--color-gray-10);
-  color: var(--color-text-primary);
+  color: var(--color-text);
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-gray-20);
 }
@@ -853,7 +852,7 @@ label {
   margin-bottom: var(--spacing-xs);
   font-weight: var(--font-weight-medium);
   font-size: var(--font-size-base);
-  color: var(--color-text-primary);
+  color: var(--color-text);
 }
 
 input[type=text],
@@ -876,7 +875,7 @@ textarea {
   font-family: inherit;
   font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
-  color: var(--color-text-primary);
+  color: var(--color-text);
   background-color: var(--color-white);
   border: 1px solid var(--color-gray-70);
   border-radius: var(--radius-md);
@@ -962,7 +961,7 @@ select {
   font-family: inherit;
   font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
-  color: var(--color-text-primary);
+  color: var(--color-text);
   background-color: var(--color-white);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -1011,7 +1010,7 @@ legend {
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-lg);
   padding: 0 var(--spacing-sm);
-  color: var(--color-text-primary);
+  color: var(--color-text);
 }
 
 input:invalid:not(:placeholder-shown),
@@ -1091,7 +1090,7 @@ figcaption {
 }
 .iframe-container__caption {
   background: var(--color-gray-10);
-  color: var(--color-text-primary);
+  color: var(--color-text);
   font-style: italic;
   font-size: var(--font-size-sm);
   padding: var(--spacing-xs);
@@ -1172,7 +1171,7 @@ ul.nav-tabs {
 
 .nav-tabs > li > a:hover,
 .nav-tabs > li > a:focus {
-  color: var(--color-text-primary);
+  color: var(--color-text);
   background-color: transparent;
   border-bottom-color: var(--color-gray-40);
   text-decoration: none;
@@ -1187,7 +1186,7 @@ ul.nav-tabs {
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover,
 .nav-tabs > .active > a:focus {
-  color: var(--color-text-primary);
+  color: var(--color-text);
   font-weight: var(--font-weight-medium);
   background-color: transparent;
   border: none;
@@ -1336,7 +1335,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   --carousel-control-icon-size: var(--icon-size-md);
   --carousel-control-bg: var(--color-white);
   --carousel-control-bg-hover: var(--color-bg-subtle);
-  --carousel-control-icon-color: var(--color-text-primary);
+  --carousel-control-icon-color: var(--color-text);
   --carousel-indicator-width: 2rem;
   --carousel-indicator-height: 3px;
   --carousel-indicator-color: rgba(255, 255, 255, 0.5);
@@ -1457,7 +1456,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   padding-inline: var(--spacing-sm);
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   background-color: var(--color-bg-subtle);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-none);
@@ -1468,13 +1467,13 @@ a.accordion-toggle[aria-expanded=true]::after {
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  color: var(--color-text-primary);
+  color: var(--color-text);
 }
 
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th {
   background-color: var(--color-gray-10);
-  color: var(--color-text-primary);
+  color: var(--color-text);
 }
 
 .alert {
@@ -1484,7 +1483,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   border-left: 4px solid;
   border-radius: var(--radius-none);
   background-color: var(--color-bg-subtle);
-  color: var(--color-text-primary);
+  color: var(--color-text);
   font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
 }
@@ -1624,7 +1623,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 .badge-warning,
 .label-warning {
   background-color: var(--color-accent-orange);
-  color: var(--color-text-primary);
+  color: var(--color-text);
 }
 
 .badge-important,
@@ -1641,7 +1640,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 
 .badge-inverse,
 .label-inverse {
-  background-color: var(--color-text-primary);
+  background-color: var(--color-text);
 }
 
 .badge:empty,
@@ -1710,7 +1709,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 }
 .lead {
   font-size: var(--font-size-lead);
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   line-height: var(--line-height-lead);
   font-weight: var(--font-weight-regular);
 }
@@ -1736,11 +1735,11 @@ a.glossary:link,
 a.glossary:visited,
 a.glossary:hover,
 a.glossary:active {
-  color: var(--color-text-primary);
+  color: var(--color-text);
 }
 
 .glossaryTip {
-  background-color: var(--color-text-primary);
+  background-color: var(--color-text);
   color: var(--color-white);
 }
 
@@ -1966,7 +1965,7 @@ a.glossary:active {
   margin-top: var(--spacing-6);
   padding: var(--spacing-5) var(--spacing-6);
   background: var(--color-bg-subtle);
-  color: var(--color-text-primary);
+  color: var(--color-text);
   border-left: 4px solid var(--cu-callout, var(--cu-callout-key));
 }
 .cu-callout p {
@@ -2079,7 +2078,7 @@ a.glossary:active {
 }
 
 .cu-rule-strong {
-  border-top: 2px solid var(--color-text-primary);
+  border-top: 2px solid var(--color-text);
 }
 
 /**
@@ -2711,7 +2710,7 @@ button.button--block {
 .do-dont-list {
   margin: var(--spacing-3xl) 0;
   padding: var(--spacing-xl);
-  color: var(--color-text-primary);
+  color: var(--color-text);
   border: 1px solid var(--color-border-default);
   padding-top: 0 !important;
 }
@@ -3124,12 +3123,12 @@ section {
 .nav-list > .active > a:focus {
   background: var(--color-selected-bg);
   background-color: var(--color-selected-bg);
-  color: var(--color-text-primary);
+  color: var(--color-text);
   font-weight: var(--font-weight-bold);
 }
 
 .nav-list > li > a {
-  color: var(--color-text-primary);
+  color: var(--color-text);
   font-size: var(--font-size-sm);
   text-shadow: none;
 }
@@ -3145,7 +3144,7 @@ section {
   box-shadow: none;
 }
 .bs-docs-sidenav > li > a {
-  color: var(--color-text-primary);
+  color: var(--color-text);
   margin: 0;
   border: 0;
   border-bottom: 1px solid var(--color-border-light);
@@ -3162,7 +3161,7 @@ section {
   border: 0;
   border-bottom: 1px solid var(--color-border-light);
   border-left: 4px solid var(--color-brand-primary);
-  color: var(--color-text-primary);
+  color: var(--color-text);
   text-shadow: none;
   box-shadow: none;
 }
@@ -3312,7 +3311,7 @@ This is where you can define styles that will be available
   left: 1rem;
   z-index: var(--z-index-toast);
   padding: var(--spacing-4);
-  background: var(--color-text-primary);
+  background: var(--color-text);
   color: var(--color-white);
   text-decoration: none;
   font-weight: var(--font-weight-bold);
@@ -4368,11 +4367,11 @@ This is where you can define styles that will be available
 }
 
 .text-primary {
-  color: var(--color-text-primary) !important;
+  color: var(--color-text) !important;
 }
 
 .text-secondary {
-  color: var(--color-text-secondary) !important;
+  color: var(--color-text-muted) !important;
 }
 
 .text-brand {
@@ -4566,7 +4565,7 @@ This is where you can define styles that will be available
 }
 
 .text-cu-black {
-  color: var(--color-text-primary) !important;
+  color: var(--color-text) !important;
 }
 
 /* No web font - Design System v1.7 uses the Franklin Gothic stack with system fallbacks */
