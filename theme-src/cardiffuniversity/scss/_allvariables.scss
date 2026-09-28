@@ -18,8 +18,8 @@
     // BRAND COLORS
     // The project override points. A project restyles the theme by setting these two at :root,
     // in its Styles or Stylesheet property (see THEMING-GUIDE.md). Every brand-coloured part reads
-    // them, and the action and navbar shades below derive from them. Text, focus, error, the
-    // Warning callout and charts do not, so they stay put under any brand.
+    // them, and the action and navbar shades below derive from them. Text, focus, error and the
+    // Warning callout do not, so they stay put under any brand.
     //   primary:   the header edge, navbar marker, side-menu rule, selected-item wash, progress bars,
     //              icon-list icons and, through the action shades, primary buttons, selected checkboxes and radio
     //              buttons, and the feedback tab
@@ -121,7 +121,6 @@
     --color-border-light: var(--cu-line);
     --color-border-dark: var(--color-gray-40);
     --color-border-focus: var(--color-focus);
-    --color-border-brand: var(--color-brand-primary);
 
     // Status
     --color-status-success: var(--cu-success);
@@ -224,8 +223,6 @@
 
     --btn-ghost-text: var(--cu-ink);
     --btn-ghost-hover-bg: var(--color-gray-10);
-    --btn-ghost-hover-text: var(--cu-ink);
-    --btn-ghost-active-text: var(--cu-ink);
     --btn-ghost-disabled-text: var(--color-gray-50);
 
     // ----- BUTTON SIZING & STYLING -----
@@ -289,19 +286,15 @@
     --font-weight-heavy: var(--cu-weight-display);
 
     // Shared leading is aliased; other legacy steps are Xerte settings.
-    --line-height-none: 1;
     --line-height-heading: var(--cu-leading-heading);
     --line-height-tight: 1.2;
     --line-height-snug: 1.3;
     --line-height-normal: 1.5;
     --line-height-relaxed: var(--cu-leading-body);
-    --line-height-loose: 1.75;
 
     // Shared heading tracking plus Xerte-specific utility steps.
     --letter-spacing-heading: var(--cu-tracking-heading);
     --letter-spacing-tighter: -0.02em;
-    --letter-spacing-tight: -0.01em;
-    --letter-spacing-normal: 0;
     --letter-spacing-wide: 0.02em;
     --letter-spacing-wider: 0.05em;
 
@@ -347,16 +340,10 @@
     --h6-line-height: var(--line-height-relaxed);
     --h6-letter-spacing: normal;
 
-    // Secondary Headings (Serif)
-    --h-secondary-font-family: var(--font-family-secondary);
-    --h-secondary-font-weight: var(--font-weight-regular);
-
     // =========================================================================
     // SPACING
     // =========================================================================
 
-    --spacing-0: 0;
-    --spacing-px: 1px;
     --spacing-1: var(--cu-space-1);
     --spacing-2: var(--cu-space-2);
     --spacing-3: var(--cu-space-3);
@@ -365,14 +352,10 @@
     --spacing-6: var(--cu-space-6);
     --spacing-7: var(--cu-space-7);
     --spacing-8: var(--cu-space-8);
-    --spacing-9: var(--cu-space-9);
     --spacing-10: var(--cu-space-10);
     --spacing-12: var(--cu-space-12);
-    --spacing-14: var(--cu-space-14);
     --spacing-16: var(--cu-space-16);
-    --spacing-20: var(--cu-space-20);
     --spacing-24: var(--cu-space-24);
-    --spacing-32: calc(var(--cu-space-16) * 2); // extension beyond the shared scale
 
     // Semantic aliases
     --spacing-xs: var(--spacing-1);
@@ -382,28 +365,6 @@
     --spacing-xl: var(--spacing-8);
     --spacing-2xl: var(--spacing-12);
     --spacing-3xl: var(--spacing-16);
-    --spacing-4xl: var(--spacing-24);
-
-    // Component Spacing
-    --spacing-card: var(--spacing-6);
-    --spacing-section: var(--spacing-16);
-
-    // =========================================================================
-    // LAYOUT
-    // =========================================================================
-
-    --container-max-width: 1240px; // DS desktop container
-    --container-padding-mobile: var(--cu-space-4);
-    --container-padding-tablet: var(--cu-space-6);
-    --container-padding-desktop: var(--cu-space-8);
-
-    --content-width-narrow: 640px;
-    --content-width-medium: 768px;
-    --content-width-wide: 1024px;
-    --content-width-full: 100%;
-
-    --grid-columns: 12;
-    --grid-gutter: var(--cu-space-6);
 
     // =========================================================================
     // BORDERS
@@ -415,7 +376,6 @@
     --radius-md: var(--cu-radius);
     --radius-lg: 0;
     --radius-xl: 0;
-    --radius-2xl: 0;
     --radius-full: 9999px;
 
     // Semantic radius
@@ -424,7 +384,6 @@
     --radius-image: var(--radius-none);
     --radius-control: var(--radius-md);
 
-    --border-width-0: 0;
     --border-width-1: 1px;
     --border-width-2: 2px;
     --border-width-4: 4px;
@@ -433,18 +392,14 @@
     // SHADOWS
     // =========================================================================
 
-    --shadow-none: var(--cu-shadow);
     --shadow-sm: var(--cu-shadow-sm);
     --shadow-md: var(--cu-shadow-md);
     --shadow-lg: var(--cu-shadow-lg);
     --shadow-xl: var(--cu-shadow-xl);
-    --shadow-2xl: var(--cu-shadow-2xl);
 
     // Semantic shadows
     --shadow-card: var(--shadow-sm);
-    --shadow-card-hover: none;
     --shadow-dropdown: var(--shadow-lg);
-    --shadow-modal: var(--shadow-xl);
 
     // =========================================================================
     // ANIMATION
@@ -455,26 +410,16 @@
     --duration-slow: 500ms;
 
     --easing-default: var(--cu-ease);
-    --easing-in: cubic-bezier(0.4, 0, 1, 1);
-    --easing-out: cubic-bezier(0, 0, 0.2, 1);
-    --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
     // Transition presets
     --transition-fast: var(--duration-fast) var(--easing-default);
-    --transition-normal: var(--duration-normal) var(--easing-default);
-    --transition-slow: var(--duration-slow) var(--easing-default);
 
     // =========================================================================
     // Z-INDEX
     // =========================================================================
 
-    --z-index-behind: -1;
-    --z-index-base: 0;
     --z-index-raised: 1;
     --z-index-dropdown: 100;
-    --z-index-sticky: 200;
-    --z-index-overlay: 300;
-    --z-index-modal: 400;
     --z-index-toast: 500;
 
     // =========================================================================
@@ -489,7 +434,6 @@
     --focus-ring-style: solid;
     --focus-ring: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color);
 
-    --min-touch-target: 44px;
     --min-input-height: 56px;
     --min-textarea-height: 112px;
 
@@ -497,10 +441,7 @@
     // ICONS
     // =========================================================================
 
-    --icon-size-sm: 20px; // other icon steps are Xerte-specific
-    --icon-size-md: var(--cu-icon-size);
     --icon-size-lg: 32px;
-    --icon-size-xl: 48px;
 
     // =========================================================================
     // ASPECT RATIOS
@@ -513,22 +454,13 @@
     --ratio-portrait: 9 / 16;
 
     // =========================================================================
-    // COLOR SCALES (Auto-generated with color-mix)
+    // DERIVED SHADES (color-mix)
     // =========================================================================
-
-    --color-brand-primary-lighter: color-mix(in srgb, var(--color-brand-primary) 40%, white 60%);
-    --color-brand-primary-light: color-mix(in srgb, var(--color-brand-primary) 70%, white 30%);
-    --color-brand-primary-dark: color-mix(in srgb, var(--color-brand-primary) 70%, black 30%);
-    --color-brand-primary-darker: color-mix(in srgb, var(--color-brand-primary) 40%, black 60%);
 
     // Orange fails 3:1 against the progress track and 4.5:1 under white text; this tone passes both.
     --color-accent-orange-dark: color-mix(in srgb, var(--color-accent-orange) 70%, black 30%);
 
-    --color-brand-secondary-lighter: color-mix(in srgb, var(--color-brand-secondary) 30%, white);
     --color-brand-secondary-light: color-mix(in srgb, var(--color-brand-secondary) 15%, white);
-    --color-brand-secondary-dark: color-mix(in srgb, var(--color-brand-secondary) 15%, black);
-    --color-brand-secondary-darker: color-mix(in srgb, var(--color-brand-secondary) 30%, black);
 
-    --color-text-subtle: color-mix(in srgb, var(--color-text-primary) 60%, var(--color-gray-50));
     --color-text-muted: color-mix(in srgb, var(--color-text-primary) 40%, var(--color-gray-40));
 }

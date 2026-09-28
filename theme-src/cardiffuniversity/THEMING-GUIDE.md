@@ -40,7 +40,7 @@ theme.
 | `--color-brand-secondary` | Navbar and its hover and current-page fill, footer, secondary and secondary-outline buttons, `.bg-dark`, tab underline and pills, back-to-top button, Do/Don't labels | Ink (`--cu-ink`) |
 
 These do not follow the brand: body text and headings (always ink), focus rings, links,
-fields, error red and the required-field asterisk, the Warning callout, charts, the skip link,
+fields, error red and the required-field asterisk, the Warning callout, the skip link,
 glossary tip, reverse and ghost button text, inverse and warning badges, and logos.
 
 The action shades are mixed from the primary: 85% and 70.5% of it with black for the button
@@ -127,7 +127,7 @@ attribute on `<html>`; a `data-theme` attribute alone does not activate any buil
 
 To create another institution's theme, fork the theme, provide a separate token source and
 review its full palette and role mapping. Do not change Cardiff's `tokens.json` or its
-generated partial just to recolour that fork. Brand colours, error, callout and chart roles are
+generated partial just to recolour that fork. Brand colours, error and callout roles are
 separate decisions, so changing the two brand colours alone is not a complete rebrand. Cardiff logos
 and other identity assets also need replacing. Alternate brands and dark mode are not
 validated features of this migration.
