@@ -766,7 +766,7 @@ a.accordion-toggle[aria-expanded="true"]::after {
     line-height: 20px;
     color: var(--color-white);
     text-align: center;
-    background-color: var(--color-brand-secondary);
+    background-color: var(--color-brand-primary);
     transition: width var(--duration-normal) ease;
 }
 

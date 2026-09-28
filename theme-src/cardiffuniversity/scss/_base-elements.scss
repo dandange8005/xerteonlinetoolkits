@@ -281,7 +281,7 @@ section,
 
     li span {
         margin-right: 10px;
-        color: var(--cu-ink);
+        color: var(--color-brand-primary);
         font-size: inherit;
     }
 }
@@ -636,6 +636,7 @@ figcaption {
     font-size: var(--font-size-sm);
     padding: var(--spacing-xs);
     caption-side: bottom;
+    margin-top: 0;
 }
 
 // Video & iFrames

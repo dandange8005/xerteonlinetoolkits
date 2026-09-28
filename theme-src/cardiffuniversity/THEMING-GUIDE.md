@@ -36,8 +36,8 @@ theme.
 
 | Colour | What follows it | Cardiff default |
 | --- | --- | --- |
-| `--color-brand-primary` | Header top edge, navbar current-page marker, the rule under a navbar placed below the header, side-menu selected rule and wash, `.text-brand`, `.bg-brand`. Through the action shades: primary and primary-outline buttons, the feedback tab | Cardiff red (`--cu-red`) |
-| `--color-brand-secondary` | Navbar and its hover and current-page fill, footer, secondary and secondary-outline buttons, `.bg-dark`, tab underline and pills, the default progress bar, back-to-top button, Do/Don't labels | Ink (`--cu-ink`) |
+| `--color-brand-primary` | Header top edge, navbar current-page marker, the rule under a navbar placed below the header, side-menu selected rule and wash, the default progress bar, icon-list icons, `.text-brand`, `.bg-brand`. Through the action shades: primary and primary-outline buttons, the feedback tab | Cardiff red (`--cu-red`) |
+| `--color-brand-secondary` | Navbar and its hover and current-page fill, footer, secondary and secondary-outline buttons, `.bg-dark`, tab underline and pills, back-to-top button, Do/Don't labels | Ink (`--cu-ink`) |
 
 These do not follow the brand: body text and headings (always ink), focus rings, links,
 fields, error red and the required-field asterisk, the Warning callout, charts, the skip link,
@@ -56,7 +56,9 @@ Check contrast before publishing:
 - White navbar text on the secondary, and on the secondary with 14% white, needs 4.5:1, and
   the footer's grey-30 text needs 4.5:1 on the secondary. Choose a dark secondary.
 - Pill and secondary-outline text in the secondary needs 4.5:1 on white, and the tab underline
-  and the progress bar need 3:1 against white and the grey progress track.
+  needs 3:1 against white.
+- The progress bar, in the primary, needs 3:1 against the grey progress track, and 4.5:1 for
+  its white label.
 - The primary as a 4px edge or marker needs 3:1 against white or the navbar.
 
 `--cu-red` still works as an override, because the brand primary reads it by default, but

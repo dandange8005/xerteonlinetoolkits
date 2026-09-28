@@ -787,7 +787,7 @@ section dd,
 }
 .list-icon li span {
   margin-right: 10px;
-  color: var(--cu-ink);
+  color: var(--color-brand-primary);
   font-size: inherit;
 }
 
@@ -1124,6 +1124,7 @@ figcaption {
   font-size: var(--font-size-sm);
   padding: var(--spacing-xs);
   caption-side: bottom;
+  margin-top: 0;
 }
 
 .video-720 {
@@ -1744,7 +1745,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   line-height: 20px;
   color: var(--color-white);
   text-align: center;
-  background-color: var(--color-brand-secondary);
+  background-color: var(--color-brand-primary);
   transition: width var(--duration-normal) ease;
 }
 

@@ -20,10 +20,10 @@
     // in its Styles or Stylesheet property (see THEMING-GUIDE.md). Every brand-coloured part reads
     // them, and the action and navbar shades below derive from them. Text, focus, error, the
     // Warning callout and charts do not, so they stay put under any brand.
-    //   primary:   the header edge, navbar marker, side-menu rule, selected-item wash and, through
-    //              the action shades, primary buttons and the feedback tab
-    //   secondary: the navbar, footer, secondary buttons, dark bands, tabs and pills, progress
-    //              bars, the back-to-top button and Do/Don't labels. Not text: that is ink.
+    //   primary:   the header edge, navbar marker, side-menu rule, selected-item wash, progress bars,
+    //              icon-list icons and, through the action shades, primary buttons and the feedback tab
+    //   secondary: the navbar, footer, secondary buttons, dark bands, tabs and pills, the
+    //              back-to-top button and Do/Don't labels. Not text: that is ink.
     // =========================================================================
 
     --color-brand-primary: var(--cu-red);
