@@ -29,8 +29,7 @@
   --cu-brand-red:#E4251B;
   --cu-white:#FFFFFF;
   --cu-black:#121212;
-  /* Tier 1 · darker tones of brand red for filled controls and error text (recorded deviation, DESIGN.md §2) */
-  --cu-brand-red-dark:#C21F16;
+  /* Tier 1 · a darker tone of brand red for error text (recorded deviation, DESIGN.md §2) */
   --cu-brand-red-darker:#A11A12;
   /* Tier 1 · greys, 10% steps from black */
   --cu-grey-10:#F2F2F2;
@@ -62,15 +61,9 @@
   --cu-line:var(--cu-grey-20);
   --cu-ink:var(--cu-black);
   --cu-muted:var(--cu-grey-70);
-  --cu-text-tertiary:var(--cu-grey-70);
-  --cu-red:var(--cu-brand-red);
-  --cu-action:var(--cu-brand-red-dark);
-  --cu-action-hover:var(--cu-brand-red-darker);
   --cu-error:var(--cu-brand-red-darker);
-  --cu-focus:var(--cu-black);
   --cu-link:#045bc6; /* recorded deviation: not in the Cardiff palette (DESIGN.md §2) */
   --cu-success:var(--cu-accent-forest-green);
-  --cu-draft:var(--cu-black);
   --cu-draft-bg:var(--cu-accent-yellow); /* draft label: black on Yellow, 10.4:1 */
   --cu-on-dark:var(--cu-white);
   --cu-on-dark-muted:var(--cu-grey-30);
@@ -152,7 +145,7 @@
  * not a two-variable override. See THEMING-GUIDE.md for the supported workflow.
  */
 :root {
-  --color-brand-primary: var(--cu-red);
+  --color-brand-primary: var(--cu-brand-red);
   --color-brand-secondary: var(--cu-ink);
   --color-white: var(--cu-white);
   --color-light: color-mix(in srgb, var(--cu-bg) 50%, var(--cu-surface) 50%);
@@ -160,8 +153,8 @@
   --color-action-hover: color-mix(in srgb, var(--color-brand-primary) 70.5%, black);
   --color-tint: color-mix(in srgb, var(--color-brand-primary) 17%, white);
   --color-selected-bg: color-mix(in srgb, var(--color-brand-primary) 6%, var(--cu-bg));
-  --color-focus: var(--cu-focus);
-  --color-draft: var(--cu-draft);
+  --color-focus: var(--cu-ink);
+  --color-draft: var(--cu-ink);
   --color-draft-bg: var(--cu-draft-bg);
   --color-on-dark: var(--cu-on-dark);
   --color-on-dark-muted: var(--cu-on-dark-muted);
@@ -188,7 +181,6 @@
   --color-accent-violet: var(--cu-accent-dark-violet);
   --color-text-primary: var(--cu-ink);
   --color-text-secondary: var(--cu-muted);
-  --color-text-tertiary: var(--cu-text-tertiary);
   --color-text-inverse: var(--color-white);
   --color-text-brand: var(--color-action);
   --color-text-on-brand: var(--color-white);
@@ -1378,7 +1370,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 .carousel-control:focus-visible {
   outline: var(--focus-ring-width) solid var(--color-white);
   outline-offset: 2px;
-  box-shadow: 0 0 0 6px var(--cu-focus);
+  box-shadow: 0 0 0 6px var(--color-focus);
 }
 
 .carousel-control.left {

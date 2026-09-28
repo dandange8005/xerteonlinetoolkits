@@ -56,22 +56,15 @@ def focused_border(selector):
 # (group, name, JavaScript expression evaluated in the fixture, expected string[, variant])
 CHECKS = [
     ("smoke", "theme loaded: body copy is 18px", "cs('body','fontSize')", "18px"),
-    ("tokens", "--cu-action is dark Cardiff red", "v('var(--cu-action)')", "rgb(194, 31, 22)"),
     ("tokens", "--cu-callout-tip is Cadet", "v('var(--cu-callout-tip)')", "rgb(94, 185, 155)"),
     ("tokens", "--cu-space-6 is 24px", "v('var(--cu-space-6)','paddingTop')", "24px"),
-    # The action shades derive from the brand primary; for Cardiff red they land one step from
-    # the design system's values, in the blue channel (#C21F17, #A11A13).
+    # The action shades derive from the brand primary: for Cardiff red, #C21F17 and #A11A13.
     ("roles", "action derives from brand red: #C21F17", "rounded(v('var(--color-action)'))", "rgb(194, 31, 23)"),
     ("roles", "action hover derives from brand red: #A11A13", "rounded(v('var(--color-action-hover)'))", "rgb(161, 26, 19)"),
-    ("roles", "action is within one step of the design system's --cu-action",
-     "String(sameColor(v('var(--color-action)'),v('var(--cu-action)'),1.5))", "true"),
-    ("roles", "action hover is within one step of the design system's --cu-action-hover",
-     "String(sameColor(v('var(--color-action-hover)'),v('var(--cu-action-hover)'),1.5))", "true"),
     ("roles", "error is #A11A12", "v('var(--color-status-error)')", "rgb(161, 26, 18)"),
     ("roles", "focus is black", "v('var(--color-focus)')", "rgb(18, 18, 18)"),
     ("roles", "draft label text is black", "v('var(--color-draft)')", "rgb(18, 18, 18)"),
     ("roles", "draft label background is Yellow", "v('var(--color-draft-bg)','backgroundColor')", "rgb(255, 179, 0)"),
-    ("roles", "tertiary text is grey-70", "v('var(--color-text-tertiary)')", "rgb(102, 102, 102)"),
     ("roles", "link blue unchanged", "v('var(--color-link-default)')", "rgb(4, 91, 198)"),
     ("roles", "brand red unchanged", "v('var(--color-brand-primary)')", "rgb(228, 37, 27)"),
     ("roles", "heading font is the Franklin Gothic stack", "cs('#pageTitle','fontFamily').split(',')[0].trim()", '"Franklin Gothic Heavy"'),

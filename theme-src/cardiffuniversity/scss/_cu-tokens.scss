@@ -6,8 +6,7 @@
  --cu-white:#FFFFFF;
  --cu-black:#121212;
 
- /* Tier 1 · darker tones of brand red for filled controls and error text (recorded deviation, DESIGN.md §2) */
- --cu-brand-red-dark:#C21F16;
+ /* Tier 1 · a darker tone of brand red for error text (recorded deviation, DESIGN.md §2) */
  --cu-brand-red-darker:#A11A12;
 
  /* Tier 1 · greys, 10% steps from black */
@@ -42,15 +41,9 @@
  --cu-line:var(--cu-grey-20);
  --cu-ink:var(--cu-black);
  --cu-muted:var(--cu-grey-70);
- --cu-text-tertiary:var(--cu-grey-70);
- --cu-red:var(--cu-brand-red);
- --cu-action:var(--cu-brand-red-dark);
- --cu-action-hover:var(--cu-brand-red-darker);
  --cu-error:var(--cu-brand-red-darker);
- --cu-focus:var(--cu-black);
  --cu-link:#045bc6; /* recorded deviation: not in the Cardiff palette (DESIGN.md §2) */
  --cu-success:var(--cu-accent-forest-green);
- --cu-draft:var(--cu-black);
  --cu-draft-bg:var(--cu-accent-yellow); /* draft label: black on Yellow, 10.4:1 */
  --cu-on-dark:var(--cu-white);
  --cu-on-dark-muted:var(--cu-grey-30);

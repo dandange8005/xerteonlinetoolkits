@@ -93,7 +93,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Brand Primary</span>
                         <span class="color-info__value">--color-brand-primary</span>
-                        <span class="color-info__value">var(--cu-red) · #E4251B</span>
+                        <span class="color-info__value">var(--cu-brand-red) · #E4251B</span>
                     </div>
                 </div>
 
@@ -359,14 +359,6 @@
                     </div>
                 </div>
 
-                <div>
-                    <div class="color-swatch" style="background: var(--color-text-tertiary);"></div>
-                    <div class="color-info">
-                        <span class="color-info__name">Text Tertiary</span>
-                        <span class="color-info__value">--color-text-tertiary</span>
-                        <span class="color-info__value">var(--cu-text-tertiary) · #666666</span>
-                    </div>
-                </div>
 
                 <div>
                     <div class="color-swatch" style="background: var(--color-text-brand);"></div>
@@ -609,7 +601,7 @@
                     <div class="color-info">
                         <span class="color-info__name">Focus</span>
                         <span class="color-info__value">--color-focus</span>
-                        <span class="color-info__value">var(--cu-focus) · #121212</span>
+                        <span class="color-info__value">var(--cu-ink) · #121212</span>
                     </div>
                 </div>
                 <div>
@@ -714,8 +706,8 @@
             <div class="demo-block">
                 <div class="demo-block__title">Where the colours come from</div>
                 <p>Every colour, font family and spacing value comes from the theme&rsquo;s <code>tokens/tokens.json</code>. <code>tools/build-tokens.py</code> generates <code>scss/_cu-tokens.scss</code> (the <code>--cu-*</code> tokens at <code>:root</code>); the theme&rsquo;s <code>--color-*</code> roles point at those tokens. Don&rsquo;t edit the generated file: change <code>tokens.json</code>, then run <code>build.sh</code>, which regenerates the tokens and recompiles the theme.</p>
-                <pre><code>--color-brand-primary: var(--cu-red);  /* #E4251B */
---color-focus: var(--cu-focus);        /* #121212 */
+                <pre><code>--color-brand-primary: var(--cu-brand-red);  /* #E4251B */
+--color-focus: var(--cu-ink);                /* #121212 */
 --color-link-default: var(--cu-link);  /* #045BC6 */</code></pre>
             </div>
 

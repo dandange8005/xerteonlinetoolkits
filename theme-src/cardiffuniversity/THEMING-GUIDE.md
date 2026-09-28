@@ -61,9 +61,8 @@ Check contrast before publishing:
   its white label.
 - The primary as a 4px edge or marker needs 3:1 against white or the navbar.
 
-`--cu-red` still works as an override, because the brand primary reads it by default, but
-`--color-brand-primary` is the supported name. Overriding `--cu-action` no longer reaches the
-buttons: they follow the brand primary.
+`--color-brand-primary` is the supported name. Buttons and the other action shades follow the brand
+primary, so there is no separate action colour to override.
 
 ## Project overrides
 
