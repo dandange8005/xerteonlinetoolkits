@@ -61,7 +61,7 @@ Three deliberate differences from the earlier version:
    the theme.
 3. **Rounded panels are kept as a recorded deviation.** The design system keeps structural panels
    square (`--radius-card: 0`). This page's 16px cards, 12px alongside panel and 6px search box are
-   declared as `--am-radius-*` at the top of `styles.css` and commented as such; pill chips and the
+   declared as `--am-home-radius-*` at the top of `styles.css` and commented as such; pill chips and the
    circular numbers use the theme's own `--radius-full`.
 
 The two on-dark lane accents have no design-system equivalent, so they are mixed from the DS accents
