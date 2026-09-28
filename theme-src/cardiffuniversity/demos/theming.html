@@ -179,8 +179,8 @@
             <table>
                 <thead><tr><th>To change</th><th>Override at <code>:root</code></th></tr></thead>
                 <tbody>
-                    <tr><td>Main brand colour: header edge, current-page markers, side-menu selection, primary buttons, feedback tab</td><td><code>--color-brand-primary</code></td></tr>
-                    <tr><td>Dark supporting colour: navbar, footer, secondary buttons, <code>.bg-dark</code>, tabs and pills, progress bars, back-to-top button, Do/Don't labels</td><td><code>--color-brand-secondary</code></td></tr>
+                    <tr><td>Main brand colour: header edge, current-page markers, side-menu selection, progress bars, icon-list icons, primary buttons, selected checkboxes and radio buttons, feedback tab</td><td><code>--color-brand-primary</code></td></tr>
+                    <tr><td>Dark supporting colour: navbar, footer, secondary buttons, <code>.bg-dark</code>, tabs and pills, back-to-top button, Do/Don't labels</td><td><code>--color-brand-secondary</code></td></tr>
                     <tr><td>Primary button and its hover, only if the mixed shades fail contrast</td><td><code>--color-action</code>, <code>--color-action-hover</code></td></tr>
                     <tr><td>Reading copy size and font</td><td><code>--cu-text-body</code>, <code>--cu-body</code></td></tr>
                     <tr><td>Display, section and component headings</td><td><code>--cu-text-display</code>, <code>--cu-text-section</code>, <code>--cu-text-component</code></td></tr>
@@ -199,7 +199,7 @@
             <h2>What Theming Does Not Change</h2>
             <ul>
                 <li><strong>Logos and identity assets.</strong> The Cardiff logo is an image; replace it in the project's header settings.</li>
-                <li><strong>Text and in-page controls.</strong> Body text and headings are always ink, whatever the secondary colour. Links, focus rings, fields, the skip link and the glossary tip do not follow the brand either. Tabs, pills, progress bars, the back-to-top button and Do/Don't labels do: they take the secondary colour.</li>
+                <li><strong>Text and in-page controls.</strong> Body text and headings are always ink, whatever the secondary colour. Links, focus rings, fields, the skip link and the glossary tip do not follow the brand either. Tabs, pills, the back-to-top button and Do/Don't labels take the secondary colour; progress bars, icon-list icons, and selected checkboxes and radio buttons take the primary.</li>
                 <li><strong>Error, Warning and chart colours.</strong> Error red, the required-field asterisk, the Warning callout and the first chart series read the design system's palette directly, so changing the brand colours leaves them Cardiff red. They are separate decisions: override <code>--cu-error</code>, <code>--cu-callout-warning</code> or <code>--cu-chart-single</code> deliberately if a brand needs it, and check each one's contrast.</li>
                 <li><strong>Part of a page.</strong> Overrides belong on <code>:root</code>. Setting a role on one section does not restyle it reliably, because the older names were resolved at <code>:root</code>.</li>
                 <li><strong>Page variants.</strong> For an optional variant, as on this page, put the overrides under <code>:root[data-theme="your-name"]</code> and set that attribute on <code>&lt;html&gt;</code>. The theme ships no built-in variants.</li>
@@ -209,7 +209,8 @@
             <ul>
                 <li>White text on the primary mixed 85% with black (the primary button). A light primary such as a yellow will not reach 4.5:1; set <code>--color-action</code> and <code>--color-action-hover</code> yourself.</li>
                 <li>White text on the secondary and on the secondary with 14% white (the navbar's current page), and grey footer text on the secondary. Choose a dark secondary.</li>
-                <li>Pill text in the secondary on white, 4.5:1; the tab underline and progress bar against white and the grey track, 3:1.</li>
+                <li>Pill text in the secondary on white, 4.5:1; the tab underline against white, 3:1.</li>
+                <li>The progress bar in the primary against the grey track, 3:1, and its white label, 4.5:1. Selected checkboxes and radio buttons use the action shade against white, 3:1.</li>
                 <li>The primary edge against white, 3:1 or better.</li>
             </ul>
             <p>Dark mode is not a tested feature of this theme.</p>

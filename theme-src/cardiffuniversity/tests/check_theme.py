@@ -292,11 +292,17 @@ CHECKS = [
      "rgb(18, 18, 18) rgb(18, 18, 18)"),
     # The player's .top-round sets `transition: all .3s !important`, which beats withBrand's rule,
     # so the button's transition stays off inline until the example brand has been undone.
-    ("theming", "pills, the progress bar and the back-to-top button take the brand secondary",
+    ("theming", "pills and the back-to-top button take the brand secondary",
      "(function(){const t=document.getElementById('top-round');t.style.setProperty('transition','none','important');"
-     "try{return withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>[cs('#pill-first a','backgroundColor'),cs('#bar-default','backgroundColor'),cs('#top-round','backgroundColor')].join(' '))}"
+     "try{return withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>[cs('#pill-first a','backgroundColor'),cs('#top-round','backgroundColor')].join(' '))}"
      "finally{void t.offsetHeight;t.style.removeProperty('transition')}})()",
-     "rgb(29, 43, 79) rgb(29, 43, 79) rgb(29, 43, 79)"),
+     "rgb(29, 43, 79) rgb(29, 43, 79)"),
+    ("theming", "the progress bar and icon-list icons take the brand primary",
+     "withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>[cs('#bar-default','backgroundColor'),cs('#list-icon-span','color')].join(' '))",
+     "rgb(0, 112, 60) rgb(0, 112, 60)"),
+    ("theming", "checked radios and checkboxes take the action shade of the brand primary",
+     "withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>[rounded(cs('#radio-checked','accentColor')),rounded(cs('#checkbox-checked','accentColor'))].join(' '))",
+     "rgb(0, 95, 51) rgb(0, 95, 51)"),
     ("theming", "error, the Warning callout, focus and links do not follow the brand",
      "withBrand('rgb(0, 112, 60)','rgb(29, 43, 79)',()=>[v('var(--color-status-error)'),cs('#callout-warning','borderLeftColor'),v('var(--color-focus)'),v('var(--color-link-default)')].join(' '))",
      "rgb(161, 26, 18) rgb(228, 37, 27) rgb(18, 18, 18) rgb(4, 91, 198)"),
@@ -390,7 +396,7 @@ CHECKS = [
     ("chrome", "glossary term is marked by more than colour",
      "String(parseFloat(cs('#glossary-term','borderBottomWidth'))>=1 && cs('#glossary-term','borderBottomStyle')!=='none')", "true"),
     # Alerts, badges and progress (21 September 2026). Danger and error states use the design
-    # system's error red; the default progress fill is ink (Red Usage Decisions).
+    # system's error red; the default progress fill is the brand primary.
     ("status", "alert sits on the grey surface", "cs('#alert-info','backgroundColor')", "rgb(242, 242, 242)"),
     ("status", "alert corners are square", "cs('#alert-info','borderTopLeftRadius')", "0px"),
     ("status", "alert text is ink", "cs('#alert-info','color')", "rgb(18, 18, 18)"),
@@ -415,7 +421,7 @@ CHECKS = [
     ("status", "info badge is link blue", "cs('#badge-info','backgroundColor')", "rgb(4, 91, 198)"),
     ("status", "progress track has no shadow", "cs('#progress-track','boxShadow')", "none"),
     ("status", "progress track is square", "cs('#progress-track','borderTopLeftRadius')", "0px"),
-    ("status", "default progress fill is ink", "cs('#bar-default','backgroundColor')", "rgb(18, 18, 18)"),
+    ("status", "default progress fill is brand red", "cs('#bar-default','backgroundColor')", "rgb(228, 37, 27)"),
     ("status", "danger progress fill is the error red", "cs('#bar-danger','backgroundColor')", "rgb(161, 26, 18)"),
     ("status", "info progress fill is link blue", "cs('#bar-info','backgroundColor')", "rgb(4, 91, 198)"),
     ("status", "every progress fill shows against its track at 3:1 or better",
@@ -480,7 +486,8 @@ CHECKS = [
     ("warning", "the draft label keeps its own black-on-yellow (10.4:1), unaffected by the rename",
      "cs('#draft-label','color')+' '+cs('#draft-label','backgroundColor')", "rgb(18, 18, 18) rgb(255, 179, 0)"),
     # Red usage, remaining rows (23 September 2026, DESIGN.md v1.5 §2): red is kept for a real
-    # error; field focus, radios, list spans, inline code, pre rule and skip link are not red.
+    # error; field focus, inline code, pre rule and skip link are not red. Radios, checkboxes and list
+    # spans were ink here until 28 September 2026, when they moved to the brand colours.
     ("red", "an invalid select's border is the error red", "cs('#select-invalid','borderTopColor')", "rgb(161, 26, 18)"),
     ("red", "the invalid border shows on white at 3:1 or better", "String(contrast('#select-invalid','body','borderTopColor')>=3)", "true"),
     # The asterisk is the error red, not brand red, so recolouring the brand leaves it alone.
@@ -492,9 +499,9 @@ CHECKS = [
      "p.id='asterisk-probe';var r=contrast('#asterisk-probe','body');p.remove();return String(r>=4.5)})()", "true"),
     *[("red", f"a focused {name}'s border is ink", focused_border(sel), "true rgb(18, 18, 18)")
       for name, sel in (("text input", "#text-input"), ("textarea", "#textarea-input"), ("select", "#select-plain"))],
-    ("red", "a checked radio is ink", "cs('#radio-checked','accentColor')", "rgb(18, 18, 18)"),
-    ("red", "a checked checkbox is ink", "cs('#checkbox-checked','accentColor')", "rgb(18, 18, 18)"),
-    ("red", "an icon-list span is ink", "cs('#list-icon-span','color')", "rgb(18, 18, 18)"),
+    ("red", "a checked radio is action red", "rounded(cs('#radio-checked','accentColor'))", "rgb(194, 31, 23)"),
+    ("red", "a checked checkbox is action red", "rounded(cs('#checkbox-checked','accentColor'))", "rgb(194, 31, 23)"),
+    ("red", "an icon-list span is brand red", "cs('#list-icon-span','color')", "rgb(228, 37, 27)"),
     ("red", "inline code is ink", "cs('#inline-code','color')", "rgb(18, 18, 18)"),
     ("red", "inline code reads on its grey at 4.5:1 or better", "String(contrast('#inline-code','#inline-code')>=4.5)", "true"),
     ("red", "the code block's left rule is the border grey",
