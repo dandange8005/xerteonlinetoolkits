@@ -17,6 +17,11 @@ RUNTIME="$REPO/themes/site/$NAME"
 python3 "$HERE/tools/build-tokens.py"
 npx -y sass@1 --no-source-map "$HERE/$NAME.scss" "$RUNTIME/$NAME.css"
 echo "Compiled $RUNTIME/$NAME.css"
+# Components read the theme names in _allvariables.scss; only the callouts and the logo width may read --cu-* directly.
+if grep -rnE '^[^/]*var\(--cu-' "$HERE/scss" --include='*.scss' \
+    | grep -vE '_allvariables\.scss|_cu-tokens\.scss|--cu-callout-|--cu-logo-width|--cu-sticky-nav'; then
+    echo "Warning: the lines above read --cu-* directly; map the token in _allvariables.scss and use that name."
+fi
 # The author guide's utility tables are generated from the CSS; warn (do not fail) when they drift.
 python3 "$HERE/tools/build-reference.py" --check || echo "Run: python3 tools/build-reference.py"
 

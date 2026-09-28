@@ -117,8 +117,9 @@ Component geometry is not automatically a spacing role just because its number m
 | Fast motion | `--cu-fast`, `--cu-ease` |
 | Xerte-only focus geometry | `--focus-ring-width`, `--focus-ring-offset` |
 
-Existing local overrides of names such as `--font-size-body` still work for their existing
-consumers. Prefer the shared roles when the change should reach both old and new components.
+Components read the theme names (`--font-size-body`, `--color-text-primary`, `--spacing-4`, and so
+on), which map to the shared roles, so overriding either reaches every component. The callouts
+and the header logo width read `--cu-callout-*` and `--cu-logo-width` directly.
 Subtree theme switching is not this adapter's supported workflow: inherited aliases resolve
 where declared, so a subtree override can need additional local alias declarations.
 For an optional page-wide variant, use `:root[data-theme="variant-name"]` and set that

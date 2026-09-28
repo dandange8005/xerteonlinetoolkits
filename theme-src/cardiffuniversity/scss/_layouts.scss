@@ -21,7 +21,7 @@
   color: var(--color-header-text);
   border-bottom: 1px solid var(--color-header-border);
   box-shadow: none;
-  padding: var(--cu-space-8) 0;
+  padding: var(--spacing-8) 0;
   text-shadow: none;
 
   &::before {
@@ -47,7 +47,7 @@
 #overview.logoR .container {
   display: flex;
   align-items: center;
-  gap: var(--cu-space-6);
+  gap: var(--spacing-6);
   flex-wrap: nowrap;
 }
 
@@ -128,20 +128,20 @@
 }
 
 #pageTitle {
-  font-family: var(--cu-display);
-  font-weight: var(--cu-weight-section);
-  letter-spacing: var(--cu-tracking-heading);
-  line-height: var(--cu-leading-heading);
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: var(--letter-spacing-heading);
+  line-height: var(--line-height-heading);
   color: var(--color-header-text);
   font-size: var(--font-size-3xl);
-  margin: 0 0 var(--cu-space-2);
+  margin: 0 0 var(--spacing-2);
 }
 
 #pageSubTitle {
-  font-weight: var(--cu-weight-regular);
+  font-weight: var(--font-weight-regular);
   color: var(--color-header-subtext);
   font-size: var(--font-size-lg);
-  line-height: var(--cu-leading-lead);
+  line-height: var(--line-height-lead);
   padding-top: 0;
   margin-bottom: 0;
 }
@@ -199,7 +199,7 @@
   margin: 0 0 0 auto;
   background: transparent;
   background-image: none;
-  border: 1px solid var(--cu-grey-70);
+  border: 1px solid var(--color-gray-70);
   box-shadow: none;
 
   .icon-bar {
@@ -283,7 +283,7 @@ section {
   overflow: visible;
   display: flow-root;
   // Land anchor scrolls below the sticky page menu (height published by cardiffuniversity.js).
-  scroll-margin-top: calc(var(--cu-sticky-nav, 0px) + var(--cu-space-4));
+  scroll-margin-top: calc(var(--cu-sticky-nav, 0px) + var(--spacing-4));
 }
 
 // =============================================================================
@@ -296,8 +296,8 @@ section {
 .nav-list>.active>a:focus {
   background: var(--color-selected-bg);
   background-color: var(--color-selected-bg);
-  color: var(--cu-ink);
-  font-weight: var(--cu-weight-bold);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
 }
 
 .nav-list>li>a {
@@ -314,8 +314,8 @@ section {
 // red left rule on the selected item.
 // Overrides the base template's 6px radius and shadow (modules/site/parent_templates/site/common/css/custom.css).
 .bs-docs-sidenav {
-  background-color: var(--cu-bg);
-  border: 1px solid var(--cu-border);
+  background-color: var(--color-bg-body);
+  border: 1px solid var(--color-border-default);
   border-radius: 0;
   box-shadow: none;
 
@@ -323,7 +323,7 @@ section {
     color: var(--color-text-primary);
     margin: 0;
     border: 0;
-    border-bottom: 1px solid var(--cu-line);
+    border-bottom: 1px solid var(--color-border-light);
     border-left: 4px solid transparent;
   }
 
@@ -339,9 +339,9 @@ section {
   >.active>a:focus {
     padding: 8px 14px;
     border: 0;
-    border-bottom: 1px solid var(--cu-line);
+    border-bottom: 1px solid var(--color-border-light);
     border-left: 4px solid var(--color-brand-primary);
-    color: var(--cu-ink);
+    color: var(--color-text-primary);
     text-shadow: none;
     box-shadow: none;
   }
@@ -352,7 +352,7 @@ section {
   }
 
   >li>a:hover {
-    background-color: var(--cu-surface);
+    background-color: var(--color-bg-subtle);
   }
 
   // Bootstrap pins the section menu to the viewport once it scrolls past (.affix). Hold it
@@ -364,7 +364,7 @@ section {
   // Capping the height broke that twice over - it gave the menu its own scrollbar, and because
   // fixSideBar() measures the menu, the cap made a long menu look short enough to pin.
   &.affix {
-    top: calc(var(--cu-sticky-nav, 0px) + var(--cu-space-6));
+    top: calc(var(--cu-sticky-nav, 0px) + var(--spacing-6));
   }
 
   a:hover .icon-chevron-right {

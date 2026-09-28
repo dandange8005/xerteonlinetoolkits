@@ -138,8 +138,11 @@
  * There is no second Sass token scale. Keep aliases so existing components and
  * authored overrides continue to work; do not copy shared values into this file.
  *
+ * Components read the names in this file. Only the callouts (--cu-callout-*) and the logo width
+ * (--cu-logo-width) read --cu-* directly, because they have no name here.
+ *
  * To adjust shared roles for one project, load :root CSS overrides after the theme.
- * Both older components and newer rules then resolve through the same --cu-* source.
+ * Overriding either a --cu-* role or the name that maps it reaches every component.
  * Theme-only settings (focus dimensions, grid, etc.) are declared in their sections below.
  * Creating another institution's theme requires a reviewed palette and role mapping,
  * not a two-variable override. See THEMING-GUIDE.md for the supported workflow.
@@ -304,6 +307,7 @@
   --line-height-snug: 1.3;
   --line-height-normal: 1.5;
   --line-height-relaxed: var(--cu-leading-body);
+  --line-height-lead: var(--cu-leading-lead);
   --letter-spacing-heading: var(--cu-tracking-heading);
   --letter-spacing-tighter: -0.02em;
   --letter-spacing-wide: 0.02em;
@@ -392,6 +396,7 @@
   --focus-ring: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color);
   --min-input-height: 56px;
   --min-textarea-height: 112px;
+  --icon-size-md: var(--cu-text-icon);
   --icon-size-lg: 32px;
   --ratio-widescreen: 16 / 9;
   --ratio-standard: 4 / 3;
@@ -604,7 +609,7 @@ h2.sectionTitle {
   font-weight: var(--h2-font-weight);
   line-height: var(--h2-line-height);
   letter-spacing: var(--h2-letter-spacing);
-  color: var(--cu-ink);
+  color: var(--color-text-primary);
   margin-top: var(--spacing-xl);
   margin-bottom: var(--spacing-md);
 }
@@ -794,7 +799,7 @@ code {
   font-size: 0.9em;
   padding: 0.2em 0.4em;
   background: var(--color-gray-10);
-  color: var(--cu-ink);
+  color: var(--color-text-primary);
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-gray-20);
 }
@@ -810,7 +815,7 @@ pre {
   border-radius: var(--radius-md);
   overflow-x: auto;
   box-shadow: var(--shadow-md);
-  border-left: 4px solid var(--cu-border);
+  border-left: 4px solid var(--color-border-default);
 }
 pre code {
   padding: 0;
@@ -873,7 +878,7 @@ textarea {
   line-height: var(--line-height-normal);
   color: var(--color-text-primary);
   background-color: var(--color-white);
-  border: 1px solid var(--cu-muted);
+  border: 1px solid var(--color-gray-70);
   border-radius: var(--radius-md);
   transition: border-color var(--duration-fast) var(--easing-default), background-color var(--duration-fast) var(--easing-default), box-shadow var(--duration-fast) var(--easing-default);
 }
@@ -906,7 +911,7 @@ input[type=datetime-local]:hover:not(:disabled),
 input[type=month]:hover:not(:disabled),
 input[type=week]:hover:not(:disabled),
 textarea:hover:not(:disabled) {
-  background-color: var(--cu-surface);
+  background-color: var(--color-bg-subtle);
 }
 input[type=text]:focus,
 input[type=email]:focus,
@@ -962,13 +967,13 @@ select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right var(--spacing-sm) center;
-  border: 1px solid var(--cu-muted);
+  border: 1px solid var(--color-gray-70);
   border-radius: var(--radius-md);
   appearance: none;
   cursor: pointer;
 }
 select:hover:not(:disabled) {
-  background-color: var(--cu-surface);
+  background-color: var(--color-bg-subtle);
 }
 select:focus {
   outline: var(--focus-ring);
@@ -1328,10 +1333,10 @@ a.accordion-toggle[aria-expanded=true]::after {
 
 :root {
   --carousel-control-size: var(--btn-min-height);
-  --carousel-control-icon-size: var(--cu-text-icon);
+  --carousel-control-icon-size: var(--icon-size-md);
   --carousel-control-bg: var(--color-white);
-  --carousel-control-bg-hover: var(--cu-surface);
-  --carousel-control-icon-color: var(--cu-ink);
+  --carousel-control-bg-hover: var(--color-bg-subtle);
+  --carousel-control-icon-color: var(--color-text-primary);
   --carousel-indicator-width: 2rem;
   --carousel-indicator-height: 3px;
   --carousel-indicator-color: rgba(255, 255, 255, 0.5);
@@ -1348,7 +1353,7 @@ a.accordion-toggle[aria-expanded=true]::after {
   font-size: var(--carousel-control-icon-size) !important;
   font-weight: var(--font-weight-regular);
   line-height: 1;
-  border: 1px solid var(--cu-border);
+  border: 1px solid var(--color-border-default);
   border-radius: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -1436,7 +1441,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 .panel:not(.editorStyle) {
   padding-left: var(--spacing-8);
   padding-top: var(--spacing-2xl);
-  border: 1px solid var(--cu-border);
+  border: 1px solid var(--color-border-default);
   border-radius: var(--radius-card);
 }
 
@@ -1452,14 +1457,14 @@ a.accordion-toggle[aria-expanded=true]::after {
   padding-inline: var(--spacing-sm);
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: var(--cu-muted);
-  background-color: var(--cu-surface);
-  border: 1px solid var(--cu-border);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-default);
   border-radius: var(--radius-none);
 }
 
 .well {
-  background-color: var(--cu-surface);
+  background-color: var(--color-bg-subtle);
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -1619,7 +1624,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 .badge-warning,
 .label-warning {
   background-color: var(--color-accent-orange);
-  color: var(--cu-ink);
+  color: var(--color-text-primary);
 }
 
 .badge-important,
@@ -1636,7 +1641,7 @@ a.accordion-toggle[aria-expanded=true]::after {
 
 .badge-inverse,
 .label-inverse {
-  background-color: var(--cu-ink);
+  background-color: var(--color-text-primary);
 }
 
 .badge:empty,
@@ -1704,9 +1709,9 @@ a.accordion-toggle[aria-expanded=true]::after {
   }
 }
 .lead {
-  font-size: var(--cu-text-lead);
-  color: var(--cu-muted);
-  line-height: var(--cu-leading-lead);
+  font-size: var(--font-size-lead);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-lead);
   font-weight: var(--font-weight-regular);
 }
 
@@ -1735,7 +1740,7 @@ a.glossary:active {
 }
 
 .glossaryTip {
-  background-color: var(--cu-ink);
+  background-color: var(--color-text-primary);
   color: var(--color-white);
 }
 
@@ -1958,26 +1963,26 @@ a.glossary:active {
  */
 .cu-callout {
   display: block;
-  margin-top: var(--cu-space-6);
-  padding: var(--cu-space-5) var(--cu-space-6);
-  background: var(--cu-surface);
-  color: var(--cu-ink);
+  margin-top: var(--spacing-6);
+  padding: var(--spacing-5) var(--spacing-6);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-primary);
   border-left: 4px solid var(--cu-callout, var(--cu-callout-key));
 }
 .cu-callout p {
-  margin-top: var(--cu-space-1);
+  margin-top: var(--spacing-1);
 }
 
 .cu-callout:not(:has(.cu-callout-icon)) {
   position: relative;
-  padding-left: calc(var(--cu-space-6) + 28px + var(--cu-space-4));
+  padding-left: calc(var(--spacing-6) + 28px + var(--spacing-4));
 }
 .cu-callout:not(:has(.cu-callout-icon))::before {
   content: var(--cu-callout-glyph, "\f005");
   content: var(--cu-callout-glyph, "\f005")/"";
   position: absolute;
-  top: var(--cu-space-5);
-  left: var(--cu-space-6);
+  top: var(--spacing-5);
+  left: var(--spacing-6);
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -1993,7 +1998,7 @@ a.glossary:active {
 .cu-callout:has(.cu-callout-icon) {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--cu-space-4);
+  gap: var(--spacing-4);
   align-items: start;
 }
 
@@ -2010,7 +2015,7 @@ a.glossary:active {
 
 .cu-callout-title {
   display: block;
-  font-weight: var(--cu-weight-bold);
+  font-weight: var(--font-weight-bold);
   line-height: 28px;
 }
 
@@ -2058,7 +2063,7 @@ a.glossary:active {
 
 @media (max-width: 480px) {
   .cu-callout {
-    padding: var(--cu-space-4);
+    padding: var(--spacing-4);
   }
 }
 /**
@@ -2069,12 +2074,12 @@ a.glossary:active {
 .cu-rule {
   height: 0;
   border: 0;
-  border-top: 1px solid var(--cu-border);
-  margin-block: var(--cu-space-8);
+  border-top: 1px solid var(--color-border-default);
+  margin-block: var(--spacing-8);
 }
 
 .cu-rule-strong {
-  border-top: 2px solid var(--cu-ink);
+  border-top: 2px solid var(--color-text-primary);
 }
 
 /**
@@ -2915,7 +2920,7 @@ section a.link-asset {
   color: var(--color-header-text);
   border-bottom: 1px solid var(--color-header-border);
   box-shadow: none;
-  padding: var(--cu-space-8) 0;
+  padding: var(--spacing-8) 0;
   text-shadow: none;
 }
 .jumbotron::before {
@@ -2937,7 +2942,7 @@ section a.link-asset {
 #overview.logoR .container {
   display: flex;
   align-items: center;
-  gap: var(--cu-space-6);
+  gap: var(--spacing-6);
   flex-wrap: nowrap;
 }
 
@@ -2995,20 +3000,20 @@ section a.link-asset {
   }
 }
 #pageTitle {
-  font-family: var(--cu-display);
-  font-weight: var(--cu-weight-section);
-  letter-spacing: var(--cu-tracking-heading);
-  line-height: var(--cu-leading-heading);
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: var(--letter-spacing-heading);
+  line-height: var(--line-height-heading);
   color: var(--color-header-text);
   font-size: var(--font-size-3xl);
-  margin: 0 0 var(--cu-space-2);
+  margin: 0 0 var(--spacing-2);
 }
 
 #pageSubTitle {
-  font-weight: var(--cu-weight-regular);
+  font-weight: var(--font-weight-regular);
   color: var(--color-header-subtext);
   font-size: var(--font-size-lg);
-  line-height: var(--cu-leading-lead);
+  line-height: var(--line-height-lead);
   padding-top: 0;
   margin-bottom: 0;
 }
@@ -3049,7 +3054,7 @@ section a.link-asset {
   margin: 0 0 0 auto;
   background: transparent;
   background-image: none;
-  border: 1px solid var(--cu-grey-70);
+  border: 1px solid var(--color-gray-70);
   box-shadow: none;
 }
 .navbar-inverse .btn-navbar .icon-bar {
@@ -3111,7 +3116,7 @@ section a.link-asset {
 section {
   overflow: visible;
   display: flow-root;
-  scroll-margin-top: calc(var(--cu-sticky-nav, 0px) + var(--cu-space-4));
+  scroll-margin-top: calc(var(--cu-sticky-nav, 0px) + var(--spacing-4));
 }
 
 .nav-list > .active > a,
@@ -3119,8 +3124,8 @@ section {
 .nav-list > .active > a:focus {
   background: var(--color-selected-bg);
   background-color: var(--color-selected-bg);
-  color: var(--cu-ink);
-  font-weight: var(--cu-weight-bold);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
 }
 
 .nav-list > li > a {
@@ -3134,8 +3139,8 @@ section {
 }
 
 .bs-docs-sidenav {
-  background-color: var(--cu-bg);
-  border: 1px solid var(--cu-border);
+  background-color: var(--color-bg-body);
+  border: 1px solid var(--color-border-default);
   border-radius: 0;
   box-shadow: none;
 }
@@ -3143,7 +3148,7 @@ section {
   color: var(--color-text-primary);
   margin: 0;
   border: 0;
-  border-bottom: 1px solid var(--cu-line);
+  border-bottom: 1px solid var(--color-border-light);
   border-left: 4px solid transparent;
 }
 .bs-docs-sidenav > li:first-child > a,
@@ -3155,9 +3160,9 @@ section {
 .bs-docs-sidenav > .active > a:focus {
   padding: 8px 14px;
   border: 0;
-  border-bottom: 1px solid var(--cu-line);
+  border-bottom: 1px solid var(--color-border-light);
   border-left: 4px solid var(--color-brand-primary);
-  color: var(--cu-ink);
+  color: var(--color-text-primary);
   text-shadow: none;
   box-shadow: none;
 }
@@ -3166,10 +3171,10 @@ section {
   border-bottom: 0;
 }
 .bs-docs-sidenav > li > a:hover {
-  background-color: var(--cu-surface);
+  background-color: var(--color-bg-subtle);
 }
 .bs-docs-sidenav.affix {
-  top: calc(var(--cu-sticky-nav, 0px) + var(--cu-space-6));
+  top: calc(var(--cu-sticky-nav, 0px) + var(--spacing-6));
 }
 .bs-docs-sidenav a:hover .icon-chevron-right {
   opacity: 0.5;
@@ -3307,7 +3312,7 @@ This is where you can define styles that will be available
   left: 1rem;
   z-index: var(--z-index-toast);
   padding: var(--spacing-4);
-  background: var(--cu-ink);
+  background: var(--color-text-primary);
   color: var(--color-white);
   text-decoration: none;
   font-weight: var(--font-weight-bold);
@@ -4561,7 +4566,7 @@ This is where you can define styles that will be available
 }
 
 .text-cu-black {
-  color: var(--cu-ink) !important;
+  color: var(--color-text-primary) !important;
 }
 
 /* No web font - Design System v1.7 uses the Franklin Gothic stack with system fallbacks */

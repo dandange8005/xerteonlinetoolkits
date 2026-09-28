@@ -160,7 +160,7 @@ h2.sectionTitle {
     font-weight: var(--h2-font-weight);
     line-height: var(--h2-line-height);
     letter-spacing: var(--h2-letter-spacing);
-    color: var(--cu-ink);
+    color: var(--color-text-primary);
     margin-top: var(--spacing-xl);
     margin-bottom: var(--spacing-md);
 
@@ -399,7 +399,7 @@ code {
     font-size: 0.9em;
     padding: 0.2em 0.4em;
     background: var(--color-gray-10);
-    color: var(--cu-ink);
+    color: var(--color-text-primary);
     border-radius: var(--radius-sm);
     border: 1px solid var(--color-gray-20);
 }
@@ -416,7 +416,7 @@ pre {
     border-radius: var(--radius-md);
     overflow-x: auto;
     box-shadow: var(--shadow-md);
-    border-left: 4px solid var(--cu-border);
+    border-left: 4px solid var(--color-border-default);
 
     // Code inside pre shouldn't have inline code styling
     code {
@@ -493,7 +493,7 @@ textarea {
     line-height: var(--line-height-normal);
     color: var(--color-text-primary);
     background-color: var(--color-white);
-    border: 1px solid var(--cu-muted); // DESIGN.md §4 Fields: 5.74:1 on white, the same width in every state
+    border: 1px solid var(--color-gray-70); // DESIGN.md §4 Fields: 5.74:1 on white, the same width in every state
     border-radius: var(--radius-md);
     transition: border-color var(--duration-fast) var(--easing-default),
         background-color var(--duration-fast) var(--easing-default),
@@ -505,7 +505,7 @@ textarea {
     }
 
     &:hover:not(:disabled) {
-        background-color: var(--cu-surface); // a grey-50 border would be lighter than the resting one
+        background-color: var(--color-bg-subtle); // a grey-50 border would be lighter than the resting one
     }
 
     &:focus {
@@ -542,13 +542,13 @@ select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right var(--spacing-sm) center;
-    border: 1px solid var(--cu-muted); // DESIGN.md §4 Fields: 5.74:1 on white, the same width in every state
+    border: 1px solid var(--color-gray-70); // DESIGN.md §4 Fields: 5.74:1 on white, the same width in every state
     border-radius: var(--radius-md);
     appearance: none;
     cursor: pointer;
 
     &:hover:not(:disabled) {
-        background-color: var(--cu-surface); // a grey-50 border would be lighter than the resting one
+        background-color: var(--color-bg-subtle); // a grey-50 border would be lighter than the resting one
     }
 
     &:focus {

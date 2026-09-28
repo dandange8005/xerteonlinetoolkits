@@ -28,21 +28,21 @@
  */
 .cu-callout {
     display: block;
-    margin-top: var(--cu-space-6);
-    padding: var(--cu-space-5) var(--cu-space-6);
-    background: var(--cu-surface);
-    color: var(--cu-ink);
+    margin-top: var(--spacing-6);
+    padding: var(--spacing-5) var(--spacing-6);
+    background: var(--color-bg-subtle);
+    color: var(--color-text-primary);
     border-left: 4px solid var(--cu-callout, var(--cu-callout-key));
 
     p {
-        margin-top: var(--cu-space-1);
+        margin-top: var(--spacing-1);
     }
 }
 
 // Short form: no authored icon, so the theme draws the disc and glyph in one pseudo-element.
 .cu-callout:not(:has(.cu-callout-icon)) {
     position: relative;
-    padding-left: calc(var(--cu-space-6) + 28px + var(--cu-space-4)); // 28px icon column + gap
+    padding-left: calc(var(--spacing-6) + 28px + var(--spacing-4)); // 28px icon column + gap
 
     &::before {
         // Two declarations on purpose: a browser that does not support the alt-text syntax
@@ -51,8 +51,8 @@
         content: var(--cu-callout-glyph, "\f005");
         content: var(--cu-callout-glyph, "\f005") / ""; // empty alt text: decorative
         position: absolute;
-        top: var(--cu-space-5);
-        left: var(--cu-space-6);
+        top: var(--spacing-5);
+        left: var(--spacing-6);
         width: 28px;
         height: 28px;
         border-radius: 50%;
@@ -70,7 +70,7 @@
 .cu-callout:has(.cu-callout-icon) {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
-    gap: var(--cu-space-4);
+    gap: var(--spacing-4);
     align-items: start;
 }
 
@@ -91,7 +91,7 @@
 
 .cu-callout-title {
     display: block;
-    font-weight: var(--cu-weight-bold);
+    font-weight: var(--font-weight-bold);
     line-height: 28px; // same as the icon disc, so disc and title share one line box in any host
 }
 
@@ -105,6 +105,6 @@
 
 @media (max-width: 480px) {
     .cu-callout {
-        padding: var(--cu-space-4);
+        padding: var(--spacing-4);
     }
 }

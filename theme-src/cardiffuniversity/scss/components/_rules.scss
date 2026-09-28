@@ -6,10 +6,10 @@
 .cu-rule {
     height: 0;
     border: 0;
-    border-top: 1px solid var(--cu-border);
-    margin-block: var(--cu-space-8);
+    border-top: 1px solid var(--color-border-default);
+    margin-block: var(--spacing-8);
 }
 
 .cu-rule-strong {
-    border-top: 2px solid var(--cu-ink);
+    border-top: 2px solid var(--color-text-primary);
 }
