@@ -75,7 +75,7 @@ body:has(.am-hero) .footer {
    The hero is the dark band; the strip section has no band of its own, so its
    card floats over the bottom edge of the hero. */
 body:has(.am-hero) #intro {
-  --am-band: var(--color-bg-dark);
+  --am-band: var(--color-bg-secondary);
 }
 body:has(.am-hero) #tool {
   --am-band: transparent;
@@ -159,7 +159,7 @@ body:has(.am-hero) #tool { padding-block: 0; }
 .am-tile:visited { color: var(--color-text-primary); }
 .am-tile i { font-size: var(--icon-size-lg); color: var(--color-action); }
 .am-tile strong { font-size: var(--font-size-md); }
-.am-tile--all { background: var(--color-bg-dark); border-color: var(--color-bg-dark); }
+.am-tile--all { background: var(--color-bg-secondary); border-color: var(--color-bg-secondary); }
 .am-tile--all,
 .am-tile--all:link,
 .am-tile--all:visited,
