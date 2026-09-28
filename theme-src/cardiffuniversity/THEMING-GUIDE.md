@@ -36,7 +36,7 @@ theme.
 
 | Colour | What follows it | Cardiff default |
 | --- | --- | --- |
-| `--color-brand-primary` | Header top edge, navbar current-page marker, the rule under a navbar placed below the header, side-menu selected rule and wash, the default progress bar, icon-list icons, `.text-brand`, `.bg-brand`. Through the action shades: primary and primary-outline buttons, the feedback tab | Cardiff red (`--cu-red`) |
+| `--color-brand-primary` | Header top edge, navbar current-page marker, the rule under a navbar placed below the header, side-menu selected rule and wash, the default progress bar, icon-list icons, `.text-brand`, `.bg-brand`. Through the action shades: primary and primary-outline buttons, selected checkboxes and radio buttons, the feedback tab | Cardiff red (`--cu-red`) |
 | `--color-brand-secondary` | Navbar and its hover and current-page fill, footer, secondary and secondary-outline buttons, `.bg-dark`, tab underline and pills, back-to-top button, Do/Don't labels | Ink (`--cu-ink`) |
 
 These do not follow the brand: body text and headings (always ink), focus rings, links,
