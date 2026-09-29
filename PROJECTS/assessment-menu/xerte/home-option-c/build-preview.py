@@ -5,12 +5,19 @@ The fragments, styles.css and script.js are what gets pasted into Xerte; this fi
 check them against the real theme CSS. styles.css and script.js are linked, not inlined, so the
 preview cannot drift from the source. Run: python3 build-preview.py
 """
+import os
 from pathlib import Path
 
-HERE = Path(__file__).parent
-XERTE = Path.home() / "Projects/xerteonlinetoolkits"
+HERE = Path(__file__).resolve().parent
+XERTE = HERE.parents[3]  # the repo root: PROJECTS/assessment-menu/xerte/<this folder>
 THEME = XERTE / "themes/site/cardiffuniversity"
 COMMON = XERTE / "modules/site/parent_templates/site/common"
+CATEGORIES_CSS = HERE.parent / "categories/styles.css"  # Project > Styles: loads on every page, Home included
+
+
+def rel(path):
+    """A link relative to this folder, so local-preview.html works wherever the repo is cloned."""
+    return os.path.relpath(path, HERE).replace(os.sep, "/")
 
 PAGE_TITLE = "Assessment Menu"
 PAGE_SUBTITLE = "Designing meaningful, inclusive and future-focused assessment"
@@ -41,18 +48,20 @@ html = f"""<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Assessment Menu · Home (option C) preview</title>
-<link rel="stylesheet" href="{(COMMON / 'css/bootstrap.css').as_uri()}">
-<link rel="stylesheet" href="{(COMMON / 'css/bootstrap-responsive.css').as_uri()}">
-<link rel="stylesheet" href="{(COMMON / 'css/fonts.css').as_uri()}">
-<link rel="stylesheet" href="{(COMMON / 'css/custom.css').as_uri()}">
-<link rel="stylesheet" href="{(COMMON / 'fontawesome-6.6.0/css/all.min.css').as_uri()}">
-<link rel="stylesheet" href="{(THEME / 'cardiffuniversity.css').as_uri()}">
+<link rel="stylesheet" href="{rel(COMMON / 'css/bootstrap.css')}">
+<link rel="stylesheet" href="{rel(COMMON / 'css/bootstrap-responsive.css')}">
+<link rel="stylesheet" href="{rel(COMMON / 'css/fonts.css')}">
+<link rel="stylesheet" href="{rel(COMMON / 'css/custom.css')}">
+<link rel="stylesheet" href="{rel(COMMON / 'fontawesome-6.6.0/css/all.min.css')}">
+<link rel="stylesheet" href="{rel(THEME / 'cardiffuniversity.css')}">
+<!-- Project > Styles for the category pages: it loads on every page, so it is here to show what reaches this page -->
+<link rel="stylesheet" href="{rel(CATEGORIES_CSS)}">
 <!-- Home-page style block, linked here for local preview -->
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="jumbotron logoL" id="overview"><div class="container">
-  <div class="logoL"><img class="logo logoL themeLogo" src="{(THEME / 'logo_left.svg').as_uri()}" alt="Cardiff University / Prifysgol Caerdydd"></div>
+  <div class="logoL"><img class="logo logoL themeLogo" src="{rel(THEME / 'logo_left.svg')}" alt="Cardiff University / Prifysgol Caerdydd"></div>
   <div class="titles"><h1 id="pageTitle">{PAGE_TITLE}</h1><p id="pageSubTitle">{PAGE_SUBTITLE}</p></div>
 </div></header>
 <div id="pageLinks"><div class="navbar navbar-inverse" role="navigation"><div class="navbar-inner"><div class="container"><div class="nav-collapse collapse">
@@ -64,7 +73,7 @@ html = f"""<!DOCTYPE html>
 {chr(10).join(blocks)}
 </div></div></div>
 <footer class="footer"><div class="container"><div class="row-fluid"><p>Developed by the Digital Education Team, Learning and Teaching Academy, Cardiff University</p></div></div></footer>
-<script src="{(COMMON / 'js/jquery-1.9.1.min.js').as_uri()}"></script>
+<script src="{rel(COMMON / 'js/jquery-1.9.1.min.js')}"></script>
 <!-- Project > Optional properties > Script -->
 <script src="script.js"></script>
 </body>

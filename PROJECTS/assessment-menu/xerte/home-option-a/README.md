@@ -83,7 +83,7 @@ from the prototype are deliberate:
    hints and tile counts were 14–15px).
 2. **The search box is `--min-input-height` (56px)**, matching every other input in the theme.
 3. **Rounded panels are kept as a recorded deviation** from `--radius-card` (square). The 12px panels
-   and 6px search box are declared as `--am-radius-*` at the top of `styles.css`.
+   and 6px search box are declared as `--am-home-radius-*` at the top of `styles.css`.
 
 The lane tints and their label colours have no design-system equivalent, so they are mixed from
 `--cu-accent-light-blue` and `--cu-accent-forest-green` with `color-mix` — the labels darkened enough

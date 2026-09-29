@@ -10,14 +10,16 @@
    deviation for the Home page) and the two on-dark lane accents, which are
    mixed from the DS accent colours rather than picked by hand. */
 :root {
-  /* Home page panel rounding: deliberate deviation from --radius-card (square). */
-  --am-radius-panel: 16px;
-  --am-radius-panel-sm: 12px;
-  --am-radius-control: 6px;
+  /* Home page panel rounding: deliberate deviation from --radius-card (square). The
+     --am-home- prefix keeps these apart from the category pages' --am-radius-panel,
+     which is defined in Project > Styles and would otherwise be overridden here. */
+  --am-home-radius-panel: 16px;
+  --am-home-radius-panel-sm: 12px;
+  --am-home-radius-control: 6px;
   /* Lane accents for use on the dark panel, lightened from the DS accents so
      they carry enough contrast against --color-bg-secondary. */
-  --am-lane1-on-dark: color-mix(in srgb, var(--cu-accent-light-blue) 55%, var(--color-white));
-  --am-lane2-on-dark: color-mix(in srgb, var(--cu-accent-forest-green) 45%, var(--color-white));
+  --am-brief-lane1-on-dark: color-mix(in srgb, var(--cu-accent-light-blue) 55%, var(--color-white));
+  --am-brief-lane2-on-dark: color-mix(in srgb, var(--cu-accent-forest-green) 45%, var(--color-white));
 }
 
 /* ======================
@@ -81,7 +83,7 @@ section > p:has(> .topBtn) { display: none; }
 /* "Where would you like to start?" */
 #start .page-header { text-align: center; border-bottom: 0; }
 .am-paths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-5); }
-.am-path { display: flex; flex-direction: column; gap: var(--spacing-3); padding: var(--spacing-6); background: var(--color-white); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-radius-panel); }
+.am-path { display: flex; flex-direction: column; gap: var(--spacing-3); padding: var(--spacing-6); background: var(--color-white); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-home-radius-panel); }
 .am-path:hover, .am-path:focus-within { border-color: var(--color-text); box-shadow: var(--shadow-lg); }
 .am-path--lead { border-color: var(--color-action); background: var(--color-tint); }
 .am-step { width: var(--spacing-12); height: var(--spacing-12); border-radius: var(--radius-full); background: var(--color-action); color: var(--color-text-on-brand); display: grid; place-items: center; font-weight: var(--font-weight-bold); font-size: var(--font-size-lead); }
@@ -100,9 +102,9 @@ section .am-results > li > a { text-decoration: none; }
 
 /* Type search (needs the project Script) */
 .am-search { position: relative; }
-.am-search input[type="search"] { width: 100%; height: auto; min-height: var(--min-input-height); box-sizing: border-box; margin: 0; padding: var(--spacing-3) var(--spacing-4); font-size: var(--font-size-md); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-radius-control); box-shadow: none; }
+.am-search input[type="search"] { width: 100%; height: auto; min-height: var(--min-input-height); box-sizing: border-box; margin: 0; padding: var(--spacing-3) var(--spacing-4); font-size: var(--font-size-md); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-home-radius-control); box-shadow: none; }
 .am-search input[type="search"]:focus { border-color: var(--color-text); }
-.am-results { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--z-index-dropdown); list-style: none; margin: 0; padding: 0; background: var(--color-white); border: var(--border-width-1) solid var(--color-border-default); border-radius: 0 0 var(--am-radius-control) var(--am-radius-control); box-shadow: var(--shadow-dropdown); max-height: 300px; overflow-y: auto; }
+.am-results { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--z-index-dropdown); list-style: none; margin: 0; padding: 0; background: var(--color-white); border: var(--border-width-1) solid var(--color-border-default); border-radius: 0 0 var(--am-home-radius-control) var(--am-home-radius-control); box-shadow: var(--shadow-dropdown); max-height: 300px; overflow-y: auto; }
 .am-results[hidden] { display: none; }
 .am-results li { margin: 0; }
 /* Result rows only: the "No match" message holds an ordinary inline link, which
@@ -122,23 +124,25 @@ section .am-results > li > a { text-decoration: none; }
 .am-questions li::before { content: counter(amq); position: absolute; left: 0; top: 0; width: var(--spacing-12); height: var(--spacing-12); box-sizing: border-box; display: grid; place-items: center; border-radius: var(--radius-full); background: var(--color-white); border: 3px solid var(--color-brand-primary); color: var(--color-text); font-weight: var(--font-weight-bold); }
 
 /* "What shapes the menu" dark panel */
-.am-briefs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--color-bg-secondary); color: var(--color-on-dark); border-radius: var(--am-radius-panel); overflow: hidden; }
+.am-briefs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--color-bg-secondary); color: var(--color-on-dark); border-radius: var(--am-home-radius-panel); overflow: hidden; }
 .am-brief { display: flex; flex-direction: column; padding: var(--spacing-7); border-left: var(--border-width-1) solid var(--color-gray-90); }
 .am-brief:first-child { border-left: 0; }
 .am-brief h3 { color: var(--color-on-dark); }
 .am-brief p { color: var(--color-on-dark-muted); }
 .am-brief a { color: var(--color-on-dark); }
 .am-brief a:focus-visible { outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color-on-dark); outline-offset: 2px; }
-.am-lane { display: block; margin: var(--spacing-2) 0; padding-left: var(--spacing-3); border-left: var(--border-width-4) solid; color: var(--color-on-dark-muted); }
-.am-lane--1 { border-color: var(--am-lane1-on-dark); }
-.am-lane--1 strong { color: var(--am-lane1-on-dark); }
-.am-lane--2 { border-color: var(--am-lane2-on-dark); }
-.am-lane--2 strong { color: var(--am-lane2-on-dark); }
+/* Named .am-brief-lane, not .am-lane: the category pages' Project > Styles already defines
+   .am-lane as a tinted card, and that would bleed onto this page. */
+.am-brief-lane { display: block; margin: var(--spacing-2) 0; padding-left: var(--spacing-3); border-left: var(--border-width-4) solid; color: var(--color-on-dark-muted); }
+.am-brief-lane--1 { border-color: var(--am-brief-lane1-on-dark); }
+.am-brief-lane--1 strong { color: var(--am-brief-lane1-on-dark); }
+.am-brief-lane--2 { border-color: var(--am-brief-lane2-on-dark); }
+.am-brief-lane--2 strong { color: var(--am-brief-lane2-on-dark); }
 .am-more { margin: auto 0 0; padding-top: var(--spacing-4); }
 .am-more a { display: inline-block; }
 
 /* "Use this menu alongside" */
-.am-alongside { display: grid; grid-template-columns: 1.2fr .8fr; gap: var(--spacing-10); padding: var(--spacing-8); background: var(--color-bg-subtle); border-radius: var(--am-radius-panel-sm); }
+.am-alongside { display: grid; grid-template-columns: 1.2fr .8fr; gap: var(--spacing-10); padding: var(--spacing-8); background: var(--color-bg-subtle); border-radius: var(--am-home-radius-panel-sm); }
 .am-alongside ul { list-style: none; margin: 0; padding: 0; }
 .am-alongside li { margin: 0; padding: var(--spacing-2) 0; border-bottom: var(--border-width-1) solid var(--color-border-default); }
 

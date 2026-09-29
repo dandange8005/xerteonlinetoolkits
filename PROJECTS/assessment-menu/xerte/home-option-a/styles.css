@@ -9,15 +9,18 @@
    Home page) and the lane tints, which are mixed from the DS accents rather
    than picked by hand. */
 :root {
-  /* Home page panel rounding: deliberate deviation from --radius-card (square). */
-  --am-radius-panel: 12px;
-  --am-radius-control: 6px;
+  /* Home page panel rounding: deliberate deviation from --radius-card (square). The
+     --am-home- prefix keeps these apart from the category pages' --am-radius-panel,
+     which is defined in Project > Styles and would otherwise be overridden here. */
+  --am-home-radius-panel: 12px;
+  --am-home-radius-control: 6px;
   /* Lane tints and label colours, mixed from the DS accents. The labels are
-     darkened so they clear 4.5:1 on their own tint. */
-  --am-lane1-bg: color-mix(in srgb, var(--cu-accent-light-blue) 12%, var(--color-white));
-  --am-lane1: color-mix(in srgb, var(--cu-accent-light-blue) 60%, var(--cu-black));
-  --am-lane2-bg: color-mix(in srgb, var(--cu-accent-forest-green) 12%, var(--color-white));
-  --am-lane2: color-mix(in srgb, var(--cu-accent-forest-green) 85%, var(--cu-black));
+     darkened so they clear 4.5:1 on their own tint. The --am-brief-lane names
+     keep them apart from the category pages' --am-lane1 and --am-lane2. */
+  --am-brief-lane1-bg: color-mix(in srgb, var(--cu-accent-light-blue) 12%, var(--color-white));
+  --am-brief-lane1: color-mix(in srgb, var(--cu-accent-light-blue) 60%, var(--cu-black));
+  --am-brief-lane2-bg: color-mix(in srgb, var(--cu-accent-forest-green) 12%, var(--color-white));
+  --am-brief-lane2: color-mix(in srgb, var(--cu-accent-forest-green) 85%, var(--cu-black));
 }
 
 /* ======================
@@ -111,10 +114,10 @@ body:has(.am-hero) #intro { padding-bottom: var(--spacing-24); color: var(--colo
 /* Type search (needs the project Script) */
 .am-search { position: relative; }
 #intro .am-search label { color: var(--color-on-dark); }
-.am-search input[type="search"] { width: 100%; height: auto; min-height: var(--min-input-height); box-sizing: border-box; margin: 0; padding: var(--spacing-3) var(--spacing-4); font-size: var(--font-size-md); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-radius-control); background: var(--color-white); color: var(--color-text); box-shadow: none; }
+.am-search input[type="search"] { width: 100%; height: auto; min-height: var(--min-input-height); box-sizing: border-box; margin: 0; padding: var(--spacing-3) var(--spacing-4); font-size: var(--font-size-md); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--am-home-radius-control); background: var(--color-white); color: var(--color-text); box-shadow: none; }
 #intro .am-search input[type="search"] { border-color: var(--color-white); }
 .am-search input[type="search"]:focus { border-color: var(--color-text); }
-.am-results { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--z-index-dropdown); list-style: none; margin: 0; padding: 0; background: var(--color-white); border: var(--border-width-1) solid var(--color-border-default); border-radius: 0 0 var(--am-radius-control) var(--am-radius-control); box-shadow: var(--shadow-dropdown); max-height: 300px; overflow-y: auto; }
+.am-results { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--z-index-dropdown); list-style: none; margin: 0; padding: 0; background: var(--color-white); border: var(--border-width-1) solid var(--color-border-default); border-radius: 0 0 var(--am-home-radius-control) var(--am-home-radius-control); box-shadow: var(--shadow-dropdown); max-height: 300px; overflow-y: auto; }
 .am-results[hidden] { display: none; }
 .am-results li { margin: 0; }
 .am-results a { display: flex; justify-content: space-between; gap: var(--spacing-3); padding: var(--spacing-3) var(--spacing-4); border-top: var(--border-width-1) solid var(--color-border-light); color: var(--color-text); text-decoration: none; }
@@ -128,29 +131,31 @@ section .am-results a { text-decoration: none; }
 
 /* The strip card straddles the bottom of the hero band */
 body:has(.am-hero) #tool { padding-block: 0; }
-.am-strip { position: relative; z-index: var(--z-index-raised); margin-top: calc(var(--spacing-12) * -1); display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-7); padding: var(--spacing-6) var(--spacing-7); background: var(--color-white); border-left: var(--spacing-2) solid var(--color-brand-primary); border-radius: var(--am-radius-panel); box-shadow: var(--shadow-xl); }
+.am-strip { position: relative; z-index: var(--z-index-raised); margin-top: calc(var(--spacing-12) * -1); display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-7); padding: var(--spacing-6) var(--spacing-7); background: var(--color-white); border-left: var(--spacing-2) solid var(--color-brand-primary); border-radius: var(--am-home-radius-panel); box-shadow: var(--shadow-xl); }
 
 /* Six questions */
 .am-qgrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-4); counter-reset: amq; }
-.am-qgrid li { counter-increment: amq; margin: 0; padding: var(--spacing-6); background: var(--color-bg-subtle); border-top: var(--border-width-4) solid var(--color-brand-primary); border-radius: var(--am-radius-panel); font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); }
+.am-qgrid li { counter-increment: amq; margin: 0; padding: var(--spacing-6); background: var(--color-bg-subtle); border-top: var(--border-width-4) solid var(--color-brand-primary); border-radius: var(--am-home-radius-panel); font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); }
 .am-qgrid li::before { content: counter(amq, decimal-leading-zero); display: block; margin-bottom: var(--spacing-2); font-family: var(--font-family-display); font-size: var(--font-size-3xl); color: var(--color-action); }
 
 /* "What shapes the menu" */
 .am-briefs { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: var(--spacing-5); }
-.am-brief { display: flex; flex-direction: column; padding: var(--spacing-7); background: var(--color-white); border-radius: var(--am-radius-panel); }
+.am-brief { display: flex; flex-direction: column; padding: var(--spacing-7); background: var(--color-white); border-radius: var(--am-home-radius-panel); }
 .am-brief--choice { border-top: 6px solid var(--color-brand-primary); }
 .am-more { margin: auto 0 0; padding-top: var(--spacing-4); }
 .am-more a { display: inline-block; }
-.am-lanes { display: grid; gap: var(--spacing-2); margin: var(--spacing-3) 0; }
-.am-lane { padding: var(--spacing-3) var(--spacing-4); border-left: 5px solid; border-radius: var(--am-radius-control); }
-.am-lane--1 { background: var(--am-lane1-bg); border-color: var(--am-lane1); }
-.am-lane--1 strong { color: var(--am-lane1); }
-.am-lane--2 { background: var(--am-lane2-bg); border-color: var(--am-lane2); }
-.am-lane--2 strong { color: var(--am-lane2); }
+/* Named .am-brief-lane(s), not .am-lane(s): the category pages' Project > Styles already
+   defines .am-lanes as two columns and .am-lane as a card, and that would bleed onto this page. */
+.am-brief-lanes { display: grid; gap: var(--spacing-2); margin: var(--spacing-3) 0; }
+.am-brief-lane { padding: var(--spacing-3) var(--spacing-4); border-left: 5px solid; border-radius: var(--am-home-radius-control); }
+.am-brief-lane--1 { background: var(--am-brief-lane1-bg); border-color: var(--am-brief-lane1); }
+.am-brief-lane--1 strong { color: var(--am-brief-lane1); }
+.am-brief-lane--2 { background: var(--am-brief-lane2-bg); border-color: var(--am-brief-lane2); }
+.am-brief-lane--2 strong { color: var(--am-brief-lane2); }
 
 /* Browse by category */
 .am-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--spacing-4); }
-.am-tile { display: flex; flex-direction: column; gap: var(--spacing-3); padding: var(--spacing-6); border: var(--border-width-1) solid var(--color-border-default); border-radius: var(--am-radius-panel); color: var(--color-text); text-decoration: none; transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+.am-tile { display: flex; flex-direction: column; gap: var(--spacing-3); padding: var(--spacing-6); border: var(--border-width-1) solid var(--color-border-default); border-radius: var(--am-home-radius-panel); color: var(--color-text); text-decoration: none; transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
 .am-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--color-text); color: var(--color-text); }
 /* The theme's visited-link colour is a:...:visited, which outranks a single
    class, so a visited tile would revert to link blue — unreadable on the dark

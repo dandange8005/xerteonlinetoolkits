@@ -45,7 +45,7 @@
 .am-finder { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: var(--spacing-10); padding-top: var(--spacing-8); border-top: var(--border-width-2) solid var(--color-text); }
 .am-finder-controls { align-self: start; padding: var(--spacing-6); background: var(--color-bg-subtle); }
 .am-finder-controls input[type="search"] { width: 100%; min-height: var(--min-input-height); box-sizing: border-box; margin: 0; padding: var(--spacing-3) var(--spacing-4); font-size: var(--font-size-md); border: var(--border-width-1) solid var(--color-border-default); border-radius: var(--radius-input); }
-.am-filters { display: flex; flex-wrap: wrap; gap: var(--spacing-2); margin-top: var(--spacing-6); }
+.am-finder-filters { display: flex; flex-wrap: wrap; gap: var(--spacing-2); margin-top: var(--spacing-6); }
 .am-control-row { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-2); margin-bottom: var(--spacing-4); }
 .am-view { display: flex; gap: var(--spacing-2); }
 
