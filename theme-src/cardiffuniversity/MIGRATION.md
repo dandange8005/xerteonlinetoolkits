@@ -1,6 +1,6 @@
 # Cardiff University theme migration status
 
-Updated 24 September 2026. The theme follows the Cardiff Resource Design System v1.7;
+Updated 29 September 2026. The theme follows the Cardiff Resource Design System v1.7;
 Phase 1 began against v1.3, adopted v1.4's short callout markup on 20 September, and applied
 the red-usage rules of v1.5 to v1.7 on 23 September. This is Nan's prototype design system,
 not an approved institutional brand standard.
@@ -8,8 +8,9 @@ not an approved institutional brand standard.
 Developed as `cardiffuni-v3`; renamed `cardiffuniversity` ("Cardiff University Theme") on
 24 September 2026. The runtime files live in `themes/site/cardiffuniversity/`; sources, demos
 and tests live here in `theme-src/cardiffuniversity/`. Projects using v2 keep their theme.
-The dated plans, design notes, reviews and test rounds written during development were
-removed on 24 September 2026 and remain in git history.
+The dated plans and reviews written during development were removed on 24 September 2026 and
+remain in git history. The design notes and the Phase 1 test round were restored on
+29 September to [development records](docs/README.md).
 
 ## Current state
 
@@ -26,9 +27,19 @@ removed on 24 September 2026 and remain in git history.
 The charcoal navbar and red-rule selected sidebar were approved during testing. Current focus
 colour is ink, `#121212`.
 
-Automated checks cover the later work, but the page chrome, alerts, badges, progress bars,
-tables, card headings, panel title label and brand-colour theming have not yet been run in the
-real player.
+The [pre-merge player check](docs/test-rounds/2026-09-phase1.md#pre-merge-player-check-23-september-2026)
+on 23 September passed base elements, the header, navbar, section menu and footer, and the
+custom and Bootstrap components, including tables, alerts, badges, progress bars and cards.
+Automated checks cover the later work, but these have not yet been run in the real player:
+
+- Everything from 24 September on: the header without a top rule, header and navbar
+  colourways, the panel frame and title label, brand-colour theming, and the 28 September
+  changes (brand-primary icon lists and progress bars, action-coloured checkboxes and radio
+  buttons, font sizes below 16px).
+- The feedback tab, back-to-top button and glossary tip, which the check did not list.
+- Possibly the field borders, skip link, wells, lead text and carousel controls committed on
+  the evening of 23 September: the record does not say whether the check came before or
+  after them.
 
 ## Remaining work
 
@@ -39,7 +50,36 @@ real player.
   the fill, the marker or the requirement changes.
 - [ ] Confirm whether project-specific interactive patterns stay in project-level adapters.
 
+### Known limitations
+
+Left as they were on purpose, or found and not fixed. Each is still true of the current SCSS;
+the linked note has the detail.
+
+- **Tables** ([note](docs/design-notes/2026-09-21-tables.md)). A wide table that an author does
+  not wrap in `.cu-table-scroll` still stretches the page; automatic containment was declined.
+  Nothing checks that authors give the wrapper `tabindex="0"`, `role="region"` and an
+  `aria-label`. The header style, row hover and `.table-bordered`, `.table-hover` and
+  `.table-condensed` were not reviewed.
+- **Page chrome** ([note](docs/design-notes/2026-09-21-page-chrome.md)). The feedback tab's
+  markup was inferred from the v2 CSS and has not been checked against a real project. The tab
+  stays at `top: 62%` on narrow screens and may overlap content. In the footer's "replace"
+  mode the player's inline 10px left margin on `#customFooter` misaligns it with the page. The
+  glossary tip keeps the base template's 4px radius.
+- **Cards, tabs and accordions** ([note](docs/design-notes/2026-09-21-cards-tabs-accordions.md)).
+  Tabs and accordions were not reviewed, restyled or tested in this migration. Cards keep a
+  rounded corner, a large shadow on `.card--clickable:hover`, a 1.05 image zoom on hover and
+  `transition: all`.
+- **Progress bars** ([note](docs/design-notes/2026-09-21-alerts-badges-progress.md)).
+  Bootstrap's light gradient covers the grey-20 track, so the track token has never been
+  visible; the contrast checks measure against grey-20, the darker case.
+- **Header logos** ([note](docs/design-notes/2026-09-21-header-logos-and-callout-titles.md)).
+  Widths below about 485px, very wide or very tall partner logos, and the base template's 480px
+  rule are untested. A small partner logo is never scaled up.
+
 ### Author guide
+
+The proposal behind these items is in the
+[documentation system design note](docs/design-notes/2026-09-20-documentation-system.md).
 
 - [ ] Bundle the external placeholder images used by the demos.
 - [ ] Decide whether the guide stays bundled or also gets a published home, and who maintains it.
