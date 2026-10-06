@@ -17,6 +17,8 @@ REFERENCED = ("css/editorstyles.css", "img/glyphicons-halflings.png", "img/glyph
 STYLESHEETS = (tuple(f"vendor/player/{name}" for name in theme_css.PLAYER_CSS)
                + ("vendor/theme/cardiffuniversity.css", "assets/guide.css"))
 SCRIPTS = tuple(f"vendor/player/{name}" for name in PLAYER_JS) + ("assets/guide.js",)
+# The theme's own default left logo, shown in the guide header.
+LOGO = "vendor/theme/logo_left.svg"
 
 
 def copy_assets(out, guide_assets):
@@ -26,6 +28,7 @@ def copy_assets(out, guide_assets):
         _copy(theme_css.PLAYER / name, player / name)
     shutil.copytree(theme_css.PLAYER / FONTAWESOME / "webfonts", player / FONTAWESOME / "webfonts", dirs_exist_ok=True)
     _copy(theme_css.CSS, out / "vendor" / "theme" / "cardiffuniversity.css")
+    _copy(theme_css.CSS.parent / "logo_left.svg", out / LOGO)
     shutil.copytree(guide_assets, out / "assets", dirs_exist_ok=True)
 
 

@@ -45,6 +45,21 @@ CHECKS = [
     ("components/callout.html", 485, "the phone menu opens",
      "(document.querySelector('.g-side-toggle').click(), !document.querySelector('.g-side-list').hidden"
      " && document.querySelector('.g-side-toggle').getAttribute('aria-expanded') === 'true')"),
+    ("components/callout.html", 1280, "the Cardiff logo loads",
+     "document.querySelector('header img').naturalWidth > 0"),
+    ("getting-started.html", 1280, "headings are spaced from the text above",
+     "parseFloat(getComputedStyle(document.getElementById('logos')).marginTop) >= 32"),
+    ("getting-started.html", 1280, "list lines have room to read",
+     "parseFloat(getComputedStyle(document.querySelector('.g-main li')).lineHeight) >= 24"),
+    ("getting-started.html", 1280, "on this page marks the first section at the top",
+     "document.querySelector('.g-toc a[aria-current=\"location\"]').getAttribute('href') === '#choose-the-theme'"),
+    ("getting-started.html", 1280, "on this page follows the scroll",
+     "(function () { var h = document.getElementById('header-colourways');"
+     " window.scrollTo(0, h.getBoundingClientRect().top + window.scrollY - 10);"
+     " window.dispatchEvent(new Event('scroll'));"
+     " return document.querySelector('.g-toc a[aria-current=\"location\"]').getAttribute('href') === '#header-colourways'; })()"),
+    ("index.html", 1280, "task tiles are wide enough for their titles",
+     "document.querySelector('.g-task').getBoundingClientRect().width >= 300"),
     ("index.html", 1280, "task tiles show their Font Awesome icon",
      "getComputedStyle(document.querySelector('.g-task i'), '::before').content !== 'none'"),
     ("index.html", 485, "no sideways scroll", NO_SIDEWAYS_SCROLL),

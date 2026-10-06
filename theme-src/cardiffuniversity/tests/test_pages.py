@@ -34,7 +34,7 @@ class WrittenSiteTest(unittest.TestCase):
         return parse((self.out / relative).read_text(encoding="utf-8"))
 
     def section(self, page, heading):
-        for section in page.find_all("section"):
+        for section in page.find_all(cls="g-section"):
             if section.find_all("h2") and section.find("h2").text() == heading:
                 return section
         raise AssertionError(f"no section headed {heading!r}")
@@ -132,6 +132,27 @@ class WrittenSiteTest(unittest.TestCase):
         for a in links:
             self.assertEqual(headings.get(a.attrs["href"][1:]), a.text())
         self.assertIn(":root { --color-brand-primary: #00703C; }", page.find("code", cls="language-css").text())
+
+    def test_header_shows_the_cardiff_logo(self):
+        for relative, prefix in (("index.html", ""), ("components/callout.html", "../")):
+            logo = self.page(relative).find("header").find("img")
+            self.assertEqual(logo.attrs["src"], prefix + "vendor/theme/logo_left.svg")
+            self.assertEqual(logo.attrs["alt"], "Cardiff University / Prifysgol Caerdydd")
+
+    def test_home_header_holds_the_menu_and_other_pages_put_it_below(self):
+        self.assertEqual(len(self.page("index.html").find("header").find_all(cls="g-top")), 1)
+        callout = self.page("components/callout.html")
+        self.assertEqual(callout.find("header").find_all(cls="g-top"), [])
+        self.assertEqual(len(callout.find_all(cls="g-top")), 1)
+
+    def test_each_variant_is_rendered_once(self):
+        page = self.page("components/callout.html")
+        for variant in ("cu-callout-tip", "cu-callout-warning"):
+            self.assertEqual(len(page.find_all(cls=variant)), 1, variant)
+
+    def test_current_status_chip(self):
+        chip = self.page("components/callout.html").find(cls="g-chip-ok")
+        self.assertEqual(chip.text().strip(), "Current")
 
     def test_every_page_has_one_main_and_one_h1(self):
         for relative in self.written:

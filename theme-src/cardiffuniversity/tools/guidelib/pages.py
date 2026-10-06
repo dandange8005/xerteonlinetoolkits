@@ -2,6 +2,9 @@
 
 Component pages follow design direction A (side menu, page, "on this page" list). The home page
 and task pages follow direction B. Every page uses guide/templates/base.html.
+
+Blocks are <div class="g-section">, never <section>: the theme styles every section element as
+a Xerte page section (margins, list grids), which would reshape the guide's own layout.
 """
 import html
 from dataclasses import dataclass
@@ -13,6 +16,7 @@ from guidelib.mdsubset import code_block
 TOP_PATHS = {"home": "index.html", "getting-started": "getting-started.html",
              "tasks": "tasks/index.html", "components": "components/index.html"}
 XERTE_PASTE = "In Xerte: add a Text content item, open its Source view, then paste."
+LOGO_ALT = "Cardiff University / Prifysgol Caerdydd"
 
 
 @dataclass(frozen=True)
@@ -34,11 +38,23 @@ def _current(on):
     return ' aria-current="page"' if on else ""
 
 
-def page_shell(ctx, *, title, root, active, body):
+def page_shell(ctx, *, title, root, active, body, home=False):
     styles = "\n".join(f'<link rel="stylesheet" href="{root}{href}">' for href in assets.STYLESHEETS)
     scripts = "\n".join(f'<script src="{root}{src}"></script>' for src in assets.SCRIPTS)
     return ctx.template.substitute(title=esc(title), site_title=esc(ctx.site.title), root=root, styles=styles,
-                                   scripts=scripts, top_menu=top_menu(ctx, root, active), body=body)
+                                   scripts=scripts, header=site_header(ctx, root, active, home), body=body)
+
+
+def site_header(ctx, root, active, home):
+    """Logo and title. The home page (direction B) puts the menu in the header; other pages
+    (direction A) put it in a dark bar below."""
+    brand = (f'<img class="g-logo" src="{root}{assets.LOGO}" alt="{LOGO_ALT}">'
+             f'<a class="g-brand" href="{root}index.html"><span class="g-brand-title">Author guide</span>'
+             '<span class="g-brand-sub">Cardiff University Xerte theme</span></a>')
+    menu = top_menu(ctx, root, active)
+    if home:
+        return f'<header class="g-header g-header-home">{brand}{menu}</header>'
+    return f'<header class="g-header">{brand}</header>{menu}'
 
 
 def top_menu(ctx, root, active):
@@ -76,12 +92,13 @@ def on_this_page(entries):
 
 def preview(markup):
     return ('<p class="g-preview-label">Preview</p>'
-            f'<div class="g-preview" role="group" aria-label="Rendered example">{markup}</div>')
+            # In Xerte, pasted HTML sits inside a section element, so the preview does too.
+            f'<div class="g-preview" role="group" aria-label="Rendered example"><section>{markup}</section></div>')
 
 
-def table(headers, rows):
+def table(headers, rows, extra=""):
     head = "".join(f"<th>{esc(h)}</th>" for h in headers)
-    return f'<table class="g-table"><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table>'
+    return f'<table class="g-table {extra}"><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table>'
 
 
 def editor_text(editor):
@@ -111,27 +128,35 @@ def component_page(ctx, component):
     root = "../"
     first = component.examples[0]
     variants = [e for e in component.examples if e.variant]
-    chips = "".join(f'<span class="g-chip">{chip}</span>' for chip in (
-        esc(component.status.capitalize()), f"Since {esc(component.since)}", esc(editor_text(component.editor)),
+    status = ('<span class="g-chip g-chip-ok"><i class="fa-solid fa-check" aria-hidden="true"></i> Current</span>'
+              if component.status == "current" else f'<span class="g-chip">{esc(component.status.capitalize())}</span>')
+    chips = status + "".join(f'<span class="g-chip">{chip}</span>' for chip in (
+        f"Since {esc(component.since)}", esc(editor_text(component.editor)),
         f"Class: <code>.{esc(next(iter(component.parts)))}</code>"))
     parts = [("preview", "Preview and code",
               preview(first.html) + code_block(first.html) + f'<p class="g-note">{XERTE_PASTE}</p>')]
     if variants:
         rows = "".join(f"<tr><td><code>.{esc(e.variant)}</code></td><td>{esc(e.label)}</td><td>{esc(e.purpose)}</td></tr>"
                        for e in variants)
+        # Each variant is rendered once: the first example already appears under Preview and code.
+        others = [e for e in variants if e is not first]
+        shown = (f"<p>{esc(first.label)} is shown under Preview and code.</p>" if first.variant else "")
         parts.append(("variants", "Variants",
-                      preview("".join(e.html for e in variants)) + table(("Class", "Variant", "Use it for"), rows)))
+                      shown + (preview("".join(e.html for e in others)) if others else "")
+                      + table(("Class", "Variant", "Use it for"), rows, "g-table-variants")))
     part_rows = "".join(f"<tr><td><code>.{esc(cls)}</code></td><td>{esc(what)}</td></tr>"
                         for cls, what in component.parts.items())
     parts.append(("parts", "Parts", table(("Class", "What it is"), part_rows)))
     parts.append(("when-to-use-it", "When to use it",
-                  component.when_intro + '<div class="g-cols"><div class="g-do"><h3>Do</h3>' + component.do_html
-                  + "</div><div class=\"g-dont\"><h3>Don't</h3>" + component.dont_html + "</div></div>"))
+                  component.when_intro + '<div class="g-cols"><div class="g-do">'
+                  + '<h3><i class="fa-solid fa-check" aria-hidden="true"></i> Do</h3>' + component.do_html
+                  + '</div><div class="g-dont"><h3><i class="fa-solid fa-xmark" aria-hidden="true"></i> Don\'t</h3>'
+                  + component.dont_html + "</div></div>"))
     parts.append(("accessibility", "Accessibility", component.accessibility_html))
     related = related_links(ctx, component, root)
     if related:
         parts.append(("related", "Related", related))
-    sections = "".join(f'<section aria-labelledby="{sid}"><h2 id="{sid}">{esc(title)}</h2>{body}</section>'
+    sections = "".join(f'<div class="g-section" aria-labelledby="{sid}" role="region"><h2 id="{sid}">{esc(title)}</h2>{body}</div>'
                        for sid, title, body in parts)
     main = (f'<p class="g-crumb"><a href="index.html">Components</a> &rsaquo; {esc(component.title)}</p>'
             f'<h1>{esc(component.title)}</h1><p class="g-lead">{esc(component.lead)}</p>'
@@ -167,14 +192,14 @@ def home_page(ctx, page):
         aside = ('<aside class="g-new" aria-labelledby="g-new-title"><h2 id="g-new-title">New to the theme?</h2>'
                  f'<ol>{steps}</ol><p><a href="getting-started.html">Start here</a></p></aside>')
     how = "".join(f"<li><strong>{esc(title)}</strong> <span>{esc(text)}</span></li>" for title, text in page.how)
-    how_block = (f'<section class="g-band" aria-labelledby="how-title"><h2 id="how-title">How each task works</h2>'
-                 f'<ol class="g-steps">{how}</ol></section>') if how else ""
-    body = (f'<main id="main"><section class="g-hero"><div class="g-wrap g-hero-grid"><div>'
-            f'<h1>{esc(page.title)}</h1><p class="g-lead">{esc(page.lead)}</p></div>{aside}</div></section>'
-            f'<div class="g-wrap"><section class="g-band" aria-labelledby="tasks-title">'
-            f'<h2 id="tasks-title">Common tasks</h2>{task_tiles(ctx, root)}</section>{how_block}'
+    how_block = (f'<div class="g-band" aria-labelledby="how-title" role="region"><h2 id="how-title">How each task works</h2>'
+                 f'<ol class="g-steps">{how}</ol></div>') if how else ""
+    body = (f'<main id="main"><div class="g-hero"><div class="g-wrap g-hero-grid"><div>'
+            f'<h1>{esc(page.title)}</h1><p class="g-lead">{esc(page.lead)}</p></div>{aside}</div></div>'
+            f'<div class="g-wrap"><div class="g-band" aria-labelledby="tasks-title" role="region">'
+            f'<h2 id="tasks-title">Common tasks</h2>{task_tiles(ctx, root)}</div>{how_block}'
             f'{"".join(_section_html(s) for s in page.sections)}</div></main>')
-    return page_shell(ctx, title=page.title, root=root, active="home", body=body)
+    return page_shell(ctx, title=page.title, root=root, active="home", body=body, home=True)
 
 
 def task_page(ctx, task):
@@ -185,13 +210,13 @@ def task_page(ctx, task):
     body = (f'<main id="main" class="g-wrap g-page">'
             f'<p class="g-crumb"><a href="index.html">Tasks</a> &rsaquo; {esc(task.title)}</p>'
             f'<h1>{esc(task.title)}</h1><p class="g-lead">{esc(task.summary)}</p>'
-            f'<section aria-labelledby="goal"><h2 id="goal">Goal</h2>{task.goal_html}</section>'
-            f'<section aria-labelledby="use"><h2 id="use">Components to use</h2><ul class="g-cards">{cards}</ul></section>'
-            f'<section aria-labelledby="example"><h2 id="example">Worked example: {esc(example.label)}</h2>'
+            f'<div class="g-section" aria-labelledby="goal" role="region"><h2 id="goal">Goal</h2>{task.goal_html}</div>'
+            f'<div class="g-section" aria-labelledby="use" role="region"><h2 id="use">Components to use</h2><ul class="g-cards">{cards}</ul></div>'
+            f'<div class="g-section" aria-labelledby="example" role="region"><h2 id="example">Worked example: {esc(example.label)}</h2>'
             f'<p>{esc(example.purpose)}</p>{preview(example.html)}{code_block(example.html)}'
-            f'<p class="g-note">{XERTE_PASTE}</p></section>'
-            f'<section aria-labelledby="checklist"><h2 id="checklist">Checklist</h2>'
-            f'<div class="g-checklist">{task.checklist_html}</div></section></main>')
+            f'<p class="g-note">{XERTE_PASTE}</p></div>'
+            f'<div class="g-section" aria-labelledby="checklist" role="region"><h2 id="checklist">Checklist</h2>'
+            f'<div class="g-checklist">{task.checklist_html}</div></div></main>')
     return page_shell(ctx, title=task.title, root=root, active="tasks", body=body)
 
 

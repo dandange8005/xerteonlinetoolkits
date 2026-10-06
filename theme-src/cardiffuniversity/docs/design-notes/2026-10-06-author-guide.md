@@ -298,7 +298,9 @@ Xerte itself.
 
 - **Licence and publishing.** The README says the theme is for internal Cardiff University use.
   A public site shows Cardiff branding and colours. Confirm this is cleared before the first
-  publish. Leave the Cardiff logo out of published pages unless it is confirmed.
+  publish. The guide header shows the theme's Cardiff logo (`logo_left.svg`), added on 6 October
+  2026 at Nan's request to match the approved design directions; that makes the clearance a
+  condition of publishing, not of building.
 - **Repository.** `origin` is `dandange8005/xerteonlinetoolkits`, the account named as the
   theme's author, which may not be the repository Nan wants to publish from.
 - **Maintenance owner.** `MIGRATION.md` asks who maintains a published guide. Not decided.
