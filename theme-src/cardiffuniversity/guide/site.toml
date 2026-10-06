@@ -1,0 +1,38 @@
+title = "Cardiff University Theme author guide"
+# "warn" until phase 3 has migrated the remaining demo pages; then "fail".
+coverage = "warn"
+# Task tiles on the home page, in this order.
+tasks = ["draw-attention"]
+
+[[menu]]
+page = "home"
+title = "Home"
+
+[[menu]]
+page = "getting-started"
+title = "Getting started"
+
+[[menu]]
+page = "tasks"
+title = "Tasks"
+
+[[menu]]
+page = "components"
+title = "Components"
+
+# Component groups in the side menu, in this order. Empty groups are not shown.
+[[groups]]
+id = "content"
+title = "Content"
+
+[[groups]]
+id = "emphasis"
+title = "Emphasis"
+
+[[groups]]
+id = "layout"
+title = "Layout"
+
+[[groups]]
+id = "interaction"
+title = "Interaction"
