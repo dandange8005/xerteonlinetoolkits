@@ -18,7 +18,7 @@ remain in git history. The design notes and the Phase 1 test round were restored
 | --- | --- |
 | Tokens | Kept in `tokens/tokens.json` and generated into `_cu-tokens.scss`; compatibility aliases and Xerte-only settings in `_allvariables.scss` |
 | Phase 1 layout | White header without a top rule (left-logo, right-logo and two-logo headers in one row), charcoal navbar, quieter selected sidebar, section headings and visible focus rings; header and navbar colourways available per project |
-| Components | Rules, seven callout types, page chrome (footer, feedback tab, back-to-top, glossary tip), alerts, badges, progress bars, tables, wells, lead text, carousel controls and panels implemented; card headings resized; tabs and accordions deliberately left as they are |
+| Components | Rules, seven callout variants, page frame parts (footer, feedback tab, back-to-top, glossary tip), alerts, badges, progress bars, tables, wells, lead text, carousel controls and panels implemented; card headings resized; tabs and accordions deliberately left as they are |
 | Theming | `--color-brand-primary` and `--color-brand-secondary` restyle every brand-coloured part |
 | Navigation | Sticky height, player lifecycle, menu resizing and reader takeover fixes committed; smooth scrolling removed |
 | Validation | Docker Xerte rounds passed, including editor retention, export and re-import, Welsh-language labels, narrow screens, 200% zoom and keyboard traversal; 295 automated checks pass |
@@ -60,7 +60,7 @@ the linked note has the detail.
   Nothing checks that authors give the wrapper `tabindex="0"`, `role="region"` and an
   `aria-label`. The header style, row hover and `.table-bordered`, `.table-hover` and
   `.table-condensed` were not reviewed.
-- **Page chrome** ([note](docs/design-notes/2026-09-21-page-chrome.md)). The feedback tab's
+- **Page frame** ([note](docs/design-notes/2026-09-21-page-chrome.md)). The feedback tab's
   markup was inferred from the v2 CSS and has not been checked against a real project. The tab
   stays at `top: 62%` on narrow screens and may overlap content. In the footer's "replace"
   mode the player's inline 10px left margin on `#customFooter` misaligns it with the page. The
@@ -83,15 +83,16 @@ The proposal behind these items is in the
 
 - [ ] Bundle the external placeholder images used by the demos.
 - [ ] Decide whether the guide stays bundled or also gets a published home, and who maintains it.
-- [ ] Decide whether component records live in the theme or the shared design system.
-- [ ] Start with seven or eight frequently used components: one snippet source, examples, usage
-  and editor validation evidence.
+- [x] Decide whether component records live in the theme or the shared design system: in the
+  theme ([ADR 0001](docs/adr/0001-component-records-live-in-the-theme.md)).
+- [ ] Start with seven or eight frequently used components: one source for each example, usage
+  advice and editor evidence.
 - [ ] Add task-oriented author pages, then migrate the remaining demonstrations gradually.
 - [ ] Strengthen `build-reference.py --coverage` to recognise deliberate documentation rather
   than arbitrary dotted prose.
 - [ ] Make the CSS parsing in `build-reference.py` string-aware before relying on it for more
   complex generated values.
-- [ ] Introduce snippet, class and accessibility checks and generated-content drift checks
+- [ ] Introduce example, class and accessibility checks and generated-content drift checks
   incrementally.
 
 ### Upstream

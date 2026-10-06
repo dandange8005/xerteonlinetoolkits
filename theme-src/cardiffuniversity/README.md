@@ -2,7 +2,7 @@
 
 A Xerte Bootstrap site theme following the Cardiff Resource Design System v1.7.
 It provides generated design tokens, 18px reading copy, a white header, charcoal page
-navigation, section navigation, horizontal rules and seven callout types. The wider
+navigation, section navigation, horizontal rules and seven callout variants. The wider
 component migration is still in progress; see [migration status](MIGRATION.md).
 
 This is a prototype design system, not an approved institutional brand standard.
@@ -37,7 +37,7 @@ Compiled CSS ships with the theme. Recompile only when changing SCSS.
 The player also requests `cardiffuniversity.js`: it measures the sticky menu, updates scrollspy
 and corrects section landings while content loads. Keep the script with the stylesheet.
 
-For a callout, paste this into a Text element's Source view:
+For a callout, paste this into a Text content item's Source view:
 
 ```html
 <div class="cu-callout cu-callout-tip">

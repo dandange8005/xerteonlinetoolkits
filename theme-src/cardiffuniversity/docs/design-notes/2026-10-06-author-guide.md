@@ -101,7 +101,7 @@ The theme's CSS is not scoped. It styles headings, links, tables and Bootstrap c
 they appear, so the guide's own header and menus are styled by the theme too. That is acceptable
 and keeps the guide on brand, with two rules:
 
-- The guide's chrome uses only its own `g-` prefixed classes and never Bootstrap class names
+- The guide navigation uses only its own `g-` prefixed classes and never Bootstrap class names
   (`.nav`, `.navbar`, `.row`, `.span*`, `.btn`), so the theme's rules for those cannot reshape it.
 - Page-frame parts (header and logos, navbar, section menu, footer, feedback tab, back-to-top)
   cannot be shown inside a preview box: they are fixed, sticky or tied to the player's IDs, and
@@ -136,7 +136,7 @@ and keeps the guide on brand, with two rules:
 
 1. Title, one-line lead, and status chips (status, since version, editor evidence, main class).
 2. Preview and code: the first example rendered, then shown as copyable code, with the line
-   "In Xerte: open the Text element, choose Source, then paste."
+   "In Xerte: add a Text content item, open its Source view, then paste."
 3. Variants: each example that has a variant class, rendered, then a table of variant class,
    label and purpose. Then a table of the component's parts. Components without variants skip
    the first table.
@@ -272,7 +272,7 @@ Rule for maintainers: a change to a component's SCSS needs a look at its record.
   the table says.
 - **Browser check** in headless Chrome, in the style of `tests/check_theme.py`: examples are
   styled by the theme, there is no horizontal scroll at 485px or 1280px, the phone menu opens and
-  closes, and the guide's chrome keeps its layout under the theme's global rules.
+  closes, and the guide navigation keeps its layout under the theme's global rules.
 - **Manual:** keyboard traversal of the side menu and copy buttons, a read at 200% zoom, and the
   copy button on a served page, since clipboard access can fail on `file://`.
 
@@ -302,8 +302,7 @@ Xerte itself.
 - **Repository.** `origin` is `dandange8005/xerteonlinetoolkits`, the account named as the
   theme's author, which may not be the repository Nan wants to publish from.
 - **Maintenance owner.** `MIGRATION.md` asks who maintains a published guide. Not decided.
-- **Component records.** `MIGRATION.md` also asks whether records live in the theme or in the
-  shared design system. This spec keeps them in the theme. The design system remains a reference,
-  consistent with the 24 September decision that it is not a build input.
+- **Component records.** Settled: they live in the theme, not the shared design system. See
+  [ADR 0001](../adr/0001-component-records-live-in-the-theme.md).
 - **Tokens.** Phase 2 reads `tokens.json` for the token tables. If the first reference pages show
   tokens are not enough for authors, revisit.

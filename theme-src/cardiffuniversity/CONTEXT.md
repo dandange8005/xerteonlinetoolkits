@@ -82,6 +82,11 @@ _Avoid_: author guide
 Any page of the author guide.
 _Avoid_: page (on its own)
 
+**Guide navigation**:
+The author guide's own header, top menu, side menu and "on this page" list, as distinct from
+the page frame of a Xerte page.
+_Avoid_: chrome, guide chrome
+
 **Task**:
 A job a content author wants to do, such as drawing attention to something, which the author guide
 answers with one guide page.
