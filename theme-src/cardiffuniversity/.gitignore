@@ -1,3 +1,4 @@
 dist/
 tests/.fixture-run.html
 __pycache__/
+site/

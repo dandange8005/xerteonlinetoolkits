@@ -17,3 +17,18 @@ REFERENCED = ("css/editorstyles.css", "img/glyphicons-halflings.png", "img/glyph
 STYLESHEETS = (tuple(f"vendor/player/{name}" for name in theme_css.PLAYER_CSS)
                + ("vendor/theme/cardiffuniversity.css", "assets/guide.css"))
 SCRIPTS = tuple(f"vendor/player/{name}" for name in PLAYER_JS) + ("assets/guide.js",)
+
+
+def copy_assets(out, guide_assets):
+    """Copy the player's files, the theme and the guide's own assets into the built site."""
+    player = out / "vendor" / "player"
+    for name in theme_css.PLAYER_CSS + PLAYER_JS + REFERENCED:
+        _copy(theme_css.PLAYER / name, player / name)
+    shutil.copytree(theme_css.PLAYER / FONTAWESOME / "webfonts", player / FONTAWESOME / "webfonts", dirs_exist_ok=True)
+    _copy(theme_css.CSS, out / "vendor" / "theme" / "cardiffuniversity.css")
+    shutil.copytree(guide_assets, out / "assets", dirs_exist_ok=True)
+
+
+def _copy(source, target):
+    target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source, target)

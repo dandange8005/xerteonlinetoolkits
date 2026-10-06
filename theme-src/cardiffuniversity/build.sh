@@ -4,6 +4,7 @@
 #   ./build.sh            tokens.json -> scss/_cu-tokens.scss, compile SCSS into
 #                         themes/site/cardiffuniversity/cardiffuniversity.css, check the author guide
 #   ./build.sh package    the same, then zip the runtime folder into dist/cardiffuniversity.zip
+#   ./build.sh guide      the same, then check and build the author guide into site/
 #
 # The runtime folder holds only what Xerte loads (.info, .css, .js, .jpg, logo_left.svg).
 # Xerte copies the whole theme folder into every project export, so nothing else belongs there.
@@ -15,7 +16,8 @@ NAME=cardiffuniversity
 RUNTIME="$REPO/themes/site/$NAME"
 
 python3 "$HERE/tools/build-tokens.py"
-npx -y sass@1 --no-source-map "$HERE/$NAME.scss" "$RUNTIME/$NAME.css"
+# Pinned so CI's compile matches the committed CSS byte for byte. Update both together.
+npx -y sass@1.104.1 --no-source-map "$HERE/$NAME.scss" "$RUNTIME/$NAME.css"
 echo "Compiled $RUNTIME/$NAME.css"
 # Components read the theme names in _allvariables.scss; only the callouts and the logo width may read --cu-* directly.
 if grep -rnE '^[^/]*var\(--cu-' "$HERE/scss" --include='*.scss' \
@@ -24,6 +26,10 @@ if grep -rnE '^[^/]*var\(--cu-' "$HERE/scss" --include='*.scss' \
 fi
 # The author guide's utility tables are generated from the CSS; warn (do not fail) when they drift.
 python3 "$HERE/tools/build-reference.py" --check || echo "Run: python3 tools/build-reference.py"
+
+if [ "${1:-}" = "guide" ]; then
+    python3 "$HERE/tools/build-guide.py"
+fi
 
 if [ "${1:-}" = "package" ]; then
     mkdir -p "$HERE/dist"
