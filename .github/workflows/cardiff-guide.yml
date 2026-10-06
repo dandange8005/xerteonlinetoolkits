@@ -1,0 +1,38 @@
+name: Cardiff theme author guide
+
+on:
+  pull_request:
+    paths:
+      - "theme-src/cardiffuniversity/**"
+      - "themes/site/cardiffuniversity/**"
+      - ".github/workflows/cardiff-guide.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: theme-src/cardiffuniversity
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Check 4 reads commit dates; a shallow clone would make every record look stale.
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Build the theme and the guide
+        run: ./build.sh guide
+      - name: The committed CSS matches the SCSS
+        run: git diff --exit-code -- ../../themes/site/cardiffuniversity/cardiffuniversity.css scss/_cu-tokens.scss
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -p "test_*.py" -v
+      - name: Browser checks
+        run: CHROME="$(command -v google-chrome)" python3 tests/check_guide.py

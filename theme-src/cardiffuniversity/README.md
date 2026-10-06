@@ -53,6 +53,8 @@ is still supported. The old `.callout` classes are not this theme's callout API.
 
 - [Theming guide](THEMING-GUIDE.md): source ownership, overrides and build commands.
 - [Migration status](MIGRATION.md): current state and outstanding work.
+- [Author guide spec](docs/design-notes/2026-10-06-author-guide.md): the hosted guide for content
+  authors, built from `guide/` with `./build.sh guide`.
 
 `scss/_cu-tokens.scss` is generated from `tokens/tokens.json` by `tools/build-tokens.py`. Theme aliases live
 in `scss/_allvariables.scss`, alongside Xerte-only settings. The former `_tokens.scss`

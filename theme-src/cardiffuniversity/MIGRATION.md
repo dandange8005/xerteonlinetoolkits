@@ -81,6 +81,10 @@ the linked note has the detail.
 The proposal behind these items is in the
 [documentation system design note](docs/design-notes/2026-09-20-documentation-system.md).
 
+Phase 1 of the [author guide](docs/design-notes/2026-10-06-author-guide.md) is built: the
+generator, the five build checks, Getting started, one task page and the callout component.
+It is not published. Phase 2 adds the reference pages and seven more components.
+
 - [ ] Bundle the external placeholder images used by the demos.
 - [ ] Decide whether the guide stays bundled or also gets a published home, and who maintains it.
 - [x] Decide whether component records live in the theme or the shared design system: in the
@@ -92,8 +96,8 @@ The proposal behind these items is in the
   than arbitrary dotted prose.
 - [ ] Make the CSS parsing in `build-reference.py` string-aware before relying on it for more
   complex generated values.
-- [ ] Introduce example, class and accessibility checks and generated-content drift checks
-  incrementally.
+- [x] Introduce example, class and accessibility checks and generated-content drift checks
+  incrementally. Done in phase 1 (checks 1 to 5).
 
 ### Upstream
 

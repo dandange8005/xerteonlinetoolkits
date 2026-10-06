@@ -200,6 +200,10 @@ Run from this folder (`theme-src/cardiffuniversity/`):
 ```bash
 ./build.sh              # tokens.json -> _cu-tokens.scss, then compile into themes/site/cardiffuniversity/
 ./build.sh package      # compile and zip the runtime folder into dist/ for upload
+./build.sh guide        # compile, then check and build the author guide into site/
+python3 tools/build-guide.py --check
+python3 -m unittest discover -s tests -p "test_*.py"
+python3 tests/check_guide.py
 python3 tests/check_theme.py
 python3 tools/build-tokens.py --check
 python3 tools/build-reference.py
@@ -219,6 +223,12 @@ as well as examples, so a clean coverage report is not proof that every class is
 Commit the compiled CSS with SCSS changes. No source map is built: the runtime folder ships
 only what Xerte loads, because the player copies the whole theme folder into every export. Regenerate the reference
 after changes that affect it. Hard-refresh the Docker player to inspect the result.
+
+The author guide's sources are in `guide/`: one component record per component in
+`guide/content/components/`, task pages in `guide/content/tasks/`, and the navigation in
+`guide/site.toml`. `tools/build-guide.py` checks them against the compiled CSS before it writes
+anything; the spec is `docs/design-notes/2026-10-06-author-guide.md`. Sass is pinned in
+`build.sh` so the CI workflow's compile matches the committed CSS; update the pin with care.
 
 ## Adding a component
 
