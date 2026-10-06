@@ -54,10 +54,16 @@ def build(guide_dir=GUIDE, out=SITE, check_only=False, last_changed=None):
             print(f"ERROR {out} is not empty and was not made by this tool; refusing to delete it.")
             return 1
         shutil.rmtree(out)
-    written = pages.write_site(out, site, content, guide_dir / "templates" / "base.html")
-    assets.copy_assets(out, guide_dir / "assets")
+    # The marker goes first, so a build that fails partway still leaves a folder the next build may replace.
+    out.mkdir(parents=True)
     (out / MARKER).write_text("Built by tools/build-guide.py. This folder is replaced on every build.\n",
                               encoding="utf-8")
+    try:
+        written = pages.write_site(out, site, content, guide_dir / "templates" / "base.html")
+        assets.copy_assets(out, guide_dir / "assets")
+    except OSError as error:
+        print(f"ERROR the build stopped partway: {error}")
+        return 1
     print(f"Built {out} ({len(written)} pages, {warnings} warning(s)).")
     return 0
 

@@ -1,6 +1,7 @@
 import contextlib
 import io
 import re
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -86,6 +87,15 @@ class BuildGuideTest(unittest.TestCase):
         self.assertIn("refusing to delete", printed)
         self.assertTrue(keep.exists())
 
+
+    def test_failed_build_does_not_block_the_next(self):
+        shutil.rmtree(self.guide / "assets")
+        code, printed = self.build()
+        self.assertEqual(code, 1)
+        self.assertIn("ERROR", printed)
+        shutil.copytree(support.GUIDE / "assets", self.guide / "assets")
+        code, printed = self.build()
+        self.assertEqual(code, 0, printed)
 
 if __name__ == "__main__":
     unittest.main()

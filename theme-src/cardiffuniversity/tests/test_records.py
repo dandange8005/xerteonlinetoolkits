@@ -38,6 +38,23 @@ class RecordsTest(unittest.TestCase):
         self.assertEqual(c.do_html, "<ul><li>Name the variant in the title.</li></ul>")
         self.assertEqual(c.examples[0].variant, "cu-callout-tip")
 
+    def test_utf8_bom_record_loads(self):
+        path = self.guide() / "content" / "components" / "callout.md"
+        path.write_bytes(b"\xef\xbb\xbf" + fx.CALLOUT.encode("utf-8"))
+        self.assertEqual(records.load_component(path).name, "callout")
+
+    def test_non_utf8_record_names_the_file(self):
+        path = self.guide() / "content" / "components" / "callout.md"
+        path.write_bytes(fx.CALLOUT.replace("one idea.", "one \u2019idea\u2019.").encode("cp1252"))
+        with self.assertRaisesRegex(records.RecordError, r"callout\.md: is not saved as UTF-8"):
+            records.load_component(path)
+
+    def test_non_utf8_site_toml_names_the_file(self):
+        guide = self.guide()
+        (guide / "site.toml").write_bytes(fx.SITE.replace("Test guide", "Test \u2019guide\u2019").encode("cp1252"))
+        with self.assertRaisesRegex(records.RecordError, r"site\.toml: is not saved as UTF-8"):
+            records.load_site(guide / "site.toml")
+
     def assertComponentError(self, text, pattern):
         with self.assertRaisesRegex(records.RecordError, pattern):
             self.component(text)

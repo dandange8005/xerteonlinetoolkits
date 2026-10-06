@@ -100,6 +100,14 @@ class Content:
     pages: dict
 
 
+def _read(path):
+    """A record's text. A UTF-8 byte order mark is dropped; any other encoding names the file."""
+    try:
+        return Path(path).read_text(encoding="utf-8-sig")
+    except UnicodeDecodeError:
+        raise RecordError(path, "is not saved as UTF-8; save it as UTF-8 and build again") from None
+
+
 def split_front_matter(text, source):
     """Return (front-matter, body text, the file line the body starts on)."""
     text = text.replace("\r\n", "\n")
@@ -181,7 +189,7 @@ def _expect(found, expected, source):
 
 def load_component(path):
     path = Path(path)
-    data, body, line = split_front_matter(path.read_text(encoding="utf-8"), path)
+    data, body, line = split_front_matter(_read(path), path)
     _only(data, {"name", "title", "lead", "group", "status", "since", "tasks", "related", "scss",
                  "editor", "parts", "examples"}, path)
     name = _name(data, path)
@@ -223,7 +231,7 @@ def load_component(path):
 
 def load_task(path):
     path = Path(path)
-    data, body, line = split_front_matter(path.read_text(encoding="utf-8"), path)
+    data, body, line = split_front_matter(_read(path), path)
     _only(data, {"name", "title", "summary", "icon", "components", "example"}, path)
     name = _name(data, path)
     icon = _field(data, "icon", str, path)
@@ -244,7 +252,7 @@ def load_task(path):
 
 def load_page(path):
     path = Path(path)
-    data, body, line = split_front_matter(path.read_text(encoding="utf-8"), path)
+    data, body, line = split_front_matter(_read(path), path)
     _only(data, {"name", "title", "lead", "new_steps", "how"}, path)
     how = []
     for n, item in enumerate(_field(data, "how", list, path, required=False, default=[]), 1):
@@ -261,7 +269,7 @@ def load_page(path):
 def load_site(path):
     path = Path(path)
     try:
-        data = tomllib.loads(path.read_text(encoding="utf-8"))
+        data = tomllib.loads(_read(path))
     except tomllib.TOMLDecodeError as error:
         raise RecordError(path, f"not valid TOML ({error})") from None
     _only(data, {"title", "coverage", "groups", "tasks", "menu"}, path, "site.toml")
