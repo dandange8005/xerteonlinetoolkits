@@ -79,6 +79,14 @@ html = '''
 
 Use a callout for one idea.
 
+## When not to use it
+
+Do not use a callout for text every reader must read anyway.
+
+## How to use it
+
+Keep it short.
+
 ### Do
 
 - Name the variant in the title.

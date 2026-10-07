@@ -35,10 +35,10 @@ def build(guide_dir=GUIDE, out=SITE, check_only=False, last_changed=None):
     except (records.RecordError, MarkdownError, OSError) as error:
         print(f"ERROR {error}")
         return 1
+    last_changed = last_changed or checks.git_last_changed(theme_css.THEME)
     findings = checks.run_all(
         content, site, theme_dir=theme_css.THEME, known=theme_css.stack_classes(),
-        author_facing=theme_css.author_facing_classes(), tables=set(),
-        last_changed=last_changed or checks.git_last_changed(theme_css.THEME))
+        author_facing=theme_css.author_facing_classes(), tables=set(), last_changed=last_changed)
     for finding in findings:
         print(finding)
     errors = sum(f.level == "error" for f in findings)
@@ -59,7 +59,8 @@ def build(guide_dir=GUIDE, out=SITE, check_only=False, last_changed=None):
     (out / MARKER).write_text("Built by tools/build-guide.py. This folder is replaced on every build.\n",
                               encoding="utf-8")
     try:
-        written = pages.write_site(out, site, content, guide_dir / "templates" / "base.html")
+        written = pages.write_site(out, site, content, guide_dir / "templates" / "base.html",
+                                   updated=lambda path: last_changed(str(path)))
         assets.copy_assets(out, guide_dir / "assets")
     except OSError as error:
         print(f"ERROR the build stopped partway: {error}")

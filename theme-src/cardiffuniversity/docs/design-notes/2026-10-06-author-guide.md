@@ -134,15 +134,24 @@ and keeps the guide on brand, with two rules:
 
 ### Component page sections, in order
 
-1. Title, one-line lead, and status chips (status, since version, editor evidence, main class).
-2. Preview and code: the first example rendered, then shown as copyable code, with the line
+Revised on 7 October 2026 after the NHS digital service manual's design system pages
+(<https://service-manual.nhs.uk/design-system>): example first, code behind a toggle, and fixed
+guidance headings. Branding, colours and fonts stay Cardiff.
+
+1. Title and one-line lead.
+2. The first example, with no heading: its variant class and purpose, the rendered example in a
+   frame, and an "HTML" toggle that reveals the code, the copy button and the line
    "In Xerte: add a Text content item, open its Source view, then paste."
-3. Variants: each example that has a variant class, rendered, then a table of variant class,
-   label and purpose. Then a table of the component's parts. Components without variants skip
-   the first table.
-4. When to use it: a Do list and a Don't list.
-5. Accessibility.
-6. Related components and tasks, and previous and next links.
+3. When to use it.
+4. When not to use it.
+5. How to use it, with a Do list and a Don't list.
+6. Variants: every other variant, each with its own label, class, purpose, frame and HTML toggle.
+7. Parts: a table of the component's parts.
+8. Accessibility.
+9. Evidence: status, the design system version it dates from, and the editor evidence (result,
+   date and Xerte version).
+10. Related components and tasks, then "Page updated" (the last commit to the record, left out
+    when git cannot say) and previous and next links.
 
 ## The component record
 
@@ -189,6 +198,12 @@ html = '''...'''
 +++
 
 ## When to use it
+Use a callout when one idea must stand out.
+
+## When not to use it
+Do not use a callout for text every reader needs anyway.
+
+## How to use it
 ### Do
 - Use one callout per idea.
 ### Don't
@@ -205,7 +220,8 @@ The type is stated in the title, so meaning never relies on colour alone.
 - The body allows a small Markdown subset: `##` and `###` headings, paragraphs, `-` and `1.`
   lists, `**bold**`, `*italic*`, inline code and `[links](url)`. Anything else, including raw
   HTML, fails the build with the file and line, so nothing is silently mangled. The allowed
-  headings are fixed (`When to use it`, `Do`, `Don't`, `Accessibility`); an unknown heading also
+  headings are fixed (`When to use it`, `When not to use it`, `How to use it`, `Do`, `Don't`,
+  `Accessibility`); an unknown heading also
   fails. Task and page files use the same subset with their own fixed headings.
 - A malformed record fails the build and names the file and the problem. `tomllib` reports TOML
   errors with a line number.

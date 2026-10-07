@@ -14,7 +14,7 @@ KNOWN = {"cu-callout", "cu-callout-tip", "cu-callout-title", "fa-solid"}
 def component(**changes):
     fields = dict(name="callout", title="Callouts", lead="One idea.", group="emphasis", status="current",
                   since="v1.4", tasks=(), related=(), scss=(), editor=Editor(True, datetime.date(2026, 9, 20), "3.14"),
-                  parts={"cu-callout": "The container."}, examples=(TIP,), when_intro="",
+                  parts={"cu-callout": "The container."}, examples=(TIP,), when_html="<p>w</p>", when_not_html="<p>n</p>", how_html="",
                   do_html="<ul><li>a</li></ul>", dont_html="<ul><li>b</li></ul>",
                   accessibility_html="<p>c</p>", source=Path("components/callout.md"))
     fields.update(changes)

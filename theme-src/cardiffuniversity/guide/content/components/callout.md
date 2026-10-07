@@ -101,6 +101,14 @@ html = '''
 
 Use a callout when one idea must stand out from the text around it, so a reader who skims still sees it.
 
+## When not to use it
+
+Do not use a callout for text that every reader needs anyway, such as the main instructions on a page. Put that in the body text, where people expect to find it. If everything on a page stands out, nothing does.
+
+## How to use it
+
+Choose the variant that matches the kind of message, give the callout a short title that names it, and keep the text short. The variants are listed under Variants.
+
 ### Do
 
 - Keep each callout to one idea.

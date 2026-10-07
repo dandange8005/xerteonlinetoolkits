@@ -1,3 +1,4 @@
+import datetime
 import tempfile
 import unittest
 from pathlib import Path
@@ -23,8 +24,10 @@ class WrittenSiteTest(unittest.TestCase):
         guide = fx.write_guide(cls.tmp.name)
         cls.content = records.load_content(guide / "content")
         cls.out = Path(cls.tmp.name) / "site"
+        # Only the callout record has a known last change, so other pages show no date.
         cls.written = pages.write_site(cls.out, records.load_site(guide / "site.toml"), cls.content,
-                                       support.GUIDE / "templates" / "base.html")
+                                       support.GUIDE / "templates" / "base.html",
+                                       updated=lambda path: datetime.date(2026, 10, 6) if path.name == "callout.md" else None)
 
     @classmethod
     def tearDownClass(cls):
@@ -43,47 +46,69 @@ class WrittenSiteTest(unittest.TestCase):
         self.assertEqual(self.written, ["components/callout.html", "components/index.html", "getting-started.html",
                                         "index.html", "tasks/draw-attention.html", "tasks/index.html"])
 
-    def test_preview_renders_the_first_example(self):
-        preview = self.section(self.page("components/callout.html"), "Preview and code").find(cls="g-preview")
-        self.assertEqual(preview.find(cls="cu-callout-title").text(), "Tip")
+    def test_example_renders_the_first_example(self):
+        example = self.page("components/callout.html").find(cls="g-top-example")
+        self.assertEqual(example.find(cls="g-preview").find(cls="cu-callout-title").text(), "Tip")
+        self.assertIn(".cu-callout-tip", example.find(cls="g-variant-meta").text())
+
+    def test_code_starts_behind_a_closed_html_toggle(self):
+        toggle = self.page("components/callout.html").find(cls="g-top-example").find("details", cls="g-code-toggle")
+        self.assertNotIn("open", toggle.attrs)
+        self.assertEqual(toggle.find("summary").text().strip(), "HTML")
+        self.assertIn("add a Text content item, open its Source view", toggle.text())
 
     def test_code_view_shows_source_literally(self):
-        section = self.section(self.page("components/callout.html"), "Preview and code")
-        code = section.find(cls="g-code-wrap").find("code")
+        section = self.page("components/callout.html").find(cls="g-top-example")
+        code = section.find(cls="g-code-toggle").find("code")
         self.assertEqual(code.text(), self.content.components["callout"].examples[0].html)
         self.assertIn("Fish &amp; chips.", code.text())
         self.assertIn("Fish & chips.", section.find(cls="g-preview").text())
 
-    def test_paste_instruction_uses_the_glossary(self):
-        self.assertIn("add a Text content item, open its Source view",
-                      self.section(self.page("components/callout.html"), "Preview and code").text())
-
-    def test_variants_table(self):
-        rows = self.section(self.page("components/callout.html"), "Variants").find("tbody").find_all("tr")
-        self.assertEqual([[td.text() for td in row.find_all("td")] for row in rows],
-                         [[".cu-callout-tip", "Tip", "A shortcut or recommendation"],
-                          [".cu-callout-warning", "Warning", "A risk the reader must avoid"]])
+    def test_each_other_variant_has_its_own_example_and_code(self):
+        section = self.section(self.page("components/callout.html"), "Variants")
+        self.assertIn("Tip is shown at the top of the page.", section.text())
+        [warning] = section.find_all(cls="g-variant")
+        self.assertEqual(warning.find("h3").text(), "Warning")
+        self.assertIn(".cu-callout-warning", warning.find(cls="g-variant-meta").text())
+        self.assertIn("A risk the reader must avoid", warning.find(cls="g-variant-meta").text())
+        self.assertEqual(warning.find(cls="g-preview").find(cls="cu-callout-title").text(), "Warning")
+        self.assertEqual(warning.find(cls="g-code-toggle").find("code").text(),
+                         self.content.components["callout"].examples[1].html)
 
     def test_parts_table(self):
         rows = self.section(self.page("components/callout.html"), "Parts").find("tbody").find_all("tr")
         self.assertEqual([row.find("td").text() for row in rows], [".cu-callout", ".cu-callout-title", ".cu-callout-icon"])
 
-    def test_editor_evidence(self):
-        meta = self.page("components/callout.html").find(cls="g-meta").text()
-        self.assertIn("Survives the Xerte editor", meta)
-        self.assertIn("checked 20 September 2026", meta)
-        self.assertIn("Xerte 3.14", meta)
+    def test_guidance_sections_come_from_the_record(self):
+        page = self.page("components/callout.html")
+        self.assertIn("Use a callout for one idea.", self.section(page, "When to use it").text())
+        self.assertIn("text every reader must read anyway", self.section(page, "When not to use it").text())
+        how = self.section(page, "How to use it")
+        self.assertIn("Keep it short.", how.text())
+        self.assertEqual([li.text() for li in how.find(cls="g-do").find_all("li")], ["Name the variant in the title."])
+        self.assertEqual([li.text() for li in how.find(cls="g-dont").find_all("li")], ["Stack more than two."])
 
-    def test_do_and_dont(self):
-        section = self.section(self.page("components/callout.html"), "When to use it")
-        self.assertEqual([li.text() for li in section.find(cls="g-do").find_all("li")], ["Name the variant in the title."])
-        self.assertEqual([li.text() for li in section.find(cls="g-dont").find_all("li")], ["Stack more than two."])
+    def test_evidence(self):
+        evidence = self.section(self.page("components/callout.html"), "Evidence").find("dl")
+        rows = dict(zip([dt.text() for dt in evidence.find_all("dt")], [dd.text() for dd in evidence.find_all("dd")]))
+        self.assertEqual(rows["Status"], "Current")
+        self.assertEqual(rows["Since"], "Design system v1.4")
+        self.assertEqual(rows["Xerte editor"], "Survives the editor (checked 20 September 2026, Xerte 3.14)")
+        self.assertEqual(rows["Main class"], ".cu-callout")
+
+    def test_no_status_chips_above_the_content(self):
+        self.assertEqual(self.page("components/callout.html").find_all(cls="g-chip"), [])
+
+    def test_page_updated_date(self):
+        self.assertEqual(self.page("components/callout.html").find(cls="g-updated").text(), "Page updated: 6 October 2026")
+        self.assertEqual(self.page("tasks/draw-attention.html").find_all(cls="g-updated"), [])
 
     def test_on_this_page_links_resolve(self):
         page = self.page("components/callout.html")
         ids = {e.attrs["id"] for e in page.iter() if "id" in e.attrs}
         targets = [a.attrs["href"][1:] for a in page.find(cls="g-toc").find_all("a")]
-        self.assertEqual(targets, ["preview", "variants", "parts", "when-to-use-it", "accessibility", "related"])
+        self.assertEqual(targets, ["when-to-use-it", "when-not-to-use-it", "how-to-use-it", "variants",
+                                   "parts", "accessibility", "evidence", "related"])
         self.assertLessEqual(set(targets), ids)
 
     def test_side_menu_marks_the_current_component(self):
@@ -149,10 +174,6 @@ class WrittenSiteTest(unittest.TestCase):
         page = self.page("components/callout.html")
         for variant in ("cu-callout-tip", "cu-callout-warning"):
             self.assertEqual(len(page.find_all(cls=variant)), 1, variant)
-
-    def test_current_status_chip(self):
-        chip = self.page("components/callout.html").find(cls="g-chip-ok")
-        self.assertEqual(chip.text().strip(), "Current")
 
     def test_every_page_has_one_main_and_one_h1(self):
         for relative in self.written:

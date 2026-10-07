@@ -45,6 +45,14 @@ CHECKS = [
     ("components/callout.html", 485, "the phone menu opens",
      "(document.querySelector('.g-side-toggle').click(), !document.querySelector('.g-side-list').hidden"
      " && document.querySelector('.g-side-toggle').getAttribute('aria-expanded') === 'true')"),
+    ("components/callout.html", 1280, "in-page headings are calmer than the page title",
+     "parseFloat(getComputedStyle(document.getElementById('when-to-use-it')).fontSize) <= 32"),
+    ("components/callout.html", 1280, "side menu group headings are in sentence case",
+     "getComputedStyle(document.querySelector('.g-side h2')).textTransform === 'none'"),
+    ("components/callout.html", 1280, "the HTML toggle starts closed and opens",
+     "(function () { var d = document.querySelector('.g-code-toggle'); var closed = !d.open;"
+     " d.querySelector('summary').click(); return closed && d.open"
+     " && d.querySelector('.g-code').getBoundingClientRect().height > 0; })()"),
     ("components/callout.html", 1280, "the Cardiff logo loads",
      "document.querySelector('header img').naturalWidth > 0"),
     ("getting-started.html", 1280, "headings are spaced from the text above",

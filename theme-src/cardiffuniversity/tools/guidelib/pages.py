@@ -19,11 +19,16 @@ XERTE_PASTE = "In Xerte: add a Text content item, open its Source view, then pas
 LOGO_ALT = "Cardiff University / Prifysgol Caerdydd"
 
 
+def _unknown(path):
+    return None
+
+
 @dataclass(frozen=True)
 class Ctx:
     site: object
     content: object
     template: Template
+    updated: object = _unknown  # path of a record -> date it last changed, or None
 
 
 def esc(text):
@@ -90,10 +95,23 @@ def on_this_page(entries):
     return f'<nav class="g-toc" aria-label="On this page"><h2>On this page</h2><ol>{items}</ol></nav>'
 
 
-def preview(markup):
-    return ('<p class="g-preview-label">Preview</p>'
-            # In Xerte, pasted HTML sits inside a section element, so the preview does too.
-            f'<div class="g-preview" role="group" aria-label="Rendered example"><section>{markup}</section></div>')
+def example_frame(markup):
+    """The rendered example, framed, with its HTML behind a toggle (NHS service manual style).
+    In Xerte, pasted HTML sits inside a section element, so the preview does too."""
+    return ('<div class="g-example">'
+            f'<div class="g-preview" role="group" aria-label="Rendered example"><section>{markup}</section></div>'
+            f'<details class="g-code-toggle"><summary>HTML</summary>{code_block(markup)}'
+            f'<p class="g-note">{XERTE_PASTE}</p></details></div>')
+
+
+def variant_meta(example):
+    return (f'<p class="g-variant-meta"><code>.{esc(example.variant)}</code> &middot; {esc(example.purpose)}</p>'
+            if example.variant else f'<p class="g-variant-meta">{esc(example.purpose)}</p>')
+
+
+def updated_line(ctx, source):
+    day = ctx.updated(source)
+    return f'<p class="g-updated">Page updated: {long_date(day)}</p>' if day else ""
 
 
 def table(headers, rows, extra=""):
@@ -101,9 +119,14 @@ def table(headers, rows, extra=""):
     return f'<table class="g-table {extra}"><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table>'
 
 
-def editor_text(editor):
-    verdict = "Survives the Xerte editor" if editor.survives else "Changed by the Xerte editor"
-    return f"{verdict} · checked {long_date(editor.checked)} · Xerte {editor.xerte}"
+def evidence(component):
+    editor = component.editor
+    verdict = "Survives the editor" if editor.survives else "Changed by the editor"
+    rows = (("Status", esc(component.status.capitalize())),
+            ("Since", f"Design system {esc(component.since)}"),
+            ("Xerte editor", f"{verdict} (checked {long_date(editor.checked)}, Xerte {esc(editor.xerte)})"),
+            ("Main class", f"<code>.{esc(next(iter(component.parts)))}</code>"))
+    return '<dl class="g-evidence">' + "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in rows) + "</dl>"
 
 
 def related_links(ctx, component, root):
@@ -125,34 +148,30 @@ def pager(ctx, component):
 
 
 def component_page(ctx, component):
+    """Example first, then the guidance sections in the NHS service manual's order."""
     root = "../"
     first = component.examples[0]
-    variants = [e for e in component.examples if e.variant]
-    status = ('<span class="g-chip g-chip-ok"><i class="fa-solid fa-check" aria-hidden="true"></i> Current</span>'
-              if component.status == "current" else f'<span class="g-chip">{esc(component.status.capitalize())}</span>')
-    chips = status + "".join(f'<span class="g-chip">{chip}</span>' for chip in (
-        f"Since {esc(component.since)}", esc(editor_text(component.editor)),
-        f"Class: <code>.{esc(next(iter(component.parts)))}</code>"))
-    parts = [("preview", "Preview and code",
-              preview(first.html) + code_block(first.html) + f'<p class="g-note">{XERTE_PASTE}</p>')]
-    if variants:
-        rows = "".join(f"<tr><td><code>.{esc(e.variant)}</code></td><td>{esc(e.label)}</td><td>{esc(e.purpose)}</td></tr>"
-                       for e in variants)
-        # Each variant is rendered once: the first example already appears under Preview and code.
-        others = [e for e in variants if e is not first]
-        shown = (f"<p>{esc(first.label)} is shown under Preview and code.</p>" if first.variant else "")
-        parts.append(("variants", "Variants",
-                      shown + (preview("".join(e.html for e in others)) if others else "")
-                      + table(("Class", "Variant", "Use it for"), rows, "g-table-variants")))
+    others = [e for e in component.examples[1:] if e.variant]
+    # The first example comes straight after the lead, with no heading (as on the NHS pages).
+    top = f'<div class="g-top-example">{variant_meta(first)}{example_frame(first.html)}</div>'
+    parts = [("when-to-use-it", "When to use it", component.when_html),
+             ("when-not-to-use-it", "When not to use it", component.when_not_html),
+             ("how-to-use-it", "How to use it",
+              component.how_html + '<div class="g-cols"><div class="g-do">'
+              + '<h3><i class="fa-solid fa-check" aria-hidden="true"></i> Do</h3>' + component.do_html
+              + '</div><div class="g-dont"><h3><i class="fa-solid fa-xmark" aria-hidden="true"></i> Don\'t</h3>'
+              + component.dont_html + "</div></div>")]
+    if others:
+        # Each variant is rendered once: the first example is already shown at the top.
+        shown = f"<p>{esc(first.label)} is shown at the top of the page.</p>" if first.variant else ""
+        blocks = "".join(f'<div class="g-variant"><h3>{esc(e.label)}</h3>{variant_meta(e)}{example_frame(e.html)}</div>'
+                         for e in others)
+        parts.append(("variants", "Variants", shown + blocks))
     part_rows = "".join(f"<tr><td><code>.{esc(cls)}</code></td><td>{esc(what)}</td></tr>"
                         for cls, what in component.parts.items())
     parts.append(("parts", "Parts", table(("Class", "What it is"), part_rows)))
-    parts.append(("when-to-use-it", "When to use it",
-                  component.when_intro + '<div class="g-cols"><div class="g-do">'
-                  + '<h3><i class="fa-solid fa-check" aria-hidden="true"></i> Do</h3>' + component.do_html
-                  + '</div><div class="g-dont"><h3><i class="fa-solid fa-xmark" aria-hidden="true"></i> Don\'t</h3>'
-                  + component.dont_html + "</div></div>"))
     parts.append(("accessibility", "Accessibility", component.accessibility_html))
+    parts.append(("evidence", "Evidence", evidence(component)))
     related = related_links(ctx, component, root)
     if related:
         parts.append(("related", "Related", related))
@@ -160,7 +179,7 @@ def component_page(ctx, component):
                        for sid, title, body in parts)
     main = (f'<p class="g-crumb"><a href="index.html">Components</a> &rsaquo; {esc(component.title)}</p>'
             f'<h1>{esc(component.title)}</h1><p class="g-lead">{esc(component.lead)}</p>'
-            f'<div class="g-meta">{chips}</div>{sections}{pager(ctx, component)}')
+            f'{top}{sections}{updated_line(ctx, component.source)}{pager(ctx, component)}')
     body = (f'<div class="g-shell">{side_menu(ctx, root, component.name)}'
             f'<main id="main" class="g-main">{main}</main>'
             f'{on_this_page([(sid, title) for sid, title, _ in parts])}</div>')
@@ -198,7 +217,7 @@ def home_page(ctx, page):
             f'<h1>{esc(page.title)}</h1><p class="g-lead">{esc(page.lead)}</p></div>{aside}</div></div>'
             f'<div class="g-wrap"><div class="g-band" aria-labelledby="tasks-title" role="region">'
             f'<h2 id="tasks-title">Common tasks</h2>{task_tiles(ctx, root)}</div>{how_block}'
-            f'{"".join(_section_html(s) for s in page.sections)}</div></main>')
+            f'{"".join(_section_html(s) for s in page.sections)}{updated_line(ctx, page.source)}</div></main>')
     return page_shell(ctx, title=page.title, root=root, active="home", body=body, home=True)
 
 
@@ -213,10 +232,9 @@ def task_page(ctx, task):
             f'<div class="g-section" aria-labelledby="goal" role="region"><h2 id="goal">Goal</h2>{task.goal_html}</div>'
             f'<div class="g-section" aria-labelledby="use" role="region"><h2 id="use">Components to use</h2><ul class="g-cards">{cards}</ul></div>'
             f'<div class="g-section" aria-labelledby="example" role="region"><h2 id="example">Worked example: {esc(example.label)}</h2>'
-            f'<p>{esc(example.purpose)}</p>{preview(example.html)}{code_block(example.html)}'
-            f'<p class="g-note">{XERTE_PASTE}</p></div>'
+            f'<p>{esc(example.purpose)}</p>{example_frame(example.html)}</div>'
             f'<div class="g-section" aria-labelledby="checklist" role="region"><h2 id="checklist">Checklist</h2>'
-            f'<div class="g-checklist">{task.checklist_html}</div></div></main>')
+            f'<div class="g-checklist">{task.checklist_html}</div></div>{updated_line(ctx, task.source)}</main>')
     return page_shell(ctx, title=task.title, root=root, active="tasks", body=body)
 
 
@@ -225,7 +243,7 @@ def simple_page(ctx, page, active):
     content = "".join(_section_html(s) for s in page.sections)
     toc = on_this_page([(s.slug, s.title) for s in page.sections if s.level == 2])
     body = (f'<div class="g-shell g-shell-doc"><main id="main" class="g-main"><h1>{esc(page.title)}</h1>'
-            f'<p class="g-lead">{esc(page.lead)}</p>{content}</main>{toc}</div>')
+            f'<p class="g-lead">{esc(page.lead)}</p>{content}{updated_line(ctx, page.source)}</main>{toc}</div>')
     return page_shell(ctx, title=page.title, root=root, active=active, body=body)
 
 
@@ -248,8 +266,9 @@ def tasks_index(ctx):
     return page_shell(ctx, title="Tasks", root=root, active="tasks", body=body)
 
 
-def write_site(out, site, content, template_path):
-    ctx = Ctx(site, content, Template(template_path.read_text(encoding="utf-8")))
+def write_site(out, site, content, template_path, updated=None):
+    """updated, if given, maps a record's path to the date it last changed (or None)."""
+    ctx = Ctx(site, content, Template(template_path.read_text(encoding="utf-8")), updated or _unknown)
     rendered = {"index.html": home_page(ctx, content.pages["index"]),
                 "components/index.html": components_index(ctx), "tasks/index.html": tasks_index(ctx)}
     for name, page in content.pages.items():

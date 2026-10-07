@@ -14,7 +14,8 @@ from guidelib.mdsubset import Section, sections
 STATUSES = ("current", "legacy")
 COVERAGE_MODES = ("warn", "fail")
 MENU_PAGES = ("home", "getting-started", "tasks", "components")
-COMPONENT_HEADINGS = ((2, "When to use it"), (3, "Do"), (3, "Don't"), (2, "Accessibility"))
+COMPONENT_HEADINGS = ((2, "When to use it"), (2, "When not to use it"), (2, "How to use it"),
+                      (3, "Do"), (3, "Don't"), (2, "Accessibility"))
 TASK_HEADINGS = ((2, "Goal"), (2, "Checklist"))
 KIND_NAMES = {str: "text", bool: "true or false", dict: "table", list: "list", datetime.date: "date (YYYY-MM-DD)"}
 
@@ -53,7 +54,9 @@ class Component:
     editor: Editor
     parts: dict
     examples: tuple
-    when_intro: str
+    when_html: str
+    when_not_html: str
+    how_html: str
     do_html: str
     dont_html: str
     accessibility_html: str
@@ -212,8 +215,8 @@ def load_component(path):
     both = sorted(set(variants) & set(parts))
     if both:
         raise RecordError(path, f"class is both a variant and a part: {', '.join(both)}")
-    when, do, dont, accessibility = _expect(sections(body, path, line), COMPONENT_HEADINGS, path)
-    for section in (do, dont, accessibility):
+    when, when_not, how, do, dont, accessibility = _expect(sections(body, path, line), COMPONENT_HEADINGS, path)
+    for section in (when, when_not, do, dont, accessibility):
         if not section.html:
             raise RecordError(path, f"'{_heading((section.level, section.title))}' is empty")
     return Component(
@@ -225,8 +228,9 @@ def load_component(path):
         editor=Editor(survives=_field(editor, "survives", bool, path, "[editor]"),
                       checked=_field(editor, "checked", datetime.date, path, "[editor]"),
                       xerte=_field(editor, "xerte", str, path, "[editor]")),
-        parts=dict(parts), examples=examples, when_intro=when.html, do_html=do.html,
-        dont_html=dont.html, accessibility_html=accessibility.html, source=path)
+        parts=dict(parts), examples=examples, when_html=when.html, when_not_html=when_not.html,
+        how_html=how.html, do_html=do.html, dont_html=dont.html, accessibility_html=accessibility.html,
+        source=path)
 
 
 def load_task(path):

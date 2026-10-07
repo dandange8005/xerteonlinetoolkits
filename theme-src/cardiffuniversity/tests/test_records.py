@@ -28,7 +28,9 @@ class RecordsTest(unittest.TestCase):
         self.assertEqual(list(c.parts), ["cu-callout", "cu-callout-title", "cu-callout-icon"])
         self.assertEqual([e.variant for e in c.examples], ["cu-callout-tip", "cu-callout-warning"])
         self.assertTrue(c.examples[0].html.startswith('<div class="cu-callout cu-callout-tip">'))
-        self.assertEqual(c.when_intro, "<p>Use a callout for one idea.</p>")
+        self.assertEqual(c.when_html, "<p>Use a callout for one idea.</p>")
+        self.assertEqual(c.when_not_html, "<p>Do not use a callout for text every reader must read anyway.</p>")
+        self.assertEqual(c.how_html, "<p>Keep it short.</p>")
         self.assertEqual(c.do_html, "<ul><li>Name the variant in the title.</li></ul>")
         self.assertEqual(c.dont_html, "<ul><li>Stack more than two.</li></ul>")
         self.assertEqual(c.accessibility_html, "<p>The title says the variant in words.</p>")
@@ -99,6 +101,13 @@ class RecordsTest(unittest.TestCase):
 
     def test_no_text_before_the_first_heading(self):
         self.assertComponentError(fx.CALLOUT.replace("+++\n\n## When", "+++\nHello.\n\n## When"), "text before the first heading")
+
+    def test_when_not_to_use_it_must_not_be_empty(self):
+        self.assertComponentError(fx.CALLOUT.replace("Do not use a callout for text every reader must read anyway.\n", ""),
+                                  "'## When not to use it' is empty")
+
+    def test_how_to_use_it_may_have_no_intro(self):
+        self.assertEqual(self.component(fx.CALLOUT.replace("Keep it short.\n", "")).how_html, "")
 
     def test_do_must_not_be_empty(self):
         self.assertComponentError(fx.CALLOUT.replace("- Name the variant in the title.\n", ""), "'### Do' is empty")
