@@ -59,6 +59,31 @@ CHECKS = [
      "[].every.call(document.querySelectorAll('.g-side a, .g-side h2'), function (e) { return getComputedStyle(e).fontSize === '16px'; })"),
     ("index.html", 1280, "the home page menu uses the 16px interface size",
      "[].every.call(document.querySelectorAll('.g-top a'), function (a) { return getComputedStyle(a).fontSize === '16px'; })"),
+    ("components/callout.html", 1280, "the on this page list uses the 16px interface size",
+     "[].every.call(document.querySelectorAll('.g-toc a'), function (a) { return getComputedStyle(a).fontSize === '16px'; })"),
+    ("components/callout.html", 1280, "the on this page heading is 16px, in sentence case",
+     "(function () { var c = getComputedStyle(document.querySelector('.g-toc h2'));"
+     " return c.fontSize === '16px' && c.textTransform === 'none'; })()"),
+    ("reference/index.html", 1280, "a card title is underlined on hover",
+     "(function () { var link = document.querySelector('.g-card a'), found = false;"
+     " [].forEach.call(document.styleSheets, function (sheet) {"
+     "  var rules; try { rules = sheet.cssRules; } catch (e) { return; }"
+     "  [].forEach.call(rules, function (rule) {"
+     "   if (!rule.selectorText || rule.selectorText.indexOf(':hover') < 0) return;"
+     "   rule.selectorText.split(',').forEach(function (sel) {"
+     "    if (!/:hover\\s+/.test(sel)) return;"  # the card is hovered, not the link itself
+     "    try { if (link.matches(sel.replace(/:hover/g, '').trim()) && /underline/.test(rule.style.textDecorationLine || rule.style.textDecoration)) found = true; } catch (e) {}"
+     "   });"
+     "  });"
+     " });"
+     " return found; })()"),
+    ("reference/index.html", 1280, "the whole card is a link, not just its title",
+     "(function () { var card = document.querySelector('.g-card'), r = card.getBoundingClientRect();"
+     " var hit = document.elementFromPoint(r.right - 12, r.bottom - 12);"
+     " return !!hit && hit.closest('a') === card.querySelector('a'); })()"),
+    ("reference/index.html", 1280, "a focused card shows an outline",
+     "(function () { var card = document.querySelector('.g-card'); card.querySelector('a').focus();"
+     " var c = getComputedStyle(card); return c.outlineStyle === 'solid' && c.outlineWidth === '3px'; })()"),
     ("components/callout.html", 1280, "the Cardiff logo loads",
      "document.querySelector('header img').naturalWidth > 0"),
     ("getting-started.html", 1280, "headings are spaced from the text above",

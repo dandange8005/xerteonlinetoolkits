@@ -49,9 +49,9 @@
 .g-side-toggle { width: calc(100% - 32px); margin: 0 16px; padding: 10px 14px; background: var(--cu-white); color: var(--cu-ink); border: 1px solid var(--cu-grey-80); font-size: 16px; text-align: left; }
 
 .g-toc { align-self: start; position: sticky; top: 0; padding: 32px 24px; border-left: 1px solid var(--cu-line); }
-.g-toc h2 { margin: 0 0 8px; padding: 0; border: 0; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--cu-grey-80); }
+.g-toc h2 { margin: 0 0 8px; padding: 0; border: 0; font-size: var(--cu-text-ui); color: var(--cu-ink); }
 .g-toc ol { list-style: none; margin: 0; padding: 0; }
-.g-toc a { display: block; padding: 5px 0 5px 12px; color: var(--cu-ink); text-decoration: none; border-left: 3px solid transparent; }
+.g-toc a { display: block; padding: 5px 0 5px 12px; font-size: var(--cu-text-ui); color: var(--cu-ink); text-decoration: none; border-left: 3px solid transparent; }
 .g-toc a:hover { text-decoration: underline; }
 .g-toc a[aria-current="location"] { border-left-color: var(--color-brand-primary); font-weight: 700; }
 
@@ -121,6 +121,13 @@
 .g-tasks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .g-card, .g-task { position: relative; padding: 20px; border: 1px solid var(--cu-line); border-top: 4px solid var(--cu-ink); background: var(--cu-white); }
 .g-card a, .g-task h3 a { font-weight: 700; color: var(--cu-ink); }
+/* Cards: the whole card is the link. On hover the card turns grey and its title is underlined;
+   keyboard focus outlines the card. */
+.g-card a { text-decoration: none; }
+.g-card a::after { content: ""; position: absolute; inset: 0; }
+.g-card:hover, .g-task:hover { background: var(--cu-surface); }
+.g-card:hover a { text-decoration: underline; }
+.g-card:focus-within { outline: 3px solid var(--cu-ink); outline-offset: 2px; }
 .g-card p { margin: 8px 0 0; }
 .g-task h3 { margin: 8px 0; font-size: 22px; line-height: 1.2; }
 .g-task h3 a { text-decoration: none; }
