@@ -100,6 +100,14 @@ CHECKS = [
     ("components/alert.html", 1280, "the close button removes its alert",
      "(function () { var a = document.querySelector('.g-preview .alert-block'); if (!a) return false;"
      " a.querySelector('.close').click(); return !document.contains(a); })()"),
+    ("components/card.html", 485, "no sideways scroll", NO_SIDEWAYS_SCROLL),
+    ("components/card.html", 1280, "the whole clickable card is one link",
+     "(function () { var card = document.querySelector('.g-preview .card--clickable'); card.scrollIntoView();"
+     " var r = card.getBoundingClientRect(), hit = document.elementFromPoint(r.left + 30, r.bottom - 30);"
+     " return !!hit && hit.closest('a') === card.querySelector('.card__link'); })()"),
+    ("components/card.html", 1280, "the card image is cropped to a widescreen shape",
+     "(function () { var i = document.querySelector('.g-preview .card__image').getBoundingClientRect();"
+     " return Math.abs(i.width / i.height - 16 / 9) < 0.05; })()"),
     ("components/callout.html", 1280, "the Cardiff logo loads",
      "document.querySelector('header img').naturalWidth > 0"),
     ("getting-started.html", 1280, "headings are spaced from the text above",

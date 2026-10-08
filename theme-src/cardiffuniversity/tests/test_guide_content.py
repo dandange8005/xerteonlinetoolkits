@@ -168,6 +168,18 @@ class BuiltComponentPagesTest(unittest.TestCase):
     def test_alert_page_says_where_the_glyph_sits_in_a_block_alert(self):
         self.assertIn("own line", self.section_text("alert", "How to use it"))
 
+    def test_card_page_documents_every_card_class(self):
+        expected = {c for c in theme_css.author_facing_classes() if c.startswith("card")}
+        self.assertLessEqual({"card", "card--clickable", "card__image", "card__link"}, expected)  # not an empty set
+        self.assertEqual(expected - self.shown("card"), set())
+
+    def test_card_examples_load_nothing_from_outside(self):
+        images = [i for frame in self.page("card").find_all(cls="g-preview") for i in frame.find_all("img")]
+        self.assertGreaterEqual(len(images), 2)
+        for image in images:
+            self.assertTrue(image.attrs.get("src", "").startswith("data:"), image.attrs.get("src"))
+            self.assertIn("alt", image.attrs)
+
     def test_components_index_lists_the_buttons(self):
         index = parse((self.out / "components" / "index.html").read_text(encoding="utf-8"))
         hrefs = [a.attrs["href"] for card in index.find_all(cls="g-card") for a in card.find_all("a")]
