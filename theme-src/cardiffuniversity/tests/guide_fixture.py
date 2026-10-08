@@ -201,4 +201,6 @@ def write_guide(root, **overrides):
         real = support.GUIDE / folder
         if real.exists():
             shutil.copytree(real, guide / folder)
+    if (support.GUIDE / "reference.toml").exists():
+        shutil.copy(support.GUIDE / "reference.toml", guide / "reference.toml")
     return guide

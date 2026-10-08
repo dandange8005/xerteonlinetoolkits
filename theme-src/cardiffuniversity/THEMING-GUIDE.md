@@ -241,6 +241,10 @@ A task file lists the components it uses under `components`. That is the only pl
 written: a component page finds its tasks from the task files, and a component record that has a
 `tasks` field is rejected.
 
+The reference pages are generated. `guide/reference.toml` gives each token group in
+`tokens/tokens.json` an author-facing title and intro; when you add a token group, add an entry
+there too, or the build stops and names the group.
+
 ## Adding a component
 
 Add its SCSS module under `scss/components/`, import it from `_custom-components.scss`,

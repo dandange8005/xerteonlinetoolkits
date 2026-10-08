@@ -118,11 +118,13 @@ and keeps the guide on brand, with two rules:
 | Getting started | Direction A layout: choose the theme, logos, colourways, page-frame settings | `pages/getting-started.md` | 1 |
 | Task page | Goal, components to use, worked example, checklist | `tasks/*.md` | 1 (draw attention) |
 | Component page | Direction A layout | `components/*.md` | 1 (callouts) |
-| Reference | Colours, tokens, utility classes, mostly generated | generated | none (phase 2) |
+| Reference | An overview, Colours, Type, space and shape, and Utility classes, all generated from the theme | generated | 2a |
 
 - The home page has no search box. Direction B's mock-up showed one, but search is out of scope,
   and a box that does nothing would mislead. It comes back with search.
-- The top menu has Home, Getting started, Tasks, Components, Colours and type, and Accessibility.
+- The top menu has Home, Getting started, Tasks, Components and Reference. An Accessibility entry
+  joins when that page exists. (The Reference entry replaces "Colours and type": the section holds
+  colours, type and spacing, and utility classes.)
   Its entries, the component groups and their order, and the task order live in
   `guide/site.toml`. Menu items whose pages do not exist yet are left out, not shown as dead
   links.
@@ -302,8 +304,12 @@ Rule for maintainers: a change to a component's SCSS needs a look at its record.
    model and `site.toml`, the home page, Getting started, one task page ("Draw attention to
    something") and one component, callouts. The task page is needed so the home page has a tile
    and the callout page has a task to link to.
-2. **Phase 2.** The reference pages (colours, tokens, utility classes), buttons, cards, tables,
-   alerts, images, layout and typography, and two or three more task pages.
+2. **Phase 2**, in three plans so each batch can be reviewed:
+   - **2a.** The foundations and the reference pages: optional editor evidence ("Not tested in the
+     Xerte editor yet"), one source for task and component links, a check for unbalanced example
+     HTML, and the Colours, Type, space and shape, and Utility classes pages.
+   - **2b.** Buttons, cards, tables, alerts, images, layout and typography, in small batches.
+   - **2c.** Two or three more task pages.
 3. **Phase 3.** Migrate the remaining `demos/` pages one at a time. Make check 2 a hard failure,
    retire `build-reference.py` and `demos/`.
 

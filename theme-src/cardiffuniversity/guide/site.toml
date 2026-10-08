@@ -20,6 +20,10 @@ title = "Tasks"
 page = "components"
 title = "Components"
 
+[[menu]]
+page = "reference"
+title = "Reference"
+
 # Component groups in the side menu, in this order. Empty groups are not shown.
 [[groups]]
 id = "content"

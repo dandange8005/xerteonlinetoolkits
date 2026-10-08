@@ -19,7 +19,7 @@ import shutil  # noqa: E402
 from pathlib import Path  # noqa: E402
 
 import theme_css  # noqa: E402
-from guidelib import assets, checks, pages, records  # noqa: E402
+from guidelib import assets, checks, pages, records, reference  # noqa: E402
 from guidelib.mdsubset import MarkdownError  # noqa: E402
 
 GUIDE = theme_css.THEME / "guide"
@@ -35,10 +35,19 @@ def build(guide_dir=GUIDE, out=SITE, check_only=False, last_changed=None):
     except (records.RecordError, MarkdownError, OSError) as error:
         print(f"ERROR {error}")
         return 1
+    try:
+        ref = reference.load_reference(
+            theme_css.THEME / "tokens" / "tokens.json", guide_dir / "reference.toml",
+            theme_css.utility_groups(theme_css.utilities()), tuple(sorted(theme_css.LEGACY.items())))
+    except reference.ReferenceDataError as error:
+        print(f"ERROR {error}")
+        return 1
+    # The utility tables on the reference pages cover these classes, so check 2 need not ask for records.
+    tables = {cls for _, _, rows in ref.utilities for cls, _ in rows}
     last_changed = last_changed or checks.git_last_changed(theme_css.THEME)
     findings = checks.run_all(
         content, site, theme_dir=theme_css.THEME, known=theme_css.stack_classes(),
-        author_facing=theme_css.author_facing_classes(), tables=set(), last_changed=last_changed)
+        author_facing=theme_css.author_facing_classes(), tables=tables, last_changed=last_changed)
     for finding in findings:
         print(finding)
     errors = sum(f.level == "error" for f in findings)
@@ -60,7 +69,7 @@ def build(guide_dir=GUIDE, out=SITE, check_only=False, last_changed=None):
                               encoding="utf-8")
     try:
         written = pages.write_site(out, site, content, guide_dir / "templates" / "base.html",
-                                   updated=lambda path: last_changed(str(path)))
+                                   updated=lambda path: last_changed(str(path)), ref=ref)
         assets.copy_assets(out, guide_dir / "assets")
     except OSError as error:
         print(f"ERROR the build stopped partway: {error}")

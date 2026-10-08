@@ -83,7 +83,10 @@ The proposal behind these items is in the
 
 Phase 1 of the [author guide](docs/design-notes/2026-10-06-author-guide.md) is built: the
 generator, the five build checks, Getting started, one task page and the callout component.
-It is not published. Phase 2 adds the reference pages and seven more components.
+It is not published. Phase 2a adds the reference pages (colours, type and spacing, utility
+classes), an honest "Not tested in the Xerte editor yet" state for component records, one source
+for task and component links, and a check for unbalanced example HTML. Phase 2b adds seven more
+components and phase 2c more task pages.
 
 - [ ] Bundle the external placeholder images used by the demos.
 - [ ] Decide whether the guide stays bundled or also gets a published home, and who maintains it.
