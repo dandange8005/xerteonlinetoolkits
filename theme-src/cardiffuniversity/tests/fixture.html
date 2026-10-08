@@ -286,6 +286,13 @@ function classStyle(classes, property) {
   try { return getComputedStyle(probe)[property]; }
   finally { probe.remove(); }
 }
+// Like classStyle, but the probe is a bare tag such as kbd or samp.
+function tagStyle(tag, property) {
+  const probe = document.createElement(tag);
+  document.body.appendChild(probe);
+  try { return getComputedStyle(probe)[property]; }
+  finally { probe.remove(); }
+}
 // Like classStyle, but the probe is a link: a.button is more specific than a single class,
 // so a size modifier can work on a <button> and silently fail on an <a>.
 function linkStyle(classes, property) {

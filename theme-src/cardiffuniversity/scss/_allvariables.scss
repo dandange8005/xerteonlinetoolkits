@@ -373,19 +373,14 @@
     // BORDERS
     // =========================================================================
 
-    // Structural panels stay square; only control rounding follows --cu-radius.
+    // Structural panels stay square (see --radius-card). The steps below are for controls, small
+    // elements and the .rounded-* utilities. md is the control radius (--cu-radius).
     --radius-none: 0;
-    --radius-sm: var(--cu-radius);
-    --radius-md: var(--cu-radius);
-    --radius-lg: 0;
-    --radius-xl: 0;
+    --radius-sm: var(--cu-radius-sm);
+    --radius-md: var(--cu-radius-md);
+    --radius-lg: var(--cu-radius-lg);
+    --radius-xl: var(--cu-radius-xl);
     --radius-full: 9999px;
-
-    // Corner sizes for the .rounded-sm, .rounded-md and .rounded-lg utilities. They are their own
-    // steps and do not follow --radius-sm and --radius-md, which components share.
-    --radius-utility-sm: var(--cu-radius-sm);
-    --radius-utility-md: var(--cu-radius-md);
-    --radius-utility-lg: var(--cu-radius-lg);
 
     // Semantic radius
     --radius-card: var(--radius-none);  // structural panels are square

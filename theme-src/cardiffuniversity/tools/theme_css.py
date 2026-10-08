@@ -49,7 +49,7 @@ FAMILIES = [
      r"^(flex-\w+|items-\w+|justify-\w+|gap-\w+|self-\w+)$"),
     ("Width and height", "Sizing helpers.",
      r"^(w-\w+|h-\w+|max-w-\w+|min-w-\w+)$"),
-    ("Borders and corners", "Corner rounding, from rounded-sm to rounded-lg. Plain rounded is the same as rounded-sm. Page content in this theme is square by default.",
+    ("Borders and corners", "Corner rounding, from rounded-sm to rounded-xl. Plain rounded is the same as rounded-md. Page content in this theme is square by default.",
      r"^rounded(-\w+)?$"),
     ("Background", "Background colour by role.",
      r"^bg-[\w-]+$"),

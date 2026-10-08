@@ -74,14 +74,20 @@ CHECKS = [
     ("roles", "light is neutral, with no colour tint",
      "(function(){var c=rgbOf(v('var(--color-light)','backgroundColor'));return String(Math.abs(c[0]-c[1])<0.5&&Math.abs(c[1]-c[2])<0.5)})()", "true"),
     ("roles", "the page background is white", "cs('body','backgroundColor')", "rgb(255, 255, 255)"),
-    # Corner utilities: plain .rounded stays the 3px control radius; sm, md and lg are their own steps,
-    # and the shared control radius (buttons) must not move.
-    ("radius", "rounded-sm is the 3px control radius", "classStyle('rounded-sm','borderTopLeftRadius')", "3px"),
-    ("radius", "plain rounded is still 3px", "classStyle('rounded','borderTopLeftRadius')", "3px"),
-    ("radius", "rounded-md is 6px", "classStyle('rounded-md','borderTopLeftRadius')", "6px"),
-    ("radius", "rounded-lg is 12px", "classStyle('rounded-lg','borderTopLeftRadius')", "12px"),
-    ("radius", "rounded-full and rounded-none are unchanged",
-     "classStyle('rounded-full','borderTopLeftRadius')+' '+classStyle('rounded-none','borderTopLeftRadius')", "9999px 0px"),
+    # Corner steps: sm 2px, md 3px (the control radius), lg 9px, xl 12px. Plain .rounded is md.
+    ("radius", "rounded-none is square", "classStyle('rounded-none','borderTopLeftRadius')", "0px"),
+    ("radius", "rounded-sm is 2px", "classStyle('rounded-sm','borderTopLeftRadius')", "2px"),
+    ("radius", "plain rounded is 3px", "classStyle('rounded','borderTopLeftRadius')", "3px"),
+    ("radius", "rounded-md is 3px, the same as plain rounded", "classStyle('rounded-md','borderTopLeftRadius')", "3px"),
+    ("radius", "rounded-lg is 9px", "classStyle('rounded-lg','borderTopLeftRadius')", "9px"),
+    ("radius", "rounded-xl is 12px", "classStyle('rounded-xl','borderTopLeftRadius')", "12px"),
+    ("radius", "rounded-full is unchanged", "classStyle('rounded-full','borderTopLeftRadius')", "9999px"),
+    # The small step is shared: these elements follow it. Buttons and inputs follow the medium step.
+    ("radius", "inline code, kbd and samp use the small step",
+     "cs('#inline-code','borderTopLeftRadius')+' '+tagStyle('kbd','borderTopLeftRadius')+' '+tagStyle('samp','borderTopLeftRadius')",
+     "2px 2px 2px"),
+    ("radius", "labels and the feedback tab use the small step",
+     "cs('#label-default','borderTopLeftRadius')+' '+cs('#feedback_button','borderTopLeftRadius')", "2px 2px"),
     ("radius", "a primary button keeps the 3px control radius",
      "classStyle('button button-primary','borderTopLeftRadius')", "3px"),
     # Size modifiers must work on links as well as buttons (a.button is more specific than a class).

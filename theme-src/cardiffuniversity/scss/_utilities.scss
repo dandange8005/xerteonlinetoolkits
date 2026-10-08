@@ -615,11 +615,10 @@ $spacing-map: (
     border-radius: 0 !important;
 }
 
-// sm, md and lg have their own sizes (--radius-utility-*, from the --cu-radius-sm/-md/-lg tokens). They do
-// not use --radius-sm and --radius-md, which buttons, inputs and base elements share. Plain .rounded
-// stays the control radius.
+// The corner steps are shared with components: sm is also used by inline code, labels and the
+// feedback tab, and md (the control radius) by buttons and inputs. Plain .rounded is md.
 .rounded-sm {
-    border-radius: var(--radius-utility-sm) !important;
+    border-radius: var(--radius-sm) !important;
 }
 
 .rounded {
@@ -627,11 +626,15 @@ $spacing-map: (
 }
 
 .rounded-md {
-    border-radius: var(--radius-utility-md) !important;
+    border-radius: var(--radius-md) !important;
 }
 
 .rounded-lg {
-    border-radius: var(--radius-utility-lg) !important;
+    border-radius: var(--radius-lg) !important;
+}
+
+.rounded-xl {
+    border-radius: var(--radius-xl) !important;
 }
 
 .rounded-full {
