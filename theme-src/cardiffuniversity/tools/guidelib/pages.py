@@ -361,7 +361,11 @@ def tokens_page(ctx, ref):
     sections = []
     for group in ref.tokens:
         notes = any(t.note for t in group.tokens)  # a Notes column only where some token has a note
-        rows = "".join(f"<tr><td><code>--{esc(t.name)}</code></td><td><code>{esc(t.value)}</code></td>"
+        def value_cell(t):
+            alias = f'<span class="g-token-note">same as <code>--{esc(t.alias_of)}</code></span>' if t.alias_of else ""
+            return f"<td><code>{esc(t.resolved)}</code>{alias}</td>"
+
+        rows = "".join(f"<tr><td><code>--{esc(t.name)}</code></td>{value_cell(t)}"
                        + (f"<td>{esc(t.note)}</td>" if notes else "") + "</tr>" for t in group.tokens)
         headers = ("Token", "Value", "Notes") if notes else ("Token", "Value")
         sections.append((group.id, group.title,

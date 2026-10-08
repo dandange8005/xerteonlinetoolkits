@@ -63,7 +63,7 @@ intro = "A 4px base. The number in each name is the multiple of 4."
 [[groups]]
 id = "shape"
 title = "Shape and motion"
-intro = "The logo width, the corner radius for controls, and animation timing. Structural panels stay square."
+intro = "The logo width, the corner radius for controls, the three corner sizes behind the rounded utility classes, and animation timing. Structural panels stay square."
 
 [[groups]]
 id = "shadows"

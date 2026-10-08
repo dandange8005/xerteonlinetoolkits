@@ -74,6 +74,16 @@ CHECKS = [
     ("roles", "light is neutral, with no colour tint",
      "(function(){var c=rgbOf(v('var(--color-light)','backgroundColor'));return String(Math.abs(c[0]-c[1])<0.5&&Math.abs(c[1]-c[2])<0.5)})()", "true"),
     ("roles", "the page background is white", "cs('body','backgroundColor')", "rgb(255, 255, 255)"),
+    # Corner utilities: plain .rounded stays the 3px control radius; sm, md and lg are their own steps,
+    # and the shared control radius (buttons) must not move.
+    ("radius", "rounded-sm is the 3px control radius", "classStyle('rounded-sm','borderTopLeftRadius')", "3px"),
+    ("radius", "plain rounded is still 3px", "classStyle('rounded','borderTopLeftRadius')", "3px"),
+    ("radius", "rounded-md is 6px", "classStyle('rounded-md','borderTopLeftRadius')", "6px"),
+    ("radius", "rounded-lg is 12px", "classStyle('rounded-lg','borderTopLeftRadius')", "12px"),
+    ("radius", "rounded-full and rounded-none are unchanged",
+     "classStyle('rounded-full','borderTopLeftRadius')+' '+classStyle('rounded-none','borderTopLeftRadius')", "9999px 0px"),
+    ("radius", "a primary button keeps the 3px control radius",
+     "classStyle('button button-primary','borderTopLeftRadius')", "3px"),
     # Size modifiers must work on links as well as buttons (a.button is more specific than a class).
     ("buttons", "a small link button has the small text size and padding",
      "linkStyle('button button-primary button-sm','fontSize')+' '+linkStyle('button button-primary button-sm','paddingTop')+' '+linkStyle('button button-primary button-sm','paddingLeft')",

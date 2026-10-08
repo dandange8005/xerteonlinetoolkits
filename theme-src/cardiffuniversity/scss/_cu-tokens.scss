@@ -107,6 +107,9 @@
  /* Shape, depth, motion */
  --cu-logo-width:clamp(60px,17vw,80px); /* logo minimums: 60px at 375px, 70px at 414px, 80px from 480px */
  --cu-radius:3px;
+ --cu-radius-sm:var(--cu-radius); /* corner size for .rounded-sm and plain .rounded: the control radius */
+ --cu-radius-md:6px; /* corner size for .rounded-md */
+ --cu-radius-lg:12px; /* corner size for .rounded-lg */
  --cu-fast:160ms;
  --cu-ease:cubic-bezier(.16,1,.3,1);
 

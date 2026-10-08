@@ -113,6 +113,7 @@ Component geometry is not automatically a spacing role just because its number m
 | Display, section and component headings | `--cu-text-display`, `--cu-text-section`, `--cu-text-component` |
 | Shared spacing step | `--cu-space-4`, etc. |
 | Control corners | `--cu-radius` (structural panels remain square) |
+| Corner utilities (`.rounded-sm`, `-md`, `-lg`) | `--cu-radius-sm`, `--cu-radius-md`, `--cu-radius-lg` (plain `.rounded` and the buttons follow `--cu-radius`) |
 | Overlay shadow | `--cu-shadow-lg`, etc. |
 | Fast motion | `--cu-fast`, `--cu-ease` |
 | Xerte-only focus geometry | `--focus-ring-width`, `--focus-ring-offset` |

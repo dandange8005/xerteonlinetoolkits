@@ -133,6 +133,15 @@ class BuiltComponentPagesTest(unittest.TestCase):
         rows = {r.find_all("td")[0].text(): r.find_all("td")[1].text() for r in legacy.find("tbody").find_all("tr")}
         self.assertEqual(rows.get(".button--small"), "Older alias of button-sm.")
 
+    def test_utility_page_shows_the_rounded_sizes(self):
+        utilities = parse((self.out / "reference" / "utilities.html").read_text(encoding="utf-8"))
+        section = [s for s in utilities.find_all(cls="g-section") if s.find("h2").text() == "Borders and corners"][0]
+        rows = {r.find_all("td")[0].text(): r.find_all("td")[1].text() for r in section.find("tbody").find_all("tr")}
+        self.assertEqual({k: rows[k] for k in (".rounded-sm", ".rounded", ".rounded-md", ".rounded-lg")},
+                         {".rounded-sm": "border-radius: 3px", ".rounded": "border-radius: 3px",
+                          ".rounded-md": "border-radius: 6px", ".rounded-lg": "border-radius: 12px"})
+        self.assertIn("same as rounded-sm", section.text())
+
     def test_button_page_describes_btn_mini_accurately(self):
         parts = self.section_text("button", "Parts")
         self.assertIn("player", parts)  # the player creates the back-to-top button

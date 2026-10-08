@@ -212,7 +212,8 @@ REF = reference.Reference(
         reference.Token("cu-space-1", "4px", "4px", None, ""),
         reference.Token("cu-logo-width", "clamp(60px,17vw,80px)", "clamp(60px,17vw,80px)", None, "logo minimums"))),
         reference.Group("font-sizes", "Font sizes", "Sizes by role.", (
-            reference.Token("cu-text-body", "18px", "18px", None, ""),))),
+            reference.Token("cu-text-body", "18px", "18px", None, ""),
+            reference.Token("cu-text-small", "{cu-text-body}", "18px", "cu-text-body", ""))),),
     utilities=(("Spacing", "Margin and padding.", (("mt-4", "margin-top: 16px"),)),
                ("Text size", "Sizes.", (("text-lg", "font-size: 20px"),))),
     legacy=(("c10", "Legacy System 2 column width."),),
@@ -282,6 +283,12 @@ class ReferencePagesTest(unittest.TestCase):
         page = self.page("reference/tokens.html")
         self.assertEqual([th.text() for th in self.section(page, "Spacing").find_all("th")], ["Token", "Value", "Notes"])
         self.assertEqual([th.text() for th in self.section(page, "Font sizes").find_all("th")], ["Token", "Value"])
+
+    def test_tokens_page_shows_an_alias_as_its_value_with_a_note(self):
+        row = self.rows("reference/tokens.html", "Font sizes")[1]
+        self.assertEqual(row.find("code").text(), "--cu-text-small")
+        self.assertEqual(row.find_all("td")[1].find("code").text(), "18px")
+        self.assertEqual(row.find(cls="g-token-note").text(), "same as --cu-text-body")
 
     def test_utilities_page_has_a_table_per_family_and_the_legacy_classes(self):
         page = self.page("reference/utilities.html")
