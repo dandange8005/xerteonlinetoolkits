@@ -173,6 +173,11 @@ class BuiltComponentPagesTest(unittest.TestCase):
         self.assertLessEqual({"card", "card--clickable", "card__image", "card__link"}, expected)  # not an empty set
         self.assertEqual(expected - self.shown("card"), set())
 
+    def test_card_page_does_not_promise_a_wrapper_div_image(self):
+        # The theme's rules that would size an img inside a wrapper div are commented out in
+        # _cards.scss, so the image shown in the wrapper form is not cropped to fit.
+        self.assertNotIn("wrapper div", self.page("card").text())
+
     def test_card_examples_load_nothing_from_outside(self):
         images = [i for frame in self.page("card").find_all(cls="g-preview") for i in frame.find_all("img")]
         self.assertGreaterEqual(len(images), 2)

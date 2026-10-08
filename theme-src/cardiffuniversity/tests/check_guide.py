@@ -102,9 +102,11 @@ CHECKS = [
      " a.querySelector('.close').click(); return !document.contains(a); })()"),
     ("components/card.html", 485, "no sideways scroll", NO_SIDEWAYS_SCROLL),
     ("components/card.html", 1280, "the whole clickable card is one link",
-     "(function () { var card = document.querySelector('.g-preview .card--clickable'); card.scrollIntoView();"
-     " var r = card.getBoundingClientRect(), hit = document.elementFromPoint(r.left + 30, r.bottom - 30);"
-     " return !!hit && hit.closest('a') === card.querySelector('.card__link'); })()"),
+     "(function () { var card = document.querySelector('.g-preview .card--clickable'); card.scrollIntoView({block: 'center'});"
+     " var r = card.getBoundingClientRect(), i = card.querySelector('.card__image').getBoundingClientRect(),"
+     " link = card.querySelector('.card__link');"
+     " return [[i.left + 30, i.top + 30], [r.left + 30, r.bottom - 30]].every(function (p) {"
+     " var hit = document.elementFromPoint(p[0], p[1]); return !!hit && hit.closest('a') === link; }); })()"),
     ("components/card.html", 1280, "the card image is cropped to a widescreen shape",
      "(function () { var i = document.querySelector('.g-preview .card__image').getBoundingClientRect();"
      " return Math.abs(i.width / i.height - 16 / 9) < 0.05; })()"),

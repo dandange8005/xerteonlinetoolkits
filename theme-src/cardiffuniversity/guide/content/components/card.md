@@ -30,10 +30,10 @@ html = '''
 [[examples]]
 class = "card__image"
 label = "With an image"
-purpose = "An image at the top, cropped to a widescreen shape. It can be an img element or a wrapper div"
+purpose = "An image at the top, cropped to a widescreen shape. Put card__image on the img element"
 html = '''
 <div class="card">
-  <img class="card__image" alt="A short description of the image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%23ccc'/%3E%3C/svg%3E">
+  <img class="card__image" alt="A short description of the image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3Crect width='4' height='3' fill='%23ccc'/%3E%3C/svg%3E">
   <div class="card__content">
     <h3 class="card__heading">Card with an image</h3>
     <p class="card__metadata">Category &bull; 5 min read</p>
@@ -48,7 +48,7 @@ label = "Clickable"
 purpose = "A card that is one link: the whole card is clickable, an arrow sits at the bottom right, and on hover it gets a shadow and its image zooms"
 html = '''
 <div class="card card--clickable">
-  <img class="card__image" alt="A short description of the image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%23ccc'/%3E%3C/svg%3E">
+  <img class="card__image" alt="A short description of the image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3Crect width='4' height='3' fill='%23ccc'/%3E%3C/svg%3E">
   <div class="card__content">
     <h3 class="card__heading"><a href="https://example.org" class="card__link">Clickable card</a></h3>
     <p class="card__metadata">Online course &bull; 12 weeks</p>
@@ -68,7 +68,7 @@ A card is not for long text. It holds a heading, a short description and an opti
 
 ## How to use it
 
-Put the heading and the description inside `card__content`. Add `card__image` for a picture: it is cropped to a widescreen shape. For a card that is one link, add `card--clickable` and put the link in the heading with `card__link`. The link stretches over the whole card, so the whole card is clickable.
+Put the heading and the description inside `card__content`. Put `card__image` on the `img` element for a picture: it is cropped to a widescreen shape. For a card that is one link, add `card--clickable` and put the link in the heading with `card__link`. The link stretches over the whole card, so the whole card is clickable.
 
 ### Do
 

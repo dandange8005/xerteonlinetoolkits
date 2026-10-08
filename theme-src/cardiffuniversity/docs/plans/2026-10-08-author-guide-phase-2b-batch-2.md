@@ -115,6 +115,7 @@ Found while reading the sources. Not fixed here; they need Nan's decision.
 - **Cards keep a 3px corner** (`--radius-md`), where the design system makes structural panels square. Same note.
 - **The hover effects need a pointer.** The shadow and the image zoom do nothing on a touch screen or for a keyboard user.
 - **Open question, not measured:** whether the stretched card link covers other links placed inside a clickable card.
+- **`card__image` on a wrapper div is not cropped to fit.** `_cards.scss` says the image container "can be wrapper div or img element itself", but the rules that would size an `img` inside a wrapper are commented out. A small image stays its own size and leaves an empty strip, and a large one is cut off at the bottom only. Found in the final review. The Cards record now tells authors to put `card__image` on the `img` element.
 
 ## File structure
 
