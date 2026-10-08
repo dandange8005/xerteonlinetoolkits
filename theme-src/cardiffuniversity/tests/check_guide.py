@@ -88,6 +88,10 @@ CHECKS = [
     ("components/button.html", 1280, "every button example is at least 48px high and 44px wide",
      "[].every.call(document.querySelectorAll('.g-preview .button'), function (b) {"
      " var r = b.getBoundingClientRect(); return r.height >= 47.5 && r.width >= 43.5; })"),
+    ("components/alert.html", 485, "no sideways scroll", NO_SIDEWAYS_SCROLL),
+    ("components/alert.html", 1280, "the close button removes its alert",
+     "(function () { var a = document.querySelector('.g-preview .alert-block'); if (!a) return false;"
+     " a.querySelector('.close').click(); return !document.contains(a); })()"),
     ("components/callout.html", 1280, "the Cardiff logo loads",
      "document.querySelector('header img').naturalWidth > 0"),
     ("getting-started.html", 1280, "headings are spaced from the text above",

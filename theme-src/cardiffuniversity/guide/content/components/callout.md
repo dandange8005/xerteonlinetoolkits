@@ -5,7 +5,7 @@ lead = "Pull one key idea out of the page with a short title and a few lines of 
 group = "emphasis"
 status = "current"
 since = "v1.4"
-related = []
+related = ["alert"]
 scss = ["scss/components/_callout.scss"]
 
 [editor]

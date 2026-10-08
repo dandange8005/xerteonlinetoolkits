@@ -84,6 +84,17 @@ class BuiltComponentPagesTest(unittest.TestCase):
         self.assertEqual(expected - self.shown("button"), set())
         self.assertIn("btn-mini", self.shown("button"))
 
+    def test_alert_page_documents_the_alert_classes(self):
+        expected = {"alert", "alert-success", "alert-info", "alert-warning", "alert-danger",
+                    "alert-error", "alert-block", "close"}
+        self.assertEqual(expected - self.shown("alert"), set())
+
+    def test_alerts_and_callouts_link_to_each_other(self):
+        def related(name):
+            return [a.text() for a in self.page(name).find(cls="g-related").find_all("a")]
+        self.assertIn("Callouts", related("alert"))
+        self.assertIn("Alerts", related("callout"))
+
     def test_components_index_lists_the_buttons(self):
         index = parse((self.out / "components" / "index.html").read_text(encoding="utf-8"))
         hrefs = [a.attrs["href"] for card in index.find_all(cls="g-card") for a in card.find_all("a")]
