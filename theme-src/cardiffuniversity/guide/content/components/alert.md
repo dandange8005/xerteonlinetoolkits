@@ -68,7 +68,7 @@ purpose = "A longer message with a heading, which the reader can dismiss"
 html = '''
 <div class="alert alert-block alert-info">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
-  <h4>Important information</h4>
+  <h4><strong>Info:</strong> Course dates have changed</h4>
   <p>This is a block alert with more content. It can hold more than one paragraph.</p>
   <p>Select the close button to dismiss this alert.</p>
 </div>
@@ -85,7 +85,7 @@ Do not use an alert to point out a tip or the main takeaway of a page. An alert 
 
 ## How to use it
 
-Start the message with a bold word that names the status, such as Success or Warning. The theme adds a glyph before it. When a message needs more than a sentence, use a block alert with a heading.
+Start the message with a bold word that names the status, such as Success or Warning. The theme adds a glyph at the start of the alert. In a block alert it sits on its own line above the heading. When a message needs more than a sentence, use a block alert with a heading.
 
 ### Do
 

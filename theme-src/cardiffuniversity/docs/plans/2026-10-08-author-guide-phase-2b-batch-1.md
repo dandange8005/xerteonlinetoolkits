@@ -112,6 +112,14 @@ Found while measuring the pages. Neither is fixed here; both need Nan's decision
 - **Alert text is 14px.** `_bootstrap-components.scss` sets `.alert { font-size: var(--font-size-sm); }`, and `--font-size-sm` is 14px. An alert message is arguably main content, and design system v1.12 (8 October 2026) says main content is never below 16px. Options: raise `.alert` to the 16px interface size in the theme, or decide an alert message counts as secondary text. The Alerts record does not mention the size either way.
 - **The glyph before an alert's bold word is as small as the text** (also 14px), so the glyph, one of the two cues that carry the status, is small. It follows the same decision.
 
+**Added after the final review (theme findings, not fixed here):**
+
+- **Focus cannot be seen on the reverse buttons.** The focus ring is 2px solid ink, and `.bg-dark` is also ink, so on the dark panel the outline disappears. Measured on the built Buttons page. The carousel already uses a white ring on dark. The Buttons record now says to check focus on the reverse variants.
+- **Small buttons are 14px.** `button-sm` and `button--small` use `--btn-font-size-sm` (14px), below the 16px minimum for buttons in design system v1.12. The record now says so in the variant's purpose.
+- **The older outline button has a weak focus indicator** (reported by the reviewer): its `:focus` rule sets the outline colour to transparent, leaving a 4px light grey ring of about 1.4:1 on white.
+- **The alert close button is a small target** (reported by the reviewer): about 13 by 20px at half opacity.
+- **The info glyph is tiny** at 14px (reported by the reviewer), which weakens "the glyph carries the status" for info alerts most of all.
+
 ## File structure
 
 | Path (under `theme-src/cardiffuniversity/` unless shown) | Responsibility |

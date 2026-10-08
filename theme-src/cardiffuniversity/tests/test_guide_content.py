@@ -95,6 +95,49 @@ class BuiltComponentPagesTest(unittest.TestCase):
         self.assertIn("Callouts", related("alert"))
         self.assertIn("Alerts", related("callout"))
 
+    def section_text(self, name, heading):
+        for section in self.page(name).find_all(cls="g-section"):
+            if section.find_all("h2") and section.find("h2").text() == heading:
+                return section.text()
+        raise AssertionError(f"no section headed {heading!r} on {name}")
+
+    def variant_meta(self, name, label):
+        for variant in self.page(name).find_all(cls="g-variant"):
+            if variant.find("h3").text() == label:
+                return variant.find(cls="g-variant-meta").text()
+        raise AssertionError(f"no variant labelled {label!r} on {name}")
+
+    def test_button_examples_work_when_pasted_into_a_text_content_item(self):
+        # A button element does nothing on its own there; a link with the button classes goes somewhere.
+        buttons = [b for frame in self.page("button").find_all(cls="g-preview") for b in frame.find_all("button")]
+        self.assertEqual(buttons, [])
+        links = [a for frame in self.page("button").find_all(cls="g-preview") for a in frame.find_all("a")]
+        self.assertGreaterEqual(len(links), 16)
+        self.assertTrue(all(a.attrs.get("href", "").startswith("https://") for a in links))
+
+    def test_button_page_qualifies_the_size_and_focus_claims(self):
+        text = self.section_text("button", "Accessibility")
+        self.assertIn("with the button class", text)  # the 48px and 44px claim is about .button only
+        self.assertIn("btn-mini", text)
+        self.assertIn("reverse", text)  # the ink focus outline cannot be seen on a dark background
+
+    def test_small_buttons_say_their_text_is_14px(self):
+        for label in ("Small", "Compact (older)"):
+            self.assertIn("14px", self.variant_meta("button", label))
+
+    def test_button_page_describes_btn_mini_accurately(self):
+        parts = self.section_text("button", "Parts")
+        self.assertIn("player", parts)  # the player creates the back-to-top button
+
+    def test_every_alert_example_has_a_bold_status_word(self):
+        alerts = [a for frame in self.page("alert").find_all(cls="g-preview") for a in frame.find_all(cls="alert")]
+        self.assertEqual(len(alerts), 6)
+        for alert in alerts:
+            self.assertTrue(alert.find_all("strong"), alert.text())
+
+    def test_alert_page_says_where_the_glyph_sits_in_a_block_alert(self):
+        self.assertIn("own line", self.section_text("alert", "How to use it"))
+
     def test_components_index_lists_the_buttons(self):
         index = parse((self.out / "components" / "index.html").read_text(encoding="utf-8"))
         hrefs = [a.attrs["href"] for card in index.find_all(cls="g-card") for a in card.find_all("a")]
