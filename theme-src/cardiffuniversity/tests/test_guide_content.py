@@ -180,6 +180,17 @@ class BuiltComponentPagesTest(unittest.TestCase):
             self.assertTrue(image.attrs.get("src", "").startswith("data:"), image.attrs.get("src"))
             self.assertIn("alt", image.attrs)
 
+    def test_table_page_documents_the_table_classes(self):
+        # author_facing_classes() holds only cu-table-scroll here: Bootstrap defines table and table-striped.
+        expected = {"table", "table-striped", "cu-table-scroll"}
+        self.assertEqual(expected - self.shown("table"), set())
+
+    def test_components_index_lists_cards_and_tables(self):
+        index = parse((self.out / "components" / "index.html").read_text(encoding="utf-8"))
+        hrefs = [a.attrs["href"] for card in index.find_all(cls="g-card") for a in card.find_all("a")]
+        self.assertIn("card.html", hrefs)
+        self.assertIn("table.html", hrefs)
+
     def test_components_index_lists_the_buttons(self):
         index = parse((self.out / "components" / "index.html").read_text(encoding="utf-8"))
         hrefs = [a.attrs["href"] for card in index.find_all(cls="g-card") for a in card.find_all("a")]

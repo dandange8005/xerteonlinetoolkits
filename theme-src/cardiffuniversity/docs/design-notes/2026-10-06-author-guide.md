@@ -310,7 +310,7 @@ Rule for maintainers: a change to a component's SCSS needs a look at its record.
      Xerte editor yet"), one source for task and component links, a check for unbalanced example
      HTML, and the Colours, Type, space and shape, and Utility classes pages.
    - **2b.** Buttons, cards, tables, alerts, images, layout and typography, in small batches.
-     Batch 1: buttons and alerts.
+     Batch 1: buttons and alerts. Batch 2: cards and tables.
    - **2c.** Two or three more task pages.
 3. **Phase 3.** Migrate the remaining `demos/` pages one at a time. Make check 2 a hard failure,
    retire `build-reference.py` and `demos/`.

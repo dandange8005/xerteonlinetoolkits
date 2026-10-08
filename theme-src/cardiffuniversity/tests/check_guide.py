@@ -108,6 +108,17 @@ CHECKS = [
     ("components/card.html", 1280, "the card image is cropped to a widescreen shape",
      "(function () { var i = document.querySelector('.g-preview .card__image').getBoundingClientRect();"
      " return Math.abs(i.width / i.height - 16 / 9) < 0.05; })()"),
+    ("components/table.html", 485, "no sideways scroll", NO_SIDEWAYS_SCROLL),
+    ("components/table.html", 1280, "the wide table scrolls inside its wrapper, not the page",
+     "(function () { var w = document.querySelector('.g-preview .cu-table-scroll');"
+     " return w.scrollWidth > w.clientWidth && document.documentElement.scrollWidth <= window.innerWidth; })()"),
+    ("components/table.html", 1280, "the wrapper can take keyboard focus",
+     "(function () { var w = document.querySelector('.g-preview .cu-table-scroll'); w.focus();"
+     " return document.activeElement === w; })()"),
+    ("components/table.html", 1280, "striped rows differ from plain rows",
+     "(function () { var rows = document.querySelectorAll('.g-preview .table-striped tbody tr');"
+     " return rows.length >= 2 && getComputedStyle(rows[0].cells[0]).backgroundColor"
+     " !== getComputedStyle(rows[1].cells[0]).backgroundColor; })()"),
     ("components/callout.html", 1280, "the Cardiff logo loads",
      "document.querySelector('header img').naturalWidth > 0"),
     ("getting-started.html", 1280, "headings are spaced from the text above",
