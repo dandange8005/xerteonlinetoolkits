@@ -146,6 +146,24 @@ class ExamplesTest(unittest.TestCase):
     def test_empty_heading_warns(self):
         self.assertEqual(self.check('<h3><i class="fa-solid fa-star"></i></h3>'), ["warning 5 example 'E' has an empty heading"])
 
+    def test_unclosed_element_warns(self):
+        self.assertEqual(self.check("<div><p>text</p>"),
+                         ["warning 5 example 'E' has unbalanced HTML: <div> is not closed"])
+
+    def test_stray_end_tag_warns(self):
+        self.assertEqual(self.check("<p>text</p></span>"),
+                         ["warning 5 example 'E' has unbalanced HTML: </span> has no start tag"])
+
+    def test_crossed_elements_warn(self):
+        self.assertEqual(self.check("<div><span>text</div></span>"),
+                         ["warning 5 example 'E' has unbalanced HTML: <span> is not closed before </div>"])
+
+    def test_optional_end_tags_and_void_elements_are_fine(self):
+        for markup in ("<ul><li>a<li>b</ul>", "<table><tr><td>x<td>y</table>", "<p>one<p>two", "<p>a<br>b<hr></p>",
+                       '<img src="a.png" alt="">', "<dl><dt>t<dd>d</dl>", '<div class="x"><i class="fa-solid"></i></div>'):
+            with self.subTest(markup=markup):
+                self.assertEqual(self.check(markup), [])
+
     def test_heading_with_text_is_fine(self):
         self.assertEqual(self.check("<h3>Title</h3>"), [])
 

@@ -20,13 +20,18 @@ class Finding:
 
 
 class _Scan(HTMLParser):
-    """Collects an example's class names, images without alt text and empty headings."""
+    """Collects an example's class names, images without alt text, empty headings and unbalanced tags."""
     HEADINGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
+    VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
+    # HTML lets these end without an end tag, so a missing end tag is not a mistake.
+    OPTIONAL_END = {"p", "li", "dt", "dd", "tr", "td", "th", "thead", "tbody", "tfoot", "caption", "colgroup",
+                    "option", "optgroup"}
 
     def __init__(self):
         super().__init__()
         self.classes, self.images_without_alt, self.empty_headings = set(), 0, 0
         self._heading, self._text = None, ""
+        self._open, self._problems = [], []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -35,16 +40,35 @@ class _Scan(HTMLParser):
             self.images_without_alt += 1
         if tag in self.HEADINGS:
             self._heading, self._text = tag, ""
+        if tag not in self.VOID and tag not in self.OPTIONAL_END:
+            self._open.append(tag)
 
     def handle_data(self, data):
         if self._heading:
             self._text += data
 
     def handle_endtag(self, tag):
+        if tag not in self.VOID and tag not in self.OPTIONAL_END:
+            self._close(tag)
         if tag == self._heading:
             if not self._text.strip():
                 self.empty_headings += 1
             self._heading = None
+
+    def _close(self, tag):
+        if self._open and self._open[-1] == tag:
+            self._open.pop()
+        elif tag in self._open:
+            self._problems.append(f"<{self._open[-1]}> is not closed before </{tag}>")
+            while self._open.pop() != tag:
+                pass
+        else:
+            self._problems.append(f"</{tag}> has no start tag")
+
+    @property
+    def unbalanced(self):
+        """Problems found so far, plus every element still open."""
+        return self._problems + [f"<{tag}> is not closed" for tag in self._open]
 
 
 def scan(markup):
@@ -172,6 +196,9 @@ def check_examples(content):
             findings.append(Finding("warning", 5, str(source), f"example '{example.label}' has an image without alt text"))
         if found.empty_headings:
             findings.append(Finding("warning", 5, str(source), f"example '{example.label}' has an empty heading"))
+        if found.unbalanced:
+            findings.append(Finding("warning", 5, str(source),
+                                    f"example '{example.label}' has unbalanced HTML: {found.unbalanced[0]}"))
     return findings
 
 

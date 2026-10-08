@@ -238,7 +238,7 @@ The type is stated in the title, so meaning never relies on colour alone.
 | 2 | Coverage: every author-facing theme class is claimed by a record (`parts` or an example's `class`) or appears in a generated reference table | Warns in phases 1 and 2 and prints the count; fails from phase 3 |
 | 3 | Every `related` and `group` value, every component a task file names, and every task `site.toml` lists points at something that exists; groups are checked against `site.toml` | Fails the build |
 | 4 | A record's `editor.checked` date is older than the last commit to any file in its `scss` list | Warns |
-| 5 | An example has an `<img>` without `alt`, or an empty heading | Warns |
+| 5 | An example has an `<img>` without `alt`, an empty heading, or unbalanced tags (an unclosed element, a stray end tag, or crossed elements; elements whose end tag HTML makes optional, such as `p` and `li`, are not counted) | Warns |
 
 **What check 2 counts.** "Author-facing theme classes" reuses the definition `build-reference.py`
 already has: the classes the theme's CSS adds beyond Bootstrap, `custom.css` and Font Awesome
