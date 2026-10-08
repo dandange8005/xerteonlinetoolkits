@@ -149,7 +149,8 @@ guidance headings. Branding, colours and fonts stay Cardiff.
 7. Parts: a table of the component's parts.
 8. Accessibility.
 9. Evidence: status, the design system version it dates from, and the editor evidence (result,
-   date and Xerte version).
+   date and Xerte version), or "Not tested in the Xerte editor yet" when the record has no
+   `[editor]` table.
 10. Related components and tasks, then "Page updated" (the last commit to the record, left out
     when git cannot say) and previous and next links.
 
@@ -169,6 +170,8 @@ tasks = ["draw-attention"]
 related = ["alert", "well"]
 scss = ["scss/components/_callout.scss"]  # for the stale-evidence check
 
+# [editor] is optional. Leave it out until the component has been tested in the Xerte editor;
+# the page then says "Not tested in the Xerte editor yet".
 [editor]
 survives = true
 checked = 2026-09-20                      # a TOML date

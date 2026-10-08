@@ -61,6 +61,14 @@ class RecordsTest(unittest.TestCase):
         with self.assertRaisesRegex(records.RecordError, pattern):
             self.component(text)
 
+    def test_untested_component_has_no_editor_evidence(self):
+        untested = fx.CALLOUT.replace('[editor]\nsurvives = true\nchecked = 2026-09-20\nxerte = "3.14"\n\n', "")
+        self.assertNotIn("[editor]", untested)
+        self.assertIsNone(self.component(untested).editor)
+
+    def test_editor_evidence_must_be_complete_when_present(self):
+        self.assertComponentError(fx.CALLOUT.replace('xerte = "3.14"\n', ""), r"\[editor\]: missing 'xerte'")
+
     def test_name_must_match_the_file(self):
         self.assertComponentError(fx.CALLOUT.replace('name = "callout"', 'name = "callouts"'), "must match the file name")
 

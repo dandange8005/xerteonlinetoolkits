@@ -230,6 +230,13 @@ The author guide's sources are in `guide/`: one component record per component i
 anything; the spec is `docs/design-notes/2026-10-06-author-guide.md`. Sass is pinned in
 `build.sh` so the CI workflow's compile matches the committed CSS; update the pin with care.
 
+A component record's `[editor]` table records a test in the Xerte editor: paste the component's
+examples into a Text content item, save, close and reopen the editor, and see whether the markup
+is still there. Leave the table out until you have tested; the guide then says "Not tested in the
+Xerte editor yet". After a test, add `survives` (true or false), `checked` (a TOML date) and
+`xerte` (a string, such as `"3.14"`). The build warns when the component's SCSS changes after
+the `checked` date.
+
 ## Adding a component
 
 Add its SCSS module under `scss/components/`, import it from `_custom-components.scss`,

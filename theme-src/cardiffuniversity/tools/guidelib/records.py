@@ -51,7 +51,7 @@ class Component:
     tasks: tuple
     related: tuple
     scss: tuple
-    editor: Editor
+    editor: Editor | None  # None until the component has been tested in the Xerte editor
     parts: dict
     examples: tuple
     when_html: str
@@ -199,8 +199,13 @@ def load_component(path):
     status = _field(data, "status", str, path)
     if status not in STATUSES:
         raise RecordError(path, f"status must be one of {', '.join(STATUSES)}, not '{status}'")
-    editor = _field(data, "editor", dict, path)
-    _only(editor, {"survives", "checked", "xerte"}, path, "[editor]")
+    editor = None
+    editor_data = _field(data, "editor", dict, path, required=False, default=None)
+    if editor_data is not None:
+        _only(editor_data, {"survives", "checked", "xerte"}, path, "[editor]")
+        editor = Editor(survives=_field(editor_data, "survives", bool, path, "[editor]"),
+                        checked=_field(editor_data, "checked", datetime.date, path, "[editor]"),
+                        xerte=_field(editor_data, "xerte", str, path, "[editor]"))
     parts = _field(data, "parts", dict, path)
     if not parts or not all(isinstance(v, str) and v.strip() for v in parts.values()):
         raise RecordError(path, "[parts] must map each class to a description")
@@ -225,9 +230,7 @@ def load_component(path):
         tasks=_field(data, "tasks", "strings", path, required=False, default=()),
         related=_field(data, "related", "strings", path, required=False, default=()),
         scss=_field(data, "scss", "strings", path, required=False, default=()),
-        editor=Editor(survives=_field(editor, "survives", bool, path, "[editor]"),
-                      checked=_field(editor, "checked", datetime.date, path, "[editor]"),
-                      xerte=_field(editor, "xerte", str, path, "[editor]")),
+        editor=editor,
         parts=dict(parts), examples=examples, when_html=when.html, when_not_html=when_not.html,
         how_html=how.html, do_html=do.html, dont_html=dont.html, accessibility_html=accessibility.html,
         source=path)

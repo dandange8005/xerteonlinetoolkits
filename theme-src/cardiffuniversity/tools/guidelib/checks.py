@@ -136,6 +136,8 @@ def check_stale_evidence(content, last_changed):
     """Check 4: warn when a component's SCSS changed after its editor evidence was recorded."""
     findings = []
     for component in content.components.values():
+        if component.editor is None:
+            continue
         for path in component.scss:
             changed = last_changed(path)
             if changed and changed > component.editor.checked:

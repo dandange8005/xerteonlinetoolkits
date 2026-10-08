@@ -116,6 +116,10 @@ class StaleEvidenceTest(unittest.TestCase):
         fresh = component(scss=("scss/components/_callout.scss",))
         self.assertEqual(checks.check_stale_evidence(content([fresh]), lambda path: datetime.date(2026, 9, 1)), [])
 
+    def test_untested_component_has_no_stale_evidence(self):
+        untested = component(editor=None, scss=("scss/components/_callout.scss",))
+        self.assertEqual(checks.check_stale_evidence(content([untested]), lambda path: datetime.date(2026, 9, 28)), [])
+
     def test_stale_evidence_ignores_unknown_dates(self):
         unknown = component(scss=("scss/components/_callout.scss",))
         self.assertEqual(checks.check_stale_evidence(content([unknown]), lambda path: None), [])

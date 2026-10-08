@@ -182,5 +182,20 @@ class WrittenSiteTest(unittest.TestCase):
             self.assertEqual(len(page.find_all("h1")), 1, relative)
 
 
+class UntestedEvidenceTest(unittest.TestCase):
+    def test_untested_component_says_so(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            untested = fx.CALLOUT.replace('[editor]\nsurvives = true\nchecked = 2026-09-20\nxerte = "3.14"\n\n', "")
+            guide = fx.write_guide(tmp, CALLOUT=untested)
+            out = Path(tmp) / "site"
+            pages.write_site(out, records.load_site(guide / "site.toml"), records.load_content(guide / "content"),
+                             support.GUIDE / "templates" / "base.html")
+            page = parse((out / "components" / "callout.html").read_text(encoding="utf-8"))
+        evidence = page.find(cls="g-evidence")
+        rows = dict(zip([dt.text() for dt in evidence.find_all("dt")], [dd.text() for dd in evidence.find_all("dd")]))
+        self.assertEqual(rows["Xerte editor"], "Not tested in the Xerte editor yet")
+        self.assertEqual(rows["Status"], "Current")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -121,10 +121,14 @@ def table(headers, rows, extra=""):
 
 def evidence(component):
     editor = component.editor
-    verdict = "Survives the editor" if editor.survives else "Changed by the editor"
+    if editor is None:
+        editor_text = "Not tested in the Xerte editor yet"
+    else:
+        verdict = "Survives the editor" if editor.survives else "Changed by the editor"
+        editor_text = f"{verdict} (checked {long_date(editor.checked)}, Xerte {esc(editor.xerte)})"
     rows = (("Status", esc(component.status.capitalize())),
             ("Since", f"Design system {esc(component.since)}"),
-            ("Xerte editor", f"{verdict} (checked {long_date(editor.checked)}, Xerte {esc(editor.xerte)})"),
+            ("Xerte editor", editor_text),
             ("Main class", f"<code>.{esc(next(iter(component.parts)))}</code>"))
     return '<dl class="g-evidence">' + "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in rows) + "</dl>"
 
