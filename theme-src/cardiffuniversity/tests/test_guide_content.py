@@ -80,7 +80,7 @@ class BuiltComponentPagesTest(unittest.TestCase):
 
     def test_button_page_documents_every_button_class(self):
         expected = {c for c in theme_css.author_facing_classes() if c.startswith("button")}
-        self.assertGreaterEqual(len(expected), 18)  # guards against an empty set; button--small is legacy
+        self.assertLessEqual({"button", "button-primary", "button-sm", "button-lg"}, expected)  # not an empty set
         self.assertEqual(expected - self.shown("button"), set())
         self.assertIn("btn-mini", self.shown("button"))
 
@@ -143,6 +143,17 @@ class BuiltComponentPagesTest(unittest.TestCase):
                           ".rounded-md": "border-radius: 3px", ".rounded-lg": "border-radius: 9px",
                           ".rounded-xl": "border-radius: 12px"})
         self.assertIn("same as rounded-md", section.text())
+
+    def test_the_older_outline_button_is_listed_as_legacy_and_not_taught(self):
+        # button--outline has a 2px border, a shadow and a dark hover fill, so it is not an exact alias:
+        # the legacy entry names the nearest current button instead.
+        self.assertNotIn("button--outline", self.shown("button"))
+        utilities = parse((self.out / "reference" / "utilities.html").read_text(encoding="utf-8"))
+        legacy = [sec for sec in utilities.find_all(cls="g-section") if sec.find("h2").text() == "Legacy classes"][0]
+        rows = {r.find_all("td")[0].text(): r.find_all("td")[1].text() for r in legacy.find("tbody").find_all("tr")}
+        self.assertEqual(rows.get(".button--outline"),
+                         "Older outline button, kept so older content keeps working. "
+                         "The nearest current button is button-secondary-outline.")
 
     def test_button_page_describes_btn_mini_accurately(self):
         parts = self.section_text("button", "Parts")

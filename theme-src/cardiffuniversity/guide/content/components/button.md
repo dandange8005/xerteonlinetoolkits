@@ -10,7 +10,6 @@ scss = ["scss/components/_buttons.scss"]
 [parts]
 button = "The base class every button needs. It gives the button its shape, size and states."
 button__icon = "An optional wrapper for an icon inside a button."
-button--outline = "An older outline style, kept so older content still works."
 btn-mini = "A small round icon button, kept for older content. The player uses it for the back-to-top button, and the theme restyles that."
 
 [[examples]]

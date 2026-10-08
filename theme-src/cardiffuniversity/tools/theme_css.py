@@ -75,6 +75,7 @@ LEGACY = {
     "org": "Legacy System 2 organisation block.",
     "screenshots": "Older alias of image-screenshots.",
     "button--small": "Older alias of button-sm.",
+    "button--outline": "Older outline button, kept so older content keeps working. The nearest current button is button-secondary-outline.",
 }
 
 # Classes that belong to the page frame or the editor, not to content an author writes.
