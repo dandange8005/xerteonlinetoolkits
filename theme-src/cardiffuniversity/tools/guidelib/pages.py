@@ -10,11 +10,19 @@ import html
 from dataclasses import dataclass
 from string import Template
 
-from guidelib import assets
-from guidelib.mdsubset import code_block
+from guidelib import assets, reference
+from guidelib.mdsubset import code_block, slugify
 
 TOP_PATHS = {"home": "index.html", "getting-started": "getting-started.html",
-             "tasks": "tasks/index.html", "components": "components/index.html"}
+             "tasks": "tasks/index.html", "components": "components/index.html",
+             "reference": "reference/index.html"}
+# (file name, title, what the overview says about it)
+REFERENCE_PAGES = (
+    ("colours", "Colours", "Every colour in the theme, with its value and its contrast with white and ink."),
+    ("tokens", "Type, space and shape", "Font, size, spacing, shape, motion and shadow values."),
+    ("utilities", "Utility classes", "Single-purpose classes for spacing, text, layout and more, read from the compiled theme."),
+)
+COLOUR_HEADERS = ("Colour", "Token", "Value", "Against white", "Against ink")
 XERTE_PASTE = "In Xerte: add a Text content item, open its Source view, then paste."
 LOGO_ALT = "Cardiff University / Prifysgol Caerdydd"
 
@@ -78,16 +86,21 @@ def ordered_components(ctx):
     return out
 
 
+def side_nav(label, inner, toggle):
+    """The side menu's frame: the nav, the phone-width button and the list guide.js collapses."""
+    return (f'<nav class="g-side" aria-label="{esc(label)}">'
+            '<button class="g-side-toggle" type="button" aria-expanded="true" aria-controls="g-side-list" hidden>'
+            f'{esc(toggle)}</button>'
+            f'<div class="g-side-list" id="g-side-list">{inner}</div></nav>')
+
+
 def side_menu(ctx, root, active):
     blocks = []
     for title, members in ordered_components(ctx):
         items = "".join(f'<li><a href="{root}components/{c.name}.html"{_current(c.name == active)}>{esc(c.title)}</a></li>'
                         for c in members)
         blocks.append(f"<h2>{esc(title)}</h2><ul>{items}</ul>")
-    return ('<nav class="g-side" aria-label="Components">'
-            '<button class="g-side-toggle" type="button" aria-expanded="true" aria-controls="g-side-list" hidden>'
-            'Components menu</button>'
-            f'<div class="g-side-list" id="g-side-list">{"".join(blocks)}</div></nav>')
+    return side_nav("Components", "".join(blocks), "Components menu")
 
 
 def on_this_page(entries):
@@ -276,11 +289,111 @@ def tasks_index(ctx):
     return page_shell(ctx, title="Tasks", root=root, active="tasks", body=body)
 
 
-def write_site(out, site, content, template_path, updated=None):
-    """updated, if given, maps a record's path to the date it last changed (or None)."""
+def scroll_table(headers, rows, label, extra=""):
+    """A table in a box that scrolls sideways on a narrow screen, so the page itself does not."""
+    return (f'<div class="g-table-scroll" tabindex="0" role="region" aria-label="{esc(label)}">'
+            f'{table(headers, rows, extra)}</div>')
+
+
+def reference_menu(root, active):
+    items = f'<li><a href="{root}reference/index.html"{_current(active == "index")}>Overview</a></li>'
+    items += "".join(f'<li><a href="{root}reference/{slug}.html"{_current(slug == active)}>{esc(title)}</a></li>'
+                     for slug, title, _ in REFERENCE_PAGES)
+    return side_nav("Reference", f"<h2>Reference</h2><ul>{items}</ul>", "Reference menu")
+
+
+def reference_page(ctx, *, slug, title, lead, sections, intro=""):
+    """One generated reference page: side menu, a section per group, and an on this page list."""
+    root = "../"
+    blocks = "".join(f'<div class="g-section" aria-labelledby="{sid}" role="region"><h2 id="{sid}">{esc(heading)}</h2>{body}</div>'
+                     for sid, heading, body in sections)
+    body = (f'<div class="g-shell">{reference_menu(root, slug)}<main id="main" class="g-main">'
+            f'<p class="g-crumb"><a href="index.html">Reference</a> &rsaquo; {esc(title)}</p>'
+            f'<h1>{esc(title)}</h1><p class="g-lead">{esc(lead)}</p>{intro}{blocks}</main>'
+            f'{on_this_page([(sid, heading) for sid, heading, _ in sections])}</div>')
+    return page_shell(ctx, title=title, root=root, active="reference", body=body)
+
+
+def reference_index(ctx):
+    root = "../"
+    cards = "".join(f'<li class="g-card"><a href="{slug}.html">{esc(title)}</a><p>{esc(summary)}</p></li>'
+                    for slug, title, summary in REFERENCE_PAGES)
+    body = (f'<div class="g-shell g-shell-two">{reference_menu(root, "index")}<main id="main" class="g-main">'
+            '<h1>Reference</h1><p class="g-lead">Facts about the theme, generated from the theme itself, so they '
+            f'are always current.</p><ul class="g-cards">{cards}</ul></main></div>')
+    return page_shell(ctx, title="Reference", root=root, active="reference", body=body)
+
+
+def swatch(colour):
+    return f'<span class="g-swatch" style="background:{colour}" aria-hidden="true"></span>'
+
+
+def contrast_cell(first, second):
+    ratio = reference.contrast(first, second)
+    return f"<td>{reference.ratio_text(ratio)} {'passes' if reference.passes_aa(ratio) else 'fails'} AA</td>"
+
+
+def colour_row(token, ref):
+    note = f'<span class="g-token-note">{esc(token.note)}</span>' if token.note else ""
+    alias = (f'<span class="g-token-note">same as <code>--{esc(token.alias_of)}</code></span>'
+             if token.alias_of else "")
+    colour = token.resolved
+    return (f"<tr><td>{swatch(colour)}</td><td><code>--{esc(token.name)}</code>{note}</td>"
+            f"<td><code>{esc(colour)}</code>{alias}</td>"
+            f"{contrast_cell(colour, ref.white)}{contrast_cell(colour, ref.ink)}</tr>")
+
+
+def colours_page(ctx, ref):
+    sections = [(group.id, group.title,
+                 f"<p>{esc(group.intro)}</p>"
+                 + scroll_table(COLOUR_HEADERS, "".join(colour_row(t, ref) for t in group.tokens),
+                                f"{group.title}: colours", "g-table-colours"))
+                for group in ref.palette]
+    intro = ("<p>Each ratio is the contrast between the colour and white, or the colour and ink, and is the same "
+             "whichever of the two is the text. WCAG AA needs 4.5:1 for body text, and 3:1 for large text, icons "
+             "and borders. Ratios are rounded down.</p>")
+    return reference_page(ctx, slug="colours", title="Colours", sections=sections, intro=intro,
+                          lead="Every colour token in the theme, with its value and its contrast with white and ink.")
+
+
+def tokens_page(ctx, ref):
+    sections = []
+    for group in ref.tokens:
+        notes = any(t.note for t in group.tokens)  # a Notes column only where some token has a note
+        rows = "".join(f"<tr><td><code>--{esc(t.name)}</code></td><td><code>{esc(t.value)}</code></td>"
+                       + (f"<td>{esc(t.note)}</td>" if notes else "") + "</tr>" for t in group.tokens)
+        headers = ("Token", "Value", "Notes") if notes else ("Token", "Value")
+        sections.append((group.id, group.title,
+                         f"<p>{esc(group.intro)}</p>" + scroll_table(headers, rows, group.title)))
+    return reference_page(ctx, slug="tokens", title="Type, space and shape", sections=sections,
+                          lead="Typography, spacing, corner radius, motion and shadow values. Colours are on the Colours page.")
+
+
+def utilities_page(ctx, ref):
+    sections = []
+    for heading, guidance, rows in ref.utilities:
+        body = "".join(f"<tr><td><code>.{esc(cls)}</code></td><td>{esc(value)}</td></tr>" for cls, value in rows)
+        sections.append((slugify(heading), heading,
+                         f"<p>{esc(guidance)}</p>" + scroll_table(("Class", "What it sets"), body, f"{heading} classes")))
+    legacy = "".join(f"<tr><td><code>.{esc(cls)}</code></td><td>{esc(why)}</td></tr>" for cls, why in ref.legacy)
+    sections.append(("legacy-classes", "Legacy classes",
+                     "<p>These classes remain so older resources keep working. Do not use them in new content.</p>"
+                     + scroll_table(("Class", "Why it is here"), legacy, "Legacy classes")))
+    return reference_page(ctx, slug="utilities", title="Utility classes", sections=sections,
+                          lead="Single-purpose classes. Add one or more to an element's class attribute.")
+
+
+def write_site(out, site, content, template_path, updated=None, ref=None):
+    """updated, if given, maps a record's path to the date it last changed (or None).
+    ref, if given, is a reference.Reference and adds the reference pages."""
     ctx = Ctx(site, content, Template(template_path.read_text(encoding="utf-8")), updated or _unknown)
     rendered = {"index.html": home_page(ctx, content.pages["index"]),
                 "components/index.html": components_index(ctx), "tasks/index.html": tasks_index(ctx)}
+    if ref:
+        rendered["reference/index.html"] = reference_index(ctx)
+        rendered["reference/colours.html"] = colours_page(ctx, ref)
+        rendered["reference/tokens.html"] = tokens_page(ctx, ref)
+        rendered["reference/utilities.html"] = utilities_page(ctx, ref)
     for name, page in content.pages.items():
         if name != "index":
             rendered[f"{name}.html"] = simple_page(ctx, page, name if name in TOP_PATHS else None)

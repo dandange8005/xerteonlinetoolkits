@@ -5,7 +5,7 @@ from pathlib import Path
 
 import support
 import guide_fixture as fx
-from guidelib import pages, records
+from guidelib import pages, records, reference
 from html_tree import parse
 
 PLAYER_ORDER = ["vendor/player/css/bootstrap.css", "vendor/player/css/bootstrap-responsive.css",
@@ -197,6 +197,150 @@ class TaskLinksTest(unittest.TestCase):
             related = parse((out / "components" / "callout.html").read_text(encoding="utf-8")).find(cls="g-related")
         self.assertEqual([a.text() for a in related.find_all("a")],
                          ["Task: Draw attention to something", "Task: Add a tip to a page"])
+
+
+REF = reference.Reference(
+    palette=(
+        reference.Group("primary", "Primary colours", "Red, white and black.", (
+            reference.Token("cu-white", "#FFFFFF", "#FFFFFF", None, ""),
+            reference.Token("cu-black", "#000000", "#000000", None, ""),
+            reference.Token("cu-grey-aa", "#767676", "#767676", None, ""),
+            reference.Token("cu-grey-low", "#777777", "#777777", None, ""))),
+        reference.Group("roles", "Colour roles", "Named by job.", (
+            reference.Token("cu-bg", "{cu-white}", "#FFFFFF", "cu-white", "page background"),))),
+    tokens=(reference.Group("space", "Spacing", "A 4px base.", (
+        reference.Token("cu-space-1", "4px", "4px", None, ""),
+        reference.Token("cu-logo-width", "clamp(60px,17vw,80px)", "clamp(60px,17vw,80px)", None, "logo minimums"))),
+        reference.Group("font-sizes", "Font sizes", "Sizes by role.", (
+            reference.Token("cu-text-body", "18px", "18px", None, ""),))),
+    utilities=(("Spacing", "Margin and padding.", (("mt-4", "margin-top: 16px"),)),
+               ("Text size", "Sizes.", (("text-lg", "font-size: 20px"),))),
+    legacy=(("c10", "Legacy System 2 column width."),),
+    white="#FFFFFF", ink="#121212")
+REFERENCE_PAGES = ["reference/colours.html", "reference/index.html", "reference/tokens.html", "reference/utilities.html"]
+
+
+class ReferencePagesTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        guide = fx.write_guide(cls.tmp.name, SITE=fx.SITE_WITH_REFERENCE)
+        cls.out = Path(cls.tmp.name) / "site"
+        cls.written = pages.write_site(cls.out, records.load_site(guide / "site.toml"),
+                                       records.load_content(guide / "content"),
+                                       support.GUIDE / "templates" / "base.html", ref=REF)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def page(self, relative):
+        return parse((self.out / relative).read_text(encoding="utf-8"))
+
+    def section(self, page, heading):
+        for section in page.find_all(cls="g-section"):
+            if section.find_all("h2") and section.find("h2").text() == heading:
+                return section
+        raise AssertionError(f"no section headed {heading!r}")
+
+    def rows(self, relative, heading):
+        return self.section(self.page(relative), heading).find("tbody").find_all("tr")
+
+    def test_reference_pages_are_written(self):
+        self.assertEqual([w for w in self.written if w.startswith("reference/")], REFERENCE_PAGES)
+
+    def test_colour_contrast_cells(self):
+        by_token = {row.find("code").text(): row for row in self.rows("reference/colours.html", "Primary colours")}
+        cells = {name: [td.text() for td in row.find_all("td")] for name, row in by_token.items()}
+        self.assertEqual(cells["--cu-black"][3], "21.0:1 passes AA")
+        self.assertEqual(cells["--cu-grey-aa"][3], "4.5:1 passes AA")
+        self.assertEqual(cells["--cu-grey-low"][3], "4.4:1 fails AA")
+        self.assertEqual(cells["--cu-white"][4], "18.7:1 passes AA")
+
+    def test_colour_swatch_shows_the_colour(self):
+        row = self.rows("reference/colours.html", "Primary colours")[2]
+        self.assertEqual(row.find(cls="g-swatch").attrs["style"], "background:#767676")
+        self.assertEqual(row.find(cls="g-swatch").attrs["aria-hidden"], "true")
+
+    def test_alias_and_note_are_shown(self):
+        row = self.rows("reference/colours.html", "Colour roles")[0]
+        self.assertEqual([c.text() for c in row.find_all(cls="g-token-note")], ["page background", "same as --cu-white"])
+        self.assertEqual(row.find_all("td")[2].find("code").text(), "#FFFFFF")
+
+    def test_colours_page_explains_the_ratios(self):
+        text = self.page("reference/colours.html").find(cls="g-main").text()
+        self.assertIn("WCAG AA needs 4.5:1 for body text", text)
+        self.assertIn("the same whichever", text)
+
+    def test_tokens_page_rows(self):
+        rows = self.rows("reference/tokens.html", "Spacing")
+        self.assertEqual([[td.text() for td in row.find_all("td")] for row in rows],
+                         [["--cu-space-1", "4px", ""],
+                          ["--cu-logo-width", "clamp(60px,17vw,80px)", "logo minimums"]])
+
+    def test_tokens_page_shows_a_notes_column_only_when_a_group_has_notes(self):
+        page = self.page("reference/tokens.html")
+        self.assertEqual([th.text() for th in self.section(page, "Spacing").find_all("th")], ["Token", "Value", "Notes"])
+        self.assertEqual([th.text() for th in self.section(page, "Font sizes").find_all("th")], ["Token", "Value"])
+
+    def test_utilities_page_has_a_table_per_family_and_the_legacy_classes(self):
+        page = self.page("reference/utilities.html")
+        self.assertEqual([[td.text() for td in row.find_all("td")]
+                          for row in self.rows("reference/utilities.html", "Spacing")], [[".mt-4", "margin-top: 16px"]])
+        self.assertIn("Do not use them in new content", self.section(page, "Legacy classes").text())
+        self.assertEqual([[td.text() for td in row.find_all("td")]
+                          for row in self.rows("reference/utilities.html", "Legacy classes")],
+                         [[".c10", "Legacy System 2 column width."]])
+
+    def test_on_this_page_lists_the_groups_and_they_exist(self):
+        for relative, expected in (("reference/colours.html", ["primary", "roles"]),
+                                   ("reference/tokens.html", ["space", "font-sizes"]),
+                                   ("reference/utilities.html", ["spacing", "text-size", "legacy-classes"])):
+            page = self.page(relative)
+            ids = {e.attrs["id"] for e in page.iter() if "id" in e.attrs}
+            targets = [a.attrs["href"][1:] for a in page.find(cls="g-toc").find_all("a")]
+            self.assertEqual(targets, expected, relative)
+            self.assertLessEqual(set(targets), ids)
+
+    def test_wide_tables_scroll_inside_their_own_region(self):
+        for relative in ("reference/colours.html", "reference/tokens.html", "reference/utilities.html"):
+            wraps = self.page(relative).find_all(cls="g-table-scroll")
+            self.assertTrue(wraps, relative)
+            for wrap in wraps:
+                self.assertEqual(wrap.attrs.get("tabindex"), "0")
+                self.assertEqual(wrap.attrs.get("role"), "region")
+                self.assertTrue(wrap.attrs.get("aria-label"))
+                self.assertEqual(len(wrap.find_all("table")), 1)
+
+    def test_reference_menu_marks_the_current_page(self):
+        side = self.page("reference/colours.html").find(cls="g-side")
+        self.assertEqual([a.text() for a in side.find_all("a")], ["Overview", "Colours", "Type, space and shape", "Utility classes"])
+        self.assertEqual(side.find("a", aria_current="page").text(), "Colours")
+        self.assertEqual(self.page("reference/index.html").find(cls="g-side").find("a", aria_current="page").text(), "Overview")
+
+    def test_top_menu_marks_reference(self):
+        menu = self.page("reference/utilities.html").find(cls="g-top")
+        self.assertEqual(menu.find("a", aria_current="page").text(), "Reference")
+        self.assertEqual(menu.find("a", aria_current="page").attrs["href"], "../reference/index.html")
+
+    def test_overview_links_to_every_reference_page(self):
+        cards = self.page("reference/index.html").find_all(cls="g-card")
+        self.assertEqual([c.find("a").attrs["href"] for c in cards], ["colours.html", "tokens.html", "utilities.html"])
+
+    def test_every_reference_page_has_one_main_and_one_h1(self):
+        for relative in REFERENCE_PAGES:
+            page = self.page(relative)
+            self.assertEqual(len(page.find_all(id="main")), 1, relative)
+            self.assertEqual(len(page.find_all("h1")), 1, relative)
+
+    def test_reference_links_resolve(self):
+        for relative in REFERENCE_PAGES:
+            for element in self.page(relative).iter():
+                target = element.attrs.get("href") or ""
+                if element.tag != "a" or not target or target.startswith(("#", "http:", "https:", "mailto:")):
+                    continue
+                path = (self.out / relative).parent / target.split("#")[0]
+                self.assertTrue(path.resolve().is_file(), f"{relative} links to missing {target}")
 
 
 class UntestedEvidenceTest(unittest.TestCase):

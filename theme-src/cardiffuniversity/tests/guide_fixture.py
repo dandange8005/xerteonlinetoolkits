@@ -164,6 +164,12 @@ lead = "Switch a project to the theme."
 ```
 """
 
+SITE_WITH_REFERENCE = SITE + """
+[[menu]]
+page = "reference"
+title = "Reference"
+"""
+
 TASK_B = TASK.replace('name = "draw-attention"', 'name = "add-a-tip"').replace(
     'title = "Draw attention to something"', 'title = "Add a tip to a page"')
 SITE_TWO = SITE.replace('tasks = ["draw-attention"]', 'tasks = ["draw-attention", "add-a-tip"]')

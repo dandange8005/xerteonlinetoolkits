@@ -13,7 +13,7 @@ from guidelib.mdsubset import Section, sections
 
 STATUSES = ("current", "legacy")
 COVERAGE_MODES = ("warn", "fail")
-MENU_PAGES = ("home", "getting-started", "tasks", "components")
+MENU_PAGES = ("home", "getting-started", "tasks", "components", "reference")
 COMPONENT_HEADINGS = ((2, "When to use it"), (2, "When not to use it"), (2, "How to use it"),
                       (3, "Do"), (3, "Don't"), (2, "Accessibility"))
 TASK_HEADINGS = ((2, "Goal"), (2, "Checklist"))
