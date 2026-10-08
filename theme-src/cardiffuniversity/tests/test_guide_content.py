@@ -80,7 +80,7 @@ class BuiltComponentPagesTest(unittest.TestCase):
 
     def test_button_page_documents_every_button_class(self):
         expected = {c for c in theme_css.author_facing_classes() if c.startswith("button")}
-        self.assertGreaterEqual(len(expected), 19)
+        self.assertGreaterEqual(len(expected), 18)  # guards against an empty set; button--small is legacy
         self.assertEqual(expected - self.shown("button"), set())
         self.assertIn("btn-mini", self.shown("button"))
 
@@ -112,7 +112,7 @@ class BuiltComponentPagesTest(unittest.TestCase):
         buttons = [b for frame in self.page("button").find_all(cls="g-preview") for b in frame.find_all("button")]
         self.assertEqual(buttons, [])
         links = [a for frame in self.page("button").find_all(cls="g-preview") for a in frame.find_all("a")]
-        self.assertGreaterEqual(len(links), 16)
+        self.assertGreaterEqual(len(links), 15)  # one example per variant; button--small is a legacy alias
         self.assertTrue(all(a.attrs.get("href", "").startswith("https://") for a in links))
 
     def test_button_page_qualifies_the_size_and_focus_claims(self):
@@ -122,8 +122,16 @@ class BuiltComponentPagesTest(unittest.TestCase):
         self.assertIn("reverse", text)  # the ink focus outline cannot be seen on a dark background
 
     def test_small_buttons_say_their_text_is_14px(self):
-        for label in ("Small", "Compact (older)"):
-            self.assertIn("14px", self.variant_meta("button", label))
+        self.assertIn("14px", self.variant_meta("button", "Small"))
+
+    def test_the_older_compact_button_is_listed_as_legacy_and_not_taught(self):
+        # button--small sets the same text size and padding as button-sm, so it is an older alias.
+        labels = [v.find("h3").text() for v in self.page("button").find_all(cls="g-variant")]
+        self.assertNotIn("Compact (older)", labels)
+        utilities = parse((self.out / "reference" / "utilities.html").read_text(encoding="utf-8"))
+        legacy = [sec for sec in utilities.find_all(cls="g-section") if sec.find("h2").text() == "Legacy classes"][0]
+        rows = {r.find_all("td")[0].text(): r.find_all("td")[1].text() for r in legacy.find("tbody").find_all("tr")}
+        self.assertEqual(rows.get(".button--small"), "Older alias of button-sm.")
 
     def test_button_page_describes_btn_mini_accurately(self):
         parts = self.section_text("button", "Parts")

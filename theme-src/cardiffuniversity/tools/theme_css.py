@@ -74,6 +74,7 @@ LEGACY = {
     "topMargin": "Legacy System 2 spacing.", "w3": "Legacy System 2 width.",
     "org": "Legacy System 2 organisation block.",
     "screenshots": "Older alias of image-screenshots.",
+    "button--small": "Older alias of button-sm.",
 }
 
 # Classes that belong to the page frame or the editor, not to content an author writes.

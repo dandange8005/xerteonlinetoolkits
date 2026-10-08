@@ -106,14 +106,6 @@ html = '''
 '''
 
 [[examples]]
-class = "button--small"
-label = "Compact (older)"
-purpose = "A smaller button with 14px text, below the design system's 16px minimum for buttons. An older class, kept for older content"
-html = '''
-<a href="https://example.org" class="button button-primary button--small">Compact</a>
-'''
-
-[[examples]]
 class = "button--block"
 label = "Block (older)"
 purpose = "A button that fills the width of its container. An older class, kept for older content"
