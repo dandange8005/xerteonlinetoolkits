@@ -9,6 +9,7 @@ import unittest
 from pathlib import Path
 
 import support
+import theme_css
 from html_tree import parse
 
 build_guide = support.load_tool("build-guide")
@@ -53,6 +54,40 @@ class GuideContentTest(unittest.TestCase):
                                 cwd=support.REPO, capture_output=True, text=True, timeout=120)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertIn("Guide checks passed", result.stdout)
+
+
+class BuiltComponentPagesTest(unittest.TestCase):
+    """Builds the real guide once and reads the component pages back."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.out = Path(cls.tmp.name) / "site"
+        with contextlib.redirect_stdout(io.StringIO()) as printed:
+            code = build_guide.build(out=cls.out)
+        assert code == 0, printed.getvalue()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def page(self, name):
+        return parse((self.out / "components" / f"{name}.html").read_text(encoding="utf-8"))
+
+    def shown(self, name):
+        """Every class a component page names in a <code>.class</code> cell."""
+        return {c.text()[1:] for c in self.page(name).find_all("code") if c.text().startswith(".")}
+
+    def test_button_page_documents_every_button_class(self):
+        expected = {c for c in theme_css.author_facing_classes() if c.startswith("button")}
+        self.assertGreaterEqual(len(expected), 19)
+        self.assertEqual(expected - self.shown("button"), set())
+        self.assertIn("btn-mini", self.shown("button"))
+
+    def test_components_index_lists_the_buttons(self):
+        index = parse((self.out / "components" / "index.html").read_text(encoding="utf-8"))
+        hrefs = [a.attrs["href"] for card in index.find_all(cls="g-card") for a in card.find_all("a")]
+        self.assertIn("button.html", hrefs)
 
 
 if __name__ == "__main__":

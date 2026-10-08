@@ -84,6 +84,10 @@ CHECKS = [
     ("reference/index.html", 1280, "a focused card shows an outline",
      "(function () { var card = document.querySelector('.g-card'); card.querySelector('a').focus();"
      " var c = getComputedStyle(card); return c.outlineStyle === 'solid' && c.outlineWidth === '3px'; })()"),
+    ("components/button.html", 485, "no sideways scroll", NO_SIDEWAYS_SCROLL),
+    ("components/button.html", 1280, "every button example is at least 48px high and 44px wide",
+     "[].every.call(document.querySelectorAll('.g-preview .button'), function (b) {"
+     " var r = b.getBoundingClientRect(); return r.height >= 47.5 && r.width >= 43.5; })"),
     ("components/callout.html", 1280, "the Cardiff logo loads",
      "document.querySelector('header img').naturalWidth > 0"),
     ("getting-started.html", 1280, "headings are spaced from the text above",

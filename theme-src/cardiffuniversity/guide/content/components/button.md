@@ -1,0 +1,190 @@
++++
+name = "button"
+title = "Buttons"
+lead = "A button starts an action or takes the reader to a clear next step."
+group = "interaction"
+status = "current"
+related = []
+scss = ["scss/components/_buttons.scss"]
+
+[parts]
+button = "The base class every button needs. It gives the button its shape, size and states."
+button__icon = "An optional wrapper for an icon inside a button."
+button--outline = "An older outline style, kept so older content still works."
+btn-mini = "A 40px round icon button, kept for older content. The theme also uses it for the back-to-top button."
+
+[[examples]]
+class = "button-primary"
+label = "Primary"
+purpose = "The main action on the page"
+html = '''
+<button class="button button-primary">Continue</button>
+'''
+
+[[examples]]
+class = "button-secondary-outline"
+label = "Secondary"
+purpose = "The design system's secondary button. Pair it with one primary button"
+html = '''
+<button class="button button-secondary-outline">Back</button>
+'''
+
+[[examples]]
+class = "button-secondary"
+label = "Filled black"
+purpose = "A filled black button that predates the design system, kept for existing content"
+html = '''
+<button class="button button-secondary">Filled black</button>
+'''
+
+[[examples]]
+class = "button-success"
+label = "Success"
+purpose = "A filled button in the success colour"
+html = '''
+<button class="button button-success">Success</button>
+'''
+
+[[examples]]
+class = "button-primary-outline"
+label = "Primary outline"
+purpose = "An outlined version of the primary button"
+html = '''
+<button class="button button-primary-outline">Primary outline</button>
+'''
+
+[[examples]]
+class = "button-success-outline"
+label = "Success outline"
+purpose = "An outlined version of the success button"
+html = '''
+<button class="button button-success-outline">Success outline</button>
+'''
+
+[[examples]]
+class = "button-ghost"
+label = "Ghost"
+purpose = "A button with no fill or border. A light grey background appears on hover"
+html = '''
+<button class="button button-ghost">Ghost</button>
+'''
+
+[[examples]]
+class = "button-reverse"
+label = "Reverse"
+purpose = "A filled button for dark backgrounds"
+html = '''
+<div class="bg-dark p-4">
+  <button class="button button-reverse">Reverse</button>
+</div>
+'''
+
+[[examples]]
+class = "button-reverse-outline"
+label = "Reverse outline"
+purpose = "An outlined button for dark backgrounds"
+html = '''
+<div class="bg-dark p-4">
+  <button class="button button-reverse-outline">Reverse outline</button>
+</div>
+'''
+
+[[examples]]
+class = "button-sm"
+label = "Small"
+purpose = "A smaller button"
+html = '''
+<button class="button button-primary button-sm">Small</button>
+'''
+
+[[examples]]
+class = "button-lg"
+label = "Large"
+purpose = "A larger button"
+html = '''
+<button class="button button-primary button-lg">Large</button>
+'''
+
+[[examples]]
+class = "button--small"
+label = "Compact (older)"
+purpose = "A smaller button. An older class, kept for older content"
+html = '''
+<button class="button button-primary button--small">Compact</button>
+'''
+
+[[examples]]
+class = "button--block"
+label = "Block (older)"
+purpose = "A button that fills the width of its container. An older class, kept for older content"
+html = '''
+<button class="button button-primary button--block">Block</button>
+'''
+
+[[examples]]
+class = "button-icon-left"
+label = "Icon on the left"
+purpose = "An icon before the label"
+html = '''
+<button class="button button-primary button-icon-left">
+  <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Previous
+</button>
+'''
+
+[[examples]]
+class = "button-icon-right"
+label = "Icon on the right"
+purpose = "An icon after the label"
+html = '''
+<button class="button button-primary button-icon-right">
+  Next <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+</button>
+'''
+
+[[examples]]
+class = "button-icon-only"
+label = "Icon only"
+purpose = "A square button with only an icon. It needs an aria-label"
+html = '''
+<button class="button button-primary button-icon-only" aria-label="Search">
+  <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+</button>
+'''
++++
+
+## When to use it
+
+Use a button to start an action, or to take the reader to a clear next step.
+
+## When not to use it
+
+For a link inside a sentence, use a normal text link. A button is for an action or a clear next step, not for running text.
+
+## How to use it
+
+Use a button element for an action. For a destination, use a link with the same classes: it looks the same.
+
+```html
+<a href="https://example.org" class="button button-primary">Go to the next page</a>
+```
+
+### Do
+
+- Use one primary button for the main action, and pair it with the secondary variant when the reader has a second choice.
+- Use a button element for an action and a link for a destination.
+- Use the reverse variants on dark backgrounds.
+- Give an icon-only button an `aria-label` that says what it does.
+
+### Don't
+
+- Disable a button unless the action is really unavailable.
+- Use the filled black variant for the design system's secondary button. Use the secondary variant instead.
+- Use the older classes in new content.
+- Add gradients, shadows or pill shapes.
+
+## Accessibility
+
+- Buttons are at least 48px high and 44px wide, so they are easy to hit on a touch screen.
+- Keyboard focus shows a visible outline.
+- To disable a button, use the `disabled` attribute, so it is also disabled for keyboard and screen reader users.
+- Give an icon-only button an `aria-label`, and hide an icon that sits beside a visible label with `aria-hidden="true"`.
