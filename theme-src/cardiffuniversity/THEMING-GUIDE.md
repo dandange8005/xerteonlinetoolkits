@@ -243,7 +243,8 @@ written: a component page finds its tasks from the task files, and a component r
 
 The reference pages are generated. `guide/reference.toml` gives each token group in
 `tokens/tokens.json` an author-facing title and intro; when you add a token group, add an entry
-there too, or the build stops and names the group.
+there too, or the build stops and names the group. Mark a colour group with `colour = true`: it then appears on the Colours page, and the
+build stops if one of its tokens is not a `#RRGGBB` colour.
 
 ## Adding a component
 

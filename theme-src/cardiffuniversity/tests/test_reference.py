@@ -26,11 +26,13 @@ COPY = """\
 id = "primary"
 title = "Primary colours"
 intro = "Red, white and black."
+colour = true
 
 [[groups]]
 id = "roles"
 title = "Colour roles"
 intro = "Named by job."
+colour = true
 
 [[groups]]
 id = "space"
@@ -92,6 +94,59 @@ class LoadReferenceTest(unittest.TestCase):
         ref = reference.load_reference(self.dir / "tokens.json", self.dir / "reference.toml",
                                        (("Spacing", "Margins.", rows),), LEGACY)
         self.assertEqual([cls for cls, _ in ref.utilities[0][2]], ["m-1", "m-2", "m-10", "mb-2"])
+
+    def test_colour_group_with_a_value_that_is_not_hex(self):
+        tokens = json.loads(json.dumps(TOKENS))
+        tokens["roles"]["cu-overlay"] = {"$value": "rgba(0,0,0,.5)"}
+        self.assertLoadError(r"token cu-overlay in colour group roles must be a #RRGGBB colour", tokens=tokens)
+
+    def test_a_group_not_marked_as_colour_stays_off_the_colours_page(self):
+        copy = COPY.replace('intro = "Named by job."\ncolour = true', 'intro = "Named by job."')
+        ref = self.load(copy=copy)
+        self.assertEqual([g.id for g in ref.palette], ["primary"])
+        self.assertEqual([g.id for g in ref.tokens], ["roles", "space"])
+
+    def test_colour_key_must_be_true_or_false(self):
+        self.assertLoadError(r"entry 1: 'colour' must be true or false",
+                             copy=COPY.replace("colour = true", 'colour = "yes"', 1))
+
+    def test_empty_token_group(self):
+        tokens = json.loads(json.dumps(TOKENS))
+        tokens["space"] = {"$description": "nothing here"}
+        self.assertLoadError(r"token group space has no tokens", tokens=tokens)
+
+    def test_numeric_value_is_read_as_text(self):
+        tokens = json.loads(json.dumps(TOKENS))
+        tokens["space"]["cu-weight"] = {"$value": 600}
+        self.assertEqual(self.load(tokens=tokens).tokens[0].tokens[1].value, "600")
+
+    def test_token_without_a_value(self):
+        tokens = json.loads(json.dumps(TOKENS))
+        tokens["space"]["cu-bad"] = {"$description": "no value"}
+        self.assertLoadError(r"token cu-bad in group space has no \$value", tokens=tokens)
+
+    def test_token_defined_in_two_groups(self):
+        tokens = json.loads(json.dumps(TOKENS))
+        tokens["roles"]["cu-white"] = {"$value": "#000000"}
+        self.assertLoadError(r"token cu-white is defined in more than one group: primary, roles", tokens=tokens)
+
+    def test_alias_inside_a_longer_value_is_resolved(self):
+        tokens = json.loads(json.dumps(TOKENS))
+        tokens["space"]["cu-ring"] = {"$value": "0 0 0 2px {cu-white}"}
+        ring = self.load(tokens=tokens).tokens[0].tokens[1]
+        self.assertEqual((ring.resolved, ring.alias_of), ("0 0 0 2px #FFFFFF", None))
+
+    def test_alias_inside_a_longer_value_to_nothing(self):
+        tokens = json.loads(json.dumps(TOKENS))
+        tokens["space"]["cu-ring"] = {"$value": "0 0 0 2px {cu-nope}"}
+        self.assertLoadError(r"token cu-ring refers to \{cu-nope\}, which does not exist", tokens=tokens)
+
+    def test_tokens_file_that_is_not_utf8(self):
+        (self.dir / "tokens.json").write_bytes('{"primary": {"cu-white": {"$value": "\u2019"}}}'.encode("cp1252", "replace")
+                                               + b"\x92")
+        (self.dir / "reference.toml").write_text(COPY, encoding="utf-8")
+        with self.assertRaisesRegex(reference.ReferenceDataError, r"tokens\.json: cannot read"):
+            reference.load_reference(self.dir / "tokens.json", self.dir / "reference.toml", UTILITIES, LEGACY)
 
     def test_token_group_without_an_entry(self):
         self.assertLoadError(r"reference\.toml: no entry for token group\(s\): space",

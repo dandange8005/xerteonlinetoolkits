@@ -1,37 +1,44 @@
 # Author-facing titles and intros for the reference pages. Every token group in
 # tokens/tokens.json needs an entry here, in the order the groups should appear.
-# Colour groups appear on the Colours page; every other group appears on the
-# Type, space and shape page. The id must match the group's key in tokens.json.
+# A group marked colour = true appears on the Colours page and every token in it must be a
+# #RRGGBB colour; every other group appears on the Type, space and shape page. The id must
+# match the group's key in tokens.json.
 
 [[groups]]
 id = "primary"
 title = "Primary colours"
 intro = "Cardiff red, white and black. These three make up the theme's primary palette."
+colour = true
 
 [[groups]]
 id = "red-tones"
 title = "Error red"
 intro = "A darker tone of brand red, used for error text. It is a recorded deviation from the design system."
+colour = true
 
 [[groups]]
 id = "greys"
 title = "Greys"
 intro = "Greys in 10% steps from black."
+colour = true
 
 [[groups]]
 id = "accents"
 title = "Accent colours"
 intro = "Use accents sparingly and with the Design team's permission."
+colour = true
 
 [[groups]]
 id = "roles"
 title = "Colour roles"
 intro = "A role names a colour by its job, such as text or background, so a rule asks for ink rather than black. Most roles point at a palette colour; the table shows which."
+colour = true
 
 [[groups]]
 id = "callouts"
 title = "Callout colours"
 intro = "The rule and icon disc colour for each callout variant, and the colour of the icon on the disc. The title carries the meaning; colour and icon support it."
+colour = true
 
 [[groups]]
 id = "font-families"

@@ -164,6 +164,14 @@ class ExamplesTest(unittest.TestCase):
             with self.subTest(markup=markup):
                 self.assertEqual(self.check(markup), [])
 
+    def test_self_closing_syntax_does_not_close_a_non_void_element(self):
+        self.assertEqual(self.check('<div><i class="fa-solid"/></div>'),
+                         ["warning 5 example 'E' has unbalanced HTML: <i> is not closed before </div>"])
+        self.assertEqual(self.check("<span/>text"), ["warning 5 example 'E' has unbalanced HTML: <span> is not closed"])
+
+    def test_self_closing_void_elements_are_fine(self):
+        self.assertEqual(self.check('<p>a<br/>b<img src="a.png" alt=""/></p>'), [])
+
     def test_heading_with_text_is_fine(self):
         self.assertEqual(self.check("<h3>Title</h3>"), [])
 

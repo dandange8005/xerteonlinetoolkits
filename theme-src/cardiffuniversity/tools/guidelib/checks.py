@@ -43,6 +43,13 @@ class _Scan(HTMLParser):
         if tag not in self.VOID and tag not in self.OPTIONAL_END:
             self._open.append(tag)
 
+    def handle_startendtag(self, tag, attrs):
+        # In HTML a trailing slash does not close an element: <i/> is an open <i>. Only void
+        # elements such as <br/> and <img/> are complete.
+        self.handle_starttag(tag, attrs)
+        if tag in self.VOID:
+            self.handle_endtag(tag)
+
     def handle_data(self, data):
         if self._heading:
             self._text += data

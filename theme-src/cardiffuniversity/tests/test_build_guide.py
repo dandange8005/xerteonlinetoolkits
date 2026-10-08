@@ -78,6 +78,16 @@ class BuildGuideTest(unittest.TestCase):
         self.build()
         self.assertFalse(stale.exists())
 
+    def test_a_token_group_without_a_reference_entry_stops_the_build(self):
+        copy = self.guide / "reference.toml"
+        text = copy.read_text(encoding="utf-8")
+        copy.write_text(text[:text.index('[[groups]]\nid = "shadows"')], encoding="utf-8")
+        code, printed = self.build()
+        self.assertEqual(code, 1)
+        self.assertIn("ERROR", printed)
+        self.assertIn("no entry for token group(s): shadows", printed)
+        self.assertFalse(self.out.exists())
+
     def test_refuses_to_delete_a_foreign_folder(self):
         self.out.mkdir()
         keep = self.out / "keep.txt"
