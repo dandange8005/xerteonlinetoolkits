@@ -53,6 +53,12 @@ CHECKS = [
      "(function () { var d = document.querySelector('.g-code-toggle'); var closed = !d.open;"
      " d.querySelector('summary').click(); return closed && d.open"
      " && d.querySelector('.g-code').getBoundingClientRect().height > 0; })()"),
+    ("components/callout.html", 1280, "the top menu uses the 16px interface size",
+     "[].every.call(document.querySelectorAll('.g-top a'), function (a) { return getComputedStyle(a).fontSize === '16px'; })"),
+    ("components/callout.html", 1280, "the side menu links and group headings use the 16px interface size",
+     "[].every.call(document.querySelectorAll('.g-side a, .g-side h2'), function (e) { return getComputedStyle(e).fontSize === '16px'; })"),
+    ("index.html", 1280, "the home page menu uses the 16px interface size",
+     "[].every.call(document.querySelectorAll('.g-top a'), function (a) { return getComputedStyle(a).fontSize === '16px'; })"),
     ("components/callout.html", 1280, "the Cardiff logo loads",
      "document.querySelector('header img').naturalWidth > 0"),
     ("getting-started.html", 1280, "headings are spaced from the text above",

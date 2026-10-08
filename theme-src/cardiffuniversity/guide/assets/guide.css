@@ -21,7 +21,7 @@
 .g-brand:hover .g-brand-title { text-decoration: underline; }
 
 .g-top { display: flex; flex-wrap: wrap; padding: 0 32px; background: var(--cu-grey-90); }
-.g-top a { padding: 12px 18px; color: var(--cu-white); text-decoration: none; border-bottom: 3px solid transparent; }
+.g-top a { padding: 12px 18px; font-size: var(--cu-text-ui); color: var(--cu-white); text-decoration: none; border-bottom: 3px solid transparent; }
 .g-top a:hover { background: var(--cu-grey-80); }
 .g-top a[aria-current="page"] { border-bottom-color: var(--color-brand-primary); font-weight: 700; }
 .g-top a:focus-visible { outline: 3px solid var(--cu-white); outline-offset: -3px; }
@@ -41,9 +41,9 @@
 .g-page { padding-top: 32px; padding-bottom: 80px; }
 
 .g-side { align-self: start; position: sticky; top: 0; max-height: 100vh; overflow: auto; padding: 24px 0; border-right: 1px solid var(--cu-line); }
-.g-side h2 { margin: 20px 24px 6px; padding: 0; border: 0; font-size: 18px; color: var(--cu-ink); }
+.g-side h2 { margin: 20px 24px 6px; padding: 0; border: 0; font-size: var(--cu-text-ui); color: var(--cu-ink); }
 .g-side ul { list-style: none; margin: 0; padding: 0; }
-.g-side a { display: block; padding: 7px 24px; color: var(--cu-ink); text-decoration: none; border-left: 3px solid transparent; }
+.g-side a { display: block; padding: 7px 24px; font-size: var(--cu-text-ui); color: var(--cu-ink); text-decoration: none; border-left: 3px solid transparent; }
 .g-side a:hover { background: var(--cu-surface); }
 .g-side a[aria-current="page"] { border-left-color: var(--color-brand-primary); background: var(--cu-surface); font-weight: 700; }
 .g-side-toggle { width: calc(100% - 32px); margin: 0 16px; padding: 10px 14px; background: var(--cu-white); color: var(--cu-ink); border: 1px solid var(--cu-grey-80); font-size: 16px; text-align: left; }
