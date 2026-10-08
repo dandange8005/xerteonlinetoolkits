@@ -13,7 +13,7 @@ KNOWN = {"cu-callout", "cu-callout-tip", "cu-callout-title", "fa-solid"}
 
 def component(**changes):
     fields = dict(name="callout", title="Callouts", lead="One idea.", group="emphasis", status="current",
-                  since="v1.4", tasks=(), related=(), scss=(), editor=Editor(True, datetime.date(2026, 9, 20), "3.14"),
+                  since="v1.4", related=(), scss=(), editor=Editor(True, datetime.date(2026, 9, 20), "3.14"),
                   parts={"cu-callout": "The container."}, examples=(TIP,), when_html="<p>w</p>", when_not_html="<p>n</p>", how_html="",
                   do_html="<ul><li>a</li></ul>", dont_html="<ul><li>b</li></ul>",
                   accessibility_html="<p>c</p>", source=Path("components/callout.md"))
@@ -77,15 +77,14 @@ class CoverageTest(unittest.TestCase):
 
 class ReferencesTest(unittest.TestCase):
     def test_valid_references(self):
-        good = content([component(tasks=("draw-attention",))], [task()])
+        good = content([component()], [task()])
         site = Site("Guide", "warn", SITE.groups, ("draw-attention",), SITE.menu)
         self.assertEqual(checks.check_references(good, site, support.THEME), [])
 
     def test_broken_references(self):
-        bad = component(group="layout", tasks=("missing-task",), related=("alert",), scss=("scss/nope.scss",))
+        bad = component(group="layout", related=("alert",), scss=("scss/nope.scss",))
         found = messages(checks.check_references(content([bad], [task(components=("button",))]), SITE, support.THEME))
         self.assertIn("error 3 group 'layout' is not in site.toml", found)
-        self.assertIn("error 3 task 'missing-task' has no task file", found)
         self.assertIn("error 3 related component 'alert' has no record", found)
         self.assertIn("error 3 SCSS file 'scss/nope.scss' does not exist", found)
         self.assertIn("error 3 component 'button' has no record", found)

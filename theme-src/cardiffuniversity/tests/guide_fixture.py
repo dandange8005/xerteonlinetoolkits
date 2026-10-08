@@ -38,7 +38,6 @@ lead = "Pull one key idea out of the page."
 group = "emphasis"
 status = "current"
 since = "v1.4"
-tasks = ["draw-attention"]
 related = []
 scss = ["scss/components/_callout.scss"]
 
@@ -165,12 +164,17 @@ lead = "Switch a project to the theme."
 ```
 """
 
+TASK_B = TASK.replace('name = "draw-attention"', 'name = "add-a-tip"').replace(
+    'title = "Draw attention to something"', 'title = "Add a tip to a page"')
+SITE_TWO = SITE.replace('tasks = ["draw-attention"]', 'tasks = ["draw-attention", "add-a-tip"]')
+
 FILES = {
     "SITE": "site.toml",
     "CALLOUT": "content/components/callout.md",
     "TASK": "content/tasks/draw-attention.md",
     "INDEX": "content/pages/index.md",
     "GETTING_STARTED": "content/pages/getting-started.md",
+    "TASK_B": "content/tasks/add-a-tip.md",
 }
 
 
@@ -178,7 +182,8 @@ def write_guide(root, **overrides):
     """Write the fixture guide into root/guide. A keyword such as CALLOUT="..." replaces that file;
     CALLOUT=None leaves the file out."""
     guide = Path(root) / "guide"
-    texts = {"SITE": SITE, "CALLOUT": CALLOUT, "TASK": TASK, "INDEX": INDEX, "GETTING_STARTED": GETTING_STARTED}
+    texts = {"SITE": SITE, "CALLOUT": CALLOUT, "TASK": TASK, "INDEX": INDEX, "GETTING_STARTED": GETTING_STARTED,
+             "TASK_B": None}
     texts.update(overrides)
     for key, relative in FILES.items():
         if texts[key] is None:

@@ -126,8 +126,10 @@ and keeps the guide on brand, with two rules:
   Its entries, the component groups and their order, and the task order live in
   `guide/site.toml`. Menu items whose pages do not exist yet are left out, not shown as dead
   links.
-- A task page names its components, and each component page lists the tasks that use it. The
-  home page's task tiles come from the task files, in the order `site.toml` gives.
+- A task page names its components, and each component page lists the tasks that use it. Only the
+  task file holds the link: the component page works its task list out from the task files, so
+  the two cannot disagree. The home page's task tiles come from the task files, in the order
+  `site.toml` gives.
 - Below 800px the side menu collapses behind a button. Below 1100px the "on this page" list is
   hidden.
 - Components not yet migrated link to their existing `demos/` page.
@@ -166,7 +168,6 @@ title = "Callouts"
 group = "emphasis"                        # an id from site.toml
 status = "current"                        # current | legacy
 since = "v1.4"
-tasks = ["draw-attention"]
 related = ["alert", "well"]
 scss = ["scss/components/_callout.scss"]  # for the stale-evidence check
 
@@ -235,7 +236,7 @@ The type is stated in the title, so meaning never relies on colour alone.
 | --- | --- | --- |
 | 1 | Every class in every example, part and variant exists in the stylesheets the guide loads (the list above), not only the theme's CSS, so Font Awesome and unstyled Bootstrap classes pass | Fails the build |
 | 2 | Coverage: every author-facing theme class is claimed by a record (`parts` or an example's `class`) or appears in a generated reference table | Warns in phases 1 and 2 and prints the count; fails from phase 3 |
-| 3 | Every `related`, `tasks` and `group` value points at something that exists; groups are checked against `site.toml` | Fails the build |
+| 3 | Every `related` and `group` value, every component a task file names, and every task `site.toml` lists points at something that exists; groups are checked against `site.toml` | Fails the build |
 | 4 | A record's `editor.checked` date is older than the last commit to any file in its `scss` list | Warns |
 | 5 | An example has an `<img>` without `alt`, or an empty heading | Warns |
 
@@ -300,7 +301,7 @@ Rule for maintainers: a change to a component's SCSS needs a look at its record.
 1. **Phase 1.** A thin slice through the whole path: `tools/theme_css.py`, the generator, the page
    model and `site.toml`, the home page, Getting started, one task page ("Draw attention to
    something") and one component, callouts. The task page is needed so the home page has a tile
-   and the callout record's `tasks` link passes check 3.
+   and the callout page has a task to link to.
 2. **Phase 2.** The reference pages (colours, tokens, utility classes), buttons, cards, tables,
    alerts, images, layout and typography, and two or three more task pages.
 3. **Phase 3.** Migrate the remaining `demos/` pages one at a time. Make check 2 a hard failure,

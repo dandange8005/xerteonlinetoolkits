@@ -48,7 +48,6 @@ class Component:
     group: str
     status: str
     since: str
-    tasks: tuple
     related: tuple
     scss: tuple
     editor: Editor | None  # None until the component has been tested in the Xerte editor
@@ -193,7 +192,10 @@ def _expect(found, expected, source):
 def load_component(path):
     path = Path(path)
     data, body, line = split_front_matter(_read(path), path)
-    _only(data, {"name", "title", "lead", "group", "status", "since", "tasks", "related", "scss",
+    if "tasks" in data:
+        raise RecordError(path, "'tasks' is not a component field; list the component under 'components' "
+                                "in a task file instead")
+    _only(data, {"name", "title", "lead", "group", "status", "since", "related", "scss",
                  "editor", "parts", "examples"}, path)
     name = _name(data, path)
     status = _field(data, "status", str, path)
@@ -227,7 +229,6 @@ def load_component(path):
     return Component(
         name=name, title=_field(data, "title", str, path), lead=_field(data, "lead", str, path),
         group=_field(data, "group", str, path), status=status, since=_field(data, "since", str, path),
-        tasks=_field(data, "tasks", "strings", path, required=False, default=()),
         related=_field(data, "related", "strings", path, required=False, default=()),
         scss=_field(data, "scss", "strings", path, required=False, default=()),
         editor=editor,

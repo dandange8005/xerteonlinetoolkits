@@ -103,6 +103,11 @@ class WrittenSiteTest(unittest.TestCase):
         self.assertEqual(self.page("components/callout.html").find(cls="g-updated").text(), "Page updated: 6 October 2026")
         self.assertEqual(self.page("tasks/draw-attention.html").find_all(cls="g-updated"), [])
 
+    def test_component_page_lists_the_tasks_that_use_it(self):
+        related = self.section(self.page("components/callout.html"), "Related")
+        link = related.find("a", href="../tasks/draw-attention.html")
+        self.assertEqual(link.text(), "Task: Draw attention to something")
+
     def test_on_this_page_links_resolve(self):
         page = self.page("components/callout.html")
         ids = {e.attrs["id"] for e in page.iter() if "id" in e.attrs}
@@ -180,6 +185,18 @@ class WrittenSiteTest(unittest.TestCase):
             page = self.page(relative)
             self.assertEqual(len(page.find_all(id="main")), 1, relative)
             self.assertEqual(len(page.find_all("h1")), 1, relative)
+
+
+class TaskLinksTest(unittest.TestCase):
+    def test_a_new_task_appears_on_the_component_page_without_editing_the_record(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            guide = fx.write_guide(tmp, TASK_B=fx.TASK_B, SITE=fx.SITE_TWO)
+            out = Path(tmp) / "site"
+            pages.write_site(out, records.load_site(guide / "site.toml"), records.load_content(guide / "content"),
+                             support.GUIDE / "templates" / "base.html")
+            related = parse((out / "components" / "callout.html").read_text(encoding="utf-8")).find(cls="g-related")
+        self.assertEqual([a.text() for a in related.find_all("a")],
+                         ["Task: Draw attention to something", "Task: Add a tip to a page"])
 
 
 class UntestedEvidenceTest(unittest.TestCase):

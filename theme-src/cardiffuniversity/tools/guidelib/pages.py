@@ -133,9 +133,15 @@ def evidence(component):
     return '<dl class="g-evidence">' + "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in rows) + "</dl>"
 
 
+def tasks_using(ctx, component):
+    """Tasks whose task file lists this component, in site.toml's task order."""
+    found = (ctx.content.tasks.get(name) for name in ctx.site.tasks)
+    return [task for task in found if task and component.name in task.components]
+
+
 def related_links(ctx, component, root):
     links = [f'<a href="{name}.html">{esc(ctx.content.components[name].title)}</a>' for name in component.related]
-    links += [f'<a href="{root}tasks/{name}.html">Task: {esc(ctx.content.tasks[name].title)}</a>' for name in component.tasks]
+    links += [f'<a href="{root}tasks/{task.name}.html">Task: {esc(task.title)}</a>' for task in tasks_using(ctx, component)]
     items = "".join(f"<li>{link}</li>" for link in links)
     return f'<ul class="g-related">{items}</ul>' if links else ""
 

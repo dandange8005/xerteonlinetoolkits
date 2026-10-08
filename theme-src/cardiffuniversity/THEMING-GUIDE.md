@@ -237,6 +237,10 @@ Xerte editor yet". After a test, add `survives` (true or false), `checked` (a TO
 `xerte` (a string, such as `"3.14"`). The build warns when the component's SCSS changes after
 the `checked` date.
 
+A task file lists the components it uses under `components`. That is the only place the link is
+written: a component page finds its tasks from the task files, and a component record that has a
+`tasks` field is rejected.
+
 ## Adding a component
 
 Add its SCSS module under `scss/components/`, import it from `_custom-components.scss`,

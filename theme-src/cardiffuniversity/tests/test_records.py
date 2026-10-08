@@ -69,6 +69,10 @@ class RecordsTest(unittest.TestCase):
     def test_editor_evidence_must_be_complete_when_present(self):
         self.assertComponentError(fx.CALLOUT.replace('xerte = "3.14"\n', ""), r"\[editor\]: missing 'xerte'")
 
+    def test_component_tasks_field_is_rejected_with_a_pointer(self):
+        self.assertComponentError(fx.CALLOUT.replace("related = []", 'related = []\ntasks = ["draw-attention"]'),
+                                  "'tasks' is not a component field.*components")
+
     def test_name_must_match_the_file(self):
         self.assertComponentError(fx.CALLOUT.replace('name = "callout"', 'name = "callouts"'), "must match the file name")
 

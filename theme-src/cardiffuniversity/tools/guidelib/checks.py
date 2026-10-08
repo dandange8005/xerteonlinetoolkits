@@ -106,9 +106,6 @@ def check_references(content, site, theme_dir):
     for component in content.components.values():
         if component.group not in groups:
             error(component.source, f"group '{component.group}' is not in site.toml")
-        for name in component.tasks:
-            if name not in content.tasks:
-                error(component.source, f"task '{name}' has no task file")
         for name in component.related:
             if name not in content.components:
                 error(component.source, f"related component '{name}' has no record")
