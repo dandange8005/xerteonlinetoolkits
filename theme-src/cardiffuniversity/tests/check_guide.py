@@ -84,6 +84,14 @@ CHECKS = [
     ("reference/index.html", 1280, "a focused card shows an outline",
      "(function () { var card = document.querySelector('.g-card'); card.querySelector('a').focus();"
      " var c = getComputedStyle(card); return c.outlineStyle === 'solid' && c.outlineWidth === '3px'; })()"),
+    ("components/button.html", 1280, "the small and large examples differ from the default button",
+     "(function () { var q = function (c) { return getComputedStyle(document.querySelector('.g-preview .' + c)); };"
+     " var d = q('button-primary'), s = q('button-sm'), l = q('button-lg');"
+     " return parseFloat(s.fontSize) < parseFloat(d.fontSize) && parseFloat(s.paddingTop) < parseFloat(d.paddingTop)"
+     " && parseFloat(l.paddingTop) > parseFloat(d.paddingTop) && parseFloat(l.paddingLeft) > parseFloat(d.paddingLeft); })()"),
+    ("components/button.html", 1280, "the icon-only example is a 48px square",
+     "(function () { var b = document.querySelector('.g-preview .button-icon-only').getBoundingClientRect();"
+     " return Math.abs(b.width - b.height) < 1 && Math.abs(b.width - 48) < 1; })()"),
     ("components/button.html", 485, "no sideways scroll", NO_SIDEWAYS_SCROLL),
     ("components/button.html", 1280, "every button example is at least 48px high and 44px wide",
      "[].every.call(document.querySelectorAll('.g-preview .button'), function (b) {"

@@ -2260,16 +2260,19 @@ a.button .button__icon,
   line-height: 1;
 }
 
+a.button-sm,
 .button-sm {
   padding: var(--btn-padding-y-sm) var(--btn-padding-x-sm);
   font-size: var(--btn-font-size-sm);
 }
+a.button-sm .button__icon,
 .button-sm .button__icon {
   width: var(--btn-icon-size-sm);
   height: var(--btn-icon-size-sm);
   font-size: var(--btn-icon-size-sm);
 }
 
+a.button-lg,
 .button-lg {
   padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
 }
@@ -2472,6 +2475,7 @@ a.button-ghost:focus {
   color: var(--btn-ghost-disabled-text) !important;
 }
 
+a.button-icon-only,
 .button-icon-only {
   padding: var(--btn-padding-y);
   aspect-ratio: 1;

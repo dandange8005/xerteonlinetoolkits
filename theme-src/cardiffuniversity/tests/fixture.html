@@ -286,6 +286,16 @@ function classStyle(classes, property) {
   try { return getComputedStyle(probe)[property]; }
   finally { probe.remove(); }
 }
+// Like classStyle, but the probe is a link: a.button is more specific than a single class,
+// so a size modifier can work on a <button> and silently fail on an <a>.
+function linkStyle(classes, property) {
+  const probe = document.createElement('a');
+  probe.className = classes;
+  probe.href = '#';
+  document.body.appendChild(probe);
+  try { return getComputedStyle(probe)[property]; }
+  finally { probe.remove(); }
+}
 window.addEventListener('load', async function () {
   var results = {};
   for (const key of Object.keys(CHECKS)) {

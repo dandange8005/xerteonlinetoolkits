@@ -149,6 +149,9 @@ a.button,
 }
 
 // Size variants
+// The base rule is a.button, .button. On a link a.button is more specific than a single class,
+// so each modifier that changes what the base sets repeats the a. qualifier, or it never applies.
+a.button-sm,
 .button-sm {
     padding: var(--btn-padding-y-sm) var(--btn-padding-x-sm);
     font-size: var(--btn-font-size-sm);
@@ -160,6 +163,7 @@ a.button,
     }
 }
 
+a.button-lg,
 .button-lg {
     padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
 }
@@ -432,6 +436,7 @@ a.button-ghost:focus {
 // =============================================================================
 
 // Icon-only button
+a.button-icon-only,
 .button-icon-only {
     padding: var(--btn-padding-y);
     aspect-ratio: 1;
