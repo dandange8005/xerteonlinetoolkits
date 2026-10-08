@@ -61,6 +61,10 @@ class RecordsTest(unittest.TestCase):
         with self.assertRaisesRegex(records.RecordError, pattern):
             self.component(text)
 
+    def test_since_is_optional(self):
+        record = self.component(fx.CALLOUT.replace('since = "v1.4"\n', ""))
+        self.assertIsNone(record.since)
+
     def test_untested_component_has_no_editor_evidence(self):
         untested = fx.CALLOUT.replace('[editor]\nsurvives = true\nchecked = 2026-09-20\nxerte = "3.14"\n\n', "")
         self.assertNotIn("[editor]", untested)

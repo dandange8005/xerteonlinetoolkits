@@ -47,7 +47,7 @@ class Component:
     lead: str
     group: str
     status: str
-    since: str
+    since: str | None  # the design system version the component dates from, when known
     related: tuple
     scss: tuple
     editor: Editor | None  # None until the component has been tested in the Xerte editor
@@ -228,7 +228,8 @@ def load_component(path):
             raise RecordError(path, f"'{_heading((section.level, section.title))}' is empty")
     return Component(
         name=name, title=_field(data, "title", str, path), lead=_field(data, "lead", str, path),
-        group=_field(data, "group", str, path), status=status, since=_field(data, "since", str, path),
+        group=_field(data, "group", str, path), status=status,
+        since=_field(data, "since", str, path, required=False, default=None),
         related=_field(data, "related", "strings", path, required=False, default=()),
         scss=_field(data, "scss", "strings", path, required=False, default=()),
         editor=editor,

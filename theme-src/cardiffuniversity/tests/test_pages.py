@@ -343,6 +343,18 @@ class ReferencePagesTest(unittest.TestCase):
                 self.assertTrue(path.resolve().is_file(), f"{relative} links to missing {target}")
 
 
+class UnknownSinceTest(unittest.TestCase):
+    def test_evidence_leaves_out_since_when_unknown(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            guide = fx.write_guide(tmp, CALLOUT=fx.CALLOUT.replace('since = "v1.4"\n', ""))
+            out = Path(tmp) / "site"
+            pages.write_site(out, records.load_site(guide / "site.toml"), records.load_content(guide / "content"),
+                             support.GUIDE / "templates" / "base.html")
+            page = parse((out / "components" / "callout.html").read_text(encoding="utf-8"))
+        labels = [dt.text() for dt in page.find(cls="g-evidence").find_all("dt")]
+        self.assertEqual(labels, ["Status", "Xerte editor", "Main class"])
+
+
 class UntestedEvidenceTest(unittest.TestCase):
     def test_untested_component_says_so(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -139,10 +139,11 @@ def evidence(component):
     else:
         verdict = "Survives the editor" if editor.survives else "Changed by the editor"
         editor_text = f"{verdict} (checked {long_date(editor.checked)}, Xerte {esc(editor.xerte)})"
-    rows = (("Status", esc(component.status.capitalize())),
-            ("Since", f"Design system {esc(component.since)}"),
-            ("Xerte editor", editor_text),
-            ("Main class", f"<code>.{esc(next(iter(component.parts)))}</code>"))
+    rows = [("Status", esc(component.status.capitalize()))]
+    if component.since:
+        rows.append(("Since", f"Design system {esc(component.since)}"))
+    rows += [("Xerte editor", editor_text),
+             ("Main class", f"<code>.{esc(next(iter(component.parts)))}</code>")]
     return '<dl class="g-evidence">' + "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in rows) + "</dl>"
 
 

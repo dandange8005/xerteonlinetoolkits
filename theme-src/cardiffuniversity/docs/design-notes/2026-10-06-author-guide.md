@@ -152,7 +152,8 @@ guidance headings. Branding, colours and fonts stay Cardiff.
 6. Variants: every other variant, each with its own label, class, purpose, frame and HTML toggle.
 7. Parts: a table of the component's parts.
 8. Accessibility.
-9. Evidence: status, the design system version it dates from, and the editor evidence (result,
+9. Evidence: status, the design system version it dates from (left out when the record has no
+   `since`), and the editor evidence (result,
    date and Xerte version), or "Not tested in the Xerte editor yet" when the record has no
    `[editor]` table.
 10. Related components and tasks, then "Page updated" (the last commit to the record, left out
@@ -169,7 +170,7 @@ name = "callout"
 title = "Callouts"
 group = "emphasis"                        # an id from site.toml
 status = "current"                        # current | legacy
-since = "v1.4"
+since = "v1.4"                            # optional: the design system version it dates from; leave it out when unknown
 related = ["alert", "well"]
 scss = ["scss/components/_callout.scss"]  # for the stale-evidence check
 

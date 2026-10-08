@@ -235,7 +235,8 @@ examples into a Text content item, save, close and reopen the editor, and see wh
 is still there. Leave the table out until you have tested; the guide then says "Not tested in the
 Xerte editor yet". After a test, add `survives` (true or false), `checked` (a TOML date) and
 `xerte` (a string, such as `"3.14"`). The build warns when the component's SCSS changes after
-the `checked` date.
+the `checked` date. A record's `since`, the design system version the component dates from, is
+optional too: leave it out when you do not know it, and the Evidence section leaves out the row.
 
 A task file lists the components it uses under `components`. That is the only place the link is
 written: a component page finds its tasks from the task files, and a component record that has a
