@@ -88,6 +88,7 @@ CHECKS = [
      "2px 2px 2px"),
     ("radius", "labels and the feedback tab use the small step",
      "cs('#label-default','borderTopLeftRadius')+' '+cs('#feedback_button','borderTopLeftRadius')", "2px 2px"),
+    ("radius", "a card keeps its 3px corner", "cs('#card-basic','borderTopLeftRadius')", "3px"),
     ("radius", "a primary button keeps the 3px control radius",
      "classStyle('button button-primary','borderTopLeftRadius')", "3px"),
     # Size modifiers must work on links as well as buttons (a.button is more specific than a class).

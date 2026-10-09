@@ -17,6 +17,14 @@ class ThemeCssTest(unittest.TestCase):
         for cls in ("cu-callout", "fa-solid", "fa-lightbulb", "row-fluid", "span9"):
             self.assertIn(cls, known)
 
+    def test_clickable_card_hover_adds_a_shadow_and_does_not_zoom_the_image(self):
+        # Headless Chrome cannot hover, so this reads the compiled rules.
+        hover = [(sel, body) for sel, body, _ in theme_css.rules(theme_css.CSS.read_text(encoding="utf-8"))
+                 if ".card--clickable:hover" in sel]
+        self.assertTrue(hover)  # not an empty set
+        self.assertTrue(any("box-shadow" in body for sel, body in hover if sel == ".card--clickable:hover"))
+        self.assertEqual([sel for sel, body in hover if "card__image" in sel or "scale(" in body], [])
+
     def test_player_stylesheets_exist(self):
         for name in theme_css.PLAYER_CSS + theme_css.IMPORTED_CSS:
             self.assertTrue((theme_css.PLAYER / name).is_file(), name)

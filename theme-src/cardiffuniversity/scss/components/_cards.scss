@@ -89,7 +89,6 @@
         width: 100%;
         aspect-ratio: var(--ratio-widescreen);
         object-fit: cover;
-        transition: transform var(--duration-normal) var(--easing-default);
 
         // // If card__image is a wrapper div with img inside
         // img {
@@ -106,18 +105,9 @@
         padding-bottom: var(--spacing-sm);
         transition: all var(--duration-normal) var(--easing-default);
 
+        // Hover adds a shadow and nudges the arrow. The image does not zoom (Nan, 9 October 2026).
         &:hover {
             box-shadow: var(--shadow-lg);
-
-            // Target img when card__image is a wrapper
-            // .card__image img {
-            //     transform: scale(1.05);
-            // }
-
-            // Target img when card__image IS the img element
-            .card__image {
-                transform: scale(1.05);
-            }
 
             &::after {
                 transform: translateX(5px);

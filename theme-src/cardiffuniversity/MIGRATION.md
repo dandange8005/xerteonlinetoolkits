@@ -67,8 +67,8 @@ the linked note has the detail.
   glossary tip keeps the base template's 4px radius.
 - **Cards, tabs and accordions** ([note](docs/design-notes/2026-09-21-cards-tabs-accordions.md)).
   Tabs and accordions were not reviewed, restyled or tested in this migration. Cards keep a
-  rounded corner, a large shadow on `.card--clickable:hover`, a 1.05 image zoom on hover and
-  `transition: all`.
+  3px corner and a large shadow on `.card--clickable:hover` (both kept on purpose, 9 October
+  2026) and `transition: all`. The 1.05 image zoom on hover was removed on 9 October 2026.
 - **Progress bars** ([note](docs/design-notes/2026-09-21-alerts-badges-progress.md)).
   Bootstrap's light gradient covers the grey-20 track, so the track token has never been
   visible; the contrast checks measure against grey-20, the darker case.

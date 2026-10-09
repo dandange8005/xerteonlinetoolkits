@@ -1904,7 +1904,6 @@ a.glossary:active {
   width: 100%;
   aspect-ratio: var(--ratio-widescreen);
   object-fit: cover;
-  transition: transform var(--duration-normal) var(--easing-default);
 }
 .card--clickable {
   border-bottom-width: 3px;
@@ -1913,9 +1912,6 @@ a.glossary:active {
 }
 .card--clickable:hover {
   box-shadow: var(--shadow-lg);
-}
-.card--clickable:hover .card__image {
-  transform: scale(1.05);
 }
 .card--clickable:hover::after {
   transform: translateX(5px);

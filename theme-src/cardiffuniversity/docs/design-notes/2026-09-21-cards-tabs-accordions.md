@@ -51,3 +51,16 @@ Not verified: the real Xerte player, or a real project's cards.
 - **Everything else on cards.** While reading `_cards.scss` I noticed a 3px radius (the design
   system makes structural panels square), a large shadow on `.card--clickable:hover`, a 1.05
   image scale on hover and `transition: all`. None were changed, as instructed.
+
+## Update, 9 October 2026
+
+Nan reviewed the "left as it was" items while the author guide's Cards page was built.
+
+- **Image zoom: removed.** `.card--clickable:hover .card__image` no longer scales the image by 1.05,
+  and the image no longer has a transform transition. The arrow still moves 5px on hover.
+- **Hover shadow: kept.** `.card--clickable:hover` still draws `--shadow-lg`.
+- **3px corner: kept.** Cards still use `--radius-md`.
+- **Tests.** A unit test reads the compiled rules, because headless Chrome cannot hover: the hover
+  rule must add a shadow and no rule may zoom the image. A theme check pins the 3px corner.
+- **Checked in a real browser.** On hover the card gets the shadow, the image keeps its size and
+  has no transform, and the arrow moves 5px.
