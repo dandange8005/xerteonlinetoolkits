@@ -159,7 +159,7 @@ The examples on this page are links with the button classes. A link looks the sa
 
 - Use one primary button for the main action, and pair it with the secondary variant when the reader has a second choice.
 - Use a link for a clear next step, and a button element only when something gives it an action.
-- Use the reverse variants on dark backgrounds, and check that keyboard focus can be seen on them.
+- Use the reverse variants on dark backgrounds.
 - Give an icon-only button an `aria-label` that says what it does.
 
 ### Don't
@@ -172,6 +172,6 @@ The examples on this page are links with the button classes. A link looks the sa
 ## Accessibility
 
 - Buttons with the `button` class are at least 48px high and 44px wide, so they are easy to hit on a touch screen. The older `btn-mini` is smaller.
-- Keyboard focus shows a 2px outline in ink. On a dark background, including ink, that outline cannot be seen, so check the reverse variants when you use them.
+- Keyboard focus shows a 2px outline in ink. The reverse variants, and any button inside a `.bg-dark` panel, show it in white, so it can be seen on a dark background.
 - To disable a button element, use the `disabled` attribute, so it is also disabled for keyboard and screen reader users.
 - Give an icon-only button an `aria-label`, and hide an icon that sits beside a visible label with `aria-hidden="true"`.

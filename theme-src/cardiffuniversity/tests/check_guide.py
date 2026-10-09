@@ -92,6 +92,10 @@ CHECKS = [
     ("components/button.html", 1280, "the icon-only example is a 48px square",
      "(function () { var b = document.querySelector('.g-preview .button-icon-only').getBoundingClientRect();"
      " return Math.abs(b.width - b.height) < 1 && Math.abs(b.width - 48) < 1; })()"),
+    ("components/button.html", 1280, "a focused reverse button shows a white ring",
+     "(function () { var b = document.querySelector('.g-preview .button-reverse'); b.focus();"
+     " var s = getComputedStyle(b); return b.matches(':focus-visible') && s.outlineStyle === 'solid'"
+     " && s.outlineColor === 'rgb(255, 255, 255)'; })()"),
     ("components/button.html", 485, "no sideways scroll", NO_SIDEWAYS_SCROLL),
     ("components/button.html", 1280, "every button example is at least 48px high and 44px wide",
      "[].every.call(document.querySelectorAll('.g-preview .button'), function (b) {"

@@ -1506,6 +1506,13 @@ a.accordion-toggle[aria-expanded=true]::after {
 }
 .alert .close {
   float: right;
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--btn-min-width);
+  min-height: var(--btn-min-width);
+  margin: calc(var(--spacing-md) * -1 + 4px) calc(var(--spacing-lg) * -1 + 8px) 0 var(--spacing-sm);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
   line-height: 1;
@@ -2451,6 +2458,12 @@ a.button-reverse-outline:focus {
 }
 .button-reverse-outline:disabled, .button-reverse-outline.disabled {
   background-color: transparent;
+}
+
+.button-reverse:focus-visible,
+.button-reverse-outline:focus-visible,
+.bg-dark .button:focus-visible {
+  outline-color: var(--focus-ring-color-on-dark);
 }
 
 .button-ghost,

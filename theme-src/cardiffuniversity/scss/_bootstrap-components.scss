@@ -567,9 +567,19 @@ a.accordion-toggle[aria-expanded="true"]::after {
         margin-bottom: 0;
     }
 
-    // Close button
+    // Close button. The design system asks for touch controls of at least 44px. The box sits in the
+    // alert's padding (the negative margins), so a one-line alert does not grow taller.
     .close {
         float: right;
+        // Bootstrap nudges the close button with position: relative; top: -2px; right: -21px. That would
+        // push the larger box out of the alert, so the box is placed by the margins below instead.
+        position: static;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: var(--btn-min-width);
+        min-height: var(--btn-min-width);
+        margin: calc(var(--spacing-md) * -1 + 4px) calc(var(--spacing-lg) * -1 + 8px) 0 var(--spacing-sm);
         font-size: var(--font-size-lg);
         font-weight: var(--font-weight-bold);
         line-height: 1;

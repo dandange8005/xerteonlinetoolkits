@@ -69,6 +69,9 @@ the linked note has the detail.
   Tabs and accordions were not reviewed, restyled or tested in this migration. Cards keep a
   3px corner and a large shadow on `.card--clickable:hover` (both kept on purpose, 9 October
   2026) and `transition: all`. The 1.05 image zoom on hover was removed on 9 October 2026.
+- **Focus on dark panels and the alert close button** ([note](docs/design-notes/2026-10-09-dark-focus-and-alert-close.md)).
+  Reverse buttons, and any button in `.bg-dark`, show a white focus ring; the alert close button is a
+  44px target. Both follow the design system.
 - **Progress bars** ([note](docs/design-notes/2026-09-21-alerts-badges-progress.md)).
   Bootstrap's light gradient covers the grey-20 track, so the track token has never been
   visible; the contrast checks measure against grey-20, the darker case.

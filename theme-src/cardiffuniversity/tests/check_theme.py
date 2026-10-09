@@ -53,6 +53,15 @@ def focused_border(selector):
             "e.style.removeProperty('transition');p.focus({preventScroll:true});if(document.activeElement===e)e.blur();return r})()")
 
 
+# The focus ring of an element while it has focus: whether :focus-visible matched, then style, width,
+# offset and colour of the outline.
+def focus_ring(selector):
+    return ("(function(){var e=document.querySelector('" + selector + "'),p=document.activeElement;"
+            "e.focus({preventScroll:true});var s=getComputedStyle(e);"
+            "var r=(document.activeElement===e&&e.matches(':focus-visible'))+' '+s.outlineStyle+' '+s.outlineWidth+' '+s.outlineOffset+' '+s.outlineColor;"
+            "p.focus({preventScroll:true});if(document.activeElement===e)e.blur();return r})()")
+
+
 # (group, name, JavaScript expression evaluated in the fixture, expected string[, variant])
 CHECKS = [
     ("smoke", "theme loaded: body copy is 18px", "cs('body','fontSize')", "18px"),
@@ -181,6 +190,10 @@ CHECKS = [
     ("focus", "focus ring is 2px, offset 4px, ink",
      "(function(){var b=document.querySelector('#focus-btn'),previous=document.activeElement;b.focus({preventScroll:true});"
      "var s=getComputedStyle(b),result=(document.activeElement===b && b.matches(':focus-visible'))+' '+s.outlineStyle+' '+s.outlineWidth+' '+s.outlineOffset+' '+s.outlineColor;previous.focus({preventScroll:true});if(document.activeElement===b)b.blur();return result})()", "true solid 2px 4px rgb(18, 18, 18)"),
+    # Design system: "white outline in a dark panel". An ink ring on an ink panel cannot be seen.
+    ("focus", "a reverse button's focus ring is white", focus_ring("#focus-reverse"), "true solid 2px 4px rgb(255, 255, 255)"),
+    ("focus", "a reverse outline button's focus ring is white", focus_ring("#focus-reverse-outline"), "true solid 2px 4px rgb(255, 255, 255)"),
+    ("focus", "any button's focus ring is white inside a dark panel", focus_ring("#focus-primary-dark"), "true solid 2px 4px rgb(255, 255, 255)"),
     # Test round 1: the toggle overflowed the bar and the header painted over the overflow.
     # Forcing it taller than the bar proves the bar now grows to contain it.
     ("frame", "navbar toggle stays inside the bar, even when taller than it",
@@ -422,6 +435,14 @@ CHECKS = [
     # system's error red; the default progress fill is the brand primary.
     ("status", "alert sits on the grey surface", "cs('#alert-info','backgroundColor')", "rgb(242, 242, 242)"),
     ("status", "alert corners are square", "cs('#alert-info','borderTopLeftRadius')", "0px"),
+    # Design system: touch controls are at least 44px. The larger box sits in the alert's padding.
+    ("status", "the alert close button is at least 44px square",
+     "(function(){var r=document.querySelector('#alert-close').getBoundingClientRect();return Math.round(r.width)+'x'+Math.round(r.height)})()", "44x44"),
+    ("status", "the close button stays inside its alert",
+     "(function(){var c=document.querySelector('#alert-close').getBoundingClientRect(),a=document.querySelector('#alert-dismissible').getBoundingClientRect();"
+     "return String(c.top>=a.top-0.5&&c.bottom<=a.bottom+0.5&&c.right<=a.right+0.5)})()", "true"),
+    ("status", "a close button does not make a one-line alert taller",
+     "(function(){var h=function(s){return Math.round(document.querySelector(s).getBoundingClientRect().height)};return String(h('#alert-dismissible')===h('#alert-info'))})()", "true"),
     ("status", "alert text is ink", "cs('#alert-info','color')", "rgb(18, 18, 18)"),
     ("status", "success alert rule is Forest Green", "cs('#alert-success','borderLeftColor')", "rgb(7, 135, 62)"),
     ("status", "info alert rule is link blue", "cs('#alert-info','borderLeftColor')", "rgb(4, 91, 198)"),

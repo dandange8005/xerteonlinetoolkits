@@ -56,6 +56,8 @@
     <section id="test-section">
       <div style="float:left;width:40px;height:60px;background:#eee" id="test-float">&nbsp;</div>
       <p><a class="button button-primary" id="focus-btn" href="#">Primary button</a></p>
+      <!-- A dark panel: a focus ring has to be white here, ink would disappear -->
+      <div class="bg-dark" id="dark-panel" style="padding:24px"><a class="button button-reverse" id="focus-reverse" href="#">Reverse</a> <a class="button button-reverse-outline" id="focus-reverse-outline" href="#">Reverse outline</a> <a class="button button-primary" id="focus-primary-dark" href="#">Primary on dark</a></div>
     </section>
     <p>A term with a <a class="glossary" id="glossary-term" href="#">glossary definition</a> in reading copy.</p>
     <div id="glossaryHover" class="glossaryTip">Definition shown as a tooltip.</div>
@@ -63,6 +65,8 @@
     <p><a class="topBtn btn btn-mini pull-right top-round" id="top-round" href="#skipLink"><span class="sr-only">Top</span><i class="fa fa-angle-up fa-2x" aria-hidden="true"></i></a></p>
     <div class="alert alert-success" id="alert-success"><strong>Success!</strong> Saved.</div>
     <div class="alert alert-info" id="alert-info"><strong>Info:</strong> Available from September.</div>
+    <!-- The same text as #alert-info with a close button: the close target must not make it taller -->
+    <div class="alert alert-info" id="alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-label="Close" id="alert-close">&times;</button><strong>Info:</strong> Available from September.</div>
     <div class="alert alert-warning" id="alert-warning"><strong>Warning!</strong> Session ends soon.</div>
     <div class="alert alert-danger" id="alert-danger"><strong>Error!</strong> Unable to submit.</div>
     <div class="alert alert-error" id="alert-error"><strong>Error!</strong> Unable to submit.</div>

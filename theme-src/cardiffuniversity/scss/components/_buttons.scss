@@ -400,6 +400,15 @@ a.button-reverse-outline:focus {
     }
 }
 
+// Focus on a dark panel. The default ring is ink, which cannot be seen on an ink panel, so the design
+// system asks for a white one there. The reverse buttons exist for dark backgrounds, and any other
+// button inside .bg-dark needs the same.
+.button-reverse:focus-visible,
+.button-reverse-outline:focus-visible,
+.bg-dark .button:focus-visible {
+    outline-color: var(--focus-ring-color-on-dark);
+}
+
 // =============================================================================
 // GHOST BUTTON
 // =============================================================================
