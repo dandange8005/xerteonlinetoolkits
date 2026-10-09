@@ -33,7 +33,7 @@ label = "With an image"
 purpose = "An image at the top, cropped to a widescreen shape. Put card__image on the img element"
 html = '''
 <div class="card">
-  <img class="card__image" alt="A short description of the image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3Crect width='4' height='3' fill='%23ccc'/%3E%3C/svg%3E">
+  <img class="card__image" alt="A short description of the image" src="https://picsum.photos/id/1015/600/400">
   <div class="card__content">
     <h3 class="card__heading">Card with an image</h3>
     <p class="card__metadata">Category &bull; 5 min read</p>
@@ -45,10 +45,10 @@ html = '''
 [[examples]]
 class = "card--clickable"
 label = "Clickable"
-purpose = "A card that is one link: the whole card is clickable, an arrow sits at the bottom right, and on hover it gets a shadow and its image zooms"
+purpose = "A card that is one link: the whole card is clickable, an arrow sits at the bottom right, and on hover it gets a shadow"
 html = '''
 <div class="card card--clickable">
-  <img class="card__image" alt="A short description of the image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3Crect width='4' height='3' fill='%23ccc'/%3E%3C/svg%3E">
+  <img class="card__image" alt="A short description of the image" src="https://picsum.photos/id/1018/600/400">
   <div class="card__content">
     <h3 class="card__heading"><a href="https://example.org" class="card__link">Clickable card</a></h3>
     <p class="card__metadata">Online course &bull; 12 weeks</p>
@@ -75,7 +75,7 @@ Put the heading and the description inside `card__content`. Put `card__image` on
 - Use a heading for the card title, and put the description under it.
 - Give every card image alt text that describes it.
 - Put the link in the heading when the whole card is one link.
-- Replace the placeholder image in an example with your own.
+- Replace the placeholder photo in an example with your own. The photos are examples from Lorem Picsum.
 
 ### Don't
 
@@ -86,4 +86,4 @@ Put the heading and the description inside `card__content`. Put `card__image` on
 
 - In a clickable card the title is a real link inside a heading, so keyboard and screen reader users reach it as a link.
 - Give each image alt text. An image that adds nothing can have an empty `alt=""`.
-- The shadow and the image zoom appear only on hover, so they cannot be what tells the reader a card is a link. The arrow and the title do that.
+- The shadow appears only on hover, so it cannot be what tells the reader a card is a link. The arrow and the title do that.

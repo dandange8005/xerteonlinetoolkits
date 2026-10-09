@@ -117,6 +117,22 @@ Found while reading the sources. Not fixed here; they need Nan's decision.
 - **Open question, not measured:** whether the stretched card link covers other links placed inside a clickable card.
 - **`card__image` on a wrapper div is not cropped to fit.** `_cards.scss` says the image container "can be wrapper div or img element itself", but the rules that would size an `img` inside a wrapper are commented out. A small image stays its own size and leaves an empty strip, and a large one is cut off at the bottom only. Found in the final review. The Cards record now tells authors to put `card__image` on the `img` element.
 
+## Changes after review (9 October 2026)
+
+Made at Nan's request after the final review. The text above is left as it was written.
+
+- **Card examples use placeholder photos, not an inline grey box.** This replaces the constraint
+  "Examples must load nothing from outside the page" for card images: the two examples now use
+  `https://picsum.photos/id/1015/600/400` and `https://picsum.photos/id/1018/600/400`. Nan suggested
+  `unsplash.it/600/400`; that address now redirects to Lorem Picsum and picks a random photo each
+  time, so the examples use Picsum directly with fixed ids. The cost: a reader's browser contacts
+  Picsum to show the photos. The build test changed from "images are data URIs" to "images are
+  Picsum placeholders with alt text".
+- **Image zoom removed** from `.card--clickable:hover`. Shadow and arrow movement stay. This resolves
+  the first "Findings outside this plan" item in part (the shadow stays, by decision) and removes
+  the zoom from the hover-effects finding. The Cards page no longer mentions a zoom.
+- **3px corner kept**, by decision. This closes the second finding. A theme check now pins it.
+
 ## File structure
 
 | Path (under `theme-src/cardiffuniversity/` unless shown) | Responsibility |

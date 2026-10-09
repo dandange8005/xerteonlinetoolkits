@@ -178,11 +178,13 @@ class BuiltComponentPagesTest(unittest.TestCase):
         # _cards.scss, so the image shown in the wrapper form is not cropped to fit.
         self.assertNotIn("wrapper div", self.page("card").text())
 
-    def test_card_examples_load_nothing_from_outside(self):
+    def test_card_examples_show_placeholder_photos(self):
+        # Nan chose real placeholder photos over an inline grey box (9 October 2026). Picsum ids are fixed,
+        # so the examples do not change between visits.
         images = [i for frame in self.page("card").find_all(cls="g-preview") for i in frame.find_all("img")]
         self.assertGreaterEqual(len(images), 2)
         for image in images:
-            self.assertTrue(image.attrs.get("src", "").startswith("data:"), image.attrs.get("src"))
+            self.assertRegex(image.attrs.get("src", ""), r"^https://picsum\.photos/id/\d+/600/400$")
             self.assertIn("alt", image.attrs)
 
     def test_table_page_documents_the_table_classes(self):
