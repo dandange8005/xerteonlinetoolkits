@@ -104,6 +104,10 @@ body {
     margin-top: 1rem;
     margin-bottom: 0.5rem;
     display: inline-block;
+    max-width: 100%;
+    white-space: normal; /* Bootstrap 2 sets nowrap on code */
+    overflow-wrap: anywhere; /* a long sample wraps inside its block */
+    vertical-align: top;
 }
 
 .code-example {

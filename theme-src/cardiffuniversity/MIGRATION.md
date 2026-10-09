@@ -72,6 +72,10 @@ the linked note has the detail.
 - **Focus on dark panels and the alert close button** ([note](docs/design-notes/2026-10-09-dark-focus-and-alert-close.md)).
   Reverse buttons, and any button in `.bg-dark`, show a white focus ring; the alert close button is a
   44px target. Both follow the design system.
+- **Demo page fixes** ([note](docs/design-notes/2026-10-09-demo-page-fixes.md)). The demos' Bootstrap
+  script was a saved error message, so their tabs, collapse sections and scroll highlight never worked;
+  it is replaced. The callout icons, code strips and section menu are fixed, and the demos no longer
+  teach legacy classes.
 - **Progress bars** ([note](docs/design-notes/2026-09-21-alerts-badges-progress.md)).
   Bootstrap's light gradient covers the grey-20 track, so the track token has never been
   visible; the contrast checks measure against grey-20, the darker case.

@@ -36,3 +36,5 @@ jobs:
         run: python3 -m unittest discover -s tests -p "test_*.py" -v
       - name: Browser checks
         run: CHROME="$(command -v google-chrome)" python3 tests/check_guide.py
+      - name: Demo page browser checks
+        run: CHROME="$(command -v google-chrome)" python3 tests/check_demos.py

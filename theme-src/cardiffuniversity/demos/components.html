@@ -150,10 +150,9 @@
                     <button class="button button-primary button-lg">Large (.button-lg)</button>
                 </div>
                 <div class="demo-inline" style="align-items: center; margin-top: 1rem;">
-                    <button class="button button--small button-primary">Compact (.button--small)</button>
                     <button class="button button-primary button--block" style="max-width: 200px;">Block</button>
                 </div>
-                <code class="code-label">.button-sm | .button-lg | .button--small | .button--block</code>
+                <code class="code-label">.button-sm | .button-lg | .button--block</code>
             </div>
 
             <!-- Buttons with Icons -->
@@ -405,20 +404,20 @@
                 <div class="flex flex-wrap gap-lg">
                     <div class="do-dont-list flex-300">
                         <h3 class="do-dont-list__label">Do</h3>
-                        <ul class="list--tick">
-                            <li><i class="fa-solid fa-check" aria-hidden="true" style="color: var(--color-status-success); margin-right: 0.5rem;"></i>Give the criteria before the work starts</li>
-                            <li><i class="fa-solid fa-check" aria-hidden="true" style="color: var(--color-status-success); margin-right: 0.5rem;"></i>Keep feedback specific and actionable</li>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true" style="color: var(--color-status-success);"></i></span>Give the criteria before the work starts</li>
+                            <li><span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true" style="color: var(--color-status-success);"></i></span>Keep feedback specific and actionable</li>
                         </ul>
                     </div>
                     <div class="do-dont-list flex-300">
                         <h3 class="do-dont-list__label">Don't</h3>
-                        <ul class="list--cross">
-                            <li><i class="fa-solid fa-xmark" aria-hidden="true" style="color: var(--color-status-error); margin-right: 0.5rem;"></i>Rely on colour alone to carry meaning</li>
-                            <li><i class="fa-solid fa-xmark" aria-hidden="true" style="color: var(--color-status-error); margin-right: 0.5rem;"></i>Add a second assessment to fix a design problem</li>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fa-solid fa-xmark" aria-hidden="true" style="color: var(--color-status-error);"></i></span>Rely on colour alone to carry meaning</li>
+                            <li><span class="fa-li"><i class="fa-solid fa-xmark" aria-hidden="true" style="color: var(--color-status-error);"></i></span>Add a second assessment to fix a design problem</li>
                         </ul>
                     </div>
                 </div>
-                <code class="code-label">.do-dont-list | .do-dont-list__label | .list--tick | .list--cross</code>
+                <code class="code-label">.do-dont-list | .do-dont-list__label</code>
                 <p class="demo-block__description">Icons here are Font Awesome, as the design system specifies. The component also positions an inline <code>&lt;svg class="icon"&gt;</code> per item.</p>
             </div>
         </section>
@@ -528,6 +527,7 @@
     </footer>
     <script src="assets/bootstrap/jquery-1.12.4.min.js"></script>
     <script src="assets/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/demo-sidebar.js"></script>
 </body>
 
 </html>
