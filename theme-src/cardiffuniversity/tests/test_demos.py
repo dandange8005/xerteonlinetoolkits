@@ -4,6 +4,7 @@ import unittest
 
 import support
 import theme_css
+from html_tree import parse
 
 DEMOS = support.THEME / "demos"
 PAGES = sorted(DEMOS.glob("*.html"))
@@ -38,6 +39,17 @@ class DemoPagesTest(unittest.TestCase):
             if uses and FONT_AWESOME not in text:
                 missing.append(page.name)
         self.assertEqual(missing, [])
+
+    def test_the_homepage_callouts_sit_in_one_responsive_row(self):
+        # The theme's flex utilities: a wrapping flex row whose items have a flex-basis class.
+        page = parse((DEMOS / "index.html").read_text(encoding="utf-8"))
+        callouts = page.find_all(cls="cu-callout")
+        self.assertEqual(len(callouts), 3)
+        row = callouts[0].parent
+        self.assertTrue({"flex", "flex-wrap"} <= row.classes, row.classes)
+        for callout in callouts:
+            self.assertIs(callout.parent, row)
+            self.assertIn("flex-300", callout.classes)
 
     def test_the_demos_bootstrap_script_is_bootstrap(self):
         # It was once a saved error message ("Couldn't find the requested release version"), so tabs,

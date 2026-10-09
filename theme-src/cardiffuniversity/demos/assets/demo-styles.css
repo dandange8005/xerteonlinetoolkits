@@ -94,6 +94,13 @@ body {
    Code Labels & Examples
    =========================== */
 
+/* Bootstrap 2 sets white-space: nowrap on code, so a long path or class list in running text made the
+   whole page wider than a phone. Let it wrap, breaking mid-word only when nothing else fits. */
+.demo-section code {
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
 .code-label {
     font-family: monospace;
     background: var(--cu-grey-20);

@@ -34,9 +34,27 @@ MENU_FOLLOWS = ("(function () { var m = jQuery('.bs-docs-sidenav'); window.scrol
 
 CHECKS = [(page, width, "code labels stay inside their block", CODE_INSIDE_BLOCK)
           for page in PAGES for width in (1280, 485)]
-CHECKS += [("images-media.html", 1280, "the page does not scroll sideways", NO_SIDEWAYS_SCROLL)]
+# Pages that already scrolled sideways on a phone before this check existed. They are listed so the debt is
+# visible, and each is checked at desktop width only. Remove a page from here when it is fixed.
+NARROW_OVERFLOW_KNOWN = {
+    "base-elements-demo.html": "a standard table is wider than a phone",
+    "lists-tables.html": "the tables are wider than a phone",
+    "images-media.html": "the section menu column is about 17px too wide; not investigated further",
+}
+CHECKS += [(page, width, "the page does not scroll sideways", NO_SIDEWAYS_SCROLL)
+           for page in PAGES for width in (1280, 485)
+           if not (width == 485 and page in NARROW_OVERFLOW_KNOWN)]
 CHECKS += [
     ("index.html", 1280, "the callout icons have their Font Awesome font", FONT_LOADED),
+    ("index.html", 1280, "the three callouts sit side by side at the same height",
+     "(function () { var r = Array.from(document.querySelectorAll('.cu-callout')).map(function (c) { return c.getBoundingClientRect(); });"
+     " return r.length === 3 && Math.abs(r[0].top - r[1].top) < 1 && Math.abs(r[1].top - r[2].top) < 1"
+     " && r[0].left < r[1].left && r[1].left < r[2].left"
+     " && Math.abs(r[0].height - r[1].height) < 1 && Math.abs(r[1].height - r[2].height) < 1; })()"),
+    ("index.html", 485, "the three callouts stack one under the other",
+     "(function () { var r = Array.from(document.querySelectorAll('.cu-callout')).map(function (c) { return c.getBoundingClientRect(); });"
+     " return r.length === 3 && r[0].bottom <= r[1].top + 1 && r[1].bottom <= r[2].top + 1"
+     " && Math.abs(r[0].left - r[1].left) < 1 && Math.abs(r[1].left - r[2].left) < 1; })()"),
     ("components.html", 1280, "Bootstrap's plugins are loaded",
      "['alert', 'collapse', 'tab', 'carousel', 'affix', 'scrollspy'].every(function (n) { return typeof jQuery.fn[n] === 'function'; })"),
 ] + [(page, 1280, "the section menu follows the scroll", MENU_FOLLOWS)

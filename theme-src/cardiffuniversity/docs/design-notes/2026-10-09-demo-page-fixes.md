@@ -39,6 +39,31 @@ problems were reported on the demo pages, and fixing them turned up a fifth.
 - Looked at in a real browser: the callouts, the icon buttons with the pinned menu, the paired lists and
   the flexbox columns.
 
+## Homepage callouts in three columns
+
+The three callouts on `index.html` are now one responsive row, using the theme's flex utilities (the page's
+recommended system): a `flex flex-wrap gap-md` container, with `flex-300` on each callout. Three columns
+of equal height when there is room, then two and one, then stacked on a phone. The flex class is on the
+callout itself, so the three stretch to the same height. The older System 2 classes (`flexContainer`,
+`c33`) would also work, but the flexbox page lists them under "Legacy Support", so they were not used.
+
+## Phone width
+
+Checking the new row at phone width showed the homepage scrolled sideways, before any of today's changes.
+Bootstrap 2 sets `white-space: nowrap` on `code`, and one list of long file paths forced the whole page
+to 615px. Inline code in demo content now wraps (`.demo-section code`), which fixed the homepage and the
+flexbox and typography pages.
+
+Three pages still scroll sideways at phone width and are listed in `NARROW_OVERFLOW_KNOWN` in
+`check_demos.py`, each still checked at desktop width:
+
+- `base-elements-demo.html`: a standard table is wider than a phone.
+- `lists-tables.html`: the tables are wider than a phone.
+- `images-media.html`: the section menu column is about 17px too wide. Not investigated further.
+
+A rule letting the row shrink (`.container > .row-fluid { min-width: 0 }`) was tried and changed nothing,
+so it was not kept.
+
 ## Not changed
 
 The demos still load the theme and Font Awesome from paths into the repo (`../../../themes/...`,
