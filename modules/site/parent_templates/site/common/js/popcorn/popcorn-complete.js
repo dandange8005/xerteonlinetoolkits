@@ -4363,7 +4363,7 @@
             parent.appendChild(elem);
 
             if (!xot_offline && typeof Mediasite !== undefined) {
-              $.getScript("modules/xerte/parent_templates/Nottingham/common_html5/js/popcorn/plugins/MediasitePlayerIFrameAPI.js")
+              $.getScript("modules/xerte/parent_templates/Nottingham/common/js/popcorn/plugins/MediasitePlayerIFrameAPI.js")
                   .done(function () {
                     //$("#mediasiteIframe").parent()[0].style.visibility = "hidden";
                     console.log(" Mediasiteplayer loaded " + aSrc + "\n" + elem.id);
@@ -4746,7 +4746,7 @@
             elem.sandbox="allow-same-origin allow-scripts allow-popups";
 
             if (!xot_offline && typeof PeerTubePlayer !== undefined) {
-              $.getScript("https://unpkg.com/@peertube/embed-api/build/player.min.js")
+              $.getScript("modules/common/js/peertube/player.min.js")
                   .done(function () {
                         onReady();
                       }
