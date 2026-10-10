@@ -50,6 +50,13 @@ class DemoPagesTest(unittest.TestCase):
                     bad.append(page.name)
         self.assertEqual(bad, [])
 
+    def test_every_page_loads_the_snippet_script(self):
+        # demo-code.js adds the Show HTML snippets; the browser checks only see pages that load it.
+        missing = [page.name for page in PAGES
+                   if not [s for s in parse(page.read_text(encoding="utf-8")).find_all("script")
+                           if s.attrs.get("src") == "assets/demo-code.js"]]
+        self.assertEqual(missing, [])
+
     def test_the_homepage_callouts_sit_in_one_responsive_row(self):
         # The theme's flex utilities: a wrapping flex row whose items have a flex-basis class.
         page = parse((DEMOS / "index.html").read_text(encoding="utf-8"))
