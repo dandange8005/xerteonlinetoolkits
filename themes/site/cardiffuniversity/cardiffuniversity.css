@@ -722,6 +722,11 @@ section dd,
 .list-counter li {
   position: relative;
   padding-left: var(--spacing-xl);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-lg);
+}
+.list-counter li:last-child {
+  margin-bottom: 0;
 }
 .list-counter li::before {
   counter-increment: orderedlist;
@@ -734,9 +739,11 @@ section dd,
   justify-content: center;
   align-items: center;
   border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  line-height: 1;
   position: absolute;
   left: 0;
-  top: 0;
+  top: calc(0.75em - var(--spacing-lg) / 2 + 3px);
 }
 
 table {

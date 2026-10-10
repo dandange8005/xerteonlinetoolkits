@@ -97,6 +97,9 @@ CHECKS = [
      "2px 2px 2px"),
     ("radius", "labels and the feedback tab use the small step",
      "cs('#label-default','borderTopLeftRadius')+' '+cs('#feedback_button','borderTopLeftRadius')", "2px 2px"),
+    # Numbered steps: the number sits on the heading's line, and the badge is small.
+    ("lists", "a step badge is 24px square with a 12px number", "(function(){var s=document.createElement('ol');s.className='list-counter';s.innerHTML='<li><strong>Step</strong> text</li>';document.body.appendChild(s);var b=getComputedStyle(s.querySelector('li'),'::before');var r=[b.width,b.height,b.fontSize].join(' ');s.remove();return r})()", "24px 24px 12px"),
+    ("lists", "a step badge is centred on its heading's line", "(function(){var s=document.createElement('ol');s.className='list-counter';s.innerHTML='<li><strong id=\"step-h\">Step</strong> text</li>';document.body.appendChild(s);var li=s.querySelector('li');var b=getComputedStyle(li,'::before');var top=parseFloat(b.top)||0;var lh=parseFloat(getComputedStyle(li).lineHeight)||0;var h=document.getElementById('step-h').getBoundingClientRect(),l=li.getBoundingClientRect(),bh=parseFloat(b.height)||0;var centre=(h.top-l.top)+h.height/2-bh/2;var ok=Math.abs(top-centre)<=2;s.remove();return String(ok)})()", "true"),
     ("radius", "a card keeps its 3px corner", "cs('#card-basic','borderTopLeftRadius')", "3px"),
     ("radius", "a primary button keeps the 3px control radius",
      "classStyle('button button-primary','borderTopLeftRadius')", "3px"),

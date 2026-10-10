@@ -292,11 +292,20 @@ section,
     list-style-type: none;
     margin-left: var(--spacing-sm);
 
+    // Room between steps, so each heading and its text read as one step.
     li {
         position: relative;
         padding-left: var(--spacing-xl);
+        line-height: 1.5;
+        margin-bottom: var(--spacing-lg);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 
+    // The badge sits on the heading's line: its top is half a line down from the item's top,
+    // less half its own height. Font size is set on the badge, so it is smaller than the text.
     li::before {
         counter-increment: orderedlist;
         content: counter(orderedlist);
@@ -308,9 +317,11 @@ section,
         justify-content: center;
         align-items: center;
         border-radius: var(--radius-full);
+        font-size: var(--font-size-xs);
+        line-height: 1;
         position: absolute;
         left: 0;
-        top: 0;
+        top: calc(0.75em - var(--spacing-lg) / 2 + 3px); // centred on the text: measured in Chrome, the badge sat 3px high
     }
 }
 
