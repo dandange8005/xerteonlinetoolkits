@@ -38,3 +38,7 @@ jobs:
         run: CHROME="$(command -v google-chrome)" python3 tests/check_guide.py
       - name: Demo page browser checks
         run: CHROME="$(command -v google-chrome)" python3 tests/check_demos.py
+      - name: Packaged demos browser checks
+        run: |
+          python3 tools/build-demos-package.py
+          CHROME="$(command -v google-chrome)" python3 tests/check_demos.py --package dist/cardiffuniversity-demos.zip

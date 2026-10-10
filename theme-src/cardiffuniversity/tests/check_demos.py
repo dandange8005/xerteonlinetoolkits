@@ -7,9 +7,15 @@ scroll. Reuses the runner from check_guide.py.
 
 Usage (from the theme folder):
     python3 tests/check_demos.py
+    python3 tests/check_demos.py --package dist/cardiffuniversity-demos.zip   the packaged theme, unzipped
+                                                                              into a themes/site/ layout
 Exit code 1 if any check fails.
 """
+import argparse
 import sys
+import tempfile
+import zipfile
+from pathlib import Path
 
 import check_guide
 import support
@@ -54,12 +60,24 @@ CHECKS += [
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--package", type=Path, help="run the same checks on an unzipped demos package")
+    args = parser.parse_args()
+    if args.package:
+        with tempfile.TemporaryDirectory() as tmp:
+            # Served from themes/site/<name>/, as on a Xerte server, with nothing else of the repo around.
+            zipfile.ZipFile(args.package).extractall(Path(tmp) / "themes" / "site")
+            return run(Path(tmp) / "themes" / "site" / "cardiffuniversity-demos")
+    return run(DEMOS)
+
+
+def run(folder):
     groups = {}
     for page, width, name, expression in CHECKS:
         groups.setdefault((page, width), {})[name] = expression
     failed = 0
     for (page, width), checks in groups.items():
-        results = check_guide.run(DEMOS, page, width, checks)
+        results = check_guide.run(folder, page, width, checks)
         for name in checks:
             actual = results.get(name, "NO RESULT")
             ok = actual == "true"

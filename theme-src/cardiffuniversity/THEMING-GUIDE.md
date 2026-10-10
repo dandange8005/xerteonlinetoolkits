@@ -202,6 +202,7 @@ Run from this folder (`theme-src/cardiffuniversity/`):
 ./build.sh              # tokens.json -> _cu-tokens.scss, then compile into themes/site/cardiffuniversity/
 ./build.sh package      # compile and zip the runtime folder into dist/ for upload
 ./build.sh guide        # compile, then check and build the author guide into site/
+./build.sh demos-package  # compile, then zip the demo pages as a hidden theme into dist/ for upload
 python3 tools/build-guide.py --check
 python3 -m unittest discover -s tests -p "test_*.py"
 python3 tests/check_guide.py

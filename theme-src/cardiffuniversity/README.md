@@ -33,6 +33,13 @@ out of the runtime folder.
 2. Select **Cardiff University Theme** in the site's theme settings.
 3. Use the [author guide](demos/index.html) for supported classes and copyable examples.
 
+To put the demo pages on a Xerte server, run `./build.sh demos-package`, upload
+`dist/cardiffuniversity-demos.zip` on the Themes page (Site), then disable that theme so it does
+not appear in the picker. The pages are then at
+`<site>/themes/site/cardiffuniversity-demos/index.html`. It is a separate theme so the demos do
+not travel inside every project export. Each upload replaces the folder and enables it again, so
+disable it again afterwards.
+
 Compiled CSS ships with the theme. Recompile only when changing SCSS.
 The player also requests `cardiffuniversity.js`: it measures the sticky menu, updates scrollspy
 and corrects section landings while content loads. Keep the script with the stylesheet.

@@ -5,6 +5,7 @@
 #                         themes/site/cardiffuniversity/cardiffuniversity.css, check the author guide
 #   ./build.sh package    the same, then zip the runtime folder into dist/cardiffuniversity.zip
 #   ./build.sh guide      the same, then check and build the author guide into site/
+#   ./build.sh demos-package   the same, then zip the demo pages as a hidden theme into dist/cardiffuniversity-demos.zip
 #
 # The runtime folder holds only what Xerte loads (.info, .css, .js, .jpg, logo_left.svg).
 # Xerte copies the whole theme folder into every project export, so nothing else belongs there.
@@ -29,6 +30,10 @@ python3 "$HERE/tools/build-reference.py" --check || echo "Run: python3 tools/bui
 
 if [ "${1:-}" = "guide" ]; then
     python3 "$HERE/tools/build-guide.py"
+fi
+
+if [ "${1:-}" = "demos-package" ]; then
+    python3 "$HERE/tools/build-demos-package.py"
 fi
 
 if [ "${1:-}" = "package" ]; then
