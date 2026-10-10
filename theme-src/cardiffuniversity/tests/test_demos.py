@@ -40,6 +40,16 @@ class DemoPagesTest(unittest.TestCase):
                 missing.append(page.name)
         self.assertEqual(missing, [])
 
+    def test_every_table_scroll_wrapper_is_reachable_and_named(self):
+        # The Tables page teaches tabindex, role and aria-label on the wrapper. Nothing else checks them.
+        bad = []
+        for page in PAGES:
+            for wrapper in parse(page.read_text(encoding="utf-8")).find_all(cls="cu-table-scroll"):
+                if (wrapper.attrs.get("tabindex") != "0" or wrapper.attrs.get("role") != "region"
+                        or not (wrapper.attrs.get("aria-label") or "").strip()):
+                    bad.append(page.name)
+        self.assertEqual(bad, [])
+
     def test_the_homepage_callouts_sit_in_one_responsive_row(self):
         # The theme's flex utilities: a wrapping flex row whose items have a flex-basis class.
         page = parse((DEMOS / "index.html").read_text(encoding="utf-8"))

@@ -54,15 +54,26 @@ Bootstrap 2 sets `white-space: nowrap` on `code`, and one list of long file path
 to 615px. Inline code in demo content now wraps (`.demo-section code`), which fixed the homepage and the
 flexbox and typography pages.
 
-Three pages still scroll sideways at phone width and are listed in `NARROW_OVERFLOW_KNOWN` in
-`check_demos.py`, each still checked at desktop width:
+Three pages still scrolled sideways at phone width after that, and were fixed on 10 October 2026:
 
-- `base-elements-demo.html`: a standard table is wider than a phone.
-- `lists-tables.html`: the tables are wider than a phone.
-- `images-media.html`: the section menu column is about 17px too wide. Not investigated further.
+- **Cause.** The page body is a column flex container (from the player's `custom.css`), and Bootstrap gives
+  `.container` auto side margins. In a flex column, auto margins stop an item stretching, so the container
+  sized itself to its content: 969px on `lists-tables`, however narrow the phone. A scroll wrapper inside it
+  could not help, because the container simply grew to fit the wrapper. `main.container` now has
+  `max-width: 100%`. `base-elements-demo.html` has its own inline style block and got the same rule.
+- **Tables.** With the container the right width, four ordinary tables (472 to 554px) were wider than a
+  phone. They are now wrapped in `cu-table-scroll` with `tabindex="0"`, `role="region"` and an
+  `aria-label`, as the Tables page teaches: three on `lists-tables`, two on `base-elements-demo`.
+- **`images-media.html`** was only 2px over, from the same cause, and needed nothing more.
+- **Not a theme problem.** The real player puts its content containers inside `<div id="aboveFooter">`, an
+  ordinary block, so they fill the page. The demos put `<main class="container">` directly under `body`,
+  which is what triggered it. Authors' pages are not affected.
+- A rule letting the row shrink (`.container > .row-fluid { min-width: 0 }`) was tried first and changed
+  nothing, so it was not kept.
+- A check that every `cu-table-scroll` wrapper in the demos has `tabindex`, `role` and `aria-label` now
+  runs in `test_demos.py`, since nothing else checks them.
 
-A rule letting the row shrink (`.container > .row-fluid { min-width: 0 }`) was tried and changed nothing,
-so it was not kept.
+All demo pages are now checked for sideways scroll at desktop and phone width.
 
 ## Not changed
 

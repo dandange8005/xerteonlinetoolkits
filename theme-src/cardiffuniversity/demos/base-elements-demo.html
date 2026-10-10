@@ -12,6 +12,14 @@
     <style>
         main.container {
             padding-block: 2rem;
+            /* A flex column body plus auto side margins sizes the container to its content; cap it at the page. */
+            max-width: 100%;
+        }
+
+        /* Bootstrap 2 sets nowrap on code, so a long sample would run out of its block on a phone. */
+        code {
+            white-space: normal;
+            overflow-wrap: anywhere;
         }
 
         .style-guide-section {
@@ -220,79 +228,83 @@
 
         <div class="demo-block">
             <div class="demo-block-title">Standard Table with Caption</div>
-            <table>
-                <caption>Student Enrollment by Programme - Academic Year 2024/25</caption>
-                <thead>
-                    <tr>
-                        <th>Programme</th>
-                        <th>Undergraduate</th>
-                        <th>Postgraduate</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Computer Science</td>
-                        <td>1,234</td>
-                        <td>456</td>
-                        <td>1,690</td>
-                    </tr>
-                    <tr>
-                        <td>Engineering</td>
-                        <td>2,105</td>
-                        <td>678</td>
-                        <td>2,783</td>
-                    </tr>
-                    <tr>
-                        <td>Business</td>
-                        <td>1,876</td>
-                        <td>892</td>
-                        <td>2,768</td>
-                    </tr>
-                    <tr>
-                        <td>Medicine</td>
-                        <td>987</td>
-                        <td>234</td>
-                        <td>1,221</td>
-                    </tr>
-                    <tr>
-                        <td>Arts & Humanities</td>
-                        <td>1,543</td>
-                        <td>321</td>
-                        <td>1,864</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="cu-table-scroll" tabindex="0" role="region" aria-label="Student enrolment by programme, 2024/25">
+                <table>
+                    <caption>Student Enrollment by Programme - Academic Year 2024/25</caption>
+                    <thead>
+                        <tr>
+                            <th>Programme</th>
+                            <th>Undergraduate</th>
+                            <th>Postgraduate</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Computer Science</td>
+                            <td>1,234</td>
+                            <td>456</td>
+                            <td>1,690</td>
+                        </tr>
+                        <tr>
+                            <td>Engineering</td>
+                            <td>2,105</td>
+                            <td>678</td>
+                            <td>2,783</td>
+                        </tr>
+                        <tr>
+                            <td>Business</td>
+                            <td>1,876</td>
+                            <td>892</td>
+                            <td>2,768</td>
+                        </tr>
+                        <tr>
+                            <td>Medicine</td>
+                            <td>987</td>
+                            <td>234</td>
+                            <td>1,221</td>
+                        </tr>
+                        <tr>
+                            <td>Arts & Humanities</td>
+                            <td>1,543</td>
+                            <td>321</td>
+                            <td>1,864</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="demo-block">
             <div class="demo-block-title">Simple Table</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Department</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>John Smith</td>
-                        <td>smithj@cardiff.ac.uk</td>
-                        <td>Computing</td>
-                    </tr>
-                    <tr>
-                        <td>Jane Doe</td>
-                        <td>doej@cardiff.ac.uk</td>
-                        <td>Engineering</td>
-                    </tr>
-                    <tr>
-                        <td>Bob Wilson</td>
-                        <td>wilsonb@cardiff.ac.uk</td>
-                        <td>Business</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="cu-table-scroll" tabindex="0" role="region" aria-label="Staff contact details">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Smith</td>
+                            <td>smithj@cardiff.ac.uk</td>
+                            <td>Computing</td>
+                        </tr>
+                        <tr>
+                            <td>Jane Doe</td>
+                            <td>doej@cardiff.ac.uk</td>
+                            <td>Engineering</td>
+                        </tr>
+                        <tr>
+                            <td>Bob Wilson</td>
+                            <td>wilsonb@cardiff.ac.uk</td>
+                            <td>Business</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
