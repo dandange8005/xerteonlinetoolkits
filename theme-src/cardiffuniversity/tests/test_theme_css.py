@@ -27,7 +27,7 @@ class ThemeCssTest(unittest.TestCase):
 
     def test_player_stylesheets_exist(self):
         for name in theme_css.PLAYER_CSS + theme_css.IMPORTED_CSS:
-            self.assertTrue((theme_css.PLAYER / name).is_file(), name)
+            self.assertTrue(theme_css.player_path(name).is_file(), name)
 
     def test_utility_groups_follow_the_family_order(self):
         groups = theme_css.utility_groups({"text-lg": "font-size: 20px", "mt-4": "margin-top: 16px"})

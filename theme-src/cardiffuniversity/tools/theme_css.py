@@ -11,6 +11,14 @@ THEME = HERE.parent  # theme-src/cardiffuniversity
 REPO = THEME.parents[1]
 CSS = REPO / "themes" / "site" / "cardiffuniversity" / "cardiffuniversity.css"
 PLAYER = REPO / "modules" / "site" / "parent_templates" / "site" / "common"
+# Font Awesome moved out of the player's folder into modules/common (the player links it from there).
+COMMON = REPO / "modules" / "common"
+FONTAWESOME = "fontawesome-6.6.0"
+
+
+def player_path(name):
+    """Where one of the player's files lives: Font Awesome in modules/common, the rest beside the player."""
+    return (COMMON if name.split("/")[0] == FONTAWESOME else PLAYER) / name
 
 # The player's stylesheets, in the order modules/site/player_html5/rloObject.htm links them.
 # The player appends the theme after these. css/fonts.css is left out: it holds only a
@@ -191,7 +199,7 @@ def theme_classes():
     """Classes the theme adds beyond Bootstrap, the player's custom.css and Font Awesome."""
     own = class_names(CSS.read_text(encoding="utf-8"))
     for name in BASE_CSS:
-        path = PLAYER / name
+        path = player_path(name)
         if path.exists():
             own -= class_names(path.read_text(encoding="utf-8"))
     return own
@@ -206,7 +214,7 @@ def stack_classes():
     """Every class defined by the stylesheets the author guide loads: the player's and the theme's."""
     found = class_names(CSS.read_text(encoding="utf-8"))
     for name in PLAYER_CSS + IMPORTED_CSS:
-        found |= class_names((PLAYER / name).read_text(encoding="utf-8"))
+        found |= class_names(player_path(name).read_text(encoding="utf-8"))
     return found
 
 
