@@ -54,6 +54,12 @@ NO_DEMO_CLASSES_IN_SNIPPETS = ("Array.from(document.querySelectorAll('details.de
                                ".every(function (c) { return !/class=\"[^\"]*\\bdemo-/.test(c.textContent); })")
 SNIPPETS_HAVE_COPY_BUTTONS = ("Array.from(document.querySelectorAll('details.demo-code')).every(function (d) {"
                               " var b = d.querySelector('button'); return !!b && b.textContent.trim() === 'Copy'; })")
+# Show HTML reads as a link: the theme's link colour, underlined, and the same colour a real link has.
+SUMMARY_LOOKS_LIKE_A_LINK = ("(function () { var a = document.createElement('a'); a.href = '#'; document.body.appendChild(a);"
+                             " var link = getComputedStyle(a).color; document.body.removeChild(a);"
+                             " return Array.from(document.querySelectorAll('details.demo-code summary')).every(function (s) {"
+                             " var cs = getComputedStyle(s); return cs.color === link && cs.textDecorationLine === 'underline'"
+                             " && cs.cursor === 'pointer'; }); })()")
 # With every snippet open the long lines must scroll inside their own box, not push the page sideways.
 OPEN_SNIPPETS_DO_NOT_WIDEN_THE_PAGE = ("(function () { Array.from(document.querySelectorAll('details.demo-code'))"
                                        ".forEach(function (d) { d.open = true; });"
@@ -90,6 +96,7 @@ CHECKS += [
 CHECKS += [("components.html", 1280, "the page has examples to show snippets for", f"{EXAMPLE_BLOCKS}.length >= 10")]
 CHECKS += [(page, 1280, "no snippet carries a demo-only class", NO_DEMO_CLASSES_IN_SNIPPETS) for page in PAGES]
 CHECKS += [(page, 1280, "every snippet has a Copy button", SNIPPETS_HAVE_COPY_BUTTONS) for page in PAGES]
+CHECKS += [(page, 1280, "Show HTML is styled as a link", SUMMARY_LOOKS_LIKE_A_LINK) for page in PAGES]
 CHECKS += [(page, 485, "open snippets do not widen the page", OPEN_SNIPPETS_DO_NOT_WIDEN_THE_PAGE) for page in PAGES]
 CHECKS += [(page, 1280, "the section menu follows the scroll", MENU_FOLLOWS)
      for page in ("images-media.html", "components.html", "forms.html", "flexbox.html")]

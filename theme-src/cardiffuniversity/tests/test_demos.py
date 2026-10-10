@@ -50,11 +50,15 @@ class DemoPagesTest(unittest.TestCase):
                     bad.append(page.name)
         self.assertEqual(bad, [])
 
-    def test_every_page_loads_the_snippet_script(self):
+    def test_every_page_loads_the_snippet_script_and_styles(self):
         # demo-code.js adds the Show HTML snippets; the browser checks only see pages that load it.
-        missing = [page.name for page in PAGES
-                   if not [s for s in parse(page.read_text(encoding="utf-8")).find_all("script")
-                           if s.attrs.get("src") == "assets/demo-code.js"]]
+        missing = []
+        for page in PAGES:
+            tree = parse(page.read_text(encoding="utf-8"))
+            has_script = [s for s in tree.find_all("script") if s.attrs.get("src") == "assets/demo-code.js"]
+            has_styles = [s for s in tree.find_all("link") if s.attrs.get("href") == "assets/demo-code.css"]
+            if not (has_script and has_styles):
+                missing.append(page.name)
         self.assertEqual(missing, [])
 
     def test_the_homepage_callouts_sit_in_one_responsive_row(self):
