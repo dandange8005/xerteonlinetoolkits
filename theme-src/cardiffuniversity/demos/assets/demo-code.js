@@ -6,7 +6,8 @@
  *   - the block title, description and class label, and any sub-heading label (.demo-block-title)
  *   - wrappers that only carry demo-* classes (.demo-inline, .demo-container) are unwrapped
  *   - demo-* classes on other elements (.demo-box) are removed
- * A block is left alone when it has its own <pre> or data-code="skip".
+ * A block is left alone when it has its own <pre>, or it or a section around it has data-code="skip"
+ * (the Usage Guidelines sections).
  */
 (function () {
     'use strict';
@@ -157,7 +158,7 @@
 
     function init() {
         Array.prototype.forEach.call(document.querySelectorAll('.demo-block'), function (block) {
-            if (block.querySelector('pre') || block.getAttribute('data-code') === 'skip') { return; }
+            if (block.querySelector('pre') || block.closest('[data-code="skip"]')) { return; }
             var text = snippet(block);
             if (text) { build(block, text); }
         });

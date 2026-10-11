@@ -42,7 +42,7 @@ MENU_FOLLOWS = ("(function () { var m = jQuery('.bs-docs-sidenav'); window.scrol
 # An example block is one a snippet is made for: it has something besides its title, description and class
 # label, no hand-written <pre> already, and no data-code="skip".
 EXAMPLE_BLOCKS = ("Array.from(document.querySelectorAll('.demo-block')).filter(function (b) {"
-                  " return !Array.from(b.querySelectorAll('pre')).some(function (p) { return !p.closest('.demo-code'); }) && b.getAttribute('data-code') !== 'skip'"
+                  " return !Array.from(b.querySelectorAll('pre')).some(function (p) { return !p.closest('.demo-code'); }) && !b.closest(\"[data-code='skip']\")"
                   " && Array.from(b.children).some(function (c) {"
                   " return !/(^|\\s)(demo-block__title|demo-block__description|code-label|demo-block-title|demo-code)(\\s|$)/.test(c.className); }); })")
 EVERY_EXAMPLE_HAS_A_SNIPPET = (f"(function () {{ var blocks = {EXAMPLE_BLOCKS};"
@@ -60,6 +60,12 @@ SUMMARY_LOOKS_LIKE_A_LINK = ("(function () { var a = document.createElement('a')
                              " return Array.from(document.querySelectorAll('details.demo-code summary')).every(function (s) {"
                              " var cs = getComputedStyle(s); return cs.color === link && cs.textDecorationLine === 'underline'"
                              " && cs.cursor === 'pointer'; }); })()")
+# Guidance sections explain how to use the examples; their boxes are not copyable examples.
+GUIDELINE_SECTIONS = {"bootstrap.html": "bootstrap-usage-guidelines", "colors.html": "color-usage-guidelines",
+                      "components.html": "component-usage-guidelines"}
+NO_SNIPPETS_IN_SECTION = ("(function () {{ var s = document.getElementById('{id}');"
+                          " return !!s && s.querySelectorAll('.demo-block').length > 0"
+                          " && s.querySelectorAll('details.demo-code').length === 0; }})()")
 # With every snippet open the long lines must scroll inside their own box, not push the page sideways.
 OPEN_SNIPPETS_DO_NOT_WIDEN_THE_PAGE = ("(function () { Array.from(document.querySelectorAll('details.demo-code'))"
                                        ".forEach(function (d) { d.open = true; });"
@@ -97,6 +103,8 @@ CHECKS += [("components.html", 1280, "the page has examples to show snippets for
 CHECKS += [(page, 1280, "no snippet carries a demo-only class", NO_DEMO_CLASSES_IN_SNIPPETS) for page in PAGES]
 CHECKS += [(page, 1280, "every snippet has a Copy button", SNIPPETS_HAVE_COPY_BUTTONS) for page in PAGES]
 CHECKS += [(page, 1280, "Show HTML is styled as a link", SUMMARY_LOOKS_LIKE_A_LINK) for page in PAGES]
+CHECKS += [(page, 1280, "the Usage Guidelines section has no snippets", NO_SNIPPETS_IN_SECTION.format(id=section))
+           for page, section in GUIDELINE_SECTIONS.items()]
 CHECKS += [(page, 485, "open snippets do not widen the page", OPEN_SNIPPETS_DO_NOT_WIDEN_THE_PAGE) for page in PAGES]
 CHECKS += [(page, 1280, "the section menu follows the scroll", MENU_FOLLOWS)
      for page in ("images-media.html", "components.html", "forms.html", "flexbox.html")]
