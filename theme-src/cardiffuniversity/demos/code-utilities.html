@@ -641,13 +641,15 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
 
             <div class="demo-block">
                 <div class="demo-block__title">Text beside an image</div>
-                <div class="demo-block__description">Two items that sit side by side when there is room and stack when there is not (<code>flex flex-wrap items-center gap-lg</code> with <code>flex-300</code> on each).</div>
+                <div class="demo-block__description">Two items that sit side by side when there is room and stack when there is not (<code>flex flex-wrap items-center gap-lg</code> with <code>flex-300</code> on each). Put the image in its own <code>flex-300</code> box and give it <code>w-full</code>: an image placed straight in the row keeps its full width and pushes the page sideways on a phone.</div>
                 <div class="flex flex-wrap items-center gap-lg">
                     <div class="flex-300">
                         <h3 class="m-0 mb-2">Plan your week</h3>
                         <p class="m-0">Block out time for reading, the lecture and the practical before the deadline gets close.</p>
                     </div>
-                    <img class="flex-300 max-w-sm rounded-lg" src="https://placehold.co/600x360/121212/FFFFFF?text=Photo" alt="Placeholder photo of a study desk">
+                    <div class="flex-300">
+                        <img class="w-full rounded-lg" src="https://placehold.co/600x360/121212/FFFFFF?text=Photo" alt="Placeholder photo of a study desk">
+                    </div>
                 </div>
             </div>
 
