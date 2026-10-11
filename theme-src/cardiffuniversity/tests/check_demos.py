@@ -63,7 +63,8 @@ SUMMARY_LOOKS_LIKE_A_LINK = ("(function () { var a = document.createElement('a')
 # Guidance and reference sections explain or list classes; their boxes are not copyable examples.
 GUIDELINE_SECTIONS = {"bootstrap.html": "bootstrap-usage-guidelines", "colors.html": "color-usage-guidelines",
                       "components.html": "component-usage-guidelines",
-                      "code-utilities.html": "utility-classes-reference"}
+                      "code-utilities.html": "utility-classes-reference",
+                      "flexbox.html": "utility-class-reference"}
 NO_SNIPPETS_IN_SECTION = ("(function () {{ var s = document.getElementById('{id}');"
                           " return !!s && s.querySelectorAll('.demo-block').length > 0"
                           " && s.querySelectorAll('details.demo-code').length === 0; }})()")
