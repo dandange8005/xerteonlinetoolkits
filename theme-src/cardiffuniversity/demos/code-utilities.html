@@ -70,6 +70,7 @@
                     <li class="active" aria-current="location"><a href="#inline-code">Inline Code</a></li>
                     <li><a href="#code-blocks">Code Blocks</a></li>
                     <li><a href="#utility-classes-reference">Utility Classes Reference</a></li>
+                    <li><a href="#combining-utilities">Combining Utilities</a></li>
                     <li><a href="#css-custom-properties-design-tokens">CSS Custom Properties (Design Tokens)</a></li>
                 </ul>
             </div>
@@ -591,6 +592,84 @@ console.log(calculateTotal(cart)); // 44.48</code></pre>
                 </table>
             </div>
 <!-- @end generated -->
+        </section>
+
+        <!-- Combining utilities -->
+        <section class="demo-section" id="combining-utilities">
+            <h2>Combining Utilities</h2>
+            <p>You do not need a special component for every layout. These examples are built only from the utility classes above, so they work in a Text element's <strong>Source</strong> view. Use <strong>Show HTML</strong> under each one to copy it, then change the words.</p>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Stat tiles</div>
+                <div class="demo-block__description">A wrapping row (<code>flex flex-wrap gap-md</code>) of tiles that share the space. Each tile has a minimum width (<code>flex-200</code>), so they stack on a phone.</div>
+                <div class="flex flex-wrap gap-md">
+                    <div class="flex-200 p-4 bg-light rounded-md text-center">
+                        <p class="text-3xl font-bold text-brand m-0">94%</p>
+                        <p class="text-sm m-0">of students satisfied</p>
+                    </div>
+                    <div class="flex-200 p-4 bg-light rounded-md text-center">
+                        <p class="text-3xl font-bold text-brand m-0">12</p>
+                        <p class="text-sm m-0">weeks of teaching</p>
+                    </div>
+                    <div class="flex-200 p-4 bg-light rounded-md text-center">
+                        <p class="text-3xl font-bold text-brand m-0">3</p>
+                        <p class="text-sm m-0">assessments</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Person with photo</div>
+                <div class="demo-block__description">An image beside two lines of text, centred on each other (<code>flex items-center gap-md</code>). <code>rounded-full</code> makes the photo a circle.</div>
+                <div class="flex items-center gap-md">
+                    <img class="rounded-full" src="https://placehold.co/72x72/121212/FFFFFF?text=CU" alt="" width="72" height="72">
+                    <div>
+                        <p class="font-bold m-0">Dr Sam Jones</p>
+                        <p class="text-sm m-0">Module convenor, School of Law</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Banner with an action</div>
+                <div class="demo-block__description">Text on the left and a button on the right (<code>justify-between items-center</code>). The row wraps on a narrow screen. Use a reverse button on a dark background.</div>
+                <div class="flex flex-wrap justify-between items-center gap-md p-6 bg-dark text-white rounded-lg">
+                    <p class="text-xl font-semibold m-0">Assessment opens on Monday</p>
+                    <a href="#" class="button button-reverse">View details</a>
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Text beside an image</div>
+                <div class="demo-block__description">Two items that sit side by side when there is room and stack when there is not (<code>flex flex-wrap items-center gap-lg</code> with <code>flex-300</code> on each).</div>
+                <div class="flex flex-wrap items-center gap-lg">
+                    <div class="flex-300">
+                        <h3 class="m-0 mb-2">Plan your week</h3>
+                        <p class="m-0">Block out time for reading, the lecture and the practical before the deadline gets close.</p>
+                    </div>
+                    <img class="flex-300 max-w-sm rounded-lg" src="https://placehold.co/600x360/121212/FFFFFF?text=Photo" alt="Placeholder photo of a study desk">
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Key facts list</div>
+                <div class="demo-block__description">A column of rows (<code>flex flex-col gap-sm</code>), each with the label and value pushed apart (<code>flex justify-between</code>).</div>
+                <div class="flex flex-col gap-sm">
+                    <div class="flex justify-between p-3 bg-light rounded-sm"><span class="font-bold">Duration</span><span>6 weeks</span></div>
+                    <div class="flex justify-between p-3 bg-light rounded-sm"><span class="font-bold">Study time</span><span>3 hours a week</span></div>
+                    <div class="flex justify-between p-3 bg-light rounded-sm"><span class="font-bold">Assessment</span><span>One short essay</span></div>
+                </div>
+            </div>
+
+            <div class="demo-block">
+                <div class="demo-block__title">Centred call to action</div>
+                <div class="demo-block__description">A narrow panel centred in the page (<code>max-w-md m-auto</code>) with centred text.</div>
+                <div class="max-w-md m-auto p-6 bg-light rounded-lg text-center">
+                    <h3 class="m-0 mb-2">Ready to start?</h3>
+                    <p class="mb-4">The first activity takes about ten minutes.</p>
+                    <a href="#" class="button button-primary">Begin activity 1</a>
+                </div>
+            </div>
         </section>
 
         <!-- CSS Custom Properties -->

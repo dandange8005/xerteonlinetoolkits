@@ -96,6 +96,21 @@ CHECKS += [
      "(function () { var r = Array.from(document.querySelectorAll('.cu-callout')).map(function (c) { return c.getBoundingClientRect(); });"
      " return r.length === 3 && r[0].bottom <= r[1].top + 1 && r[1].bottom <= r[2].top + 1"
      " && Math.abs(r[0].left - r[1].left) < 1 && Math.abs(r[1].left - r[2].left) < 1; })()"),
+    ("code-utilities.html", 1280, "the stat tiles sit side by side at the same height",
+     "(function () { var r = Array.from(document.querySelectorAll('#combining-utilities .flex-200')).map(function (c) { return c.getBoundingClientRect(); });"
+     " return r.length === 3 && Math.abs(r[0].top - r[1].top) < 1 && Math.abs(r[1].top - r[2].top) < 1"
+     " && r[0].left < r[1].left && r[1].left < r[2].left && Math.abs(r[0].height - r[1].height) < 1; })()"),
+    ("code-utilities.html", 485, "the stat tiles stack one under the other",
+     "(function () { var r = Array.from(document.querySelectorAll('#combining-utilities .flex-200')).map(function (c) { return c.getBoundingClientRect(); });"
+     " return r.length === 3 && r[0].bottom <= r[1].top + 1 && r[1].bottom <= r[2].top + 1; })()"),
+    ("code-utilities.html", 1280, "the person's photo and text are centred on each other",
+     "(function () { var row = document.querySelector('#combining-utilities img.rounded-full').parentElement;"
+     " var i = row.children[0].getBoundingClientRect(), t = row.children[1].getBoundingClientRect();"
+     " return Math.abs((i.top + i.height / 2) - (t.top + t.height / 2)) < 1.5 && getComputedStyle(row.children[0]).borderRadius !== '0px'; })()"),
+    ("code-utilities.html", 1280, "the banner puts its button on the right of its text",
+     "(function () { var b = document.querySelector('#combining-utilities .bg-dark'); var p = b.querySelector('p').getBoundingClientRect();"
+     " var a = b.querySelector('a').getBoundingClientRect(), r = b.getBoundingClientRect();"
+     " return a.left > p.right && r.right - a.right < 40 && Math.abs((a.top + a.height / 2) - (p.top + p.height / 2)) < 1.5; })()"),
     ("components.html", 1280, "Bootstrap's plugins are loaded",
      "['alert', 'collapse', 'tab', 'carousel', 'affix', 'scrollspy'].every(function (n) { return typeof jQuery.fn[n] === 'function'; })"),
     ("components.html", 1280, "the Filled Buttons snippet is the example's own markup, tidied", FILLED_BUTTONS_SNIPPET),
