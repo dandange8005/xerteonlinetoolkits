@@ -97,7 +97,8 @@ body {
 /* The page body is a column flex container and Bootstrap gives .container auto side margins, which in a
    flex column stops it stretching: it sizes to its content instead. One wide table then made the whole page
    wider than a phone, however narrow the screen. Capping it at the page width fixes that. */
-main.container {
+main.container,
+body > .container {
     max-width: 100%;
 }
 

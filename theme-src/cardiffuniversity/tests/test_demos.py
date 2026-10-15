@@ -50,6 +50,17 @@ class DemoPagesTest(unittest.TestCase):
                     bad.append(page.name)
         self.assertEqual(bad, [])
 
+    def test_every_page_loads_the_snippet_script_and_styles(self):
+        # demo-code.js adds the Show HTML snippets; the browser checks only see pages that load it.
+        missing = []
+        for page in PAGES:
+            tree = parse(page.read_text(encoding="utf-8"))
+            has_script = [s for s in tree.find_all("script") if s.attrs.get("src") == "assets/demo-code.js"]
+            has_styles = [s for s in tree.find_all("link") if s.attrs.get("href") == "assets/demo-code.css"]
+            if not (has_script and has_styles):
+                missing.append(page.name)
+        self.assertEqual(missing, [])
+
     def test_the_homepage_callouts_sit_in_one_responsive_row(self):
         # The theme's flex utilities: a wrapping flex row whose items have a flex-basis class.
         page = parse((DEMOS / "index.html").read_text(encoding="utf-8"))
@@ -60,6 +71,22 @@ class DemoPagesTest(unittest.TestCase):
         for callout in callouts:
             self.assertIs(callout.parent, row)
             self.assertIn("flex-300", callout.classes)
+
+    def test_utility_combinations_use_only_real_author_classes(self):
+        # The section shows what authors can build by combining utilities, so every class in it must be one
+        # they can use: defined by the player's stylesheets or the theme, and not legacy. The demo's own chrome
+        # classes do not count. (text-center, for one, comes from Bootstrap but is in the utility reference.)
+        page = parse((DEMOS / "code-utilities.html").read_text(encoding="utf-8"))
+        section = page.find(id="combining-utilities")
+        self.assertIsNotNone(section)
+        self.assertNotIn("data-code", section.attrs)  # unlike the reference above it, these have Show HTML
+        blocks = section.find_all(cls="demo-block")
+        self.assertGreaterEqual(len(blocks), 5)
+        used = {c for el in section.iter() for c in el.classes
+                if not c.startswith(("demo-", "code-label"))}
+        self.assertEqual(sorted(used - theme_css.stack_classes()), [])
+        self.assertEqual(sorted(used & set(theme_css.LEGACY)), [])
+        self.assertIn("#combining-utilities", [a.attrs.get("href") for a in page.find_all("a")])
 
     def test_the_demos_bootstrap_script_is_bootstrap(self):
         # It was once a saved error message ("Couldn't find the requested release version"), so tabs,
