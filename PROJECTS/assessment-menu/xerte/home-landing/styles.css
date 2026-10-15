@@ -1,0 +1,137 @@
+/* ===== Assessment Menu: Home page (landing, from the Hannah and Carys layout doc) =====
+   Put this in a <style> block in an HTML element on the Home page, not in Project > Styles.
+
+   The page sits on the cardiffuniversity theme stylesheet. Colour, spacing, type, shadow and
+   focus all resolve through its custom properties; what is here is only what the theme has no
+   component for: the section bands, the numbered question cards, the three "asks" cards, the
+   category tiles and the intro illustration.
+
+   Everything is scoped by body:has(.lp-intro) so it applies to this page alone, and every
+   class is lp-prefixed so it cannot clash with the other Home options. The type search keeps
+   the am-search / am-results class names because the project Script (home-option-a/script.js)
+   is delegated on them.
+
+   The Lane 1 / Lane 2 cards are not styled here: they use the category pages' .am-lanes /
+   .am-lane classes from Project > Styles, so the two stay identical. */
+/* ======================
+   NO TOC Page Template
+   =======================*/
+body:has(.lp-intro) #contentTable { display: none; }
+body:has(.lp-intro) .row-fluid .span9.expandMain { margin-left: 0; }
+body:has(.lp-intro) .navbar-fixed-top { margin-bottom: 0; }
+body:has(.lp-intro) section {
+  position: relative;
+  box-shadow: none;
+  border-radius: 0;
+  background: none;
+  margin: 0;
+  padding-block: var(--spacing-10);
+  overflow: revert;
+}
+/* Full-width band without a 100vw width (which includes the scrollbar and scrolls the page
+   sideways): the section's own box spread outwards by a box-shadow, trimmed vertically by
+   clip-path on the pseudo-element so nothing inside the section is clipped. */
+body:has(.lp-intro) section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--lp-band);
+  box-shadow: 0 0 0 100vmax var(--lp-band);
+  clip-path: inset(0 -100vmax);
+}
+body:has(.lp-intro) section:nth-child(odd) { --lp-band: var(--color-white); }
+body:has(.lp-intro) section:nth-child(even) { --lp-band: var(--color-light); }
+body:has(.lp-intro) .footer { margin-top: 0; }
+
+/* This page supplies its own heading in each section, so the player's section title and
+   the per-section "Top" link are hidden. aria-labelledby still resolves to the hidden
+   heading, so give each section a meaningful Section Title. */
+body:has(.lp-intro) section > .page-header { display: none; }
+body:has(.lp-intro) section > p:has(> .topBtn) { display: none; }
+
+.lp-sec-head { margin-bottom: var(--spacing-7); max-width: 70ch; }
+
+/* 1. Intro: white band, big type, the menu illustration beside it */
+.lp-intro { display: grid; grid-template-columns: 1.15fr .85fr; gap: var(--spacing-12); align-items: center; }
+.lp-intro .lead { color: var(--color-text); font-size: var(--font-size-xl); }
+.lp-intro-art svg { display: block; width: 100%; max-width: 480px; height: auto; margin: 0 auto; overflow: visible; }
+.lp-a-card { fill: var(--color-white); stroke: var(--color-text); stroke-width: var(--border-width-2); }
+.lp-a-shadow { fill: var(--color-gray-20); }
+.lp-a-red { fill: var(--color-brand-primary); }
+.lp-a-ink { fill: var(--color-text); }
+.lp-a-bar { fill: var(--color-gray-30); }
+.lp-a-name { fill: var(--color-gray-40); }
+.lp-a-rule { stroke: var(--color-text); stroke-width: var(--border-width-2); }
+.lp-a-leader { fill: none; stroke: var(--color-gray-40); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 0 6; }
+.lp-a-chosen { fill: var(--color-selected-bg); }
+.lp-a-tile { stroke: var(--color-text); stroke-width: var(--border-width-1); }
+.lp-a-glyph { fill: none; stroke: var(--color-text); stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.lp-a-glyph.is-chosen { stroke: var(--color-white); }
+.lp-g-10 { fill: var(--color-gray-10); }
+.lp-g-20 { fill: var(--color-gray-20); }
+.lp-g-30 { fill: var(--color-gray-30); }
+.lp-g-40 { fill: var(--color-gray-40); }
+.lp-g-50 { fill: var(--color-gray-50); }
+.lp-g-60 { fill: var(--color-gray-60); }
+.lp-g-chosen { fill: var(--color-brand-primary); }
+.lp-a-tick path { fill: none; stroke: var(--color-white); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+@media (prefers-reduced-motion: no-preference) {
+  .lp-a-tick { transform-box: fill-box; transform-origin: center; animation: lp-tick var(--duration-slow) cubic-bezier(0, 0, 0.2, 1) 1.3s both; }
+}
+@keyframes lp-tick { from { transform: scale(0); } 70% { transform: scale(1.15); } to { transform: scale(1); } }
+
+/* 2. Six questions (option A's numbered cards) */
+.lp-qgrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-4); counter-reset: lpq; }
+.lp-qgrid li { counter-increment: lpq; margin: 0; padding: var(--spacing-6); background: var(--color-white); border-top: var(--border-width-4) solid var(--color-brand-primary); border-radius: var(--radius-card); font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); }
+.lp-qgrid li::before { content: counter(lpq, decimal-leading-zero); display: block; margin-bottom: var(--spacing-2); font-family: var(--font-family-display); font-size: var(--font-size-3xl); color: var(--color-action); }
+
+/* 3. What else do I need to know */
+.lp-asks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-4); margin-bottom: var(--spacing-7); }
+.lp-ask { padding: var(--spacing-5) var(--spacing-6); background: var(--color-bg-subtle); border-left: var(--spacing-1) solid var(--color-brand-primary); border-radius: var(--radius-card); }
+.lp-ask h4 { margin-bottom: var(--spacing-2); color: var(--color-text); }
+
+/* 4. Browse by category (option A's tiles) */
+.lp-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--spacing-4); margin-bottom: var(--spacing-8); }
+.lp-tile { display: flex; flex-direction: column; gap: var(--spacing-3); padding: var(--spacing-6); background: var(--color-white); border: var(--border-width-1) solid var(--color-border-default); border-radius: var(--radius-card); color: var(--color-text); text-decoration: none; transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+.lp-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--color-text); color: var(--color-text); }
+/* The theme's visited colour is a:…:visited, which outranks a single class; naming the link
+   states matches it so a visited tile does not turn link blue. */
+.lp-tile:link, .lp-tile:visited { color: var(--color-text); }
+.lp-tile i { font-size: var(--icon-size-lg); color: var(--color-action); }
+.lp-tile strong { font-size: var(--font-size-md); }
+.lp-tile--all { background: var(--color-bg-secondary); border-color: var(--color-bg-secondary); }
+.lp-tile--all, .lp-tile--all:link, .lp-tile--all:visited, .lp-tile--all:hover, .lp-tile--all:focus { color: var(--color-on-dark); }
+.lp-tile--all i { color: var(--color-on-dark); }
+.lp-tile--all span { color: var(--color-on-dark-muted); }
+section a.lp-tile { text-decoration: none; }
+
+/* Type search (needs the project Script; keeps the am-* names that script is bound to) */
+.am-search { position: relative; max-width: 640px; }
+section .am-search input[type="search"] { width: 100%; height: auto; min-height: var(--min-input-height); box-sizing: border-box; margin: 0; padding: var(--spacing-3) var(--spacing-4); font-size: var(--font-size-md); border: var(--border-width-2) solid var(--color-border-default); border-radius: var(--radius-input); background-color: var(--color-white); color: var(--color-text); box-shadow: none; }
+section .am-search input[type="search"]:focus { border-color: var(--color-text); }
+.am-results { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--z-index-dropdown); list-style: none; margin: 0; padding: 0; background: var(--color-white); border: var(--border-width-1) solid var(--color-border-default); border-radius: 0 0 var(--radius-input) var(--radius-input); box-shadow: var(--shadow-dropdown); max-height: 300px; overflow-y: auto; }
+.am-results[hidden] { display: none; }
+.am-results li { margin: 0; }
+.am-results a { display: flex; justify-content: space-between; gap: var(--spacing-3); padding: var(--spacing-3) var(--spacing-4); border-top: var(--border-width-1) solid var(--color-border-light); color: var(--color-text); text-decoration: none; }
+.am-results a:hover, .am-results a:focus { background: var(--color-tint); }
+/* The dropdown scrolls, so it clips anything outside its box, including the theme's outset
+   focus ring. Draw the ring inside the row instead. */
+.am-results a:focus-visible { outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color); outline-offset: calc(var(--focus-ring-width) * -1); border-radius: 0; }
+.am-results .am-cat { color: var(--color-text-muted); font-size: var(--font-size-base); white-space: nowrap; }
+.am-results .am-none { display: block; padding: var(--spacing-3) var(--spacing-4); color: var(--color-text-muted); }
+section .am-results a { text-decoration: none; }
+
+/* 5. Footer: use alongside, further reading (option A's footer) */
+.lp-alongside { display: grid; grid-template-columns: 1.2fr .8fr; gap: var(--spacing-10); }
+.lp-alongside ul { list-style: none; margin: 0; padding: 0; }
+.lp-alongside li { margin: 0; padding: var(--spacing-2) 0; border-bottom: var(--border-width-1) solid var(--color-border-default); }
+
+@media (max-width: 979px) {
+  .lp-intro, .lp-alongside { grid-template-columns: 1fr; }
+  .lp-qgrid, .lp-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lp-asks { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .lp-qgrid, .lp-tiles { grid-template-columns: 1fr; }
+}

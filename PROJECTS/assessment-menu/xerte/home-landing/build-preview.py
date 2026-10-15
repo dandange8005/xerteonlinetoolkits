@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+"""Stitch the section fragments into local-preview.html, inside the Cardiff theme page frame.
+
+The fragments, styles.css and script.js are what gets pasted into Xerte; this file only exists to
+check them against the real theme CSS. styles.css and script.js are linked, not inlined, so the
+preview cannot drift from the source. Run: python3 build-preview.py
+"""
+import os
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+XERTE = HERE.parents[3]  # the repo root: PROJECTS/assessment-menu/xerte/<this folder>
+THEME = XERTE / "themes/site/cardiffuniversity"
+COMMON = XERTE / "modules/site/parent_templates/site/common"
+CATEGORIES_CSS = HERE.parent / "categories/styles.css"  # Project > Styles: loads on every page, Home included
+
+
+def rel(path):
+    """A link relative to this folder, so local-preview.html works wherever the repo is cloned."""
+    return os.path.relpath(path, HERE).replace(os.sep, "/")
+
+PAGE_TITLE = "Assessment Menu"
+PAGE_SUBTITLE = "Designing inclusive, authentic and future-focused assessment"
+
+# One entry per Xerte Section: (Section ID, Section Title, [fragments in that section]).
+# The Section ID must be set in the editor: the player uses it as the section's DOM id, and
+# styles.css hangs the full-width bands off those ids. The titles are hidden by styles.css but
+# still name the section for screen readers, so they are written out here as the player does.
+SECTIONS = [
+    ("l-intro", "A design tool, not a list of recommendations", ["01-intro.html"]),
+    ("l-questions", "Six questions to inform your thinking", ["02-questions.html"]),
+    ("l-know", "What else do I need to know before I get started?", ["03-know.html"]),
+    ("l-browse", "Browse by category", ["04-browse.html"]),
+    ("l-alongside", "Use this menu alongside", ["05-alongside.html"]),
+]
+
+# Mirrors what the player emits around each section, checked against a real page: the section
+# carries aria-labelledby, the title sits in a .page-header, and a "Top" link is appended in its
+# own paragraph. The player does not add oddSection/evenSection classes here.
+blocks = []
+for section_id, title, fragments in SECTIONS:
+    header = f'<div class="page-header"><h2 id="{section_id}_title" class="sectionTitle">{title}</h2></div>'
+    body = "\n".join((HERE / f).read_text() for f in fragments)
+    top = '<p><br><a class="topBtn btn btn-mini pull-right" href="#skipLink">Top</a></p>'
+    blocks.append(
+        f'<section id="{section_id}" aria-labelledby="{section_id}_title">{header}\n{body}\n{top}</section>'
+    )
+
+html = f"""<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assessment Menu · Home (landing) preview</title>
+<link rel="stylesheet" href="{rel(COMMON / 'css/bootstrap.css')}">
+<link rel="stylesheet" href="{rel(COMMON / 'css/bootstrap-responsive.css')}">
+<link rel="stylesheet" href="{rel(COMMON / 'css/fonts.css')}">
+<link rel="stylesheet" href="{rel(COMMON / 'css/custom.css')}">
+<link rel="stylesheet" href="{rel(XERTE / 'modules/common/fontawesome-6.6.0/css/all.min.css')}">
+<link rel="stylesheet" href="{rel(THEME / 'cardiffuniversity.css')}">
+<!-- Project > Styles for the category pages: it loads on every page, so it is here to show what reaches this page -->
+<link rel="stylesheet" href="{rel(CATEGORIES_CSS)}">
+<!-- Home-page style block, linked here for local preview -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="jumbotron logoL" id="overview"><div class="container">
+  <div class="logoL"><img class="logo logoL themeLogo" src="{rel(THEME / 'logo_left.svg')}" alt="Cardiff University / Prifysgol Caerdydd"></div>
+  <div class="titles"><h1 id="pageTitle">{PAGE_TITLE}</h1><p id="pageSubTitle">{PAGE_SUBTITLE}</p></div>
+</div></header>
+<div id="pageLinks"><div class="navbar navbar-inverse" role="navigation"><div class="navbar-inner"><div class="container"><div class="nav-collapse collapse">
+  <ul class="nav"><li class="activePage"><a href="#">Home</a></li><li><a href="#">Browse all</a></li><li><a href="#">Exams</a></li></ul>
+</div></div></div></div></div>
+<div class="container"><div class="row-fluid">
+<div class="span3 bs-docs-sidebar hideSectionMenu expandMain" id="contentTable"><ul class="nav nav-list bs-docs-sidenav affix" id="toc"></ul></div>
+<div class="span9 expandMain" id="mainContent" role="main">
+{chr(10).join(blocks)}
+</div></div></div>
+<footer class="footer"><div class="container"><div class="row-fluid"><p>Developed by the Digital Education Team, Learning and Teaching Academy, Cardiff University</p></div></div></footer>
+<script src="{rel(COMMON / 'js/jquery-1.9.1.min.js')}"></script>
+<!-- Project > Optional properties > Script: the same type search as option A -->
+<script src="../home-option-a/script.js"></script>
+</body>
+</html>
+"""
+out = HERE / "local-preview.html"
+out.write_text(html)
+print(f"wrote {out} ({len(blocks)} sections)")
